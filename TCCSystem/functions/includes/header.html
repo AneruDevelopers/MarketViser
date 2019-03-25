@@ -1,0 +1,24 @@
+<div class="col-12 col-lg-3 col-md-3 col-sm-12v">
+    <h1 class="comapanyName"><a class="linkCompanyName" href="index.php">e.conomize</a></h1>
+</div>
+<div class="listDiv col-12 col-lg-6 col-md-6 col-sm-12">
+    <div class="searchBoxHeader" id="searchBoxHeader">
+        <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
+            <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
+                <button class="pesquisaBtnHeader" type="submit" name="search">
+                    <i class="fas fa-search"></i>
+                </button>
+        </form>
+    </div>
+</div>
+<div class="col-12 col-lg-3 col-md-3 col-sm-12">
+    <ul class="usuarioHeader">
+        <li class="celulaUsuarioHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkUsuarioHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
+        <li class="celulaUsuarioHeader"><a class="linkUsuarioHeader" href="carrinho.php"><i class="fas fa-shopping-basket"></i> Carrinho</a></li>
+        <li id='btnModal' class='celulaUsuarioHeader menu'><a class='linkUsuarioHeader' href='#'><i class='far fa-user-circle'></i></a>
+            <ul class="sub-menu clearfix">
+                    <li><a class='linkUsuarioHeader clearfix' href='logout.php'><li class='celulaUsuarioHeader'><i class='fas               fa-sign-out-alt'></i></a>
+                    </li>
+        </li>
+    </ul>
+</div>
