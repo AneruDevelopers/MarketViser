@@ -1,4 +1,14 @@
 @font-face {
+    font-family: "Rubik";
+    src: url('../fonts/Rubik/Rubik-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Exo";
+    src: url('../fonts/Exo2/Exo2-Medium.ttf');
+}
+
+@font-face {
     font-family: "Source Sans Pro";
     src: url('../fonts/SourceSansPro/SourceSansPro-Regular.ttf');
 }
@@ -18,248 +28,648 @@
     src: url('../fonts/Karla/Karla-Bold.ttf');
 }
 
-/* TOP NAV */
-
-.topNavDiv {
-    background: #330867;
-    color: #ffffff;
-    height: 1.6rem;
-    text-align: center;
+@font-face {
+    font-family: "Montserrat";
+    src: url('../fonts/Montserrat/Montserrat-Light.ttf');
 }
 
-.menuTopNav {
-    float: right;
-    font-size: 14px;
+@font-face {
+    font-family: "Raleway";
+    src: url('../fonts/Raleway/Raleway-Light.ttf');
 }
 
-.celulaTopNav {
-    display: inline-block;
-    display: -webkit-inline-box;
-    list-style: none;
-    position: relative;
-    height: 1.6rem;
-    text-align: center;
-    line-height: 2.2rem;
-    padding: 0 1rem;
+@font-face {
+    font-family: "Raleway-Medium";
+    src: url('../fonts/Raleway/Raleway-Medium.ttf');
 }
 
-.linkMenuTopNav {
-    text-decoration: none;
-    color: #ffffff;
-    height: 100%;
-    position: relative;
-    top: -.4rem;
-}
-
-.linkMenuTopNav:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-/* HEADER PRINCIPAL */
-
-/* .no-gutter > [class*='col-'] {
-    padding-right:0;
-    padding-left:0;
-} */
-
-.headerClass {
-    height: 4rem;
-    background: #ffffff;
-    border-bottom: solid 1px #e2e3e6;
-}
-
-.subheaderClass {
-    height: 2.5rem;
-}
-
-.comapanyName {
-    font-family: "Karla";
-    font-size: 34px;
-    text-align: center;
-    line-height: 3.8rem;
-}
-
-.linkCompanyName {
-	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
-.linkCompanyName:hover {
-    text-decoration: none;
-}
-
-.navClass {
-    background: #ffffff;
-    height: 3rem;
-    border-bottom: solid 1px #b2b4b8;
-}
-
-/* BARRA DE PESQUISA */
-
-.searchDiv {
-    background: none;
-}
-
-.searchBoxHeader {
-    position: relative;
-    top: .9rem;
-    background: #ffffff;
-    height: 33px;
-    border-radius: 40px;
-    padding: 5px;
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid 1px #e2e3e6;
-}
-
-.formPesquisaHeader {
-    position: relative;
-}
-
-.pesquisaBtnHeader {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #330867;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #30CFD0;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    position: relative;
-    float: right;
-    margin-top: -.22rem;
-}
-
-.pesquisaBtnHeader > i {
-    font-size: 19px;
-}
-
-.pesquisaTxtHeader {
-    border: none;
-    background: none;
-    outline: none;
-    font-size: 13px;
-    line-height: 25px;
-    width: 90%;
-    color: #2f3640;
-    position: relative;
-    top: -.15rem;
-    left: 1%;
-}
-
-/* ESPAÇO DO USUÁRIO HEADER */
-
-.usuarioHeader {
-    position: relative;
-    margin: 0 0;
+body {
     padding: 0 0;
-    margin-top: .8rem;   
+    margin: 0 0;
 }
 
-.celulaUsuarioHeader {
-    display: -webkit-inline-box;
-    list-style: none;
-    position: relative;
-    text-align: center;
-    padding: 0 1rem;
-    height: 4rem;
-}
-
-.linkUsuarioHeader {
-    text-decoration: none;
-    color: #330867;
+html, body{
     height: 100%;
-    position: relative;
-    top: .5rem;
-    font-size: 15px;
-    font-family: "Source Sans Pro";
 }
 
-.linkUsuarioHeader:hover {
-    color: #330867;
-    text-decoration: none;
+.l-wrapper {
+    display: grid;
 }
 
-.fa-user-circle {
-    font-size: 1.2rem;
+@media only screen and (max-width: 999px) and (min-width: 0px) {
+
+    .l-wrapper {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: auto auto auto auto 40rem 15rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
+            "bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav"
+            "carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNav {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+    }
+
+    .l-headerNav {
+        grid-area: headerNav;
+        background-color: #252730;
+        width: 100%;
+    }
+
+    .l-bottomNav {
+        grid-area: bottomNav;
+        background-color: #ffffff;
+        border-bottom: solid 2px #252730;
+        width: 100%;
+    }
+
+    .l-carousel {
+        grid-area: carousel;
+        width: 100%;
+    }
+
+    .l-main {
+        grid-area: main;
+    }
+
+    .l-footer {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottom {
+        grid-area: footerBottom;
+        background: #252730;
+    }
+
+    /* HEADER PRINCIPAL */
+
+    .companyNameSpace {
+        width: 50%;
+        height: auto;
+        /* margin: 4px; */
+    }
+
+    .comapanyName {
+        font-family: "Rubik";
+        text-align: center;
+        margin: 0 0;
+        height: 100%;
+    }
+
+    .linkCompanyName {
+        color: #252730;
+        text-decoration: none;
+        position: relative;
+        font-size: 25px;
+        top: -.3rem;
+    }
+
+    .linkCompanyName:hover {
+        text-decoration: none;
+    }
+
+    .navClass {
+        background: #ffffff; 
+        border-bottom: solid 1px #b2b4b8;
+    }
+
+
+    /* ESPAÇO DO USUÁRIO HEADER */
+
+    .topNavCity {
+        width: 25%;
+        height: auto;
+        /* margin: 4px; */
+    }
+
+    .linkMenuTopNavCityMobile {
+        position: relative;
+        list-style: none;
+        padding: 0 0;
+        margin: 0 0;
+        text-align: left;
+        position: relative;
+        top: .8rem;
+        padding-left: .9rem;
+        width: 100%;
+        color: #252730;
+        font-family: "Raleway-Medium";
+        font-size: 10px;
+    }
+
+    .linkMenuTopNavCityMobile:hover {
+        color: rgb(173, 2, 253);
+        text-decoration: none;
+        transition: color 250ms ease-in-out;
+    }
+
+    .menuTopNav {
+        display: none;
+    }
+
+    .menuTopNavMobile {
+        width: 25%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .celulaTopNavMobile {
+        position: relative;
+        width: 20%;
+        height: 100%;
+        list-style: none;
+        text-align: center;
+        margin: 0 .5rem 0 0;
+        padding: 0 0;
+        float: right;
+    }
+
+    .celulaTopNavCityMobile {
+        width: 45%;
+        height: 100%;
+        text-align: center;
+        list-style: none;
+        display: inline-block;
+    }
+
+    .linkMenuTopNavMobile i {
+        font-size: 16px;
+    }
+    
+    .linkMenuTopNavMobile {
+        text-decoration: none;
+        color: #252730;
+        height: 100%;
+        position: relative;
+        font-size: 12px;
+        font-family: "Raleway-Medium";
+        position: relative;
+        top: .65rem;
+    }
+    
+    .linkMenuTopNavMobile:hover {
+        color: rgb(173, 2, 253);
+        text-decoration: none;
+        transition: color 250ms ease-in-out;
+    }
+
+    /* BARRA DE PESQUISA */
+
+    .searchSpace {
+        display: none;
+    }
+
+    .searchSpaceMobile {
+        position: relative;
+        width: 50%;
+        left: 25%;
+        margin: .5rem 0;
+    }
+
+    .searchBoxHeader {
+        background: #ffffff;
+        height: 20px;
+        padding: 4px;
+        border: solid 1px #b2b4b8;
+        position: relative;
+        border-radius: 3%;
+    }
+
+    .formPesquisaHeader {
+        display: flex;
+    }
+    
+    .pesquisaBtnHeader {
+        width: 25px;
+        height: 25px;
+        border-radius: 10%;
+        background: #252730;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #e2e3e6;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        margin-top: -.19rem;
+        float: right;
+    }
+
+    .pesquisaBtnHeader > i {
+        font-size: 16px;
+    }
+
+    .pesquisaTxtHeader {
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 13px;
+        width: 100%;
+        color: #2f3640;
+        position: relative;
+        top: 0rem;
+    }
+    
+    /* MENU CAROUSEL */
+    
+    .menuCarousel {
+        display: none;
+    }
+
+    .menuCarousel .owl-stage-outer {
+        display: none;
+    }
+
+    .menuCarouselMobile {
+        background: transparent;
+        position: relative;
+        margin: .8em 0;
+    }
+    
+    .celulaMenuCarousel {
+        display: none;
+    }
+    
+    .celulaMenuCarouselMobile {
+        border: none;
+        text-align: center;
+        border-radius: 5%;
+        text-decoration: none;
+        padding: 5px 0;
+        border: solid 1px #b2b4b8;
+        position: relative;
+    }
+
+    .celulaMenuCarouselMobile:hover {
+        text-decoration: none;
+        background: #252730;
+        transition: background 250ms ease-in-out;
+    }
+
+    .celulaMenuCarouselMobile:hover .linkMenuCarouselMobile {
+        color: #ffffff;
+        transition: color 250ms ease-in-out;
+    }
+
+    .celulaMenuCarouselMobile a i {
+        color: rgb(173, 2, 253);
+        font-size: 22px;
+        margin-left: 5px;
+    }
+
+    .linkBtnMenu{
+        text-decoration: none;
+    }
+
+    .imgMenu {
+        position: relative;
+        width: 1rem;
+    }
+
+    .linkMenuCarouselMobile {
+        color: #252730;
+        margin: 0 0;
+        padding: 0 0;
+        position: relative;
+        text-decoration: none;
+        font-family: "Raleway";
+        font-size: 10px;
+    }
+
+    /* CAROUSEL */
+    
+    .imgCarousel {
+        max-height: 26rem;
+    }
+
+    /* DISPLAY PRODUCTS */
+
+    .tituloOfertas {
+        position: relative;
+        font-family: "Raleway";
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        /* background: linear-gradient(to right, #30CFD0 0%, #330867 100%); */
+        padding: 10px 0;
+        margin: 0 0;
+        color: #252730;
+    }
+
+    .productsClass {
+        min-height: 20rem;
+        border: solid 1px #e2e3e6;
+        margin: 0 15px;
+    }
 }
 
-.fa-shopping-basket {
-    font-size: 1.2rem;
+@media only screen and (max-width: 1400px) and (min-width: 1000px) {
+
+    .l-wrapper {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: 3rem 5.5rem auto 40rem 15rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
+            "carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel carousel"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNav {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+    }
+
+    .l-headerNav {
+        grid-area: headerNav;
+        background-color: #ffffff;
+        border-bottom: solid 2px #252730;
+        margin-bottom: 2px;
+        width: 100%;
+    }
+
+    .l-carousel {
+        grid-area: carousel;
+        width: 100%;
+    }
+
+    .l-main {
+        grid-area: main;
+        margin-top: 2px;
+    }
+
+    .l-footer {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottom {
+        grid-area: footerBottom;
+        background: #252730;
+    }
+
+    /* HEADER PRINCIPAL */
+
+    .headerClass {
+        height: 4rem;
+        background: #ffffff;
+        border-bottom: solid 1px #e2e3e6;
+    }
+
+    .companyNameSpace {
+        width: 25%;
+        height: auto;
+        margin: 4px;
+    }
+
+    .comapanyName {
+        font-family: "Rubik";
+        text-align: center;
+        margin: 0 0;
+    }
+
+    .linkCompanyName {
+        color: #252730;
+        text-decoration: none;
+        position: relative;
+        font-size: 25px;
+        top: -.2rem;
+    }
+
+    .linkCompanyName:hover {
+        text-decoration: none;
+    }
+
+    .navClass {
+        background: #ffffff; 
+        border-bottom: solid 1px #b2b4b8;
+    }
+
+        /* BARRA DE PESQUISA */
+    
+    .searchSpace {
+        position: relative;
+        width: 50%;
+        margin: 4px;
+    }
+
+    .searchSpaceMobile {
+        display: none;
+    }
+
+    .searchBoxHeader {
+        background: #ffffff;
+        height: 20px;
+        padding: 4px;
+        border: solid 1px #b2b4b8;
+        position: relative;
+        top: .34rem;
+        border-radius: 3%;
+    }
+
+    .formPesquisaHeader {
+        display: flex;
+    }
+
+    .pesquisaBtnHeader {
+        width: 25px;
+        height: 25px;
+        border-radius: 10%;
+        background: #252730;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #e2e3e6;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        margin-top: -.19rem;
+        float: right;
+    }
+
+    .pesquisaBtnHeader > i {
+        font-size: 16px;
+    }
+
+    .pesquisaTxtHeader {
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 13px;
+        width: 100%;
+        color: #2f3640;
+        position: relative;
+        top: 0rem;
+    }
+
+    /* ESPAÇO DO USUÁRIO HEADER */
+
+    .topNavCity {
+        display: none; 
+    }
+    
+    .menuTopNavCityMobile {
+        display: none;
+    }
+    
+    .menuTopNav {
+        height: auto;
+        margin-right: .4%;
+        margin-top: .2%;
+        margin-bottom: .2%;
+        margin-left: 2.5%;
+        padding: 2px;
+        width: 25%;
+        background: #252730;
+        border-radius: 15px 5px 15px 5px;
+    }
+
+    .menuTopNavMobile {
+        display: none;
+    }
+
+    .celulaTopNav {
+        position: relative;
+        width: 25%;
+        height: 100%;
+        list-style: none;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .celulaTopNav-City {
+        width: 45%;
+        height: 100%;
+        text-align: center;
+        list-style: none;
+        display: inline-block;
+    }
+
+    .linkMenuTopNav i {
+        font-size: 16px;
+    }
+    
+    .linkMenuTopNav {
+        text-decoration: none;
+        color: #ffffff;
+        height: 100%;
+        position: relative;
+        top: .6rem;
+        font-size: 12px;
+        font-family: "Raleway-Medium";
+    }
+    
+    .linkMenuTopNav:hover {
+        color: rgb(173, 2, 253);
+        text-decoration: none;
+        transition: color 250ms ease-in-out;
+    }
+
+    /* MENU CAROUSEL */
+
+    .menuCarousel {
+        background: transparent;
+        position: relative;
+        top: .4rem;
+    }
+
+    .menuCarouselMobile .owl-stage-outer {
+        display: none;
+    }
+
+    .menuCarouselMobile {
+        display: none;
+    }
+
+    .celulaMenuCarousel {
+        border: none;
+        text-align: center;
+        border-radius: 5%;
+        text-decoration: none;
+        padding: 5px 0;
+        border: solid 1px #b2b4b8;
+        position: relative;
+    }
+
+    .celulaMenuCarousel:hover {
+        text-decoration: none;
+        background: #252730;
+        transition: background 250ms ease-in-out;
+    }
+
+    .celulaMenuCarousel:hover .linkMenuCarousel {
+        color: #ffffff;
+        transition: color 250ms ease-in-out;
+    }
+
+    .celulaMenuCarousel a i {
+        color: rgb(173, 2, 253);
+        font-size: 26px;
+        margin-left: 5px;
+    }
+
+    .linkBtnMenu{
+        text-decoration: none;
+    }
+
+    .imgMenu {
+        position: relative;
+        width: 1rem;
+    }
+
+    .linkMenuCarousel {
+        color: #252730;
+        margin: 0 0;
+        padding: 0 0;
+        position: relative;
+        text-decoration: none;
+        font-family: "Raleway";
+        font-size: 12px;
+    }
+
+    /* CAROUSEL */
+    
+    .imgCarousel {
+        max-height: 26rem;
+    }
+
+    /* DISPLAY PRODUCTS */
+
+    .tituloOfertas {
+        position: relative;
+        font-family: "Raleway";
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        margin: 0 0;
+        color: #252730;
+    }
+
+    .productsClass {
+        min-height: 20rem;
+        border: solid 1px #e2e3e6;
+        margin: 0 15px;
+    }
 }
 
-.fa-sign-out-alt {
-    font-size: 1.2rem;
-}
-
-.menu:hover > .sub-menu {
-    display: block;
-}
-
-.sub-menu {
-    list-style: none;
-    background:#ffffff;
-    border: 1px solid #e2e3e6;
-    z-index: 99;
-}
-
-.sub-menu {
-    display: none;
-    position: absolute;
-    right: -.45rem;
-    width: 4rem;
-    height: 4rem;
-    top: 2.5rem;
-}
-
-.sub-menu > li {
-    position: relative;
-    right: 2rem;
-    top: .7rem;
-}
-
-/* CAROUSEL */
-
-.imgCarousel {
-    max-height: 26rem;
-}
-
-/* STORAGE HEADER MENU */
-
-.modalMenuHeader {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 25rem;
-    background: #ffffff;
-    z-index: 99;
-    top: 0rem;
-    border-bottom: solid 1px #e2e3e6;
-}
-
-/* DISPLAY PRODUCTS */
-
-.tituloOfertas {
-    position: relative;
-    font-family: "Source Sans Pro";
-    font-size: 1.6rem;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
-    padding: 10px 0;
-    margin: 0 15px;
-    color: #ffffff;
-}
-
-.productsClass {
-    min-height: 20rem;
-    border: solid 1px #e2e3e6;
-    margin: 0 15px;
-}
