@@ -60,17 +60,24 @@
 
         <!-- -------------------- -->
 
-        <!-- Formulário para Login -->
-            <div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
                 <form id="form-login">
-                    <h4>Login</h4>
-                    <input type="text" placeholder="E-mail" name="usu_email" id="usu_email"/><br/>
-                    <input type="password" placeholder="Senha" name="usu_senha" id="usu_senha"/><br/>
-                    Ainda não é cadastrado?<a href="cadastro.php"> Cadastre-se já</a><br/>
+                    <span class="close">&times;</span>
+                    <!-- <i class="far fa-check-circle"></i> -->
+                    <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
+                    <strong><label class="labelInput">E-MAIL</label></strong>
+                    <input class="inputModal" type="email" placeholder=" E-mail" name="usu_email" id="usu_email"/><br/>
+                    <strong><label class="labelInput">SENHA</label></strong>
+                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha" id="usu_senha"/><br/>
+                    <p class="textModal">Ainda não é cadastrado?<br>
+                    <a class="linkCadModal" href="cadastro.php">Cadastre-se já</a></p><br/>
                     <div class="help-block"></div>
-                    <input type="submit" id="btn-login" value="Entrar"/>
+                    <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                 </form>
             </div>
+        </div>
+
         <!-- -------------------- -->
 
         <div class="l-footer" id="footer"></div>
