@@ -68,7 +68,7 @@ border-radius: 0;
     display: grid;
 }
 
-@media only screen and (max-width: 999px) and (min-width: 0px) {
+@media only screen and (max-width: 849px) and (min-width: 0px) {
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
@@ -493,14 +493,65 @@ border-radius: 0;
 
     /* CADASTRO.PHP */
     
+
+
+    /* PAGE --> CADASTRO.PHP */
+
+    .l-wrapper_cadastro {
+        display: grid;
+    }
+
+    .l-wrapper_cadastro {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: auto auto auto 15rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNavCad {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+        border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-headerNavCad {
+        grid-area: headerNav;
+        background-color: #252730;
+        width: 100%;
+    }
+
+    .l-mainCad {
+        grid-area: main;
+        margin: 1rem 0;
+    }
+
+    .l-footerCad {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottomCad {
+        grid-area: footerBottom;
+        background: #252730;
+    }
+    
     .circleCad {
-        position: relative;
-        width: 6.5rem;
-        height: 6.5rem;
+        position: absolute;
+        width: 5rem;
+        height: 5rem;
         background: rgb(173, 2, 253);
         border-radius: 50%;
-        left: 10%;
-        top: -1%;
+        left: 14%;
+        top: 6rem;
         z-index: 1;
     }
 
@@ -510,9 +561,9 @@ border-radius: 0;
         font-family: "Raleway";
         text-align: center;
         color: #ffffff;
-        font-size: 14px;
+        font-size: 12px;
         position: relative;
-        top: 1.4rem;
+        top: .9rem;
         transform: rotate(-25deg);
     }
     
@@ -522,8 +573,8 @@ border-radius: 0;
         left: 20%;
         border: solid #252730 1px;
         border-radius: 3px;
-        top: -4rem;
         background: #ffffff;
+        margin-top: 2rem;
     }
 
     .divCad form {
@@ -613,7 +664,7 @@ border-radius: 0;
     }
 }
 
-@media only screen and (max-width: 1600px) and (min-width: 1000px) {
+@media only screen and (max-width: 1600px) and (min-width: 850px) {
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
@@ -782,48 +833,44 @@ border-radius: 0;
 
     .celulaTopNav {
         position: relative;
-        top: -.15rem;
-        width: 27%;
+        width: 30%;
         height: 100%;
         list-style: none;
         text-align: center;
         display: inline-block;
-        background: #fefefe;
-        /* border-radius: 3px; */
+        background: #ffffff;
         border-left: 1px solid #252730;
         padding-left: .2rem;
+        top: .2rem;
     }
 
-    .celulaTopNav-City {
+    .celulaTopNavCity {
         position: relative;
-        top: -.15rem;
-        width: 40%;
+        width: 32%;
         height: 100%;
         text-align: center;
         list-style: none;
         display: inline-block;
         background: #252730;
         border-radius: 3px;
-        border: #252730 solid 1px;
+        top: .2rem;
     }
 
-    .celulaTopNav-City a h6 {
+    .linkMenuTopNavCity {
         color: #ffffff;
         margin: 0;
-        font-family: 'Raleway';
+        font-family: 'Raleway-Medium';
         position: relative;
-        top: .5rem;
+        top: .2rem;
+        text-decoration: none;
+        font-size: 10px;
     }
 
-    .celulaTopNav-City a div i {
+    .linkMenuTopNavCity i {
         color: rgb(173, 2, 253);
         position: relative;
-        top: .3rem;
-    }
-
-    .celulaTopNav-City a {
-        text-decoration: none;
-        letter-spacing: 1px;
+        top: .4rem;
+        font-size: 16px;
     }
 
     .leftBack {
@@ -838,24 +885,16 @@ border-radius: 0;
     .linkMenuTopNav i {
         font-size: 16px;
         position: relative;
-        top: .3rem;
+        top: .4rem;
     }
     
     .linkMenuTopNav {
         text-decoration: none;
         position: relative;
-        top: .0rem;
-        font-size: 12px;
+        top: .2rem;
+        font-size: 11px;
         font-family: "Raleway-Medium";
         color: #252730;
-    }
-
-    .linkMenuTopNav h6 {
-        color: #252730;
-        margin: 0;
-        font-size: 10px;
-        position: relative;
-        top: .55rem;
     }
     
     .celulaTopNav:hover > .linkMenuTopNav .leftBack {
@@ -863,11 +902,11 @@ border-radius: 0;
         background: rgb(173, 2, 253);
         border: none;
         text-decoration: none;
-        transition: color 200ms ease-in-out;
+        transition: background 200ms ease-in-out;
         position: relative;
     }
 
-    .celulaTopNav-City:hover > .linkMenuTopNav .leftBack {
+    .celulaTopNavCity:hover > .linkMenuTopNavCity .leftBack {
         color: #ffffff;
         background: rgb(173, 2, 253);
         border: none;
@@ -921,7 +960,6 @@ border-radius: 0;
 
     .linkBtnMenu{
         text-decoration: none;
-        letter-spacing: 1px;
     }
 
     .imgMenu {
@@ -936,7 +974,7 @@ border-radius: 0;
         position: relative;
         text-decoration: none;
         font-family: "Raleway";
-        font-size: 12px;
+        font-size: 11px;
     }
 
     /* CAROUSEL */
@@ -1114,7 +1152,7 @@ border-radius: 0;
 
     .l-mainCad {
         grid-area: main;
-        margin-top: 2px;
+        margin: 1rem;
     }
 
     .l-footerCad {
@@ -1128,13 +1166,13 @@ border-radius: 0;
     }
     
     .circleCad {
-        position: relative;
-        width: 10.5rem;
-        height: 10.5rem;
+        position: absolute;
+        width: 8rem;
+        height: 8rem;
         background: rgb(173, 2, 253);
         border-radius: 50%;
-        left: 22%;
-        top: 12%;
+        left: 26%;
+        top: 4.5rem;
         z-index: 1;
     }
 
@@ -1144,12 +1182,12 @@ border-radius: 0;
         font-family: "Raleway-Medium";
         text-align: center;
         color: #ffffff;
-        font-size: 16px;
+        font-size: 15px;
         position: relative;
-        top: 3rem;
-        left: 10%;
+        top: 2rem;
+        left: 5%;
         transform: rotate(-25deg);
-        width: 8rem;
+        width: 7rem;
     }
     
     .divCad {
@@ -1158,7 +1196,7 @@ border-radius: 0;
         left: 30%;
         border: solid #252730 1px;
         border-radius: 3px;
-        top: -10%;
+        margin-top: 5rem;
         background: #ffffff;
     }
 
@@ -1170,6 +1208,7 @@ border-radius: 0;
         font-family: "Raleway-Medium";
         margin: .5rem .5rem 1.2rem .5rem;
         text-align: center;
+        font-size: 18px;
     }
 
     .divCad input {
@@ -1193,7 +1232,7 @@ border-radius: 0;
         float: left;
         left: 12.5%;
         font-family: "Raleway-Medium";
-        font-size: 15px;
+        font-size: 14px;
         color: rgb(173, 2, 253);
     }
 
@@ -1215,7 +1254,9 @@ border-radius: 0;
     .btnSendCad input {
         height: 2rem;
         font-family: "Raleway-Medium";
-        font-size: 15px;
+        font-size: 14px;
+        width: 50%;
+        left: 24%;
     }
 
     .inputConfirm {
@@ -1229,7 +1270,7 @@ border-radius: 0;
     .divisorTitle h5 {
         margin-top: 1rem;
         margin-bottom: .4rem;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .divisor {

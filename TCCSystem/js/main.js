@@ -40,7 +40,7 @@ $(document).ready(function() {
                     loop:false,
                     dots: false
                 },
-                1000:{
+                850:{
                     items:12,
                     loop:false,
                     dots: false
