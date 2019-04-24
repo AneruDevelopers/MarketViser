@@ -602,6 +602,10 @@ border-radius: 0;
         border-radius: 2px;
         margin-bottom: .8rem;
     }
+
+    .help-block {
+        position: relative;
+    }
 }
 
 @media only screen and (max-width: 1400px) and (min-width: 1000px) {

@@ -124,7 +124,7 @@ function clearErrors() {
 function showErrors(error_list) {
     clearErrors();
     $.each(error_list, function(id, message) {
-        $(id).siblings(".help-block").html(message);
+        $(id).parent().siblings(".help-block").html(message);
     })
 }
 
