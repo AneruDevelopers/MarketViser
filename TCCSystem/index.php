@@ -47,13 +47,14 @@
                 <div class="item"><img src="img\Banner2_Oficial.png" alt="The Last of us"></div>
                 <div class="item"><img src="img\Banner2_Oficial.png" alt="GTA V"></div>
                 <div class="item"><img src="img\Banner2_Oficial.png" alt="Mirror Edge"></div>
-            </div>   
+            </div>
         </div>
 
         <!-- Title/Display Products -->
 
         <div class="l-main">
             <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS</h2>
+            <div class="l-prods"></div>
         </div>
 
         <!-- Display Products -->
@@ -67,7 +68,7 @@
                     <!-- <i class="far fa-check-circle"></i> -->
                     <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
                     <strong><label class="labelInput">E-MAIL</label></strong>
-                    <input class="inputModal" type="email" placeholder=" E-mail" name="usu_email" id="usu_email"/><br/>
+                    <input class="inputModal" type="text" placeholder=" E-mail" name="usu_email" id="usu_email"/><br/>
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha" id="usu_senha"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>

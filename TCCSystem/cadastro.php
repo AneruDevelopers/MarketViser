@@ -43,22 +43,27 @@
 					<div class="divisor"></div>
 					<div class="sectionInputCad">
 						<strong><label class="labelInputCad" for="usu_nome">PRIMEIRO NOME</label></strong><br>
-						<input type="text" placeholder=" Pirmeiro Nome" id="usu_nome" maxlength="150" name="usu_nome"/>
+						<input type="text" id="usu_nome" maxlength="150" name="usu_nome"/>
 						<div class="help-block"></div><br/>
 					</div>
 					<div class="sectionInputCad">
 						<strong><label class="labelInputCad" for="usu_sobrenome">SOBRENOME</label></strong><br>
-						<input type="text" placeholder=" Sobrenome" id="usu_sobrenome" name="usu_email"/>
+						<input type="text" id="usu_sobrenome" name="usu_sobrenome"/>
+						<div class="help-block"></div><br/>
+					</div>
+					<div class="sectionInputCad">
+						<strong><label class="labelInputCad" for="usu_cpf">CPF</label></strong><br>
+						<input type="text" class="cpf" id="usu_cpf" name="usu_cpf"/>
 						<div class="help-block"></div><br/>
 					</div>
 					<div class="sectionInputCad">
 						<strong><label class="labelInputCad" for="usu_email">E-MAIL</label></strong><br>
-						<input type="password" placeholder=" E-mail" id="usu_email" name="usu_senha"/>
+						<input type="password" id="usu_email" name="usu_senha"/>
 						<div class="help-block"></div><br/>
 					</div>
 					<div class="sectionInputCad">
 						<strong><label class="labelInputCad" for="usu_senha">SENHA</label></strong><br>
-						<input type="password" placeholder=" Senha" id="usu_senha" name="usu_senha"/>
+						<input type="password" id="usu_senha" name="usu_senha"/>
 						<div class="help-block"></div><br/>
 					</div>
 					<div class="sectionInputCad inputConfirm">
