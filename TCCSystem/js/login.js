@@ -2,29 +2,29 @@ $(document).ready(function() {
 
 	$('#btn-login').click(function() {
 		var campo_vazio = false;
-		if(($('#usu_email').val() == '') && ($('#usu_senha').val() == '')) {
-			$('#usu_email').css({'border-color':'#A94442'});
-			$('#usu_senha').css({'border-color':'#A94442'});
-			$('#usu_email').focus();
+		if(($('#usu_email_login').val() == '') && ($('#usu_senha_login').val() == '')) {
+			$('#usu_email_login').css({'border-color':'#A94442'});
+			$('#usu_senha_login').css({'border-color':'#A94442'});
+			$('#usu_email_login').focus();
 			var campo_vazio = true;
 		} else {
-			if($('#usu_email').val() == '') {
-			    $('#usu_email').css({'border-color':'#A94442'});
-			    $('#usu_senha').css({'border-color':'#ccc'});
-			    $('#usu_email').focus();
+			if($('#usu_email_login').val() == '') {
+			    $('#usu_email_login').css({'border-color':'#A94442'});
+			    $('#usu_senha_login').css({'border-color':'#ccc'});
+			    $('#usu_email_login').focus();
 			    var campo_vazio = true;
 			    // alert('Campo de usuário está vazio!');
 			}
-			if($('#usu_senha').val() == '') {
-				$('#usu_senha').css({'border-color':'#A94442'});
-				$('#usu_email').css({'border-color':'#ccc'});
-				$('#usu_senha').focus();
+			if($('#usu_senha_login').val() == '') {
+				$('#usu_senha_login').css({'border-color':'#A94442'});
+				$('#usu_email_login').css({'border-color':'#ccc'});
+				$('#usu_senha_login').focus();
 				var campo_vazio = true;
 				// alert('Campo de senha está vazio!');
 			}
 			else {
-				$('#usu_senha').css({'border-color':'#ccc'});
-				$('#usu_email').css({'border-color':'#ccc'});
+				$('#usu_senha_login').css({'border-color':'#ccc'});
+				$('#usu_email_login').css({'border-color':'#ccc'});
 			}
 		}
 		if(campo_vazio) return false;
@@ -38,12 +38,13 @@ $(document).ready(function() {
 			url: 'functions/login.php',
 			data: $(this).serialize(),
 			beforeSend: function() {
-				$(".help-block").html(loadingRes("Verificando..."));
+				$(".help-block-login").html(loadingRes("Verificando..."));
 			},
 			success: function(response) {
 				if(response["status"]) {
 					clearErrors();
-					$(".help-block").html(loadingRes("Logando..."));
+					modal.style.display = "none";
+					$(".help-block-login").html(loadingRes("Logando..."));
 					Swal.fire({
 			            title: "Bem vindo(a)!",
 			            text: "Olá novamente, "+response["nome_usuario"]+"!!",
@@ -53,14 +54,13 @@ $(document).ready(function() {
 			            confirmButtonText: "Ok"
 			        }).then((result) => {
 			            if(result.value) {
-			            	//location.reload();
-	    					$("#form-login")[0].reset();
-							$(".help-block").html("");
-			            }
+							window.location.href = "index.php";
+			            } else {
+							window.location.href = "index.php";
+						}
 			        });
-			        //+response["nome_usuario"]+
 				} else {
-					$(".help-block").html(response["error"]);
+					$(".help-block-login").html(response["error"]);
 				}
 			}
 		});

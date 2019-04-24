@@ -160,6 +160,17 @@ btn.onclick = function() {
   modal.style.display = "block";
 }
 
+$("#myBtn2").click(function() {
+    $("#usu_email_login").val("");
+    $("#usu_senha_login").val("");
+    $(".help-block-login").html("");
+});
+$("#myBtn").click(function() {
+    $("#usu_email_login").val("");
+    $("#usu_senha_login").val("");
+    $(".help-block-login").html("");
+});
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
