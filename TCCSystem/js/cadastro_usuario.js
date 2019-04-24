@@ -37,9 +37,9 @@ $(document).ready(function() {
             confirmButtonText: "Ok"
           }).then((result) => {
             if(result.value) {
-              window.location.href = "index.html";
+              window.location.href = "index.php";
             } else {
-              window.location.href = "index.html";
+              window.location.href = "index.php";
             }
           });
         } else {

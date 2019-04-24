@@ -24,25 +24,27 @@
 					$sel2->execute();
 					$rows = $sel2->fetchAll();
 					foreach($rows as $row) {
-						$_SESSION['usu_id'] = $row['usu_id'];
-						$_SESSION['usu_nome'] = $row['usu_nome'];
-						$_SESSION['usu_email'] = $row['usu_email'];
-						$_SESSION['usu_end'] = $row['usu_end'];
-						$_SESSION['usu_num'] = $row['usu_num'];
-						$_SESSION['usu_bairro'] = $row['usu_bairro'];
-						$_SESSION['usu_cidade'] = $row['usu_cidade'];
-						$_SESSION['usu_uf'] = $row['usu_uf'];
-						$_SESSION['usu_complemento'] = $row['usu_complemento'];
+						$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
+						$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
+						$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
+						$_SESSION["inf_usu"]['usu_cpf'] = $row['usu_cpf'];
+						$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
+						$_SESSION["inf_usu"]['usu_end'] = $row['usu_end'];
+						$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
+						$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
+						$_SESSION["inf_usu"]['usu_cidade'] = $row['usu_cidade'];
+						$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
+						$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
 
 						$reg = $row['usu_registro'];
 						$ano = substr($reg,0,4);
 						$mes = substr($reg,5,2);
 						$dia = substr($reg,8,2);
 						$hora = substr($reg,11,2)."h".substr($reg,14,2);
-						$_SESSION['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
+						$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
 
-						$_SESSION['usu_tipo'] = $row['tpu_nome'];
-						$nome = explode(" ", $_SESSION['usu_nome']);
+						$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_nome'];
+						$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);
 						$json["nome_usuario"] = $nome[0];
 					}
 				} else {
