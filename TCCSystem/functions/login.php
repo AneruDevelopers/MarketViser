@@ -1,7 +1,7 @@
 <?php 
 	require_once 'connection/conn.php';
 
-	if(isset($_POST["usu_email"])) {
+	if(isset($_POST["usu_email_login"])) {
 		$json = array();
 		$json["status"] = 1;
 		$json["error"] = NULL;
@@ -9,7 +9,7 @@
 		//$sel = $conn->query("");
 		
 		$sel = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
-		$sel->bindValue(":email", "{$_POST["usu_email"]}");
+		$sel->bindValue(":email", "{$_POST["usu_email_login"]}");
 		$sel->execute();
 
 		if($sel) {
@@ -18,9 +18,9 @@
 				foreach($rows as $row) {
 					$senha = $row["usu_senha"];
 				}
-				if(password_verify($_POST["usu_senha"], $senha)) {
+				if(password_verify($_POST["usu_senha_login"], $senha)) {
 					$sel2 = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
-					$sel2->bindValue(":email", "{$_POST["usu_email"]}");
+					$sel2->bindValue(":email", "{$_POST["usu_email_login"]}");
 					$sel2->execute();
 					$rows = $sel2->fetchAll();
 					foreach($rows as $row) {

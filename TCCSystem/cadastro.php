@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if(isset($_SESSION["inf_usu"])) {
+		header("Location: index.php");
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,12 +148,12 @@
                     <!-- <i class="far fa-check-circle"></i> -->
                     <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
                     <strong><label class="labelInput">E-MAIL</label></strong>
-                    <input class="inputModal" type="email" placeholder=" E-mail" name="usu_email" id="usu_email"/><br/>
+                    <input class="inputModal" type="text" placeholder=" E-mail" name="usu_email_login" id="usu_email_login"/><br/>
                     <strong><label class="labelInput">SENHA</label></strong>
-                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha" id="usu_senha"/><br/>
+                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
                     <a class="linkCadModal" href="cadastro.php">Cadastre-se já</a></p><br/>
-                    <div class="help-block"></div>
+                    <div class="help-block-login"></div>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                 </form>
             </div>
@@ -160,8 +166,9 @@
     <script src="style\libraries\bootstrap\js\bootstrap.js"></script>
     <script src="style\libraries\sweetalert2.all.min.js"></script>
     <script src="js\JQuery\jquery-mask.js"></script>
-    <script src="js\mask.js" async></script>
-    <script src="js\main.js" async></script>
-    <script src="js\cadastro_usuario.js" async></script>
+    <script src="js\mask.js"></script>
+    <script src="js\main.js"></script>
+    <script src="js\login.js"></script>
+    <script src="js\cadastro_usuario.js"></script>
 </body>
 </html>
