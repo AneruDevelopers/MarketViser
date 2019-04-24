@@ -60,7 +60,6 @@
         <!-- Display Products -->
 
         <!-- -------------------- -->
-
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <form id="form-login">
@@ -78,7 +77,6 @@
                 </form>
             </div>
         </div>
-
         <!-- -------------------- -->
 
         <div class="l-footer" id="footer"></div>
