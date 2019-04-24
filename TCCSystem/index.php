@@ -91,5 +91,6 @@
     <script src="style\libraries\sweetalert2.all.min.js"></script>
     <script src="js\main.js"></script>
     <script src="js\login.js"></script>
+    <script src="js\listProduto.js"></script>
 </body>
 </html>
