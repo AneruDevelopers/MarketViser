@@ -544,10 +544,15 @@ border-radius: 0;
         font-family: "Raleway";
         left: 12.5%;
         position: relative;
+        height: 1.2rem;
+    }
+
+    .outsideSecInputCad {
+        height: 3rem;
+        margin-bottom: .8rem;
     }
 
     .sectionInputCad {
-        margin-bottom: .5rem;
         height: 3rem;
     }
 
@@ -608,7 +613,7 @@ border-radius: 0;
     }
 }
 
-@media only screen and (max-width: 1400px) and (min-width: 1000px) {
+@media only screen and (max-width: 1600px) and (min-width: 1000px) {
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
@@ -764,15 +769,11 @@ border-radius: 0;
     }
     
     .menuTopNav {
-        height: auto;
-        margin-right: .4%;
-        margin-top: .2%;
-        margin-bottom: .2%;
-        margin-left: 2.5%;
+        height: 1.8rem;
+        margin: 4px;
         padding: 2px;
         width: 25%;
-        background: #252730;
-        border-radius: 15px 5px 15px 5px;
+        background: #ffffff;
     }
 
     .menuTopNavMobile {
@@ -781,39 +782,79 @@ border-radius: 0;
 
     .celulaTopNav {
         position: relative;
-        width: 25%;
+        top: -.15rem;
+        width: 27%;
         height: 100%;
         list-style: none;
         text-align: center;
         display: inline-block;
+        background: #fefefe;
+        border-radius: 3px;
+        border: #252730 solid 1px;
     }
 
     .celulaTopNav-City {
-        width: 45%;
+        position: relative;
+        top: -.15rem;
+        width: 40%;
         height: 100%;
         text-align: center;
         list-style: none;
         display: inline-block;
+        background: #fefefe;
+        border-radius: 3px;
+        border: #252730 solid 1px;
+    }
+
+    .leftBack {
+        background: #252730;
+        border-radius: 3px;
+        height: 100%;
+        width: 30%;
+        float: left;
+        position: relative;
+        left: -.1rem;
     }
 
     .linkMenuTopNav i {
         font-size: 16px;
+        position: relative;
+        top: .3rem;
     }
     
     .linkMenuTopNav {
         text-decoration: none;
-        color: #ffffff;
-        height: 100%;
         position: relative;
-        top: .6rem;
+        top: .0rem;
         font-size: 12px;
         font-family: "Raleway-Medium";
+        color: #ffffff;
+    }
+
+    .linkMenuTopNav h6 {
+        color: #252730;
+        margin: 0;
+        font-size: 10px;
+        position: relative;
+        top: .55rem;
     }
     
-    .linkMenuTopNav:hover {
-        color: rgb(173, 2, 253);
+    .celulaTopNav:hover > .linkMenuTopNav .leftBack {
+        color: #ffffff;
+        background: rgb(173, 2, 253);
+        border: none;
         text-decoration: none;
         transition: color 250ms ease-in-out;
+        position: relative;
+    }
+
+    .celulaTopNav-City:hover > .linkMenuTopNav .leftBack {
+        color: #ffffff;
+        background: rgb(173, 2, 253);
+        border: none;
+        text-decoration: none;
+        transition: color 250ms ease-in-out;
+        position: relative;
     }
 
     /* MENU CAROUSEL */
@@ -861,6 +902,7 @@ border-radius: 0;
 
     .linkBtnMenu{
         text-decoration: none;
+        letter-spacing: 1px;
     }
 
     .imgMenu {
@@ -920,10 +962,10 @@ border-radius: 0;
       
       .modal-content {
         background-color: #fefefe;
-        margin: 15% auto;
+        margin: 12% auto;
         padding: 15px;
         border: 1px solid #888;
-        width: 50%;
+        width: 30%;
         border-radius: 5px;
         height: 15rem;
         font-family: "Raleway";
@@ -932,7 +974,7 @@ border-radius: 0;
       .close {
         color: #aaa;
         float: right;
-        font-size: 28px;
+        font-size: 32px;
         font-weight: bold;
         position: relative;
         top: -1.5rem;
@@ -955,11 +997,12 @@ border-radius: 0;
         font-family: "Raleway-Medium";
         text-align: center;
         margin: .4rem;
+        font-size: 18px;
     }
 
     .labelInput {
         font-family: "Raleway-Medium";
-        font-size: 13px;
+        font-size: 14px;
         position: relative;
         left: .4rem;
         color: rgb(173, 2, 253);
@@ -972,6 +1015,8 @@ border-radius: 0;
         border-radius: 5%;
         border: solid 1px #252730;
         padding: 3px;
+        height: 1.5rem;
+        font-size: 13px;
     }
 
     .linkCadModal {
@@ -980,18 +1025,20 @@ border-radius: 0;
 
     .textModal {
         text-align: center;
-        font-size: 12px;
+        font-size: 14px;
+        margin: .4rem 0;
     }
 
     .btnSend {
         position: relative;
         background: rgb(173, 2, 253);
         border: none;
-        height: 2rem;
+        height: 2.4rem;
         border-radius: 3px;
         font-family: "Raleway-Medium";
         color: #ffffff;
         float: right;
+        top: -1rem;
     }
 
     .btnSend:hover {
