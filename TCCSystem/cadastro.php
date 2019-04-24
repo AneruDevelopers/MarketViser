@@ -12,25 +12,13 @@
     <link rel="stylesheet" type="text/css" href="style\fonts\Icons\icons_pack\font\flaticon.css">
 </head>
 <body>
-	<div class="l-wrapper">
-
-		<div class="l-topNav" id="topNav">
+	<div class="l-wrapper_cadastro">
+		<div class="l-topNavCad" id="topNav">
 		<?php
 			include('functions\includes\topNav.html');
 		?>    
 		</div>
-		<nav class="l-headerNav" id="headerNav">
-		<?php
-			include('functions\includes\header.html');
-		?>
-		</nav>
-
-		<div class="l-bottomNav" id="bottomNav">
-		<?php
-			include('functions\includes\bottom.html');
-		?>
-		</div>
-		<div class="l-main">
+		<div class="l-mainCad">
 		<div class="circleCad">
 			<p>Junte-se a família e.conomize!</p>
 		</div>
@@ -159,8 +147,8 @@
                 </form>
             </div>
         </div>
-		<div class="l-footer" id="footer"></div>
-        <div class="l-footerBottom" id="footerBottom"></div>
+		<div class="l-footerCad" id="footer"></div>
+        <div class="l-footerBottomCad" id="footerBottom"></div>
     </div>
 
     <script src="js\JQuery\jquery-3.3.1.min.js"></script>

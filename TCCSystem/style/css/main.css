@@ -789,8 +789,9 @@ border-radius: 0;
         text-align: center;
         display: inline-block;
         background: #fefefe;
-        border-radius: 3px;
-        border: #252730 solid 1px;
+        /* border-radius: 3px; */
+        border-left: 1px solid #252730;
+        padding-left: .2rem;
     }
 
     .celulaTopNav-City {
@@ -801,19 +802,37 @@ border-radius: 0;
         text-align: center;
         list-style: none;
         display: inline-block;
-        background: #fefefe;
+        background: #252730;
         border-radius: 3px;
         border: #252730 solid 1px;
     }
 
+    .celulaTopNav-City a h6 {
+        color: #ffffff;
+        margin: 0;
+        font-family: 'Raleway';
+        position: relative;
+        top: .5rem;
+    }
+
+    .celulaTopNav-City a div i {
+        color: rgb(173, 2, 253);
+        position: relative;
+        top: .3rem;
+    }
+
+    .celulaTopNav-City a {
+        text-decoration: none;
+        letter-spacing: 1px;
+    }
+
     .leftBack {
-        background: #252730;
+        background: #ffffff;
         border-radius: 3px;
         height: 100%;
         width: 30%;
         float: left;
         position: relative;
-        left: -.1rem;
     }
 
     .linkMenuTopNav i {
@@ -828,7 +847,7 @@ border-radius: 0;
         top: .0rem;
         font-size: 12px;
         font-family: "Raleway-Medium";
-        color: #ffffff;
+        color: #252730;
     }
 
     .linkMenuTopNav h6 {
@@ -844,7 +863,7 @@ border-radius: 0;
         background: rgb(173, 2, 253);
         border: none;
         text-decoration: none;
-        transition: color 250ms ease-in-out;
+        transition: color 200ms ease-in-out;
         position: relative;
     }
 
@@ -853,7 +872,7 @@ border-radius: 0;
         background: rgb(173, 2, 253);
         border: none;
         text-decoration: none;
-        transition: color 250ms ease-in-out;
+        transition: color 200ms ease-in-out;
         position: relative;
     }
 
@@ -965,7 +984,7 @@ border-radius: 0;
         margin: 12% auto;
         padding: 15px;
         border: 1px solid #888;
-        width: 30%;
+        width: 25%;
         border-radius: 5px;
         height: 15rem;
         font-family: "Raleway";
@@ -1005,6 +1024,7 @@ border-radius: 0;
         font-size: 14px;
         position: relative;
         left: .4rem;
+        top: 1rem;
         color: rgb(173, 2, 253);
     }
 
@@ -1017,6 +1037,8 @@ border-radius: 0;
         padding: 3px;
         height: 1.5rem;
         font-size: 13px;
+        position: relative;
+        top: .7rem;
     }
 
     .linkCadModal {
@@ -1027,6 +1049,8 @@ border-radius: 0;
         text-align: center;
         font-size: 14px;
         margin: .4rem 0;
+        position: relative;
+        top: 1rem;
     }
 
     .btnSend {
@@ -1053,38 +1077,88 @@ border-radius: 0;
         color: rgb(173, 2, 253);
     }
 
-    /* CADASTRO.PHP */
+    .help-block {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+    }
+
+    /* PAGE --> CADASTRO.PHP */
+
+    .l-wrapper_cadastro {
+        display: grid;
+    }
+
+    .l-wrapper_cadastro {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: 3rem auto 15rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNavCad {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+        border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-mainCad {
+        grid-area: main;
+        margin-top: 2px;
+    }
+
+    .l-footerCad {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottomCad {
+        grid-area: footerBottom;
+        background: #252730;
+    }
     
     .circleCad {
         position: relative;
-        width: 6.5rem;
-        height: 6.5rem;
+        width: 10.5rem;
+        height: 10.5rem;
         background: rgb(173, 2, 253);
         border-radius: 50%;
-        left: 10%;
-        top: -1%;
+        left: 22%;
+        top: 12%;
         z-index: 1;
     }
 
 
     .circleCad p {
         margin: 0;
-        font-family: "Raleway";
+        font-family: "Raleway-Medium";
         text-align: center;
         color: #ffffff;
-        font-size: 14px;
+        font-size: 16px;
         position: relative;
-        top: 1.4rem;
+        top: 3rem;
+        left: 10%;
         transform: rotate(-25deg);
+        width: 8rem;
     }
     
     .divCad {
         position: relative;
-        width: 60%;
-        left: 20%;
+        width: 40%;
+        left: 30%;
         border: solid #252730 1px;
         border-radius: 3px;
-        top: -4rem;
+        top: -10%;
         background: #ffffff;
     }
 
@@ -1095,7 +1169,6 @@ border-radius: 0;
     .divCad h2 {
         font-family: "Raleway-Medium";
         margin: .5rem .5rem 1.2rem .5rem;
-        font-size: 16px;
         text-align: center;
     }
 
@@ -1106,6 +1179,8 @@ border-radius: 0;
         font-family: "Raleway";
         left: 12.5%;
         position: relative;
+        height: 1.6rem;
+        margin: .4rem 0;
     }
 
     .sectionInputCad {
@@ -1118,7 +1193,7 @@ border-radius: 0;
         float: left;
         left: 12.5%;
         font-family: "Raleway-Medium";
-        font-size: 13px;
+        font-size: 15px;
         color: rgb(173, 2, 253);
     }
 
@@ -1140,6 +1215,7 @@ border-radius: 0;
     .btnSendCad input {
         height: 2rem;
         font-family: "Raleway-Medium";
+        font-size: 15px;
     }
 
     .inputConfirm {
@@ -1153,7 +1229,7 @@ border-radius: 0;
     .divisorTitle h5 {
         margin-top: 1rem;
         margin-bottom: .4rem;
-        font-size: 13px;
+        font-size: 16px;
     }
 
     .divisor {
@@ -1165,4 +1241,3 @@ border-radius: 0;
         margin-bottom: .8rem;
     }
 }
-/* Testando */
