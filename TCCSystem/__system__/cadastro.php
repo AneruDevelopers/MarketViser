@@ -149,7 +149,7 @@
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="cadastro.php">Cadastre-se já</a></p><br/>
+                    <a class="linkCadModal" href="cadastro">Cadastre-se já</a></p><br/>
                     <div class="help-block-login"></div>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                 </form>
