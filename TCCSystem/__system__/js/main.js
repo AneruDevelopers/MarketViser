@@ -119,6 +119,7 @@ function loadingRes(message="") {
 function clearErrors() {
     $(".has-error").removeClass("has-error");
     $(".help-block").html("");
+    $(".help-block-login").html("");
 }
 
 function showErrors(error_list) {

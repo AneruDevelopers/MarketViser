@@ -35,7 +35,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'POST',
 			dataType: 'json',
-			url: 'functions/login.php',
+			url: 'functions/login',
 			data: $(this).serialize(),
 			beforeSend: function() {
 				$(".help-block-login").html(loadingRes("Verificando..."));
@@ -54,9 +54,9 @@ $(document).ready(function() {
 			            confirmButtonText: "Ok"
 			        }).then((result) => {
 			            if(result.value) {
-							window.location.href = "index.php";
+							window.location.href = "home";
 			            } else {
-							window.location.href = "index.php";
+							window.location.href = "home";
 						}
 			        });
 				} else {

@@ -19,7 +19,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: $(this).serialize(),
-      url: 'functions/cadastro_usuario.php',
+      url: 'functions/cadastro_usuario',
       beforeSend: function() {
         clearErrors();
         $("#btn-cad").siblings(".help-block").html(loadingRes("Verificando..."));
@@ -37,9 +37,9 @@ $(document).ready(function() {
             confirmButtonText: "Ok"
           }).then((result) => {
             if(result.value) {
-              window.location.href = "index.php";
+              window.location.href = "home";
             } else {
-              window.location.href = "index.php";
+              window.location.href = "home";
             }
           });
         } else {

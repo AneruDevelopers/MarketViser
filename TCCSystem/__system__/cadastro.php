@@ -1,8 +1,5 @@
 <?php
 	session_start();
-	if(isset($_SESSION["inf_usu"])) {
-		header("Location: index.php");
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>e.conomize - Cadastre-se</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style\css\main.css">
-    <link href="style\libraries\fontawesome-free-5.8.0-web\css\all.css" rel="stylesheet">
-    <link rel="stylesheet" href="style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="style\fonts\Icons\icons_pack\font\flaticon.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="__system__\style\css\main.css">
+    <link href="__system__\style\libraries\fontawesome-free-5.8.0-web\css\all.css" rel="stylesheet">
+    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="__system__\style\fonts\Icons\icons_pack\font\flaticon.css">
 </head>
 <body>
 	<div class="l-wrapper_cadastro">
@@ -157,13 +154,37 @@
         <div class="l-footerBottomCad" id="footerBottom"></div>
     </div>
 
-    <script src="js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="style\libraries\bootstrap\js\bootstrap.js"></script>
-    <script src="style\libraries\sweetalert2.all.min.js"></script>
-    <script src="js\JQuery\jquery-mask.js"></script>
-    <script src="js\mask.js"></script>
-    <script src="js\main.js"></script>
-    <script src="js\login.js"></script>
-    <script src="js\cadastro_usuario.js"></script>
+    <script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
+    <script src="__system__\style\libraries\bootstrap\js\bootstrap.js"></script>
+    <script src="__system__\style\libraries\sweetalert2.all.min.js"></script>
+    <script src="__system__\js\JQuery\jquery-mask.js"></script>
+    <script src="__system__\js\mask.js"></script>
+    <script src="__system__\js\main.js"></script>
+    <script src="__system__\js\login.js"></script>
+    <script src="__system__\js\cadastro_usuario.js"></script>
+	<?php
+		if(isset($_SESSION["inf_usu"])):?>
+			<script>
+				Swal.fire({
+					title: "e.conomize informa:",
+					text: "Você já está logado! Por favor, primeiramente faça logout.",
+					type: "warning",
+					showCancelButton: true,
+					cancelButtonColor: "#494949",
+					cancelButtonText: "Cancelar",
+					confirmButtonColor: "#A94442",
+					confirmButtonText: "Ok, logout"
+				}).then((result) => {
+					if(result.value) {
+						<?php $_SESSION["url_sair"] = "../cadastro"; ?>
+						window.location.href = "functions/sair";
+					} else {
+						window.location.href = "home";
+					}
+				});
+			</script>
+			<?php
+		endif;
+	?>
 </body>
 </html>

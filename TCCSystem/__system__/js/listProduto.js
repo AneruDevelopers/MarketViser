@@ -1,6 +1,6 @@
 $(function() {
     $.ajax({
-        url: 'functions/listProduto.php',
+        url: '__system__/functions/listProduto.php',
         success: function(data) {
             $('.l-prods').html(data);
         }
