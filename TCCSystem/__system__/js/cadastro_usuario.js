@@ -44,6 +44,7 @@ $(document).ready(function() {
           });
         } else {
           showErrors(response["error_list"]);
+          $("#telefone").siblings(".help-block-tel").html(response["error_tel"]);
         }
       }
     });

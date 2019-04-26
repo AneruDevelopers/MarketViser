@@ -78,14 +78,10 @@
 
         <div class="l-footer" id="footer"></div>
         <div class="l-footerBottom" id="footerBottom"></div>
-
     </div>
 
     <script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="__system__\style\libraries\OwlCarousel2-2.3.4\dist\owl.carousel.js" type="text/javascript"></script>
     <script src="__system__\style\libraries\sweetalert2.all.min.js"></script>
-    <script src="__system__\js\main.js"></script>
-    <script src="__system__\js\login.js"></script>
     <script src="__system__\js\listProduto.js"></script>
 </body>
 </html>

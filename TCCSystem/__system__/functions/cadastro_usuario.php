@@ -5,19 +5,33 @@
 		$json = array();
 		$json["status"] = 1;
 		$json["error_list"] = array();
+		$json["error_tel"] = "";
 
 		$_POST["usu_nome"] = trim($_POST["usu_nome"]);
+
+		foreach($_POST["tel_num"] as $k => $v) {
+			$tel_num[] = $v;
+			$tipo_tel[] = $_POST["tipo_tel"][$k];
+		}
 
 		if(empty($_POST["usu_nome"])) {
 			$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, insira seu nome neste campo</p>";
 		} else {
-			if(substr_count($_POST["usu_nome"], " ") > 1) {
-				$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente nomes simples ou compostos neste campo</p>";
+			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_nome"])) {
+				$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+			} else {
+				if(substr_count($_POST["usu_nome"], " ") > 1) {
+					$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente nomes simples ou compostos neste campo</p>";
+				}
 			}
 		}
 
 		if(empty($_POST["usu_sobrenome"])) {
 			$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, insira seu sobrenome neste campo</p>";
+		} else {
+			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_sobrenome"])) {
+				$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+			}
 		}
 
 		if(empty($_POST["usu_cpf"])) {
@@ -71,6 +85,23 @@
 			}
 		}
 
+		foreach($tel_num as $k => $v) {
+			$key = $k + 1;
+			if(empty($v)) {
+				$json["error_tel"] = "<p style='color:red;'>Por favor, insira o(s) telefone(s) corretamente</p>";
+			} else {
+				if(strlen($v) < 14) {
+					$json["error_tel"] = "<p style='color:red;'>Por favor, insira o(s) telefone(s) corretamente</p>";
+				} else {
+					$verifica = $conn->prepare("SELECT tel_num FROM telefone WHERE tel_num='$v'");
+					$verifica->execute();
+					if($verifica->rowCount() > 0) {
+						$json["error_tel"] = "<p style='color:red;'>O {$key}º telefone já foi cadastrado anteriormente</p>";
+					}
+				}
+			}
+		}
+
 		if(empty($_POST["usu_cep"])) {
 			$json["error_list"]["#usu_cep"] = "<p style='color:red;'>Por favor, insira seu CEP neste campo</p>";
 		} else {
@@ -96,7 +127,7 @@
 			}
 		}
 
-		if(!empty($json["error_list"])) {
+		if((!empty($json["error_list"])) || (!empty($json["error_tel"]))) {
 			$json["status"] = 0;
 		} else {
 			$_POST["usu_senha"] = password_hash($_POST["usu_senha"], PASSWORD_DEFAULT);
@@ -115,42 +146,63 @@
 			$ins->bindValue(":ce", "{$_POST["usu_cep"]}");
 			//$ins->bindValue(":t", "{$_POST["usu_tipo"]}");
 			if($ins->execute()) {
-				$sel = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id 
-					WHERE usu_email=:email");
+				$sel = $conn->prepare("SELECT * FROM usuario WHERE usu_email=:email");
 				$sel->bindValue(":email", "{$_POST["usu_email"]}");
 				$sel->execute();
 				if($sel->rowCount() > 0) {
 					$rows = $sel->fetchAll();
 					foreach($rows as $row) {
-						$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
-						$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
-						$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
-						$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
-						$_SESSION["inf_usu"]['usu_end'] = $row['usu_end'];
-						$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
-						$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
-						$_SESSION["inf_usu"]['usu_cidade'] = $row['usu_cidade'];
-						$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
-						$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
+						$usu_id = $row['usu_id'];
+					}
+					foreach($tel_num as $k => $v) {
+						$idtipo = intval($tipo_tel[$k]);
+						$ins2 = $conn->prepare("INSERT INTO telefone(tel_num, tpu_tel, usu_id) VALUES('$v', $idtipo, $usu_id)");
+						if(!$ins2->execute()) {
+							$json["status"] = 0;
+							$json["error_list"]["#btn-cad"] = "<p style='color:red;'>Erro ao cadastrar o(s) telefone(s)! Tente novamente, por favor</p>";
+						}
+					}
+					if($json["status"]) {
+						$sel = $conn->prepare("SELECT * FROM telefone AS tel JOIN tipo_tel AS tt ON tel.tpu_tel=tt.tpu_tel_id JOIN usuario AS u ON u.usu_id=tel.usu_id JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
+						$sel->bindValue(":email", "{$_POST["usu_email"]}");
+						$sel->execute();
+						if($sel->rowCount() > 0) {
+							$rows = $sel->fetchAll();
+							foreach($rows as $row) {
+								$_SESSION["tel_num"][] = $row['tel_num'];
+								$_SESSION["tipo_tel"][] = $row['tpu_tel_nome'];
+								$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
+								$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
+								$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
+								$_SESSION["inf_usu"]['usu_end'] = $row['usu_end'];
+								$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
+								$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
+								$_SESSION["inf_usu"]['usu_cidade'] = $row['usu_cidade'];
+								$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
+								$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
 
-						$reg = $row['usu_registro'];
-						$ano = substr($reg,0,4);
-						$mes = substr($reg,5,2);
-						$dia = substr($reg,8,2);
-						$hora = substr($reg,11,2)."h".substr($reg,14,2);
-						$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
+								$reg = $row['usu_registro'];
+								$ano = substr($reg,0,4);
+								$mes = substr($reg,5,2);
+								$dia = substr($reg,8,2);
+								$hora = substr($reg,11,2)."h".substr($reg,14,2);
+								$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
 
-						$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_nome'];
-						$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);
-						$json["nome_usuario"] = $nome[0];
+								$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_usu_nome'];
+								$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);
+								$json["nome_usuario"] = $nome[0];
+							}
+						} else {
+
+						}
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error_list"]["#btn-login"] = "<p style='color:red;text-align:center;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
+					$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;
-				$json["error_list"]["#btn-login"] = "<p style='color:red;text-align:center;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
+				$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>2º Erro inesperado. Tente novamente mais tarde!</b></p>";
 			}
 		}
 		echo json_encode($json);

@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once 'functions/connection/conn.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,11 @@
     <link href="__system__\style\libraries\fontawesome-free-5.8.0-web\css\all.css" rel="stylesheet">
     <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="__system__\style\fonts\Icons\icons_pack\font\flaticon.css">
+	<link rel="stylesheet" type="text/css" href="__system__\style\fonts\Icons\icons_pack\font\flaticon.css">
+	
+	<script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
+    <script src="__system__\js\JQuery\jquery-mask.js"></script>
+    <script src="__system__\js\mask.js"></script>
 </head>
 <body>
 	<div class="l-wrapper_cadastro">
@@ -21,11 +25,6 @@
 			include('functions\includes\topNav.html');
 		?>    
 		</div>
-		<nav class="l-headerNavCad" id="headerNav">
-        <?php
-            include('functions\includes\header.html');
-        ?>
-        </nav>
 		<div class="l-mainCad">
 		<div class="circleCad">
 			<p>Junte-se a família e.conomize!</p>
@@ -78,6 +77,41 @@
 						</div>
 						<div class="help-block"></div><br/>
 					</div>
+					
+					<div>
+						<div id="telefone">
+							<strong><label class="labelInputCad" for="">TELEFONE(S)</label></strong><br>
+							<div class="outsideSecInputCad">
+								<div class="sectionInputCad">
+									<input type="text" placeholder="Número Tel" class="sp_celphones" name="tel_num[]"/>
+								</div>
+								<?php
+									$sel = $conn->prepare("SELECT * FROM tipo_tel");
+									$sel->execute();
+									if($sel->rowCount() > 0):
+										$rows = $sel->fetchAll();?>
+										<div class="sectionInputCad">
+											<select name="tipo_tel[]">
+												<optgroup label="Tipo Telefone">
+													<?php
+														foreach($rows as $row):?>
+															<option value="<?php echo $row['tpu_tel_id']; ?>">
+																<?php echo $row['tpu_tel_nome']; ?>
+															</option>
+															<?php
+														endforeach;
+													?>
+												</optgroup>
+											</select>
+										</div>
+										<?php
+									endif;?>
+									<button type="button" id="add_telefone">+</button>
+							</div>
+						</div>
+						<div class="help-block-tel"></div>
+					</div>
+
 					<div class="divisorTitle">
 						<h5>Dados Residenciais</h5>
 					</div>
@@ -159,14 +193,64 @@
         <div class="l-footerBottomCad" id="footerBottom"></div>
     </div>
 
-    <script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="__system__\style\libraries\bootstrap\js\bootstrap.js"></script>
+	<script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
+	<script src="__system__/style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
     <script src="__system__\style\libraries\sweetalert2.all.min.js"></script>
     <script src="__system__\js\JQuery\jquery-mask.js"></script>
     <script src="__system__\js\mask.js"></script>
     <script src="__system__\js\main.js"></script>
     <script src="__system__\js\login.js"></script>
     <script src="__system__\js\cadastro_usuario.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var campos_max = 4;
+			var x = 0;
+			$('#add_telefone').click (function(e) {
+				e.preventDefault();
+				if (x < campos_max) {
+						$('#telefone').append('<div class="outsideSecInputCad">\
+							<div class="sectionInputCad">\
+								<input type="text" placeholder="Número Tel" class="sp_celphones" name="tel_num[]"/>\
+							</div>\
+							<?php
+								$sel = $conn->prepare("SELECT * FROM tipo_tel");
+								$sel->execute();
+								if($sel->rowCount() > 0):
+									$rows = $sel->fetchAll();?>
+									<div class="sectionInputCad">\
+										<select name="tipo_tel[]">\
+											<optgroup label="Tipo Telefone">\
+												<?php
+													foreach($rows as $row):?>
+														<option value="<?php echo $row['tpu_tel_id']; ?>">\
+															<?php echo $row['tpu_tel_nome']; ?>
+														</option>\
+														<?php
+													endforeach;
+												?>
+											</optgroup>\
+										</select>\
+									</div>\
+									<?php
+								endif;
+							?>
+						<div class="col-2">\
+							<a href="#" class="remover_campo">&times;</a>\
+						</div>\
+						</div>');
+					x++;
+				}
+			});
+	
+			// Remover o div anterior
+			$('#telefone').on("click",".remover_campo",function(e) {
+					e.preventDefault();
+					$(this).parent().parent('div').remove();
+					$(this).parent('div').remove();
+					x--;
+			});
+		});
+	</script>
 	<?php
 		if(isset($_SESSION["inf_usu"])):?>
 			<script>

@@ -8,7 +8,7 @@
 
 		//$sel = $conn->query("");
 		
-		$sel = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
+		$sel = $conn->prepare("SELECT * FROM usuario WHERE usu_email=:email");
 		$sel->bindValue(":email", "{$_POST["usu_email_login"]}");
 		$sel->execute();
 
@@ -19,15 +19,15 @@
 					$senha = $row["usu_senha"];
 				}
 				if(password_verify($_POST["usu_senha_login"], $senha)) {
-					$sel2 = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
+					$sel2 = $conn->prepare("SELECT * FROM telefone AS tel JOIN tipo_tel AS tt ON tel.tpu_tel=tt.tpu_tel_id JOIN usuario AS u ON u.usu_id=tel.usu_id JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE usu_email=:email");
 					$sel2->bindValue(":email", "{$_POST["usu_email_login"]}");
 					$sel2->execute();
 					$rows = $sel2->fetchAll();
 					foreach($rows as $row) {
-						$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
+						$_SESSION["tel_num"][] = $row['tel_num'];
+						$_SESSION["tipo_tel"][] = $row['tpu_tel_nome'];
 						$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
 						$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
-						$_SESSION["inf_usu"]['usu_cpf'] = $row['usu_cpf'];
 						$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
 						$_SESSION["inf_usu"]['usu_end'] = $row['usu_end'];
 						$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
@@ -43,7 +43,7 @@
 						$hora = substr($reg,11,2)."h".substr($reg,14,2);
 						$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
 
-						$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_nome'];
+						$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_usu_nome'];
 						$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);
 						$json["nome_usuario"] = $nome[0];
 					}
