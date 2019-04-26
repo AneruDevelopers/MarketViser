@@ -25,11 +25,6 @@
 			include('functions\includes\topNav.html');
 		?>    
 		</div>
-		<nav class="l-headerNavCad" id="headerNav">
-        <?php
-            include('functions\includes\header.html');
-        ?>
-        </nav>
 		<div class="l-mainCad">
 		<div class="circleCad">
 			<p>Junte-se a família e.conomize!</p>
