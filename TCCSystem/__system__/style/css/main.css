@@ -1116,7 +1116,7 @@ border-radius: 0;
         color: rgb(173, 2, 253);
     }
 
-    .help-block {
+    .help-block, .help-block-tel, .help-block-login {
         position: relative;
         width: 80%;
         left: 10%;

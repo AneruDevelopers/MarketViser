@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/04/2019 às 02:49
+-- Tempo de geração: 26/04/2019 às 09:52
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -403,9 +403,6 @@ CREATE TABLE `produtos_favorito` (
 -- Despejando dados para a tabela `produtos_favorito`
 --
 
-INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
-(1, 1, 1),
-(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -507,9 +504,6 @@ CREATE TABLE `telefone` (
 -- Despejando dados para a tabela `telefone`
 --
 
-INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
-(1, '(14) 99755-8843', 1, 1),
-(2, '(14) 9510-2366', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -519,7 +513,7 @@ INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
 
 CREATE TABLE `tipousu` (
   `tpu_id` int(11) NOT NULL,
-  `tpu_nome` varchar(30) NOT NULL,
+  `tpu_usu_nome` varchar(30) NOT NULL,
   `tpu_desc` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -527,7 +521,7 @@ CREATE TABLE `tipousu` (
 -- Despejando dados para a tabela `tipousu`
 --
 
-INSERT INTO `tipousu` (`tpu_id`, `tpu_nome`, `tpu_desc`) VALUES
+INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
 (1, 'Cliente', NULL),
 (2, 'Associado', 20);
 
@@ -580,11 +574,6 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', '477.608.347-94', 'carvanick@gmail.com', '$2y$10$KoW19YCaIMHqNWmI31KtVuX7GCbuj9G.vZYxp3Ttv7ew.Nq8sp4Je', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 1, '2019-03-30 18:49:50'),
-(2, 'Henrique', 'Pessoa', '246.872.234-55', 'henrique_pes@gmail.com', '$2y$10$6Y1/wR7QYnCfHYf.pHUdAuOS5m2U4u.e3oSeoUNlvLFKlGEO3YN9e', '16400-300', 'Rua José Bruno Caffer Júnior', 123, 'Fundos', 'Residencial Fortaleza', 'Lins', 'SP', 1, '2019-03-30 18:53:23'),
-(3, 'Pedro', 'Henrique', '405.982.123-87', 'pedrinho@gmail.com', '$2y$10$qL3AdA066r/hoDOLzBgDTuz1CRSJfBumAEMox/5kdB3YxDreAw.0K', '08391-460', 'Rua Tulipas', 3092, '', 'Parque das Flores', 'São Paulo', 'SP', 1, '2019-03-30 20:15:12'),
-(4, 'Lorenzo', 'Pereira da Silva', '500.873.23-45', 'lorenzo@gmail.com', '$2y$10$ssmk5SFob0Y5Qn1zZtz32OImIsN4SNnVk0PSfttdyHo7yi8jtSo9G', '03973-060', 'Rua Aníbal de Barros', 987, '', 'Jardim Santa Adélia', 'São Paulo', 'SP', 1, '2019-03-30 20:34:27');
 
 --
 -- Índices de tabelas apagadas
@@ -935,7 +924,7 @@ ALTER TABLE `subcateg`
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de tabela `tipousu`
@@ -953,7 +942,7 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restrições para dumps de tabelas
