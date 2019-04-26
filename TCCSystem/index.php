@@ -14,7 +14,13 @@
 		require '__system__/' . $URL[3] . '.php';
 	elseif(is_dir('__system__/' . $URL[3])):
 		if(isset($URL[4]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '.php')):
-			require '__system__/' . $URL[3] . '/' . $URL[4] . '.php';
+			if(isset($URL[5])):
+				require '__system__/404.php';
+			else:
+				require '__system__/' . $URL[3] . '/' . $URL[4] . '.php';
+			endif;
+		elseif(isset($URL[4]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4])):
+			require '__system__/404.php';
 		else:
 			require '__system__/404.php';
 		endif;
