@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/04/2019 às 09:52
+-- Tempo de geração: 26/04/2019 às 10:10
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -399,11 +399,6 @@ CREATE TABLE `produtos_favorito` (
   `usu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `produtos_favorito`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -504,6 +499,9 @@ CREATE TABLE `telefone` (
 -- Despejando dados para a tabela `telefone`
 --
 
+INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
+(1, '(14) 99755-8843', 1, 1),
+(2, '(14) 95104-7655', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -574,6 +572,8 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
+INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
+(1, 'Nicolas', 'Carvalho Avelaneda', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 1, '2019-04-26 05:06:09');
 
 --
 -- Índices de tabelas apagadas
@@ -924,7 +924,7 @@ ALTER TABLE `subcateg`
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tipousu`
@@ -942,7 +942,7 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para dumps de tabelas
