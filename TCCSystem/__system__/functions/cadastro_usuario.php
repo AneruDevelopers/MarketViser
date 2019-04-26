@@ -11,13 +11,21 @@
 		if(empty($_POST["usu_nome"])) {
 			$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, insira seu nome neste campo</p>";
 		} else {
-			if(substr_count($_POST["usu_nome"], " ") > 1) {
-				$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente nomes simples ou compostos neste campo</p>";
+			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_nome"])) {
+				$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+			} else {
+				if(substr_count($_POST["usu_nome"], " ") > 1) {
+					$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente nomes simples ou compostos neste campo</p>";
+				}
 			}
 		}
 
 		if(empty($_POST["usu_sobrenome"])) {
 			$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, insira seu sobrenome neste campo</p>";
+		} else {
+			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_sobrenome"])) {
+				$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+			}
 		}
 
 		if(empty($_POST["usu_cpf"])) {
@@ -66,6 +74,23 @@
 							$json["error_list"]["#usu_senha"] = "";
 							$json["error_list"]["#usu_senha2"] = "<p style='color:red;'>Senhas não conferem!</p>";
 						}
+					}
+				}
+			}
+		}
+
+		foreach($telefone as $k => $v) {
+			$key = $k + 1;
+			if(empty($v)) {
+				$json["error_tel"] = "<span style='color:red;'>Por favor, insira seu telefone no {$key}º campo</span>";
+			} else {
+				if(strlen($v) < 14) {
+					$json["error_tel"] = "<span style='color:red;'>Por favor, insira corretamente seu telefone no {$key}º campo</span>";
+				} else {
+					$sel = "SELECT num_tel FROM telefone WHERE num_tel='$v'";
+					$res = $conn->query($sel);
+					if($res->num_rows > 0) {
+						$json["error_tel"] = "<span style='color:red;'>O {$key}º telefone já foi cadastrado anteriormente</span>";
 					}
 				}
 			}

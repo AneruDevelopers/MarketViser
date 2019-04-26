@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once 'functions/connection/conn.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,6 +78,39 @@
 						</div>
 						<div class="help-block"></div><br/>
 					</div>
+
+					<div id="telefone">
+						<strong><label class="labelInputCad" for="">TELEFONE(S)</label></strong><br>
+						<div class="outsideSecInputCad">
+							<div class="sectionInputCad">
+								<input type="text" placeholder="Número Tel" class="sp_celphones" name="telefone[]"/>
+							</div>
+							<?php
+								$sel = $conn->prepare("SELECT * FROM tipo_tel");
+								$sel->execute();
+								if($sel->rowCount() > 0):
+									$rows = $sel->fetchAll();?>
+									<div class="sectionInputCad">
+										<select name="tipo_tel[]">
+											<optgroup label="Tipo Telefone">
+												<?php
+													foreach($rows as $row):?>
+														<option value="<?php echo $row['tpu_tel_id']; ?>">
+															<?php echo $row['tpu_tel_nome']; ?>
+														</option>
+														<?php
+													endforeach;
+												?>
+											</optgroup>
+										</select>
+									</div>
+									<?php
+								endif;?>
+								<button type="button" id="add_telefone">+</button>
+						</div>
+						<div class="help-block"></div>
+					</div>
+
 					<div class="divisorTitle">
 						<h5>Dados Residenciais</h5>
 					</div>
@@ -167,6 +200,56 @@
     <script src="__system__\js\main.js"></script>
     <script src="__system__\js\login.js"></script>
     <script src="__system__\js\cadastro_usuario.js"></script>
+	<script type="text/javascript">
+  	$(document).ready(function() {
+		var campos_max = 4;   //max de 5 telefones
+	    var x = 0; // campos iniciais
+        $('#add_telefone').click (function(e) {
+	        e.preventDefault();     //prevenir novos clicks
+	        if (x < campos_max) {
+	                $('#telefone').append('<div class="outsideSecInputCad">\
+						<div class="sectionInputCad">\
+							<input type="text" placeholder="Número Tel" class="sp_celphones" name="telefone[]"/>\
+						</div>\
+						<?php
+							$sel = $conn->prepare("SELECT * FROM tipo_tel");
+							$sel->execute();
+							if($sel->rowCount() > 0):
+								$rows = $sel->fetchAll();?>
+								<div class="sectionInputCad">\
+									<select name="tipo_tel[]">\
+										<optgroup label="Tipo Telefone">\
+											<?php
+												foreach($rows as $row):?>
+													<option value="<?php echo $row['tpu_tel_id']; ?>">\
+														<?php echo $row['tpu_tel_nome']; ?>
+													</option>\
+													<?php
+												endforeach;
+											?>
+										</optgroup>\
+									</select>\
+								</div>\
+								<?php
+							endif;
+						?>
+					<div class="col-2">\
+						<a href="#" class="remover_campo">&times;</a>\
+					</div>\
+				    </div>');
+	            x++;
+	        }
+        });
+ 
+        // Remover o div anterior
+        $('#telefone').on("click",".remover_campo",function(e) {
+                e.preventDefault();
+                $(this).parent().parent('div').remove();
+                $(this).parent('div').remove();
+                x--;
+        });
+	});
+	</script>
 	<?php
 		if(isset($_SESSION["inf_usu"])):?>
 			<script>
