@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/04/2019 às 10:10
+-- Tempo de geração: 27/04/2019 às 23:01
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -384,8 +384,8 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_categ`) VALUES
-(1, 'COCA-COLA SABOR ORIGINAL', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'logo_coca_cola.png', 1, 6.99, 1),
-(2, 'POTY GUARANÁ 2L', 'POTY, GUARANÁ, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'logo_poty.png', 2, 4.3, 1);
+(1, 'COCA-COLA 2L', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/coca-cola-1l.jpg', 1, 6.99, 1),
+(2, 'FANTA UVA 2L', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/fanta-uva-2l.jpg', 2, 5.3, 1);
 
 -- --------------------------------------------------------
 
@@ -894,7 +894,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `produto_medida`

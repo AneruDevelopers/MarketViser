@@ -1,7 +1,7 @@
 $(function() {
     $.ajax({
         dataType: 'json',
-        url: '__system__/functions/listProduto.php',
+        url: 'functions/listProduto',
         success: function(response) {
             var produtos = [];
             for (var i = 0; response.length > i; i++) {
@@ -16,8 +16,7 @@ $(function() {
                 `;
             }
             $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
-            $('body').append('<script src="__system__/style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript">\
-            </script><script src="__system__/js/main.js"></script>\
+            $('body').append('<script src="__system__/js/main.js"></script>\
             <script src="__system__/js/login.js"></script>');
         }
     });

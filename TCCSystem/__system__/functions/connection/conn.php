@@ -1,8 +1,17 @@
 <?php 
 	session_start();
+
+	// Padronizando a busca por arquivos via URL
+	function base_url() {
+		return "http://localhost/BackupGit/economize/TCCSystem/__system__/";
+	}
+	function base_url_php() {
+		return "http://localhost/BackupGit/economize/TCCSystem/";
+	}
+
 	$servername = "localhost";
 	$username = "root";
-	$password = "senhadopedro";
+	$password = "";
 	$db = "economize";
 
 	try {

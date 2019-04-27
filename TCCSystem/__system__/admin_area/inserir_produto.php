@@ -1,9 +1,7 @@
-<!DOCTYPE>
 <?php
-
     include("includes/conexao.php");
-
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />

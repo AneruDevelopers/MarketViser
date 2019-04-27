@@ -19,7 +19,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: $(this).serialize(),
-      url: 'functions/cadastro_usuario',
+      url: BASE_URL + 'functions/cadastro_usuario',
       beforeSend: function() {
         clearErrors();
         $("#btn-cad").siblings(".help-block").html(loadingRes("Verificando..."));

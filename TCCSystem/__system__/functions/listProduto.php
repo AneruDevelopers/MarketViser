@@ -6,6 +6,7 @@
     
     $result = $sel->fetchAll();
     foreach($result as $row) {
+        $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
         $produtos[] = $row;
     }
 

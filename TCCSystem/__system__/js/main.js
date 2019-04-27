@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost/BackupGit/economize/TCCSystem/";
+
 // TODO O JQUERY SERÁ DEPURADO DENTRO DESTA FUNÇÃO
 
 $(document).ready(function() {

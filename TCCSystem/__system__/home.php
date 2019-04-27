@@ -1,3 +1,4 @@
+<?php require_once '__system__/functions/connection/conn.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,29 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>e.conomize</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="__system__\style\css\main.css">
-    <link href="__system__\style\libraries\fontawesome-free-5.8.0-web\css\all.css" rel="stylesheet">
-    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="__system__\style\fonts\Icons\icons_pack\font\flaticon.css"> 
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>/style/css/main.css">
+    <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"> 
 </head>
 <body>
     <div class="l-wrapper">
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions\includes\topNav.html');
+            include('functions/includes/topNav.html');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions\includes\header.html');
+            include('functions/includes/header.html');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions\includes\bottom.html');
+            include('functions/includes/bottom.html');
         ?>
         </div>
         
@@ -41,9 +42,9 @@
         
         <div class="l-carousel">
             <div id="owl-demo" class="owl-carousel">
-                <div class="item"><img src="__system__\img\Banner2_Oficial.png" alt="The Last of us"></div>
-                <div class="item"><img src="__system__\img\Banner2_Oficial.png" alt="GTA V"></div>
-                <div class="item"><img src="__system__\img\Banner2_Oficial.png" alt="Mirror Edge"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="The Last of us"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="GTA V"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="Mirror Edge"></div>
             </div>
         </div>
 
@@ -68,7 +69,7 @@
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="cadastro">Cadastre-se já</a></p><br/>
+                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p><br/>
                     <div class="help-block-login"></div>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                 </form>
@@ -78,14 +79,15 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions\includes\footer.html');
-        ?>   
+            include('functions/includes/footer.html');
+        ?>
         </div>
         <div class="l-footerBottom" id="footerBottom"></div>
     </div>
 
-    <script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="__system__\style\libraries\sweetalert2.all.min.js"></script>
-    <script src="__system__\js\listProduto.js"></script>
+    <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/listProduto.js"></script>
 </body>
 </html>

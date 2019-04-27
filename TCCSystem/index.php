@@ -8,7 +8,11 @@
 	$URL = explode('/', $REQUEST_URI_PASTA);
 	$URL[3] = ($URL[3] != '' ? $URL[3] : 'home');
 	if(file_exists('__system__/' . $URL[3] . '.php')):
-		require '__system__/' . $URL[3] . '.php';
+		if(isset($URL[4])):
+			require '__system__/404.php';
+		else:
+			require '__system__/' . $URL[3] . '.php';
+		endif;
 	elseif(is_dir('__system__/' . $URL[3])):
 		if(isset($URL[4]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '.php')):
 			if(isset($URL[5])):

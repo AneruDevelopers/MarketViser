@@ -35,7 +35,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'POST',
 			dataType: 'json',
-			url: 'functions/login',
+			url: BASE_URL + 'functions/login',
 			data: $(this).serialize(),
 			beforeSend: function() {
 				$(".help-block-login").html(loadingRes("Verificando..."));

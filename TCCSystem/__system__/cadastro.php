@@ -8,26 +8,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>e.conomize - Cadastre-se</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="__system__\style\css\main.css">
-    <link href="__system__\style\libraries\fontawesome-free-5.8.0-web\css\all.css" rel="stylesheet">
-    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="__system__\style\libraries\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="__system__\style\fonts\Icons\icons_pack\font\flaticon.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>style/css/main.css">
+    <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 	
-	<script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="__system__\js\JQuery\jquery-mask.js"></script>
-    <script src="__system__\js\mask.js"></script>
+	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?php echo base_url(); ?>js/mask.js"></script>
 </head>
 <body>
 	<div class="l-wrapper_cadastro">
 		<div class="l-topNavCad" id="topNav">
 		<?php
-			include('functions\includes\topNav.html');
+			include('functions/includes/topNav.html');
 		?>    
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
 		<?php
-			include('functions\includes\header.html');
+			include('functions/includes/header.html');
 		?>    
 		</div>
 		<div class="l-mainCad">
@@ -187,7 +187,7 @@
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="cadastro">Cadastre-se já</a></p><br/>
+                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p><br/>
                     <div class="help-block-login"></div>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                 </form>
@@ -195,20 +195,20 @@
         </div>
 		<div class="l-footer" id="footer">
         <?php
-            include('functions\includes\footer.html');
+            include('functions/includes/footer.html');
 		?>
 		</div>
         <div class="l-footerBottomCad" id="footerBottom"></div>
     </div>
 
-	<script src="__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-	<script src="__system__/style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
-    <script src="__system__\style\libraries\sweetalert2.all.min.js"></script>
-    <script src="__system__\js\JQuery\jquery-mask.js"></script>
-    <script src="__system__\js\mask.js"></script>
-    <script src="__system__\js\main.js"></script>
-    <script src="__system__\js\login.js"></script>
-    <script src="__system__\js\cadastro_usuario.js"></script>
+	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+	<script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?php echo base_url(); ?>js/mask.js"></script>
+    <script src="<?php echo base_url(); ?>js/main.js"></script>
+    <script src="<?php echo base_url(); ?>js/login.js"></script>
+    <script src="<?php echo base_url(); ?>js/cadastro_usuario.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var campos_max = 4;

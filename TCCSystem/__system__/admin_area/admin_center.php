@@ -1,5 +1,5 @@
 <?php
-    require_once 'includes/conexao.php';
+    require_once '__system__/functions/connection/conn.php';
     require_once 'includes/main.php';
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Centro Administrativo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="../__system__/admin_area/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url(); ?>admin_area/style/admin.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 <body>
@@ -37,8 +37,8 @@
         </footer>
     </div>
 
-    <script src="..\__system__\js\JQuery\jquery-3.3.1.min.js"></script>
-    <script src="..\__system__\admin_area\js\main.js"></script>
-    <script src="..\__system__\admin_area\js\admin.js"></script>
+    <script src="<?php echo base_url(); ?>js\JQuery\jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>admin_area\js\main.js"></script>
+    <script src="<?php echo base_url(); ?>admin_area\js\admin.js"></script>
 </body>
 </html>
