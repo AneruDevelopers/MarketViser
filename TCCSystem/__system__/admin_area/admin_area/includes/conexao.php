@@ -1,6 +1,6 @@
 <?php   
 
-    $con = mysqli_connect("localhost","root","","economize");
+    $con = mysqli_connect("localhost","root","senhadopedro","economize");
     
     if (mysqli_connect_error()) {
         printf('Erro de conexão: %s', mysqli_connect_error());

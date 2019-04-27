@@ -63,7 +63,17 @@ $(document).ready(function() {
             singleItem:true
         });
 
-        // LOGIN BUTTON MODAL
+        $('.loop').owlCarousel({
+            center: true,
+            items:5,
+            loop:true,
+            margin:5,
+            responsive:{
+                600:{
+                    items:7
+                }
+            }
+        });
 
         
 });

@@ -25,6 +25,11 @@
 			include('functions\includes\topNav.html');
 		?>    
 		</div>
+		<div class="l-headerNavMobile" id="headerNav">
+		<?php
+			include('functions\includes\header.html');
+		?>    
+		</div>
 		<div class="l-mainCad">
 		<div class="circleCad">
 			<p>Junte-se a família e.conomize!</p>
@@ -72,27 +77,27 @@
 						<div class="help-block"></div><br/>
 					</div>
 					<div class="outsideSecInputCad">
-						<div class="sectionInputCad inputConfirm">
+						<div class="sectionInputCadPassword inputConfirm">
 							<input type="password" placeholder=" Confirme a senha" id="usu_senha2" name="usu_senha2"/>
 						</div>
 						<div class="help-block"></div><br/>
 					</div>
 					
-					<div>
-						<div id="telefone">
+					<div class="">
+						<div class="sectionInputCad" id="telefone">
 							<strong><label class="labelInputCad" for="">TELEFONE(S)</label></strong><br>
-							<div class="outsideSecInputCad">
-								<div class="sectionInputCad">
-									<input type="text" placeholder="Número Tel" class="sp_celphones" name="tel_num[]"/>
+							
+								<div class="workAsInput">
+									<input type="text" placeholder=" Número Tel" class="sp_celphones" name="tel_num[]"/>
 								</div>
 								<?php
 									$sel = $conn->prepare("SELECT * FROM tipo_tel");
 									$sel->execute();
 									if($sel->rowCount() > 0):
 										$rows = $sel->fetchAll();?>
-										<div class="sectionInputCad">
-											<select name="tipo_tel[]">
-												<optgroup label="Tipo Telefone">
+										<div class="">
+											<select class="selectTypeTel" name="tipo_tel[]">
+												<optgroup label=" TIPO DE TELEFONE">
 													<?php
 														foreach($rows as $row):?>
 															<option value="<?php echo $row['tpu_tel_id']; ?>">
@@ -106,13 +111,12 @@
 										</div>
 										<?php
 									endif;?>
-									<button type="button" id="add_telefone">+</button>
+									<button type="button" class="btnAddTel" id="add_telefone"><i class="fas fa-plus-circle"></i></button>
 							</div>
-						</div>
 						<div class="help-block-tel"></div>
 					</div>
 
-					<div class="divisorTitle">
+					<div class="divisorTitle divisorMargin">
 						<h5>Dados Residenciais</h5>
 					</div>
 					<div class="divisor"></div>
@@ -189,7 +193,11 @@
                 </form>
             </div>
         </div>
-		<div class="l-footerCad" id="footer"></div>
+		<div class="l-footer" id="footer">
+        <?php
+            include('functions\includes\footer.html');
+		?>
+		</div>
         <div class="l-footerBottomCad" id="footerBottom"></div>
     </div>
 
@@ -209,17 +217,17 @@
 				e.preventDefault();
 				if (x < campos_max) {
 						$('#telefone').append('<div class="outsideSecInputCad">\
-							<div class="sectionInputCad">\
-								<input type="text" placeholder="Número Tel" class="sp_celphones" name="tel_num[]"/>\
+							<div class="sectionInputCadPlus">\
+								<input type="text" placeholder=" Número Tel" class="sp_celphones" name="tel_num[]"/>\
 							</div>\
 							<?php
 								$sel = $conn->prepare("SELECT * FROM tipo_tel");
 								$sel->execute();
 								if($sel->rowCount() > 0):
 									$rows = $sel->fetchAll();?>
-									<div class="sectionInputCad">\
-										<select name="tipo_tel[]">\
-											<optgroup label="Tipo Telefone">\
+									<div class="sectionInputCadPlus">\
+										<select class="selectTypeTelPlus" name="tipo_tel[]">\
+											<optgroup label="TIPO DO TELEFONE">\
 												<?php
 													foreach($rows as $row):?>
 														<option value="<?php echo $row['tpu_tel_id']; ?>">\
@@ -234,8 +242,8 @@
 									<?php
 								endif;
 							?>
-						<div class="col-2">\
-							<a href="#" class="remover_campo">&times;</a>\
+						<div class="btnRemove">\
+							<a href="#" class="remover_campo"><i class="fas fa-times"></i></a>\
 						</div>\
 						</div>');
 					x++;

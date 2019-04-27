@@ -76,7 +76,11 @@
         </div>
         <!-- -------------------- -->
 
-        <div class="l-footer" id="footer"></div>
+        <div class="l-footer" id="footer">
+        <?php
+            include('functions\includes\footer.html');
+        ?>   
+        </div>
         <div class="l-footerBottom" id="footerBottom"></div>
     </div>
 

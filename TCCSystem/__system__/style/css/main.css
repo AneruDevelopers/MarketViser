@@ -43,6 +43,11 @@
     src: url('../fonts/Raleway/Raleway-Medium.ttf');
 }
 
+@font-face {
+    font-family: "Raleway-Black";
+    src: url('../fonts/Raleway/Raleway-Black.ttf');
+}
+
 body {
     padding: 0 0;
     margin: 0 0;
@@ -492,9 +497,65 @@ border-radius: 0;
         color: rgb(173, 2, 253);
     }
 
-    /* CADASTRO.PHP */
-    
+   /* DISPLAY PRODUCTS */
 
+   .l-prods {
+       position: relative;
+       width: 100vw;
+       top: -1rem;
+   }
+
+   .divProdCarousel {
+        background: #ffffff;
+        border-top: rgb(173, 2, 253) solid 4px;
+        border-bottom: rgb(173, 2, 253) solid 4px;
+        transition: 200ms box-shadow ease-in-out;
+        border-radius: 2px;
+        padding: 2px;
+        height: 9rem;
+   }
+
+   .divProdCarousel:hover {
+        box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
+   }
+
+   .linksProdCarousel {
+        text-decoration: none;
+   }
+
+   .divProdImg {
+        width: 100%;
+        height: 60%;
+   }
+
+   .divProdTitle {
+        color: black;
+        text-align: left;
+        font-size: 12px;
+        margin: 0;
+        text-transform: lowercase;
+    }
+
+   .divProdPrice {
+        margin: 0;
+        position: absolute;
+        top: 8rem;
+        color: rgb(253, 186, 2);
+        font-size: 12px;
+        font-family: "Raleway-Black";
+   }
+
+   /* FOOTER */
+
+   .links a {
+       text-decoration: none;
+       color: #ffffff;
+       font-size: 10px;
+   }
+
+   .links a ul {
+       padding-left: 1rem;
+   }
 
     /* PAGE --> CADASTRO.PHP */
 
@@ -504,9 +565,10 @@ border-radius: 0;
 
     .l-wrapper_cadastro {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto 15rem 6rem;
+        grid-template-rows: auto auto auto auto 15rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
@@ -522,6 +584,12 @@ border-radius: 0;
         display: inline-flex;
         width: 100%;
         border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-headerNavMobile {
+        grid-area: headerNav;
+        background-color: #252730;
+        width: 100%;
     }
 
     .l-headerNavCad {
@@ -552,7 +620,7 @@ border-radius: 0;
         background: rgb(173, 2, 253);
         border-radius: 50%;
         left: 14%;
-        top: 6rem;
+        top: 6.5rem;
         z-index: 1;
     }
 
@@ -589,14 +657,46 @@ border-radius: 0;
         text-align: center;
     }
 
-    .divCad input {
-        width: 70%;
-        border: solid 1px #252730;
+    .sectionInputCad {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCad input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
         border-radius: 2px;
         font-family: "Raleway";
-        left: 12.5%;
         position: relative;
-        height: 1.2rem;
+        height: 1.5rem;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .sectionInputCadPassword {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCadPassword input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.5rem;
+        top:-.65rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
     }
 
     .outsideSecInputCad {
@@ -604,17 +704,118 @@ border-radius: 0;
         margin-bottom: .8rem;
     }
 
-    .sectionInputCad {
-        height: 3rem;
-    }
-
     .labelInputCad {
         position: relative;
         float: left;
-        left: 12.5%;
         font-family: "Raleway-Medium";
         font-size: 13px;
         color: rgb(173, 2, 253);
+    }
+
+    .sectionInputCad .workAsInput {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        top:0;
+        height: 1.5rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .selectTypeTel {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        position: relative;
+        top: .45rem;
+        border-radius: 2px;
+        font-family: "Raleway";
+        height: 1.5rem;
+    }
+
+    .optionCad {
+        position: relative;
+    }
+
+    .btnAddTel {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 34.5rem;
+        left: 12.5%;
+    }
+
+    .sectionInputCadPlus {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCadPlus input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.5rem;
+        top: 3rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .selectTypeTelPlus {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.5rem;
+        top: 3.3rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .btnAddTel {
+        padding: 0;
+        position: absolute;
+        left: 8%;
+        top: 34.1rem;
+    }
+    
+    .btnAddTel i {
+        font-size: 20px;
+        color: rgb(152, 248, 9);
+    }
+
+    .btnRemove {
+        position: relative;
+        width: auto;
+    }
+
+    .remover_campo {
+        color: red;
+        position: absolute;
+        top: 1.1rem;
+        left: -.6rem;
+        font-size: 15px;
+    }
+
+    .divisorMargin {
+        margin-top: 5rem;
     }
 
     .btnSubCad {
@@ -629,11 +830,13 @@ border-radius: 0;
     }
 
     .btnSendCad {
-        margin: .5rem 0;
+        width: 50%;
+        margin: auto;
     }
 
     .btnSendCad input {
         height: 2rem;
+        width: 100%;
         font-family: "Raleway-Medium";
     }
 
@@ -1124,6 +1327,66 @@ border-radius: 0;
         font-family: 'Raleway-Medium';
     }
 
+    /* DISPLAY PRODUCTS */
+
+    .l-prods {
+        position: relative;
+        width: 100vw;
+        top: -1rem;
+    }
+
+    .divProdCarousel {
+        background: #ffffff;
+        border-top: rgb(173, 2, 253) solid 6px;
+        border-bottom: rgb(173, 2, 253) solid 6px;
+        transition: 100ms box-shadow ease-in-out;
+        border-radius: 2px;
+        padding: 2px;
+        height: 20rem;
+    }
+
+    .divProdCarousel:hover {
+        box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
+    }
+
+    .linksProdCarousel {
+        text-decoration: none;
+    }
+
+    .divProdImg {
+        width: 100%;
+        height: 65%;
+    }
+
+    .divProdTitle {
+        color: black;
+        text-align: left;
+        font-size: 18px;
+        margin: 0;
+        text-transform: lowercase;
+    }
+
+    .divProdPrice {
+        margin: 0;
+        position: absolute;
+        top: 85%;
+        color: rgb(253, 186, 2);
+        font-size: 20px;
+        font-family: "Raleway-Black";
+    }
+
+    /* FOOTER */
+
+   .links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 13px;
+    }
+
+    .links a ul {
+        padding-left: 1rem;
+    }
+
     /* PAGE --> CADASTRO.PHP */
 
     .l-wrapper_cadastro {
@@ -1149,6 +1412,10 @@ border-radius: 0;
         display: inline-flex;
         width: 100%;
         border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-headerNavMobile {
+        display: none;
     }
 
     .l-mainCad {
@@ -1224,17 +1491,164 @@ border-radius: 0;
     }
 
     .sectionInputCad {
-        margin-bottom: .5rem;
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCad input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.9rem;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .sectionInputCadPassword {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCadPassword input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.9rem;
+        top:-.2rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .outsideSecInputCad {
         height: 3rem;
+        margin-bottom: .8rem;
     }
 
     .labelInputCad {
         position: relative;
         float: left;
-        left: 12.5%;
         font-family: "Raleway-Medium";
         font-size: 14px;
         color: rgb(173, 2, 253);
+    }
+
+    .sectionInputCad .workAsInput {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        top:0;
+        height: 1.9rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .selectTypeTel {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        position: relative;
+        top: .45rem;
+        border-radius: 2px;
+        font-family: "Raleway";
+        height: 1.9rem;
+    }
+
+    .optionCad {
+        position: relative;
+    }
+
+    .btnAddTel {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 34.5rem;
+        left: 12.5%;
+    }
+
+    .sectionInputCadPlus {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sectionInputCadPlus input {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.5rem;
+        top: 3rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .selectTypeTelPlus {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+        font-family: "Raleway";
+        position: relative;
+        height: 1.5rem;
+        top: 3.3rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        margin: auto;
+    }
+
+    .btnAddTel {
+        padding: 0;
+        position: absolute;
+        left: 7%;
+        top: 35rem;
+    }
+    
+    .btnAddTel i {
+        font-size: 25px;
+        color: rgb(152, 248, 9);
+    }
+
+    .btnRemove {
+        position: relative;
+        width: auto;
+    }
+
+    .remover_campo {
+        color: red;
+        position: absolute;
+        top: 1.1rem;
+        left: -.6rem;
+        font-size: 15px;
+    }
+
+    .divisorMargin {
+        margin-top: 5rem;
     }
 
     .btnSubCad {
@@ -1249,15 +1663,14 @@ border-radius: 0;
     }
 
     .btnSendCad {
-        margin: .5rem 0;
+        width: 50%;
+        margin: auto;
     }
 
     .btnSendCad input {
         height: 2rem;
+        width: 100%;
         font-family: "Raleway-Medium";
-        font-size: 14px;
-        width: 50%;
-        left: 24%;
     }
 
     .inputConfirm {
@@ -1281,5 +1694,9 @@ border-radius: 0;
         background: rgb(173, 2, 253);
         border-radius: 2px;
         margin-bottom: .8rem;
+    }
+
+    .help-block {
+        position: relative;
     }
 }
