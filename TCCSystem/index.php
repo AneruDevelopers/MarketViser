@@ -63,6 +63,7 @@
 						endif;
 					else:
 						$_SESSION['url4'] = $URL[4];
+						$_SESSION['subcateg_id'] = $result2[0]["subcateg_id"];
 						if(isset($_SESSION['categ_id'])) {
 							unset($_SESSION['categ_id']);
 							unset($_SESSION['url5']);
@@ -74,6 +75,7 @@
 				endif;
 			else:
 				$_SESSION['url3'] = $URL[3];
+				$_SESSION['depart_id'] = $result[0]["depart_id"];
 				if(isset($_SESSION['subcateg_id']) && isset($_SESSION['categ_id'])) {
 					unset($_SESSION['subcateg_id']);
 					unset($_SESSION['categ_id']);
