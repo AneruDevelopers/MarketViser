@@ -16,7 +16,7 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.html');
+            include('functions/includes/topNav.php');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">

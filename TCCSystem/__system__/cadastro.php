@@ -22,7 +22,7 @@
 	<div class="l-wrapper_cadastro">
 		<div class="l-topNavCad" id="topNav">
 		<?php
-			include('functions/includes/topNav.html');
+			include('functions/includes/topNav.php');
 		?>    
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
