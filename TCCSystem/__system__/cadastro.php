@@ -2,7 +2,7 @@
 	require_once 'functions/connection/conn.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -213,7 +213,7 @@
 		$(document).ready(function() {
 			var campos_max = 4;
 			var x = 0;
-			$('#add_telefone').click (function(e) {
+			$('#add_telefone').click(function(e) {
 				e.preventDefault();
 				if (x < campos_max) {
 						$('#telefone').append('<div class="outsideSecInputCad">\

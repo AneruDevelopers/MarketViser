@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/04/2019 às 23:01
+-- Tempo de geração: 01/05/2019 às 08:39
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -72,10 +72,11 @@ CREATE TABLE `categ` (
 --
 
 INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
-(1, 'REFRIGERANTES', 1),
-(2, 'ÁGUAS', 2),
-(3, 'SUCOS', 2),
-(4, 'CERVEJAS', 3);
+(1, 'LIGHT OU ZERO', 1),
+(2, 'NORMAL', 1),
+(3, 'BAIXA CALORIA', 1),
+(4, 'ZERO ÁLCOOL', 4),
+(5, 'NORMAL', 4);
 
 -- --------------------------------------------------------
 
@@ -154,26 +155,27 @@ CREATE TABLE `dados_entrega` (
 CREATE TABLE `departamento` (
   `depart_id` int(11) NOT NULL,
   `depart_nome` varchar(30) NOT NULL,
-  `depart_icon` varchar(70) NOT NULL
+  `depart_icon` varchar(70) NOT NULL,
+  `depart_desc` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `departamento`
 --
 
-INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`) VALUES
-(1, 'AÇOUGUE', 'flaticon-038-steaks'),
-(2, 'BEBIDAS', 'flaticon-020-products-3'),
-(3, 'CEREAIS', 'flaticon-048-cereal'),
-(4, 'FRUTAS', 'flaticon-022-healthy-food-1'),
-(5, 'GRÃOS', 'flaticon-009-wheat-flour'),
-(6, 'HORTA', 'flaticon-031-healthy-food'),
-(7, 'LATICÍNIOS', 'flaticon-043-products'),
-(8, 'LEITE', 'flaticon-011-products-5'),
-(9, 'LIMPEZA', 'flaticon-039-tools-and-utensils'),
-(10, 'PADARIA', 'flaticon-008-baguettes'),
-(11, 'PEIXARIA', 'flaticon-006-fishes'),
-(12, 'SNACKS', 'flaticon-042-products-1');
+INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_desc`) VALUES
+(1, 'AÇOUGUE', 'flaticon-038-steaks', NULL),
+(2, 'BEBIDAS', 'flaticon-020-products-3', 'Águas e Chás, Cervejas e tudo o mais'),
+(3, 'CEREAIS', 'flaticon-048-cereal', NULL),
+(4, 'HORTIFRÚTI', 'flaticon-022-healthy-food-1', NULL),
+(5, 'GRÃOS', 'flaticon-009-wheat-flour', NULL),
+(6, 'HORTA', 'flaticon-031-healthy-food', NULL),
+(7, 'LATICÍNIOS', 'flaticon-043-products', NULL),
+(8, 'LEITE', 'flaticon-011-products-5', NULL),
+(9, 'LIMPEZA', 'flaticon-039-tools-and-utensils', NULL),
+(10, 'PADARIA', 'flaticon-008-baguettes', NULL),
+(11, 'PEIXARIA', 'flaticon-006-fishes', NULL),
+(12, 'SNACKS', 'flaticon-042-products-1', NULL);
 
 -- --------------------------------------------------------
 
@@ -324,29 +326,10 @@ CREATE TABLE `marca_prod` (
 
 INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
 (1, 'Coca-Cola'),
-(2, 'Poty');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `medida_prod`
---
-
-CREATE TABLE `medida_prod` (
-  `medida_id` int(11) NOT NULL,
-  `medida_nome` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `medida_prod`
---
-
-INSERT INTO `medida_prod` (`medida_id`, `medida_nome`) VALUES
-(1, 'Unid'),
-(2, 'g'),
-(3, 'Kg'),
-(4, 'l'),
-(5, 'ml');
+(2, 'Poty'),
+(3, 'Fanta'),
+(4, 'Pepsi'),
+(5, 'Brahma');
 
 -- --------------------------------------------------------
 
@@ -376,6 +359,8 @@ CREATE TABLE `produto` (
   `produto_img` varchar(255) NOT NULL,
   `produto_marca` int(11) NOT NULL,
   `produto_preco` float NOT NULL,
+  `produto_tamanho` varchar(30) NOT NULL,
+  `tipo_tamanho` int(11) DEFAULT NULL,
   `produto_categ` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -383,9 +368,10 @@ CREATE TABLE `produto` (
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_categ`) VALUES
-(1, 'COCA-COLA 2L', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/coca-cola-1l.jpg', 1, 6.99, 1),
-(2, 'FANTA UVA 2L', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/fanta-uva-2l.jpg', 2, 5.3, 1);
+INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_tamanho`, `tipo_tamanho`, `produto_categ`) VALUES
+(1, 'Refrigerante Coca-Cola', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, 6.99, '2 Litros', 1, 2),
+(2, 'Refrigerante Fanta Uva', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, 5.3, '2 Litros', 1, 2),
+(3, 'Cerveja Brahma Lata', 'CERVEJA,BRAHMA,GELADA,LATA,LATINHA', NULL, 'brahma_lata_350ml.jpg', 5, 2.49, '350ml', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -398,26 +384,6 @@ CREATE TABLE `produtos_favorito` (
   `produto_id` int(11) NOT NULL,
   `usu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `produto_medida`
---
-
-CREATE TABLE `produto_medida` (
-  `produto_medida_id` int(11) NOT NULL,
-  `produto_id` int(11) NOT NULL,
-  `medida_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `produto_medida`
---
-
-INSERT INTO `produto_medida` (`produto_medida_id`, `produto_id`, `medida_id`) VALUES
-(1, 1, 1),
-(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -478,9 +444,32 @@ CREATE TABLE `subcateg` (
 --
 
 INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
-(1, 'COM GÁS', 2),
-(2, 'SEM GÁS', 2),
-(3, 'ALCOÓLICOS', 2);
+(1, 'REFRIGERANTES', 2),
+(2, 'ÁGUAS E CHÁS', 2),
+(3, 'SUCOS E REFRESCOS', 2),
+(4, 'CERVEJAS', 2),
+(5, 'VINHOS', 2),
+(6, 'ENERGÉTICOS', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tamanho_prod`
+--
+
+CREATE TABLE `tamanho_prod` (
+  `tamanho_id` int(11) NOT NULL,
+  `tamanho_nome` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tamanho_prod`
+--
+
+INSERT INTO `tamanho_prod` (`tamanho_id`, `tamanho_nome`) VALUES
+(1, 'Volume'),
+(2, 'Peso'),
+(3, 'Outros');
 
 -- --------------------------------------------------------
 
@@ -691,12 +680,6 @@ ALTER TABLE `marca_prod`
   ADD PRIMARY KEY (`marca_id`);
 
 --
--- Índices de tabela `medida_prod`
---
-ALTER TABLE `medida_prod`
-  ADD PRIMARY KEY (`medida_id`);
-
---
 -- Índices de tabela `postagem`
 --
 ALTER TABLE `postagem`
@@ -708,7 +691,8 @@ ALTER TABLE `postagem`
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`produto_id`),
   ADD KEY `fk_MarcaProd` (`produto_marca`),
-  ADD KEY `fk_CategProd` (`produto_categ`);
+  ADD KEY `fk_CategProd` (`produto_categ`),
+  ADD KEY `fk_TamanhoProd` (`tipo_tamanho`);
 
 --
 -- Índices de tabela `produtos_favorito`
@@ -717,14 +701,6 @@ ALTER TABLE `produtos_favorito`
   ADD PRIMARY KEY (`favorito_id`),
   ADD KEY `fk_ProdUsu` (`produto_id`),
   ADD KEY `fk_UsuProd` (`usu_id`);
-
---
--- Índices de tabela `produto_medida`
---
-ALTER TABLE `produto_medida`
-  ADD PRIMARY KEY (`produto_medida_id`),
-  ADD KEY `fk_MedProd` (`medida_id`),
-  ADD KEY `fk_ProdMed` (`produto_id`);
 
 --
 -- Índices de tabela `setor`
@@ -744,6 +720,12 @@ ALTER TABLE `status_compra`
 ALTER TABLE `subcateg`
   ADD PRIMARY KEY (`subcateg_id`),
   ADD KEY `FK_Departamento` (`depart_id`);
+
+--
+-- Índices de tabela `tamanho_prod`
+--
+ALTER TABLE `tamanho_prod`
+  ADD PRIMARY KEY (`tamanho_id`);
 
 --
 -- Índices de tabela `telefone`
@@ -792,7 +774,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de tabela `categ`
 --
 ALTER TABLE `categ`
-  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `cidade`
@@ -870,13 +852,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT de tabela `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `medida_prod`
---
-ALTER TABLE `medida_prod`
-  MODIFY `medida_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`
@@ -888,19 +864,13 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
   MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `produto_medida`
---
-ALTER TABLE `produto_medida`
-  MODIFY `produto_medida_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -918,7 +888,13 @@ ALTER TABLE `status_compra`
 -- AUTO_INCREMENT de tabela `subcateg`
 --
 ALTER TABLE `subcateg`
-  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `tamanho_prod`
+--
+ALTER TABLE `tamanho_prod`
+  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
@@ -1014,7 +990,8 @@ ALTER TABLE `lista_compra`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `fk_CategProd` FOREIGN KEY (`produto_categ`) REFERENCES `categ` (`categ_id`),
-  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`);
+  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`),
+  ADD CONSTRAINT `fk_TamanhoProd` FOREIGN KEY (`tipo_tamanho`) REFERENCES `tamanho_prod` (`tamanho_id`);
 
 --
 -- Restrições para tabelas `produtos_favorito`
@@ -1022,13 +999,6 @@ ALTER TABLE `produto`
 ALTER TABLE `produtos_favorito`
   ADD CONSTRAINT `fk_ProdUsu` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`),
   ADD CONSTRAINT `fk_UsuProd` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
-
---
--- Restrições para tabelas `produto_medida`
---
-ALTER TABLE `produto_medida`
-  ADD CONSTRAINT `fk_MedProd` FOREIGN KEY (`medida_id`) REFERENCES `medida_prod` (`medida_id`),
-  ADD CONSTRAINT `fk_ProdMed` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
 
 --
 -- Restrições para tabelas `subcateg`

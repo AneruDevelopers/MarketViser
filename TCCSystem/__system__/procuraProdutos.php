@@ -1,30 +1,45 @@
-<?php require_once '__system__/functions/connection/conn.php'; ?>
+<?php
+    // echo $_SESSION['url3']." - ".$_SESSION['url4']." - ".$_SESSION['url5']."<br/>";
+    // echo $_SESSION['depart_id']." - ".$_SESSION['subcateg_id']." - ".$_SESSION['categ_id'];
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>e.conomize - Error 404</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>e.conomize - Procure seu produto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>/style/css/main.css">
     <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
     <div class="l-wrapper">
-		<div class="l-topNavCad" id="topNav">
-		<?php
-			include('functions/includes/topNav.html');
-		?>
-		</div>
-		<div class="l-headerNavMobile" id="headerNav">
-		<?php
-			include('functions/includes/header.html');
-		?>
-        </div>
-        
-        <h2>Página não encontrada</h2>
 
+        <div class="l-topNav" id="topNav">
+        <?php
+            include('functions/includes/topNav.html');
+        ?>    
+        </div>
+
+        <nav class="l-headerNav" id="headerNav">
+        <?php
+            include('functions/includes/header.html');
+        ?>
+        </nav>
+
+        <div class="l-bottomNav" id="bottomNav">
+        <?php
+            include('functions/includes/bottom.html');
+        ?>
+        </div>
+
+        <!-- CONFIGURAÇÕES DA PESQUISA -->
+        <?php require_once 'functions/filtroPesquisa.php'; ?>
+
+        <!-- -------------------- -->
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <form id="form-login">
@@ -42,20 +57,20 @@
                 </form>
             </div>
         </div>
+        <!-- -------------------- -->
+
         <div class="l-footer" id="footer">
         <?php
             include('functions/includes/footer.html');
-		?>
-		</div>
-        <div class="l-footerBottomCad" id="footerBottom"></div>
+        ?>
+        </div>
+        <div class="l-footerBottom" id="footerBottom"></div>
     </div>
 
-	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-	<script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?php echo base_url(); ?>js/mask.js"></script>
-    <script src="<?php echo base_url(); ?>js/main.js"></script>
-    <script src="<?php echo base_url(); ?>js/login.js"></script>
+    <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
+    <script src="<?php echo base_url(); ?>js/procuraProdutos.js"></script>
 </body>
 </html>

@@ -16,8 +16,6 @@ $(function() {
                 `;
             }
             $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
-            $('body').append('<script src="__system__/js/main.js"></script>\
-            <script src="__system__/js/login.js"></script>');
         }
     });
 });

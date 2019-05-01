@@ -1,6 +1,5 @@
-<?php require_once '__system__/functions/connection/conn.php'; ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,7 @@
     <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"> 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
     <div class="l-wrapper">
@@ -89,5 +88,6 @@
     <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>js/listProduto.js"></script>
+    <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
 </body>
 </html>
