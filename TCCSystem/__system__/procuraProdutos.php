@@ -1,4 +1,18 @@
 <?php
+    if(isset($result[0]["depart_id"])) {
+        $title = strtolower($result[0]["depart_nome"]);
+        $title = ucfirst($title);
+        if(isset($result2[0]["subcateg_id"])) {
+            $sub = strtolower($result2[0]["subcateg_nome"]);
+            $title .= " - " . ucfirst($sub);
+            if(isset($result3[0]["categ_id"])) {
+                $categ = strtolower($result3[0]["categ_nome"]);
+                $title .= " - " . ucfirst($categ);
+            }
+        }
+    } else {
+        $title = "e.conomize - Procure seu produto";
+    }
     // echo $_SESSION['url3']." - ".$_SESSION['url4']." - ".$_SESSION['url5']."<br/>";
     // echo $_SESSION['depart_id']." - ".$_SESSION['subcateg_id']." - ".$_SESSION['categ_id'];
 ?>
@@ -7,7 +21,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>e.conomize - Procure seu produto</title>
+    <title><?= $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>/style/css/main.css">
     <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
