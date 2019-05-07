@@ -8,6 +8,9 @@
 	function base_url_php() {
 		return "http://localhost/BackupGit/economize/TCCSystem/";
 	}
+	function base_url_adm() {
+		return "http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/";
+	}
 
 	$servername = "localhost";
 	$username = "root";

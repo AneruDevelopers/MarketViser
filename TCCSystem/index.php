@@ -27,7 +27,27 @@
 				require '__system__/' . $URL[3] . '/' . $URL[4] . '.php';
 			endif;
 		elseif(isset($URL[4]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4])):
-			require '__system__/404.php';
+			if(isset($URL[5]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '.php')):
+				if(isset($URL[6])):
+					require '__system__/404.php';
+				else:
+					require '__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '.php';
+				endif;
+			elseif(isset($URL[5]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5])):
+				if(isset($URL[6]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6] . '.php')):
+					if(isset($URL[7])):
+						require '__system__/404.php';
+					else:
+						require '__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6] . '.php';
+					endif;
+				elseif(isset($URL[6]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6])):
+					require '__system__/404.php';
+				else:
+					require '__system__/404.php';
+				endif;
+			else:
+				require '__system__/404.php';
+			endif;
 		else:
 			require '__system__/404.php';
 		endif;
