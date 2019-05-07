@@ -7,10 +7,12 @@ $(function() {
             for (var i = 0; response.length > i; i++) {
                 produtos[i] = `
                     <div class="divProdCarousel">
+                        <i class="far fa-heart"></i>
                         <a class="linksProdCarousel" href="#">
-                            <img class="divProdImg" src="` + response[i].produto_img + `">
+                            <img class="divProdImg" src="__system__/admin_area/imagens_produtos/feijao-preto-urbano-alimentos.png">
                             <h4 class="divProdTitle">` + response[i].produto_nome + `</h4>
                             <p class="divProdPrice">R$` + response[i].produto_preco + `</p>
+                            <button class="btnBuy" href="#">COMPRAR</button>
                         </a>
                     </div>
                 `;

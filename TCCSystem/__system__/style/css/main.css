@@ -25,7 +25,7 @@
 
 @font-face {
     font-family: "Karla";
-    src: url('../fonts/Karla/Karla-Bold.ttf');
+    src: url('../fonts/Karla/Karla-Regular.ttf');
 }
 
 @font-face {
@@ -48,6 +48,21 @@
     src: url('../fonts/Raleway/Raleway-Black.ttf');
 }
 
+@font-face {
+    font-family: "Bowlby";
+    src: url('../fonts/Title/BowlbyOneSC-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url('../fonts/Open/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Open Sans - Semi Bold";
+    src: url('../fonts/Open/OpenSans-SemiBold.ttf');
+}
+
 body {
     padding: 0 0;
     margin: 0 0;
@@ -56,6 +71,7 @@ body {
 
 html, body{
     height: 100%;
+    overflow-x: hidden;
 }
 
 textarea,
@@ -78,7 +94,7 @@ border-radius: 0;
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto auto auto 15rem 6rem;
+        grid-template-rows: auto auto auto auto auto 21rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
@@ -119,7 +135,7 @@ border-radius: 0;
 
     .l-main {
         grid-area: main;
-        margin: 1rem 0;
+        margin: .3rem 0;
     }
 
     .l-footer {
@@ -189,7 +205,7 @@ border-radius: 0;
     }
 
     .linkMenuTopNavCityMobile:hover {
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
         text-decoration: none;
         transition: color 250ms ease-in-out;
     }
@@ -240,7 +256,7 @@ border-radius: 0;
     }
     
     .linkMenuTopNavMobile:hover {
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
         text-decoration: none;
         transition: color 250ms ease-in-out;
     }
@@ -330,6 +346,7 @@ border-radius: 0;
         padding: 5px 0;
         border: solid 1px #b2b4b8;
         position: relative;
+        background: #9C45EB;
     }
 
     .celulaMenuCarouselMobile:hover {
@@ -339,12 +356,12 @@ border-radius: 0;
     }
 
     .celulaMenuCarouselMobile:hover .linkMenuCarouselMobile {
-        color: #ffffff;
+        color: #33FFED;
         transition: color 250ms ease-in-out;
     }
 
     .celulaMenuCarouselMobile a i {
-        color: rgb(173, 2, 253);
+        color: #ffffff;
         font-size: 22px;
         margin-left: 5px;
     }
@@ -359,7 +376,7 @@ border-radius: 0;
     }
 
     .linkMenuCarouselMobile {
-        color: #252730;
+        color: #ffffff;
         margin: 0 0;
         padding: 0 0;
         position: relative;
@@ -453,7 +470,7 @@ border-radius: 0;
         font-size: 13px;
         position: relative;
         left: .4rem;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
     .inputModal {
@@ -476,7 +493,7 @@ border-radius: 0;
 
     .btnSend {
         position: relative;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border: none;
         height: 2rem;
         border-radius: 3px;
@@ -494,68 +511,256 @@ border-radius: 0;
 
     .fa-grip-lines {
         position: relative;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
    /* DISPLAY PRODUCTS */
 
-   .l-prods {
-       position: relative;
-       width: 100vw;
-       top: -1rem;
-   }
+   .loop {
+    width: 100%;
+    }
 
-   .divProdCarousel {
+    .tituloOfertas {
+        position: relative;
+        font-family: "Bowlby";
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        margin: .1rem 0;
+        color: #9C45EB;
+        letter-spacing: 2px;
+    }
+
+    .l-prods {
+        position: relative;
+        width: 100vw;
+        top: -1rem;
         background: #ffffff;
-        border-top: rgb(173, 2, 253) solid 4px;
-        border-bottom: rgb(173, 2, 253) solid 4px;
-        transition: 200ms box-shadow ease-in-out;
+        padding-top: 0;
+        padding-bottom: 1.2rem;
+    }
+
+    .divProdCarousel {
+        background: #ffffff;
+        border-top: #2f3640 solid 4px;
+        border-bottom: #2f3640 solid 4px;
+        transition: 100ms box-shadow ease-in-out;
         border-radius: 2px;
         padding: 2px;
         height: 9rem;
-   }
-
-   .divProdCarousel:hover {
-        box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
-   }
-
-   .linksProdCarousel {
-        text-decoration: none;
-   }
-
-   .divProdImg {
-        width: 100%;
-        height: 60%;
-   }
-
-   .divProdTitle {
-        color: black;
-        text-align: left;
-        font-size: 12px;
-        margin: 0;
-        text-transform: lowercase;
     }
 
-   .divProdPrice {
+    .divProdCarousel:hover {
+        box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
+    }
+
+    .divProdCarousel i {
+        float: right;
+        color: #9C45EB;
+        margin: .2rem;
+        cursor: pointer;
+        font-size: 10px;
+    }
+
+    .divProdCarousel i:hover {
+        transform: scale(1.1);
+        transition: ease-in-out 100ms transform;
+    }
+
+    .linksProdCarousel {
+        text-decoration: none;
+    }
+
+    .divProdImg {
+        width: 100%;
+        height: 55%;
+    }
+
+    .divProdTitle {
+        color: black;
+        text-align: left;
+        font-size: 11px;
+        margin: 0;
+        text-transform: lowercase;
+        font-family: "Raleway";
+    }
+
+    .divProdPrice {
         margin: 0;
         position: absolute;
-        top: 8rem;
-        color: rgb(253, 186, 2);
+        top: 80%;
+        left: 4%;
+        color: #2f3640;
         font-size: 12px;
-        font-family: "Raleway-Black";
-   }
+        font-family: "Karla";
+    }
 
-   /* FOOTER */
+    .btnBuy {
+        background: #9C45EB;
+        border: none;
+        height: 1rem;
+        color: #ffffff;
+        font-size: 10px;
+        font-family: "Karla";
+        position: absolute;
+        top: 90%;
+        width: 100%;
+        left: 0;
+        cursor: pointer;
+    }
 
-   .links a {
-       text-decoration: none;
-       color: #ffffff;
-       font-size: 10px;
-   }
+    /* FOOTER */
 
-   .links a ul {
-       padding-left: 1rem;
-   }
+    .footerList {
+        position: relative;
+        width: 80%;
+        height: 40%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .footer-nav{
+        float: left;
+        list-style: none;
+        margin: auto;
+        padding: 0;
+        top: 1.15rem;
+        position: relative;
+        width: 33%;
+    }
+
+    .titleListFooter {
+        color: #33FFED;
+        font-size: 11px;
+        margin-bottom: 0rem;
+        font-family: "Open Sans";
+    }
+
+    .footer-nav li {
+        margin: 0;
+        font-family: "Open Sans";
+    }
+
+    .linkListFooter {
+        text-decoration: none;
+        color: #d3d2d2;
+        font-size: 10px;
+    }
+
+    .socialMediaDiv {
+        position: relative;
+        width: 100%;
+        height: auto;
+        list-style: none;
+        margin-top: 2rem;
+        padding: .4rem 0;
+    }
+
+    .titleSocialMedia {
+        margin: 0;
+        color: #33FFED;
+        font-size: 10px;
+        font-family: "Open Sans";
+        width: auto;
+        text-align: center;
+    }
+
+    .listSocialMedia li {
+        margin: .2rem 0;
+        font-family: "Open Sans";
+        display: inline-block;
+    }
+
+    .listSocialMedia {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        top: .6rem;
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .linkListSocialMedia {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        margin: .5rem;
+    }
+
+    .contactDiv {
+        position: relative;
+        width: 80%;
+        height: auto;
+        margin: 1rem auto;
+    }
+
+    .contactDiv form {
+        position: relative;
+    }
+
+    .titleContact {
+        margin: 0;
+        color: #33FFED;
+        font-size: 10px;
+        font-family: "Open Sans";
+        width: auto;
+        position: relative;
+        top: .4rem;
+    }
+
+    .inputContact {
+        border: none;
+        background: #ffffff;
+        border-radius: 3px;
+        height: 25px;
+        width: 80%;
+        position: relative;
+        margin-top: 18px;
+    }
+
+    .btnContact {
+        background: #33FFED;
+        border: none;
+        font-size: 10px;
+        font-family: "Open Sans - Semi Bold";
+        height: 26.8px;
+        margin: 0;
+        width: 17.9%;
+        color: #252730;
+        position: relative;
+        top: -1px;
+    }
+
+    /* BOTTOM FOOTER */
+
+    .copyright {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        font-size: 10px;
+        margin: .3rem;
+        top: 1rem;
+        font-family: "Open Sans";
+    }
+
+    .copyrightReserved {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        font-size: 10px;
+        margin: .3rem;
+        font-family: "Open Sans";
+    }
+
+    .copyrightReserved a {
+        text-decoration: none;
+        color: #33FFED;
+    }
+
 
     /* PAGE --> CADASTRO.PHP */
 
@@ -565,7 +770,7 @@ border-radius: 0;
 
     .l-wrapper_cadastro {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto auto 15rem 6rem;
+        grid-template-rows: auto auto auto auto 22rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
@@ -614,13 +819,12 @@ border-radius: 0;
     }
     
     .circleCad {
-        position: absolute;
+        position: relative;
         width: 5rem;
         height: 5rem;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border-radius: 50%;
         left: 14%;
-        top: 6.5rem;
         z-index: 1;
     }
 
@@ -643,7 +847,7 @@ border-radius: 0;
         border: solid #252730 1px;
         border-radius: 3px;
         background: #ffffff;
-        margin-top: 2rem;
+        top: -4%;
     }
 
     .divCad form {
@@ -709,7 +913,7 @@ border-radius: 0;
         float: left;
         font-family: "Raleway-Medium";
         font-size: 13px;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
     .sectionInputCad .workAsInput {
@@ -819,7 +1023,7 @@ border-radius: 0;
     }
 
     .btnSubCad {
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         color: #ffffff;
         border: none;
     }
@@ -858,7 +1062,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: .5rem;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border-radius: 2px;
         margin-bottom: .8rem;
     }
@@ -907,7 +1111,7 @@ border-radius: 0;
 
     .l-main {
         grid-area: main;
-        margin-top: 2px;
+        background: #ffffff;
     }
 
     .l-footer {
@@ -1103,7 +1307,7 @@ border-radius: 0;
     
     .celulaTopNav:hover > .linkMenuTopNav .leftBack {
         color: #ffffff;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border: none;
         text-decoration: none;
         transition: background 200ms ease-in-out;
@@ -1112,7 +1316,7 @@ border-radius: 0;
 
     .celulaTopNavCity:hover > .linkMenuTopNavCity .leftBack {
         color: #ffffff;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border: none;
         text-decoration: none;
         transition: color 200ms ease-in-out;
@@ -1143,6 +1347,7 @@ border-radius: 0;
         padding: 5px 0;
         border: solid 1px #b2b4b8;
         position: relative;
+        background: #9C45EB;
     }
 
     .celulaMenuCarousel:hover {
@@ -1157,9 +1362,16 @@ border-radius: 0;
     }
 
     .celulaMenuCarousel a i {
-        color: rgb(173, 2, 253);
+        color: #ffffff;
         font-size: 26px;
         margin-left: 5px;
+    }
+
+    .celulaMenuCarousel:hover a i {
+        color: #33FFED;
+        font-size: 26px;
+        margin-left: 5px;
+        transition: color 250ms ease-in-out;
     }
 
     .linkBtnMenu{
@@ -1172,12 +1384,12 @@ border-radius: 0;
     }
 
     .linkMenuCarousel {
-        color: #252730;
+        color: #ffffff;
         margin: 0 0;
         padding: 0 0;
         position: relative;
         text-decoration: none;
-        font-family: "Raleway";
+        font-family: "Raleway-Medium";
         font-size: 11px;
     }
 
@@ -1185,19 +1397,6 @@ border-radius: 0;
     
     .imgCarousel {
         max-height: 26rem;
-    }
-
-    /* DISPLAY PRODUCTS */
-
-    .tituloOfertas {
-        position: relative;
-        font-family: "Raleway";
-        font-size: 1.2rem;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        margin: 0 0;
-        color: #252730;
     }
 
     .productsClass {
@@ -1267,7 +1466,7 @@ border-radius: 0;
         position: relative;
         left: .4rem;
         top: 1rem;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
     .inputModal {
@@ -1297,7 +1496,7 @@ border-radius: 0;
 
     .btnSend {
         position: relative;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border: none;
         height: 2.4rem;
         border-radius: 3px;
@@ -1316,7 +1515,7 @@ border-radius: 0;
 
     .fa-grip-lines {
         position: relative;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
     .help-block, .help-block-tel, .help-block-login {
@@ -1329,24 +1528,55 @@ border-radius: 0;
 
     /* DISPLAY PRODUCTS */
 
+    .loop {
+        width: 100%;
+    }
+    
+    .tituloOfertas {
+        position: relative;
+        font-family: "Bowlby";
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        margin: .5rem 0;
+        color: #9C45EB;
+        letter-spacing: 2px;
+    }
+
     .l-prods {
         position: relative;
         width: 100vw;
         top: -1rem;
+        background: #ffffff;
+        padding-top: 0;
+        padding-bottom: 1.2rem;
     }
 
     .divProdCarousel {
         background: #ffffff;
-        border-top: rgb(173, 2, 253) solid 6px;
-        border-bottom: rgb(173, 2, 253) solid 6px;
+        border-top: #2f3640 solid 6px;
+        border-bottom: #2f3640 solid 6px;
         transition: 100ms box-shadow ease-in-out;
         border-radius: 2px;
         padding: 2px;
-        height: 20rem;
+        height: 18rem;
     }
 
     .divProdCarousel:hover {
         box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
+    }
+
+    .divProdCarousel i {
+        float: right;
+        color: #9C45EB;
+        margin: .2rem;
+        cursor: pointer;
+    }
+
+    .divProdCarousel i:hover {
+        transform: scale(1.2);
+        transition: ease-in-out 100ms transform;
     }
 
     .linksProdCarousel {
@@ -1355,36 +1585,195 @@ border-radius: 0;
 
     .divProdImg {
         width: 100%;
-        height: 65%;
+        height: 60%;
     }
 
     .divProdTitle {
         color: black;
         text-align: left;
-        font-size: 18px;
+        font-size: 15px;
         margin: 0;
+        margin-top: .4rem;
         text-transform: lowercase;
+        font-family: "Raleway";
     }
 
     .divProdPrice {
         margin: 0;
         position: absolute;
+        top: 86.5%;
+        left: 4%;
+        color: #2f3640;
+        font-size: 18px;
+        font-family: "Karla";
+    }
+
+    .btnBuy {
+        background: #9C45EB;
+        border: none;
+        height: 2rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        position: absolute;
         top: 85%;
-        color: rgb(253, 186, 2);
-        font-size: 20px;
-        font-family: "Raleway-Black";
+        left: 60%;
+        cursor: pointer;
     }
 
     /* FOOTER */
 
-   .links a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 13px;
+    .footerList {
+        position: relative;
+        width: 40%;
+        height: 100%;
+        margin: 0;
+        text-align: justify;
+        float: left;
     }
 
-    .links a ul {
-        padding-left: 1rem;
+    .footer-nav{
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        top: 1.15rem;
+        left: 15%;
+        position: relative;
+        width: 25%;
+    }
+
+    .titleListFooter {
+        color: #33FFED;
+        font-size: 13px;
+        margin-bottom: .6rem;
+        font-family: "Open Sans";
+    }
+
+    .footer-nav li {
+        margin: .2rem 0;
+        font-family: "Open Sans";
+    }
+
+    .linkListFooter {
+        text-decoration: none;
+        color: #d3d2d2;
+        font-size: 12px;
+    }
+
+    .socialMediaDiv {
+        position: relative;
+        width: 20%;
+        height: 60%;
+        top: 20%;
+        float: left;
+        list-style: none;
+    }
+
+    .titleSocialMedia {
+        margin: 0;
+        color: #33FFED;
+        font-size: 13px;
+        font-family: "Open Sans";
+        width: auto;
+        text-align: center;
+    }
+
+    .listSocialMedia li {
+        margin: .2rem 0;
+        font-family: "Open Sans";
+        display: inline-block;
+    }
+
+    .listSocialMedia {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        top: .6rem;
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .linkListSocialMedia {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 30px;
+        margin: .5rem;
+    }
+
+    .contactDiv {
+        position: relative;
+        width: 40%;
+        height: 100%;
+        float: left;
+    }
+
+    .contactDiv form {
+        position: relative;
+        top: 3rem;
+        padding-left: 12%;
+    }
+
+    .titleContact {
+        margin: 0;
+        color: #33FFED;
+        font-size: 13px;
+        font-family: "Open Sans";
+        width: auto;
+        position: relative;
+        top: 3rem;
+        padding-left: 12%;
+    }
+
+    .inputContact {
+        border: none;
+        background: #ffffff;
+        border-radius: 3px;
+        height: 25px;
+        width: 60%;
+        position: relative;
+        margin-top: 18px;
+    }
+
+    .btnContact {
+        background: #33FFED;
+        border: none;
+        font-size: 13px;
+        font-family: "Open Sans - Semi Bold";
+        height: 27.5px;
+        margin: 0;
+        color: #252730;
+        position: relative;
+        top: 1px;
+    }
+
+    /* BOTTOM FOOTER */
+
+    .copyright {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        font-size: 15px;
+        margin: .3rem;
+        top: 1rem;
+        font-family: "Open Sans";
+    }
+
+    .copyrightReserved {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        font-size: 15px;
+        margin: .3rem;
+        font-family: "Open Sans";
+    }
+
+    .copyrightReserved a {
+        text-decoration: none;
+        color: #33FFED;
     }
 
     /* PAGE --> CADASTRO.PHP */
@@ -1434,13 +1823,12 @@ border-radius: 0;
     }
     
     .circleCad {
-        position: absolute;
+        position: relative;
         width: 8rem;
         height: 8rem;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border-radius: 50%;
         left: 26%;
-        top: 4.5rem;
         z-index: 1;
     }
 
@@ -1464,7 +1852,7 @@ border-radius: 0;
         left: 30%;
         border: solid #252730 1px;
         border-radius: 3px;
-        margin-top: 5rem;
+        margin-top: -4%;
         background: #ffffff;
     }
 
@@ -1542,7 +1930,7 @@ border-radius: 0;
         float: left;
         font-family: "Raleway-Medium";
         font-size: 14px;
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
     }
 
     .sectionInputCad .workAsInput {
@@ -1651,17 +2039,6 @@ border-radius: 0;
         margin-top: 5rem;
     }
 
-    .btnSubCad {
-        background: rgb(173, 2, 253);
-        color: #ffffff;
-        border: none;
-    }
-
-    .btnSubCad:hover {
-        background: #252730;
-        transition: ease-in-out 250ms background;
-    }
-
     .btnSendCad {
         width: 50%;
         margin: auto;
@@ -1671,6 +2048,18 @@ border-radius: 0;
         height: 2rem;
         width: 100%;
         font-family: "Raleway-Medium";
+    }
+
+    .btnSubCad {
+        background: #9C45EB;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+    }
+
+    .btnSubCad:hover {
+        background: #252730;
+        transition: ease-in-out 250ms background;
     }
 
     .inputConfirm {
@@ -1691,7 +2080,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: .5rem;
-        background: rgb(173, 2, 253);
+        background: #9C45EB;
         border-radius: 2px;
         margin-bottom: .8rem;
     }

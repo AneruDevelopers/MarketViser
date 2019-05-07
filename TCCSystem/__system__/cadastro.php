@@ -198,7 +198,11 @@
             include('functions/includes/footer.html');
 		?>
 		</div>
-        <div class="l-footerBottomCad" id="footerBottom"></div>
+        <div class="l-footerBottomCad" id="footerBottom">
+		<?php
+            include('functions/includes/bottomFooter.html');
+        ?>
+		</div>
     </div>
 
 	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
