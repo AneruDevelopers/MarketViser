@@ -1,9 +1,4 @@
 <!DOCTYPE>
-<?php
-
-    include("includes/conexao.php");
-
-?>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -39,7 +34,7 @@
         
             $nome_marca = $_POST['nome_marca'];
 
-            $inserir_brand = "INSERT INTO marcas (marca_titulo) VALUES ('$nome_marca')";
+            $inserir_brand = "INSERT INTO marca_prod (marca_nome) VALUES ('$nome_marca')";
         
             $inserir_marcas = mysqli_query($con, $inserir_brand);
 

@@ -1,9 +1,4 @@
 <!DOCTYPE>
-<?php
-
-    include("includes/conexao.php");
-
-?>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,31 +9,31 @@
 </head>
 <body>
 
-    <form class="formInserirProdutos" action="inserir_subcateg.php" method="post" enctype="multipart/form-data">
+    <form class="formInserirProdutos" action="inserir_categ.php" method="post" enctype="multipart/form-data">
 
         <table width="auto" align="center" border="2">
             <tr align="center">
                 <td colspan="8"><h2>Insira os dados aqui</h2></td>
             </tr>
             <tr>
-                <td align="center"><b>Nome da Subcategoria:</b></td>
-                <td><input type="text" name="nome_subcategoria" size="60" required></td>
+                <td align="center"><b>Nome da Categoria:</b></td>
+                <td><input type="text" name="nome_categ" size="60" required></td>
             </tr>
             <tr>
-                <td align="center"><b>Categoria do produto:</b></td>
+                <td align="center"><b>Subcategoria:</b></td>
                 <td>
-                    <select name="nome_categoria" id="">
-                        <option>Selecione a categoria:</option>
+                    <select name="nome_sub" id="">
+                        <option>Selecione a Subcategoria:</option>
                         <?php
                                 
-                            $buscar_categ = "SELECT * FROM categorias";
+                            $buscar_categ = "SELECT * FROM subcateg";
 
                             $run_categ = mysqli_query($con, $buscar_categ);
 
                             while ($row_categ = mysqli_fetch_array($run_categ)) {
 
-                                $categ_id = $row_categ['categ_id'];
-                                $categ_titulo = $row_categ['categ_titulo'];
+                                $categ_id = $row_categ['subcateg_id'];
+                                $categ_titulo = $row_categ['subcateg_nome'];
 
                                 echo "<option value='$categ_id'>$categ_titulo</option>";
                             }
@@ -47,7 +42,7 @@
                     </select>
                 </td>
                 <tr align="center">
-                    <td colspan="8"><input type="submit" name="cadastrar_subcateg" value="Cadastrar"></td>
+                    <td colspan="8"><input type="submit" name="cadastrar_categ" value="Cadastrar"></td>
                 </tr>
             </tr>
         </table>
@@ -58,12 +53,12 @@
 </html>
 <?php
 
-        if(isset($_POST['cadastrar_subcateg'])) {
+        if(isset($_POST['cadastrar_categ'])) {
         
-            $nome_subcategoria = $_POST['nome_subcategoria'];
-            $nome_categoria = $_POST['nome_categoria'];
+            $nome_categ = $_POST['nome_categ'];
+            $nome_sub = $_POST['nome_sub'];
 
-            $inserir_subcategoria = "INSERT INTO subcateg (subcateg_name, categ_id) VALUES ('$nome_subcategoria', '$nome_categoria')";
+            $inserir_subcategoria = "INSERT INTO categ (categ_nome, subcateg_id) VALUES ('$nome_categ', '$nome_sub')";
         
             $inserir_subcateg = mysqli_query($con, $inserir_subcategoria);
 

@@ -1,9 +1,4 @@
 <!DOCTYPE>
-<?php
-
-    include("includes/conexao.php");
-
-?>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -14,18 +9,22 @@
 </head>
 <body>
 
-    <form class="formInserirProdutos" action="inserir_categ.php" method="post" enctype="multipart/form-data">
+    <form class="formInserirProdutos" action="inserir_dep.php" method="post" enctype="multipart/form-data">
 
         <table width="auto" align="center" border="2">
             <tr align="center">
                 <td colspan="8"><h2>Insira os dados aqui</h2></td>
             </tr>
             <tr>
-                <td align="center"><b>Nome da categoria:</b></td>
-                <td><input type="text" name="nome_categoria" size="60" required></td>
+                <td align="center"><b>Nome da departamento:</b></td>
+                <td><input type="text" name="nome_dep" size="60" required></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Icone do departamento:</b></td>
+                <td><input type="text" name="icon" size="60" required></td>
             </tr>
                 <tr align="center">
-                    <td colspan="8"><input type="submit" name="cadastrar_categ" value="Cadastrar"></td>
+                    <td colspan="8"><input type="submit" name="cadastrar_dep" value="Cadastrar"></td>
                 </tr>
         </table>
 
@@ -35,11 +34,11 @@
 </html>
 <?php
 
-        if(isset($_POST['cadastrar_categ'])) {
+        if(isset($_POST['cadastrar_dep'])) {
         
-            $nome_categoria = $_POST['nome_categoria'];
-
-            $inserir_categoria = "INSERT INTO categorias (categ_titulo) VALUES ('$nome_categoria')";
+            $nome_depart = $_POST['nome_dep'];
+            $icon = $_POST['icon'];
+            $inserir_categoria = "INSERT INTO departamento (depart_nome, depart_icon) VALUES ('$nome_depart','$icon')";
         
             $inserir_categ = mysqli_query($con, $inserir_categoria);
 

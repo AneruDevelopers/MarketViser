@@ -4,7 +4,7 @@
     </h6>
 </div>
 <div class="companyNameSpace">
-    <h1 class="comapanyName"><a class="linkCompanyName" href="home">e.conomize</a></h1>
+    <h1 class="comapanyName"><a class="linkCompanyName" href="<?php echo base_url_php(); ?>home">e.conomize</a></h1>
 </div>
 <div class="searchSpace">
     <div class="searchBoxHeader" id="searchBoxHeader">

@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost/BackupGit/economize/TCCSystem/";
+const BASE_URL2 = "http://localhost/BackupGit/economize/TCCSystem/__system__/";
 
 // TODO O JQUERY SERÁ DEPURADO DENTRO DESTA FUNÇÃO
 

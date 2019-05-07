@@ -1,6 +1,6 @@
 <?php require_once '__system__/functions/connection/conn.php'; ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
     <div class="l-wrapper">
 		<div class="l-topNavCad" id="topNav">
 		<?php
-			include('functions/includes/topNav.html');
+			include('functions/includes/topNav.php');
 		?>
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
