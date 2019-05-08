@@ -44,7 +44,8 @@
         </nav>
         <div class="l-mainFiltroPesq">
             <!-- CONFIGURAÇÕES DA PESQUISA -->
-            <?php require_once 'functions/filtroPesquisa.php'; ?>
+            
+                <?php require_once 'functions/filtroPesquisa.php'; ?>
         </div>
         <!-- -------------------- -->
         <div id="myModal" class="modal">
