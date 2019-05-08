@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/05/2019 às 08:39
+-- Tempo de geração: 08/05/2019 às 22:36
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -111,6 +111,18 @@ CREATE TABLE `compra` (
   `usu_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `forma_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cupom`
+--
+
+CREATE TABLE `cupom` (
+  `cupom_id` int(11) NOT NULL,
+  `cupom_codigo` varchar(30) NOT NULL,
+  `cupom_desconto_porcent` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -359,6 +371,7 @@ CREATE TABLE `produto` (
   `produto_img` varchar(255) NOT NULL,
   `produto_marca` int(11) NOT NULL,
   `produto_preco` float NOT NULL,
+  `produto_desconto_porcent` float DEFAULT NULL,
   `produto_tamanho` varchar(30) NOT NULL,
   `tipo_tamanho` int(11) DEFAULT NULL,
   `produto_categ` int(11) NOT NULL
@@ -368,10 +381,10 @@ CREATE TABLE `produto` (
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_tamanho`, `tipo_tamanho`, `produto_categ`) VALUES
-(1, 'Refrigerante Coca-Cola', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, 6.99, '2 Litros', 1, 2),
-(2, 'Refrigerante Fanta Uva', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, 5.3, '2 Litros', 1, 2),
-(3, 'Cerveja Brahma Lata', 'CERVEJA,BRAHMA,GELADA,LATA,LATINHA', NULL, 'brahma_lata_350ml.jpg', 5, 2.49, '350ml', 1, 5);
+INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_desconto_porcent`, `produto_tamanho`, `tipo_tamanho`, `produto_categ`) VALUES
+(1, 'Refrigerante Coca-Cola', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, 6.99, 13, '2 Litros', 1, 2),
+(2, 'Refrigerante Fanta Uva', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, 5.3, NULL, '2 Litros', 1, 2),
+(3, 'Cerveja Brahma Lata', 'CERVEJA,BRAHMA,GELADA,LATA,LATINHA', NULL, 'brahma_lata_350ml.jpg', 5, 2.49, 22, '350ml', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -605,6 +618,12 @@ ALTER TABLE `compra`
   ADD KEY `fk_CompraPag` (`forma_id`);
 
 --
+-- Índices de tabela `cupom`
+--
+ALTER TABLE `cupom`
+  ADD PRIMARY KEY (`cupom_id`);
+
+--
 -- Índices de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
@@ -789,6 +808,12 @@ ALTER TABLE `compra`
   MODIFY `compra_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `cupom`
+--
+ALTER TABLE `cupom`
+  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
@@ -870,7 +895,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
