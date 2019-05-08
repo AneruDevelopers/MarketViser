@@ -5,6 +5,7 @@
         if(isset($_POST['add_prod_id'])) {
             $json = array();
             $json['logado'] = TRUE;
+            $json['modal'] = FALSE;
     
             if(isset($_SESSION['inf_usu']['usu_id'])) {
                 $sel = $conn->prepare("SELECT * FROM produtos_favorito WHERE produto_id=:p AND usu_id=:u");
@@ -25,6 +26,7 @@
             } else {
                 $json['logado'] = FALSE;
                 $json['error'] = 'Você precisa estar logado';
+                $json['modal'] = TRUE;
             }
         } elseif(isset($_POST['rem_prod_id'])) {
             $json['error'] = NULL;

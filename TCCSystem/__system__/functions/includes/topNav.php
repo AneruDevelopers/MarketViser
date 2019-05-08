@@ -1,6 +1,6 @@
 <div class="topNavCity">
     <h6 class="linkMenuTopNavCityMobile">
-        <i class="fas fa-globe-americas"></i> Araçatuba - SP
+        <i class="fas fa-globe-americas"></i> LINS - SP
     </h6>
 </div>
 <div class="companyNameSpace">

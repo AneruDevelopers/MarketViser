@@ -27,6 +27,8 @@
                     } else {
                         $nao['nao_fav'] = 1;
                     }
+                } else {
+                    $json['tem_favorito'] = FALSE;
                 }
             }
             if(!empty($json['nao_fav'])) {

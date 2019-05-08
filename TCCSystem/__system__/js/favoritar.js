@@ -21,6 +21,12 @@ $(document).ready(function() {
                         type: 'error',
                         title: json["error"]
                     });
+                    if(json['modal']) {
+                        $("#usu_email_login").val("");
+                        $("#usu_senha_login").val("");
+                        $(".help-block-login").html("");
+                        modal.style.display = "block";
+                    }
                 } else {
                     Toast.fire({
                         type: 'success',

@@ -50,11 +50,11 @@
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error"] = "<p style='color:red;'><b>E-mail ou senha inválido(s)!</b></p>";
+					$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;
-				$json["error"] = "<p style='color:red;'><b>E-mail ou senha inválido(s)!</b></p>";
+				$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 			}
 		} else {
 			$json["status"] = 0;
