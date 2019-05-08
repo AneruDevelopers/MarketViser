@@ -69,8 +69,8 @@
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
                     <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p><br/>
-                    <div class="help-block-login"></div>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
+                    <div class="help-block-login"></div>
                 </form>
             </div>
         </div>
@@ -89,9 +89,11 @@
     </div>
 
     <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>js/listProduto.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
+    <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
 </body>
 </html>

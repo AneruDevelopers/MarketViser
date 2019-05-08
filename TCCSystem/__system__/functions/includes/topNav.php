@@ -35,7 +35,7 @@
             <div class="leftBack">
                 <i class="far fa-user-circle"></i>
             </div>
-            ENTRAR
+            <span class="s_login"></span>
         </a>
     </li>
 </ul>

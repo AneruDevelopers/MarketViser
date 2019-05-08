@@ -14,7 +14,7 @@ $(document).ready(function() {
             dataType: 'json',
             type: 'post',
             data: dado,
-            url: 'functions/favoritar',
+            url: BASE_URL + 'functions/favoritar',
             success: function(json) {
                 if(json['error']) {
                     Toast.fire({
@@ -40,7 +40,7 @@ $(document).ready(function() {
             dataType: 'json',
             type: 'post',
             data: dado,
-            url: 'functions/favoritar',
+            url: BASE_URL + 'functions/favoritar',
             success: function(json) {
                 if(json['error']) {
                     Toast.fire({
