@@ -12,6 +12,12 @@
 		return "http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/";
 	}
 
+	// FUNÇÃO VERIFICA SE A REQUISIÇÃO FEITA AO SERVIDOR É VIA AJAX
+	function isXmlHttpRequest() {
+    	$isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : null;
+    	return (strtolower($isAjax) === 'xmlhttprequest');
+	}
+
 	$servername = "localhost";
 	$username = "root";
 	$password = "senhadopedro";

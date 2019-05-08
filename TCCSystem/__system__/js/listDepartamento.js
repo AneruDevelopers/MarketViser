@@ -13,26 +13,25 @@ function removeAcento (text) {
     text = text.replace(new RegExp('[Ç]','gi'), 'c');
     return text;
 }
-var base = "http://localhost/BackupGit/economize/TCCSystem/";
 
 $(function() {
     $.ajax({
         dataType: 'json',
-        url: base + 'functions/listDepartamentos',
+        url: BASE_URL + 'functions/listDepartamentos',
         success: function(json) {
             var departs = [];
             var departsMobile = [];
             for (var i = 0; json.length > i; i++) {
                 departsMobile[i] = `
                     <div class="celulaMenuCarouselMobile">
-                        <a class="linkBtnMenu" href="` + base + removeAcento(json[i].depart_nome) +`">
+                        <a class="linkBtnMenu" href="` + BASE_URL + removeAcento(json[i].depart_nome) +`">
                             <i class="` + json[i].depart_icon + `"></i><h5 class="linkMenuCarouselMobile">` + json[i].depart_nome + `</h5>
                         </a>
                     </div>
                 `;
                 departs[i] = `
                     <div class="celulaMenuCarousel">
-                        <a class="linkBtnMenu" href="` + base + removeAcento(json[i].depart_nome) +`">
+                        <a class="linkBtnMenu" href="` + BASE_URL + removeAcento(json[i].depart_nome) +`">
                             <i class="` + json[i].depart_icon + `"></i><h5 class="linkMenuCarousel">` + json[i].depart_nome + `</h5>
                         </a>
                     </div>
@@ -42,8 +41,8 @@ $(function() {
                 $('.departamentos').append(departs[i]);
                 $('.prodsMobile').append(departsMobile[i]);
             }
-            $('body').append('<script src="' + base + '__system__/js/main.js"></script>\
-            <script src="' + base + '__system__/js/login.js"></script>');
+            $('body').append('<script src="' + BASE_URL + '__system__/js/main.js"></script>\
+            <script src="' + BASE_URL + '__system__/js/login.js"></script>');
         }
     });
 });

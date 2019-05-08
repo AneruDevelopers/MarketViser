@@ -26,6 +26,7 @@
 					foreach($rows as $row) {
 						$_SESSION["tel_num"][] = $row['tel_num'];
 						$_SESSION["tipo_tel"][] = $row['tpu_tel_nome'];
+						$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
 						$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
 						$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
 						$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
@@ -49,11 +50,11 @@
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error"] = "<p style='color:red;'><b>E-mail ou senha inválido(s)!</b></p>";
+					$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;
-				$json["error"] = "<p style='color:red;'><b>E-mail ou senha inválido(s)!</b></p>";
+				$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 			}
 		} else {
 			$json["status"] = 0;

@@ -459,6 +459,12 @@ border-radius: 0;
         text-align:right;
     }
 
+    .help-block, .help-block-tel, .help-block-login {
+        position: relative;
+        top: -1.5rem;
+        font-family: 'Raleway-Medium';
+    }
+
     .titleModalLogin {
         font-family: "Raleway-Medium";
         text-align: center;
@@ -577,6 +583,16 @@ border-radius: 0;
         height: 55%;
     }
 
+    .divProdPromo {
+        position: absolute;
+        background: #9C45EB;
+        color: #fff;
+        top: 0;
+        padding: .2rem;
+        font-size: 9px;
+        font-family: "Karla";
+    }
+
     .divProdTitle {
         color: black;
         text-align: left;
@@ -592,8 +608,13 @@ border-radius: 0;
         top: 80%;
         left: 4%;
         color: #2f3640;
-        font-size: 12px;
+        font-size: 11px;
         font-family: "Karla";
+    }
+    
+    .divProdPrice1 {
+        font-size: 7px;
+        text-decoration: line-through;
     }
 
     .btnBuy {
@@ -1553,7 +1574,7 @@ border-radius: 0;
         border: 1px solid #888;
         width: 25%;
         border-radius: 5px;
-        height: 15rem;
+        height: 15.4rem;
         font-family: "Raleway";
       }
 
@@ -1648,6 +1669,7 @@ border-radius: 0;
         position: relative;
         width: 80%;
         left: 10%;
+        top: -1rem;
         text-align: center;
         font-family: 'Raleway-Medium';
     }
@@ -1714,13 +1736,21 @@ border-radius: 0;
         height: 60%;
     }
 
+    .divProdPromo {
+        position: absolute;
+        background: #9C45EB;
+        color: #fff;
+        top: 0;
+        padding: .5rem;
+        font-family: "Karla";
+    }
+
     .divProdTitle {
         color: black;
         text-align: left;
         font-size: 15px;
         margin: 0;
         margin-top: .4rem;
-        text-transform: lowercase;
         font-family: "Raleway";
     }
 
@@ -1730,8 +1760,12 @@ border-radius: 0;
         top: 86.5%;
         left: 4%;
         color: #2f3640;
-        font-size: 18px;
+        font-size: 14pt;
         font-family: "Karla";
+    }
+    .divProdPrice1 {
+        font-size: 9pt;
+        text-decoration: line-through;
     }
 
     .btnBuy {
