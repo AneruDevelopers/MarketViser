@@ -71,7 +71,7 @@ body {
 
 html, body{
     height: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 textarea,
@@ -770,10 +770,9 @@ border-radius: 0;
 
     .l-wrapper_cadastro {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto auto 22rem 6rem;
+        grid-template-rows: auto auto auto 22rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
-            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
@@ -792,12 +791,6 @@ border-radius: 0;
     }
 
     .l-headerNavMobile {
-        grid-area: headerNav;
-        background-color: #252730;
-        width: 100%;
-    }
-
-    .l-headerNavCad {
         grid-area: headerNav;
         background-color: #252730;
         width: 100%;
@@ -1070,6 +1063,139 @@ border-radius: 0;
     .help-block {
         position: relative;
     }
+
+    /* PAGE --> filtroPesqusia.php */
+
+    .l-wrapper_FiltroPesq {
+        display: grid;
+    }
+
+    .l-wrapper_FiltroPesq {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: auto auto auto 22rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNavFiltroPesq {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+        border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-headerNavMobileFiltroPesq {
+        grid-area: headerNav;
+        background-color: #252730;
+        width: 100%;
+    }
+
+    .l-mainFiltroPesq {
+        grid-area: main;
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .l-footerFiltroPesq {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottomFiltroPesq {
+        grid-area: footerBottom;
+        background: #252730;
+    }
+
+    .center_header {
+        position: relative;
+        width: 100%;
+    }
+
+    .tilteFilterProd {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tilteFilterProd h4 {
+        font-family: "Bowlby";
+        margin: .6rem 0;
+    }
+
+    .tilteFilterProd i {
+        color: #9C45EB;
+    }
+
+    .center_header h5 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        color: #252730;
+    }
+
+    .selectFilter {
+        width: 50%;
+        float: right;
+        margin-right: 10%;
+        font-family: "Raleway-Medium";
+        height: 25px;
+        position: relative;
+        top: -3px;
+    }
+
+    .selectFilter option {
+        border: none;
+    }
+
+    .filtro_pesquisa {
+        width: 80%;
+        margin: auto;
+        border: #9C45EB solid 1px;
+        border-radius: 3px;
+        background: #9C45EB;
+    }
+
+    .titleConfigFilter {
+        position: relative;
+        width: 10%;
+        margin: .6rem 0;
+        font-size: 12px;
+        font-family: "Raleway-Medium";
+        margin-left: 10%;
+        color: #ffffff;
+    }
+
+    .divFilter {
+        margin: 1rem 0;
+    }
+
+    .divShowProdFilter {
+        position: relative;
+        width: 100%;
+    }
+
+    .divShowProdFilter .prod {
+        position: relative;
+        width: 80%;
+        margin: auto;
+        border: #e2e3e6 solid 1px;
+        border-radius: 3px;
+        margin-top: 1rem;
+    }
+
+    .divShowProdFilter .prod img{
+        position: relative;
+        width: 50%;
+        left: 25%;
+    }
+
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 850px) {

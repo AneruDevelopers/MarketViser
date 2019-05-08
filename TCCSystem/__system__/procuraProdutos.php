@@ -30,29 +30,22 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
-    <div class="l-wrapper">
-
-        <div class="l-topNav" id="topNav">
+    <div class="l-wrapper_FiltroPesq">
+        <div class="l-topNavFiltroPesq" id="topNav">
         <?php
             include('functions/includes/topNav.php');
         ?>    
         </div>
 
-        <nav class="l-headerNav" id="headerNav">
+        <nav class="l-headerNavMobileFiltroPesq" id="headerNav">
         <?php
             include('functions/includes/header.html');
         ?>
         </nav>
-
-        <div class="l-bottomNav" id="bottomNav">
-        <?php
-            include('functions/includes/bottom.html');
-        ?>
+        <div class="l-mainFiltroPesq">
+            <!-- CONFIGURAÇÕES DA PESQUISA -->
+            <?php require_once 'functions/filtroPesquisa.php'; ?>
         </div>
-
-        <!-- CONFIGURAÇÕES DA PESQUISA -->
-        <?php require_once 'functions/filtroPesquisa.php'; ?>
-
         <!-- -------------------- -->
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -72,13 +65,16 @@
             </div>
         </div>
         <!-- -------------------- -->
-
-        <div class="l-footer" id="footer">
+        <div class="l-footerFiltroPesq" id="footer">
         <?php
             include('functions/includes/footer.html');
         ?>
         </div>
-        <div class="l-footerBottom" id="footerBottom"></div>
+        <div class="l-footerBottomFiltroPesq" id="footerBottom">
+        <?php
+            include('functions/includes/bottomFooter.html');
+        ?>
+        </div>
     </div>
 
     <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
