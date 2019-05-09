@@ -1,14 +1,18 @@
-$('#href').change(function() {
-    var href = removeAcento($(this).val());
-    var local = location;
-    local = local + "";
+$(".categ").change(function() {
+    if ($(this).prop("checked") == true) {
+        var href = removeAcento($(this).val());
+        var local = location;
+        local = local + "";
 
-    if(local.indexOf('#') != -1) {
-        var local = local.substring(0, (local.length - 1));
+        if(local.indexOf('#') != -1) {
+            var local = local.substring(0, (local.length - 1));
+        }
+
+        window.location = local + '/' + href;
     }
-
-    window.location = local + '/' + href;
 });
+
+$(".categ").trigger("change");
 
 $('#tamanho_filtro').change(function() {
     var dado = "produto_tamanho=" + $(this).val();

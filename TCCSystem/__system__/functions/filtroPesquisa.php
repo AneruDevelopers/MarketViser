@@ -75,7 +75,7 @@
                 <ul class="listFilterOptions">
                 <?php
                 foreach($result as $v):?>
-                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input type="checkbox"> <a href="#"><?= $v['subcateg_nome']; ?></a></li>
+                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input class="categ" type="checkbox" value="<?= $v['subcateg_nome']; ?>"> <?= $v['subcateg_nome']; ?></li>
                     <?php
                 endforeach;?>
                 </ul>
