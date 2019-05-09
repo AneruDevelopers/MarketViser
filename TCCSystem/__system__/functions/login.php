@@ -42,7 +42,8 @@
 						$mes = substr($reg,5,2);
 						$dia = substr($reg,8,2);
 						$hora = substr($reg,11,2)."h".substr($reg,14,2);
-						$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano." às ".$hora;
+						$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano;
+						$_SESSION["inf_usu"]['usu_registro_hora'] = $dia."/".$mes."/".$ano." às ".$hora;
 
 						$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_usu_nome'];
 						$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);

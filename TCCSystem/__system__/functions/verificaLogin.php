@@ -7,6 +7,8 @@
 
         if(!isset($_SESSION['inf_usu']['usu_id'])) {
             $json['logado'] = FALSE;
+        } else {
+            $json['usuario'] = $_SESSION['inf_usu'];
         }
 
         echo json_encode($json);

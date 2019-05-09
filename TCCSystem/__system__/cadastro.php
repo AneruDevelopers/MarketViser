@@ -5,9 +5,10 @@
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>e.conomize - Cadastre-se</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>style/css/main.css">
     <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">

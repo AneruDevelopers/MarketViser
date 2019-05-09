@@ -54,9 +54,11 @@ $(document).ready(function() {
 			            confirmButtonText: "Ok"
 			        }).then((result) => {
 			            if(result.value) {
-							window.location.href = "home";
+							verificaLogin();
+							btnFavorito();
 			            } else {
-							window.location.href = "home";
+							verificaLogin();
+							btnFavorito();
 						}
 			        });
 				} else {
