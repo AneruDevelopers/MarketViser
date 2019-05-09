@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>e.conomize</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>/style/css/main.css">
     <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
@@ -52,6 +53,7 @@
         <div class="l-main">
             <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS</h2>
             <div class="l-prods"></div>
+            <div class="l-favoritos"></div>
         </div>
 
         <!-- Display Products -->

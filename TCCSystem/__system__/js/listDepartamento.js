@@ -41,8 +41,8 @@ $(function() {
                 $('.departamentos').append(departs[i]);
                 $('.prodsMobile').append(departsMobile[i]);
             }
-            $('body').append('<script src="' + BASE_URL + '__system__/js/main.js"></script>\
-            <script src="' + BASE_URL + '__system__/js/login.js"></script>');
+            $('body').append('<script src="' + BASE_URL2 + 'js/main.js"></script>\
+            <script src="' + BASE_URL2 + 'js/login.js"></script>');
         }
     });
 });
