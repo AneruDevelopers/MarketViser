@@ -71,7 +71,7 @@ body {
 
 html, body{
     height: 100%;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 }
 
 textarea,
@@ -168,7 +168,11 @@ border-radius: 0;
         text-decoration: none;
         position: relative;
         font-size: 25px;
-        top: -.3rem;
+        top: .1rem;
+    }
+
+    .linkCompanyName img {
+        width: 12rem;
     }
 
     .linkCompanyName:hover {
@@ -344,7 +348,7 @@ border-radius: 0;
         border-radius: 5%;
         text-decoration: none;
         padding: 5px 0;
-        border: solid 1px #b2b4b8;
+        border: solid 1px #9C45EB;
         position: relative;
         background: #9C45EB;
     }
@@ -352,10 +356,12 @@ border-radius: 0;
     .celulaMenuCarouselMobile:hover {
         text-decoration: none;
         background: #252730;
+        border: solid 1px #252730;
         transition: background 250ms ease-in-out;
+        transition: border 250ms ease-in-out;
     }
 
-    .celulaMenuCarouselMobile:hover .linkMenuCarouselMobile {
+    .celulaMenuCarouselMobile:hover a i {
         color: #33FFED;
         transition: color 250ms ease-in-out;
     }
@@ -547,12 +553,12 @@ border-radius: 0;
     .tituloOfertas {
         position: relative;
         font-family: "Bowlby";
-        font-size: 13px;
+        font-size: 11px;
         width: 100%;
         text-align: center;
         padding: 10px 0;
         margin: .1rem 0;
-        color: #9C45EB;
+        color: #2f3640;
         letter-spacing: 2px;
     }
 
@@ -567,8 +573,8 @@ border-radius: 0;
 
     .divProdCarousel {
         background: #ffffff;
-        border-top: #2f3640 solid 4px;
-        border-bottom: #2f3640 solid 4px;
+        border-top: #2f3640 solid 2px;
+        border-bottom: #2f3640 solid 2px;
         transition: 100ms box-shadow ease-in-out;
         border-radius: 2px;
         padding: 2px;
@@ -598,14 +604,14 @@ border-radius: 0;
 
     .divProdImg {
         width: 100%;
-        height: 55%;
+        height: 45%;
     }
 
     .divProdPromo {
         position: absolute;
         background: #9C45EB;
         color: #fff;
-        top: 0;
+        top: -.4rem;
         padding: .2rem;
         font-size: 9px;
         font-family: "Karla";
@@ -754,7 +760,7 @@ border-radius: 0;
         background: #ffffff;
         border-radius: 3px;
         height: 25px;
-        width: 80%;
+        width: 75%;
         position: relative;
         margin-top: 18px;
     }
@@ -764,12 +770,12 @@ border-radius: 0;
         border: none;
         font-size: 10px;
         font-family: "Open Sans - Semi Bold";
-        height: 26.8px;
+        height: 30px;
         margin: 0;
-        width: 17.9%;
+        width: 19%;
         color: #252730;
         position: relative;
-        top: -1px;
+        top: 1px;
     }
 
     /* BOTTOM FOOTER */
@@ -1183,32 +1189,55 @@ border-radius: 0;
         width: 50%;
         float: right;
         margin-right: 10%;
-        font-family: "Raleway-Medium";
+        font-family: "Raleway";
         height: 25px;
         position: relative;
-        top: -3px;
+        /* top: 0px; */
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
     }
 
     .selectFilter option {
         border: none;
     }
 
-    .filtro_pesquisa {
+    .filtro_pesquisaMobile {
         width: 80%;
         margin: auto;
         border: #9C45EB solid 1px;
         border-radius: 3px;
         background: #9C45EB;
+        padding-bottom: .4rem;
+    }
+
+    .filtro_pesquisa {
+        display: none;
+    }
+
+    .titleFilter {
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        margin: .8rem 0;
+    }
+
+    .titleFilter i {
+        color: #33FFED;
     }
 
     .titleConfigFilter {
         position: relative;
         width: 10%;
         margin: .6rem 0;
-        font-size: 12px;
+        font-size: 10px;
         font-family: "Raleway-Medium";
         margin-left: 10%;
         color: #ffffff;
+    }
+
+    .titleConfigFilter i {
+        color: #33FFED;
     }
 
     .divFilter {
@@ -1222,17 +1251,43 @@ border-radius: 0;
 
     .divShowProdFilter .prod {
         position: relative;
-        width: 80%;
+        width: 66.4%;
         margin: auto;
         border: #e2e3e6 solid 1px;
         border-radius: 3px;
         margin-top: 1rem;
+        padding: .5rem;
     }
 
     .divShowProdFilter .prod img{
         position: relative;
         width: 50%;
         left: 25%;
+    }
+
+    .titleProdFilter {
+        position: relative;
+        width: 100%;
+        margin: .6rem 0;
+    }
+
+    .priceProdFilter {
+        margin: .4rem 0;
+        font-family: "Karla";
+    }
+
+    .btnFavoriteFilter {
+        float: right;
+        color: #9C45EB;
+        font-size: 18px;
+    }
+    
+    .divisorFilter {
+        position: relative;
+        width: 100%;
+        height: .3rem;
+        background: #9C45EB;
+        border-radius: 2px;
     }
 
 }
@@ -1313,8 +1368,11 @@ border-radius: 0;
         color: #252730;
         text-decoration: none;
         position: relative;
-        font-size: 25px;
-        top: -.2rem;
+        top: .3rem;
+    }
+
+    .linkCompanyName img {
+        width: 13rem;
     }
 
     .linkCompanyName:hover {
@@ -1471,8 +1529,8 @@ border-radius: 0;
     }
     
     .celulaTopNav:hover > .linkMenuTopNav .leftBack {
-        color: #ffffff;
-        background: #9C45EB;
+        color: #33FFED;
+        background: #252730;
         border: none;
         text-decoration: none;
         transition: background 200ms ease-in-out;
@@ -1510,7 +1568,7 @@ border-radius: 0;
         border-radius: 5%;
         text-decoration: none;
         padding: 5px 0;
-        border: solid 1px #b2b4b8;
+        border: solid 1px #9C45EB;
         position: relative;
         background: #9C45EB;
     }
@@ -1519,6 +1577,8 @@ border-radius: 0;
         text-decoration: none;
         background: #252730;
         transition: background 250ms ease-in-out;
+        transition: border 250ms ease-in-out;
+        border: solid 1px #252730;
     }
 
     .celulaMenuCarousel:hover .linkMenuCarousel {
@@ -1554,8 +1614,8 @@ border-radius: 0;
         padding: 0 0;
         position: relative;
         text-decoration: none;
-        font-family: "Raleway-Medium";
-        font-size: 11px;
+        font-family: "Raleway";
+        font-size: 10px;
     }
 
     /* CAROUSEL */
@@ -1713,12 +1773,12 @@ border-radius: 0;
     .tituloOfertas {
         position: relative;
         font-family: "Bowlby";
-        font-size: 20px;
+        font-size: 18px;
         width: 100%;
         text-align: center;
         padding: 10px 0;
         margin: .5rem 0;
-        color: #9C45EB;
+        color: #2f3640;
         letter-spacing: 2px;
     }
 
@@ -1733,8 +1793,8 @@ border-radius: 0;
 
     .divProdCarousel {
         background: #ffffff;
-        border-top: #2f3640 solid 6px;
-        border-bottom: #2f3640 solid 6px;
+        border-top: #2f3640 solid 3px;
+        border-bottom: #2f3640 solid 3px;
         transition: 100ms box-shadow ease-in-out;
         border-radius: 2px;
         padding: 2px;
@@ -1770,15 +1830,16 @@ border-radius: 0;
         position: absolute;
         background: #9C45EB;
         color: #fff;
-        top: 0;
+        top: -.5rem;
         padding: .5rem;
         font-family: "Karla";
+        font-size: 13px;
     }
 
     .divProdTitle {
         color: black;
         text-align: left;
-        font-size: 15px;
+        font-size: 13px;
         margin: 0;
         margin-top: .4rem;
         font-family: "Raleway";
@@ -1835,7 +1896,7 @@ border-radius: 0;
 
     .titleListFooter {
         color: #33FFED;
-        font-size: 13px;
+        font-size: 12px;
         margin-bottom: .6rem;
         font-family: "Open Sans";
     }
@@ -1863,7 +1924,7 @@ border-radius: 0;
     .titleSocialMedia {
         margin: 0;
         color: #33FFED;
-        font-size: 13px;
+        font-size: 12px;
         font-family: "Open Sans";
         width: auto;
         text-align: center;
@@ -1888,7 +1949,7 @@ border-radius: 0;
     .linkListSocialMedia {
         text-decoration: none;
         color: #ffffff;
-        font-size: 30px;
+        font-size: 27px;
         margin: .5rem;
     }
 
@@ -1908,7 +1969,7 @@ border-radius: 0;
     .titleContact {
         margin: 0;
         color: #33FFED;
-        font-size: 13px;
+        font-size: 12px;
         font-family: "Open Sans";
         width: auto;
         position: relative;
@@ -1945,7 +2006,7 @@ border-radius: 0;
         width: 100%;
         text-align: center;
         color: #ffffff;
-        font-size: 15px;
+        font-size: 13px;
         margin: .3rem;
         top: 1rem;
         font-family: "Open Sans";
@@ -1956,7 +2017,7 @@ border-radius: 0;
         width: 100%;
         text-align: center;
         color: #ffffff;
-        font-size: 15px;
+        font-size: 13px;
         margin: .3rem;
         font-family: "Open Sans";
     }
@@ -2277,5 +2338,222 @@ border-radius: 0;
 
     .help-block {
         position: relative;
+    }
+
+    /* PAGE --> filtroPesqusia.php */
+
+    .l-wrapper_FiltroPesq {
+        display: grid;
+    }
+
+    .l-wrapper_FiltroPesq {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: auto auto 22rem 6rem;
+        grid-template-areas:
+            "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
+            ;
+    }
+
+    .l-topNavFiltroPesq {
+        grid-area: topNav;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 0px;
+        display: inline-flex;
+        width: 100%;
+        border-bottom: 1px solid #b2b4b8;
+    }
+
+    .l-headerNavMobileFiltroPesq {
+        grid-area: headerNav;
+        background-color: #252730;
+        width: 100%;
+        display: none;
+    }
+
+    .l-mainFiltroPesq {
+        grid-area: main;
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .l-footerFiltroPesq {
+        grid-area: footer;
+        background: #2f3640;
+    }
+
+    .l-footerBottomFiltroPesq {
+        grid-area: footerBottom;
+        background: #252730;
+    }
+
+    /* .filterMobile {
+        display: none;
+    } */
+
+    .center_header {
+        position: relative;
+        width: 100%;
+    }
+
+    .tilteFilterProd {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tilteFilterProd h4 {
+        font-family: "Bowlby";
+        margin: .6rem 0;
+        font-size: 20px;
+    }
+
+    .tilteFilterProd i {
+        color: #9C45EB;
+    }
+
+    .center_header h5 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        color: #252730;
+        font-size: 15px;
+    }
+
+    .selectFilter {
+        width: 50%;
+        float: right;
+        margin-right: 10%;
+        font-family: "Raleway";
+        height: 25px;
+        position: relative;
+        /* top: 0px; */
+        border: none;
+        background: rgb(243, 240, 240);
+        border-radius: 2px;
+    }
+
+    .selectFilter option {
+        border: none;
+    }
+
+    .filtro_pesquisaMobile {
+        display: none;
+    }
+
+    .filtro_pesquisa {
+        width: 20%;
+        height: auto;
+        float: left;
+        margin: 0;
+        border-right: rgb(243, 240, 240) solid 1px;
+        border-bottom: rgb(243, 240, 240) solid 1px;
+        border-radius: 3px;
+        background: #ffffff;
+        padding-bottom: .4rem;
+    }
+
+    .divTitleFilter {
+        width: 100%;
+        height: 25px;
+        background: rgb(243, 240, 240);
+        border-radius: 3px;
+    }
+
+    .titleFilter {
+        text-align: left;
+        color: #252730;
+        margin: 0;
+        font-size: 15px;
+        background: transparent;
+        font-family: "Raleway";
+        height: 100%;
+        margin-left: 10%;
+        padding-top: 1%;
+    }
+
+    .titleConfigFilter {
+        position: relative;
+        width: 10%;
+        margin: .6rem 0;
+        font-size: 13px;
+        font-family: "Raleway-Medium";
+        margin-left: 10%;
+        color: #2f3640;
+    }
+
+    .titleConfigFilter i {
+        color: #2f3640;
+    }
+
+    .divFilter {
+        margin: 1rem 0;
+    }
+
+    .divShowProdFilter {
+        position: relative;
+        width: 78%;
+        height: 100%;
+        /* left: 20%; */
+        float: right;
+    }
+
+    .divShowProdFilter .prod {
+        position: relative;
+        width: 29%;
+        float: left;
+        margin: auto;
+        border: #e2e3e6 solid 1px;
+        border-radius: 3px;
+        padding: .5rem;
+        margin-left: 1%;
+        margin-bottom: 1%;
+    }
+
+    .divShowProdFilter .prod img{
+        position: relative;
+        width: 50%;
+        left: 25%;
+    }
+
+    .titleProdFilter {
+        position: relative;
+        width: 100%;
+        margin: .6rem 0;
+    }
+
+    .priceProdFilter {
+        margin: .4rem 0;
+        font-family: "Karla";
+    }
+
+    .btnFavoriteFilter {
+        float: right;
+        color: #9C45EB;
+        font-size: 18px;
+    }
+    
+    .divisorFilter {
+        position: relative;
+        width: 100%;
+        height: .3rem;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .listFilterOptions {
+        list-style: none;
+    }
+
+    .celulaListFilterOpt {
+        font-size: 13px;
+        margin: .4rem 0;
+    }
+
+    .celulaListFilterOpt a {
+        color: #2f3640;
+        text-decoration: none;
     }
 }
