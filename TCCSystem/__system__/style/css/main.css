@@ -1205,9 +1205,9 @@ border-radius: 0;
     .filtro_pesquisaMobile {
         width: 80%;
         margin: auto;
-        border: #9C45EB solid 1px;
+        border: none;
         border-radius: 3px;
-        background: #9C45EB;
+        background: #ffffff;
         padding-bottom: .4rem;
     }
 
@@ -1218,12 +1218,12 @@ border-radius: 0;
     .titleFilter {
         width: 100%;
         text-align: center;
-        color: #ffffff;
+        color: #2f3640;
         margin: .8rem 0;
     }
 
     .titleFilter i {
-        color: #33FFED;
+        color: #9C45EB;
     }
 
     .titleConfigFilter {
@@ -1233,11 +1233,11 @@ border-radius: 0;
         font-size: 10px;
         font-family: "Raleway-Medium";
         margin-left: 10%;
-        color: #ffffff;
+        color: #2f3640;
     }
 
     .titleConfigFilter i {
-        color: #33FFED;
+        color: #252730;
     }
 
     .divFilter {
@@ -1285,7 +1285,7 @@ border-radius: 0;
     .divisorFilter {
         position: relative;
         width: 100%;
-        height: .3rem;
+        height: .2rem;
         background: #9C45EB;
         border-radius: 2px;
     }
@@ -1296,7 +1296,7 @@ border-radius: 0;
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 3rem 5.5rem auto 40rem 15rem 6rem;
+        grid-template-rows: 3rem 5rem auto 40rem 15rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
@@ -1319,7 +1319,7 @@ border-radius: 0;
     .l-headerNav {
         grid-area: headerNav;
         background-color: #ffffff;
-        border-bottom: solid 2px #252730;
+        border-bottom: solid 2px rgb(235, 232, 232);
         margin-bottom: 2px;
         width: 100%;
     }
@@ -1327,6 +1327,8 @@ border-radius: 0;
     .l-carousel {
         grid-area: carousel;
         width: 100%;
+        border-bottom: solid 2px rgb(235, 232, 232);
+        padding-bottom: 2.5px;
     }
 
     .l-main {
@@ -1368,7 +1370,7 @@ border-radius: 0;
         color: #252730;
         text-decoration: none;
         position: relative;
-        top: .3rem;
+        top: .25rem;
     }
 
     .linkCompanyName img {
@@ -2051,7 +2053,7 @@ border-radius: 0;
         padding: 0px;
         display: inline-flex;
         width: 100%;
-        border-bottom: 1px solid #b2b4b8;
+        border-bottom: 2px solid rgb(243, 240, 240);
     }
 
     .l-headerNavMobile {
@@ -2364,7 +2366,7 @@ border-radius: 0;
         padding: 0px;
         display: inline-flex;
         width: 100%;
-        border-bottom: 1px solid #b2b4b8;
+        border-bottom: 2px solid rgb(243, 240, 240);
     }
 
     .l-headerNavMobileFiltroPesq {

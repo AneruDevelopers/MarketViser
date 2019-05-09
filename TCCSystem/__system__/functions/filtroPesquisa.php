@@ -16,7 +16,7 @@
             <div class="divFilter">
                 <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
                 <select class="selectFilter" id="href">
-                    <option selected disabled> Buscar </option>
+                    <option selected disabled> Filtrar </option>
                     <?php
                     foreach($result as $v):?>
                         <option value="<?= $v['subcateg_nome']; ?>"><?= $v['subcateg_nome']; ?></option>
@@ -159,7 +159,7 @@
                     <div class="divFilter">
                         <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> SUBCATEGORIA</label>
                         <select class="selectFilter" id="href">
-                            <option selected disabled> Buscar </option>
+                            <option selected disabled> Filtrar </option>
                             <?php
                             $result = $sel->fetchAll();
                             foreach($result as $v):?>

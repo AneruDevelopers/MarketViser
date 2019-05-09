@@ -42,7 +42,7 @@
         
         <div class="l-carousel">
             <div id="owl-demo" class="owl-carousel">
-                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="The Last of us"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="The Last of us"></div>
                 <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="GTA V"></div>
                 <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="Mirror Edge"></div>
             </div>
