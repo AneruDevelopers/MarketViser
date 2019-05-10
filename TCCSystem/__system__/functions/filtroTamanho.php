@@ -7,14 +7,16 @@
             $json["empty"] = FALSE;
 
             if(!isset($_SESSION['query_tam'])) {
-                $_SESSION['query_tam'] = "AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ";
                 if(isset($_SESSION['query_preco'])) {
+                    $_SESSION['query_tam'] = "AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ";
                     $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'], $_SESSION['query_tam'] . $_SESSION['query_preco'], $_SESSION['query_proc']);
                 } else {
                     $_SESSION['query_proc'] .= "AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ";
+                    $_SESSION['query_tam'] = "AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ";
                 }
             } else {
                 $_SESSION['query_proc'] = str_replace($_SESSION['query_tam'],"AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ", $_SESSION['query_proc']);
+                $_SESSION['query_tam'] = "AND p.produto_tamanho='{$_POST["produto_tamanho"]}' ";
             }
             
             $sel = $conn->prepare($_SESSION['query_proc']);

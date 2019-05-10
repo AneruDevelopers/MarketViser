@@ -7,14 +7,16 @@
             $json["empty"] = FALSE;
 
             if(!isset($_SESSION['query_marca'])) {
-                $_SESSION['query_marca'] = "AND m.marca_nome='{$_POST["produto_marca"]}' ";
                 if(isset($_SESSION['query_preco'])) {
+                    $_SESSION['query_marca'] = "AND m.marca_nome='{$_POST["produto_marca"]}' ";
                     $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'], $_SESSION['query_marca'] . $_SESSION['query_preco'], $_SESSION['query_proc']);
                 } else {
                     $_SESSION['query_proc'] .= "AND m.marca_nome='{$_POST["produto_marca"]}' ";
+                    $_SESSION['query_marca'] = "AND m.marca_nome='{$_POST["produto_marca"]}' ";
                 }
             } else {
                 $_SESSION['query_proc'] = str_replace($_SESSION['query_marca'],"AND m.marca_nome='{$_POST["produto_marca"]}' ", $_SESSION['query_proc']);
+                $_SESSION['query_marca'] = "AND m.marca_nome='{$_POST["produto_marca"]}' ";
             }
             
             $sel = $conn->prepare($_SESSION['query_proc']);
