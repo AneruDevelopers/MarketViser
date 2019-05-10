@@ -205,7 +205,7 @@
                         <option selected disabled> Filtrar </option>
                         <?php
                         foreach($result2 as $v):?>
-                            <option value="<?= $v['produto_marca']; ?>"><?= $v['marca_nome']; ?></option>
+                            <option value="<?= $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></option>
                             <?php
                         endforeach;?>
                     </select>
