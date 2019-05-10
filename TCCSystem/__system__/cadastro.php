@@ -212,10 +212,10 @@
     <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
     <script src="<?php echo base_url(); ?>js/mask.js"></script>
+    <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/main.js"></script>
     <script src="<?php echo base_url(); ?>js/login.js"></script>
     <script src="<?php echo base_url(); ?>js/cadastro_usuario.js"></script>
-    <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var campos_max = 4;
