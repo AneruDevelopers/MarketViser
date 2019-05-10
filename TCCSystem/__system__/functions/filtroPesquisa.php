@@ -30,7 +30,7 @@
             $result2 = $sel2->fetchAll();?>
             <div class="divFilter">
                 <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
-                <select class="selectFilter" id="tamanho_filtro">
+                <select class="selectFilter produto_tamanho">
                     <option selected disabled> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
@@ -45,18 +45,18 @@
             $sel2->execute();
             $result2 = $sel2->fetchAll();?>
                 <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
-                <select class="selectFilter" id="marca_filtro">
+                <select class="selectFilter prod_marca">
                     <option selected disabled> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
-                        <option value="<?= $v['produto_marca']; ?>"><?= $v['marca_nome']; ?></option>
+                        <option value="<?= $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></option>
                         <?php
                     endforeach;?>
                 </select>
             </div>
             <div class="divFilter">
                 <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
-                <select class="selectFilter" id="preco_filtro">
+                <select class="selectFilter prod_preco">
                     <option selected disabled> Filtrar </option>
                     <option value="DESC">Maior Preço</option>
                     <option value="ASC">Menor Preço</option>
@@ -168,8 +168,8 @@
                 <div class="filtro_pesquisaMobile">
                     <h5 class="titleFilter"><i class="fas fa-sliders-h"></i> FILTROS DE PESQUISA</h5>
                     <div class="divFilter">
-                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> SUBCATEGORIA</label>
-                        <select class="selectFilter" id="href">
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
+                        <select class="selectFilter categ">
                             <option selected disabled> Filtrar </option>
                             <?php
                             $result = $sel->fetchAll();
@@ -186,7 +186,7 @@
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
                         <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
-                        <select class="selectFilter" id="tamanho_filtro">
+                        <select class="selectFilter produto_tamanho">
                             <option selected disabled> Filtrar </option>
                             <?php
                             foreach($result2 as $v):?>
@@ -201,7 +201,7 @@
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
-                    <select class="selectFilter" id="marca_filtro">
+                    <select class="selectFilter prod_marca">
                         <option selected disabled> Filtrar </option>
                         <?php
                         foreach($result2 as $v):?>
@@ -212,7 +212,7 @@
                     </div>
                     <div class="divFilter">
                         <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
-                        <select class="selectFilter" id="preco_filtro">
+                        <select class="selectFilter prod_preco">
                             <option selected disabled> Filtrar </option>
                             <option value="DESC">Maior Preço</option>
                             <option value="ASC">Menor Preço</option>
@@ -321,7 +321,7 @@
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
                     <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
-                    <select class="selectFilter" id="tamanho_filtro">
+                    <select class="selectFilter produto_tamanho">
                         <option selected disabled> Filtrar </option>
                         <?php
                         foreach($result2 as $v):?>
@@ -336,7 +336,7 @@
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
-                <select class="selectFilter" id="marca_filtro">
+                <select class="selectFilter prod_marca">
                     <option selected disabled> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
@@ -347,7 +347,7 @@
                 </div>
                 <div class="divFilter">
                     <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
-                    <select class="selectFilter" id="preco_filtro">
+                    <select class="selectFilter prod_preco">
                         <option selected disabled> Filtrar </option>
                         <option value="DESC">Maior Preço</option>
                         <option value="ASC">Menor Preço</option>

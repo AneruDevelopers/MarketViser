@@ -362,7 +362,7 @@ border-radius: 0;
     }
 
     .celulaMenuCarouselMobile:hover a i {
-        color: #33FFED;
+        color: rgb(211, 103, 253);
         transition: color 250ms ease-in-out;
     }
 
@@ -465,7 +465,12 @@ border-radius: 0;
         text-align:right;
     }
 
-    .help-block, .help-block-tel, .help-block-login {
+    .help-block-login {
+        font-size: 9pt;
+        font-family: 'Raleway-Medium';
+    }
+
+    .help-block, .help-block-tel {
         position: relative;
         top: -1.5rem;
         font-family: 'Raleway-Medium';
@@ -1117,10 +1122,11 @@ border-radius: 0;
 
     .l-wrapper_FiltroPesq {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto 22rem 6rem;
+        grid-template-rows: auto auto auto auto 22rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
+            "bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav bottomNav"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
             "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
@@ -1134,12 +1140,18 @@ border-radius: 0;
         padding: 0px;
         display: inline-flex;
         width: 100%;
-        border-bottom: 1px solid #b2b4b8;
     }
 
-    .l-headerNavMobileFiltroPesq {
+    .l-headerNav {
         grid-area: headerNav;
         background-color: #252730;
+        width: 100%;
+    }
+
+    .l-bottomNav {
+        grid-area: bottomNav;
+        background-color: #ffffff;
+        border-bottom: solid 2px rgb(243, 240, 240);
         width: 100%;
     }
 
@@ -1539,7 +1551,7 @@ border-radius: 0;
     }
     
     .celulaTopNav:hover > .linkMenuTopNav .leftBack {
-        color: #33FFED;
+        color: #ffffff;
         background: #252730;
         border: none;
         text-decoration: none;
@@ -1549,7 +1561,7 @@ border-radius: 0;
 
     .celulaTopNavCity:hover > .linkMenuTopNavCity .leftBack {
         color: #ffffff;
-        background: #9C45EB;
+        background: #ffffff;
         border: none;
         text-decoration: none;
         transition: color 200ms ease-in-out;
@@ -1603,7 +1615,7 @@ border-radius: 0;
     }
 
     .celulaMenuCarousel:hover a i {
-        color: #33FFED;
+        color: rgb(211, 103, 253);
         font-size: 26px;
         margin-left: 5px;
         transition: color 250ms ease-in-out;
@@ -1750,7 +1762,7 @@ border-radius: 0;
         font-family: "Raleway-Medium";
         color: #ffffff;
         float: right;
-        top: -1rem;
+        top: .4rem;
     }
 
     .btnSend:hover {
@@ -1772,6 +1784,10 @@ border-radius: 0;
         top: -1rem;
         text-align: center;
         font-family: 'Raleway-Medium';
+    }
+    .help-block-login {
+        position: relative;
+        top: .8rem;
     }
 
     /* DISPLAY PRODUCTS */
@@ -1905,7 +1921,7 @@ border-radius: 0;
     }
 
     .titleListFooter {
-        color: #33FFED;
+        color: rgb(70, 203, 243);
         font-size: 12px;
         margin-bottom: .6rem;
         font-family: "Open Sans";
@@ -1933,7 +1949,7 @@ border-radius: 0;
 
     .titleSocialMedia {
         margin: 0;
-        color: #33FFED;
+        color: rgb(70, 203, 243);
         font-size: 12px;
         font-family: "Open Sans";
         width: auto;
@@ -1978,7 +1994,7 @@ border-radius: 0;
 
     .titleContact {
         margin: 0;
-        color: #33FFED;
+        color: rgb(70, 203, 243);
         font-size: 12px;
         font-family: "Open Sans";
         width: auto;
@@ -1998,7 +2014,7 @@ border-radius: 0;
     }
 
     .btnContact {
-        background: #33FFED;
+        background: rgb(70, 203, 243);
         border: none;
         font-size: 13px;
         font-family: "Open Sans - Semi Bold";
@@ -2034,7 +2050,7 @@ border-radius: 0;
 
     .copyrightReserved a {
         text-decoration: none;
-        color: #33FFED;
+        color: rgb(70, 203, 243);
     }
 
     /* PAGE --> CADASTRO.PHP */
@@ -2358,9 +2374,10 @@ border-radius: 0;
 
     .l-wrapper_FiltroPesq {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto 22rem 6rem;
+        grid-template-rows: auto 5rem auto 22rem 6rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
+            "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
             "footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom footerBottom"
@@ -2374,13 +2391,17 @@ border-radius: 0;
         padding: 0px;
         display: inline-flex;
         width: 100%;
-        border-bottom: 2px solid rgb(243, 240, 240);
     }
 
-    .l-headerNavMobileFiltroPesq {
+    .l-headerNav {
         grid-area: headerNav;
-        background-color: #252730;
+        background-color: #ffffff;
+        border-bottom: solid 2px rgb(235, 232, 232);
+        margin-bottom: 2px;
         width: 100%;
+    }
+
+    .l-bottomNav {
         display: none;
     }
 

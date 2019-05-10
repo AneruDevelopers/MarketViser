@@ -30,12 +30,19 @@
             include('functions/includes/topNav.php');
         ?>    
         </div>
-        
-        <nav class="l-headerNavMobileFiltroPesq" id="headerNav">
+
+        <nav class="l-headerNav" id="headerNav">
         <?php
             include('functions/includes/header.html');
         ?>
         </nav>
+
+        <div class="l-bottomNav" id="bottomNav">
+        <?php
+            include('functions/includes/bottom.html');
+        ?>
+        </div>
+
         <div class="l-mainFiltroPesq">
             <?php require_once 'functions/filtroPesquisa.php'; ?>
         </div>
@@ -51,7 +58,7 @@
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p><br/>
+                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                     <div class="help-block-login"></div>
                 </form>
