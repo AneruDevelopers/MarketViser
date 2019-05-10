@@ -209,6 +209,61 @@
                     </div>
                 </div>
 
+                <div class="filtro_pesquisa">
+                <div class="divTitleFilter">
+                    <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
+                </div>
+                <div class="divFilter">
+                    <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
+                    <ul class="listFilterOptions">
+                    <?php
+                    foreach($result as $v):?>
+                        <li class="celulaListFilterOpt" value="<?= $v['categ_nome']; ?>"><input class="categ" type="checkbox" value="<?= $v['categ_nome']; ?>"> <?= $v['categ_nome']; ?></li>
+                        <?php
+                    endforeach;?>
+                    </ul>
+                </div>
+                <?php
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
+                $sel2->execute();
+                $result2 = $sel2->fetchAll();?>
+                <div class="divFilter">
+                    <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                    <ul class="listFilterOptions">
+                    <?php
+                    foreach($result2 as $v):?>
+                        <li class="celulaListFilterOpt" value="<?= $v['tam']; ?>"><input type="checkbox"><a href="#"><?= $v['tam']; ?></a></li>
+                        <?php
+                    endforeach;?>
+                    </ul>
+                </div>
+                <?php
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
+                $sel2->execute();
+                $result2 = $sel2->fetchAll();?>
+                <div class="divFilter">
+                    <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                    <ul class="listFilterOptions">
+                    <?php
+                    foreach($result2 as $v):?>
+                        <li class="celulaListFilterOpt" value="<?= $v['produto_marca']; ?>"><input type="checkbox"><a href="#"><?= $v['marca_nome']; ?></a></li>
+                        <?php
+                    endforeach;?>
+                    </ul>
+                </div>
+                <div class="divFilter">
+                    <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                    <ul class="listFilterOptions" id="preco_filtro">
+                        <li class="celulaListFilterOpt" value="ASC">
+                            <input type="checkbox"><a href="#">Menor preço</a>
+                        </li>
+                        <li class="celulaListFilterOpt" value="DESC">
+                            <input type="checkbox"><a href="#">Maior preço</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
                 <div class="divShowProdFilter">
                     <?php
                     $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']}");
@@ -275,6 +330,52 @@
                     </select>
                 </div>
             </div>
+
+            <div class="filtro_pesquisa">
+            <div class="divTitleFilter">
+                <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
+            </div>
+            <?php
+            $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
+            $sel2->execute();
+            $result2 = $sel2->fetchAll();?>
+            <div class="divFilter">
+                <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                <ul class="listFilterOptions">
+                <?php
+                foreach($result2 as $v):?>
+                    <li class="celulaListFilterOpt" value="<?= $v['tam']; ?>"><input type="checkbox"><a href="#"><?= $v['tam']; ?></a></li>
+                    <?php
+                endforeach;?>
+                </ul>
+            </div>
+            <?php
+            $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
+            $sel2->execute();
+            $result2 = $sel2->fetchAll();?>
+            <div class="divFilter">
+                <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                <ul class="listFilterOptions">
+                <?php
+                foreach($result2 as $v):?>
+                    <li class="celulaListFilterOpt" value="<?= $v['produto_marca']; ?>"><input type="checkbox"><a href="#"><?= $v['marca_nome']; ?></a></li>
+                    <?php
+                endforeach;?>
+                </ul>
+            </div>
+            <div class="divFilter">
+                <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                <ul class="listFilterOptions" id="preco_filtro">
+                    <li class="celulaListFilterOpt" value="ASC">
+                        <input type="checkbox"><a href="#">Menor preço</a>
+                    </li>
+                    <li class="celulaListFilterOpt" value="DESC">
+                        <input type="checkbox"><a href="#">Maior preço</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
             <div class="divShowProdFilter">
                 <?php
                 $sel = $conn->prepare("SELECT * FROM produto WHERE produto_categ={$_SESSION['categ_id']}");
