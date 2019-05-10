@@ -62,6 +62,10 @@
                     <option value="ASC">Menor Preço</option>
                 </select>
             </div>
+            <div class="divFilter">
+                <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+            </div>
         </div>
 
         <!-- FILTROS PARA TELAS GRANDES -->
@@ -75,7 +79,7 @@
                 <ul class="listFilterOptions">
                 <?php
                 foreach($result as $v):?>
-                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input class="categ" type="checkbox" value="<?= $v['subcateg_nome']; ?>"> <?= $v['subcateg_nome']; ?></li>
+                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input id="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>" class="categ" type="radio" value="<?= $v['subcateg_nome']; ?>"> <label for="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>"><?= $v['subcateg_nome']; ?></label></li>
                     <?php
                 endforeach;?>
                 </ul>
@@ -116,6 +120,14 @@
                     </li>
                     <li class="celulaListFilterOpt">
                         <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="divFilter">
+                <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                <ul class="listFilterOptions" id="preco_filtro">
+                    <li class="celulaListFilterOpt">
+                        <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
                     </li>
                 </ul>
             </div>
@@ -168,7 +180,7 @@
                 <div class="filtro_pesquisaMobile">
                     <h5 class="titleFilter"><i class="fas fa-sliders-h"></i> FILTROS DE PESQUISA</h5>
                     <div class="divFilter">
-                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> SUBCATEGORIA</label>
                         <select class="selectFilter categ">
                             <option selected disabled> Filtrar </option>
                             <?php
@@ -218,6 +230,10 @@
                             <option value="ASC">Menor Preço</option>
                         </select>
                     </div>
+                    <div class="divFilter">
+                        <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                        <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+                    </div>
                 </div>
                 
                 <!-- FILTRO PARA TELAS GRANDES -->
@@ -230,8 +246,8 @@
                         <ul class="listFilterOptions">
                         <?php
                         foreach($result as $v):?>
-                            <li class="celulaListFilterOpt" value="<?= $v['categ_nome']; ?>"><input class="categ" type="checkbox" value="<?= $v['categ_nome']; ?>"> <?= $v['categ_nome']; ?></li>
-                            <?php
+                            <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input id="<?= $v['categ_nome'].$v['categ_id']; ?>" class="categ" type="radio" value="<?= $v['categ_nome']; ?>"> <label for="<?= $v['categ_nome'].$v['categ_id']; ?>"><?= $v['categ_nome']; ?></label></li>
+                    <?php
                         endforeach;?>
                         </ul>
                     </div>
@@ -271,6 +287,14 @@
                             </li>
                             <li class="celulaListFilterOpt">
                                 <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="divFilter">
+                        <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                        <ul class="listFilterOptions" id="preco_filtro">
+                            <li class="celulaListFilterOpt">
+                                <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
                             </li>
                         </ul>
                     </div>
@@ -353,6 +377,10 @@
                         <option value="ASC">Menor Preço</option>
                     </select>
                 </div>
+                <div class="divFilter">
+                    <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                    <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+                </div>
             </div>
 
             <!-- FILTRO PARA TELAS GRANDES -->
@@ -396,6 +424,14 @@
                         </li>
                         <li class="celulaListFilterOpt">
                             <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="divFilter">
+                    <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                    <ul class="listFilterOptions" id="preco_filtro">
+                        <li class="celulaListFilterOpt">
+                            <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
                         </li>
                     </ul>
                 </div>

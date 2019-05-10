@@ -168,7 +168,7 @@ border-radius: 0;
         text-decoration: none;
         position: relative;
         font-size: 25px;
-        top: .1rem;
+        top: .2rem;
     }
 
     .linkCompanyName img {
@@ -368,7 +368,7 @@ border-radius: 0;
 
     .celulaMenuCarouselMobile a i {
         color: #ffffff;
-        font-size: 22px;
+        font-size: 20px;
         margin-left: 5px;
     }
 
@@ -623,9 +623,9 @@ border-radius: 0;
     }
 
     .divProdTitle {
-        color: black;
+        color: #252730;
         text-align: left;
-        font-size: 11px;
+        font-size: 9px;
         margin: 0;
         font-family: "Raleway";
     }
@@ -1307,6 +1307,12 @@ border-radius: 0;
         height: .2rem;
         background: #9C45EB;
         border-radius: 2px;
+    }
+
+    .fav_radio {
+        position: relative;
+        float: right;
+        right: 10%;
     }
 
 }
