@@ -1,36 +1,37 @@
 <?php
     require_once 'connection/conn.php';
-    
+
     if(isXmlHttpRequest()) {
         if(isset($_POST["produto_preco"])) {
-            if(!isset($_SESSION['url4'])) {
-                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']} ORDER BY p.produto_preco {$_POST["produto_preco"]}");
-                $sel->execute();
+            $json = array();
+            $json["empty"] = FALSE;
+
+            if(!isset($_SESSION['query_preco'])) {
+                $_SESSION['query_proc'] .= "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+                $_SESSION['query_preco'] = "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+            } else {
+                $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'],"ORDER BY p.produto_preco {$_POST["produto_preco"]} ", $_SESSION['query_proc']);
+            }
+            
+            $sel = $conn->prepare($_SESSION['query_proc']);
+            $sel->execute();
+            if($sel->rowCount() > 0) {
                 $result = $sel->fetchAll();
                 foreach($result as $v) {
+                    if($v['produto_desconto_porcent'] <> "") {
+                        $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                    }
+                    
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                    $json[] = $v;
+                    $json['produtos'][] = $v;
                 }
             } else {
-                if(!isset($_SESSION['url5'])) {
-                    $sel = $conn->prepare("SELECT * FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} ORDER BY p.produto_preco {$_POST["produto_preco"]}");
-                    $sel->execute();
-                    $result = $sel->fetchAll();
-                    foreach($result as $v) {
-                        $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                        $json[] = $v;
-                    }
-                } else {
-                    $sel = $conn->prepare("SELECT * FROM produto WHERE produto_categ={$_SESSION['categ_id']} ORDER BY produto_preco {$_POST["produto_preco"]}");
-                    $sel->execute();
-                    $result = $sel->fetchAll();
-                    foreach($result as $v) {
-                        $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                        $json[] = $v;
-                    }
-                }
+                $json['empty'] = true;
             }
 
+            $json['query'] = $_SESSION['query_proc'];
             echo json_encode($json);
         }
     } else {

@@ -1,90 +1,164 @@
-$(".categ").change(function() {
-    if ($(this).prop("checked") == true) {
-        var href = removeAcento($(this).val());
-        var local = location;
-        local = local + "";
+$(document).ready(function() {
+    $(".categ").change(function() {
+        // if ($(this).prop("checked") == true) { ### Comentado por conta da incompatibilidade nos Mobiles
+            var href = removeAcento($(this).val());
+            var local = location;
+            local = local + "";
 
-        if(local.indexOf('#') != -1) {
-            var local = local.substring(0, (local.length - 1));
-        }
-
-        window.location = local + '/' + href;
-    }
-});
-
-$(".categ").trigger("change");
-
-$('#tamanho_filtro').change(function() {
-    var dado = "produto_tamanho=" + $(this).val();
-    var url = BASE_URL + 'functions/filtroTamanho';
-    $.ajax({
-        type: 'post',
-        dataType: 'json',
-        data: dado,
-        url: url,
-        success: function(json) {
-            var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+            if(local.indexOf('#') != -1) {
+                var local = local.substring(0, (local.length - 1));
             }
-            for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
-            }
-        }
+
+            window.location = local + '/' + href;
+        // } ### Comentado por conta da incompatibilidade nos Mobiles
     });
-});
 
-$('#marca_filtro').change(function() {
-    var dado = "produto_marca=" + $(this).val();
-    var url = BASE_URL + 'functions/filtroMarca';
-    $.ajax({
-        type: 'post',
-        dataType: 'json',
-        data: dado,
-        url: url,
-        success: function(json) {
-            var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+    // $(".categ").trigger("change"); ### Comentado por conta da incompatibilidade nos Mobiles
+
+    $('.produto_tamanho').change(function(e) {
+        e.preventDefault();
+        var dado = "produto_tamanho=" + $(this).val();
+        var url = BASE_URL + 'functions/filtroTamanho';
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: dado,
+            url: url,
+            beforeSend: function() {
+                $('.divShowProdFilter').html(loadingRes(" Carregando..."));
+            },
+            success: function(json) {
+                var produtos = [];
+                for(var i = 0; json['produtos'].length > i; i++) {
+                    if(json['produtos'][i].produto_desconto_porcent) {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                            </div>
+                        `;
+                    } else {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                            </div>
+                        `;
+                    }
+                }
+                $('.divShowProdFilter').html("");
+                for(var i = 0; produtos.length > i; i++) {
+                    $('.divShowProdFilter').append(produtos[i]);
+                }
+                btnFavorito();
             }
-            for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
-            }
-        }
+        });
     });
-});
 
-$('#preco_filtro').change(function() {
-    var dado = "produto_preco=" + $(this).val();
-    var url = BASE_URL + 'functions/filtroPreco';
-    $.ajax({
-        type: 'post',
-        dataType: 'json',
-        data: dado,
-        url: url,
-        success: function(json) {
-            var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+    $('.prod_marca').change(function(e) {
+        e.preventDefault();
+        var dado = "produto_marca=" + $(this).val();
+        var url = BASE_URL + 'functions/filtroMarca';
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: dado,
+            url: url,
+            success: function(json) {
+                var produtos = [];
+                for(var i = 0; json['produtos'].length > i; i++) {
+                    if(json['produtos'][i].produto_desconto_porcent) {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                            </div>
+                        `;
+                    } else {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                            </div>
+                        `;
+                    }
+                }
+                $('.divShowProdFilter').html("");
+                for(var i = 0; produtos.length > i; i++) {
+                    $('.divShowProdFilter').append(produtos[i]);
+                }
+                btnFavorito();
             }
-            for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
+        });
+    });
+
+    $('.prod_preco').change(function(e) {
+        e.preventDefault();
+        var dado = "produto_preco=" + $(this).val();
+        var url = BASE_URL + 'functions/filtroPreco';
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: dado,
+            url: url,
+            success: function(json) {
+                var produtos = [];
+                for(var i = 0; json['produtos'].length > i; i++) {
+                    if(json['produtos'][i].produto_desconto_porcent) {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                            </div>
+                        `;
+                    } else {
+                        produtos[i] = `
+                            <div class="prod">
+                                <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                    
+                                </div>
+                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                <div class='divisorFilter'></div>
+                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                            </div>
+                        `;
+                    }
+                }
+                $('.divShowProdFilter').html("");
+                for(var i = 0; produtos.length > i; i++) {
+                    $('.divShowProdFilter').append(produtos[i]);
+                }
+                btnFavorito();
             }
-        }
+        });
     });
 });
