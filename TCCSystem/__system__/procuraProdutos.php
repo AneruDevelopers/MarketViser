@@ -38,11 +38,18 @@
         ?>    
         </div>
 
-        <nav class="l-headerNavMobileFiltroPesq" id="headerNav">
+        <nav class="l-headerNav" id="headerNav">
         <?php
             include('functions/includes/header.html');
         ?>
         </nav>
+
+        <div class="l-bottomNav" id="bottomNav">
+        <?php
+            include('functions/includes/bottom.html');
+        ?>
+        </div>
+
         <div class="l-mainFiltroPesq">
             <?php require_once 'functions/filtroPesquisa.php'; ?>
         </div>
