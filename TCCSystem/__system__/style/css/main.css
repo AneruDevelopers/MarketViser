@@ -168,7 +168,7 @@ border-radius: 0;
         text-decoration: none;
         position: relative;
         font-size: 25px;
-        top: .1rem;
+        top: .2rem;
     }
 
     .linkCompanyName img {
@@ -388,11 +388,7 @@ border-radius: 0;
         position: relative;
         text-decoration: none;
         font-family: "Raleway";
-<<<<<<< HEAD
-        font-size: 7px;
-=======
         font-size: 8px;
->>>>>>> 96525c995e5c0a142c945d794cccb2db6e919353
     }
 
     /* CAROUSEL */

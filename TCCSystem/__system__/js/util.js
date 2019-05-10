@@ -1,6 +1,6 @@
-const BASE_URL = "http://localhost/BackupGit/economize/TCCSystem/";
-const BASE_URL2 = "http://localhost/BackupGit/economize/TCCSystem/__system__/";
-const BASE_URL3 = "http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/";
+const BASE_URL = "http://192.168.10.193/BackupGit/economize/TCCSystem/";
+const BASE_URL2 = "http://192.168.10.193/BackupGit/economize/TCCSystem/__system__/";
+const BASE_URL3 = "http://192.168.10.193/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/";
 
 function loadingRes(message="") {
     return "<p class='p-loading'><i class='fa fa-circle-notch fa-spin'></i> &nbsp;"+message+"</p>";

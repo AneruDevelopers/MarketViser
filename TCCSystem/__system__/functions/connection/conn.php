@@ -3,13 +3,13 @@
 
 	// Padronizando a busca por arquivos via URL
 	function base_url() {
-		return "http://localhost/BackupGit/economize/TCCSystem/__system__/";
+		return "http://192.168.10.193/BackupGit/economize/TCCSystem/__system__/";
 	}
 	function base_url_php() {
-		return "http://localhost/BackupGit/economize/TCCSystem/";
+		return "http://192.168.10.193/BackupGit/economize/TCCSystem/";
 	}
 	function base_url_adm() {
-		return "http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/";
+		return "http://192.168.10.193/BackupGit/economize/TCCSystem/__system__/admin_area/";
 	}
 
 	// FUNÇÃO VERIFICA SE A REQUISIÇÃO FEITA AO SERVIDOR É VIA AJAX
@@ -20,7 +20,7 @@
 
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "senhadopedro";
 	$db = "economize";
 
 	try {
