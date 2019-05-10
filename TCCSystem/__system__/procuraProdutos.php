@@ -1,26 +1,19 @@
 <?php
-    if(isset($result[0]["depart_id"])) {
-        $title = strtolower($result[0]["depart_nome"]);
-        $title = ucfirst($title);
-        if(isset($result2[0]["subcateg_id"])) {
-            $sub = strtolower($result2[0]["subcateg_nome"]);
-            $title .= " - " . ucfirst($sub);
-            if(isset($result3[0]["categ_id"])) {
-                $categ = strtolower($result3[0]["categ_nome"]);
-                $title .= " - " . ucfirst($categ);
-            }
-        }
-    } else {
-        $title = "e.conomize - Procure seu produto";
+    if(isset($_SESSION['query_tam'])) {
+        unset($_SESSION['query_tam']);
     }
-    // echo $_SESSION['url3']." - ".$_SESSION['url4']." - ".$_SESSION['url5']."<br/>";
-    // echo $_SESSION['depart_id']." - ".$_SESSION['subcateg_id']." - ".$_SESSION['categ_id'];
+    if(isset($_SESSION['query_marca'])) {
+        unset($_SESSION['query_marca']);
+    }
+    if(isset($_SESSION['query_preco'])) {
+        unset($_SESSION['query_preco']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title><?= $title ?></title>
+    <title>e.conomize - Ache seu produto de maneira rápida</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
@@ -37,7 +30,7 @@
             include('functions/includes/topNav.php');
         ?>    
         </div>
-
+        
         <nav class="l-headerNavMobileFiltroPesq" id="headerNav">
         <?php
             include('functions/includes/header.html');
@@ -84,5 +77,6 @@
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?php echo base_url(); ?>js/procuraProdutos.js"></script>
+    <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
 </body>
 </html>

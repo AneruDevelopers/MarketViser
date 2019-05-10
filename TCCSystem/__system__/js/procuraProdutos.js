@@ -1,5 +1,5 @@
 $(".categ").change(function() {
-    if ($(this).prop("checked") == true) {
+    // if ($(this).prop("checked") == true) { ### Comentado por conta da incompatibilidade nos Mobiles
         var href = removeAcento($(this).val());
         var local = location;
         local = local + "";
@@ -9,12 +9,12 @@ $(".categ").change(function() {
         }
 
         window.location = local + '/' + href;
-    }
+    // } ### Comentado por conta da incompatibilidade nos Mobiles
 });
 
-$(".categ").trigger("change");
+// $(".categ").trigger("change"); ### Comentado por conta da incompatibilidade nos Mobiles
 
-$('#tamanho_filtro').change(function() {
+$('.produto_tamanho').change(function() {
     var dado = "produto_tamanho=" + $(this).val();
     var url = BASE_URL + 'functions/filtroTamanho';
     $.ajax({
@@ -22,24 +22,49 @@ $('#tamanho_filtro').change(function() {
         dataType: 'json',
         data: dado,
         url: url,
+        beforeSend: function() {
+            $('.divShowProdFilter').html(loadingRes(" Carregando..."));
+        },
         success: function(json) {
             var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+            for(var i = 0; json['produtos'].length > i; i++) {
+                if(json['produtos'][i].produto_desconto_porcent) {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                        </div>
+                    `;
+                } else {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                        </div>
+                    `;
+                }
             }
+            $('.divShowProdFilter').html("");
             for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
+                $('.divShowProdFilter').append(produtos[i]);
             }
+            btnFavorito();
         }
     });
 });
 
-$('#marca_filtro').change(function() {
+$('.prod_marca').change(function() {
     var dado = "produto_marca=" + $(this).val();
     var url = BASE_URL + 'functions/filtroMarca';
     $.ajax({
@@ -49,22 +74,44 @@ $('#marca_filtro').change(function() {
         url: url,
         success: function(json) {
             var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+            for(var i = 0; json['produtos'].length > i; i++) {
+                if(json['produtos'][i].produto_desconto_porcent) {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                        </div>
+                    `;
+                } else {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                        </div>
+                    `;
+                }
             }
+            $('.divShowProdFilter').html("");
             for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
+                $('.divShowProdFilter').append(produtos[i]);
             }
+            btnFavorito();
         }
     });
 });
 
-$('#preco_filtro').change(function() {
+$('.prod_preco').change(function() {
     var dado = "produto_preco=" + $(this).val();
     var url = BASE_URL + 'functions/filtroPreco';
     $.ajax({
@@ -74,17 +121,39 @@ $('#preco_filtro').change(function() {
         url: url,
         success: function(json) {
             var produtos = [];
-            $('.produtos').html("");
-            for(var i = 0; json.length > i; i++) {
-                produtos[i] = `
-                    <div class="prod">
-                        <img src="` + BASE_URL + "admin_area/imagens_produtos/" + json[i].produto_img + `/> ` + json[i].produto_nome + ` - `  + json[i].produto_tamanho + `<br/>R$ ` + json[i].produto_preco + `
-                    </div>
-                `;
+            for(var i = 0; json['produtos'].length > i; i++) {
+                if(json['produtos'][i].produto_desconto_porcent) {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                        </div>
+                    `;
+                } else {
+                    produtos[i] = `
+                        <div class="prod">
+                            <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                
+                            </div>
+                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                            <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                        </div>
+                    `;
+                }
             }
+            $('.divShowProdFilter').html("");
             for(var i = 0; produtos.length > i; i++) {
-                $('.produtos').append(produtos[i]);
+                $('.divShowProdFilter').append(produtos[i]);
             }
+            btnFavorito();
         }
     });
 });

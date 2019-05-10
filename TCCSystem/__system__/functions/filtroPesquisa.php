@@ -15,7 +15,7 @@
             <h5 class="titleFilter"><i class="fas fa-sliders-h"></i> FILTROS DE PESQUISA</h5>
             <div class="divFilter">
                 <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
-                <select class="selectFilter" id="href">
+                <select class="selectFilter categ">
                     <option selected disabled> Filtrar </option>
                     <?php
                     foreach($result as $v):?>
@@ -88,8 +88,8 @@
                 <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                 <ul class="listFilterOptions">
                 <?php
-                foreach($result2 as $v):?>
-                    <li class="celulaListFilterOpt" value="<?= $v['tam']; ?>"><input type="checkbox"><a href="#"><?= $v['tam']; ?></a></li>
+                foreach($result2 as $k => $v):?>
+                    <li class="celulaListFilterOpt"><input type="radio" name="prod_tam" id="<?= $k; ?>" class="produto_tamanho" value="<?= $v['tam']; ?>"/> <label for="<?= $k; ?>"><?= $v['tam']; ?></label></li>
                     <?php
                 endforeach;?>
                 </ul>
@@ -102,8 +102,8 @@
                 <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
                 <ul class="listFilterOptions">
                 <?php
-                foreach($result2 as $v):?>
-                    <li class="celulaListFilterOpt" value="<?= $v['produto_marca']; ?>"><input type="checkbox"><a href="#"><?= $v['marca_nome']; ?></a></li>
+                foreach($result2 as $k => $v):?>
+                    <li class="celulaListFilterOpt"><input type="radio" name="produto_marca" id="<?= $k . $v['marca_nome']; ?>" class="prod_marca" value="<?= $v['marca_nome']; ?>"/> <label for="<?= $k . $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></label></li>
                     <?php
                 endforeach;?>
                 </ul>
@@ -111,11 +111,11 @@
             <div class="divFilter">
                 <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                 <ul class="listFilterOptions" id="preco_filtro">
-                    <li class="celulaListFilterOpt" value="ASC">
-                        <input type="checkbox"><a href="#">Menor preço</a>
+                    <li class="celulaListFilterOpt">
+                        <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
                     </li>
-                    <li class="celulaListFilterOpt" value="DESC">
-                        <input type="checkbox"><a href="#">Maior preço</a>
+                    <li class="celulaListFilterOpt">
+                        <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
                     </li>
                 </ul>
             </div>
@@ -126,18 +126,29 @@
 
         <div class="divShowProdFilter">
             <?php
-            $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
+            $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']} ");
+            $_SESSION['query_proc'] = "SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']} ";
             $sel2->execute();
             $result2 = $sel2->fetchAll();
             foreach($result2 as $v):?>
                 <div class="prod">
-                <?= "<div class='btnFavoriteFilter'>
-                        <i class='far fa-heart'></i>
+                    <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
+                        
                     </div>
-                    <img src='" . base_url() . "admin_area/imagens_produtos/" . $v["produto_img"] . "'/>
+                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                    <?php 
+                        if($v['produto_desconto_porcent'] <> "") {
+                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                        }
+                    ?>
+                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
                     <div class='divisorFilter'></div>
-                    <h5 class='titleProdFilter'>" . $v["produto_nome"] . " - "  . $v["produto_tamanho"] . "</h5>
-                    <p class='priceProdFilter'>R$ " . number_format($v["produto_preco"], 2, ',', '.');"</p>" ?>
+                    <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                    <p class='priceProdFilter'>
+                        <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
+                    </p>
                 </div>
                 <?php
             endforeach;?>
@@ -208,21 +219,89 @@
                         </select>
                     </div>
                 </div>
+                
+                <!-- FILTRO PARA TELAS GRANDES -->
+                <div class="filtro_pesquisa">
+                    <div class="divTitleFilter">
+                        <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
+                    </div>
+                    <div class="divFilter">
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
+                        <ul class="listFilterOptions">
+                        <?php
+                        foreach($result as $v):?>
+                            <li class="celulaListFilterOpt" value="<?= $v['categ_nome']; ?>"><input class="categ" type="checkbox" value="<?= $v['categ_nome']; ?>"> <?= $v['categ_nome']; ?></li>
+                            <?php
+                        endforeach;?>
+                        </ul>
+                    </div>
+                    <?php
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']}");
+                    $sel2->execute();
+                    $result2 = $sel2->fetchAll();?>
+                    <div class="divFilter">
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                        <ul class="listFilterOptions">
+                        <?php
+                        foreach($result2 as $v):?>
+                            <li class="celulaListFilterOpt"><input type="radio" name="prod_tam" id="<?= $k; ?>" class="produto_tamanho" value="<?= $v['tam']; ?>"/> <label for="<?= $k; ?>"><?= $v['tam']; ?></label></li>
+                            <?php
+                        endforeach;?>
+                        </ul>
+                    </div>
+                    <?php
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']}");
+                    $sel2->execute();
+                    $result2 = $sel2->fetchAll();?>
+                    <div class="divFilter">
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                        <ul class="listFilterOptions">
+                        <?php
+                        foreach($result2 as $v):?>
+                            <li class="celulaListFilterOpt"><input type="radio" name="produto_marca" id="<?= $k . $v['marca_nome']; ?>" class="prod_marca" value="<?= $v['marca_nome']; ?>"/> <label for="<?= $k . $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></label></li>
+                            <?php
+                        endforeach;?>
+                        </ul>
+                    </div>
+                    <div class="divFilter">
+                        <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                        <ul class="listFilterOptions" id="preco_filtro">
+                            <li class="celulaListFilterOpt">
+                                <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
+                            </li>
+                            <li class="celulaListFilterOpt">
+                                <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
 
                 <div class="divShowProdFilter">
                     <?php
-                    $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']}");
+                    $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} ");
+                    $_SESSION['query_proc'] = "SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} ";
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();
                     foreach($result2 as $v):?>
                         <div class="prod">
-                        <?= "<div class='btnFavoriteFilter'>
-                                <i class='far fa-heart'></i>
+                            <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
+                                
                             </div>
-                            <img src='" . base_url() . "admin_area/imagens_produtos/" . $v["produto_img"] . "'/>
+                            <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                            <?php 
+                                if($v['produto_desconto_porcent'] <> "") {
+                                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                }
+                            ?>
+                            <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
                             <div class='divisorFilter'></div>
-                            <h5 class='titleProdFilter'>" . $v["produto_nome"] . " - "  . $v["produto_tamanho"] . "</h5>
-                            <p class='priceProdFilter'>R$ " . number_format($v["produto_preco"], 2, ',', '.');"</p>" ?>
+                            <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                            <p class='priceProdFilter'>
+                                <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
+                            </p>
                         </div>
                         <?php
                     endforeach;?>
@@ -275,21 +354,79 @@
                     </select>
                 </div>
             </div>
+
+            <!-- FILTRO PARA TELAS GRANDES -->
+            <div class="filtro_pesquisa">
+                <div class="divTitleFilter">
+                    <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
+                </div>
+                <?php
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p WHERE p.produto_categ={$_SESSION['categ_id']}");
+                $sel2->execute();
+                $result2 = $sel2->fetchAll();?>
+                <div class="divFilter">
+                    <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                    <ul class="listFilterOptions">
+                    <?php
+                    foreach($result2 as $v):?>
+                        <li class="celulaListFilterOpt"><input type="radio" name="prod_tam" id="<?= $k; ?>" class="produto_tamanho" value="<?= $v['tam']; ?>"/> <label for="<?= $k; ?>"><?= $v['tam']; ?></label></li>
+                        <?php
+                    endforeach;?>
+                    </ul>
+                </div>
+                <?php
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_categ={$_SESSION['categ_id']}");
+                $sel2->execute();
+                $result2 = $sel2->fetchAll();?>
+                <div class="divFilter">
+                    <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                    <ul class="listFilterOptions">
+                    <?php
+                    foreach($result2 as $v):?>
+                        <li class="celulaListFilterOpt"><input type="radio" name="produto_marca" id="<?= $k . $v['marca_nome']; ?>" class="prod_marca" value="<?= $v['marca_nome']; ?>"/> <label for="<?= $k . $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></label></li>
+                        <?php
+                    endforeach;?>
+                    </ul>
+                </div>
+                <div class="divFilter">
+                    <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                    <ul class="listFilterOptions" id="preco_filtro">
+                        <li class="celulaListFilterOpt">
+                            <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
+                        </li>
+                        <li class="celulaListFilterOpt">
+                            <input type="radio" name="produto_preco" class="prod_preco" id="ma_p" value="DESC"> <label for="ma_p">Maior preço</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="divShowProdFilter">
                 <?php
-                $sel = $conn->prepare("SELECT * FROM produto WHERE produto_categ={$_SESSION['categ_id']}");
+                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_categ={$_SESSION['categ_id']} ");
+                $_SESSION['query_proc'] = "SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_categ={$_SESSION['categ_id']} ";
                 $sel->execute();
                 if($sel->rowCount() > 0):
                     $result = $sel->fetchAll();
                     foreach($result as $v):?>
                         <div class="prod">
-                        <?= "<div class='btnFavoriteFilter'>
-                                <i class='far fa-heart'></i>
+                            <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
+                                
                             </div>
-                            <img src='" . base_url() . "admin_area/imagens_produtos/" . $v["produto_img"] . "'/>
+                            <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                            <?php 
+                                if($v['produto_desconto_porcent'] <> "") {
+                                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                }
+                            ?>
+                            <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
                             <div class='divisorFilter'></div>
-                            <h5 class='titleProdFilter'>" . $v["produto_nome"] . " - "  . $v["produto_tamanho"] . "</h5>
-                            <p class='priceProdFilter'>R$ " . number_format($v["produto_preco"], 2, ',', '.');"</p>" ?>
+                            <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                            <p class='priceProdFilter'>
+                                <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
+                            </p>
                         </div>
                         <?php
                     endforeach;

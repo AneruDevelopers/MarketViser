@@ -1174,8 +1174,16 @@ border-radius: 0;
         margin: .6rem 0;
     }
 
-    .tilteFilterProd i {
+    .prod i {
+        float: right;
         color: #9C45EB;
+        margin: .2rem;
+        cursor: pointer;
+    }
+
+    .prod i:hover {
+        transform: scale(1.1);
+        transition: ease-in-out 100ms transform;
     }
 
     .center_header h5 {
@@ -2412,8 +2420,16 @@ border-radius: 0;
         font-size: 20px;
     }
 
-    .tilteFilterProd i {
+    .prod i {
+        float: right;
         color: #9C45EB;
+        margin: .2rem;
+        cursor: pointer;
+    }
+
+    .prod i:hover {
+        transform: scale(1.1);
+        transition: ease-in-out 100ms transform;
     }
 
     .center_header h5 {
