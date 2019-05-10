@@ -1263,12 +1263,12 @@ border-radius: 0;
         margin: 1rem 0;
     }
 
-    .divShowProdFilter {
+    .divShowProdFilter, .divShowProdFav {
         position: relative;
         width: 100%;
     }
 
-    .divShowProdFilter .prod {
+    .divShowProdFilter .prod, .divShowProdFav .prod {
         position: relative;
         width: 66.4%;
         margin: auto;
@@ -1278,7 +1278,7 @@ border-radius: 0;
         padding: .5rem;
     }
 
-    .divShowProdFilter .prod img{
+    .divShowProdFilter .prod img, .divShowProdFav .prod img {
         position: relative;
         width: 50%;
         left: 25%;
@@ -2538,7 +2538,14 @@ border-radius: 0;
         float: right;
     }
 
-    .divShowProdFilter .prod {
+    .divShowProdFav {
+        position: relative;
+        width: 86%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .divShowProdFilter .prod, .divShowProdFav .prod {
         position: relative;
         width: 29%;
         float: left;
@@ -2550,7 +2557,7 @@ border-radius: 0;
         margin-bottom: 1%;
     }
 
-    .divShowProdFilter .prod img{
+    .divShowProdFilter .prod img, .divShowProdFav .prod img {
         position: relative;
         width: 50%;
         left: 25%;

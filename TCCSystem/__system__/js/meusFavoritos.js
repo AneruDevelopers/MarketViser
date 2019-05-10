@@ -36,8 +36,10 @@ function meusFavoritos() {
                             `;
                         }
                     }
-                    $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>
-                    ` + produtos);
+                    $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>\
+                    <div class="divShowProdFav">\
+                    ` + produtos + `\
+                    </div>`);
                 } else {
                     $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>
                     <h2 class="sem_fav">Ao favoritar produtos, eles aparecerão aqui</h2>`);

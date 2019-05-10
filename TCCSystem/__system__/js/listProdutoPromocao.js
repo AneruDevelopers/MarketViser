@@ -20,7 +20,8 @@ $(function() {
                     `;
                 }
                 $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
-                $('body').append('<script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');
+                $('body').append('<script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>\
+                <script src="' + BASE_URL2 + 'js/meusFavoritos.js"></script>');
             } else {
                 $('.l-prods').html(`<h2 class="sem_promo">Sem promoções hoje. Aproveite a barra de pesquisa</h2>`);
             }
