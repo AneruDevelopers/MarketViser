@@ -2,7 +2,7 @@
     if(!isset($URL[4])):?>
         <div class="center_header">
             <div class="tilteFilterProd">
-                <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i><?= $result[0]["depart_nome"]; ?></h4>
+                <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result[0]["depart_nome"]; ?></h4>
             </div>
             <h5><?= $result[0]["depart_desc"]; ?></h5>
         </div>
@@ -157,7 +157,7 @@
         if(!isset($URL[5])):?>
             <div class="center_header">
                 <div class="tilteFilterProd">
-                    <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i><?= $result2[0]["subcateg_nome"]; ?></h4>
+                    <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result2[0]["subcateg_nome"]; ?></h4>
                 </div>
             </div>
 
@@ -310,7 +310,7 @@
         else:?>
             <div class="center_header">
                 <div class="tilteFilterProd">
-                    <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i><?= $result2[0]["subcateg_nome"]; ?> - <?= $result3[0]["categ_nome"]; ?></h4>
+                    <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result2[0]["subcateg_nome"]; ?> - <?= $result3[0]["categ_nome"]; ?></h4>
                 </div>
             </div>
             

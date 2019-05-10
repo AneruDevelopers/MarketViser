@@ -10,7 +10,7 @@ function meusFavoritos() {
                         if(json['produtos'][i].produto_desconto_porcent) {
                             produtos[i] = `
                                 <div class="prod">
-                                    <div class="btnFavoriteFilter btnFavorito` + $json['produtos'][i].produto_id + `">
+                                    <div class="btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `">
                                         
                                     </div>
                                     <img src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `"/>
