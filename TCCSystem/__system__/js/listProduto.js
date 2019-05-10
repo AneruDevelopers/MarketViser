@@ -18,7 +18,8 @@ $(function() {
                 `;
             }
             $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
-            $('body').append('<script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');
+            $('body').append('<script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>\
+            <script src="<?php echo base_url(); ?>js/meusFavoritos.js"></script>');
         }
     });
 });

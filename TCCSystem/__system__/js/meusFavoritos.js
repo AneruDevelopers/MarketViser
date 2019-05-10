@@ -43,7 +43,7 @@ function meusFavoritos() {
                     <h2 class="sem_fav">Ao favoritar produtos, eles aparecerão aqui</h2>`);
                 }
             }
-            btnFavoritos();
+            btnFavorito();
         }
     });
 }
