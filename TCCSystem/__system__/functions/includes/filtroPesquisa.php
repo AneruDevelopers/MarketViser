@@ -64,7 +64,7 @@
             </div>
             <div class="divFilter">
                 <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
-                <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+                <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="fav_prods"/>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
             </div>
             <div class="divFilter">
                 <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
-                <ul class="listFilterOptions" id="preco_filtro">
+                <ul class="listFilterOptions">
                     <li class="celulaListFilterOpt">
                         <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
                     </li>
@@ -125,9 +125,9 @@
             </div>
             <div class="divFilter">
                 <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
-                <ul class="listFilterOptions" id="preco_filtro">
+                <ul class="listFilterOptions">
                     <li class="celulaListFilterOpt">
-                        <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
+                        <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
                     </li>
                 </ul>
             </div>
@@ -281,7 +281,7 @@
                     </div>
                     <div class="divFilter">
                         <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
-                        <ul class="listFilterOptions" id="preco_filtro">
+                        <ul class="listFilterOptions">
                             <li class="celulaListFilterOpt">
                                 <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
                             </li>
@@ -292,9 +292,9 @@
                     </div>
                     <div class="divFilter">
                         <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
-                        <ul class="listFilterOptions" id="preco_filtro">
+                        <ul class="listFilterOptions">
                             <li class="celulaListFilterOpt">
-                                <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
+                                <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
                             </li>
                         </ul>
                     </div>
@@ -431,7 +431,7 @@
                     <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
                     <ul class="listFilterOptions" id="preco_filtro">
                         <li class="celulaListFilterOpt">
-                            <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Favoritos</label>
+                            <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
                         </li>
                     </ul>
                 </div>
