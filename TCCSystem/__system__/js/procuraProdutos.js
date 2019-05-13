@@ -66,6 +66,13 @@ $(document).ready(function() {
                     }
                     btnFavorito();
                 }
+                if(json['first']) {
+                    $('.FilterVol').append(' &nbsp;&nbsp;&nbsp;<span class="limpaVol">&times;</span>');
+                    $('.limpaVol').click(function(e) {
+                        e.preventDefault();
+                        limpaVol();
+                    });
+                }
             }
         });
     });
@@ -117,6 +124,13 @@ $(document).ready(function() {
                         $('.divShowProdFilter').append(produtos[i]);
                     }
                     btnFavorito();
+                }
+                if(json['first']) {
+                    $('.FilterMarca').append(' &nbsp;&nbsp;&nbsp;<span class="limpaMarca">&times;</span>');
+                    $('.limpaMarca').click(function(e) {
+                        e.preventDefault();
+                        limpaMarca();
+                    });
                 }
             }
         });
@@ -170,6 +184,13 @@ $(document).ready(function() {
                     }
                     btnFavorito();
                 }
+                if(json['first']) {
+                    $('.filterPreco').append(' &nbsp;&nbsp;&nbsp;<span class="limpaPreco">&times;</span>');
+                    $('.limpaPreco').click(function(e) {
+                        e.preventDefault();
+                        limpaPreco();
+                    });
+                }
             }
         });
     });
@@ -184,45 +205,67 @@ $(document).ready(function() {
             data: dado,
             url: url,
             success: function(json) {
-                if(json['empty']) {
-                    $('.divShowProdFilter').html("<h3>Não houve resposta</h3>");
-                } else {
-                    var produtos = [];
-                    for(var i = 0; json['produtos'].length > i; i++) {
-                        if(json['produtos'][i].produto_desconto_porcent) {
-                            produtos[i] = `
-                                <div class="prod">
-                                    <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
-                                        
+                if(json['logado']) {
+                    if(json['empty']) {
+                        $('.divShowProdFilter').html("<h3>Não houve resposta</h3>");
+                    } else {
+                        var produtos = [];
+                        for(var i = 0; json['produtos'].length > i; i++) {
+                            if(json['produtos'][i].produto_desconto_porcent) {
+                                produtos[i] = `
+                                    <div class="prod">
+                                        <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                            
+                                        </div>
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
-                                </div>
-                            `;
-                        } else {
-                            produtos[i] = `
-                                <div class="prod">
-                                    <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
-                                        
+                                `;
+                            } else {
+                                produtos[i] = `
+                                    <div class="prod">
+                                        <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
+                                            
+                                        </div>
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
-                                </div>
-                            `;
+                                `;
+                            }
                         }
+                        $('.divShowProdFilter').html("");
+                        for(var i = 0; produtos.length > i; i++) {
+                            $('.divShowProdFilter').append(produtos[i]);
+                        }
+                        btnFavorito();
                     }
-                    $('.divShowProdFilter').html("");
-                    for(var i = 0; produtos.length > i; i++) {
-                        $('.divShowProdFilter').append(produtos[i]);
-                    }
-                    btnFavorito();
+                    $('.filterFav').append(' &nbsp;&nbsp;&nbsp;<span class="limpaFav">&times;</span>');
+                    $('.limpaFav').click(function(e) {
+                        e.preventDefault();
+                        limpaFav();
+                    });
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        title: 'Você precisa estar logado'
+                    });
+                    $("#usu_email_login").val("");
+                    $("#usu_senha_login").val("");
+                    $(".help-block-login").html("");
+                    var favMobile = document.getElementById('fav_radio');
+                    var fav = document.getElementById('fav_rad');
+                    favMobile.checked = false;
+                    fav.checked = false;
+                    modal.style.display = "block";
                 }
             }
         });
     });
+
+    $('body').append('<script src="' + BASE_URL2 + 'js/limpaFiltros.js"></script>');
 });

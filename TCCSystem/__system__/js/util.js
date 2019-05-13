@@ -2,6 +2,13 @@ const BASE_URL = "http://localhost/BackupGit/economize/TCCSystem/";
 const BASE_URL2 = "http://localhost/BackupGit/economize/TCCSystem/__system__/";
 const BASE_URL3 = "http://localhost/BackupGit/economize/TCCSystem/__system__/admin_area/imagens_produtos/";
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000
+});
+
 function loadingRes(message="") {
     return "<p class='p-loading'><i class='fa fa-circle-notch fa-spin'></i> &nbsp;"+message+"</p>";
 }
