@@ -15,70 +15,70 @@
 		}
 
 		if(empty($_POST["usu_nome"])) {
-			$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, insira seu nome neste campo</p>";
+			$json["error_list"]["#usu_nome"] = "<p class='msgErrorCad'>Por favor, insira seu nome neste campo</p>";
 		} else {
 			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_nome"])) {
-				$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+				$json["error_list"]["#usu_nome"] = "<p class='msgErrorCad'>Por favor, somente somente letras ou espaços neste campo</p>";
 			} else {
 				if(substr_count($_POST["usu_nome"], " ") > 1) {
-					$json["error_list"]["#usu_nome"] = "<p style='color:red;'>Por favor, somente nomes simples ou compostos neste campo</p>";
+					$json["error_list"]["#usu_nome"] = "<p class='msgErrorCad'>Por favor, somente nomes simples ou compostos neste campo</p>";
 				}
 			}
 		}
 
 		if(empty($_POST["usu_sobrenome"])) {
-			$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, insira seu sobrenome neste campo</p>";
+			$json["error_list"]["#usu_sobrenome"] = "<p class='msgErrorCad'>Por favor, insira seu sobrenome neste campo</p>";
 		} else {
 			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_sobrenome"])) {
-				$json["error_list"]["#usu_sobrenome"] = "<p style='color:red;'>Por favor, somente somente letras ou espaços neste campo</p>";
+				$json["error_list"]["#usu_sobrenome"] = "<p class='msgErrorCad'>Por favor, somente somente letras ou espaços neste campo</p>";
 			}
 		}
 
 		if(empty($_POST["usu_cpf"])) {
-			$json["error_list"]["#usu_cpf"] = "<p style='color:red;'>Por favor, insira seu CPF neste campo</p>";
+			$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Por favor, insira seu CPF neste campo</p>";
 		} else {
 			if(strlen($_POST["usu_cpf"]) < 14) {
-				$json["error_list"]["#usu_cpf"] = "<p style='color:red;'>Por favor, insira um CPF válido</p>";
+				$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Por favor, insira um CPF válido</p>";
 			} else {
 				$verifica = $conn->prepare("SELECT usu_cpf FROM usuario WHERE usu_cpf=:cpf");
 				$verifica->bindValue(":cpf", "{$_POST["usu_cpf"]}");
 				$verifica->execute();
 				if($verifica->rowCount() > 0) {
-					$json["error_list"]["#usu_cpf"] = "<p style='color:red;'>Esse CPF já foi cadastrado anteriormente</p>";
+					$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Esse CPF já foi cadastrado anteriormente</p>";
 				}
 			}
 		}
 
 		if(empty($_POST["usu_email"])) {
-			$json["error_list"]["#usu_email"] = "<p style='color:red;'>Por favor, insira seu e-mail neste campo</p>";
+			$json["error_list"]["#usu_email"] = "<p class='msgErrorCad'>Por favor, insira seu e-mail neste campo</p>";
 		} else {
 			if(!filter_var($_POST["usu_email"], FILTER_VALIDATE_EMAIL)) {
-				$json["error_list"]["#usu_email"] = "<p style='color:red;'>Por favor, insira um e-mail válido neste campo</p>";
+				$json["error_list"]["#usu_email"] = "<p class='msgErrorCad'>Por favor, insira um e-mail válido neste campo</p>";
 			} else {
 				$verifica = $conn->prepare("SELECT usu_email FROM usuario WHERE usu_email=:email");
 				$verifica->bindValue(":email", "{$_POST["usu_email"]}");
 				$verifica->execute();
 				if($verifica->rowCount() > 0) {
-					$json["error_list"]["#usu_email"] = "<p style='color:red;'>Esse email já foi cadastrado anteriormente</p>";
+					$json["error_list"]["#usu_email"] = "<p class='msgErrorCad'>Esse email já foi cadastrado anteriormente</p>";
 				}
 			}
 		}
 
 		if(empty($_POST["usu_senha"])) {
-			$json["error_list"]["#usu_senha"] = "<p style='color:red;'>Por favor, insira sua senha neste campo</p>";
+			$json["error_list"]["#usu_senha"] = "<p class='msgErrorCad'>Por favor, insira sua senha neste campo</p>";
 		} else {
 			if(strpos($_POST["usu_senha"], " ") != FALSE) {
-				$json["error_list"]["#usu_senha"] = "<p style='color:red;'>Não pode haver espaços, por favor!</p>";
+				$json["error_list"]["#usu_senha"] = "<p class='msgErrorCad'>Não pode haver espaços, por favor!</p>";
 			} else {
 				if((strlen($_POST["usu_senha"]) < 6) || (strlen($_POST["usu_senha"]) > 14)) {
-					$json["error_list"]["#usu_senha"] = "<p style='color:red;'>Por favor, mínimo de 6 caracteres e máximo de 14!</p>";
+					$json["error_list"]["#usu_senha"] = "<p class='msgErrorCad'>Por favor, mínimo de 6 caracteres e máximo de 14!</p>";
 				} else {
 					if (!preg_match("(^[a-zA-Z0-9]+([a-zA-Z\_0-9\.-]*))", $_POST["usu_senha"]) ) {
-						$json["error_list"]["#usu_senha"] = "<p style='color:red;'>Apenas letras e números</p>";
+						$json["error_list"]["#usu_senha"] = "<p class='msgErrorCad'>Apenas letras e números</p>";
 					} else {
 						if($_POST["usu_senha"] != $_POST["usu_senha2"]) {
 							$json["error_list"]["#usu_senha"] = "";
-							$json["error_list"]["#usu_senha2"] = "<p style='color:red;'>Senhas não conferem!</p>";
+							$json["error_list"]["#usu_senha2"] = "<p class='msgErrorCad'>Senhas não conferem!</p>";
 						}
 					}
 				}
@@ -88,31 +88,31 @@
 		foreach($tel_num as $k => $v) {
 			$key = $k + 1;
 			if(empty($v)) {
-				$json["error_tel"] = "<p style='color:red;'>Por favor, insira o(s) telefone(s) corretamente</p>";
+				$json["error_tel"] = "<p class='msgErrorCadTel'>Por favor, insira o(s) telefone(s) corretamente</p>";
 			} else {
 				if(strlen($v) < 14) {
-					$json["error_tel"] = "<p style='color:red;'>Por favor, insira o(s) telefone(s) corretamente</p>";
+					$json["error_tel"] = "<p class='msgErrorCadTel'>Por favor, insira o(s) telefone(s) corretamente</p>";
 				} else {
 					$verifica = $conn->prepare("SELECT tel_num FROM telefone WHERE tel_num='$v'");
 					$verifica->execute();
 					if($verifica->rowCount() > 0) {
-						$json["error_tel"] = "<p style='color:red;'>O {$key}º telefone já foi cadastrado anteriormente</p>";
+						$json["error_tel"] = "<p class='msgErrorCadTel'>O {$key}º telefone já foi cadastrado anteriormente</p>";
 					}
 				}
 			}
 		}
 
 		if(empty($_POST["usu_cep"])) {
-			$json["error_list"]["#usu_cep"] = "<p style='color:red;'>Por favor, insira seu CEP neste campo</p>";
+			$json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira seu CEP neste campo</p>";
 		} else {
 			if(empty($_POST["usu_uf"])) {
-				$json["error_list"]["#usu_uf"] = "<p style='color:red;'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
+				$json["error_list"]["#usu_uf"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
 			} else {
 				if(empty($_POST["usu_num"])) {
-					$json["error_list"]["#usu_num"] = "<p style='color:red;'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
+					$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
 				} else {
 					if(!is_numeric($_POST["usu_num"])) {
-						$json["error_list"]["#usu_num"] = "<p style='color:red;'>Somente números neste campo</p>";
+						$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
 					}
 					//else {
 						// $cid = $_POST["usu_cidade"];
@@ -200,7 +200,7 @@
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
+					$json["error_list"]["#btn-cad"] = "<p class=''><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;

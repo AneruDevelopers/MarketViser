@@ -59,21 +59,44 @@
         <!-- Display Products -->
 
         <!-- -------------------- -->
+        <div class="myModalArmazem" id="myModalArmazem">
+			<div class="modalArmazemContent">
+				Teste modal
+				<span class="closeModalArmazem">&times;</span>							
+			</div>
+		</div>
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <form id="form-login">
+                <div class="modalLeftContent">
+                    <form id="form-login">
+                        <!-- <i class="far fa-check-circle"></i> -->
+                        <h4 class="titleModalLogin">LOG IN</h4>
+                        <div class="outsideSecInputCad">
+                            <div class="field -md">
+                                <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
+                                <label class="labelFieldCad"><strong>EMAIL</strong></label>
+                            </div>
+                            <div class="help-block"></div><br/>
+                        </div>
+                        <div class="outsideSecInputCad">
+                            <div class="field -md">
+                                <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
+                                <label class="labelFieldCad"><strong>SENHA</strong></label>
+                            </div>
+                            <div class="help-block"></div><br/>
+                        </div>
+                        <button class="btnSend" type="submit" id="btn-login" value="Entrar"/>ENTRAR</button>
+                        <div class="help-block-login"></div>
+                    </form>
+                </div>
+                <div class="modalRightContent">
                     <span class="close">&times;</span>
-                    <!-- <i class="far fa-check-circle"></i> -->
-                    <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
-                    <strong><label class="labelInput">E-MAIL</label></strong>
-                    <input class="inputModal" type="text" placeholder=" E-mail" name="usu_email_login" id="usu_email_login"/><br/>
-                    <strong><label class="labelInput">SENHA</label></strong>
-                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
-                    <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p>
-                    <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
-                    <div class="help-block-login"></div>
-                </form>
+                    <p class="textModal">Olá, amigo!</p>
+                    <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
+                    <div class="divLinkCad">    
+                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
+                    </div>    
+                </div>
             </div>
         </div>
         <!-- -------------------- -->

@@ -17,7 +17,7 @@
     </div>
 </div>
 <ul class="menuTopNav">
-    <li class="celulaTopNavCity">
+    <li class="celulaTopNavCity" id="myBtnArmazem">
         <a class="linkMenuTopNavCity" href="#">
             LINS - SP
         </a>
@@ -30,8 +30,8 @@
             CARRINHO
         </a>
     </li>
-    <li class="celulaTopNav">
-        <a class="linkMenuTopNav" href="#" id="myBtn2">
+    <li class="celulaTopNav" id="myBtn2">
+        <a class="linkMenuTopNav" href="#">
             <div class="leftBack">
                 <i class="far fa-user-circle"></i>
             </div>

@@ -32,168 +32,210 @@
 		?>    
 		</div>
 		<div class="l-mainCad">
-		<div class="circleCad">
+		<!-- <div class="circleCad">
 			<p>Junte-se a família e.conomize!</p>
-		</div>
-			<div class="divCad">
-				<form id="form-cadastro">
-				<h2>Cadastre-se</h2>
-				<div class="divisorTitle">
-					<h5>Dados Pessoais</h5>
-				</div>
-					<div class="divisor"></div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_nome">PRIMEIRO NOME</label></strong><br>
-							<input type="text" placeholder=" Primeiro Nome" id="usu_nome" maxlength="150" name="usu_nome"/>
+		</div> -->
+		<div class="zigzag">&#10650</div>
+		<div class="zigzag2">&#10650</div>
+		<div class="zigzag3">&#10650</div>
+				<form id="form-cadastro" class="formCad">
+					<div class="divBehindCad">
+						<div class="divListaOnCad">
+							<label for="">VANTAGENS</label>
+							<ul class="listaOnCad">
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Acesso às compras</li>
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Receba notícias</li>
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Promoções</li>
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Devoluções</li>
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Central de atendimento</li>
+								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Cupons de desconto</li>
+							</ul>
 						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_sobrenome">SOBRENOME</label></strong><br>
-							<input type="text" placeholder=" Sobrenome" id="usu_sobrenome" name="usu_sobrenome"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_cpf">CPF</label></strong><br>
-							<input type="text" placeholder=" CPF" class="cpf" id="usu_cpf" name="usu_cpf"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_email">E-MAIL</label></strong><br>
-							<input type="text" placeholder=" E-mail" id="usu_email" name="usu_email"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_senha">SENHA</label></strong><br>
-							<input type="password" placeholder=" Senha" id="usu_senha" name="usu_senha"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCadPassword inputConfirm">
-							<input type="password" placeholder=" Confirme a senha" id="usu_senha2" name="usu_senha2"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					
-					<div class="">
-						<div class="sectionInputCad" id="telefone">
-							<strong><label class="labelInputCad" for="">TELEFONE(S)</label></strong><br>
-							
-								<div class="workAsInput">
-									<input type="text" placeholder=" Número Tel" class="sp_celphones" name="tel_num[]"/>
+						<div class="arrowCadTop"><img src="__system__\img\whitearrow.png" alt=""></div>
+						<div class="divCadTop">
+							<h2>Cadastre-se</h2>
+							<div class="divCadLeft">
+								<div class="divisorTitle">
+									<h6>Dados Pessoais</h6>
 								</div>
-								<?php
-									$sel = $conn->prepare("SELECT * FROM tipo_tel");
-									$sel->execute();
-									if($sel->rowCount() > 0):
-										$rows = $sel->fetchAll();?>
-										<div class="">
-											<select class="selectTypeTel" name="tipo_tel[]">
-												<optgroup label=" TIPO DE TELEFONE">
+								<div class="divisorData"></div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" id="usu_nome" maxlength="150" name="usu_nome" class="placeholder-shown" placeholder="Some placeholder"/>
+										<label for="usu_nome" class="labelFieldCad"><strong>NOME</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" id="usu_sobrenome" name="usu_sobrenome" class="placeholder-shown" placeholder="Some placeholder"/>
+										<label class="labelFieldCad"><strong>SOBRENOME</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" class="cpf placeholder-shown" id="usu_cpf" name="usu_cpf" placeholder="Some placeholder"/>
+										<label class="labelFieldCad"><strong>CPF</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" id="usu_email" name="usu_email" class="placeholder-shown" placeholder="Some placeholder"/>
+										<label class="labelFieldCad"><strong>EMAIL</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="password" id="usu_senha" name="usu_senha" class="placeholder-shown" placeholder="Some placeholder"/>
+										<label class="labelFieldCad"><strong>SENHA</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="password" id="usu_senha2" name="usu_senha2" class="placeholder-shown" placeholder="Some placeholder"/>
+										<label class="labelFieldCad"><strong>CONFIRMAR SENHA</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md" id="telefone">
+										<input type="text" class="sp_celphones placeholder-shown" placeholder="Some placeholder" name="tel_num[]"/>
+										<label class="labelFieldCad"><strong>TELEFONE(S)</strong></label>
+											<?php
+												$sel = $conn->prepare("SELECT * FROM tipo_tel");
+												$sel->execute();
+												if($sel->rowCount() > 0):
+													$rows = $sel->fetchAll();?>
+													<div class="">
+														<select class="selectTypeTel" name="tipo_tel[]">
+															<optgroup label=" TIPO DE TELEFONE">
+																<?php
+																	foreach($rows as $row):?>
+																		<option value="<?php echo $row['tpu_tel_id']; ?>">
+																			<?php echo $row['tpu_tel_nome']; ?>
+																		</option>
+																		<?php
+																	endforeach;
+																?>
+															</optgroup>
+														</select>
+													</div>
 													<?php
-														foreach($rows as $row):?>
-															<option value="<?php echo $row['tpu_tel_id']; ?>">
-																<?php echo $row['tpu_tel_nome']; ?>
-															</option>
-															<?php
-														endforeach;
-													?>
-												</optgroup>
-											</select>
+												endif;?>
+												<button type="button" class="btnAddTel" id="add_telefone"><i class="fas fa-plus-circle"></i></button>
 										</div>
-										<?php
-									endif;?>
-									<button type="button" class="btnAddTel" id="add_telefone"><i class="fas fa-plus-circle"></i></button>
+									<div class="help-block-tel"></div>
+								</div>
 							</div>
-						<div class="help-block-tel"></div>
-					</div>
-
-					<div class="divisorTitle divisorMargin">
-						<h5>Dados Residenciais</h5>
-					</div>
-					<div class="divisor"></div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_cep">CEP</label></strong><br>
-							<input type="text" placeholder=" CEP" class="form-control cep" id="usu_cep" name="usu_cep"/>
 						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_end">LOGRADOURO</label></strong><br>
-							<input type="text" placeholder=" Logradouro" readonly id="usu_end" name="usu_end"/>
+						<div class="divCadBottom">
+							<div class="divCadRight">
+								<div class="divisorTitle divisorMargin">
+									<h6>Dados Residenciais</h6>
+								</div>
+								<div class="divisorData"></div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" CEP" class="form-control cep placeholder-shown" id="usu_cep" name="usu_cep"/>
+										<label class="labelFieldCad"><strong>CEP</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Logradouro" class="placeholder-shown" readonly id="usu_end" name="usu_end"/>
+										<label class="labelFieldCad"><strong>LOGRADOURO</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Número" class="placeholder-shown" id="usu_num" name="usu_num"/>
+										<label class="labelFieldCad"><strong>NÚMERO</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Complemento" class="placeholder-shown" id="usu_complemento" name="usu_complemento"/>
+										<label class="labelFieldCad"><strong>COMPLEMENTO</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Bairro" class="placeholder-shown" readonly id="usu_bairro" name="usu_bairro"/>
+										<label class="labelFieldCad"><strong>BAIRRO</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Cidade" class="placeholder-shown" readonly id="usu_cidade" name="usu_cidade"/>
+										<label class="labelFieldCad"><strong>CIDADE</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<div class="field -md">
+										<input type="text" placeholder=" Estado" class="placeholder-shown" readonly id="usu_uf" name="usu_uf"/>
+										<label class="labelFieldCad"><strong>ESTADO</strong></label>
+									</div>
+									<div class="help-block"></div><br/>
+								</div>
+								<div class="btnSendCad">
+									<button class="btnSubCad" type="submit" id="btn-cad" value="Cadastrar"/>CADASTRAR</button>
+									<div class="help-block"></div>
+								</div>
+							</div>
 						</div>
-						<div class="help-block"></div><br/>
 					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_num">NÚMERO</label></strong><br>
-							<input type="text" placeholder=" Número" id="usu_num" name="usu_num"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_complemento"> COMPLEMENTO</label></strong><br>
-							<input type="text" placeholder=" Complemento" id="usu_complemento" name="usu_complemento"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_bairro"> BAIRRO</label></strong><br>
-							<input type="text" placeholder=" Bairro" readonly id="usu_bairro" name="usu_bairro"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_cidade"> CIDADE</label></strong><br>
-							<input type="text" placeholder=" Cidade" readonly id="usu_cidade" name="usu_cidade"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="outsideSecInputCad">
-						<div class="sectionInputCad">
-							<strong><label class="labelInputCad" for="usu_uf"> ESTADO</label></strong><br>
-							<input type="text" placeholder=" Estado" readonly id="usu_uf" name="usu_uf"/>
-						</div>
-						<div class="help-block"></div><br/>
-					</div>
-					<div class="btnSendCad">
-						<input class="btnSubCad" type="submit" id="btn-cad" value="Cadastrar"/>
-						<div class="help-block"></div>
-					</div>
-				</form>
+				</form>		
+		</div>
+		<div class="myModalArmazem" id="myModalArmazem">
+			<div class="modalArmazemContent">
+				Teste modal
+				<span class="closeModalArmazem">&times;</span>							
 			</div>
 		</div>
 		<div id="myModal" class="modal">
             <div class="modal-content">
-                <form id="form-login">
+                <div class="modalLeftContent">
+                    <form id="form-login">
+                        <!-- <i class="far fa-check-circle"></i> -->
+                        <h4 class="titleModalLogin">LOG IN</h4>
+                        <div class="outsideSecInputCad">
+                            <div class="field -md">
+                                <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
+                                <label class="labelFieldCad"><strong>EMAIL</strong></label>
+                            </div>
+                            <div class="help-block"></div><br/>
+                        </div>
+                        <div class="outsideSecInputCad">
+                            <div class="field -md">
+                                <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
+                                <label class="labelFieldCad"><strong>SENHA</strong></label>
+                            </div>
+                            <div class="help-block"></div><br/>
+                        </div>
+                        <button class="btnSend" type="submit" id="btn-login" value="Entrar"/>ENTRAR</button>
+                        <div class="help-block-login"></div>
+                    </form>
+                </div>
+                <div class="modalRightContent">
                     <span class="close">&times;</span>
-                    <!-- <i class="far fa-check-circle"></i> -->
-                    <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
-                    <strong><label class="labelInput">E-MAIL</label></strong>
-                    <input class="inputModal" type="text" placeholder=" E-mail" name="usu_email_login" id="usu_email_login"/><br/>
-                    <strong><label class="labelInput">SENHA</label></strong>
-                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
-                    <p class="textModal">Ainda não é cadastrado?<br/>
-                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p>
-                    <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
-                    <div class="help-block-login"></div>
-                </form>
-            </div>
-        </div>
+                    <p class="textModal">Olá, amigo!</p>
+                    <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
+                    <div class="divLinkCad">    
+                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
+                    </div>    
+                </div>
+			</div>
+		</div>
 		<div class="l-footer" id="footer">
         <?php
             include('functions/includes/footer.html');
@@ -223,36 +265,39 @@
 			$('#add_telefone').click(function(e) {
 				e.preventDefault();
 				if (x < campos_max) {
-						$('#telefone').append('<div class="outsideSecInputCad">\
-							<div class="sectionInputCadPlus">\
-								<input type="text" placeholder=" Número Tel" class="sp_celphones" name="tel_num[]"/>\
+						$('#telefone').append('<div class="telPlus">\
+						<div class="outsideSecInputCadPlus">\
+							<div class="field -md">\
+								<input type="text" placeholder=" Número Tel" class="sp_celphones placeholder-shown" name="tel_num[]"/>\
+								<label class="labelFieldCad"><strong>TELEFONE</strong></label>\
 							</div>\
 							<?php
 								$sel = $conn->prepare("SELECT * FROM tipo_tel");
 								$sel->execute();
 								if($sel->rowCount() > 0):
 									$rows = $sel->fetchAll();?>
-									<div class="sectionInputCadPlus">\
-										<select class="selectTypeTelPlus" name="tipo_tel[]">\
-											<optgroup label="TIPO DO TELEFONE">\
-												<?php
-													foreach($rows as $row):?>
-														<option value="<?php echo $row['tpu_tel_id']; ?>">\
-															<?php echo $row['tpu_tel_nome']; ?>
-														</option>\
-														<?php
-													endforeach;
-												?>
-											</optgroup>\
-										</select>\
-									</div>\
+										<div class="field -md">\
+											<select class="selectTypeTel" name="tipo_tel[]">\
+												<optgroup label="TIPO DO TELEFONE">\
+													<?php
+														foreach($rows as $row):?>
+															<option value="<?php echo $row['tpu_tel_id']; ?>">\
+																<?php echo $row['tpu_tel_nome']; ?>
+															</option>\
+															<?php
+														endforeach;
+													?>
+												</optgroup>\
+											</select>\
+										</div>\
 									<?php
 								endif;
 							?>
 						<div class="btnRemove">\
 							<a href="#" class="remover_campo"><i class="fas fa-times"></i></a>\
 						</div>\
-						</div>');
+						</div>\
+						<div>');
 					x++;
 				}
 			});
