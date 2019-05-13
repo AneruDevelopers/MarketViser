@@ -1,5 +1,5 @@
 <div class="topNavCity">
-    <h6 class="linkMenuTopNavCityMobile">
+    <h6 class="linkMenuTopNavCityMobile" id="myBtnArmazemMobile">
         <i class="fas fa-globe-americas"></i> LINS - SP
     </h6>
 </div>

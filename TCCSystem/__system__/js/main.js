@@ -210,6 +210,32 @@ modal2.onclick = function() {
     modal2.style.display = "none";
 }
 
+// MODAL DE ARMAZÉNS MOBILE
+
+var modal3 = document.getElementById('myModalArmazem');
+
+var btn3 = document.getElementById("myBtnArmazemMobile");
+
+var span3 = document.getElementsByClassName("closeModalArmazem")[0];
+
+btn3.onclick = function() {
+    modal3.style.display = "block";
+}
+
+span3.onclick = function() {
+    modal3.style.display = "none";
+}
+
+// window.onclick = function(event) {
+//   if (event.target == modal2) {
+//     modal2.style.display = "none";
+//   }
+// }
+
+modal3.onclick = function() {
+    modal3.style.display = "none";
+}
+
 // EFEITO INPUT CADASTRO
 
 +function($){
