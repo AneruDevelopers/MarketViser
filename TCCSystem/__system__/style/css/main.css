@@ -2844,7 +2844,7 @@ border-radius: 0;
         width: auto;
     }
 
-    .remover_campo {
+    .remover_campo, .remover_filtro {
         color: red;
         position: relative;
         top: -2rem;

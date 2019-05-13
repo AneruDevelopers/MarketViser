@@ -29,9 +29,9 @@
             $sel2->execute();
             $result2 = $sel2->fetchAll();?>
             <div class="divFilter">
-                <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                <label class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                 <select class="selectFilter produto_tamanho">
-                    <option selected disabled> Filtrar </option>
+                    <option selected disabled value="*000*"> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
                         <option value="<?= $v['tam']; ?>"><?= $v['tam']; ?></option>
@@ -44,9 +44,9 @@
             $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id WHERE s.depart_id={$_SESSION['depart_id']}");
             $sel2->execute();
             $result2 = $sel2->fetchAll();?>
-                <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
+                <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
                 <select class="selectFilter prod_marca">
-                    <option selected disabled> Filtrar </option>
+                    <option selected disabled value="*000*"> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
                         <option value="<?= $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></option>
@@ -55,16 +55,16 @@
                 </select>
             </div>
             <div class="divFilter">
-                <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                 <select class="selectFilter prod_preco">
-                    <option selected disabled> Filtrar </option>
+                    <option selected disabled value="*000*"> Filtrar </option>
                     <option value="DESC">Maior Preço</option>
                     <option value="ASC">Menor Preço</option>
                 </select>
             </div>
             <div class="divFilter">
-                <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
-                <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="fav_prods"/>
+                <label class="titleConfigFilter filterFav" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                <input type="radio" name="fav_radio" class="fav_radio prod_fav" id="fav_radio"/>
             </div>
         </div>
 
@@ -89,7 +89,7 @@
             $sel2->execute();
             $result2 = $sel2->fetchAll();?>
             <div class="divFilter">
-                <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                <label for="href" class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                 <ul class="listFilterOptions">
                 <?php
                 foreach($result2 as $k => $v):?>
@@ -103,7 +103,7 @@
             $sel2->execute();
             $result2 = $sel2->fetchAll();?>
             <div class="divFilter">
-                <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label>
                 <ul class="listFilterOptions">
                 <?php
                 foreach($result2 as $k => $v):?>
@@ -113,7 +113,7 @@
                 </ul>
             </div>
             <div class="divFilter">
-                <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                 <ul class="listFilterOptions">
                     <li class="celulaListFilterOpt">
                         <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
@@ -124,10 +124,10 @@
                 </ul>
             </div>
             <div class="divFilter">
-                <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                <label class="titleConfigFilter filterFav"><i class="fas fa-heart"></i> FAVORITOS</label>
                 <ul class="listFilterOptions">
                     <li class="celulaListFilterOpt">
-                        <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
+                        <input type="radio" name="produto_fav" class="prod_fav" id="fav_rad"> <label for="fav_rad">Favoritos</label>
                     </li>
                 </ul>
             </div>
@@ -197,9 +197,9 @@
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
-                        <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                        <label class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                         <select class="selectFilter produto_tamanho">
-                            <option selected disabled> Filtrar </option>
+                            <option selected disabled value="*000*"> Filtrar </option>
                             <?php
                             foreach($result2 as $v):?>
                                 <option value="<?= $v['tam']; ?>"><?= $v['tam']; ?></option>
@@ -212,9 +212,9 @@
                     $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id WHERE c.subcateg_id={$_SESSION['subcateg_id']}");
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
-                    <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
+                    <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
                     <select class="selectFilter prod_marca">
-                        <option selected disabled> Filtrar </option>
+                        <option selected disabled value="*000*"> Filtrar </option>
                         <?php
                         foreach($result2 as $v):?>
                             <option value="<?= $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></option>
@@ -223,16 +223,16 @@
                     </select>
                     </div>
                     <div class="divFilter">
-                        <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                        <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                         <select class="selectFilter prod_preco">
-                            <option selected disabled> Filtrar </option>
+                            <option selected disabled value="*000*"> Filtrar </option>
                             <option value="DESC">Maior Preço</option>
                             <option value="ASC">Menor Preço</option>
                         </select>
                     </div>
                     <div class="divFilter">
-                        <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
-                        <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+                        <label class="titleConfigFilter filterFav" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                        <input type="radio" name="fav_radio" class="fav_radio prod_fav" id="fav_radio"/>
                     </div>
                 </div>
                 
@@ -256,7 +256,7 @@
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
-                        <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                        <label for="href" class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                         <ul class="listFilterOptions">
                         <?php
                         foreach($result2 as $v):?>
@@ -270,7 +270,7 @@
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
-                        <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                        <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label>
                         <ul class="listFilterOptions">
                         <?php
                         foreach($result2 as $v):?>
@@ -280,7 +280,7 @@
                         </ul>
                     </div>
                     <div class="divFilter">
-                        <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                        <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                         <ul class="listFilterOptions">
                             <li class="celulaListFilterOpt">
                                 <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
@@ -291,10 +291,10 @@
                         </ul>
                     </div>
                     <div class="divFilter">
-                        <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                        <label class="titleConfigFilter filterFav"><i class="fas fa-heart"></i> FAVORITOS</label>
                         <ul class="listFilterOptions">
                             <li class="celulaListFilterOpt">
-                                <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
+                                <input type="radio" name="produto_fav" class="prod_fav" id="fav_rad"> <label for="fav_rad">Favoritos</label>
                             </li>
                         </ul>
                     </div>
@@ -344,9 +344,9 @@
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
-                    <label class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                    <label class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                     <select class="selectFilter produto_tamanho">
-                        <option selected disabled> Filtrar </option>
+                        <option selected disabled value="*000*"> Filtrar </option>
                         <?php
                         foreach($result2 as $v):?>
                             <option value="<?= $v['tam']; ?>"><?= $v['tam']; ?></option>
@@ -359,27 +359,27 @@
                 $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_categ={$_SESSION['categ_id']}");
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
-                <label class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label> 
+                <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
                 <select class="selectFilter prod_marca">
-                    <option selected disabled> Filtrar </option>
+                    <option selected disabled value="*000*"> Filtrar </option>
                     <?php
                     foreach($result2 as $v):?>
-                        <option value="<?= $v['produto_marca']; ?>"><?= $v['marca_nome']; ?></option>
+                        <option value="<?= $v['marca_nome']; ?>"><?= $v['marca_nome']; ?></option>
                         <?php
                     endforeach;?>
                 </select>
                 </div>
                 <div class="divFilter">
-                    <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                    <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                     <select class="selectFilter prod_preco">
-                        <option selected disabled> Filtrar </option>
+                        <option selected disabled value="*000*"> Filtrar </option>
                         <option value="DESC">Maior Preço</option>
                         <option value="ASC">Menor Preço</option>
                     </select>
                 </div>
                 <div class="divFilter">
-                    <label class="titleConfigFilter" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
-                    <input type="radio" name="fav_radio" class="fav_radio" id="fav_radio" value="">
+                    <label class="titleConfigFilter filterFav" for="fav_radio"><i class="fas fa-heart"></i> FAVORITOS</label>
+                    <input type="radio" name="fav_radio" class="fav_radio prod_fav" id="fav_radio"/>
                 </div>
             </div>
 
@@ -393,7 +393,7 @@
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
-                    <label for="href" class="titleConfigFilter"><i class="fas fa-weight-hanging"></i> VOLUME</label>
+                    <label for="href" class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                     <ul class="listFilterOptions">
                     <?php
                     foreach($result2 as $v):?>
@@ -407,7 +407,7 @@
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
-                    <label for="href" class="titleConfigFilter"><i class="fas fa-copyright"></i> MARCA</label>
+                    <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label>
                     <ul class="listFilterOptions">
                     <?php
                     foreach($result2 as $v):?>
@@ -417,7 +417,7 @@
                     </ul>
                 </div>
                 <div class="divFilter">
-                    <label class="titleConfigFilter">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
+                    <label class="titleConfigFilter filterPreco">&nbsp<i class="fas fa-dollar-sign"></i> &nbspPREÇO</label>
                     <ul class="listFilterOptions" id="preco_filtro">
                         <li class="celulaListFilterOpt">
                             <input type="radio" name="produto_preco" class="prod_preco" id="me_p" value="ASC"> <label for="me_p">Menor preço</label>
@@ -428,10 +428,10 @@
                     </ul>
                 </div>
                 <div class="divFilter">
-                    <label class="titleConfigFilter"><i class="fas fa-heart"></i> FAVORITOS</label>
+                    <label class="titleConfigFilter filterFav"><i class="fas fa-heart"></i> FAVORITOS</label>
                     <ul class="listFilterOptions" id="preco_filtro">
                         <li class="celulaListFilterOpt">
-                            <input type="radio" name="produto_fav" class="prod_fav" id="fav_prod" value="<?= $_SESSION['inf_usu']['usu_id']; ?>"> <label for="fav_prod">Favoritos</label>
+                            <input type="radio" name="produto_fav" class="prod_fav" id="fav_rad"> <label for="fav_rad">Favoritos</label>
                         </li>
                     </ul>
                 </div>

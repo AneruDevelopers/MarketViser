@@ -8,6 +8,9 @@
     if(isset($_SESSION['query_preco'])) {
         unset($_SESSION['query_preco']);
     }
+    if(isset($_SESSION['query_fav'])) {
+        unset($_SESSION['query_preco']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -101,12 +104,13 @@
     </div>
 
     <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?php echo base_url(); ?>js/procuraProdutos.js"></script>
     <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
+    <script src="<?php echo base_url(); ?>js/meusFavoritos.js"></script>
 </body>
 </html>

@@ -1,11 +1,4 @@
 $(document).ready(function() {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 2000
-    });
-
     $('.addFavorito').click(function(e) {
         e.preventDefault();
         var dado = 'add_prod_id=' + $(this).attr('id');
