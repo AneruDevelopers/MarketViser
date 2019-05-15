@@ -11,6 +11,7 @@ $(function() {
                             <div class="btnFavorito` + response['produtos'][i].produto_id + `"></div>
                             <a class="linksProdCarousel">
                                 <img class="divProdImg" src="` + BASE_URL3 + response['produtos'][i].produto_img + `">
+                                <div class='divisorFilterCar'></div>
                                 <p class="divProdPromo">-` + response['produtos'][i].produto_desconto_porcent + `%</p>
                                 <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + `</h4>
                                 <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>

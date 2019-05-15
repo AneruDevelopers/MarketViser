@@ -67,7 +67,7 @@ $(document).ready(function() {
                     btnFavorito();
                 }
                 if(json['first']) {
-                    $('.FilterVol').append(' &nbsp;&nbsp;&nbsp;<span class="limpaVol">&times;</span>');
+                    $('.FilterVol').append(' &nbsp;&nbsp;&nbsp;<span class="limpaVol limpaBusca"><i class="fas fa-minus-square"></i></span>');
                     $('.limpaVol').click(function(e) {
                         e.preventDefault();
                         limpaVol();
@@ -126,7 +126,7 @@ $(document).ready(function() {
                     btnFavorito();
                 }
                 if(json['first']) {
-                    $('.FilterMarca').append(' &nbsp;&nbsp;&nbsp;<span class="limpaMarca">&times;</span>');
+                    $('.FilterMarca').append(' &nbsp;&nbsp;&nbsp;<span class="limpaMarca limpaBusca"><i class="fas fa-minus-square"></i></span>');
                     $('.limpaMarca').click(function(e) {
                         e.preventDefault();
                         limpaMarca();
@@ -185,7 +185,7 @@ $(document).ready(function() {
                     btnFavorito();
                 }
                 if(json['first']) {
-                    $('.filterPreco').append(' &nbsp;&nbsp;&nbsp;<span class="limpaPreco">&times;</span>');
+                    $('.filterPreco').append(' &nbsp;&nbsp;&nbsp;<span class="limpaPreco limpaBusca"><i class="fas fa-minus-square"></i></span>');
                     $('.limpaPreco').click(function(e) {
                         e.preventDefault();
                         limpaPreco();
@@ -244,7 +244,7 @@ $(document).ready(function() {
                         }
                         btnFavorito();
                     }
-                    $('.filterFav').append(' &nbsp;&nbsp;&nbsp;<span class="limpaFav">&times;</span>');
+                    $('.filterFav').append(' &nbsp;&nbsp;&nbsp;<span class="limpaFav limpaBusca"><i class="fas fa-minus-square"></i></span>');
                     $('.limpaFav').click(function(e) {
                         e.preventDefault();
                         limpaFav();

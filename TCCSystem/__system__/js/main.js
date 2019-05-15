@@ -75,6 +75,18 @@ $(document).ready(function() {
       }
   });
 
+  $('.favoritos').owlCarousel({
+    center: true,
+    items:5,
+    loop:true,
+    margin:5,
+    responsive:{
+        600:{
+            items:7
+        }
+    }
+});
+
   
 });
 
@@ -95,6 +107,7 @@ $(document).ready(function() {
       }
   })
 })();
+
 
 
 // window.onscroll = function() {myFunction()};
