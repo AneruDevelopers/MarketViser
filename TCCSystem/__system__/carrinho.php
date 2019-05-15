@@ -1,23 +1,9 @@
-<?php
-    if(isset($_SESSION['query_tam'])) {
-        unset($_SESSION['query_tam']);
-    }
-    if(isset($_SESSION['query_marca'])) {
-        unset($_SESSION['query_marca']);
-    }
-    if(isset($_SESSION['query_preco'])) {
-        unset($_SESSION['query_preco']);
-    }
-    if(isset($_SESSION['query_fav'])) {
-        unset($_SESSION['query_preco']);
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>e.conomize - Ache seu produto rapidamente</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>e.conomize</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>/style/css/main.css">
@@ -28,12 +14,12 @@
 </head>
 <body>
     <div class="l-wrapper_FiltroPesq">
-        <div class="l-topNavFiltroPesq" id="topNav">
+
+        <div class="l-topNav" id="topNav">
         <?php
             include('functions/includes/topNav.php');
         ?>    
         </div>
-
         <nav class="l-headerNav" id="headerNav">
         <?php
             include('functions/includes/header.html');
@@ -46,10 +32,22 @@
         ?>
         </div>
 
+		<!-- Title/Display Products -->
+
         <div class="l-mainFiltroPesq">
-            <?php require_once 'functions/includes/filtroPesquisa.php'; ?>
+			<h3 style="opacity:0;">A</h3>
+            <h2 class="tituloOfertas">MEU CARRINHO</h2>
+            <div class="divShowProdFav">
+                
+			</div>
         </div>
-        <!-- -------------------- -->
+        <div class="divShowTot">
+				
+		</div>
+
+        <!-- Display Products -->
+
+		<!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
 				Teste modal
@@ -76,7 +74,7 @@
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
-                        <button class="btnSend" type="submit" id="btn-login" value="Entrar"/>ENTRAR</button>
+                        <button class="btnSend" type="submit" id="btn-login" value="Entrar">ENTRAR</button>
                         <div class="help-block-login"></div>
                     </form>
                 </div>
@@ -91,12 +89,13 @@
             </div>
         </div>
         <!-- -------------------- -->
-        <div class="l-footerFiltroPesq" id="footer">
+
+        <div class="l-footer" id="footer">
         <?php
             include('functions/includes/footer.html');
         ?>
         </div>
-        <div class="l-footerBottomFiltroPesq" id="footerBottom">
+        <div class="l-footerBottom" id="footerBottom">
         <?php
             include('functions/includes/bottomFooter.html');
         ?>
@@ -109,9 +108,7 @@
     <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?php echo base_url(); ?>js/procuraProdutos.js"></script>
-    <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?php echo base_url(); ?>js/meusFavoritos.js"></script>
+    <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
 </body>
 </html>

@@ -24,6 +24,13 @@ function limpaVol() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     } else {
@@ -36,6 +43,13 @@ function limpaVol() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     }
@@ -82,6 +96,13 @@ function limpaMarca() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     } else {
@@ -94,6 +115,13 @@ function limpaMarca() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     }
@@ -140,6 +168,13 @@ function limpaPreco() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     } else {
@@ -152,6 +187,13 @@ function limpaPreco() {
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </div>
                         `;
                     }
@@ -203,6 +245,13 @@ function limpaFav() {
                                     <div class='divisorFilter'></div>
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    <div>
+                                        <button class="btnBuy">COMPRAR</button>
+                                        <form class="formBuy">
+                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                        </form>
+                                    </div>
                                 </div>
                             `;
                         } else {
@@ -215,6 +264,13 @@ function limpaFav() {
                                     <div class='divisorFilter'></div>
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    <div>
+                                        <button class="btnBuy">COMPRAR</button>
+                                        <form class="formBuy">
+                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                        </form>
+                                    </div>
                                 </div>
                             `;
                         }

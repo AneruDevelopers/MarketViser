@@ -12,15 +12,22 @@ $(function() {
                             <a class="linksProdCarousel">
                                 <img class="divProdImg" src="` + BASE_URL3 + response['produtos'][i].produto_img + `">
                                 <p class="divProdPromo">-` + response['produtos'][i].produto_desconto_porcent + `%</p>
-                                <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + `</h4>
+                                <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + ` - ` + response['produtos'][i].produto_tamanho + `</h4>
                                 <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>
-                                <button class="btnBuy">COMPRAR</button>
+                                <div>
+                                    <button class="btnBuy">COMPRAR</button>
+                                    <form class="formBuy">
+                                        <input type="hidden" value="` + response['produtos'][i].produto_id + `" name="id_prod"/>
+                                        <input type="number" min="0" value="` + response['produtos'][i].carrinho + `" class="inputBuy` + response['produtos'][i].produto_id + `" name="qtd_prod"/>
+                                    </form>
+                                </div>
                             </a>
                         </div>
                     `;
                 }
                 $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
-                $('body').append('<script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>\
+                $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>\
+                <script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>\
                 <script src="' + BASE_URL2 + 'js/meusFavoritos.js"></script>');
             } else {
                 $('.l-prods').html(`<h2 class="sem_promo">Sem promoções hoje. Aproveite a barra de pesquisa</h2>`);

@@ -161,6 +161,13 @@
                     <p class='priceProdFilter'>
                         <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
                     </p>
+                    <div>
+                        <button class="btnBuy">COMPRAR</button>
+                        <form class="formBuy">
+                            <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
+                            <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                        </form>
+                    </div>
                 </div>
                 <?php
             endforeach;?>
@@ -325,7 +332,14 @@
                             <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
                             <p class='priceProdFilter'>
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
-                            </p>
+                            </p>            
+                            <div>
+                                <button class="btnBuy">COMPRAR</button>
+                                <form class="formBuy">
+                                    <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
+                                    <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                                </form>
+                            </div>
                         </div>
                         <?php
                     endforeach;?>
@@ -463,6 +477,13 @@
                             <p class='priceProdFilter'>
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . number_format($v["produto_preco"], 2, ',', '.'); ?>
                             </p>
+                            <div>
+                                <button class="btnBuy">COMPRAR</button>
+                                <form class="formBuy">
+                                    <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
+                                    <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                                </form>
+                            </div>
                         </div>
                         <?php
                     endforeach;

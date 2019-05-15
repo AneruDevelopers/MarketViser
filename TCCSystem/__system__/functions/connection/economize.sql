@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/05/2019 às 22:36
+-- Tempo de geração: 14/05/2019 às 01:16
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -398,6 +398,15 @@ CREATE TABLE `produtos_favorito` (
   `usu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Despejando dados para a tabela `produtos_favorito`
+--
+
+INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
+(63, 3, 1),
+(65, 2, 1),
+(66, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -523,7 +532,8 @@ CREATE TABLE `tipousu` (
 
 INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
 (1, 'Cliente', NULL),
-(2, 'Associado', 20);
+(2, 'Associado', 20),
+(3, 'Administrador', NULL);
 
 -- --------------------------------------------------------
 
@@ -575,7 +585,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 1, '2019-04-26 05:06:09');
+(1, 'Nicolas', 'Carvalho Avelaneda', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09');
 
 --
 -- Índices de tabelas apagadas
@@ -895,7 +905,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -931,7 +941,7 @@ ALTER TABLE `telefone`
 -- AUTO_INCREMENT de tabela `tipousu`
 --
 ALTER TABLE `tipousu`
-  MODIFY `tpu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tpu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_tel`

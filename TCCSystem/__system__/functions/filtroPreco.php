@@ -28,6 +28,11 @@
                     }
                     
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                    if(isset($_SESSION['carrinho'][$v['produto_id']])) {
+                        $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
+                    } else {
+                        $v["carrinho"] = 0;
+                    }
                     $json['produtos'][] = $v;
                 }
             } else {
@@ -51,6 +56,11 @@
                     }
                     
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                    if(isset($_SESSION['carrinho'][$v['produto_id']])) {
+                        $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
+                    } else {
+                        $v["carrinho"] = 0;
+                    }
                     $json['produtos'][] = $v;
                 }
             } else {

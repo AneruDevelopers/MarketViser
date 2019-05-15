@@ -15,6 +15,11 @@
                 
                 $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
                 $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
+                if(isset($_SESSION['carrinho'][$row['produto_id']])) {
+                    $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
+                } else {
+                    $row["carrinho"] = 0;
+                }
                 $json['produtos'][] = $row;
             }
         } else {
