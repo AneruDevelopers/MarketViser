@@ -1,5 +1,6 @@
 <?php
 	require_once '__system__/functions/connection/conn.php';
+	setcookie("inf_usu");
 
 	if(!isset($_SESSION['arm'])):
 		$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome='LINS'");
