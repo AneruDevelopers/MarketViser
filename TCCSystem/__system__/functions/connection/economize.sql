@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/05/2019 às 01:16
+-- Tempo de geração: 16/05/2019 às 08:39
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -31,7 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `armazem` (
   `armazem_id` int(11) NOT NULL,
   `armazem_nome` varchar(150) NOT NULL,
+  `armazem_cnpj` char(18) NOT NULL,
   `armazem_supervisor` varchar(150) NOT NULL,
+  `armazem_supervisor_cpf` char(14) NOT NULL,
   `armazem_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `cidade_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -40,8 +42,8 @@ CREATE TABLE `armazem` (
 -- Despejando dados para a tabela `armazem`
 --
 
-INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `armazem_registro`, `cidade_id`) VALUES
-(1, 'Armazém Lins', 'Carlos Felipe de Souza', '2019-04-23 06:41:12', 1);
+INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_cnpj`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
+(1, 'Armazém Lins', '31.957.048/9831-09', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1);
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,14 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 (2, 'NORMAL', 1),
 (3, 'BAIXA CALORIA', 1),
 (4, 'ZERO ÁLCOOL', 4),
-(5, 'NORMAL', 4);
+(5, 'NORMAL', 4),
+(6, 'ENERGÉTICOS', 6),
+(7, 'ISOTÔNICOS', 6),
+(8, 'HIDROTÔNICOS', 6),
+(9, 'SEM GÁS', 2),
+(10, 'ARTIFICIAL', 3),
+(11, 'TINTO', 5),
+(12, 'ESPUMANTE', 5);
 
 -- --------------------------------------------------------
 
@@ -95,8 +104,8 @@ CREATE TABLE `cidade` (
 --
 
 INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
-(1, 'Lins', 1),
-(2, 'Promissão', 1);
+(1, 'LINS', 1),
+(2, 'PROMISSÃO', 1);
 
 -- --------------------------------------------------------
 
@@ -135,16 +144,23 @@ CREATE TABLE `dados_armazem` (
   `dados_id` int(11) NOT NULL,
   `produto_id` int(11) NOT NULL,
   `armazem_id` int(11) NOT NULL,
-  `produto_qtd` int(11) NOT NULL
+  `produto_qtd` int(11) NOT NULL,
+  `produto_preco` float NOT NULL,
+  `produto_desconto_porcent` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `dados_armazem`
 --
 
-INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`) VALUES
-(1, 1, 1, 200),
-(2, 2, 1, 130);
+INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`, `produto_preco`, `produto_desconto_porcent`) VALUES
+(1, 1, 1, 200, 6.4, 24),
+(2, 2, 1, 17, 5.49, NULL),
+(3, 3, 1, 300, 2.3, 14),
+(4, 4, 1, 200, 3, 9),
+(5, 5, 1, 200, 2.5, NULL),
+(6, 6, 1, 200, 2.5, 15),
+(7, 7, 1, 140, 23.39, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,7 +357,11 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
 (2, 'Poty'),
 (3, 'Fanta'),
 (4, 'Pepsi'),
-(5, 'Brahma');
+(5, 'Brahma'),
+(6, 'Red Bull'),
+(7, 'Schin'),
+(8, 'Del Valle'),
+(9, 'Chalise');
 
 -- --------------------------------------------------------
 
@@ -366,14 +386,10 @@ CREATE TABLE `postagem` (
 CREATE TABLE `produto` (
   `produto_id` int(11) NOT NULL,
   `produto_nome` varchar(100) NOT NULL,
-  `produto_keywords` text,
   `produto_descricao` text,
   `produto_img` varchar(255) NOT NULL,
   `produto_marca` int(11) NOT NULL,
-  `produto_preco` float NOT NULL,
-  `produto_desconto_porcent` float DEFAULT NULL,
   `produto_tamanho` varchar(30) NOT NULL,
-  `tipo_tamanho` int(11) DEFAULT NULL,
   `produto_categ` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -381,10 +397,14 @@ CREATE TABLE `produto` (
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_keywords`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_preco`, `produto_desconto_porcent`, `produto_tamanho`, `tipo_tamanho`, `produto_categ`) VALUES
-(1, 'Refrigerante Coca-Cola', 'Refrigerante, Coca-Cola, Refrescante', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, 6.99, 13, '2 Litros', 1, 2),
-(2, 'Refrigerante Fanta Uva', 'FANTA, UVA, REFRIGERANTE, REFRESCANTE', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, 5.3, NULL, '2 Litros', 1, 2),
-(3, 'Cerveja Brahma Lata', 'CERVEJA,BRAHMA,GELADA,LATA,LATINHA', NULL, 'brahma_lata_350ml.jpg', 5, 2.49, 22, '350ml', 1, 5);
+INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_tamanho`, `produto_categ`) VALUES
+(1, 'Refrigerante Coca-Cola', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, '2 Litros', 2),
+(2, 'Refrigerante Fanta Uva', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, '2 Litros', 2),
+(3, 'Cerveja Brahma Lata', NULL, 'brahma_lata_350ml.jpg', 5, '350ml', 5),
+(4, 'Energético Red Bull', 'O Energético Red Bull tem em sua composição: Cafeína, Taurina, Vitaminas do grupo B, Sacarose, Glucose e Água das fontes alpinas. Estimula as funções cognitivas do corpo e ajuda a melhorar a concentração, aumentando o estado de vigilância ou alerta.', 'red-bull-250ml.jpg', 6, '250ml', 6),
+(5, 'Água Mineral sem Gás Schin', 'A Água Mineral Sem Gás Schin é produzida a partir de oito fontes naturais. É uma água de altíssima qualidade, que atende aos mais exigentes requisitos de qualidade e segurança.', 'agua-mineral-500ml.jpg', 7, '500ml', 9),
+(6, 'Suco de Maracujá Del Valle Kapo', 'O Suco de Maracujá Del Valle Kapo traz nutrição para a lancheira do seu filho. Fonte de Vitaminas A, B3, B6, B12, C, D e E, é considerado um complexo vitamínico indicado para o desenvolvimento das crianças. Del Valle Kapo é adoçado com suco de maçã, por isso, tem menos açúcar adicionado.', 'del-valle-maracuja-200ml.jpg', 8, '200ml', 10),
+(7, 'Vinho Tinto Seco Chalise', 'O Vinho Tinto Seco Chalise é límpido, com coloração roxo vivo, reflexos violáceos, aroma característico de morango e framboesa, sabor suave e de grande permanência. Combina com carnes e queijos.', 'vinho-tinto-seco-chalise-750ml.jpg', 9, '750ml', 11);
 
 -- --------------------------------------------------------
 
@@ -403,9 +423,9 @@ CREATE TABLE `produtos_favorito` (
 --
 
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
-(63, 3, 1),
-(65, 2, 1),
-(66, 1, 1);
+(76, 1, 1),
+(79, 3, 1),
+(80, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -457,7 +477,7 @@ INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
 
 CREATE TABLE `subcateg` (
   `subcateg_id` int(11) NOT NULL,
-  `subcateg_nome` varchar(30) NOT NULL,
+  `subcateg_nome` varchar(50) NOT NULL,
   `depart_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -471,27 +491,7 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 (3, 'SUCOS E REFRESCOS', 2),
 (4, 'CERVEJAS', 2),
 (5, 'VINHOS', 2),
-(6, 'ENERGÉTICOS', 2);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `tamanho_prod`
---
-
-CREATE TABLE `tamanho_prod` (
-  `tamanho_id` int(11) NOT NULL,
-  `tamanho_nome` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `tamanho_prod`
---
-
-INSERT INTO `tamanho_prod` (`tamanho_id`, `tamanho_nome`) VALUES
-(1, 'Volume'),
-(2, 'Peso'),
-(3, 'Outros');
+(6, 'ENERGÉTICOS E ISOTÔNICOS E HIDROTÔNICOS', 2);
 
 -- --------------------------------------------------------
 
@@ -566,6 +566,7 @@ CREATE TABLE `usuario` (
   `usu_id` int(11) NOT NULL,
   `usu_first_name` varchar(30) NOT NULL,
   `usu_last_name` varchar(100) NOT NULL,
+  `usu_sexo` enum('M','F','O') NOT NULL,
   `usu_cpf` char(14) NOT NULL,
   `usu_email` varchar(150) NOT NULL,
   `usu_senha` varchar(255) NOT NULL,
@@ -584,8 +585,8 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09');
+INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09');
 
 --
 -- Índices de tabelas apagadas
@@ -720,8 +721,7 @@ ALTER TABLE `postagem`
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`produto_id`),
   ADD KEY `fk_MarcaProd` (`produto_marca`),
-  ADD KEY `fk_CategProd` (`produto_categ`),
-  ADD KEY `fk_TamanhoProd` (`tipo_tamanho`);
+  ADD KEY `fk_CategProd` (`produto_categ`);
 
 --
 -- Índices de tabela `produtos_favorito`
@@ -749,12 +749,6 @@ ALTER TABLE `status_compra`
 ALTER TABLE `subcateg`
   ADD PRIMARY KEY (`subcateg_id`),
   ADD KEY `FK_Departamento` (`depart_id`);
-
---
--- Índices de tabela `tamanho_prod`
---
-ALTER TABLE `tamanho_prod`
-  ADD PRIMARY KEY (`tamanho_id`);
 
 --
 -- Índices de tabela `telefone`
@@ -803,7 +797,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de tabela `categ`
 --
 ALTER TABLE `categ`
-  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `cidade`
@@ -827,7 +821,7 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
@@ -887,7 +881,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT de tabela `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`
@@ -899,13 +893,13 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -924,12 +918,6 @@ ALTER TABLE `status_compra`
 --
 ALTER TABLE `subcateg`
   MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `tamanho_prod`
---
-ALTER TABLE `tamanho_prod`
-  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
@@ -1025,8 +1013,7 @@ ALTER TABLE `lista_compra`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `fk_CategProd` FOREIGN KEY (`produto_categ`) REFERENCES `categ` (`categ_id`),
-  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`),
-  ADD CONSTRAINT `fk_TamanhoProd` FOREIGN KEY (`tipo_tamanho`) REFERENCES `tamanho_prod` (`tamanho_id`);
+  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`);
 
 --
 -- Restrições para tabelas `produtos_favorito`
