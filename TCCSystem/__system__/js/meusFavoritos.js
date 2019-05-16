@@ -9,7 +9,7 @@ function meusFavoritos() {
                     for (var i = 0; json['produtos'].length > i; i++) {
                         if(json['produtos'][i].produto_desconto_porcent) {
                             produtos[i] = `
-                                <div class="prod">
+                                <div class="divProdCarousel">
                                     <div class="btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `">
                                         
                                     </div>
@@ -31,7 +31,7 @@ function meusFavoritos() {
                             `;
                         } else {
                             produtos[i] = `
-                                <div class="prod">
+                                <div class="divProdCarousel">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
@@ -51,7 +51,7 @@ function meusFavoritos() {
                         }
                     }
                     $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>\
-                    <div class="divShowProdFav">\
+                    <div class="favoritos owl-carousel">\
                     ` + produtos + `\
                     </div>`);
                 } else {

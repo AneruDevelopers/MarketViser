@@ -75,6 +75,18 @@ $(document).ready(function() {
       }
   });
 
+  $('.favoritos').owlCarousel({
+    center: true,
+    items:5,
+    loop:true,
+    margin:5,
+    responsive:{
+        600:{
+            items:7
+        }
+    }
+});
+
   
 });
 
@@ -95,6 +107,7 @@ $(document).ready(function() {
       }
   })
 })();
+
 
 
 // window.onscroll = function() {myFunction()};
@@ -208,6 +221,32 @@ span2.onclick = function() {
 
 modal2.onclick = function() {
     modal2.style.display = "none";
+}
+
+// MODAL DE ARMAZÉNS MOBILE
+
+var modal3 = document.getElementById('myModalArmazem');
+
+var btn3 = document.getElementById("myBtnArmazemMobile");
+
+var span3 = document.getElementsByClassName("closeModalArmazem")[0];
+
+btn3.onclick = function() {
+    modal3.style.display = "block";
+}
+
+span3.onclick = function() {
+    modal3.style.display = "none";
+}
+
+// window.onclick = function(event) {
+//   if (event.target == modal2) {
+//     modal2.style.display = "none";
+//   }
+// }
+
+modal3.onclick = function() {
+    modal3.style.display = "none";
 }
 
 // EFEITO INPUT CADASTRO

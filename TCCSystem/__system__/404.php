@@ -36,6 +36,14 @@
         
         <h2>Página não encontrada</h2>
 
+        <div class="myModalArmazem" id="myModalArmazem">
+			<div class="modalArmazemContent">
+				<span class="closeModalArmazem">&times;</span>
+				<div class="Armazens">
+                    
+                </div>
+			</div>
+		</div>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <form id="form-login">
@@ -74,5 +82,6 @@
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/login.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
+    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>

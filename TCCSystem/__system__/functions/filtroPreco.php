@@ -10,11 +10,11 @@
 
             if(!isset($_SESSION['query_preco'])) {
                 $json['first'] = TRUE;
-                $_SESSION['query_proc'] .= "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+                $_SESSION['query_proc'] .= "ORDER BY d.produto_preco {$_POST["produto_preco"]} ";
             } else {
-                $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'],"ORDER BY p.produto_preco {$_POST["produto_preco"]} ", $_SESSION['query_proc']);
+                $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'],"ORDER BY d.produto_preco {$_POST["produto_preco"]} ", $_SESSION['query_proc']);
             }
-            $_SESSION['query_preco'] = "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+            $_SESSION['query_preco'] = "ORDER BY d.produto_preco {$_POST["produto_preco"]} ";
             
             $sel = $conn->prepare($_SESSION['query_proc']);
             $sel->execute();

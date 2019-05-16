@@ -57,7 +57,7 @@
         <div class="l-carousel">
             <div id="owl-demo" class="owl-carousel">
                 <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="The Last of us"></div>
-                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="GTA V"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="GTA V"></div>
                 <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="Mirror Edge"></div>
             </div>
         </div>
@@ -75,8 +75,10 @@
         <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				Teste modal
-				<span class="closeModalArmazem">&times;</span>							
+				<span class="closeModalArmazem">&times;</span>
+				<div class="Armazens">
+                    
+                </div>
 			</div>
 		</div>
         <div id="myModal" class="modal">
@@ -88,14 +90,14 @@
                         <div class="outsideSecInputCad">
                             <div class="field -md">
                                 <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>EMAIL</strong></label>
+                                <label class="labelFieldCad"><strong><i class="fas fa-envelope"></i> EMAIL</strong></label>
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
                         <div class="outsideSecInputCad">
                             <div class="field -md">
                                 <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>SENHA</strong></label>
+                                <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
@@ -132,7 +134,10 @@
     <script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
+    <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
+    <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/listProdutoPromocao.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
+    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>

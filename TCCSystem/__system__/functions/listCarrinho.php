@@ -8,7 +8,7 @@
 
         function getProducts() {
             global $conn;
-            $sel = $conn->prepare("SELECT * FROM produto");
+            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']}");
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $result = $sel->fetchAll();
@@ -21,7 +21,7 @@
     
         function getProductsByIds($ids) {
             global $conn;
-            $sel = $conn->prepare("SELECT * FROM produto WHERE produto_id IN (".$ids.")");
+            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $result = $sel->fetchAll();
@@ -36,7 +36,7 @@
             global $conn;
             $results = array();
             
-            if($_SESSION['carrinho']) {
+            if(isset($_SESSION['carrinho'])) {
                 $cart = $_SESSION['carrinho'];
                 $products =  getProductsByIds(implode(',', array_keys($cart)));
     
@@ -65,13 +65,13 @@
             } 
             return $total;
         }
-    
-        
-        $resultsCarts = getContentCart();
+
         $totalCarts  = getTotalCart();
 
         if($totalCarts >= 1) {
             $json['empty'] = FALSE;
+            $resultsCarts = getContentCart();
+            
             foreach($resultsCarts as $k => $v) {
                 if($v['produto_desconto_porcent'] <> "") {
                     $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);

@@ -58,6 +58,7 @@ function limpaVol() {
                 for(var i = 0; produtos.length > i; i++) {
                     $('.divShowProdFilter').append(produtos[i]);
                 }
+                attCarrinho();
                 btnFavorito();
             }
         }
@@ -130,6 +131,7 @@ function limpaMarca() {
                 for(var i = 0; produtos.length > i; i++) {
                     $('.divShowProdFilter').append(produtos[i]);
                 }
+                attCarrinho();
                 btnFavorito();
             }
         }
@@ -202,6 +204,7 @@ function limpaPreco() {
                 for(var i = 0; produtos.length > i; i++) {
                     $('.divShowProdFilter').append(produtos[i]);
                 }
+                attCarrinho();
                 btnFavorito();
             }
         }
@@ -279,6 +282,7 @@ function limpaFav() {
                     for(var i = 0; produtos.length > i; i++) {
                         $('.divShowProdFilter').append(produtos[i]);
                     }
+                    attCarrinho();
                     btnFavorito();
                 }
             } else {

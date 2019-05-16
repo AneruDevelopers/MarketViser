@@ -12,7 +12,7 @@
 //     });
 // }
 
-$(document).ready(function() {
+function attCarrinho() {
     $('.btnBuy').click(function(e) {
         e.preventDefault();
         var dado = $(this).siblings(".formBuy").serialize();
@@ -30,6 +30,68 @@ $(document).ready(function() {
                 // attCamposCarrinho();
             }
         });
-     
     });
-});
+
+    $('.tirarProd').click(function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Deseja mesmo excuir o produto do carrinho?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonColor: "#494949",
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#A94442",
+            confirmButtonText: "Sim, excluir"
+        }).then((result) => {
+            if(result.value) {
+                var dado = "produto_id=" + $(this).attr("id-prod");
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    data: dado,
+                    url: BASE_URL + 'functions/attCarrinho',
+                    success: function(json) {
+                        Toast.fire({
+                            type: json['type'],
+                            title: json['answer']
+                        });
+                        listCarrinho();
+                    }
+                });
+            }
+        });
+    });
+
+    $('.limparCart').click(function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Deseja mesmo limpar o carrinho?",
+            text: "Uma vez limpando o carrinho, será perdido permanentemente!",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonColor: "#494949",
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#A94442",
+            confirmButtonText: "Sim, limpe"
+        }).then((result) => {
+            if(result.value) {
+                var dado = "limpaCart=1";
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    data: dado,
+                    url: BASE_URL + 'functions/attCarrinho',
+                    success: function(json) {
+                        Toast.fire({
+                            type: json['type'],
+                            title: json['answer']
+                        });
+                        listCarrinho();
+                    }
+                });
+            }
+        });
+    });
+}
+
+attCarrinho();

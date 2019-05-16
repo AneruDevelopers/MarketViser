@@ -50,8 +50,10 @@
 		<!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				Teste modal
-				<span class="closeModalArmazem">&times;</span>							
+                <span class="closeModalArmazem">&times;</span>
+                <div class="Armazens">
+                    
+                </div>
 			</div>
 		</div>
         <div id="myModal" class="modal">
@@ -110,5 +112,6 @@
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
+    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>

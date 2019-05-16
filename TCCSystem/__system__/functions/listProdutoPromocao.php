@@ -4,7 +4,7 @@
     if(isXmlHttpRequest()) {
         $json['status'] = 1;
 
-        $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_desconto_porcent <> ''");
+        $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.produto_desconto_porcent <> '' AND d.armazem_id={$_SESSION['arm_id']}");
         $sel->execute();
         
         if($sel->rowCount() > 0) {

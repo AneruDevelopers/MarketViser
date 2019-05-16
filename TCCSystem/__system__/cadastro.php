@@ -198,8 +198,10 @@
 		</div>
 		<div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				Teste modal
-				<span class="closeModalArmazem">&times;</span>							
+				<span class="closeModalArmazem">&times;</span>
+				<div class="Armazens">
+                    
+                </div>
 			</div>
 		</div>
 		<div id="myModal" class="modal">
@@ -211,14 +213,14 @@
                         <div class="outsideSecInputCad">
                             <div class="field -md">
                                 <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>EMAIL</strong></label>
+                                <label class="labelFieldCad"><strong><i class="fas fa-envelope"></i> EMAIL</strong></label>
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
                         <div class="outsideSecInputCad">
                             <div class="field -md">
                                 <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>SENHA</strong></label>
+                                <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
@@ -258,6 +260,7 @@
     <script src="<?php echo base_url(); ?>js/main.js"></script>
     <script src="<?php echo base_url(); ?>js/login.js"></script>
     <script src="<?php echo base_url(); ?>js/cadastro_usuario.js"></script>
+    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var campos_max = 4;

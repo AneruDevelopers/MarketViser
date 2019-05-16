@@ -1,6 +1,6 @@
 <div class="topNavCity">
-    <h6 class="linkMenuTopNavCityMobile">
-        <i class="fas fa-globe-americas"></i> <span class="cityName">LINS - SP</span>
+    <h6 class="linkMenuTopNavCityMobile linkArm" id="myBtnArmazemMobile">
+        <i class="fas fa-globe-americas"></i> <span class="armName"><?= $_SESSION['arm']; ?></span>
     </h6>
 </div>
 <div class="companyNameSpace">
@@ -17,9 +17,9 @@
     </div>
 </div>
 <ul class="menuTopNav">
-    <li class="celulaTopNavCity" id="myBtnArmazem">
+    <li class="celulaTopNavCity linkArm" id="myBtnArmazem">
         <a class="linkMenuTopNavCity" href="#">
-            <span class="cityName">LINS - SP</span>
+            <span class="armName"><?= $_SESSION['arm']; ?></span>
         </a>
     </li>
     <li class="celulaTopNav">
