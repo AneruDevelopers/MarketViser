@@ -198,8 +198,10 @@
 		</div>
 		<div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				Teste modal
-				<span class="closeModalArmazem">&times;</span>							
+				<span class="closeModalArmazem">&times;</span>
+				<div class="Armazens">
+                    
+                </div>
 			</div>
 		</div>
 		<div id="myModal" class="modal">
@@ -258,6 +260,7 @@
     <script src="<?php echo base_url(); ?>js/main.js"></script>
     <script src="<?php echo base_url(); ?>js/login.js"></script>
     <script src="<?php echo base_url(); ?>js/cadastro_usuario.js"></script>
+    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var campos_max = 4;

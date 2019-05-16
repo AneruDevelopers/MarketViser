@@ -10,11 +10,11 @@
 
             if(!isset($_SESSION['query_preco'])) {
                 $json['first'] = TRUE;
-                $_SESSION['query_proc'] .= "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+                $_SESSION['query_proc'] .= "ORDER BY d.produto_preco {$_POST["produto_preco"]} ";
             } else {
-                $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'],"ORDER BY p.produto_preco {$_POST["produto_preco"]} ", $_SESSION['query_proc']);
+                $_SESSION['query_proc'] = str_replace($_SESSION['query_preco'],"ORDER BY d.produto_preco {$_POST["produto_preco"]} ", $_SESSION['query_proc']);
             }
-            $_SESSION['query_preco'] = "ORDER BY p.produto_preco {$_POST["produto_preco"]} ";
+            $_SESSION['query_preco'] = "ORDER BY d.produto_preco {$_POST["produto_preco"]} ";
             
             $sel = $conn->prepare($_SESSION['query_proc']);
             $sel->execute();
@@ -28,6 +28,11 @@
                     }
                     
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                    if(isset($_SESSION['carrinho'][$v['produto_id']])) {
+                        $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
+                    } else {
+                        $v["carrinho"] = 0;
+                    }
                     $json['produtos'][] = $v;
                 }
             } else {
@@ -51,6 +56,11 @@
                     }
                     
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                    if(isset($_SESSION['carrinho'][$v['produto_id']])) {
+                        $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
+                    } else {
+                        $v["carrinho"] = 0;
+                    }
                     $json['produtos'][] = $v;
                 }
             } else {

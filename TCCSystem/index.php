@@ -1,5 +1,55 @@
 <?php
 	require_once '__system__/functions/connection/conn.php';
+	setcookie("inf_usu");
+
+	if(isset($_COOKIE['arm_id'])):
+		$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome={$_COOKIE['arm_id']}");
+		$sel->execute();
+		if($sel->rowCount() > 0):
+			$result = $sel->fetchAll();
+			foreach($result as $v):
+				$_SESSION['arm'] = $v['cid_nome'] . " - " . $v['est_uf'];
+				$_SESSION['arm_nome'] = $v['armazem_nome'];
+				$_SESSION['arm_id'] = $v['armazem_id'];
+			endforeach;
+		endif;
+	else:
+		if(!isset($_SESSION['arm'])) {
+			$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome='LINS'");
+			$sel->execute();
+			if($sel->rowCount() > 0):
+				$result = $sel->fetchAll();
+				foreach($result as $v):
+					$_SESSION['arm'] = $v['cid_nome'] . " - " . $v['est_uf'];
+					$_SESSION['arm_nome'] = $v['armazem_nome'];
+					$_SESSION['arm_id'] = $v['armazem_id'];
+				endforeach;
+			endif;
+		}
+	endif;
+
+	if((isset($_COOKIE['inf_usu'])) && (!isset($_SESSION['inf_usu']))):
+		$sel = $conn->prepare("SELECT * FROM usuario AS u JOIN tipousu AS t ON u.usu_tipo=t.tpu_id WHERE u.usu_id=:id");
+		$sel->bindValue(":id", "{$_COOKIE["inf_usu"]}");
+		$sel->execute();
+		$rows = $sel->fetchAll();
+		foreach($rows as $row):
+			$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
+			$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
+			$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
+			$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
+
+			$reg = $row['usu_registro'];
+			$ano = substr($reg,0,4);
+			$mes = substr($reg,5,2);
+			$dia = substr($reg,8,2);
+			$hora = substr($reg,11,2)."h".substr($reg,14,2);
+			$_SESSION["inf_usu"]['usu_registro'] = $dia."/".$mes."/".$ano;
+			$_SESSION["inf_usu"]['usu_registro_hora'] = $dia."/".$mes."/".$ano." às ".$hora;
+
+			$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_usu_nome'];
+		endforeach;
+	endif;
 
 	$REQUEST_URI = filter_input(INPUT_SERVER, 'REQUEST_URI');
 	

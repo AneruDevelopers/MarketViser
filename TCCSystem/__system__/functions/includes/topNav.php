@@ -1,6 +1,6 @@
 <div class="topNavCity">
-    <h6 class="linkMenuTopNavCityMobile" id="myBtnArmazemMobile">
-        <i class="fas fa-globe-americas"></i> LINS - SP
+    <h6 class="linkMenuTopNavCityMobile linkArm" id="myBtnArmazemMobile">
+        <i class="fas fa-globe-americas"></i> <span class="armName"><?= $_SESSION['arm']; ?></span>
     </h6>
 </div>
 <div class="companyNameSpace">
@@ -17,13 +17,13 @@
     </div>
 </div>
 <ul class="menuTopNav">
-    <li class="celulaTopNavCity" id="myBtnArmazem">
+    <li class="celulaTopNavCity linkArm" id="myBtnArmazem">
         <a class="linkMenuTopNavCity" href="#">
-            LINS - SP
+            <span class="armName"><?= $_SESSION['arm']; ?></span>
         </a>
     </li>
     <li class="celulaTopNav">
-        <a class="linkMenuTopNav" href="#">
+        <a class="linkMenuTopNav" href="<?php echo base_url_php(); ?>carrinho">
             <div class="leftBack">
                 <i class="fas fa-shopping-cart"></i>
             </div>
@@ -35,11 +35,11 @@
             <div class="leftBack">
                 <i class="far fa-user-circle"></i>
             </div>
-            <span class="s_login"></span>
+            <span class="s_login">ENTRAR</span>
         </a>
     </li>
 </ul>
 <ul class="menuTopNavMobile">
   <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="#" id="myBtn"><i class="far fa-user-circle"></i></a></li>
-  <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="#"><i class="fas fa-shopping-cart"></i></a></li>
+  <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="<?php echo base_url_php(); ?>carrinho"><i class="fas fa-shopping-cart"></i></a></li>
 </ul>
