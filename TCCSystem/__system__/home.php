@@ -58,7 +58,7 @@
             <div id="owl-demo" class="owl-carousel">
                 <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="The Last of us"></div>
                 <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="GTA V"></div>
-                <div class="item"><img src="<?php echo base_url(); ?>img/Banner2_Oficial.png" alt="Mirror Edge"></div>
+                <div class="item"><img src="<?php echo base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="Mirror Edge"></div>
             </div>
         </div>
 
@@ -107,7 +107,7 @@
                     <span class="close">&times;</span>
                     <p class="textModal">Olá, amigo!</p>
                     <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
-                    <div class="divLinkCad">    
+                    <div class="divLinkCad">
                         <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
                     </div>    
                 </div>

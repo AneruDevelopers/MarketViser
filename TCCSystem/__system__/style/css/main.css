@@ -145,7 +145,7 @@ border-radius: 0;
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* HEADER PRINCIPAL */
@@ -1002,7 +1002,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -1485,7 +1485,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     .center_header {
@@ -1694,7 +1694,7 @@ border-radius: 0;
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* HEADER PRINCIPAL */
@@ -2268,6 +2268,169 @@ border-radius: 0;
         top: .8rem;
     }
 
+    /* PROFILE MODAL */
+
+    .divModalProfile {
+        position: relative;
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    .titleModalProfile {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #9C45EB;
+        font-size: 12px;
+    }
+
+    .titleModalProfileName {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #0F0617;
+        font-size: 14px;
+    }
+
+    .sectionAccountInfo {
+        position: relative;
+    }
+
+    .modalProfileLeftContent {
+        position: relative;
+        width: 65%;
+        height: 100%;
+        float: left;
+        /* padding-left: 7.5px; */
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        background-color: #ffffff;
+    }
+    
+    .modalProfileRightContent {
+        position: relative;
+        width: 35%;
+        height: 100%;
+        float: right;
+        /* padding-left: 7.5px; */
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+    }
+
+    .sectionAccountInfo h5 {
+        color: #9C45EB;
+        text-align: left;
+        margin-top: 1rem;
+        margin-bottom: .4rem;
+        padding-left: 5%;
+        font-family: 'Raleway-Medium';
+        font-size: 11px;
+    }
+
+    .accountInfoData {
+        text-align: left;
+        padding-left: 5%;
+        font-size: 12px;
+        font-family: 'Raleway-Medium';
+        padding: 3px 0;
+        position: relative;
+        width: 90%;
+        left: 5%;
+        border-radius: 5px;
+        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
+    }
+
+    .linhaProfile {
+        position: relative;
+        width: 96%;
+        left: 2%;
+        margin: .3rem 0;
+    }
+
+    .divisorFilterProfile {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 3px;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .linkConfig {
+        position: absolute;
+        top: 90%;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .linkConfig a {
+        text-decoration: none;
+        color: #9C45EB;
+        text-align: left;
+        font-family: 'Raleway-Medium';
+        font-size: 11px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkRight {
+        position: relative;
+        margin: .5rem 0;
+        width: 100%;
+        text-align: left;
+        margin-top: 1rem;
+        top: 2.4rem;
+    }
+
+    .linkRight a {
+        text-decoration: none;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 11px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkDate {
+        position: absolute;
+        top: 87.5%;
+        width: 100%;
+        text-align: center;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .closeProfile {
+        color: #ffffff;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: relative;
+        top: 0rem;
+        right: 1rem;
+    }
+      
+    .closeProfile:hover,
+    .closeProfile:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     /* DISPLAY PRODUCTS */
 
     .loop {
@@ -2415,7 +2578,7 @@ border-radius: 0;
     }
 
     .Iphone {
-        background: #f1f1f3;
+        background: #ffffff;
         padding: 4rem 0.6rem 0;
         border-radius: 2rem;
         box-shadow: -1rem 1.75rem 2rem -0.4rem rgba(50,0,100,0.1), -0.2rem 0.2rem 0.5rem rgba(50,0,100,0.05), inset 0.5rem -0.5rem 0.5rem -0.4rem rgba(50,0,100,0.1);
@@ -2626,7 +2789,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -3087,7 +3250,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* .filterMobile {
@@ -3326,12 +3489,12 @@ border-radius: 0;
 
     .l-footer {
         grid-area: footer;
-        background: #e2e3e6;
+        background-color: #e2e3e6;
     }
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* HEADER PRINCIPAL */
@@ -3488,7 +3651,7 @@ border-radius: 0;
     }
 
     .linkMenuTopNavCity i {
-        color: rgb(173, 2, 253);
+        color: #9C45EB;
         position: relative;
         top: .4rem;
         font-size: 16px;
@@ -3864,6 +4027,166 @@ border-radius: 0;
         top: .8rem;
     }
 
+    /* PROFILE MODAL */
+
+    .divModalProfile {
+        position: relative;
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    .titleModalProfile {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #9C45EB;
+    }
+
+    .titleModalProfileName {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #0F0617;
+    }
+
+    .sectionAccountInfo {
+        position: relative;
+    }
+
+    .modalProfileLeftContent {
+        position: relative;
+        width: 65%;
+        height: 100%;
+        float: left;
+        /* padding-left: 7.5px; */
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: #ffffff;
+    }
+    
+    .modalProfileRightContent {
+        position: relative;
+        width: 35%;
+        height: 100%;
+        float: right;
+        /* padding-left: 7.5px; */
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+    }
+
+    .sectionAccountInfo h5 {
+        color: #9C45EB;
+        text-align: left;
+        margin-top: 1rem;
+        margin-bottom: .4rem;
+        padding-left: 5%;
+        font-family: 'Raleway-Medium';
+    }
+
+    .accountInfoData {
+        text-align: left;
+        padding-left: 5%;
+        font-size: 14px;
+        font-family: 'Raleway-Medium';
+        padding: 3px 0;
+        position: relative;
+        width: 90%;
+        left: 5%;
+        border-radius: 5px;
+        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
+    }
+
+    .linhaProfile {
+        position: relative;
+        width: 96%;
+        left: 2%;
+        margin: .4rem 0;
+    }
+
+    .divisorFilterProfile {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 3px;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .linkConfig {
+        position: absolute;
+        top: 90%;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .linkConfig a {
+        text-decoration: none;
+        color: #9C45EB;
+        text-align: left;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkRight {
+        position: relative;
+        margin: .5rem 0;
+        width: 100%;
+        text-align: left;
+        margin-top: 1rem;
+        top: 2.4rem;
+    }
+
+    .linkRight a {
+        text-decoration: none;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkDate {
+        position: absolute;
+        top: 87.5%;
+        width: 100%;
+        text-align: center;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .closeProfile {
+        color: #ffffff;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: relative;
+        top: 0rem;
+        right: 1rem;
+    }
+      
+    .closeProfile:hover,
+    .closeProfile:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     /* DISPLAY PRODUCTS */
 
     .loop {
@@ -4023,7 +4346,7 @@ border-radius: 0;
     }
 
     .Iphone {
-        background: #f1f1f3;
+        background: #ffffff;
         padding: 4rem 0.6rem 0;
         border-radius: 2rem;
         box-shadow: -1rem 1.75rem 2rem -0.4rem rgba(50,0,100,0.1), -0.2rem 0.2rem 0.5rem rgba(50,0,100,0.05), inset 0.5rem -0.5rem 0.5rem -0.4rem rgba(50,0,100,0.1);
@@ -4134,7 +4457,7 @@ border-radius: 0;
 
     .linkListSocialMedia {
         text-decoration: none;
-        color: #252730;
+        color: #0F0617;
         font-size: 27px;
         margin: .5rem;
     }
@@ -4164,7 +4487,7 @@ border-radius: 0;
 
     .copyrightReserved a {
         text-decoration: none;
-        color: #9C45EB;
+        color: #d3d2d2;
     }
 
     /* PAGE --> CADASTRO.PHP */
@@ -4212,7 +4535,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -4417,7 +4740,7 @@ border-radius: 0;
     .-md input:focus,
     .-md input:hover {
         border-bottom: 2px solid #9C45EB;
-        color: #2f3640;
+        color: #0F0617;
         font-family: "Raleway";
     }
       
@@ -4674,7 +4997,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background: #0F0617;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* .filterMobile {
@@ -4713,7 +5036,7 @@ border-radius: 0;
         text-align: center;
         margin-top: 0;
         margin-bottom: 2rem;
-        color: #252730;
+        color: #0F0617;
         font-size: 15px;
     }
 
@@ -4759,7 +5082,7 @@ border-radius: 0;
 
     .titleFilter {
         text-align: left;
-        color: #252730;
+        color: #0F0617;
         margin: 0;
         font-size: 15px;
         background: transparent;
@@ -4776,11 +5099,11 @@ border-radius: 0;
         font-size: 13px;
         font-family: "Raleway-Medium";
         margin-left: 10%;
-        color: #2f3640;
+        color: #0F0617;
     }
 
     .titleConfigFilter i {
-        color: #2f3640;
+        color: #0F0617;
     }
 
     .divFilter {
@@ -4855,7 +5178,7 @@ border-radius: 0;
     }
 
     .celulaListFilterOpt a {
-        color: #2f3640;
+        color: #0F0617;
         text-decoration: none;
     }
 
