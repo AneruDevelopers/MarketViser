@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/05/2019 às 08:39
+-- Tempo de geração: 16/05/2019 às 11:23
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -43,7 +43,8 @@ CREATE TABLE `armazem` (
 --
 
 INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_cnpj`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
-(1, 'Armazém Lins', '31.957.048/9831-09', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1);
+(1, 'Armazém Lins', '31.957.048/9831-09', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1),
+(2, 'Armazém Promissão', '63.722.344/5712-81', 'Paula Rodrigues de Oliveira', '340.139.871-22', '2019-05-16 05:44:55', 2);
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,14 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (4, 4, 1, 200, 3, 9),
 (5, 5, 1, 200, 2.5, NULL),
 (6, 6, 1, 200, 2.5, 15),
-(7, 7, 1, 140, 23.39, NULL);
+(7, 7, 1, 140, 23.39, NULL),
+(8, 1, 2, 400, 50, 68),
+(9, 2, 2, 400, 125.59, 50),
+(10, 3, 2, 400, 45.99, 35),
+(11, 4, 2, 400, 63, 87),
+(12, 5, 2, 400, 35.39, 77),
+(13, 6, 2, 400, 49, 37),
+(14, 7, 2, 400, 83.99, 62);
 
 -- --------------------------------------------------------
 
@@ -785,7 +793,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `banner`
@@ -821,7 +829,7 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
