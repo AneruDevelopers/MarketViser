@@ -3,7 +3,7 @@
 
     if((isset($_SESSION["inf_usu"])) || (isset($_COOKIE['inf_usu']))) {
         if(isset($_COOKIE['inf_usu'])) {
-            unset($_COOKIE['inf_usu']);
+            setcookie("inf_usu");
         }
         unset($_SESSION["inf_usu"]);
         if(isset($_SESSION["url_sair"])) {

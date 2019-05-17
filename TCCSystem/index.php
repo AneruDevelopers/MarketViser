@@ -1,9 +1,8 @@
 <?php
 	require_once '__system__/functions/connection/conn.php';
-	setcookie("inf_usu");
 
-	if(isset($_COOKIE['arm_id'])):
-		$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome={$_COOKIE['arm_id']}");
+	if((isset($_COOKIE['arm_id'])) && (!isset($_SESSION['arm_id']))):
+		$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE a.armazem_id={$_COOKIE['arm_id']}");
 		$sel->execute();
 		if($sel->rowCount() > 0):
 			$result = $sel->fetchAll();
