@@ -77,7 +77,6 @@
 			<div class="modalArmazemContent">
 				<span class="closeModalArmazem">&times;</span>
 				<div class="Armazens">
-                    
                 </div>
 			</div>
 		</div>
