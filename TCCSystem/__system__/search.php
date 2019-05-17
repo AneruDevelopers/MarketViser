@@ -92,7 +92,6 @@
                                                 
                                             </div>
                                             <img src="' . base_url_adm() . 'imagens_produtos/' . $row['produto_img'] . '"/>
-                                            <p class="divProdPromo">-' . $row['produto_desconto_porcent'] . '%</p>
                                             <div class="divisorFilter"></div>
                                             <h5 class="titleProdFilter">' . $row['produto_nome'] . ' - ' . $row['produto_tamanho'] . '</h5>
                                             <p class="priceProdFilter">

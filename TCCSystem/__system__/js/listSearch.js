@@ -81,4 +81,9 @@ $(document).ready(function() {
             $('.divShowProdFav').html(``);
         }
     });
+
+    $('.formPesquisaHeader').submit(function(e) {
+        e.preventDefault();
+        return false;
+    })
 });
