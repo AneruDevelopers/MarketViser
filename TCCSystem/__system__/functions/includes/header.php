@@ -1,7 +1,7 @@
 <div class="searchSpaceMobile">
   <div class="searchBoxHeader" id="searchBoxHeader">
-      <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
-          <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder=" Clique e pesquise">
+      <form class="formPesquisaHeader" method="post" action="<?= base_url_php(); ?>search">
+          <input class="pesquisaTxtHeader" value="<?= isset($_POST['buscaBarra']) ? $_POST['buscaBarra'] : '' ; ?>" type="text" name="buscaBarra" placeholder=" Clique e pesquise">
               <button class="pesquisaBtnHeader" type="submit" name="search">
                   <i class="fas fa-search"></i>
               </button>

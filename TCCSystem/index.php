@@ -14,7 +14,7 @@
 			endforeach;
 		endif;
 	else:
-		if(!isset($_SESSION['arm'])) {
+		if(!isset($_SESSION['arm'])):
 			$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome='LINS'");
 			$sel->execute();
 			if($sel->rowCount() > 0):
@@ -25,7 +25,7 @@
 					$_SESSION['arm_id'] = $v['armazem_id'];
 				endforeach;
 			endif;
-		}
+		endif;
 	endif;
 
 	if((isset($_COOKIE['inf_usu'])) && (!isset($_SESSION['inf_usu']))):
@@ -134,10 +134,10 @@
 					else:
 						$_SESSION['url4'] = $URL[4];
 						$_SESSION['subcateg_id'] = $result2[0]["subcateg_id"];
-						if(isset($_SESSION['categ_id'])) {
+						if(isset($_SESSION['categ_id'])):
 							unset($_SESSION['categ_id']);
 							unset($_SESSION['url5']);
-						}
+						endif;
 						require '__system__/procuraProdutos.php';
 					endif;
 				else:
@@ -146,20 +146,20 @@
 			else:
 				$_SESSION['url3'] = $URL[3];
 				$_SESSION['depart_id'] = $result[0]["depart_id"];
-				if(isset($_SESSION['subcateg_id']) && isset($_SESSION['categ_id'])) {
+				if(isset($_SESSION['subcateg_id']) && isset($_SESSION['categ_id'])):
 					unset($_SESSION['subcateg_id']);
 					unset($_SESSION['categ_id']);
 					unset($_SESSION['url4']);
 					unset($_SESSION['url5']);
-				} else {
-					if(isset($_SESSION['subcateg_id'])) {
+				else:
+					if(isset($_SESSION['subcateg_id'])):
 						unset($_SESSION['subcateg_id']);
 						unset($_SESSION['url4']);
-					} elseif(isset($_SESSION['categ_id'])) {
+					elseif(isset($_SESSION['categ_id'])):
 						unset($_SESSION['categ_id']);
 						unset($_SESSION['url5']);
-					}
-				}
+					endif;
+				endif;
 				require '__system__/procuraProdutos.php';
 			endif;
 		else:

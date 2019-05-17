@@ -633,6 +633,27 @@ border-radius: 0;
         line-height: 22px;
     }
 
+    .btnNewArm {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        height: 2rem;
+        height: 45%;
+        padding: .5rem 0;
+        border-radius: 5px;
+        font-family: "Raleway-Medium";
+        font-size: 12px;
+        color: #ffffff;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        cursor: pointer;
+        text-align: center;
+        outline: none;
+        top: 0;
+        left: 25%;
+    }
+
     .btnSend {
         position: relative;
         background: #9C45EB;
@@ -1079,7 +1100,7 @@ border-radius: 0;
         width: 80%;
         top: 1.5rem;
         left: -10%;
-        height: 36rem;
+        height: 38.5rem;
         border: none;
         border-radius: 10px;
         background: #ffffff;
@@ -1213,6 +1234,17 @@ border-radius: 0;
         border-bottom: 2px solid #9C45EB;
         color: #2f3640;
         font-family: "Raleway";
+    }
+
+    .labelCadSex {
+        color: #d3d2d2;
+        font-size: 11px;
+        letter-spacing: .5px;
+        font-family: "Raleway";
+    }
+    .labelCadSexRadio {
+        font-size: 11px;
+        color: #2f3640;
     }
       
     .labelFieldCad {
@@ -2227,6 +2259,27 @@ border-radius: 0;
         line-height: 30px;
     }
 
+    .btnNewArm {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        height: 2.4rem;
+        width: 43%;
+        padding: .5rem 0;
+        border-radius: 5px;
+        font-family: "Raleway-Medium";
+        font-size: 12px;
+        color: #ffffff;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        cursor: pointer;
+        text-align: center;
+        outline: none;
+        top: .4rem;
+        left: 35%;
+    }
+
     .btnSend {
         position: relative;
         background: #9C45EB;
@@ -2863,7 +2916,7 @@ border-radius: 0;
         width: 60%;
         top: 3rem;
         left: -10%;
-        height: 36rem;
+        height: 38.5rem;
         border: none;
         border-radius: 10px;
         background: #ffffff;
@@ -2996,6 +3049,17 @@ border-radius: 0;
         border-bottom: 2px solid #9C45EB;
         color: #2f3640;
         font-family: "Raleway";
+    }
+
+    .labelCadSex {
+        color: #d3d2d2;
+        font-size: 11px;
+        letter-spacing: .5px;
+        font-family: "Raleway";
+    }
+    .labelCadSexRadio {
+        font-size: 11px;
+        color: #2f3640;
     }
       
     .labelFieldCad {
@@ -3986,6 +4050,27 @@ border-radius: 0;
         line-height: 30px;
     }
 
+    .btnNewArm {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        height: 2.4rem;
+        width: 35%;
+        padding: .5rem 0;
+        border-radius: 5px;
+        font-family: "Raleway-Medium";
+        font-size: 12px;
+        color: #ffffff;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        cursor: pointer;
+        text-align: center;
+        outline: none;
+        top: .4rem;
+        left: 35%;
+    }
+
     .btnSend {
         position: relative;
         background: #9C45EB;
@@ -4609,7 +4694,7 @@ border-radius: 0;
         width: 60%;
         top: 3rem;
         left: -10%;
-        height: 36rem;
+        height: 38.5rem;
         border: none;
         border-radius: 10px;
         background: #ffffff;
@@ -4742,6 +4827,17 @@ border-radius: 0;
         border-bottom: 2px solid #9C45EB;
         color: #0F0617;
         font-family: "Raleway";
+    }
+
+    .labelCadSex {
+        color: #d3d2d2;
+        font-size: 11px;
+        letter-spacing: .5px;
+        font-family: "Raleway";
+    }
+    .labelCadSexRadio {
+        font-size: 11px;
+        color: #2f3640;
     }
       
     .labelFieldCad {

@@ -36,7 +36,7 @@
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.html');
+            include('functions/includes/header.php');
         ?>
         </nav>
 
@@ -75,9 +75,16 @@
         <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				<span class="closeModalArmazem">&times;</span>
-				<div class="Armazens">
-                    
+                <div class="modalProfileLeftContent">
+                    <div class="Armazens">
+
+                    </div>
+                </div>
+                <div class="modalProfileRightContent">
+                    <span class="closeModalArmazem">&times;</span>
+                    <div class="meuArmazem">
+                        
+                    </div>
                 </div>
 			</div>
 		</div>
