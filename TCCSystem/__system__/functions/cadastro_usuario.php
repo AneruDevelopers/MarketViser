@@ -176,6 +176,15 @@
 								$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];
 								$_SESSION["inf_usu"]['usu_sobrenome'] = $row['usu_last_name'];
 								$_SESSION["inf_usu"]['usu_email'] = $row['usu_email'];
+								$_SESSION["inf_usu"]['usu_cpf'] = $row['usu_cpf'];
+								$_SESSION["inf_usu"]['usu_cep'] = $row['usu_cep'];
+								$_SESSION["inf_usu"]['usu_end'] = $row['usu_end'];
+								$_SESSION["inf_usu"]['usu_senha'] = $row['usu_senha'];
+								$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
+								$_SESSION["inf_usu"]['usu_cidade'] = $row['usu_cidade'];
+								$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
+								$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
+								
 
 								$reg = $row['usu_registro'];
 								$ano = substr($reg,0,4);

@@ -16,10 +16,12 @@ $(function() {
                                 <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + ` - ` + response['produtos'][i].produto_tamanho + `</h4>
                                 <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>
                                 <div>
-                                    <button class="btnBuy">COMPRAR</button>
+                                    <button class="btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + response['produtos'][i].produto_id + `" name="id_prod"/>
-                                        <input type="number" min="0" value="` + response['produtos'][i].carrinho + `" class="inputBuy` + response['produtos'][i].produto_id + `" name="qtd_prod"/>
+                                        <div class="quantity">
+                                            <input type="number" min="0" max="20" value="` + response['produtos'][i].carrinho + `" class="inputQtd inputBuy` + response['produtos'][i].produto_id + `" name="qtd_prod"/>
+                                        </div>
                                     </form>
                                 </div>
                             </a>

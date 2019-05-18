@@ -59,7 +59,7 @@
                                         $row["carrinho"] = 0;
                                     }
                                     echo '
-                                        <div class="prod">
+                                        <div class="prodFilter">
                                             <div class="btnFavoriteFilter btnFavorito' . $row['produto_id'] . '">
                                                 
                                             </div>
@@ -71,10 +71,10 @@
                                                 <span class="divProdPrice1">R$' . $row['produto_preco'] . '</span> R$' . $row['produto_desconto'] . '
                                             </p>
                                             <div>
-                                                <button class="btnBuy">COMPRAR</button>
+                                                <button class="btnBuyFilter">COMPRAR</button>
                                                 <form class="formBuy">
                                                     <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
-                                                    <input type="number" min="0" value="' . $row['carrinho'] . '" class="inputBuy" name="qtd_prod"/>
+                                                    <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                                 </form>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@
                                         $row["carrinho"] = 0;
                                     }
                                     echo '
-                                        <div class="prod">
+                                        <div class="prodFilter">
                                             <div class="btnFavoriteFilter btnFavorito' . $row['produto_id'] . '">
                                                 
                                             </div>
@@ -98,10 +98,10 @@
                                                 R$' . $row['produto_preco'] . '
                                             </p>
                                             <div>
-                                                <button class="btnBuy">COMPRAR</button>
+                                                <button class="btnBuyFilter">COMPRAR</button>
                                                 <form class="formBuy">
                                                     <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
-                                                    <input type="number" min="0" value="' . $row['carrinho'] . '" class="inputBuy" name="qtd_prod"/>
+                                                    <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                                 </form>
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@
                             }
                         } else {
                             echo "
-                                <p>
+                                <p class='msgHelpSearch'>
                                     Não houve resposta para o que pesquisou!<br/>
                                     <b>Possíveis soluções:</b><br/>
                                     1. Tente ser bem específico ao que está procurando;<br/>

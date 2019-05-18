@@ -35,15 +35,19 @@
 		<!-- Title/Display Products -->
 
         <div class="l-mainFiltroPesq">
-			<h3 style="opacity:0;">A</h3>
-            <h2 class="tituloOfertas">MEU CARRINHO</h2>
-            <div class="divShowProdFav">
-                
-			</div>
-        </div>
-        <div class="divShowTot">
+            <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
+            <div class="divTable">
+                <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
+                    
+                </table>
+            </div>
+            <div class="divShowTot">
 				
-		</div>
+            </div>
+            <div class="divShowOpt">
+				
+		    </div>
+        </div>
 
         <!-- Display Products -->
 

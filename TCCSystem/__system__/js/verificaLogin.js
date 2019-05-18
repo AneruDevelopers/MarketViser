@@ -16,13 +16,14 @@ function verificaLogin() {
                         <h5>DADOS PESSOAIS</h5>
                         <div class="accountInfoData">
                             <p class="linhaProfile"><b>Nome:</b> ` + json['usuario']['usu_nome'] + ` ` + json['usuario']['usu_sobrenome'] + `</p>
-                            <p class="linhaProfile"><b>Email:</b>&nbsp;&nbsp; ` + json['usuario']['usu_email'] + `</p>
                             <p class="linhaProfile"><b>CPF:</b>&nbsp;&nbsp;&nbsp;&nbsp; ` + json['usuario']['usu_cpf'] + `</p>
+                            <p class="linhaProfile"><b>Email:</b>&nbsp; ` + json['usuario']['usu_email'] + `</p>
                         </div>
                         <h5>ENDEREÇO</h5>
                         <div class="accountInfoData">
-                        <p class="linhaProfile">` + json['usuario']['usu_end'] + `, ` + json['usuario']['usu_num'] + `</p>
-                        <p class="linhaProfile">` + json['usuario']['usu_complemento'] + `</p>
+                        <p class="linhaProfile"><b>` + json['usuario']['usu_end'] + `</b><b>, ` + json['usuario']['usu_num'] + `</b></p>
+                        <p class="linhaProfile"><b>` + json['usuario']['usu_complemento'] + `</b></p>
+                        <p class="linhaProfile"><b>` + json['usuario']['usu_cep'] + `</b></p>
                         <p class="linhaProfile"><b>` + json['usuario']['usu_cidade'] + ` - ` + json['usuario']['usu_uf'] + `</b></p>
                         </div>
                     </div>

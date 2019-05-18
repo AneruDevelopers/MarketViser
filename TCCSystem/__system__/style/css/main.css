@@ -2366,6 +2366,9 @@ border-radius: 0;
         border-bottom-left-radius: 10px;
         border-top-left-radius: 10px;
         background-color: #ffffff;
+        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
     }
     
     .modalProfileRightContent {
@@ -2399,9 +2402,6 @@ border-radius: 0;
         width: 90%;
         left: 5%;
         border-radius: 5px;
-        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
-        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
-        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
     }
 
     .linhaProfile {
@@ -2641,6 +2641,12 @@ border-radius: 0;
         top: -4rem;
         left: 12%;
         transform: rotate(-15deg);
+    }
+
+    .Iphone img {
+        position: absolute;
+        top: 35%;
+        left: 25%;
     }
       
     .Iphone::before,
@@ -3442,7 +3448,7 @@ border-radius: 0;
         margin: 0 auto;
     }
 
-    .divShowProdFilter .prod, .divShowProdFav .prod {
+    .divShowProdFilter .prodFilter, .divShowProdFav .prodFilter {
         position: relative;
         width: 29%;
         float: left;
@@ -3451,10 +3457,10 @@ border-radius: 0;
         border-radius: 3px;
         padding: .5rem;
         margin-left: 1%;
-        margin-bottom: 1%;
+        margin-bottom: 5%;
     }
 
-    .divShowProdFilter .prod img, .divShowProdFav .prod img {
+    .divShowProdFilter .prodFilter img, .divShowProdFav .prodFilter img {
         position: relative;
         width: 50%;
         left: 25%;
@@ -3463,13 +3469,17 @@ border-radius: 0;
     .titleProdFilter {
         position: relative;
         width: 100%;
-        margin: .6rem 0;
+        height: 1.8rem;
+        margin-top: .6rem;
+        margin-bottom: 0;
         font-size: 11px;
     }
 
     .priceProdFilter {
         margin: .4rem 0;
         font-family: "Karla";
+        position: relative;
+        font-weight: 700;
     }
 
     .btnFavoriteFilter {
@@ -3501,6 +3511,32 @@ border-radius: 0;
         font-size: 14px;
         color: #9C45EB;
         cursor: pointer;
+    }
+
+    .btnBuyFilter {
+        background: #9C45EB;
+        border: none;
+        height: 2rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        position: absolute;
+        top: 95%;
+        width: 100%;
+        left: 0;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+    .inputQtdFiltro {
+        position: absolute;
+        width: 15%;
+        left: 82%;
+        top: 81%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+        font-family: "Karla";
     }
 }
 
@@ -3933,7 +3969,7 @@ border-radius: 0;
         height: 100%;
         float: right;
         /* padding-left: 7.5px; */
-        background: #9C45EB;
+        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -4152,8 +4188,8 @@ border-radius: 0;
         height: 100%;
         float: left;
         /* padding-left: 7.5px; */
-        border-bottom-right-radius: 10px;
-        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
         background-color: #ffffff;
     }
     
@@ -4166,6 +4202,9 @@ border-radius: 0;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
         background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
     }
 
     .sectionAccountInfo h5 {
@@ -4187,9 +4226,6 @@ border-radius: 0;
         width: 90%;
         left: 5%;
         border-radius: 5px;
-        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
-        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
-        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
     }
 
     .linhaProfile {
@@ -4329,7 +4365,7 @@ border-radius: 0;
     }
 
     .divProdImg {
-        width: 100%;
+        position: relative;
         height: 60%;
     }
 
@@ -4377,6 +4413,16 @@ border-radius: 0;
         font-weight: 700;
     }
 
+    .inputQtd {
+        position: absolute;
+        width: 20%;
+        left: 76%;
+        top: 81%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+    }
+
     .btnBuy {
         background: #9C45EB;
         border: none;
@@ -4391,6 +4437,16 @@ border-radius: 0;
         cursor: pointer;
         font-weight: 700;
     }
+
+    /* input[type="number"] {
+        -webkit-appearance: textfield;
+           -moz-appearance: textfield;
+                appearance: textfield;
+      }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+      }     */
 
     /* DISPLAY FAVORITES */
 
@@ -4441,6 +4497,12 @@ border-radius: 0;
         top: -5rem;
         left: 16%;
         transform: rotate(-15deg);
+    }
+
+    .Iphone img {
+        position: absolute;
+        top: 35%;
+        left: 25%;
     }
       
     .Iphone::before,
@@ -5221,7 +5283,7 @@ border-radius: 0;
         margin: 0 auto;
     }
 
-    .divShowProdFilter .prod, .divShowProdFav .prod {
+    .divShowProdFilter .prodFilter, .divShowProdFav .prodFilter {
         position: relative;
         width: 29%;
         float: left;
@@ -5230,10 +5292,10 @@ border-radius: 0;
         border-radius: 3px;
         padding: .5rem;
         margin-left: 1%;
-        margin-bottom: 1%;
+        margin-bottom: 5%;
     }
 
-    .divShowProdFilter .prod img, .divShowProdFav .prod img {
+    .divShowProdFilter .prodFilter img, .divShowProdFav .prodFilter img {
         position: relative;
         width: 50%;
         left: 25%;
@@ -5242,18 +5304,22 @@ border-radius: 0;
     .titleProdFilter {
         position: relative;
         width: 100%;
-        margin: .6rem 0;
+        height: 2rem;
+        margin-top: .6rem; 
+        margin-bottom: 0;
     }
 
     .priceProdFilter {
         margin: .4rem 0;
         font-family: "Karla";
+        font-weight: 700;
     }
 
     .btnFavoriteFilter {
         float: right;
         color: #9C45EB;
         font-size: 18px;
+        cursor: pointer;
     }
     
     .divisorFilter {
@@ -5282,5 +5348,170 @@ border-radius: 0;
         font-size: 15px;
         color: #9C45EB;
         cursor: pointer;
+    }
+
+    .btnBuyFilter {
+        background: #9C45EB;
+        border: none;
+        height: 2rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        position: absolute;
+        top: 95%;
+        width: 100%;
+        left: 0;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+    .inputQtdFiltro {
+        position: absolute;
+        width: 15%;
+        left: 82%;
+        top: 84%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+        font-family: "Karla";
+    }
+
+    /* PAGINA DE PESQUISA */
+
+    .msgHelpSearch {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* PAGINA DO CARRINHO */
+
+    .divTable {
+        position: relative;
+        width: 100%;
+        margin: 2rem 0;
+    }
+
+    .tableCart {
+        border-collapse: collapse;
+    }
+    
+    .trNames {
+        height: 3rem;
+        border-bottom: #d3d2d2 1px solid;
+    }
+
+    .trNames th {
+        color: #9C45EB;
+        font-weight: 700;
+        font-family: 'Raleway-Medium';
+    }
+
+    .tdCart {
+        padding: 10px;
+        border-bottom: #d3d2d2 1px solid;
+    }
+    
+
+    .imgCart {
+        position: relative;
+        width: 15%;
+        float: left;
+    }
+
+    .titleProdCart {
+        font-family: 'Raleway-Medium';
+        font-size: 15px;
+        margin: .5rem 0;
+        float: right;
+        width: 75%;
+    }
+
+    .brandProdCart {
+        font-size: 12px;
+        margin: .5rem 0;
+        float: right;
+        width: 75%;
+    }
+
+    .qtdProdCart {
+        font-size: 14px;
+        width: 20%;
+        left: 40%;
+        position: relative;
+        height: 1.5rem;
+        border: 1px #d3d2d2 solid;
+        border-radius: 3px;
+    }
+
+    .priceProdCart {
+        font-size: 14px;
+        text-align: center;
+        font-family: 'Karla';
+    }
+
+    .descProdCart {
+        font-size: 12px;
+        text-align: center;
+        font-family: 'Karla';
+        text-decoration: line-through;
+        color: #252730;
+        font-weight: 300;
+        font-style: oblique;
+    }
+
+    .btnProdCart {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #9C45EB;
+    }
+
+    .divShowTot {
+        position: relative;
+        width: 88%;
+        margin: auto;
+        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        border-radius: 5px;
+    }
+
+    .summaryTitle {
+        color: #ffffff;
+        width: 20%;
+        position: relative;
+        text-align: left;
+        margin: 0;
+        padding: 10px;
+        font-family: 'Karla';
+    }
+
+    .totalDesc {
+        width: 30%;
+        position: relative;
+        color: #ffffff;
+        font-family: 'Karla';
+        font-size: 15px;
+        padding: 10px;
+        top: 4.25rem;
+    }
+
+    .totalPrice {
+        width: 30%;
+        position: relative;
+        left: 73%;
+        color: #ffffff;
+        font-family: 'Karla';
+        padding: 10px;
+    }
+
+    .limparCart {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .finalizaCompra {
+        padding: 10px;
+        margin: 10px;
     }
 }

@@ -143,7 +143,7 @@
             $sel2->execute();
             $result2 = $sel2->fetchAll();
             foreach($result2 as $v):?>
-                <div class="prod">
+                <div class="prodFilter">
                     <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                         
                     </div>
@@ -163,10 +163,10 @@
                         <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                     </p>
                     <div>
-                        <button class="btnBuy">COMPRAR</button>
+                        <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                         <form class="formBuy">
                             <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                            <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                            <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                         </form>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();
                     foreach($result2 as $v):?>
-                        <div class="prod">
+                        <div class="prodFilter">
                             <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                                 
                             </div>
@@ -336,10 +336,10 @@
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                             </p>            
                             <div>
-                                <button class="btnBuy">COMPRAR</button>
+                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                 <form class="formBuy">
                                     <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                                    <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                                    <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                 </form>
                             </div>
                         </div>
@@ -461,7 +461,7 @@
                 if($sel->rowCount() > 0):
                     $result = $sel->fetchAll();
                     foreach($result as $v):?>
-                        <div class="prod">
+                        <div class="prodFilter">
                             <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                                 
                             </div>
@@ -481,10 +481,10 @@
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                             </p>
                             <div>
-                                <button class="btnBuy">COMPRAR</button>
+                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                 <form class="formBuy">
                                     <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                                    <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy" name="qtd_prod"/>
+                                    <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                 </form>
                             </div>
                         </div>

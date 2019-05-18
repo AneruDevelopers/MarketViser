@@ -19,7 +19,7 @@ $(document).ready(function() {
                         for(var i = 0; json['prods'].length > i; i++) {
                             if(json['prods'][i].produto_desconto_porcent) {
                                 $('.divShowProdFav').append(`
-                                    <div class="prod">
+                                    <div class="prodFilter">
                                         <div class="btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `">
                                             
                                         </div>
@@ -31,17 +31,17 @@ $(document).ready(function() {
                                             <span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `
                                         </p>
                                         <div>
-                                            <button class="btnBuy">COMPRAR</button>
+                                            <button class="btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
-                                                <input type="number" min="0" value="` + json['prods'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                             </form>
                                         </div>
                                     </div>
                                 `);
                             } else {
                                 $('.divShowProdFav').append(`
-                                    <div class="prod">
+                                    <div class="prodFilter">
                                         <div class="btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `">
                                             
                                         </div>
@@ -50,10 +50,10 @@ $(document).ready(function() {
                                         <h5 class="titleProdFilter">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
                                         <p class="priceProdFilter">R$ ` + json['prods'][i].produto_preco + `</p>
                                         <div>
-                                            <button class="btnBuy">COMPRAR</button>
+                                            <button class="btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
-                                                <input type="number" min="0" value="` + json['prods'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                             </form>
                                         </div>
                                     </div>

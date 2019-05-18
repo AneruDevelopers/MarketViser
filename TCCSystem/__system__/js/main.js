@@ -1,8 +1,8 @@
 // TODO O JQUERY SERÁ DEPURADO DENTRO DESTA FUNÇÃO
 
 $(document).ready(function() {
-        
-  $('.owl-one').owlCarousel({
+  
+    $('.owl-one').owlCarousel({
       loop:false,
       margin:5,
       responsiveClass:true,
@@ -86,7 +86,6 @@ $(document).ready(function() {
         }
     }
 });
-
   
 });
 
