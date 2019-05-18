@@ -18,7 +18,7 @@
                 if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Produto adicionado ao carrinho";
-                } elseif(($qtd_prod < 20) && ($qtd_post < 20)) {
+                } elseif(($qtd_prod < 20) && ($qtd_post <= $qtd_prod)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Produto adicionado ao carrinho";
                 } elseif(($qtd_prod >= 20) && ($qtd_post >= 20)) {
@@ -69,7 +69,7 @@
                 if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Carrinho atualizado";
-                } elseif(($qtd_prod < 20) && ($qtd_post < 20)) {
+                } elseif(($qtd_prod < 20) && ($qtd_post <= $qtd_prod)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Carrinho atualizado";
                 } elseif(($qtd_prod >= 20) && ($qtd_post >= 20)) {
