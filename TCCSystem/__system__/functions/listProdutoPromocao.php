@@ -25,7 +25,6 @@
         } else {
             $json['status'] = 0;
         }
-
         echo json_encode($json);
     } else {
         header('Location: ../');

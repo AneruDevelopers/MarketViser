@@ -56,11 +56,9 @@ $(document).ready(function() {
 			            if(result.value) {
 							verificaLogin();
 							btnFavorito();
-							meusFavoritos();
 			            } else {
 							verificaLogin();
 							btnFavorito();
-							meusFavoritos();
 						}
 			        });
 				} else {

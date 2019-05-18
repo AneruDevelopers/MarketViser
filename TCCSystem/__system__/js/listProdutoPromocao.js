@@ -28,7 +28,10 @@ $(function() {
                         </div>
                     `;
                 }
-                $('.l-prods').html(`<div class="loop owl-carousel">` + produtos + `</div>`);
+                $('.l-prods').html(`<div class="loop owl-carousel prodsCar"></div>`);
+                for(var i = 0; produtos.length > i; i++) {
+                    $('.prodsCar').append(produtos[i]);
+                }
                 attCarrinho();
                 btnFavorito();
             } else {

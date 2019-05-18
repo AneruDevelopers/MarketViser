@@ -25,7 +25,7 @@ function verificaLogin() {
                         <p class="linhaProfile"><b>` + json['usuario']['usu_complemento'] + `</b></p>
                         <p class="linhaProfile"><b>` + json['usuario']['usu_cep'] + `</b></p>
                         <p class="linhaProfile"><b>` + json['usuario']['usu_cidade'] + ` - ` + json['usuario']['usu_uf'] + `</b></p>
-                        </div>          
+                        </div>
                     </div>
                     <p class="linkConfig"><a href="#"><i class="fas fa-cog"></i> &nbsp;CONFIGURAÇÕES DO PERFIL</a></p>
                 </div>

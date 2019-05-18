@@ -7,43 +7,72 @@ function listCarrinho() {
         },
         success: function(json) {
             if(!json['empty']) {
-                $('.divShowProdFav').html(loadingRes("Importando carrinho..."));
-                $('.divShowProdFav').html("");
+                $('.divShowProdFav').html(`<tr class="trNames">
+                <th>PRODUTO</th>
+                <th>QUATIDADE</th>
+                <th>PREÇO</th>
+                <th>SUBTOTAL</th>
+                <th></th>
+                </tr>`);
                 for(var i = 0; json['prods'].length > i; i++) {
                     if(json['prods'][i].produto_desconto_porcent) {
                         $('.divShowProdFav').append(`
-                            <div class="prod">
-                                <div class="btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `">
-                                    
-                                </div>
-                                <img src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
-                                <p class="divProdPromo">-` + json['prods'][i].produto_desconto_porcent + `%</p>
-                                <div class="divisorFilter"></div>
-                                <h3>` + json['prods'][i].carrinho + ` - R$` + json['prods'][i].subtotal + `<button class="tirarProd" id-prod="` + json['prods'][i].produto_id + `">&times;</button></h3>
-                                <h5 class="titleProdFilter">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
-                                <p class="priceProdFilter">
-                                    <span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `
-                                </p>
-                            </div>
+                            <tr class="trCart">          
+                                <td class="tdCart" width="40%">
+                                    <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
+                                    <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
+                                    <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
+                                </td>
+                                <td class="tdCart" width="15%">
+                                    <input type='number' class="qtdProdCart" value='` + json['prods'][i].carrinho + `'>
+                                </td>
+                                <td class="tdCart" width="15%">
+                                    <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
+                                    <h3 class="priceProdCart">R$` + json['prods'][i].produto_desconto + `</h3>
+                                </td>
+                                <td class="tdCart" width="20%">
+                                    <h3 class="priceProdCart">R$` + json['prods'][i].subtotal + `</h3>
+                                </td>
+                                <td class="tdCart" width="20%">
+                                    <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                                </td>
+                            </tr>
                         `);
                     } else {
                         $('.divShowProdFav').append(`
-                            <div class="prod">
-                                <div class="btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `">
-                                    
-                                </div>
-                                <img src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
-                                <div class="divisorFilter"></div>
-                                <h3>` +json['prods'][i].carrinho + ` - R$` + json['prods'][i].subtotal + `<button class="tirarProd" id-prod="` + json['prods'][i].produto_id + `">&times;</button></h3>
-                                <h5 class="titleProdFilter">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
-                                <p class="priceProdFilter">R$ ` + json['prods'][i].produto_preco + `</p>
-                            </div>
+                        <tr class="trCart">
+                            <td class="tdCart" width="40%">
+                                <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
+                                <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
+                                <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <input type='number' class="qtdProdCart" value='` + json['prods'][i].carrinho + `'>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <h3 class="descProdCart">-</h3>
+                                <h3 class="priceProdCart">R$` + json['prods'][i].produto_preco + `</h3>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <h3 class="priceProdCart">R$` + json['prods'][i].subtotal + `</h3>
+                            </td>
+                            <td class="tdCart" width="20%">
+                            <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
                         `);
                     }
                 }
-                $('.divShowTot').html(`<h2>Total da compra: R$` + json['totCompra'] + `</h2>
-                    <button class="limparCart">Limpar carrinho</button>
-                    <button class="finalizaCompra">Finalizar compra</button>
+                $('.divShowTot').html(`
+                    <h2 class="summaryTitle">RESUMO</h2>
+                    <h2 class="totalDesc">TOTAL DE DESCONTOS: R$` + json['totCompra'] + `</h2>
+                    <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
+                    `);
+                $('.divShowOpt').html(`
+                    <h2 class="summaryTitle">RESUMO</h2>
+                    <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
+                    <button class="limparCart">LIMPAR CARRINHO</button>
+                    <button class="finalizaCompra">PRÓXIMA ETAPA</button>
                     <a href="` + BASE_URL + `home">Continuar compra</button>`);
                 $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>\
                 <script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');

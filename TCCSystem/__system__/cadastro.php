@@ -28,7 +28,7 @@
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
 		<?php
-			include('functions/includes/header.html');
+			include('functions/includes/header.php');
 		?>    
 		</div>
 		<div class="l-mainCad">
@@ -72,6 +72,12 @@
 										<label class="labelFieldCad"><strong>SOBRENOME</strong></label>
 									</div>
 									<div class="help-block"></div><br/>
+								</div>
+								<div class="outsideSecInputCad">
+									<label class="labelCadSex"><strong>SEXO</strong></label><br/>
+									<input type="radio" value="M" id="usu_sexo_m" name="usu_sexo" checked/> <label class="labelCadSexRadio" for="usu_sexo_m">MASC</label>
+									<input type="radio" value="F" id="usu_sexo_f" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_f">FEM</label>
+									<input type="radio" value="O" id="usu_sexo_o" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_o">OUTROS</label>
 								</div>
 								<div class="outsideSecInputCad">
 									<div class="field -md">
@@ -198,9 +204,16 @@
 		</div>
 		<div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				<span class="closeModalArmazem">&times;</span>
-				<div class="Armazens">
-                    
+				<div class="modalProfileLeftContent">
+                    <div class="Armazens">
+
+                    </div>
+                </div>
+                <div class="modalProfileRightContent">
+                    <span class="closeModalArmazem">&times;</span>
+                    <div class="meuArmazem">
+                        
+                    </div>
                 </div>
 			</div>
 		</div>

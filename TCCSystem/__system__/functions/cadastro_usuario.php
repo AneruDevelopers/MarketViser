@@ -131,9 +131,10 @@
 			$json["status"] = 0;
 		} else {
 			$_POST["usu_senha"] = password_hash($_POST["usu_senha"], PASSWORD_DEFAULT);
-			$ins = $conn->prepare("INSERT INTO usuario(usu_first_name,usu_last_name,usu_cpf,usu_email,usu_senha,usu_cep,usu_end,usu_num,usu_complemento,usu_bairro,usu_cidade,usu_uf, usu_tipo) VALUES(:n,:l,:cpf,:e,:s,:ce,:en,:nu,:co,:b,:c,:u,1)");
+			$ins = $conn->prepare("INSERT INTO usuario(usu_first_name,usu_last_name,usu_sexo,usu_cpf,usu_email,usu_senha,usu_cep,usu_end,usu_num,usu_complemento,usu_bairro,usu_cidade,usu_uf, usu_tipo) VALUES(:n,:l,:sx,:cpf,:e,:s,:ce,:en,:nu,:co,:b,:c,:u,1)");
 			$ins->bindValue(":n", "{$_POST["usu_nome"]}");
 			$ins->bindValue(":l", "{$_POST["usu_sobrenome"]}");
+			$ins->bindValue(":sx", "{$_POST["usu_sexo"]}");
 			$ins->bindValue(":cpf", "{$_POST["usu_cpf"]}");
 			$ins->bindValue(":e", "{$_POST["usu_email"]}");
 			$ins->bindValue(":s", "{$_POST["usu_senha"]}");

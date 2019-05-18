@@ -14,10 +14,11 @@ $(document).ready(function() {
             if(result.value) {
                 var dado = 'arm_id=' + $(this).attr('id-armazem');
                 $.ajax({
+                    dataType: 'json',
                     type: 'post',
                     data: dado,
                     url: BASE_URL + 'functions/escolherArmazem',
-                    success: function() {
+                    success: function(json) {
                         window.location.href = BASE_URL;
                     }
                 });

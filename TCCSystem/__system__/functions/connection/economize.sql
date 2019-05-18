@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/05/2019 às 11:23
+-- Tempo de geração: 17/05/2019 às 09:17
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -31,7 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `armazem` (
   `armazem_id` int(11) NOT NULL,
   `armazem_nome` varchar(150) NOT NULL,
-  `armazem_cnpj` char(18) NOT NULL,
   `armazem_supervisor` varchar(150) NOT NULL,
   `armazem_supervisor_cpf` char(14) NOT NULL,
   `armazem_registro` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -42,9 +41,10 @@ CREATE TABLE `armazem` (
 -- Despejando dados para a tabela `armazem`
 --
 
-INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_cnpj`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
-(1, 'Armazém Lins', '31.957.048/9831-09', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1),
-(2, 'Armazém Promissão', '63.722.344/5712-81', 'Paula Rodrigues de Oliveira', '340.139.871-22', '2019-05-16 05:44:55', 2);
+INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
+(1, 'Armazém Lins', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1),
+(2, 'Armazém Promissão', 'Paula Rodrigues de Oliveira', '340.139.871-22', '2019-05-16 05:44:55', 2),
+(3, 'Armazém Garça', 'Alexsandro Renato de Souza', '497.235.681-34', '2019-05-17 02:13:13', 3);
 
 -- --------------------------------------------------------
 
@@ -105,8 +105,9 @@ CREATE TABLE `cidade` (
 --
 
 INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
-(1, 'LINS', 1),
-(2, 'PROMISSÃO', 1);
+(1, 'Lins', 1),
+(2, 'Promissão', 1),
+(3, 'Garça', 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,9 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (11, 4, 2, 400, 63, 87),
 (12, 5, 2, 400, 35.39, 77),
 (13, 6, 2, 400, 49, 37),
-(14, 7, 2, 400, 83.99, 62);
+(14, 7, 2, 400, 83.99, 62),
+(15, 8, 1, 200, 39.99, NULL),
+(16, 8, 2, 200, 45.99, 18);
 
 -- --------------------------------------------------------
 
@@ -369,7 +372,8 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
 (6, 'Red Bull'),
 (7, 'Schin'),
 (8, 'Del Valle'),
-(9, 'Chalise');
+(9, 'Chalise'),
+(10, 'Skol');
 
 -- --------------------------------------------------------
 
@@ -408,11 +412,12 @@ CREATE TABLE `produto` (
 INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_tamanho`, `produto_categ`) VALUES
 (1, 'Refrigerante Coca-Cola', 'Refrigerante com sabor único e refrescante, vendido em mais de 200 países e considerado uma das maiores marcas do mundo', 'coca-cola-1l.jpg', 1, '2 Litros', 2),
 (2, 'Refrigerante Fanta Uva', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, '2 Litros', 2),
-(3, 'Cerveja Brahma Lata', NULL, 'brahma_lata_350ml.jpg', 5, '350ml', 5),
+(3, 'Cerveja Brahma Lata', 'Criada por um suíço que procurava um sabor mais europeu em solo brasileiro em 1888, no Rio de Janeiro; Brahma Chopp é uma cerveja de cor clara e aparência cristalina. Ela é leve e com aroma neutro, sabor encorpado mas com amargor suave. Foi a primeira cerveja brasileira a ser exportada e hoje está presente em mais de 15 países, entre América do Norte e Europa.', 'brahma_lata_350ml.jpg', 5, '350ml', 5),
 (4, 'Energético Red Bull', 'O Energético Red Bull tem em sua composição: Cafeína, Taurina, Vitaminas do grupo B, Sacarose, Glucose e Água das fontes alpinas. Estimula as funções cognitivas do corpo e ajuda a melhorar a concentração, aumentando o estado de vigilância ou alerta.', 'red-bull-250ml.jpg', 6, '250ml', 6),
 (5, 'Água Mineral sem Gás Schin', 'A Água Mineral Sem Gás Schin é produzida a partir de oito fontes naturais. É uma água de altíssima qualidade, que atende aos mais exigentes requisitos de qualidade e segurança.', 'agua-mineral-500ml.jpg', 7, '500ml', 9),
 (6, 'Suco de Maracujá Del Valle Kapo', 'O Suco de Maracujá Del Valle Kapo traz nutrição para a lancheira do seu filho. Fonte de Vitaminas A, B3, B6, B12, C, D e E, é considerado um complexo vitamínico indicado para o desenvolvimento das crianças. Del Valle Kapo é adoçado com suco de maçã, por isso, tem menos açúcar adicionado.', 'del-valle-maracuja-200ml.jpg', 8, '200ml', 10),
-(7, 'Vinho Tinto Seco Chalise', 'O Vinho Tinto Seco Chalise é límpido, com coloração roxo vivo, reflexos violáceos, aroma característico de morango e framboesa, sabor suave e de grande permanência. Combina com carnes e queijos.', 'vinho-tinto-seco-chalise-750ml.jpg', 9, '750ml', 11);
+(7, 'Vinho Tinto Seco Chalise', 'O Vinho Tinto Seco Chalise é límpido, com coloração roxo vivo, reflexos violáceos, aroma característico de morango e framboesa, sabor suave e de grande permanência. Combina com carnes e queijos.', 'vinho-tinto-seco-chalise-750ml.jpg', 9, '750ml', 11),
+(8, 'Cerveja Skol Lata Pack', 'Cerveja Skol 18 unidades x 350ml', 'cerveja-skol-lt-18x350ml.jpg', 10, '18 unidades ~ 350ml', 5);
 
 -- --------------------------------------------------------
 
@@ -433,7 +438,10 @@ CREATE TABLE `produtos_favorito` (
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (76, 1, 1),
 (79, 3, 1),
-(80, 5, 1);
+(80, 5, 1),
+(84, 6, 1),
+(85, 1, 2),
+(86, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -520,7 +528,8 @@ CREATE TABLE `telefone` (
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
 (1, '(14) 99755-8843', 1, 1),
-(2, '(14) 95104-7655', 2, 1);
+(2, '(14) 95104-7655', 2, 1),
+(3, '(14) 99543-0912', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -594,7 +603,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09');
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09'),
+(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$2jUx7YvWHOEBJT0qgTuOJu9Lfjs3UXQz.DZt7dLF0CogLLRNbSXjy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
 
 --
 -- Índices de tabelas apagadas
@@ -730,6 +740,7 @@ ALTER TABLE `produto`
   ADD PRIMARY KEY (`produto_id`),
   ADD KEY `fk_MarcaProd` (`produto_marca`),
   ADD KEY `fk_CategProd` (`produto_categ`);
+ALTER TABLE `produto` ADD FULLTEXT KEY `produto_nome` (`produto_nome`,`produto_descricao`,`produto_tamanho`);
 
 --
 -- Índices de tabela `produtos_favorito`
@@ -793,7 +804,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `banner`
@@ -811,7 +822,7 @@ ALTER TABLE `categ`
 -- AUTO_INCREMENT de tabela `cidade`
 --
 ALTER TABLE `cidade`
-  MODIFY `cid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `compra`
@@ -829,7 +840,7 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
@@ -889,7 +900,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT de tabela `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`
@@ -901,13 +912,13 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -931,7 +942,7 @@ ALTER TABLE `subcateg`
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tipousu`
@@ -949,7 +960,7 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para dumps de tabelas
