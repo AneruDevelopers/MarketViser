@@ -1,121 +1,89 @@
-<!DOCTYPE>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Insrir Produto</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/css/admin.css"/>
-</head>
-<body class="body_inserirProdutos">
     <form class="formInserirProdutos" action="inserir_produto.php" method="post" enctype="multipart/form-data">
-                <table width="auto" align="center" border="2">
-
-                    <tr align="center">
-                        <td colspan="8"><h2>Insira os dados aqui</h2></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Nome do produto:</b></td>
-                        <td><input type="text" name="nome_produto" size="60" required></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Escolha o Armazém:</b></td>
-                        <td>
-                               <select name="esc_arm" tabindex="1">
-                                    <optgroup label="Escolha um Armazém">
-                                     <?php
-                                
-                                         $buscar_arm = "SELECT * FROM armazem";
-
-                                          $run_arm = mysqli_query($con, $buscar_arm);
-
-                            while ($row_arm = mysqli_fetch_array($run_arm)) {
-
-                                $arm_id = $row_arm['armazem_id'];
-                                $arm_nome = $row_arm['armazem_nome'];
-
-                                echo "<option  value='$arm_id'>$arm_nome</option>";
-                            }
-
-                        ?></optgroup>
-                    </select>                            
-                        </td>
-                    </tr>
-                    <tr>
-
-                    <td align="center"><b>Marca do produto:</b></td>
-                    <td>
-                        <select name="marca_produto" id="">
-                                <option>Selecione a marca:</option>
-                                <?php
-                                
-                                $buscar_marca = "SELECT * FROM marca_prod";
-
-                                $run_marca = mysqli_query($con, $buscar_marca);
-
-                                while ($row_marca = mysqli_fetch_array($run_marca)) {
-
-                                    $marca_id = $row_marca['marca_id'];
-                                    $marca_titulo = $row_marca['marca_nome'];
-
-                                    echo "<option value='$marca_id'>$marca_titulo</option>";
-                                }
-
-                                ?>
-                            </select>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Categoria do produto:</b></td>
-                        <td>
-                            <select name="categoria_produto" id="product_category">
-                            <option>Selecione a categoria:</option>
+        <table width="auto" align="center" border="2">
+            <tr align="center">
+                <td colspan="8"><h2>Insira os dados aqui</h2></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Nome do produto:</b></td>
+                <td><input type="text" name="nome_produto" size="60" required></td>
+            </tr>
+            <!-- <tr>
+                <td align="center"><b>Escolha o Armazém:</b></td>
+                <td>
+                    <select name="esc_arm" tabindex="1">
+                        <optgroup label="Escolha um Armazém">
                             <?php
-                                
-                                $buscar_categ = "SELECT * FROM categ";
-
-                                $run_categ = mysqli_query($con, $buscar_categ);
-
-                                while ($row_categs = mysqli_fetch_array($run_categ)) {
-
-                                    $categ_id = $row_categs['categ_id'];
-                                    $categ_titulo = $row_categs['categ_nome'];
-
-                                    echo "<option value='$categ_id'>$categ_titulo</option>";
-                                }
-
+                                // $buscar_arm = "SELECT * FROM armazem";
+                                // $run_arm = mysqli_query($con, $buscar_arm);
+                                // while ($row_arm = mysqli_fetch_array($run_arm)) {
+                                //     $arm_id = $row_arm['armazem_id'];
+                                //     $arm_nome = $row_arm['armazem_nome'];
+                                //     echo "<option  value='$arm_id'>$arm_nome</option>";
+                                // }
                             ?>
-                            </select>
-                        </td>
-                    </tr>
-                    
-     
-
-                    <tr>
-                        <td align="center"><b>Imagem do produto:</b></td>
-                        <td><input type="file" name="imagem_produto" required></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Preço do produto:</b></td>
-                        <td><input type="text" name="preco_produto" size="60" required></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Descrição do produto:</b></td>
-                        <td><textarea name="descricao_produto" cols="30" rows="10"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><b>Keywords do produto:</b></td>
-                        <td><input type="text" name="keywords_produto" size="60" required></td>
-                    </tr>
-
-                    <tr align="center">
-                        <td colspan="8"><input type="submit" name="cadastrar_produto" value="Cadastrar"></td>
-                    </tr>
-                </table>
-            </form>
-   
-</body>
-</html>
+                        </optgroup>
+                    </select>                            
+                </td>
+            </tr> -->
+            <tr>
+                <td align="center"><b>Marca do produto:</b></td>
+                <td>
+                    <select name="marca_produto">
+                        <option value="*000*">--- Selecione a marca: ---</option>
+                        <?php
+                            $sel = $conn->prepare("SELECT * FROM marca_prod");
+                            $sel->execute();
+                            if($sel->rowCount() > 0):
+                                $results = $sel->fetchAll();
+                                foreach($results as $k => $v):?>
+                                    <option value="<?= $v['marca_id'] ?>"><?= $v['marca_nome']; ?></option>
+                                    <?php
+                                endforeach;
+                            endif;
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>Categoria do produto:</b></td>
+                <td>
+                    <select name="categoria_produto">
+                        <option>--- Selecione a categoria: ---</option>
+                        <?php
+                            $sel = $conn->prepare("SELECT * FROM categ AS c JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id");
+                            $sel->execute();
+                            if($sel->rowCount() > 0):
+                                $results = $sel->fetchAll();
+                                foreach($results as $k => $v):?>
+                                    <option value="<?= $v['categ_id'] ?>"><?= $v['depart_nome'] . " / " . $v['subcateg_nome'] . " / " . $v['categ_nome']; ?></option>
+                                    <?php
+                                endforeach;
+                            endif;
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>Imagem do produto:</b></td>
+                <td><input type="file" name="imagem_produto" required></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Preço do produto:</b></td>
+                <td><input type="text" class="money" name="preco_produto" size="60" required></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Descrição do produto:</b></td>
+                <td><textarea name="descricao_produto" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Volume do produto:</b></td>
+                <td><input type="text" name="produto_tamanho" size="60" required></td>
+            </tr>
+            <tr align="center">
+                <td colspan="8"><input type="submit" name="cadastrar_produto" value="Cadastrar"></td>
+            </tr>
+        </table>
+    </form>
 <?php
 
     if(isset($_POST['cadastrar_produto'])) {
