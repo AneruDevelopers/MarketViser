@@ -67,7 +67,7 @@ function listCarrinho() {
                     <h2 class="summaryTitle">RESUMO</h2>
                     <div class="divisorSummary"></div>
                     <div class="summarySubTitles">
-                        <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$` + json['totCompra'] + `</h3>
+                        <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$` + json['totDesconto'] + `</h3>
                     </div>
                     <div class="summarySubTitles">
                         <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$` + json['totCompra'] + `</h2>
