@@ -60,36 +60,36 @@
 	$REQUEST_URI_PASTA = substr($REQUEST_URI, 1);
 	
 	$URL = explode('/', $REQUEST_URI_PASTA);
-	$URL[3] = ($URL[3] != '' ? $URL[3] : 'home');
+	$URL[1] = ($URL[1] != '' ? $URL[1] : 'home');
 	
-	if(file_exists('__system__/' . $URL[3] . '.php')):
-		if(isset($URL[4])):
+	if(file_exists('__system__/' . $URL[1] . '.php')):
+		if(isset($URL[2])):
 			require '__system__/404.php';
 		else:
-			require '__system__/' . $URL[3] . '.php';
+			require '__system__/' . $URL[1] . '.php';
 		endif;
-	elseif(is_dir('__system__/' . $URL[3])):
-		if(isset($URL[4]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '.php')):
-			if(isset($URL[5])):
+	elseif(is_dir('__system__/' . $URL[1])):
+		if(isset($URL[2]) && file_exists('__system__/' . $URL[1] . '/' . $URL[2] . '.php')):
+			if(isset($URL[3])):
 				require '__system__/404.php';
 			else:
-				require '__system__/' . $URL[3] . '/' . $URL[4] . '.php';
+				require '__system__/' . $URL[1] . '/' . $URL[2] . '.php';
 			endif;
-		elseif(isset($URL[4]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4])):
-			if(isset($URL[5]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '.php')):
-				if(isset($URL[6])):
+		elseif(isset($URL[2]) && is_dir('__system__/' . $URL[1] . '/' . $URL[2])):
+			if(isset($URL[3]) && file_exists('__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3] . '.php')):
+				if(isset($URL[4])):
 					require '__system__/404.php';
 				else:
-					require '__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '.php';
+					require '__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3] . '.php';
 				endif;
-			elseif(isset($URL[5]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5])):
-				if(isset($URL[6]) && file_exists('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6] . '.php')):
+			elseif(isset($URL[3]) && is_dir('__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3])):
+				if(isset($URL[4]) && file_exists('__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3] . '/' . $URL[4] . '.php')):
 					if(isset($URL[7])):
 						require '__system__/404.php';
 					else:
-						require '__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6] . '.php';
+						require '__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3] . '/' . $URL[4] . '.php';
 					endif;
-				elseif(isset($URL[6]) && is_dir('__system__/' . $URL[3] . '/' . $URL[4] . '/' . $URL[5] . '/' . $URL[6])):
+				elseif(isset($URL[4]) && is_dir('__system__/' . $URL[1] . '/' . $URL[2] . '/' . $URL[3] . '/' . $URL[4])):
 					require '__system__/404.php';
 				else:
 					require '__system__/404.php';
@@ -101,29 +101,29 @@
 			require '__system__/404.php';
 		endif;
 	else:
-		$URL[3] = str_replace("-", " ", $URL[3]);
-		$sel = $conn->prepare("SELECT * FROM departamento WHERE depart_nome='$URL[3]'");
+		$URL[1] = str_replace("-", " ", $URL[1]);
+		$sel = $conn->prepare("SELECT * FROM departamento WHERE depart_nome='$URL[1]'");
 		$sel->execute();
 		if($sel->rowCount() > 0):
 			$result = $sel->fetchAll();
-			if(isset($URL[4])):
-				$URL[4] = str_replace("-", " ", $URL[4]);
+			if(isset($URL[2])):
+				$URL[2] = str_replace("-", " ", $URL[2]);
 				$_SESSION['depart_id'] = $result[0]["depart_id"];
-				$sel2 = $conn->prepare("SELECT * FROM subcateg WHERE subcateg_nome='$URL[4]' AND depart_id={$_SESSION['depart_id']}");
+				$sel2 = $conn->prepare("SELECT * FROM subcateg WHERE subcateg_nome='$URL[2]' AND depart_id={$_SESSION['depart_id']}");
 				$sel2->execute();
 				if($sel2->rowCount() > 0):
 					$result2 = $sel2->fetchAll();
 					$_SESSION['subcateg_id'] = $result2[0]["subcateg_id"];
-					if(isset($URL[5])):
-						$URL[5] = str_replace("-", " ", $URL[5]);
-						$sel3 = $conn->prepare("SELECT * FROM categ WHERE categ_nome='$URL[5]' AND subcateg_id={$_SESSION['subcateg_id']}");
+					if(isset($URL[3])):
+						$URL[3] = str_replace("-", " ", $URL[3]);
+						$sel3 = $conn->prepare("SELECT * FROM categ WHERE categ_nome='$URL[3]' AND subcateg_id={$_SESSION['subcateg_id']}");
 						$sel3->execute();
 						if($sel3->rowCount() > 0):
 							$result3 = $sel3->fetchAll();
-							if(isset($URL[6])):
+							if(isset($URL[4])):
 								require '__system__/404.php';
 							else:
-								$_SESSION['url5'] = $URL[5];
+								$_SESSION['url5'] = $URL[3];
 								$_SESSION['categ_id'] = $result3[0]["categ_id"];
 								require '__system__/procuraProdutos.php';
 							endif;
@@ -131,7 +131,7 @@
 							require '__system__/404.php';
 						endif;
 					else:
-						$_SESSION['url4'] = $URL[4];
+						$_SESSION['url4'] = $URL[2];
 						$_SESSION['subcateg_id'] = $result2[0]["subcateg_id"];
 						if(isset($_SESSION['categ_id'])):
 							unset($_SESSION['categ_id']);
@@ -143,7 +143,7 @@
 					require '__system__/404.php';
 				endif;
 			else:
-				$_SESSION['url3'] = $URL[3];
+				$_SESSION['url3'] = $URL[1];
 				$_SESSION['depart_id'] = $result[0]["depart_id"];
 				if(isset($_SESSION['subcateg_id']) && isset($_SESSION['categ_id'])):
 					unset($_SESSION['subcateg_id']);
