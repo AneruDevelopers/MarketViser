@@ -65,15 +65,19 @@ function listCarrinho() {
                 }
                 $('.divShowTot').html(`
                     <h2 class="summaryTitle">RESUMO</h2>
-                    <h2 class="totalDesc">TOTAL DE DESCONTOS: R$` + json['totCompra'] + `</h2>
-                    <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
+                    <div class="divisorSummary"></div>
+                    <div class="summarySubTitles">
+                        <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$` + json['totCompra'] + `</h3>
+                    </div>
+                    <div class="summarySubTitles">
+                        <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$` + json['totCompra'] + `</h2>
+                    </div>
+                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
+                    <a class="linkShop" href="` + BASE_URL + `home">CONTINUAR COMPRANDO</a>
                     `);
                 $('.divShowOpt').html(`
-                    <h2 class="summaryTitle">RESUMO</h2>
-                    <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
-                    <button class="limparCart">LIMPAR CARRINHO</button>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA</button>
-                    <a href="` + BASE_URL + `home">Continuar compra</button>`);
+                    `);
                 $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>\
                 <script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');
             } else {
