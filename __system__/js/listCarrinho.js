@@ -31,7 +31,7 @@ function listCarrinho() {
                                     <h3 class="priceProdCart">R$` + json['prods'][i].produto_desconto + `</h3>
                                 </td>
                                 <td class="tdCart" width="20%">
-                                    <h3 class="priceProdCart">R$` + json['prods'][i].subtotal + `</h3>
+                                    <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
                                 </td>
                                 <td class="tdCart" width="20%">
                                     <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
@@ -54,7 +54,7 @@ function listCarrinho() {
                                 <h3 class="priceProdCart">R$` + json['prods'][i].produto_preco + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                                <h3 class="priceProdCart">R$` + json['prods'][i].subtotal + `</h3>
+                                <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
                             <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
@@ -85,6 +85,20 @@ function listCarrinho() {
                 $('.divShowTot').html("");
                 $('.divShowOpt').html("");
             }
+        }
+    });
+}
+
+function listParcialCarrinho() {
+    $.ajax({
+        url: BASE_URL + 'functions/listCarrinho',
+        dataType: 'json',
+        success: function(json) {
+            for(var i = 0; json['prods'].length > i; i++) {
+                $('.subtot' + json['prods'][i].produto_id).html(`R$` + json['prods'][i].subtotal);
+            }
+            $('.valueDesc').html(`- R$` + json['totDesconto']);
+            $('.valueBuy').html(`R$` + json['totCompra']);
         }
     });
 }

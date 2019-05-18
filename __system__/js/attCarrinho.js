@@ -137,7 +137,7 @@ function attCarrinho() {
                                 type: json['type'],
                                 title: json['answer']
                             });
-                            listCarrinho();
+                            listParcialCarrinho();
                         }
                     });
                 }
@@ -156,7 +156,7 @@ function attCarrinho() {
                         type: json['type'],
                         title: json['answer']
                     });
-                    listCarrinho();
+                    listParcialCarrinho();
                 }
             });
         }
