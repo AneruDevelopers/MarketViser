@@ -121,8 +121,8 @@
     <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
+    <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>

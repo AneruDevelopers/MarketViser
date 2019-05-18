@@ -1,5 +1,5 @@
 <?php
-    if(!isset($URL[4])):?>
+    if(!isset($URL[2])):?>
         <div class="center_header">
             <div class="tilteFilterProd">
                 <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result[0]["depart_nome"]; ?></h4>
@@ -166,7 +166,7 @@
                         <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                         <form class="formBuy">
                             <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                            <input type="number" min="0" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                            <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                         </form>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
             endforeach;?>
         </div><?php
     else:
-        if(!isset($URL[5])):?>
+        if(!isset($URL[3])):?>
             <div class="center_header">
                 <div class="tilteFilterProd">
                     <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result2[0]["subcateg_nome"]; ?></h4>

@@ -92,6 +92,75 @@ function attCarrinho() {
             }
         });
     });
+
+    $('.qtdProdCart').change(function(e) {
+        e.preventDefault();
+        if($(this).val() == 0) {
+            Swal.fire({
+                title: "Deseja mesmo excuir o produto do carrinho?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonColor: "#494949",
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: "#A94442",
+                confirmButtonText: "Sim, excluir"
+            }).then((result) => {
+                if(result.value) {
+                    $.ajax({
+                        dataType: 'json',
+                        type: 'post',
+                        data: {
+                            "prod_id": $(this).attr("id-prod"),
+                            "qtd_prod": $(this).val()
+                        },
+                        url: BASE_URL + 'functions/attCarrinho',
+                        success: function(json) {
+                            Toast.fire({
+                                type: json['type'],
+                                title: json['answer']
+                            });
+                            listCarrinho();
+                        }
+                    });
+                } else {
+                    $(this).val("1");
+                    $.ajax({
+                        dataType: 'json',
+                        type: 'post',
+                        data: {
+                            "prod_id": $(this).attr("id-prod"),
+                            "qtd_prod": $(this).val()
+                        },
+                        url: BASE_URL + 'functions/attCarrinho',
+                        success: function(json) {
+                            Toast.fire({
+                                type: json['type'],
+                                title: json['answer']
+                            });
+                            listCarrinho();
+                        }
+                    });
+                }
+            });
+        } else {
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                data: {
+                    "prod_id": $(this).attr("id-prod"),
+                    "qtd_prod": $(this).val()
+                },
+                url: BASE_URL + 'functions/attCarrinho',
+                success: function(json) {
+                    Toast.fire({
+                        type: json['type'],
+                        title: json['answer']
+                    });
+                    listCarrinho();
+                }
+            });
+        }
+    })
 }
 
 attCarrinho();

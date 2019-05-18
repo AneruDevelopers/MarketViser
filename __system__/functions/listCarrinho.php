@@ -4,6 +4,7 @@
         $json = array();
         $json['empty'] = TRUE;
         $json['totCompra'] = 0;
+        $json['totDesconto'] = 0;
         $json['prods'] = array();
 
         function getProducts() {
@@ -39,19 +40,18 @@
             if(isset($_SESSION['carrinho'])) {
                 $cart = $_SESSION['carrinho'];
                 $products =  getProductsByIds(implode(',', array_keys($cart)));
-    
+
                 foreach($products as $k => $product) {
                     if($product['produto_desconto_porcent'] != "") {
                         $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
                         $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
-                        $product["produto_desconto"] = number_format($product["produto_desconto"], 2, ',', '.');
                         $results[$k] = $product;
-                        $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_preco'];
+                        $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
+                        $results[$k]["produto_desconto"] = number_format($results[$k]["produto_desconto"], 2, ',', '.');
                     } else {
                         $results[$k] = $product;
                         $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_preco'];
                     }
-                    
                 }
             }
             
@@ -75,6 +75,7 @@
             foreach($resultsCarts as $k => $v) {
                 if($v['produto_desconto_porcent'] <> "") {
                     $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                    $json['totDesconto'] += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
                     $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
                     $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
                 }
@@ -86,6 +87,7 @@
 
                 $json['prods'][] = $v;
             }
+            $json['totDesconto'] = number_format($json['totDesconto'], 2, ',', '.');
             $json['totCompra'] = number_format($json['totCompra'], 2, ',', '.');
         }
 

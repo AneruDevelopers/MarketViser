@@ -15,7 +15,7 @@ function limpaVol() {
                 for(var i = 0; json['produtos'].length > i; i++) {
                     if(json['produtos'][i].produto_desconto_porcent) {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -25,7 +25,7 @@ function limpaVol() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -35,7 +35,7 @@ function limpaVol() {
                         `;
                     } else {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -44,7 +44,7 @@ function limpaVol() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -88,7 +88,7 @@ function limpaMarca() {
                 for(var i = 0; json['produtos'].length > i; i++) {
                     if(json['produtos'][i].produto_desconto_porcent) {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -98,7 +98,7 @@ function limpaMarca() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -108,7 +108,7 @@ function limpaMarca() {
                         `;
                     } else {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -117,7 +117,7 @@ function limpaMarca() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -161,7 +161,7 @@ function limpaPreco() {
                 for(var i = 0; json['produtos'].length > i; i++) {
                     if(json['produtos'][i].produto_desconto_porcent) {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -171,7 +171,7 @@ function limpaPreco() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -181,7 +181,7 @@ function limpaPreco() {
                         `;
                     } else {
                         produtos[i] = `
-                            <div class="prod">
+                            <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
@@ -190,7 +190,7 @@ function limpaPreco() {
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                 <div>
-                                    <button class="btnBuy">ADICIONAR</button>
+                                    <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -239,7 +239,7 @@ function limpaFav() {
                     for(var i = 0; json['produtos'].length > i; i++) {
                         if(json['produtos'][i].produto_desconto_porcent) {
                             produtos[i] = `
-                                <div class="prod">
+                                <div class="prodFilter">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
@@ -249,7 +249,7 @@ function limpaFav() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     <div>
-                                        <button class="btnBuy">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                             <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -259,7 +259,7 @@ function limpaFav() {
                             `;
                         } else {
                             produtos[i] = `
-                                <div class="prod">
+                                <div class="prodFilter">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
@@ -268,7 +268,7 @@ function limpaFav() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     <div>
-                                        <button class="btnBuy">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                             <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>

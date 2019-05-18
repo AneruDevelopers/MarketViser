@@ -9,7 +9,7 @@ function listCarrinho() {
             if(!json['empty']) {
                 $('.divShowProdFav').html(`<tr class="trNames">
                 <th>PRODUTO</th>
-                <th>QUATIDADE</th>
+                <th>QUANTIDADE</th>
                 <th>PREÇO</th>
                 <th>SUBTOTAL</th>
                 <th></th>
@@ -24,7 +24,7 @@ function listCarrinho() {
                                     <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
                                 </td>
                                 <td class="tdCart" width="15%">
-                                    <input type='number' class="qtdProdCart" value='` + json['prods'][i].carrinho + `'>
+                                    <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
                                 </td>
                                 <td class="tdCart" width="15%">
                                     <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
@@ -47,7 +47,7 @@ function listCarrinho() {
                                 <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
                             </td>
                             <td class="tdCart" width="20%">
-                                <input type='number' class="qtdProdCart" value='` + json['prods'][i].carrinho + `'>
+                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
                             </td>
                             <td class="tdCart" width="20%">
                                 <h3 class="descProdCart">-</h3>
@@ -65,20 +65,18 @@ function listCarrinho() {
                 }
                 $('.divShowTot').html(`
                     <h2 class="summaryTitle">RESUMO</h2>
-                    <h2 class="totalDesc">TOTAL DE DESCONTOS: R$` + json['totCompra'] + `</h2>
+                    <h2 class="totalDesc">TOTAL DE DESCONTOS: R$` + json['totDesconto'] + `</h2>
                     <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
                     `);
                 $('.divShowOpt').html(`
-                    <h2 class="summaryTitle">RESUMO</h2>
-                    <h2 class="totalPrice">TOTAL DA COMPRA: R$` + json['totCompra'] + `</h2>
                     <button class="limparCart">LIMPAR CARRINHO</button>
                     <button class="finalizaCompra">PRÓXIMA ETAPA</button>
                     <a href="` + BASE_URL + `home">Continuar compra</button>`);
-                $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>\
-                <script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');
+                attCarrinho();
             } else {
                 $('.divShowProdFav').html("Sem produtos no carrinho!");
                 $('.divShowTot').html("");
+                $('.divShowOpt').html("");
             }
         }
     });

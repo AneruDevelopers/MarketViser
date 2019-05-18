@@ -123,7 +123,7 @@
 							if(isset($URL[4])):
 								require '__system__/404.php';
 							else:
-								$_SESSION['url5'] = $URL[3];
+								$_SESSION['url3'] = $URL[3];
 								$_SESSION['categ_id'] = $result3[0]["categ_id"];
 								require '__system__/procuraProdutos.php';
 							endif;
@@ -131,11 +131,11 @@
 							require '__system__/404.php';
 						endif;
 					else:
-						$_SESSION['url4'] = $URL[2];
+						$_SESSION['url2'] = $URL[2];
 						$_SESSION['subcateg_id'] = $result2[0]["subcateg_id"];
 						if(isset($_SESSION['categ_id'])):
 							unset($_SESSION['categ_id']);
-							unset($_SESSION['url5']);
+							unset($_SESSION['url3']);
 						endif;
 						require '__system__/procuraProdutos.php';
 					endif;
@@ -143,20 +143,20 @@
 					require '__system__/404.php';
 				endif;
 			else:
-				$_SESSION['url3'] = $URL[1];
+				$_SESSION['url1'] = $URL[1];
 				$_SESSION['depart_id'] = $result[0]["depart_id"];
 				if(isset($_SESSION['subcateg_id']) && isset($_SESSION['categ_id'])):
 					unset($_SESSION['subcateg_id']);
 					unset($_SESSION['categ_id']);
-					unset($_SESSION['url4']);
-					unset($_SESSION['url5']);
+					unset($_SESSION['url2']);
+					unset($_SESSION['url3']);
 				else:
 					if(isset($_SESSION['subcateg_id'])):
 						unset($_SESSION['subcateg_id']);
-						unset($_SESSION['url4']);
+						unset($_SESSION['url2']);
 					elseif(isset($_SESSION['categ_id'])):
 						unset($_SESSION['categ_id']);
-						unset($_SESSION['url5']);
+						unset($_SESSION['url3']);
 					endif;
 				endif;
 				require '__system__/procuraProdutos.php';
