@@ -31,7 +31,7 @@ $(document).ready(function() {
                                             <span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `
                                         </p>
                                         <div>
-                                            <button class="btnBuy">ADICIONAR</button>
+                                            <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
                                                 <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -50,7 +50,7 @@ $(document).ready(function() {
                                         <h5 class="titleProdFilter">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
                                         <p class="priceProdFilter">R$ ` + json['prods'][i].produto_preco + `</p>
                                         <div>
-                                            <button class="btnBuy">ADICIONAR</button>
+                                            <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
                                                 <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -64,13 +64,13 @@ $(document).ready(function() {
                         attCarrinho();
                     } else {
                         $('.divShowProdFav').html(`
-                            <p>
-                                Não houve resposta para o que pesquisou!<br/>
+                            <p class='msgHelpSearch'>
+                                <h4>Não houve resposta para o que pesquisou!</h4>
                                 <b>Possíveis soluções:</b><br/>
-                                1. Tente ser bem específico ao que está procurando;<br/>
-                                2. Tente escrever pelo menos uma palavra inteira, por exemplo 'Refrigerante' ao invés de 'Refri';<br/>
-                                3. Não use palavras tão comuns;<br/>
-                                4. ...<br/>
+                                <b>1.</b> Tente ser bem específico ao que está procurando;<br/>
+                                <b>2.</b> Tente escrever pelo menos uma palavra inteira, por exemplo 'Refrigerante' ao invés de 'Refri';<br/>
+                                <b>3.</b> Não use palavras tão comuns;<br/>
+                                <b>4.</b> ...<br/>
                             </p>
                         `);
                     }

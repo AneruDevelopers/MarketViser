@@ -64,28 +64,16 @@ $(document).ready(function() {
   });
 
   $('.loop').owlCarousel({
-      center: true,
-      items:5,
+      center: false,
+      items:4,
       loop:true,
-      margin:5,
+      margin:8,
       responsive:{
           600:{
               items:7
           }
       }
   });
-
-  $('.favoritos').owlCarousel({
-    center: true,
-    items:5,
-    loop:true,
-    margin:5,
-    responsive:{
-        600:{
-            items:7
-        }
-    }
-});
   
 });
 

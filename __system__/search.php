@@ -35,7 +35,6 @@
 		<!-- Title/Display Products -->
 
         <div class="l-mainFiltroPesq">
-			<h3 style="opacity:0;">A</h3>
             <h2 class="tituloOfertas">
                 <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima" ; ?>
             </h2>
@@ -71,7 +70,7 @@
                                                 <span class="divProdPrice1">R$' . $row['produto_preco'] . '</span> R$' . $row['produto_desconto'] . '
                                             </p>
                                             <div>
-                                                <button class="btnBuyFilter">COMPRAR</button>
+                                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                                 <form class="formBuy">
                                                     <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
                                                     <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -98,7 +97,7 @@
                                                 R$' . $row['produto_preco'] . '
                                             </p>
                                             <div>
-                                                <button class="btnBuyFilter">COMPRAR</button>
+                                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                                 <form class="formBuy">
                                                     <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
                                                     <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
@@ -111,12 +110,12 @@
                         } else {
                             echo "
                                 <p class='msgHelpSearch'>
-                                    Não houve resposta para o que pesquisou!<br/>
+                                    <h4>Não houve resposta para o que pesquisou!</h4>
                                     <b>Possíveis soluções:</b><br/>
-                                    1. Tente ser bem específico ao que está procurando;<br/>
-                                    2. Tente escrever pelo menos uma palavra inteira, por exemplo 'Refrigerante' ao invés de 'Refri';<br/>
-                                    3. Não use palavras tão comuns;<br/>
-                                    4. ...<br/>
+                                    <b>1.</b> Tente ser bem específico ao que está procurando;<br/>
+                                    <b>2.</b> Tente escrever pelo menos uma palavra inteira, por exemplo 'Refrigerante' ao invés de 'Refri';<br/>
+                                    <b>3.</b> Não use palavras tão comuns;<br/>
+                                    <b>4.</b> ...<br/>
                                 </p>
                             ";
                         }

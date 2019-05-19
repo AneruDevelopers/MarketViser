@@ -94,7 +94,7 @@ border-radius: 0;
 
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: auto auto auto auto auto 24rem 6rem;
+        grid-template-rows: auto auto auto auto auto 20rem 4rem;
         grid-template-areas:
             "topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav topNav"
             "headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav headerNav"
@@ -110,21 +110,21 @@ border-radius: 0;
         grid-area: topNav;
         background: #ffffff;
         color: #ffffff;
-        padding: 0px;
+        padding: 5px 0;
         display: inline-flex;
         width: 100%;
     }
 
     .l-headerNav {
         grid-area: headerNav;
-        background-color: #252730;
+        background-color: #0F0617;
         width: 100%;
+        padding: 5px 0;
     }
 
     .l-bottomNav {
         grid-area: bottomNav;
         background-color: #ffffff;
-        border-bottom: solid 2px #252730;
         width: 100%;
     }
 
@@ -153,7 +153,6 @@ border-radius: 0;
     .companyNameSpace {
         width: 50%;
         height: auto;
-        /* margin: 4px; */
     }
 
     .comapanyName {
@@ -163,16 +162,10 @@ border-radius: 0;
         height: 100%;
     }
 
-    .linkCompanyName {
-        color: #252730;
-        text-decoration: none;
-        position: relative;
-        font-size: 25px;
-        top: .2rem;
-    }
-
     .linkCompanyName img {
         width: 12rem;
+        position: relative;
+        top: .2rem;
     }
 
     .linkCompanyName:hover {
@@ -184,13 +177,11 @@ border-radius: 0;
         border-bottom: solid 1px #b2b4b8;
     }
 
-
     /* ESPAÇO DO USUÁRIO HEADER */
 
     .topNavCity {
         width: 25%;
         height: auto;
-        /* margin: 4px; */
     }
 
     .linkMenuTopNavCityMobile {
@@ -203,9 +194,9 @@ border-radius: 0;
         top: .8rem;
         padding-left: .7rem;
         width: 100%;
-        color: #252730;
+        color: #0F0617;
         font-family: "Raleway-Medium";
-        font-size: 9px;
+        font-size: 10px;
     }
 
     .linkMenuTopNavCityMobile:hover {
@@ -232,7 +223,7 @@ border-radius: 0;
         list-style: none;
         text-align: center;
         margin: 0 .5rem 0 0;
-        padding: 0 0;
+        padding: 0 4px;
         float: right;
     }
 
@@ -245,16 +236,8 @@ border-radius: 0;
     }
 
     .linkMenuTopNavMobile i {
-        font-size: 16px;
-    }
-    
-    .linkMenuTopNavMobile {
-        text-decoration: none;
-        color: #252730;
-        height: 100%;
-        position: relative;
-        font-size: 12px;
-        font-family: "Raleway-Medium";
+        font-size: 17px;
+        color: #0F0617;
         position: relative;
         top: .65rem;
     }
@@ -282,9 +265,10 @@ border-radius: 0;
         background: #ffffff;
         height: 20px;
         padding: 4px;
-        border: solid 1px #b2b4b8;
+        border: solid 1px transparent;
         position: relative;
         border-radius: 3%;
+        font-family: 'Raleway';
     }
 
     .formPesquisaHeader {
@@ -295,7 +279,7 @@ border-radius: 0;
         width: 25px;
         height: 25px;
         border-radius: 10%;
-        background: #252730;
+        background: #0F0617;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -303,7 +287,7 @@ border-radius: 0;
         cursor: pointer;
         text-decoration: none;
         border: none;
-        margin-top: -.19rem;
+        margin-top: -.14rem;
         float: right;
     }
 
@@ -397,26 +381,6 @@ border-radius: 0;
         max-height: 26rem;
     }
 
-    /* DISPLAY PRODUCTS */
-
-    .tituloOfertas {
-        position: relative;
-        font-family: "Raleway";
-        font-size: 1rem;
-        width: 100%;
-        text-align: center;
-        /* background: linear-gradient(to right, #30CFD0 0%, #330867 100%); */
-        padding: 10px 0;
-        margin: 0 0;
-        color: #252730;
-    }
-
-    .productsClass {
-        min-height: 20rem;
-        border: solid 1px #e2e3e6;
-        margin: 0 15px;
-    }
-
     /* MODAL ARMAZEM */
 
     .myModalArmazem {
@@ -495,7 +459,7 @@ border-radius: 0;
         border: none;
         width: 80%;
         border-radius: 10px;
-        height: 16rem;
+        height: 14rem;
         font-family: "Raleway";
         position: relative;
         top: 4rem;
@@ -506,8 +470,6 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: left;
-        /* padding-right: 7.5px; */
-        /* background: #e2e3e6; */
     }
 
     .modalRightContent {
@@ -515,8 +477,7 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: right;
-        /* padding-left: 7.5px; */
-        background: #9C45EB;
+        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -533,7 +494,7 @@ border-radius: 0;
       
     .close:hover,
     .close:focus {
-        color: black;
+        color: #0F0617;
         text-decoration: none;
         cursor: pointer;
     }
@@ -545,21 +506,21 @@ border-radius: 0;
 
     .modalLeftContent form {
         position: relative;
-        top: 1.5rem;
+        top: 0rem;
     }
 
     .titleModalLogin {
         font-family: "Raleway-Medium";
         text-align: center;
-        margin: .4rem;
-        margin-bottom: 1.6rem;
-        font-size: 22px;
+        margin-top: 1.4rem;
+        margin-bottom: 1rem;
+        font-size: 20px;
         background: #ffffff;
     }
 
     .labelInput {
         font-family: "Raleway-Medium";
-        font-size: 13px;
+        font-size: 12px;
         position: relative;
         left: .4rem;
         top: 1rem;
@@ -574,14 +535,14 @@ border-radius: 0;
         border: solid 1px #252730;
         padding: 3px;
         height: 1.5rem;
-        font-size: 12px;
+        font-size: 11px;
         position: relative;
         top: .7rem;
     }
 
     .linkCadModal {
         font-family: "Raleway";
-        font-size: 12px;
+        font-size: 11px;
         color: #ffffff;
         text-decoration: none;
     }
@@ -600,8 +561,9 @@ border-radius: 0;
 
     .textModal {
         text-align: center;
-        font-size: 24px;
-        margin: .4rem 0;
+        font-size: 20px;
+        margin: auto;
+        width: 70%;
         position: relative;
         top: 20%;
         color: #ffffff;
@@ -611,7 +573,7 @@ border-radius: 0;
     .textModalBottom {
         text-align: center;
         font-size: 12px;
-        margin: 1rem 0;
+        margin: .7rem 0;
         position: relative;
         top: 20%;
         color: #ffffff;
@@ -630,7 +592,7 @@ border-radius: 0;
         top: 20%;
         position: relative;
         text-align: center;
-        line-height: 22px;
+        line-height: 20px;
     }
 
     .btnNewArm {
@@ -658,11 +620,11 @@ border-radius: 0;
         position: relative;
         background: #9C45EB;
         border: none;
-        width: 50%;
-        height: 2rem;
+        width: 45%;
+        height: 1.6rem;
         border-radius: 30px;
         font-family: "Raleway-Medium";
-        font-size: 12px;
+        font-size: 10px;
         color: #ffffff;
         top: 0;
         left: 25%;
@@ -685,8 +647,8 @@ border-radius: 0;
 
    /* DISPLAY PRODUCTS */
 
-   .loop {
-    width: 100%;
+    .loop {
+        width: 100%;
     }
 
     .tituloOfertas {
@@ -696,8 +658,8 @@ border-radius: 0;
         width: 100%;
         text-align: center;
         padding: 10px 0;
-        margin: .1rem 0;
-        color: #2f3640;
+        margin: 1rem 0;
+        color: #0F0617;
         letter-spacing: 2px;
     }
 
@@ -712,12 +674,11 @@ border-radius: 0;
 
     .divProdCarousel {
         background: #ffffff;
-        border-top: #2f3640 solid 2px;
-        border-bottom: #2f3640 solid 2px;
+        border-top: #9C45EB solid 2px;
         transition: 100ms box-shadow ease-in-out;
-        border-radius: 2px;
+        border-radius: 1 px;
         padding: 2px;
-        height: 9rem;
+        height: 11rem;
     }
 
     .divProdCarousel:hover {
@@ -742,8 +703,8 @@ border-radius: 0;
     }
 
     .divProdImg {
-        width: 100%;
-        height: 45%;
+        height: 40%;
+        margin-bottom: .4rem;
     }
 
     .divProdPromo {
@@ -757,9 +718,9 @@ border-radius: 0;
     }
 
     .divProdTitle {
-        color: #252730;
+        color: #0F0617;
         text-align: left;
-        font-size: 11px;
+        font-size: 10px;
         margin: 0;
         font-family: "Raleway";
     }
@@ -767,16 +728,35 @@ border-radius: 0;
     .divProdPrice {
         margin: 0;
         position: absolute;
-        top: 78%;
+        top: 71%;
         left: 4%;
-        color: #2f3640;
+        color: #0F0617;
         font-size: 12px;
         font-family: "Karla";
+        font-weight: 700;
     }
     
     .divProdPrice1 {
         font-size: 9px;
         text-decoration: line-through;
+        color: #9C45EB;
+    }
+
+    .inputQtd {
+        position: absolute;
+        width: 90%;
+        margin: auto;
+        top: 79%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 15px;
+        font-family: 'Karla';
+        font-size: 10px;
+        padding-left: 4px;
+    }
+
+    .inputQtd:focus {
+        outline: #9C45EB solid 1px;
     }
 
     .btnBuy {
@@ -787,7 +767,7 @@ border-radius: 0;
         font-size: 10px;
         font-family: "Karla";
         position: absolute;
-        top: 90%;
+        top: 91%;
         width: 100%;
         left: 0;
         cursor: pointer;
@@ -807,7 +787,7 @@ border-radius: 0;
     .header-hero {
         position: relative;
         text-align: center;
-        top: 2rem;
+        top: 1rem;
     }
 
     .header-hero h1 {
@@ -832,6 +812,7 @@ border-radius: 0;
         height: 40%;
         margin: auto;
         text-align: center;
+        top: -6.6rem;
     }
 
     .footer-nav{
@@ -839,14 +820,13 @@ border-radius: 0;
         list-style: none;
         margin: auto;
         padding: 0;
-        top: -6rem;
         position: relative;
         width: 33%;
     }
 
     .titleListFooter {
         color: #9C45EB;
-        font-size: 11px;
+        font-size: 10px;
         margin-bottom: 0rem;
         font-family: "Open Sans";
     }
@@ -868,8 +848,8 @@ border-radius: 0;
         width: 100%;
         height: auto;
         list-style: none;
-        margin-top: 1rem;
-        padding: .4rem 0;
+        margin-top: .5rem;
+        padding: .2rem 0;
     }
 
     .titleSocialMedia {
@@ -956,8 +936,8 @@ border-radius: 0;
         text-align: center;
         color: #ffffff;
         font-size: 10px;
-        margin: .3rem;
-        top: 1rem;
+        margin: 0;
+        top: .8rem;
         font-family: "Open Sans";
     }
 
@@ -967,13 +947,14 @@ border-radius: 0;
         text-align: center;
         color: #ffffff;
         font-size: 10px;
-        margin: .3rem;
+        margin: 0;
+        top: .2rem;
         font-family: "Open Sans";
     }
 
     .copyrightReserved a {
         text-decoration: none;
-        color: #9C45EB;
+        color: #d3d2d2;
     }
 
 
@@ -1493,7 +1474,7 @@ border-radius: 0;
 
     .l-headerNav {
         grid-area: headerNav;
-        background-color: #252730;
+        background-color: #0F0617;
         width: 100%;
     }
 
@@ -1535,6 +1516,10 @@ border-radius: 0;
         margin: .6rem 0;
     }
 
+    .tilteFilterProd h4 i {
+        color: #9C45EB;
+    }
+
     .prod i {
         float: right;
         color: #9C45EB;
@@ -1551,7 +1536,7 @@ border-radius: 0;
         text-align: center;
         margin-top: 0;
         margin-bottom: 2rem;
-        color: #252730;
+        color: #0F0617;
     }
 
     .selectFilter {
@@ -1561,7 +1546,6 @@ border-radius: 0;
         font-family: "Raleway";
         height: 25px;
         position: relative;
-        /* top: 0px; */
         border: none;
         background: rgb(243, 240, 240);
         border-radius: 2px;
@@ -1587,7 +1571,7 @@ border-radius: 0;
     .titleFilter {
         width: 100%;
         text-align: center;
-        color: #2f3640;
+        color: #0F0617;
         margin: .8rem 0;
     }
 
@@ -1602,33 +1586,44 @@ border-radius: 0;
         font-size: 10px;
         font-family: "Raleway-Medium";
         margin-left: 10%;
-        color: #2f3640;
+        color: #0F0617;
     }
 
     .titleConfigFilter i {
-        color: #252730;
+        color: #0F0617;
     }
 
     .divFilter {
         margin: 1rem 0;
     }
 
-    .divShowProdFilter, .divShowProdFav {
+    .divShowProdFilter {
         position: relative;
         width: 100%;
+        height: 100%;
+        float: right;
     }
 
-    .divShowProdFilter .prod, .divShowProdFav .prod {
+    .divShowProdFav {
         position: relative;
-        width: 66.4%;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .divShowProdFilter .prodFilter, .divShowProdFav .prodFilter {
+        position: relative;
+        width: 29%;
+        float: left;
         margin: auto;
         border: #e2e3e6 solid 1px;
         border-radius: 3px;
-        margin-top: 1rem;
         padding: .5rem;
+        margin-left: 1%;
+        margin-bottom: 5%;
     }
 
-    .divShowProdFilter .prod img, .divShowProdFav .prod img {
+    .divShowProdFilter .prodFilter img, .divShowProdFav .prodFilter img {
         position: relative;
         width: 50%;
         left: 25%;
@@ -1637,18 +1632,22 @@ border-radius: 0;
     .titleProdFilter {
         position: relative;
         width: 100%;
-        margin: .6rem 0;
+        height: 2rem;
+        margin-top: .6rem; 
+        margin-bottom: 0;
     }
 
     .priceProdFilter {
         margin: .4rem 0;
         font-family: "Karla";
+        font-weight: 700;
     }
 
     .btnFavoriteFilter {
         float: right;
         color: #9C45EB;
         font-size: 18px;
+        cursor: pointer;
     }
     
     .divisorFilter {
@@ -2497,7 +2496,7 @@ border-radius: 0;
         width: 100%;
         text-align: center;
         padding: 10px 0;
-        margin: .5rem 0;
+        margin: 2rem 0;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -2516,7 +2515,7 @@ border-radius: 0;
         border-top: #9C45EB solid 3px;
         transition: 100ms box-shadow ease-in-out;
         padding: 2px;
-        height: 15rem;
+        height: 16rem;
     }
 
     .divisorFilterCar {
@@ -2549,7 +2548,7 @@ border-radius: 0;
 
     .divProdImg {
         width: 100%;
-        height: 50%;
+        height: 45%;
     }
 
     .divProdPromo {
@@ -2557,35 +2556,55 @@ border-radius: 0;
         background: #9C45EB;
         color: #fff;
         top: -.5rem;
-        padding: .5rem;
+        padding: .3rem;
         font-family: "Karla";
         font-size: 13px;
     }
 
     .divProdTitle {
-        color: black;
+        color: #0F0617;
         text-align: left;
         font-size: 13px;
-        margin: 0;
+        width: 94%;
+        margin: auto;
+        position: relative;
         margin-top: .4rem;
         font-family: "Raleway";
     }
 
     .divProdPrice {
-        margin: 0;
+        margin: auto;
         position: absolute;
-        top: 82%;
+        top: 74%;
         left: 4%;
-        color: #2f3640;
-        font-size: 16px;
+        color: #0F0617;
+        font-size: 14px;
         font-family: "Karla";
         font-weight: 700;
+        width: 75%;
     }
     
     .divProdPrice1 {
-        font-size: 12px;
+        font-size: 11px;
         text-decoration: line-through;
         font-weight: 700;
+        color: #9C45EB;
+    }
+
+    .inputQtd {
+        position: absolute;
+        width: 90%;
+        margin: auto;
+        top: 81%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+        font-family: 'Karla';
+        padding-left: 4px;
+    }
+
+    .inputQtd:focus {
+        outline: #9C45EB solid 1px;
     }
 
     .btnBuy {
@@ -2706,7 +2725,7 @@ border-radius: 0;
 
     .linkListFooter {
         text-decoration: none;
-        color: #0F0617;
+        color: #ffffff;
         font-size: 12px;
     }
 
@@ -2744,7 +2763,7 @@ border-radius: 0;
 
     .linkListSocialMedia {
         text-decoration: none;
-        color: #0F0617;
+        color: #ffffff;
         font-size: 27px;
         margin: .5rem;
     }
@@ -2802,7 +2821,7 @@ border-radius: 0;
 
     .copyrightReserved a {
         text-decoration: none;
-        color: #9C45EB;
+        color: #d3d2d2;
     }
 
     /* PAGE --> CADASTRO.PHP */
@@ -3341,6 +3360,10 @@ border-radius: 0;
         font-family: "Bowlby";
         margin: .6rem 0;
         font-size: 20px;
+    }
+
+    .tilteFilterProd h4 i {
+        color: #9C45EB;
     }
 
     .prod i {
@@ -3959,8 +3982,6 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: left;
-        /* padding-right: 7.5px; */
-        /* background: #e2e3e6; */
     }
 
     .modalRightContent {
@@ -3968,7 +3989,6 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: right;
-        /* padding-left: 7.5px; */
         background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
@@ -4321,7 +4341,7 @@ border-radius: 0;
         width: 100%;
         text-align: center;
         padding: 10px 0;
-        margin: .5rem 0;
+        margin: 2rem 0;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -4338,7 +4358,6 @@ border-radius: 0;
     .divProdCarousel {
         background: #ffffff;
         border-top: #9C45EB solid 3px;
-        border-bottom: #2f3640 solid 3px;
         transition: 100ms box-shadow ease-in-out;
         padding: 2px;
         height: 18rem;
@@ -4366,7 +4385,7 @@ border-radius: 0;
 
     .divProdImg {
         position: relative;
-        height: 60%;
+        height: 55%;
     }
 
     .divisorFilterCar {
@@ -4388,10 +4407,11 @@ border-radius: 0;
     }
 
     .divProdTitle {
-        color: black;
+        color: #0F0617;
         text-align: left;
         font-size: 13px;
-        margin: 0;
+        margin: auto;
+        width: 94%;
         margin-top: .4rem;
         font-family: "Raleway";
     }
@@ -4401,26 +4421,29 @@ border-radius: 0;
         position: absolute;
         top: 82%;
         left: 4%;
-        color: #2f3640;
-        font-size: 14pt;
+        color: #0F0617;
+        font-size: 17px;
         font-family: "Karla";
         font-weight: 700;
     }
 
     .divProdPrice1 {
-        font-size: 9pt;
+        font-size: 12px;
         text-decoration: line-through;
         font-weight: 700;
+        color: #9C45EB
     }
 
     .inputQtd {
         position: absolute;
-        width: 20%;
-        left: 76%;
+        width: 25%;
+        left: 72%;
         top: 81%;
         border: solid #d3d2d2 1px;
         border-radius: 3px;
         height: 20px;
+        font-family: 'Karla';
+        padding-left: 4px;
     }
 
     .btnBuy {
@@ -4437,16 +4460,6 @@ border-radius: 0;
         cursor: pointer;
         font-weight: 700;
     }
-
-    /* input[type="number"] {
-        -webkit-appearance: textfield;
-           -moz-appearance: textfield;
-                appearance: textfield;
-      }
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none;
-      }     */
 
     /* DISPLAY FAVORITES */
 
@@ -4562,7 +4575,7 @@ border-radius: 0;
 
     .linkListFooter {
         text-decoration: none;
-        color: #0F0617;
+        color: #ffffff;
         font-size: 12px;
     }
 
@@ -4604,7 +4617,7 @@ border-radius: 0;
 
     .linkListSocialMedia {
         text-decoration: none;
-        color: #0F0617;
+        color: #ffffff;
         font-size: 27px;
         margin: .5rem;
     }
@@ -4717,7 +4730,7 @@ border-radius: 0;
     .divBehindCad {
         position: relative;
         width: 45%;
-        height: 80rem;
+        height: 82rem;
         background: #9C45EB;
         border-radius: 10px;
         margin: auto;
@@ -4756,7 +4769,7 @@ border-radius: 0;
         width: 60%;
         top: 3rem;
         left: -10%;
-        height: 38.5rem;
+        height: 40rem;
         border: none;
         border-radius: 10px;
         background: #ffffff;
@@ -4771,7 +4784,7 @@ border-radius: 0;
         width: 60%;
         top: 5rem;
         left: 46%;
-        height: 36rem;
+        height: 34rem;
         border: none;
         border-radius: 10px;
         background: #ffffff;
@@ -4849,7 +4862,7 @@ border-radius: 0;
         height: 3rem;
         margin-bottom: .5rem;
         left: -26.5%;
-        top: 3.5rem;
+        top: 4rem;
         position: relative;
         background: #ffffff;
         padding: 30px;
@@ -4893,12 +4906,12 @@ border-radius: 0;
 
     .labelCadSex {
         color: #d3d2d2;
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: .5px;
         font-family: "Raleway";
     }
     .labelCadSexRadio {
-        font-size: 11px;
+        font-size: 13px;
         color: #2f3640;
     }
       
@@ -5003,10 +5016,6 @@ border-radius: 0;
         left: -1.2rem;
         font-size: 15px;
     }
-
-    /* .divisorMargin {
-        margin-top: 5rem;
-    } */
 
     .btnSendCad {
         width: 50%;
@@ -5158,10 +5167,6 @@ border-radius: 0;
         background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
-    /* .filterMobile {
-        display: none;
-    } */
-
     .center_header {
         position: relative;
         width: 100%;
@@ -5176,6 +5181,10 @@ border-radius: 0;
         font-family: "Bowlby";
         margin: .6rem 0;
         font-size: 20px;
+    }
+
+    .tilteFilterProd h4 i {
+        color: #9C45EB;
     }
 
     .prod i {
@@ -5205,7 +5214,6 @@ border-radius: 0;
         font-family: "Raleway";
         height: 25px;
         position: relative;
-        /* top: 0px; */
         border: none;
         background: rgb(243, 240, 240);
         border-radius: 2px;
@@ -5381,7 +5389,7 @@ border-radius: 0;
     .msgHelpSearch {
         position: relative;
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     /* PAGINA DO CARRINHO */
@@ -5445,6 +5453,7 @@ border-radius: 0;
         height: 1.5rem;
         border: 1px #d3d2d2 solid;
         border-radius: 3px;
+        font-family: 'Karla';
     }
 
     .priceProdCart {

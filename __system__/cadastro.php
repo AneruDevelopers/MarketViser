@@ -74,10 +74,10 @@
 									<div class="help-block"></div><br/>
 								</div>
 								<div class="outsideSecInputCad">
-									<label class="labelCadSex"><strong>SEXO</strong></label><br/>
-									<input type="radio" value="M" id="usu_sexo_m" name="usu_sexo" checked/> <label class="labelCadSexRadio" for="usu_sexo_m">MASC</label>
-									<input type="radio" value="F" id="usu_sexo_f" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_f">FEM</label>
-									<input type="radio" value="O" id="usu_sexo_o" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_o">OUTROS</label>
+									<label class="labelCadSex"><strong>SEXO:</strong></label>
+									<input class="radioCad" type="radio" value="M" id="usu_sexo_m" name="usu_sexo" checked/> <label class="labelCadSexRadio" for="usu_sexo_m">MASC</label>
+									<input class="radioCad" type="radio" value="F" id="usu_sexo_f" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_f">FEM</label>
+									<input class="radioCad" type="radio" value="O" id="usu_sexo_o" name="usu_sexo"/> <label class="labelCadSexRadio" for="usu_sexo_o">OUTROS</label>
 								</div>
 								<div class="outsideSecInputCad">
 									<div class="field -md">
