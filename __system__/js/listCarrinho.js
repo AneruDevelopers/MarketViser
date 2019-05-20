@@ -63,6 +63,21 @@ function listCarrinho() {
                         `);
                     }
                 }
+                $('.divShowOpt').html(`
+                    <h2 class="summaryTitle">RESUMO</h2>
+                    <div class="divisorSummary"></div>
+                    <div class="summarySubTitles">
+                        <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$` + json['totDesconto'] + `</h3>
+                    </div>
+                    <div class="summarySubTitles">
+                        <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$` + json['totCompra'] + `</h2>
+                    </div>
+                    `);
+                $('.divShowOptBtn').html(`
+                    <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
+                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
+                    `);
                 $('.divShowTot').html(`
                     <h2 class="summaryTitle">RESUMO</h2>
                     <div class="divisorSummary"></div>
@@ -72,11 +87,11 @@ function listCarrinho() {
                     <div class="summarySubTitles">
                         <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$` + json['totCompra'] + `</h2>
                     </div>
-                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
-                    <a class="linkShop" href="` + BASE_URL + `home">CONTINUAR COMPRANDO</a>
                     `);
-                $('.divShowOpt').html(`
+                    $('.divShowOptDesk').html(`
+                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button><br>
+                    <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                     `);
                 $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>\
                 <script src="' + BASE_URL2 + 'js/btnFavorito.js"></script>');
