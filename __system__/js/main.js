@@ -66,7 +66,7 @@ $(document).ready(function() {
   $('.loop').owlCarousel({
       center: false,
       items:4,
-      loop:true,
+      loop:false,
       margin:8,
       responsive:{
           600:{

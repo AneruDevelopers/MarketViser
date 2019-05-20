@@ -13,8 +13,7 @@
 // }
 
 function attCarrinho() {
-    $('.btnBuy').click(function(e) {
-        e.preventDefault();
+    $('.btnBuy').click(function() {
         var dado = $(this).siblings(".formBuy").serialize();
 
         $.ajax({
@@ -30,6 +29,7 @@ function attCarrinho() {
                 // attCamposCarrinho();
             }
         });
+        return false;
     });
 
     $('.tirarProd').click(function(e) {

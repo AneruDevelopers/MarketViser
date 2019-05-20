@@ -20,7 +20,7 @@
 
 	$servername = "localhost";
 	$username = "root";
-	$password = "senhadopedro";
+	$password = "";
 	$db = "economize";
 
 	try {

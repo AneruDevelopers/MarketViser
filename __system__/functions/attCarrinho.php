@@ -31,6 +31,9 @@
             } else {
                 if(isset($_SESSION['carrinho'][$id])) {
                     unset($_SESSION['carrinho'][$id]);
+                    if(empty($_SESSION['carrinho'])) {
+                        unset($_SESSION['carrinho']);
+                    }
                     $json['answer'] = "Produto removido do carrinho";
                 } else {
                     $json['type'] = "error";
