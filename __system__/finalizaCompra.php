@@ -1,3 +1,18 @@
+<?php
+    require_once 'functions/connection/conn.php';
+
+    if(!isset($_SESSION['carrinho'])) {
+        header("Location: carrinho");
+    } else {
+        if((!isset($_SESSION['agend_horario'])) && (!isset($_SESSION['inf_usu']['usu_id']))) {
+            header("Location: carrinho");
+        } else {
+            if(!isset($_SESSION['agend_horario'])) {
+                header("Location: agendamento");
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,13 +33,8 @@
         <div class="l-topNav" id="topNav">
         <?php
             include('functions/includes/topNav.php');
-        ?>    
-        </div>
-        <nav class="l-headerNav" id="headerNav">
-        <?php
-            include('functions/includes/header.php');
         ?>
-        </nav>
+        </div>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
@@ -32,32 +42,16 @@
         ?>
         </div>
 
-		<!-- Title/Display Products -->
-
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
-            <div class="divShowOpt">
-				
-            </div>
-            <div class="divShowOptBtn">
+            <h2 class="tituloOfertas"><i class="fas fa-shopping-bag"></i> FINALIZAR COMPRA</h2>
 
-            </div>
-            <div class="divTable">
-                <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
-                    
-                </table>
-            </div>
-            <div class="divShowTot">
-				
-            </div>
-            <div class="divShowOptDesk">
-
-            </div>
+            <?php
+                $hora = substr($_SESSION['agend_horario'],0,2) . "h" . substr($_SESSION['agend_horario'],3,2);
+                echo "<b>Entrega no dia:</b> " . Date("d/m/Y") . " <b>às</b> " . $hora . "<br/><b>Total à pagar:</b> R$" . $_SESSION['totCompra'];
+            ?>
         </div>
 
-        <!-- Display Products -->
-
-		<!-- -------------------- -->
+        <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
                 <div class="modalProfileLeftContent">
@@ -103,7 +97,7 @@
                     <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
                     <div class="divLinkCad">    
                         <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,9 +121,6 @@
     <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
-    <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>

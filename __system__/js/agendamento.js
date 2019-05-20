@@ -2,9 +2,6 @@ function listCarrinho() {
     $.ajax({
         url: BASE_URL + 'functions/listCarrinho',
         dataType: 'json',
-        beforeSend: function() {
-            $('.divShowProdFav').html(loadingRes("Verificando carrinho..."));
-        },
         success: function(json) {
             if(!json['empty']) {
                 $('.divShowProdFav').html(`<tr class="trNames">
@@ -12,7 +9,6 @@ function listCarrinho() {
                 <th>QUANTIDADE</th>
                 <th>PREÇO</th>
                 <th>SUBTOTAL</th>
-                <th></th>
                 </tr>`);
                 for(var i = 0; json['prods'].length > i; i++) {
                     if(json['prods'][i].produto_desconto_porcent) {
@@ -24,7 +20,7 @@ function listCarrinho() {
                                     <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
                                 </td>
                                 <td class="tdCart" width="15%">
-                                    <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
+                                    <input type='text' class="qtdProdCart" readonly value='` + json['prods'][i].carrinho + `'/>
                                 </td>
                                 <td class="tdCart" width="15%">
                                     <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
@@ -32,9 +28,6 @@ function listCarrinho() {
                                 </td>
                                 <td class="tdCart" width="20%">
                                     <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
-                                </td>
-                                <td class="tdCart" width="20%">
-                                    <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
                                 </td>
                             </tr>
                         `);
@@ -47,7 +40,7 @@ function listCarrinho() {
                                 <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
                             </td>
                             <td class="tdCart" width="20%">
-                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
+                                <input type='text' class="qtdProdCart" readonly value='` + json['prods'][i].carrinho + `'/>
                             </td>
                             <td class="tdCart" width="20%">
                                 <h3 class="descProdCart">-</h3>
@@ -55,9 +48,6 @@ function listCarrinho() {
                             </td>
                             <td class="tdCart" width="20%">
                                 <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
-                            </td>
-                            <td class="tdCart" width="20%">
-                            <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
                             </td>
                         </tr>
                         `);
@@ -75,8 +65,7 @@ function listCarrinho() {
                     `);
                 $('.divShowOptBtn').html(`
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
-                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
+                    <button class="limparCart"><i class="fas fa-arrow-left"></i> VOLTAR AO CARRINHO</button>
                     `);
                 $('.divShowTot').html(`
                     <h2 class="summaryTitle">RESUMO</h2>
@@ -89,25 +78,14 @@ function listCarrinho() {
                     </div>
                     `);
                     $('.divShowOptDesk').html(`
-                    <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button><br>
+                    <button class="limparCart"><i class="fas fa-arrow-left"></i> VOLTAR AO CARRINHO</button>
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                     `);
-                $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>');
                 $('.finalizaCompra').click(function() {
-                    if(json['logado']) {
-                        window.location.href = BASE_URL + 'agendamento';
-                    } else {
-                        Toast.fire({
-                            type: 'error',
-                            title: 'Você precisa estar logado'
-                        });
-
-                        $("#usu_email_login").val("");
-                        $("#usu_senha_login").val("");
-                        $(".help-block-login").html("");
-                        modal.style.display = "block";
-                    }
+                    window.location.href = BASE_URL + 'pagamento';
+                });
+                $('.limpaCart').click(function() {
+                    window.location.href = BASE_URL + 'carrinho';
                 });
             } else {
                 $('.divShowProdFav').html("Sem produtos no carrinho!");
@@ -118,18 +96,75 @@ function listCarrinho() {
     });
 }
 
-function listParcialCarrinho() {
-    $.ajax({
-        url: BASE_URL + 'functions/listCarrinho',
-        dataType: 'json',
-        success: function(json) {
-            for(var i = 0; json['prods'].length > i; i++) {
-                $('.subtot' + json['prods'][i].produto_id).html(`R$` + json['prods'][i].subtotal);
+$(document).ready(function() {
+    $("#usu_cep").focusout(function(){
+        $.ajax({
+            url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+            dataType: 'json',
+            success: function(resposta){
+                $("#usu_end").val(resposta.logradouro);
+                $("#usu_complemento").val(resposta.complemento);
+                $("#usu_bairro").val(resposta.bairro);
+                $("#usu_uf").val(resposta.uf);
+                $("#usu_cidade").val(resposta.localidade);
+                $("#usu_num").focus();
             }
-            $('.valueDesc').html(`- R$` + json['totDesconto']);
-            $('.valueBuy').html(`R$` + json['totCompra']);
-        }
+        });
     });
-}
+
+    $("#endereco_entrega").submit(function() {
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: $(this).serialize(),
+            url: BASE_URL + 'functions/agendamento',
+            beforeSend: function() {
+                $('#btn-cad').siblings('.help-block').html(loadingRes("Verificando..."));
+            },
+            success: function(json) {
+                if(json["status"]) {
+                    clearErrors();
+                    $("#btn-cad").siblings(".help-block").html(loadingRes("Redirecionando..."));
+                    $('.divAgend').html(`
+                        <h4>Escolha o horário que você quer que entreguemos a compra hoje (prazo máximo de uma hora e meia)!</h4>
+                        <p>` + json['agend_end'] + `</p>
+                    `);
+                    $.ajax({
+                        url: BASE_URL + 'functions/agendamento',
+                        success: function(response) {
+                            $('.divAgend').append(response);
+                            $("#hora_agend").submit(function() {
+                                $.ajax({
+                                    url: BASE_URL + 'functions/agendamento',
+                                    type: 'post',
+                                    data: $(this).serialize(),
+                                    success: function() {
+                                        window.location.href = "finalizaCompra";
+                                    }
+                                });
+                                return false;
+                            });
+                        }
+                    })
+                } else {
+                    if(json['armazem']) {
+                        showErrors(json["error_list"]);
+                    } else {
+                        clearErrors();
+                        Swal.fire({
+                            title: "E.conomize informa:",
+                            text: "O armazém que está comprando não faz entrega em sua cidade, desculpe-nos!",
+                            type: "error",
+                            confirmButtonColor: "#A94442",
+                            confirmButtonText: "Ok, cancelar"
+                        });
+                    }
+                    
+                }
+            }
+        });
+        return false;
+    });
+});
 
 listCarrinho();

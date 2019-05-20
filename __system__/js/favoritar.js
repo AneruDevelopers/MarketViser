@@ -29,7 +29,6 @@ $(document).ready(function() {
             }
         });
         btnFavorito();
-        meusFavoritos();
     });
 
     $('.remFavorito').click(function(e) {
@@ -56,6 +55,5 @@ $(document).ready(function() {
             }
         });
         btnFavorito();
-        meusFavoritos();
     });
 });

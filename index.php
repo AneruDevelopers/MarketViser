@@ -43,6 +43,7 @@
 			$_SESSION["inf_usu"]['usu_senha'] = $row['usu_senha'];
 			$_SESSION["inf_usu"]['usu_num'] = $row['usu_num'];
 			$_SESSION["inf_usu"]['usu_cidade'] = $row['usu_cidade'];
+			$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
 			$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
 			$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
 

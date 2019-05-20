@@ -10,11 +10,9 @@ $(document).ready(function() {
                 data: dado,
                 beforeSend: function() {
                     $('.tituloOfertas').html(`Sua pesquisa sobre: ` + $('.pesquisaTxtHeader').val());
-                    $('.divShowProdFav').html(loadingRes('Buscando produto(s)...'));
                 },
                 success: function(json) {
                     if(!json['empty']) {
-                        $('.divShowProdFav').html(loadingRes("Importando produto(s)..."));
                         $('.divShowProdFav').html("");
                         for(var i = 0; json['prods'].length > i; i++) {
                             if(json['prods'][i].produto_desconto_porcent) {

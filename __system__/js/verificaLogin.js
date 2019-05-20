@@ -34,10 +34,27 @@ function verificaLogin() {
                     <p class="linkRight"><a href="#"><i class="fas fa-heart"></i> &nbsp;MEUS PRODUTOS FAVORITOS</a></p>
                     <p class="linkRight"><a href="#"><i class="fas fa-shopping-bag"></i> &nbsp;MINHAS ESTATÍSTICAS</a></p>
                     <p class="linkRight"><a href="#"><i class="fas fa-shopping-bag"></i> &nbsp;HISTÓRICO DE COMPRAS</a></p>
-                    <p class="linkRight"><a href="` + BASE_URL + `functions/sair"><i class="fas fa-sign-out-alt"></i> &nbsp;SAIR</a></p>   
+                    <p class="linkRight logout"><a href=""><i class="fas fa-sign-out-alt"></i> &nbsp;SAIR</a></p>   
                     <p class="linkDate">JUNTOS DESDE ` + json['usuario']['usu_registro'] + `</p>
                 </div>
                 `);
+                $('.logout').click(function() {
+                    Swal.fire({
+                        title: "Deseja mesmo sair?",
+                        text: "Caso tenha adicionado produtos ao carrinho ou feito um agendamento, será perdido permanentemente!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonColor: "#494949",
+                        cancelButtonText: "Cancelar",
+                        confirmButtonColor: "#A94442",
+                        confirmButtonText: "Sim, sair"
+                    }).then((result) => {
+                        if(result.value) {
+                            window.location.href = BASE_URL + 'functions/sair';
+                        }
+                    });
+                    return false;
+                });
             } else {
                 $('.s_login').html(`ENTRAR`);
             }

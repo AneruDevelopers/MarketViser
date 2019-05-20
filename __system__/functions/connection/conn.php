@@ -1,5 +1,9 @@
 <?php 
 	session_start();
+	
+	// Ajustando horário
+	date_default_timezone_set("America/Sao_Paulo");
+	setlocale(LC_ALL, 'pt_BR');
 
 	// Padronizando a busca por arquivos via URL
 	function base_url() {

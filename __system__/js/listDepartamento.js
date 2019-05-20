@@ -45,5 +45,4 @@ $(function() {
             <script src="' + BASE_URL2 + 'js/login.js"></script>');
         }
     });
-    attCarrinho();
 });

@@ -5,6 +5,7 @@
         $json['empty'] = TRUE;
         $json['totCompra'] = 0;
         $json['totDesconto'] = 0;
+        $json['logado'] = TRUE;
         $json['prods'] = array();
 
         function getProducts() {
@@ -57,38 +58,34 @@
             
             return $results;
         }
-    
-        function getTotalCart() {
-                $total = 0;
-            foreach(getContentCart() as $product) {
-                $total += $product['subtotal'];
-            } 
-            return $total;
-        }
 
-        $totalCarts  = getTotalCart();
-
-        if($totalCarts >= 1) {
-            $json['empty'] = FALSE;
-            $resultsCarts = getContentCart();
-            
-            foreach($resultsCarts as $k => $v) {
-                if($v['produto_desconto_porcent'] <> "") {
-                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                    $json['totDesconto'] += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
-                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+        if(isset($_SESSION['carrinho'])) {
+            if(!empty($_SESSION['carrinho'])) {
+                $json['empty'] = FALSE;
+                if(!isset($_SESSION['inf_usu']['usu_id'])) {
+                    $json['logado'] = FALSE;
                 }
+                $resultsCarts = getContentCart();
                 
-                $json['totCompra'] += $v['subtotal'];
-                $v['subtotal'] = number_format($v['subtotal'], 2, ',', '.');
-                $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                $v['carrinho'] = $_SESSION['carrinho'][$v['produto_id']];
+                foreach($resultsCarts as $k => $v) {
+                    if($v['produto_desconto_porcent'] <> "") {
+                        $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                        $json['totDesconto'] += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
+                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                    }
+                    
+                    $json['totCompra'] += $v['subtotal'];
+                    $v['subtotal'] = number_format($v['subtotal'], 2, ',', '.');
+                    $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                    $v['carrinho'] = $_SESSION['carrinho'][$v['produto_id']];
 
-                $json['prods'][] = $v;
+                    $json['prods'][] = $v;
+                }
+                $json['totDesconto'] = number_format($json['totDesconto'], 2, ',', '.');
+                $json['totCompra'] = number_format($json['totCompra'], 2, ',', '.');
+                $_SESSION['totCompra'] = $json['totCompra'];
             }
-            $json['totDesconto'] = number_format($json['totDesconto'], 2, ',', '.');
-            $json['totCompra'] = number_format($json['totCompra'], 2, ',', '.');
         }
 
         echo json_encode($json);

@@ -3,7 +3,7 @@ $(document).ready(function() {
         e.preventDefault();
         Swal.fire({
             title: "Deseja mesmo trocar o armazém?",
-            text: "Caso tenha adicionado produtos ao carrinho, será perdido permanentemente!",
+            text: "Caso tenha adicionado produtos ao carrinho ou feito um agendamento, será perdido permanentemente!",
             type: "warning",
             showCancelButton: true,
             cancelButtonColor: "#494949",

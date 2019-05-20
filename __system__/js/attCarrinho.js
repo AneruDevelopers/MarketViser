@@ -1,19 +1,6 @@
-// function attCamposCarrinho() {
-//     $.ajax({
-//         dataType: 'json',
-//         url: BASE_URL + 'functions/verificaCarrinho',
-//         success: function(json) {
-//             if(json['status']) {
-//                 for (var i = 1; json['prod_id'].length >= i; i++) {
-//                     $('.inputBuy' + i).val(json['produtos'][i].produto_id);
-//                 }
-//             }
-//         }
-//     });
-// }
-
 function attCarrinho() {
-    $('.btnBuy').click(function() {
+    $('.btnBuy').click(function(e) {
+        e.preventDefault();
         var dado = $(this).siblings(".formBuy").serialize();
 
         $.ajax({
@@ -26,10 +13,8 @@ function attCarrinho() {
                     type: json['type'],
                     title: json['answer']
                 });
-                // attCamposCarrinho();
             }
         });
-        return false;
     });
 
     $('.tirarProd').click(function(e) {
