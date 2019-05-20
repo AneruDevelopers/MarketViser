@@ -663,6 +663,10 @@ border-radius: 0;
         letter-spacing: 2px;
     }
 
+    .tituloOfertas i {
+        color: #9C45EB;
+    }
+
     .l-prods {
         position: relative;
         width: 100vw;
@@ -2492,13 +2496,17 @@ border-radius: 0;
     .tituloOfertas {
         position: relative;
         font-family: "Bowlby";
-        font-size: 18px;
+        font-size: 16px;
         width: 100%;
         text-align: center;
         padding: 10px 0;
         margin: 2rem 0;
         color: #0F0617;
         letter-spacing: 2px;
+    }
+
+    .tituloOfertas i {
+        color: #9C45EB;
     }
 
     .l-prods {
@@ -3561,6 +3569,258 @@ border-radius: 0;
         height: 20px;
         font-family: "Karla";
     }
+
+    /* PAGINA DE PESQUISA */
+
+    .msgHelpSearch {
+        position: relative;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* PAGINA DO CARRINHO */
+
+    .divShowOpt {
+        position: relative;
+        width: 60%;
+        margin: auto;
+        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .divShowOptBtn {
+        position: relative;
+        width: 50%;
+        left: 25%;
+        margin-top: 1rem;
+        display: inline-flex;
+    }
+
+    .divShowOptDesk {
+        display: none;
+    }
+    
+    .divTable {
+        position: relative;
+        width: 90%;
+        margin: 2rem 0;
+        left: 5%;
+    }
+
+    .tableCart {
+        border-collapse: collapse;
+    }
+    
+    .trNames {
+        height: 3rem;
+        border-bottom: #d3d2d2 1px solid;
+    }
+
+    .trNames th {
+        color: #9C45EB;
+        font-weight: 700;
+        font-family: 'Raleway-Medium';
+        font-size: 14px;
+    }
+
+    .tdCart {
+        padding: 10px;
+        border-bottom: #d3d2d2 1px solid;
+    }
+    
+
+    .imgCart {
+        position: relative;
+        width: 3rem;
+        float: left;
+        top: .5rem;
+    }
+
+    .titleProdCart {
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        margin: .2rem 0;
+        float: right;
+        width: 75%;
+        height: 2rem;
+    }
+
+    .brandProdCart {
+        font-size: 11px;
+        margin: .2rem 0;
+        float: right;
+        width: 75%;
+    }
+
+    .qtdProdCart {
+        font-size: 13px;
+        width: 40%;
+        left: 30%;
+        position: relative;
+        height: 1.5rem;
+        border: 1px #d3d2d2 solid;
+        border-radius: 3px;
+        font-family: 'Karla';
+    }
+
+    .priceProdCart {
+        font-size: 13px;
+        text-align: center;
+        font-family: 'Karla';
+    }
+
+    .descProdCart {
+        font-size: 11px;
+        text-align: center;
+        font-family: 'Karla';
+        text-decoration: line-through;
+        color: #252730;
+        font-weight: 300;
+        font-style: oblique;
+    }
+
+    .btnProdCart {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        color: #9C45EB;
+    }
+
+    .divShowTot {
+        position: relative;
+        width: 20%;
+        height: 30rem;
+        right: 5%;
+        float: right;
+        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        border-radius: 5px;
+        margin: 2rem 0;
+        top: 0rem;
+        display: none;
+    }
+
+    .summaryTitle {
+        color: #9C45EB;
+        width: 94%;
+        left: 1%;
+        position: relative;
+        text-align: left;
+        margin: 0;
+        padding: 10px;
+        font-family: 'Karla';
+        font-size: 16px;
+        padding: 1% 2%;
+    }
+
+    .divisorSummary {
+        position: relative;
+        width: 94%;
+        left: 3%;
+        height: .15rem;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .summarySubTitles {
+        position: relative;
+        padding: 10px;
+        height: .5rem;
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        margin: 1.5% 1%;
+        border-radius: 3px;
+    }
+
+    .totalDesc {
+        width: 70%;
+        position: relative;
+        color: #ffffff;
+        font-size: 13px;
+        float: left;
+        margin: 0;
+        top: -.2rem;
+    }
+
+    .totalPrice {
+        width: 70%;
+        position: relative;
+        color: #ffffff;
+        font-size: 14px;
+        float: left;
+        margin: 0;
+        top: -.2rem;
+    }
+
+    .valueDesc {
+        float: right;
+        width: 30%;
+        position: relative;
+        font-size: 13px;
+        color: #ffffff;
+        font-family: 'Karla';
+        margin: 0;
+        text-align: right;
+        top: -.2rem;
+    }
+
+    .valueBuy {
+        float: right;
+        width: 30%;
+        position: relative;
+        font-size: 13px;
+        color: #ffffff;
+        font-family: 'Karla';
+        margin: 0;
+        text-align: right;
+        top: -.2rem;
+    }
+
+    .limparCart {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        font-size: 11px;
+        cursor: pointer;
+        width: 33%;
+        text-align: center;
+    }
+
+    .finalizaCompra {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        font-size: 11px;
+        cursor: pointer;
+        width: 33%;
+        text-align: center;
+    }
+
+    .linkShop {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 11px;
+        width: 33%;
+        text-align: center;
+    }
 }
 
 /* TELA A PARTIR DE NOTEBOOK */
@@ -4344,6 +4604,10 @@ border-radius: 0;
         margin: 2rem 0;
         color: #0F0617;
         letter-spacing: 2px;
+    }
+
+    .tituloOfertas i {
+        color: #9C45EB;
     }
 
     .l-prods {
@@ -5394,10 +5658,25 @@ border-radius: 0;
 
     /* PAGINA DO CARRINHO */
 
+    .divShowOpt {
+        display: none;
+    }
+
+    .divShowOptBtn {
+        display: none;
+    }
+
+    .divShowOptDesk {
+        width: 25%;
+        float: right;
+        right: 5%;
+        position: relative;
+    }
+    
     .divTable {
         position: relative;
         width: 70%;
-        margin: 2rem 0;
+        margin: 1rem 0;
         float: left;
     }
 
@@ -5483,18 +5762,17 @@ border-radius: 0;
     .divShowTot {
         position: relative;
         width: 25%;
-        height: 30rem;
+        height: 10rem;
         right: 5%;
         float: right;
         background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
-        margin: 2rem 0;
-        top: 0rem;
+        margin: 1rem 0;
     }
 
     .summaryTitle {
         color: #9C45EB;
-        width: 20%;
+        width: 100%;
         position: relative;
         text-align: left;
         margin: 0;
@@ -5513,12 +5791,12 @@ border-radius: 0;
 
     .summarySubTitles {
         position: relative;
-        padding: 10px;
+        padding: 6px;
         height: 1rem;
         background: #9C45EB;
         border: none;
         color: #ffffff;
-        margin: 10% 4%;
+        margin: 5% 3%;
         border-radius: 3px;
     }
 
@@ -5563,54 +5841,55 @@ border-radius: 0;
     }
 
     .limparCart {
-        padding: 10px;
-        margin: 0 4%;
         background: #9C45EB;
         border: none;
-        color: #ffffff;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
         font-family: 'Raleway-Medium';
+        color: #ffffff;
         border-radius: 5px;
-        width: 41%;
         font-size: 11px;
-        float: left;
         cursor: pointer;
-        top: 38%;
+        width: 80%;
+        text-align: center;
+        margin-top: 4.5%;
+        left: 6%;
         position: relative;
-        height: 2.5rem;
     }
 
     .finalizaCompra {
-        padding: 10px;
-        margin: 0 4%;
         background: #9C45EB;
         border: none;
-        color: #ffffff;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
         font-family: 'Raleway-Medium';
+        color: #ffffff;
         border-radius: 5px;
-        width: 41%;
         font-size: 11px;
-        float: right;
         cursor: pointer;
-        top: 38%;
+        width: 80%;
+        text-align: center;
+        margin-top: 2%;
+        left: 6%;
         position: relative;
-        height: 2.5rem;
     }
 
     .linkShop {
-        font-family: 'Raleway-Medium';
-        text-decoration: none;
-        width: 70%;
-        position: absolute;
-        font-size: 12px;
-        height: 2.5rem;
-        left: 15%;
-        background: #9C45EB;
+        background: none;
         border: none;
-        color: #ffffff;
+        padding: 10px 5px;
+        height: auto;
         font-family: 'Raleway-Medium';
+        color: #9C45EB;
         border-radius: 5px;
+        text-decoration: none;
+        font-size: 11px;
+        width: 100%;
         text-align: center;
-        top: 75%;
-        line-height: 40px;
+        left: 25%;
+        position: relative;
+        top: 1rem;
     }
 }
