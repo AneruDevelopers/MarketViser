@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/05/2019 às 06:25
+-- Tempo de geração: 21/05/2019 às 06:36
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -210,7 +210,17 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 (5, 5, 1),
 (6, 6, 1),
 (7, 7, 1),
-(8, 8, 1);
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1),
+(11, 11, 1),
+(12, 12, 1),
+(13, 13, 1),
+(14, 14, 1),
+(15, 15, 1),
+(16, 16, 1),
+(17, 17, 1),
+(18, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -394,7 +404,17 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 (5, '16:00:00', 1),
 (6, '18:00:00', 1),
 (7, '08:00:00', 2),
-(8, '10:00:00', 2);
+(8, '10:00:00', 2),
+(9, '12:00:00', 2),
+(10, '14:00:00', 2),
+(11, '16:00:00', 2),
+(12, '18:00:00', 2),
+(13, '08:00:00', 3),
+(14, '10:00:00', 3),
+(15, '12:00:00', 3),
+(16, '14:00:00', 3),
+(17, '16:00:00', 4),
+(18, '18:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -927,7 +947,7 @@ ALTER TABLE `dados_entrega`
 -- AUTO_INCREMENT de tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -975,7 +995,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
-  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `lista_compra`
