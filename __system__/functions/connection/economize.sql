@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/05/2019 às 09:17
+-- Tempo de geração: 21/05/2019 às 06:25
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -97,6 +97,7 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 CREATE TABLE `cidade` (
   `cid_id` int(11) NOT NULL,
   `cid_nome` varchar(50) NOT NULL,
+  `cid_regiao` text,
   `est_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -104,10 +105,10 @@ CREATE TABLE `cidade` (
 -- Despejando dados para a tabela `cidade`
 --
 
-INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
-(1, 'Lins', 1),
-(2, 'Promissão', 1),
-(3, 'Garça', 1);
+INSERT INTO `cidade` (`cid_id`, `cid_nome`, `cid_regiao`, `est_id`) VALUES
+(1, 'Lins', 'Guaiçara - Cafelândia', 1),
+(2, 'Promissão', 'Guaiçara', 1),
+(3, 'Garça', 'Alvinlândia', 1);
 
 -- --------------------------------------------------------
 
@@ -188,6 +189,32 @@ CREATE TABLE `dados_entrega` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `dados_horario_entrega`
+--
+
+CREATE TABLE `dados_horario_entrega` (
+  `dados_id` int(11) NOT NULL,
+  `dados_horario` int(11) NOT NULL,
+  `dados_armazem` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `dados_horario_entrega`
+--
+
+INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `departamento`
 --
 
@@ -225,7 +252,14 @@ INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_d
 CREATE TABLE `entrega` (
   `entrega_id` int(11) NOT NULL,
   `entrega_registro` datetime DEFAULT CURRENT_TIMESTAMP,
-  `entrega_endereco` text
+  `entrega_horario` time NOT NULL,
+  `entrega_cep` char(9) NOT NULL,
+  `entrega_end` varchar(150) NOT NULL,
+  `entrega_num` int(11) NOT NULL,
+  `entrega_complemento` varchar(150) DEFAULT NULL,
+  `entrega_bairro` varchar(50) NOT NULL,
+  `entrega_cidade` varchar(50) NOT NULL,
+  `entrega_uf` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -339,6 +373,32 @@ INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_re
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `horarios_entrega`
+--
+
+CREATE TABLE `horarios_entrega` (
+  `hora_id` int(11) NOT NULL,
+  `hora` time NOT NULL,
+  `dia` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `horarios_entrega`
+--
+
+INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
+(1, '08:00:00', 1),
+(2, '10:00:00', 1),
+(3, '12:00:00', 1),
+(4, '14:00:00', 1),
+(5, '16:00:00', 1),
+(6, '18:00:00', 1),
+(7, '08:00:00', 2),
+(8, '10:00:00', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `lista_compra`
 --
 
@@ -437,11 +497,12 @@ CREATE TABLE `produtos_favorito` (
 
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (76, 1, 1),
-(79, 3, 1),
 (80, 5, 1),
-(84, 6, 1),
 (85, 1, 2),
-(86, 3, 2);
+(87, 3, 2),
+(88, 8, 2),
+(90, 2, 1),
+(91, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -668,6 +729,14 @@ ALTER TABLE `dados_entrega`
   ADD KEY `fk_DataCompra` (`entrega_id`);
 
 --
+-- Índices de tabela `dados_horario_entrega`
+--
+ALTER TABLE `dados_horario_entrega`
+  ADD PRIMARY KEY (`dados_id`),
+  ADD KEY `fk_DadoHora` (`dados_horario`),
+  ADD KEY `fk_DadoArm` (`dados_armazem`) USING BTREE;
+
+--
 -- Índices de tabela `departamento`
 --
 ALTER TABLE `departamento`
@@ -712,6 +781,12 @@ ALTER TABLE `forn_prod`
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`funcionario_id`),
   ADD KEY `fk_FuncSetor` (`funcionario_setor`);
+
+--
+-- Índices de tabela `horarios_entrega`
+--
+ALTER TABLE `horarios_entrega`
+  ADD PRIMARY KEY (`hora_id`);
 
 --
 -- Índices de tabela `lista_compra`
@@ -849,6 +924,12 @@ ALTER TABLE `dados_entrega`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `dados_horario_entrega`
+--
+ALTER TABLE `dados_horario_entrega`
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de tabela `departamento`
 --
 ALTER TABLE `departamento`
@@ -891,6 +972,12 @@ ALTER TABLE `funcionario`
   MODIFY `funcionario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `horarios_entrega`
+--
+ALTER TABLE `horarios_entrega`
+  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de tabela `lista_compra`
 --
 ALTER TABLE `lista_compra`
@@ -918,7 +1005,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -1005,6 +1092,13 @@ ALTER TABLE `dados_armazem`
 ALTER TABLE `dados_entrega`
   ADD CONSTRAINT `fk_DataCompra` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`),
   ADD CONSTRAINT `fk_DataEnt` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`);
+
+--
+-- Restrições para tabelas `dados_horario_entrega`
+--
+ALTER TABLE `dados_horario_entrega`
+  ADD CONSTRAINT `fk_DadoArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`),
+  ADD CONSTRAINT `fk_DadoHora` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`);
 
 --
 -- Restrições para tabelas `forn_prod`
