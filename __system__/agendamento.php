@@ -106,7 +106,7 @@
                 </form>
             </div>
 
-            <h3 style="opacity:0;">A</h3>
+            <!-- <h3 style="opacity:0;">A</h3>
             <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> SUA COMPRA</h2>
             <div class="divShowOpt">
 				
@@ -124,7 +124,7 @@
             </div>
             <div class="divShowOptDesk">
 
-            </div>
+            </div> -->
         </div>
 
         <!-- Display Products -->

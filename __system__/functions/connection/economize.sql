@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/05/2019 às 06:36
+-- Tempo de geração: 22/05/2019 às 05:29
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -137,6 +137,13 @@ CREATE TABLE `cupom` (
   `cupom_desconto_porcent` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Despejando dados para a tabela `cupom`
+--
+
+INSERT INTO `cupom` (`cupom_id`, `cupom_codigo`, `cupom_desconto_porcent`) VALUES
+(1, 'AKPLD765', 50);
+
 -- --------------------------------------------------------
 
 --
@@ -220,7 +227,8 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 (15, 15, 1),
 (16, 16, 1),
 (17, 17, 1),
-(18, 18, 1);
+(18, 18, 1),
+(19, 19, 1);
 
 -- --------------------------------------------------------
 
@@ -414,7 +422,8 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 (15, '12:00:00', 3),
 (16, '14:00:00', 3),
 (17, '16:00:00', 4),
-(18, '18:00:00', 4);
+(18, '18:00:00', 4),
+(19, '21:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -929,7 +938,7 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de tabela `cupom`
 --
 ALTER TABLE `cupom`
-  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `dados_armazem`
@@ -947,7 +956,7 @@ ALTER TABLE `dados_entrega`
 -- AUTO_INCREMENT de tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -995,7 +1004,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
-  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `lista_compra`
