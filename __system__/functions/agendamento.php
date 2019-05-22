@@ -56,13 +56,13 @@
             if((!empty($json['error_list'])) && ($json['armazem'])) {
                 $json['status'] = 0;
             } else {
-                $_SESSION['end_cep'] = $_POST['usu_cep'];
-                $_SESSION['end_end'] = $_POST['usu_end'];
-                $_SESSION['end_num'] = $_POST['usu_num'];
-                $_SESSION['end_complemento'] = $_POST['usu_complemento'];
-                $_SESSION['end_bairro'] = $_POST['usu_bairro'];
-                $_SESSION['end_cidade'] = $_POST['usu_cidade'];
-                $_SESSION['end_uf'] = $_POST['usu_uf'];
+                $_SESSION['end_agend'][0] = $_POST['usu_cep'];
+                $_SESSION['end_agend'][1] = $_POST['usu_end'];
+                $_SESSION['end_agend'][2] = $_POST['usu_num'];
+                $_SESSION['end_agend'][4] = $_POST['usu_complemento'];
+                $_SESSION['end_agend'][5] = $_POST['usu_bairro'];
+                $_SESSION['end_agend'][6] = $_POST['usu_cidade'];
+                $_SESSION['end_agend'][7] = $_POST['usu_uf'];
                 
                 if(strlen(trim($_POST['usu_complemento'])) > 0) {
                     $json['agend_end'] = $_POST['usu_cep'] . ", " . $_POST['usu_end'] . " nº " . $_POST['usu_num'] . " - " . $_POST['usu_complemento'] . ", " . $_POST['usu_bairro'] . ", ". $_POST['usu_cidade'] . " - " . $_POST['usu_uf'];
@@ -99,20 +99,20 @@
                         $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
                         if($i==1) {
                             $hora_disp_hoje[] = '<input type="radio" checked name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                            $i++;
                         } else {
                             $hora_disp_hoje[] = '<input type="radio" name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                         }
-                        $i++;
                     }
                 } else {
                     $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
                     $dia_sequinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
                         $hora_disp_amanha[] = '<input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        $i++;
                     } else {
                         $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     }
-                    $i++;
                 }
                 
             }
@@ -137,7 +137,7 @@
                     </form>
                 ';
             } else {
-                echo 'Não há mais horários disponíveis para entrega hoje. Volte amanhã, por favor!! <a href="#">Veja os horários</a>';
+                echo 'Não há horários disponíveis para entrega hoje ou amanhã!! <a href="#">Veja os horários</a>';
             }
         }
     } else {

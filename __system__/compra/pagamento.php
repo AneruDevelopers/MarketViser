@@ -1,6 +1,4 @@
 <?php
-    require_once 'functions/connection/conn.php';
-
     if(!isset($_SESSION['carrinho'])) {
         header("Location: carrinho");
     } else {
@@ -28,26 +26,33 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
-    <div class="l-wrapper_FiltroPesq">
+    <div class="l-wrapper_cadastro">
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>
         </div>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
-        <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas"><i class="fas fa-shopping-bag"></i> FINALIZAR COMPRA</h2>
-
+        <div class="l-mainCad">
+            <h2 class="tituloOfertas"><i class="fas fa-dollar-sign"></i> PAGAMENTO</h2>
+            <a href="agendamento">Voltar ao agendamento</a><br/>
+            <pre>
+            <?php
+                print_r($_SESSION['end_agend']);
+                print_r($_SESSION['carrinho']);
+            ?>
+            </pre>
             <?php
                 // $hora = substr($_SESSION['agend_horario'],0,2) . "h" . substr($_SESSION['agend_horario'],3,2);
-                echo "<b>Entrega no dia:</b> {$_SESSION['agend_horario']}<br/><b>Total à pagar:</b> R$" . $_SESSION['totCompra'];
+                $totCompra = number_format($_SESSION['totCompra'], 2, ',', '.');
+                echo "<b>Entrega no dia:</b> {$_SESSION['agend_horario']}<br/><b>Total à pagar:</b> R$" . $totCompra;
             ?>
         </div>
 
@@ -105,12 +110,12 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>

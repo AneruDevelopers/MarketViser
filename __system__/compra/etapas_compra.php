@@ -17,24 +17,22 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
-		<!-- Title/Display Products -->
-
-        <div class="l-mainFiltroPesq">
+        <div class="l-mainFiltroPesq carrega_pagina">
             <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
             <div class="divShowOpt">
 				
@@ -55,9 +53,7 @@
             </div>
         </div>
 
-        <!-- Display Products -->
-
-		<!-- -------------------- -->
+        <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
                 <div class="modalProfileLeftContent">
@@ -111,12 +107,12 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>

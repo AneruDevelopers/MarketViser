@@ -1,6 +1,3 @@
-<?php
-	require_once 'functions/connection/conn.php';
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,12 +20,12 @@
 	<div class="l-wrapper_cadastro">
 		<div class="l-topNavCad" id="topNav">
 		<?php
-			include('functions/includes/topNav.php');
+			include('__system__/functions/includes/topNav.php');
 		?>    
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
 		<?php
-			include('functions/includes/header.php');
+			include('__system__/functions/includes/header.php');
 		?>    
 		</div>
 		<div class="l-mainCad">
@@ -193,8 +190,12 @@
 									</div>
 									<div class="help-block"></div><br/>
 								</div>
+								<div class="outsideSecInputCad">
+									<input type="checkbox" class="radioCad" id="usu_cookie" name="usu_cookie"/> 
+									<label class="labelCadSexRadio" for="usu_cookie">Lembrar de mim</label>
+								</div>
 								<div class="btnSendCad">
-									<button class="btnSubCad" type="submit" id="btn-cad" value="Cadastrar"/>CADASTRAR</button>
+									<button class="btnSubCad" type="submit" id="btn-cad" value="Cadastrar">CADASTRAR</button>
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -237,7 +238,7 @@
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
-                        <button class="btnSend" type="submit" id="btn-login" value="Entrar"/>ENTRAR</button>
+                        <button class="btnSend" type="submit" id="btn-login" value="Entrar">ENTRAR</button>
                         <div class="help-block-login"></div>
                     </form>
                 </div>
@@ -245,20 +246,20 @@
                     <span class="close">&times;</span>
                     <p class="textModal">Olá, amigo!</p>
                     <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
-                    <div class="divLinkCad">    
-                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
+                    <div class="divLinkCad">
+                        <a class="linkCadModal" href="#">Cadastre-se já</a>
                     </div>    
                 </div>
 			</div>
 		</div>
 		<div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('__system__/functions/includes/footer.php');
 		?>
 		</div>
         <div class="l-footerBottomCad" id="footerBottom">
 		<?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
 		</div>
     </div>

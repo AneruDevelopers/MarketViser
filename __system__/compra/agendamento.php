@@ -4,8 +4,6 @@
     } else {
         if(empty($_SESSION['carrinho'])) {
             header("Location: carrinho");
-        } elseif(isset($_SESSION['agend_horario'])) {
-            header("Location: finalizaCompra");
         }
     }
 ?>
@@ -28,18 +26,18 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
@@ -183,12 +181,12 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>

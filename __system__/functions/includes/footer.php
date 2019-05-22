@@ -12,7 +12,7 @@
     </div>
     <div class="header-visuals">
         <div class="Iphone">
-            <img src="__system__\img\E_zinho for Phone.png" alt="">
+            <img src="<?= base_url(); ?>img/E_zinho for Phone.png" alt="e.conomize"/>
         </div>
     </div>
 </div>

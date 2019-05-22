@@ -126,7 +126,7 @@ $(document).ready(function() {
                     clearErrors();
                     $("#btn-cad").siblings(".help-block").html(loadingRes("Redirecionando..."));
                     $('.divAgend').html(`
-                        <h4>Escolha o horário que você quer que entreguemos a compra hoje (prazo máximo de uma hora e meia)!</h4>
+                        <h4>Escolha o horário que você quer que entreguemos a compra (prazo máximo de uma hora e meia)!</h4>
                         <p>` + json['agend_end'] + `</p>
                     `);
                     $.ajax({
@@ -139,7 +139,7 @@ $(document).ready(function() {
                                     type: 'post',
                                     data: $(this).serialize(),
                                     success: function() {
-                                        window.location.href = "finalizaCompra";
+                                        window.location.href = "pagamento";
                                     }
                                 });
                                 return false;

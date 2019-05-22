@@ -62,7 +62,7 @@
                     <strong><label class="labelInput">SENHA</label></strong>
                     <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
                     <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a></p>
+                    <a class="linkCadModal" href="<?php echo base_url_php(); ?>usuario/cadastro">Cadastre-se já</a></p>
                     <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
                     <div class="help-block-login"></div>
                 </form>
@@ -70,7 +70,7 @@
         </div>
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
