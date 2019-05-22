@@ -46,8 +46,8 @@
             <h2 class="tituloOfertas"><i class="fas fa-shopping-bag"></i> FINALIZAR COMPRA</h2>
 
             <?php
-                $hora = substr($_SESSION['agend_horario'],0,2) . "h" . substr($_SESSION['agend_horario'],3,2);
-                echo "<b>Entrega no dia:</b> " . Date("d/m/Y") . " <b>às</b> " . $hora . "<br/><b>Total à pagar:</b> R$" . $_SESSION['totCompra'];
+                // $hora = substr($_SESSION['agend_horario'],0,2) . "h" . substr($_SESSION['agend_horario'],3,2);
+                echo "<b>Entrega no dia:</b> {$_SESSION['agend_horario']}<br/><b>Total à pagar:</b> R$" . $_SESSION['totCompra'];
             ?>
         </div>
 

@@ -82,9 +82,15 @@
 
                     $json['prods'][] = $v;
                 }
+                
+                if(isset($_SESSION['cupom_compra'])) {
+                    $totCupomPorc = $json['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                    $json['totCompra'] -= $totCupomPorc;
+                }
+                $_SESSION['totCompra'] = $json['totCompra'];
+
                 $json['totDesconto'] = number_format($json['totDesconto'], 2, ',', '.');
                 $json['totCompra'] = number_format($json['totCompra'], 2, ',', '.');
-                $_SESSION['totCompra'] = $json['totCompra'];
             }
         }
 

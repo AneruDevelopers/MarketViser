@@ -77,25 +77,60 @@
             $_SESSION['agend_horario'] = $_POST['entrega_horario'];
             echo json_encode($json);
         } else {
-            $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND h.dia=" . Date('N') . " ORDER BY h.hora");
+            $hora_disp_amanha = array();
+            $hora_disp_hoje = array();
+
+            $today = Date('N');
+            if($today == 7) {
+                $next_day = 1;
+            } else {
+                $next_day = $today + 1;
+            }
+            
+            $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND h.dia=$today OR h.dia=$next_day ORDER BY h.hora");
             $sel->execute();
             $res = $sel->fetchAll();
             $i = 1;
             foreach($res as $k => $v) {
-                if(Date("H") < $v['hora']) {
+                if($v['dia'] != $next_day) {
+                    $hora = substr($v['hora'],0,2);
+                    $hoje = Date('Y-m-d');
+                    if(Date("H") < $hora) {
+                        $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
+                        if($i==1) {
+                            $hora_disp_hoje[] = '<input type="radio" checked name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        } else {
+                            $hora_disp_hoje[] = '<input type="radio" name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        }
+                        $i++;
+                    }
+                } else {
                     $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
+                    $dia_sequinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
-                        $hora_disp[] = '<input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        $hora_disp_amanha[] = '<input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     } else {
-                        $hora_disp[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                    }
+                    $i++;
+                }
+                
+            }
+            if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
+                echo '<form id="hora_agend">';
+                if(!empty($hora_disp_hoje)) {
+                    echo '<h3>Hoje:</h3>';
+                    foreach($hora_disp_hoje as $v) {
+                        echo $v;
                     }
                 }
-                $i++;
-            }
-            if(!empty($hora_disp)) {
-                echo '<form id="hora_agend">';
-                foreach($hora_disp as $v) {
-                    echo $v;
+                if(!empty($hora_disp_amanha)) {
+                    if(count($hora_disp_hoje) <= 1) {
+                        echo '<h3>Amanhã:</h3>';
+                        foreach($hora_disp_amanha as $v) {
+                            echo $v;
+                        }
+                    }
                 }
                 echo '
                         <button class="btnAgenda" type="submit"><i class="far fa-clock"></i> AGENDAR</button>

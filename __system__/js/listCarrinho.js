@@ -57,7 +57,7 @@ function listCarrinho() {
                                 <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                            <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                                <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
                             </td>
                         </tr>
                         `);
@@ -76,6 +76,11 @@ function listCarrinho() {
                 $('.divShowOptBtn').html(`
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                     <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+                    <div class="divButtonCupom">
+                        <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
+                    </div>
+                    <div class="divAddCupom"></div>
+                    <div class="divAnswer"></div>
                     <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
                     `);
                 $('.divShowTot').html(`
@@ -90,10 +95,18 @@ function listCarrinho() {
                     `);
                     $('.divShowOptDesk').html(`
                     <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+                    <div class="divButtonCupom">
+                        <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
+                    </div>
+                    <div class="divAddCupom"></div>
+                    <div class="divAnswer"></div>
                     <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button><br>
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                     `);
-                $('body').append('<script src="' + BASE_URL2 + 'js/attCarrinho.js"></script>');
+                $('body').append(`
+                    <script src="` + BASE_URL2 + `js/cupom.js"></script>
+                    <script src="` + BASE_URL2 + `js/attCarrinho.js"></script>
+                `);
                 $('.finalizaCompra').click(function() {
                     if(json['logado']) {
                         window.location.href = BASE_URL + 'agendamento';
