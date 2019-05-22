@@ -123,9 +123,6 @@
                 ?>
 			</div>
         </div>
-        <div class="divShowTot">
-				
-		</div>
 
         <!-- Display Products -->
 
