@@ -1673,6 +1673,276 @@ border-radius: 0;
         color: #9C45EB;
         cursor: pointer;
     }
+
+    .btnBuyFilter {
+        background: #9C45EB;
+        border: none;
+        height: 2rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        position: absolute;
+        top: 95%;
+        width: 100%;
+        left: 0;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    
+    .inputQtdFiltro {
+        position: absolute;
+        width: 24%;
+        left: 73%;
+        top: 79%;
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+        font-family: "Karla";
+    }
+
+    /* PAGINA DO CARRINHO */
+
+    .divShowOpt {
+        position: relative;
+        width: 35%;
+        margin: auto;
+        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .divShowOptBtn {
+        position: relative;
+        width: 50%;
+        left: 25%;
+        margin-top: 1rem;
+        display: inline-flex;
+    }
+
+    .divShowOptDesk {
+        display: none;
+    }
+    
+    .divTable {
+        position: relative;
+        width: 90%;
+        margin: 2rem 0;
+        left: 5%;
+    }
+
+    .tableCart {
+        border-collapse: collapse;
+    }
+    
+    .trNames {
+        height: 3rem;
+        border-bottom: #d3d2d2 1px solid;
+    }
+
+    .trNames th {
+        color: #9C45EB;
+        font-weight: 700;
+        font-family: 'Raleway-Medium';
+        font-size: 14px;
+    }
+
+    .tdCart {
+        padding: 10px;
+        border-bottom: #d3d2d2 1px solid;
+    }
+    
+
+    .imgCart {
+        position: relative;
+        width: 2rem;
+        float: left;
+        top: .8rem;
+    }
+
+    .titleProdCart {
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        margin: .2rem 0;
+        float: right;
+        width: 75%;
+        height: 2rem;
+    }
+
+    .brandProdCart {
+        font-size: 11px;
+        margin: .2rem 0;
+        float: right;
+        width: 75%;
+    }
+
+    .qtdProdCart {
+        font-size: 13px;
+        width: 40%;
+        left: 30%;
+        position: relative;
+        height: 1.5rem;
+        border: 1px #d3d2d2 solid;
+        border-radius: 3px;
+        font-family: 'Karla';
+    }
+
+    .priceProdCart {
+        font-size: 12px;
+        text-align: center;
+        font-family: 'Karla';
+    }
+
+    .descProdCart {
+        font-size: 10px;
+        text-align: center;
+        font-family: 'Karla';
+        text-decoration: line-through;
+        color: #252730;
+        font-weight: 300;
+        font-style: oblique;
+    }
+
+    .btnProdCart {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        color: #9C45EB;
+    }
+
+    .divShowTot {
+        position: relative;
+        width: 20%;
+        height: 30rem;
+        right: 5%;
+        float: right;
+        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        border-radius: 5px;
+        margin: 2rem 0;
+        top: 0rem;
+        display: none;
+    }
+
+    .summaryTitle {
+        color: #9C45EB;
+        width: 94%;
+        left: 1%;
+        position: relative;
+        text-align: left;
+        margin: 0;
+        padding: 10px;
+        font-family: 'Karla';
+        font-size: 14px;
+        padding: 1% 2%;
+    }
+
+    .divisorSummary {
+        position: relative;
+        width: 94%;
+        left: 3%;
+        height: .1rem;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .summarySubTitles {
+        position: relative;
+        padding: 10px;
+        height: .3rem;
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        margin: 1.4% 1%;
+        border-radius: 3px;
+    }
+
+    .totalDesc {
+        width: 70%;
+        position: relative;
+        color: #ffffff;
+        font-size: 12px;
+        float: left;
+        margin: 0;
+        top: -.2rem;
+    }
+
+    .totalPrice {
+        width: 70%;
+        position: relative;
+        color: #ffffff;
+        font-size: 13px;
+        float: left;
+        margin: 0;
+        top: -.2rem;
+    }
+
+    .valueDesc {
+        float: right;
+        width: 30%;
+        position: relative;
+        font-size: 12px;
+        color: #ffffff;
+        font-family: 'Karla';
+        margin: 0;
+        text-align: right;
+        top: -.2rem;
+    }
+
+    .valueBuy {
+        float: right;
+        width: 30%;
+        position: relative;
+        font-size: 13px;
+        color: #ffffff;
+        font-family: 'Karla';
+        margin: 0;
+        text-align: right;
+        top: -.2rem;
+    }
+
+    .limparCart {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+        width: 33%;
+        text-align: center;
+    }
+
+    .finalizaCompra {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        margin-left: 4%;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+        width: 33%;
+        text-align: center;
+    }
+
+    .linkShop {
+        background: #9C45EB;
+        border: none;
+        padding: 10px 5px;
+        height: auto;
+        font-family: 'Raleway-Medium';
+        color: #ffffff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 10px;
+        width: 33%;
+        text-align: center;
+    }
 }
 
 /* TELAS PARA TABLET */
@@ -3536,6 +3806,12 @@ border-radius: 0;
         margin: .4rem 0;
         position: relative;
         left: -10%;
+        font-weight: bold;
+    }
+
+    .celulaListFilterOpt:hover label {
+        color: #9C45EB;
+        font-weight: bold;
     }
 
     .limpaBusca i{
@@ -3582,7 +3858,7 @@ border-radius: 0;
 
     .divShowOpt {
         position: relative;
-        width: 60%;
+        width: 35%;
         margin: auto;
         background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
@@ -5530,6 +5806,7 @@ border-radius: 0;
         font-family: "Raleway-Medium";
         margin-left: 10%;
         color: #0F0617;
+        font-weight: bold;
     }
 
     .titleConfigFilter i {
@@ -5604,11 +5881,20 @@ border-radius: 0;
 
     .listFilterOptions {
         list-style: none;
+        padding-left: 0%;
     }
 
     .celulaListFilterOpt {
         font-size: 13px;
-        margin: .4rem 0;
+        margin: 0rem 0;
+        padding: 5px;
+        padding-left: 20px;
+        font-weight: bold;
+    }
+
+    .celulaListFilterOpt:hover label {
+        color: #9C45EB;
+        font-weight: bold;
     }
 
     .celulaListFilterOpt a {

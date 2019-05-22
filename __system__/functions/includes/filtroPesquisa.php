@@ -79,7 +79,10 @@
                 <ul class="listFilterOptions">
                 <?php
                 foreach($result as $v):?>
-                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>"><input id="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>" class="categ" type="radio" value="<?= $v['subcateg_nome']; ?>"> <label for="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>"><?= $v['subcateg_nome']; ?></label></li>
+                    <li class="celulaListFilterOpt" value="<?= $v['subcateg_nome']; ?>">
+                        <input id="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>" class="categ" type="radio" value="<?= $v['subcateg_nome']; ?>"> 
+                        <label for="<?= $v['subcateg_nome'].$v['subcateg_id']; ?>"><?= $v['subcateg_nome']; ?></label>
+                    </li>
                     <?php
                 endforeach;?>
                 </ul>
@@ -250,7 +253,7 @@
                         <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
                     </div>
                     <div class="divFilter">
-                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> CATEGORIA</label>
+                        <label for="href" class="titleConfigFilter"><i class="fas fa-font"></i> SUBCATEGORIA</label>
                         <ul class="listFilterOptions">
                         <?php
                         foreach($result as $v):?>
