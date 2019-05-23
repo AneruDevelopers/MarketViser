@@ -108,7 +108,18 @@
                     $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
                     $dia_sequinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
-                        $hora_disp_amanha[] = '<input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        $hora_disp_amanha[] = '
+                        <table class="" border="1">
+                            <tr>
+                                <th class="">HOJE</th>
+                                <th class="">AMANHÃ</th>
+                            </tr>
+                            <tr>
+                                <td class=""></td>
+                                <td class=""></td>
+                            </tr>
+                        </table>
+                        <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     } else {
                         $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     }

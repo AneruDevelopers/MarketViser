@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/libraries/progress-tracker-master/app/styles/progress-tracker.css">
 </head>
 <body>
     <div class="l-wrapper_FiltroPesq">
@@ -46,10 +47,40 @@
 		<!-- Title/Display Products -->
 
         <div class="l-mainFiltroPesq">
+            <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
+                <li class="progress-step is-complete">
+                    <span class="progress-marker"></span>
+                    <span class="progress-text">
+                        <h4 class="progress-title">PASSO 1</h4>
+                        <i class="fas fa-shopping-cart"></i> CARRINHO
+                    </span>
+                </li>
+                <li class="progress-step is-active">
+                    <span class="progress-marker"></span>
+                    <span class="progress-text">
+                        <h4 class="progress-title">PASSO 2</h4>
+                        <i class="far fa-clock"></i> AGENDAMENTO
+                    </span>
+                </li>
+                <li class="progress-step">
+                    <span class="progress-marker"></span>
+                    <span class="progress-text">
+                        <h4 class="progress-title">PASSO 3</h4>
+                        <i class="far fa-credit-card"></i> PAGAMENTO
+                    </span>
+                </li>
+                <li class="progress-step">
+                    <span class="progress-marker"></span>
+                    <span class="progress-text">
+                        <h4 class="progress-title">PASSO 4</h4>
+                        <i class="fas fa-clipboard"></i> EXTRATO
+                    </span>
+                </li>
+            </ul>
             <h2 class="tituloOfertas"><i class="far fa-clock"></i> AGENDAMENTO</h2>
             <div class="divAgend">
-                <h2>Confirme ou mude o endereço para fazermos a entrega!</h2>
-                <form id="endereco_entrega">
+                <h2 class="titleStep2">Confirme ou mude o endereço para fazermos a entrega!</h2>
+                <form id="endereco_entrega" class="endereco_entrega">
                     <div class="outsideSecInputCad">
                         <div class="field -md">
                             <input type="text" placeholder=" CEP" class="form-control cep placeholder-shown" id="usu_cep" value="<?= $_SESSION['inf_usu']['usu_cep'] ?>" name="usu_cep"/>

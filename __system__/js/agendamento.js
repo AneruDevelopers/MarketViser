@@ -126,8 +126,8 @@ $(document).ready(function() {
                     clearErrors();
                     $("#btn-cad").siblings(".help-block").html(loadingRes("Redirecionando..."));
                     $('.divAgend').html(`
-                        <h4>Escolha o horário que você quer que entreguemos a compra hoje (prazo máximo de uma hora e meia)!</h4>
-                        <p>` + json['agend_end'] + `</p>
+                        <h2 class="titleStep2_1">Escolha o horário que você quer que entreguemos sua compra<br>(prazo máximo de uma hora e meia)!</h2>
+                        <p class="titleEndAgend">Entrega para o endereço:</p><p class="endAgend">` + json['agend_end'] + `</p>
                     `);
                     $.ajax({
                         url: BASE_URL + 'functions/agendamento',
@@ -152,7 +152,7 @@ $(document).ready(function() {
                     } else {
                         clearErrors();
                         Swal.fire({
-                            title: "E.conomize informa:",
+                            title: "e.conomize informa:",
                             text: "O armazém que está comprando não faz entrega em sua cidade, desculpe-nos!",
                             type: "error",
                             confirmButtonColor: "#A94442",
