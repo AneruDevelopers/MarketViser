@@ -170,7 +170,9 @@
 						if($sel->rowCount() > 0) {
 							$rows = $sel->fetchAll();
 							foreach($rows as $row) {
-								setcookie("inf_usu",$row['usu_id'],time()+(86400 * 1825));
+								if(isset($_POST['usu_cookie'])) {
+									setcookie("inf_usu",$row['usu_id'],time()+(86400 * 1825));
+								}
 
 								$_SESSION["inf_usu"]['usu_id'] = $row['usu_id'];
 								$_SESSION["inf_usu"]['usu_nome'] = $row['usu_first_name'];

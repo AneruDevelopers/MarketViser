@@ -18,77 +18,26 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
-		<!-- Title/Display Products -->
+        <div class="l-mainFiltroPesq carrega_pagina">
 
-        <div class="l-mainFiltroPesq">
-            <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
-                <li class="progress-step is-active">
-                    <span class="progress-marker"></span>
-                    <span class="progress-text">
-                        <h4 class="progress-title">PASSO 1</h4>
-                        <i class="fas fa-shopping-cart"></i> CARRINHO
-                    </span>
-                </li>
-                <li class="progress-step">
-                    <span class="progress-marker"></span>
-                    <span class="progress-text">
-                        <h4 class="progress-title">PASSO 2</h4>
-                        <i class="far fa-clock"></i> AGENDAMENTO
-                    </span>
-                </li>
-                <li class="progress-step">
-                    <span class="progress-marker"></span>
-                    <span class="progress-text">
-                        <h4 class="progress-title">PASSO 3</h4>
-                        <i class="far fa-credit-card"></i> PAGAMENTO
-                    </span>
-                </li>
-                <li class="progress-step">
-                    <span class="progress-marker"></span>
-                    <span class="progress-text">
-                        <h4 class="progress-title">PASSO 4</h4>
-                        <i class="fas fa-clipboard"></i> EXTRATO
-                    </span>
-                </li>
-            </ul>
-            <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> CARRINHO</h2>
-            <div class="divShowOpt">
-				
-            </div>
-            <div class="divShowOptBtn">
-
-            </div>
-            <div class="divTable">
-                <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
-                    
-                </table>
-            </div>
-            <div class="divShowTot">
-				
-            </div>
-            <div class="divShowOptDesk">
-
-            </div>
         </div>
 
-        <!-- Display Products -->
-
-		<!-- -------------------- -->
+        <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
                 <div class="modalProfileLeftContent">
@@ -142,12 +91,12 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>
@@ -158,6 +107,7 @@
     <script src="<?php echo base_url(); ?>js/util.js"></script>
     <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?php echo base_url(); ?>js/listDepartamento.js"></script>
+    <script src="<?php echo base_url(); ?>js/etapasCompra.js"></script>
     <script src="<?php echo base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?php echo base_url(); ?>js/btnFavorito.js"></script>
     <script src="<?php echo base_url(); ?>js/listCarrinho.js"></script>

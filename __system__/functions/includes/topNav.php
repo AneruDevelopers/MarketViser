@@ -23,7 +23,7 @@
         </a>
     </li>
     <li class="celulaTopNav">
-        <a class="linkMenuTopNav" href="<?= base_url_php(); ?>carrinho">
+        <a class="linkMenuTopNav" href="<?= base_url_php(); ?>compra/etapas_compra">
             <div class="leftBack">
                 <i class="fas fa-shopping-cart"></i>
             </div>
@@ -41,5 +41,5 @@
 </ul>
 <ul class="menuTopNavMobile">
   <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="#" id="myBtn"><i class="far fa-user-circle"></i></a></li>
-  <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="<?= base_url_php(); ?>carrinho"><i class="fas fa-shopping-cart"></i></a></li>
+  <li class="celulaTopNavMobile"><a class="linkMenuTopNavMobile" href="<?= base_url_php(); ?>compra/etapas_compra"><i class="fas fa-shopping-cart"></i></a></li>
 </ul>

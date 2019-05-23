@@ -139,7 +139,7 @@ $(document).ready(function() {
                                     type: 'post',
                                     data: $(this).serialize(),
                                     success: function() {
-                                        window.location.href = "finalizaCompra";
+                                        window.location.href = "pagamento";
                                     }
                                 });
                                 return false;

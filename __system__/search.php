@@ -171,7 +171,7 @@
                     <p class="textModal">Olá, amigo!</p>
                     <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
                     <div class="divLinkCad">    
-                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>cadastro">Cadastre-se já</a>
+                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
                     </div>    
                 </div>
             </div>
@@ -180,7 +180,7 @@
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.html');
+            include('functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
