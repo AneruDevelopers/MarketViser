@@ -150,7 +150,7 @@
 								</div>
 								<div class="outsideSecInputCad">
 									<div class="field -md">
-										<input type="text" placeholder=" Logradouro" class="placeholder-shown" readonly id="usu_end" name="usu_end"/>
+										<input type="text" placeholder=" Logradouro" class="placeholder-shown" id="usu_end" name="usu_end"/>
 										<label class="labelFieldCad"><strong>LOGRADOURO</strong></label>
 									</div>
 									<div class="help-block"></div><br/>
@@ -171,7 +171,7 @@
 								</div>
 								<div class="outsideSecInputCad">
 									<div class="field -md">
-										<input type="text" placeholder=" Bairro" class="placeholder-shown" readonly id="usu_bairro" name="usu_bairro"/>
+										<input type="text" placeholder=" Bairro" class="placeholder-shown" id="usu_bairro" name="usu_bairro"/>
 										<label class="labelFieldCad"><strong>BAIRRO</strong></label>
 									</div>
 									<div class="help-block"></div><br/>

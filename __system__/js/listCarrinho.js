@@ -109,7 +109,7 @@ function listCarrinho() {
                 `);
                 $('.finalizaCompra').click(function() {
                     if(json['logado']) {
-                        window.location.href = BASE_URL + 'compra/agendamento';
+                        buscaEndereco();
                     } else {
                         Toast.fire({
                             type: 'error',
