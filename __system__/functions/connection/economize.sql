@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/05/2019 às 05:29
+-- Tempo de geração: 23/05/2019 às 12:05
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -155,7 +155,7 @@ CREATE TABLE `dados_armazem` (
   `produto_id` int(11) NOT NULL,
   `armazem_id` int(11) NOT NULL,
   `produto_qtd` int(11) NOT NULL,
-  `produto_preco` float NOT NULL,
+  `produto_preco` decimal(10,2) NOT NULL,
   `produto_desconto_porcent` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -164,22 +164,22 @@ CREATE TABLE `dados_armazem` (
 --
 
 INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`, `produto_preco`, `produto_desconto_porcent`) VALUES
-(1, 1, 1, 200, 6.4, 24),
-(2, 2, 1, 17, 5.49, NULL),
-(3, 3, 1, 300, 2.3, 14),
-(4, 4, 1, 200, 3, 9),
-(5, 5, 1, 200, 2.5, NULL),
-(6, 6, 1, 200, 2.5, 15),
-(7, 7, 1, 140, 23.39, NULL),
-(8, 1, 2, 400, 50, 68),
-(9, 2, 2, 400, 125.59, 50),
-(10, 3, 2, 400, 45.99, 35),
-(11, 4, 2, 400, 63, 87),
-(12, 5, 2, 400, 35.39, 77),
-(13, 6, 2, 400, 49, 37),
-(14, 7, 2, 400, 83.99, 62),
-(15, 8, 1, 200, 39.99, NULL),
-(16, 8, 2, 200, 45.99, 18);
+(1, 1, 1, 200, '6.40', 24),
+(2, 2, 1, 17, '5.49', NULL),
+(3, 3, 1, 300, '2.30', 14),
+(4, 4, 1, 200, '3.00', 9),
+(5, 5, 1, 200, '2.50', NULL),
+(6, 6, 1, 200, '2.50', 15),
+(7, 7, 1, 140, '23.39', NULL),
+(8, 1, 2, 400, '50.00', 68),
+(9, 2, 2, 400, '125.59', 50),
+(10, 3, 2, 400, '45.99', 35),
+(11, 4, 2, 400, '63.00', 87),
+(12, 5, 2, 400, '35.39', 77),
+(13, 6, 2, 400, '49.00', 37),
+(14, 7, 2, 400, '83.99', 62),
+(15, 8, 1, 200, '39.99', NULL),
+(16, 8, 2, 200, '45.99', 18);
 
 -- --------------------------------------------------------
 
@@ -228,7 +228,8 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 (16, 16, 1),
 (17, 17, 1),
 (18, 18, 1),
-(19, 19, 1);
+(19, 19, 1),
+(20, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -420,10 +421,11 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 (13, '08:00:00', 3),
 (14, '10:00:00', 3),
 (15, '12:00:00', 3),
-(16, '14:00:00', 3),
+(16, '20:00:00', 3),
 (17, '16:00:00', 4),
 (18, '18:00:00', 4),
-(19, '21:00:00', 2);
+(19, '21:00:00', 2),
+(20, '20:30:00', 4);
 
 -- --------------------------------------------------------
 
@@ -531,7 +533,8 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (87, 3, 2),
 (88, 8, 2),
 (90, 2, 1),
-(91, 4, 1);
+(91, 4, 1),
+(92, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -693,8 +696,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$LPlpHnYsuJrdF0nmqZecQOoLPNZ9wqX0V7aRCYU2ADzY0.Y6xWrbq', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09'),
-(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$2jUx7YvWHOEBJT0qgTuOJu9Lfjs3UXQz.DZt7dLF0CogLLRNbSXjy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09'),
+(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
 
 --
 -- Índices de tabelas apagadas
@@ -956,7 +959,7 @@ ALTER TABLE `dados_entrega`
 -- AUTO_INCREMENT de tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -1004,7 +1007,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
-  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `lista_compra`
@@ -1034,7 +1037,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
