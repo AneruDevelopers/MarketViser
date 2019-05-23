@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/libraries/progress-tracker-master/app/styles/progress-tracker.css">
 </head>
 <body>
     <div class="l-wrapper_FiltroPesq">

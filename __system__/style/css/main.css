@@ -72,7 +72,17 @@ body {
 html, body{
     height: 100%;
     overflow-x: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 400;
 }
+  
+@-moz-document url-prefix() {
+    body {
+        font-weight: lighter !important;
+    }
+  }
 
 textarea,
 input.text,
@@ -395,65 +405,8 @@ border-radius: 0;
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-
-    .myModalArmazemMobile {
-        display: none; /* Hidden by default */
-        position: absolute; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: hidden; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
     
     .modalArmazemContent {
-        background-color: #fefefe;
-        margin: 12% auto;
-        border: none;
-        width: 50%;
-        border-radius: 10px;
-        height: 24rem;
-        font-family: "Raleway";
-        position: relative;
-        top: -3rem;
-    }
-
-    .closeModalArmazem {
-        color: #252730;
-        float: right;
-        font-size: 32px;
-        font-weight: bold;
-        position: relative;
-        top: 0rem;
-        right: 1rem;
-    }
-      
-    .closeModalArmazem:hover,
-    .closeModalArmazem:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* MODAL */
-
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100vw; /* Full width */
-        height: 100vh; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-      }
-      
-      .modal-content {
         background-color: #fefefe;
         margin: 12% auto;
         border: none;
@@ -463,37 +416,86 @@ border-radius: 0;
         font-family: "Raleway";
         position: relative;
         top: 4rem;
-      }
-
-    .modalLeftContent {
-        position: relative;
-        width: 50%;
-        height: 100%;
-        float: left;
     }
 
-    .modalRightContent {
+    .modalArmTopContent {
         position: relative;
-        width: 50%;
-        height: 100%;
-        float: right;
+        width: 100%;
+        height: 20%;
         background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
-        border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
     }
 
-    .close {
+    .modalArmBottomContent {
+        position: relative;
+        width: 100%;
+        height: 80%;
+        top: -5.5%;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .titleModalArm {
+        position: relative;
+        width: 30%;
+        left: 2%;
+        text-align: left;
+        font-size: 10px;
+    }
+
+    .titleModalArmName {
+        position: relative;
+        width: 60%;
+        text-align: center;
+        top: .5rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: bold;
+        line-height: 15px;
+        left: 2%;
+        font-size: 11px;
+        margin: auto;
+    }
+
+    .btnModalArm {
+        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        border: none;
+        padding: 8px;
+        color: #ffffff;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        position: relative;
+        left: 2%;
+        font-size: 9px;
+    }
+
+    .linkModalArm {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        top: 5rem;
+        font-size: 9px;
+    }
+
+    .closeModalArmazem {
         color: #ffffff;
         float: right;
-        font-size: 32px;
+        font-size: 26px;
         font-weight: bold;
         position: relative;
-        top: 0rem;
-        right: 1rem;
+        top: -2rem;
+        right: .6rem;
     }
       
-    .close:hover,
-    .close:focus {
+    .closeModalArmazem:hover,
+    .closeModalArmazem:focus {
         color: #0F0617;
         text-decoration: none;
         cursor: pointer;
@@ -960,6 +962,8 @@ border-radius: 0;
         text-decoration: none;
         color: #d3d2d2;
     }
+
+    
 
 
     /* PAGE --> CADASTRO.PHP */
@@ -2348,7 +2352,7 @@ border-radius: 0;
         background-color: #fefefe;
         margin: 12% auto;
         border: none;
-        width: 50%;
+        width: 60%;
         border-radius: 10px;
         height: 24rem;
         font-family: "Raleway";
@@ -2356,13 +2360,76 @@ border-radius: 0;
         top: -3rem;
     }
 
+    .modalArmTopContent {
+        position: relative;
+        width: 100%;
+        height: 20%;
+        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+    }
+
+    .modalArmBottomContent {
+        position: relative;
+        width: 100%;
+        height: 80%;
+        top: -5.5%;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .titleModalArm {
+        position: relative;
+        width: 30%;
+        padding: 5px;
+        left: 2%;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .titleModalArmName {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        top: 1rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: bold;
+        line-height: 25px;
+        left: 2%;
+    }
+
+    .btnModalArm {
+        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        border: none;
+        padding: 8px;
+        color: #ffffff;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        position: relative;
+        left: 2%;
+    }
+
+    .linkModalArm {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        top: 10rem;
+    }
+
     .closeModalArmazem {
-        color: #0F0617;
+        color: #ffffff;
         float: right;
         font-size: 32px;
         font-weight: bold;
         position: relative;
-        top: 0rem;
+        top: -4.5rem;
         right: 1rem;
     }
       
@@ -4469,13 +4536,76 @@ border-radius: 0;
         top: -3rem;
     }
 
+    .modalArmTopContent {
+        position: relative;
+        width: 100%;
+        height: 20%;
+        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+    }
+
+    .modalArmBottomContent {
+        position: relative;
+        width: 100%;
+        height: 80%;
+        top: -5.5%;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .titleModalArm {
+        position: relative;
+        width: 30%;
+        padding: 5px;
+        left: 2%;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .titleModalArmName {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        top: 1rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: bold;
+        line-height: 25px;
+        left: 2%;
+    }
+
+    .btnModalArm {
+        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        border: none;
+        padding: 8px;
+        color: #ffffff;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        position: relative;
+        left: 2%;
+    }
+
+    .linkModalArm {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        top: 10rem;
+    }
+
     .closeModalArmazem {
-        color: #0F0617;
+        color: #ffffff;
         float: right;
         font-size: 32px;
         font-weight: bold;
         position: relative;
-        top: 0rem;
+        top: -4.5rem;
         right: 1rem;
     }
       
@@ -4873,11 +5003,12 @@ border-radius: 0;
     .tituloOfertas {
         position: relative;
         font-family: "Bowlby";
-        font-size: 18px;
+        font-size: 20px;
         width: 100%;
         text-align: center;
         padding: 10px 0;
-        margin: 2rem 0;
+        margin-top: 0rem;
+        margin-bottom: .5rem;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -6177,5 +6308,49 @@ border-radius: 0;
         left: 25%;
         position: relative;
         top: 1rem;
+    }
+
+    /* PÁGINA DO AGENDADMENTO */
+
+    .divAgend {
+        position: relative;
+        width: 40%;
+        margin: auto;
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        -moz-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+    }
+
+    .titleStep2 {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .endereco_entrega {
+        position: relative;
+        width: 80%;
+        margin: auto;
+    }
+
+    .titleStep2_1 {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .titleEndAgend {
+        font-family: 'Raleway-Medium';
+    }
+
+    .endAgend {
+        font-style: italic;
     }
 }
