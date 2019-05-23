@@ -106,7 +106,7 @@
 
 .progress-step::after {
   background-color: #e2e3e6;
-  margin-top: 1.1%;
+  margin-top: 2%;
 }
 
 .progress-step .progress-text, .progress-step .progress-step > a .progress-text {
