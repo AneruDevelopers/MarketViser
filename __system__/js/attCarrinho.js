@@ -1,7 +1,7 @@
 function attCarrinho() {
-    $('.btnBuy').click(function(e) {
+    $('.formBuy').submit(function(e) {
         e.preventDefault();
-        var dado = $(this).siblings(".formBuy").serialize();
+        var dado = $(this).serialize();
 
         $.ajax({
             dataType: 'json',
@@ -15,6 +15,7 @@ function attCarrinho() {
                 });
             }
         });
+        return false;
     });
 
     $('.tirarProd').click(function(e) {

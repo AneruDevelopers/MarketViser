@@ -10,7 +10,7 @@ function verificaLogin() {
                 $('.s_login').html(`PERFIL`);
                 $('.modal-content').html(`
                 <div class="modalProfileLeftContent">
-                    <h5 class="titleModalProfile">CLIENTE</h5<br><h4 class="titleModalProfileName">` + json['usuario']['usu_nome'] + ` ` + json['usuario']['usu_sobrenome'] + `</h4>
+                    <h5 class="titleModalProfile">` + json['usuario']['usu_tipo'] + `</h5<br><h4 class="titleModalProfileName">` + json['usuario']['usu_nome'] + ` ` + json['usuario']['usu_sobrenome'] + `</h4>
                     <div class='divisorFilterProfile'></div>
                     <div class="sectionAccountInfo">
                         <h5>DADOS PESSOAIS</h5>
@@ -27,7 +27,7 @@ function verificaLogin() {
                         <p class="linhaProfile"><b>` + json['usuario']['usu_cidade'] + ` - ` + json['usuario']['usu_uf'] + `</b></p>
                         </div>
                     </div>
-                    <p class="linkConfig"><a href="#"><i class="fas fa-cog"></i> &nbsp;CONFIGURAÇÕES DO PERFIL</a></p>
+                    <p class="linkConfig"><a href="` + BASE_URL + `usuario/configurar"><i class="fas fa-cog"></i> &nbsp;CONFIGURAÇÕES DO PERFIL</a></p>
                 </div>
                 <div class="modalProfileRightContent">
                     <span class="close">&times;</span>

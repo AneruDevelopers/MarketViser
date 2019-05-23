@@ -207,11 +207,11 @@
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error_list"]["#btn-cad"] = "<p class=''><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
+					$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;
-				$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>2º Erro inesperado. Tente novamente mais tarde!</b></p>";
+				$json["error_list"]["#btn-cad"] = "<p style='color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
 			}
 		}
 		echo json_encode($json);

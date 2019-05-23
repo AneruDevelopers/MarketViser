@@ -166,10 +166,10 @@
                         <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                     </p>
                     <div>
-                        <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                         <form class="formBuy">
                             <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
                             <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                         </form>
                     </div>
                 </div>
@@ -339,10 +339,10 @@
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                             </p>            
                             <div>
-                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                 <form class="formBuy">
                                     <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
                                     <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                 </form>
                             </div>
                         </div>
@@ -484,10 +484,10 @@
                                 <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
                             </p>
                             <div>
-                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                 <form class="formBuy">
                                     <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
                                     <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                 </form>
                             </div>
                         </div>

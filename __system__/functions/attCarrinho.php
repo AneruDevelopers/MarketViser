@@ -33,6 +33,10 @@
                     unset($_SESSION['carrinho'][$id]);
                     if(empty($_SESSION['carrinho'])) {
                         unset($_SESSION['carrinho']);
+                        unset($_SESSION['totCompra']);
+                        if(isset($_SESSION['totCompraCupom'])) {
+                            unset($_SESSION['totCompraCupom']);
+                        }
                     }
                     $json['answer'] = "Produto removido do carrinho";
                 } else {
@@ -50,10 +54,18 @@
             }
             if(empty($_SESSION['carrinho'])) {
                 unset($_SESSION['carrinho']);
+                unset($_SESSION['totCompra']);
+                if(isset($_SESSION['totCompraCupom'])) {
+                    unset($_SESSION['totCompraCupom']);
+                }
             }
         } elseif(isset($_POST['limpaCart'])) {
             if(isset($_SESSION['carrinho'])) {
                 unset($_SESSION['carrinho']);
+                unset($_SESSION['totCompra']);
+                if(isset($_SESSION['totCompraCupom'])) {
+                    unset($_SESSION['totCompraCupom']);
+                }
                 $json['answer'] = "Carrinho foi limpo";
             } else {
                 $json['type'] = "error";
@@ -87,6 +99,10 @@
                     unset($_SESSION['carrinho'][$id]);
                     if(empty($_SESSION['carrinho'])) {
                         unset($_SESSION['carrinho']);
+                        unset($_SESSION['totCompra']);
+                        if(isset($_SESSION['totCompraCupom'])) {
+                            unset($_SESSION['totCompraCupom']);
+                        }
                     }
                     $json['answer'] = "Produto removido do carrinho";
                 } else {

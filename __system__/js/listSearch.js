@@ -29,10 +29,10 @@ $(document).ready(function() {
                                             <span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `
                                         </p>
                                         <div>
-                                            <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
                                                 <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuy" type="submit">ADICIONAR</button>
                                             </form>
                                         </div>
                                     </div>
@@ -48,10 +48,10 @@ $(document).ready(function() {
                                         <h5 class="titleProdFilter">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
                                         <p class="priceProdFilter">R$ ` + json['prods'][i].produto_preco + `</p>
                                         <div>
-                                            <button class="btnBuyFilter btnBuy">ADICIONAR</button>
                                             <form class="formBuy">
                                                 <input type="hidden" value="` + json['prods'][i].produto_id + `" name="id_prod"/>
                                                 <input type="number" min="0" max="20" value="` + json['prods'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                             </form>
                                         </div>
                                     </div>

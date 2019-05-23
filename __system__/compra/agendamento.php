@@ -23,11 +23,22 @@
                             $('.inputsRadioAgend').html(response);
                             $("#hora_agend").submit(function() {
                                 $.ajax({
+                                    dataType: 'json',
                                     url: BASE_URL + 'functions/agendamento',
                                     type: 'post',
                                     data: $(this).serialize(),
-                                    success: function() {
-                                        buscaPagamento();
+                                    success: function(json) {
+                                        if(json['status']) {
+                                            buscaPagamento();
+                                        } else {
+                                            Swal.fire({
+                                                title: "E.conomize informa:",
+                                                text: json['error_list'][0],
+                                                type: "error",
+                                                confirmButtonColor: "#A94442",
+                                                confirmButtonText: "Ok"
+                                            });
+                                        }
                                     }
                                 });
                                 return false;

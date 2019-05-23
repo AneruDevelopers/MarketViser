@@ -4,6 +4,10 @@ function listCarrinho() {
         dataType: 'json',
         beforeSend: function() {
             $('.divShowProdFav').html(loadingRes("Verificando carrinho..."));
+            $('.divShowTot').html("");
+            $('.divShowOpt').html("");
+            $('.divShowOptBtn').html("");
+            $('.divShowOptDesk').html("");
         },
         success: function(json) {
             if(!json['empty']) {
@@ -92,8 +96,8 @@ function listCarrinho() {
                     <div class="summarySubTitles">
                         <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$` + json['totCompra'] + `</h2>
                     </div>
-                    `);
-                    $('.divShowOptDesk').html(`
+                `);
+                $('.divShowOptDesk').html(`
                     <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
                     <div class="divButtonCupom">
                         <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
@@ -102,7 +106,7 @@ function listCarrinho() {
                     <div class="divAnswer"></div>
                     <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button><br>
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
-                    `);
+                `);
                 $('body').append(`
                     <script src="` + BASE_URL2 + `js/cupom.js"></script>
                     <script src="` + BASE_URL2 + `js/attCarrinho.js"></script>
@@ -126,6 +130,8 @@ function listCarrinho() {
                 $('.divShowProdFav').html("Sem produtos no carrinho!");
                 $('.divShowTot').html("");
                 $('.divShowOpt').html("");
+                $('.divShowOptBtn').html("");
+                $('.divShowOptDesk').html("");
             }
         }
     });

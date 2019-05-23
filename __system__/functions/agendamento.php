@@ -73,8 +73,17 @@
             
             echo json_encode($json);
         } elseif(isset($_POST['entrega_horario'])) {
-            $json['recebeu'] = $_POST['entrega_horario'];
-            $_SESSION['agend_horario'] = $_POST['entrega_horario'];
+            $json["status"] = 1;
+            $hora = substr($_POST['entrega_horario'],-8);
+            $json['hora'] = $hora;
+            if(Date("H:i:s") >= $hora) {
+                $json['status'] = 0;
+                $json['error_list'][0] = "O horário que escolheu já expirou. Escolha outro, por favor";
+            } else {
+                $json['recebeu'] = $_POST['entrega_horario'];
+                $_SESSION['agend_horario'] = $_POST['entrega_horario'];
+            }
+            
             echo json_encode($json);
         } else {
             $hora_disp_amanha = array();
@@ -93,9 +102,9 @@
             $i = 1;
             foreach($res as $k => $v) {
                 if($v['dia'] != $next_day) {
-                    $hora = substr($v['hora'],0,2);
+                    $hora = $v['hora'];
                     $hoje = Date('Y-m-d');
-                    if(Date("H") < $hora) {
+                    if(Date("H:i:s") < $hora) {
                         $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
                         if($i==1) {
                             $hora_disp_hoje[] = '<input type="radio" checked name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
