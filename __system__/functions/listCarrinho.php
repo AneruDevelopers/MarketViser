@@ -45,6 +45,7 @@
                 foreach($products as $k => $product) {
                     if($product['produto_desconto_porcent'] != "") {
                         $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
+                        $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
                         $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
                         $results[$k] = $product;
                         $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
