@@ -18,6 +18,18 @@
           }
           if(isset($_SESSION['carrinho'])) {
             unset($_SESSION['carrinho']);
+            if(isset($_SESSION['totCompra'])) {
+              unset($_SESSION['totCompra']);
+            }
+            if(isset($_SESSION['totCompraCupom'])) {
+              unset($_SESSION['totCompraCupom']);
+            }
+            if(isset($_SESSION['end_agend'])) {
+              unset($_SESSION['end_agend']);
+            }
+            if(isset($_SESSION['agend_horario'])) {
+              unset($_SESSION['agend_horario']);
+            }
           }
         } else {
           $json['status'] = 0;

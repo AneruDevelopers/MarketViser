@@ -8,17 +8,17 @@
         if(isset($_SESSION['carrinho'])) {
             unset($_SESSION['carrinho']);
         }
-        if(isset($_SESSION['agend_horario'])) {
-            unset($_SESSION['agend_horario']);
+        if(isset($_SESSION['totCompra'])) {
+          unset($_SESSION['totCompra']);
         }
-        if(isset($_SESSION['end_cep'])) {
-            unset($_SESSION['end_cep']);
-            unset($_SESSION['end_end']);
-            unset($_SESSION['end_num']);
-            unset($_SESSION['end_complemento']);
-            unset($_SESSION['end_bairro']);
-            unset($_SESSION['end_cidade']);
-            unset($_SESSION['end_uf']);
+        if(isset($_SESSION['totCompraCupom'])) {
+          unset($_SESSION['totCompraCupom']);
+        }
+        if(isset($_SESSION['end_agend'])) {
+          unset($_SESSION['end_agend']);
+        }
+        if(isset($_SESSION['agend_horario'])) {
+          unset($_SESSION['agend_horario']);
         }
         unset($_SESSION["inf_usu"]);
 

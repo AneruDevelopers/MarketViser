@@ -41,7 +41,7 @@ function verificaLogin() {
                 $('.logout').click(function() {
                     Swal.fire({
                         title: "Deseja mesmo sair?",
-                        text: "Caso tenha adicionado produtos ao carrinho ou feito um agendamento, será perdido permanentemente!",
+                        text: "Qualquer compra não finalizada será perdida permanentemente!",
                         type: "warning",
                         showCancelButton: true,
                         cancelButtonColor: "#494949",
