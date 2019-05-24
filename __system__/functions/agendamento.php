@@ -121,7 +121,7 @@
                     }
                 } else {
                     $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
-                    $dia_sequinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
+                    $dia_seguinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
                         $hora_disp_amanha[] = '
                         <!--<table class="" border="1">
@@ -134,20 +134,21 @@
                                 <td class=""></td>
                             </tr>
                         </table>-->
-                        <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     } else {
-                        $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
+                        $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     }
                 }
                 
             }
             if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
                 echo '<form id="hora_agend">';
+                $hoje = substr($hoje,-2) . "/" . substr($hoje,5,2);
                 if(!empty($hora_disp_hoje)) {
                     echo '
                         <table class="" border="1">
                             <tr>
-                                <th class="">HOJE</th>
+                                <th class="">HOJE (' . $hoje . ')</th>
                             </tr>
                     ';
                     foreach($hora_disp_hoje as $v) {
@@ -163,10 +164,11 @@
                 }
                 if(!empty($hora_disp_amanha)) {
                     if(count($hora_disp_hoje) <= 1) {
+                        $dia_seguinte = substr($dia_seguinte,-2) . "/" . substr($dia_seguinte,5,2);
                         echo '
                             <table class="" border="1">
                                 <tr>
-                                    <th class="">AMANHÃ</th>
+                                    <th class="">AMANHÃ (' . $dia_seguinte . ')</th>
                                 </tr>
                         ';
                         foreach($hora_disp_amanha as $v) {
