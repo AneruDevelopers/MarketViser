@@ -75,10 +75,16 @@
         } elseif(isset($_POST['entrega_horario'])) {
             $json["status"] = 1;
             $hora = substr($_POST['entrega_horario'],-8);
-            $json['hora'] = $hora;
-            if(Date("H:i:s") >= $hora) {
-                $json['status'] = 0;
-                $json['error_list'][0] = "O horário que escolheu já expirou. Escolha outro, por favor";
+            $dia = substr($_POST['entrega_horario'],0,10);
+            $json['hora_dia'] = $hora . " | " . $dia;
+            if(Date("Y-m-d") == $dia) {
+                if(Date("H:i:s") >= $hora) {
+                    $json['status'] = 0;
+                    $json['error_list'][0] = "O horário que escolheu já expirou. Escolha outro, por favor";
+                } else {
+                    $json['recebeu'] = $_POST['entrega_horario'];
+                    $_SESSION['agend_horario'] = $_POST['entrega_horario'];
+                }
             } else {
                 $json['recebeu'] = $_POST['entrega_horario'];
                 $_SESSION['agend_horario'] = $_POST['entrega_horario'];
@@ -118,7 +124,7 @@
                     $dia_sequinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
                         $hora_disp_amanha[] = '
-                        <table class="" border="1">
+                        <!--<table class="" border="1">
                             <tr>
                                 <th class="">HOJE</th>
                                 <th class="">AMANHÃ</th>
@@ -127,7 +133,7 @@
                                 <td class=""></td>
                                 <td class=""></td>
                             </tr>
-                        </table>
+                        </table>-->
                         <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     } else {
                         $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_sequinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
@@ -138,17 +144,41 @@
             if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
                 echo '<form id="hora_agend">';
                 if(!empty($hora_disp_hoje)) {
-                    echo '<h3>Hoje:</h3>';
+                    echo '
+                        <table class="" border="1">
+                            <tr>
+                                <th class="">HOJE</th>
+                            </tr>
+                    ';
                     foreach($hora_disp_hoje as $v) {
-                        echo $v;
+                        echo '
+                            <tr>
+                                <td class="">' . $v . '</td>
+                            </tr>
+                        ';
                     }
+                    echo '
+                        </table>
+                    ';
                 }
                 if(!empty($hora_disp_amanha)) {
                     if(count($hora_disp_hoje) <= 1) {
-                        echo '<h3>Amanhã:</h3>';
+                        echo '
+                            <table class="" border="1">
+                                <tr>
+                                    <th class="">AMANHÃ</th>
+                                </tr>
+                        ';
                         foreach($hora_disp_amanha as $v) {
-                            echo $v;
+                            echo '
+                                <tr>
+                                    <td class="">' . $v . '</td>
+                                </tr>
+                            ';
                         }
+                        echo '
+                            </table>
+                        ';
                     }
                 }
                 echo '
