@@ -34,7 +34,7 @@
     <form id="endereco_entrega">
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" CEP" class="form-control cep placeholder-shown" id="usu_cep" value="<?= $_SESSION['inf_usu']['usu_cep'] ?>" name="usu_cep"/>
+                <input type="text" placeholder=" CEP" class="cep placeholder-shown" id="usu_cep" value="<?= $_SESSION['inf_usu']['usu_cep'] ?>" name="usu_cep"/>
                 <label class="labelFieldCad"><strong>CEP</strong></label>
             </div>
             <div class="help-block"></div><br/>
@@ -89,50 +89,52 @@
 </div>
 
 <script>
+    mask();
     $("#usu_cep").focusout(function(){
-$.ajax({
-url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-dataType: 'json',
-success: function(resposta){
-    $("#usu_end").val(resposta.logradouro);
-    $("#usu_complemento").val(resposta.complemento);
-    $("#usu_bairro").val(resposta.bairro);
-    $("#usu_uf").val(resposta.uf);
-    $("#usu_cidade").val(resposta.localidade);
-    $("#usu_num").focus();
-}
-});
-});
+        $.ajax({
+            url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+            dataType: 'json',
+            success: function(resposta){
+                $("#usu_end").val(resposta.logradouro);
+                $("#usu_complemento").val(resposta.complemento);
+                $("#usu_bairro").val(resposta.bairro);
+                $("#usu_uf").val(resposta.uf);
+                $("#usu_cidade").val(resposta.localidade);
+                $("#usu_num").focus();
+            }
+        });
+    });
 
-$("#endereco_entrega").submit(function() {
-$.ajax({
-dataType: 'json',
-type: 'post',
-data: $(this).serialize(),
-url: BASE_URL + 'functions/agendamento',
-beforeSend: function() {
-    $('#btn-cad').siblings('.help-block').html(loadingRes("Verificando..."));
-},
-success: function(json) {
-    if(json["status"]) {
-        buscaAgendamento();
-    } else {
-        if(json['armazem']) {
-            showErrors(json["error_list"]);
-        } else {
-            clearErrors();
-            Swal.fire({
-                title: "E.conomize informa:",
-                text: "O armazém que está comprando não faz entrega em sua cidade, desculpe-nos!",
-                type: "error",
-                confirmButtonColor: "#A94442",
-                confirmButtonText: "Ok, cancelar"
-            });
-        }
-        
-    }
-}
-});
-return false;
-});
+    $("#endereco_entrega").submit(function() {
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: $(this).serialize(),
+            url: BASE_URL + 'functions/agendamento',
+            beforeSend: function() {
+                $('#btn-cad').siblings('.help-block').html(loadingRes("Verificando..."));
+            },
+            success: function(json) {
+                if(json["status"]) {
+                    buscaAgendamento();
+                } else {
+                    if(json['armazem']) {
+                        showErrors(json["error_list"]);
+                    } else {
+                        clearErrors();
+                        Swal.fire({
+                            title: "E.conomize informa:",
+                            text: "O armazém que está comprando não faz entrega em sua cidade, desculpe-nos!",
+                            type: "error",
+                            confirmButtonColor: "#A94442",
+                            confirmButtonText: "Ok, cancelar",
+                            footer: '<a href="' + BASE_URL + 'ajuda/subcidades">Veja as subcidades deste armazém</a>'
+                        });
+                    }
+                    
+                }
+            }
+        });
+        return false;
+    });
 </script>

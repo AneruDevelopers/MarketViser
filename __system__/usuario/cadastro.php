@@ -5,16 +5,16 @@
     <title>e.conomize - Cadastre-se</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>style/css/main.css">
-    <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+	<link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>style/css/main.css">
+    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 	
-	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?php echo base_url(); ?>js/mask.js"></script>
+	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?= base_url(); ?>js/mask.js"></script>
 </head>
 <body>
 	<div class="l-wrapper_cadastro">
@@ -118,8 +118,8 @@
 															<optgroup label=" TIPO DE TELEFONE">
 																<?php
 																	foreach($rows as $row):?>
-																		<option value="<?php echo $row['tpu_tel_id']; ?>">
-																			<?php echo $row['tpu_tel_nome']; ?>
+																		<option value="<?= $row['tpu_tel_id']; ?>">
+																			<?= $row['tpu_tel_nome']; ?>
 																		</option>
 																		<?php
 																	endforeach;
@@ -264,17 +264,17 @@
 		</div>
     </div>
 
-	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-	<script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/util.js"></script>
-    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?php echo base_url(); ?>js/mask.js"></script>
-    <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?php echo base_url(); ?>js/main.js"></script>
-    <script src="<?php echo base_url(); ?>js/login.js"></script>
-    <script src="<?php echo base_url(); ?>js/cadastro_usuario.js"></script>
-    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
+	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= base_url(); ?>js/util.js"></script>
+    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?= base_url(); ?>js/mask.js"></script>
+    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
+    <script src="<?= base_url(); ?>js/cadastro_usuario.js"></script>
+    <script src="<?= base_url(); ?>js/listArmazem.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var campos_max = 4;
@@ -298,8 +298,8 @@
 												<optgroup label="TIPO DO TELEFONE">\
 													<?php
 														foreach($rows as $row):?>
-															<option value="<?php echo $row['tpu_tel_id']; ?>">\
-																<?php echo $row['tpu_tel_nome']; ?>
+															<option value="<?= $row['tpu_tel_id']; ?>">\
+																<?= $row['tpu_tel_nome']; ?>
 															</option>\
 															<?php
 														endforeach;
@@ -317,6 +317,7 @@
 						<div>');
 					x++;
 				}
+				mask();
 			});
 	
 			// Remover o div anterior

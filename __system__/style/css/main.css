@@ -441,7 +441,7 @@ border-radius: 0;
 
     .titleModalArm {
         position: relative;
-        width: 30%;
+        width: 80%;
         left: 2%;
         text-align: left;
         font-size: 10px;
@@ -480,7 +480,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         text-align: center;
-        top: 5rem;
+        top: 1.7rem;
         font-size: 9px;
     }
 
@@ -2383,7 +2383,7 @@ border-radius: 0;
 
     .titleModalArm {
         position: relative;
-        width: 30%;
+        width: 70%;
         padding: 5px;
         left: 2%;
         text-align: left;
@@ -2420,7 +2420,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         text-align: center;
-        top: 10rem;
+        top: 7rem;
     }
 
     .closeModalArmazem {
@@ -4559,7 +4559,7 @@ border-radius: 0;
 
     .titleModalArm {
         position: relative;
-        width: 30%;
+        width: 70%;
         padding: 5px;
         left: 2%;
         text-align: left;
@@ -4596,7 +4596,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         text-align: center;
-        top: 10rem;
+        top: 5.5rem;
     }
 
     .closeModalArmazem {

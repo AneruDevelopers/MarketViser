@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/05/2019 às 12:05
+-- Tempo de geração: 25/05/2019 às 11:17
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -229,7 +229,67 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 (17, 17, 1),
 (18, 18, 1),
 (19, 19, 1),
-(20, 20, 1);
+(20, 20, 1),
+(21, 21, 1),
+(22, 22, 1),
+(23, 23, 1),
+(24, 24, 1),
+(25, 25, 1),
+(26, 26, 1),
+(27, 27, 1),
+(28, 28, 1),
+(29, 1, 2),
+(30, 2, 2),
+(31, 3, 2),
+(32, 8, 2),
+(33, 9, 2),
+(34, 10, 2),
+(35, 11, 2),
+(36, 12, 2),
+(37, 17, 2),
+(38, 18, 2),
+(39, 21, 2),
+(40, 22, 2),
+(41, 23, 2),
+(42, 24, 2),
+(43, 27, 2),
+(44, 28, 2),
+(45, 14, 2),
+(46, 15, 2),
+(47, 16, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `dados_horario_subcidade`
+--
+
+CREATE TABLE `dados_horario_subcidade` (
+  `dados_id` int(11) NOT NULL,
+  `dados_horario` int(11) NOT NULL,
+  `dados_armazem` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `dados_horario_subcidade`
+--
+
+INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_armazem`) VALUES
+(1, 1, 1),
+(2, 3, 1),
+(3, 5, 1),
+(4, 7, 1),
+(5, 9, 1),
+(6, 11, 1),
+(7, 13, 1),
+(8, 15, 1),
+(9, 17, 1),
+(10, 19, 1),
+(11, 21, 1),
+(12, 23, 1),
+(13, 25, 1),
+(14, 27, 1),
+(15, 28, 1);
 
 -- --------------------------------------------------------
 
@@ -425,7 +485,15 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 (17, '16:00:00', 4),
 (18, '18:00:00', 4),
 (19, '21:00:00', 2),
-(20, '20:30:00', 4);
+(20, '20:30:00', 4),
+(21, '08:00:00', 5),
+(22, '23:00:00', 5),
+(23, '22:00:00', 4),
+(24, '10:00:00', 6),
+(25, '14:00:00', 6),
+(26, '18:00:00', 6),
+(27, '10:00:00', 7),
+(28, '16:00:00', 7);
 
 -- --------------------------------------------------------
 
@@ -769,6 +837,14 @@ ALTER TABLE `dados_horario_entrega`
   ADD KEY `fk_DadoArm` (`dados_armazem`) USING BTREE;
 
 --
+-- Índices de tabela `dados_horario_subcidade`
+--
+ALTER TABLE `dados_horario_subcidade`
+  ADD PRIMARY KEY (`dados_id`),
+  ADD KEY `fk_SubHor` (`dados_horario`),
+  ADD KEY `fk_SubArm` (`dados_armazem`);
+
+--
 -- Índices de tabela `departamento`
 --
 ALTER TABLE `departamento`
@@ -959,7 +1035,13 @@ ALTER TABLE `dados_entrega`
 -- AUTO_INCREMENT de tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT de tabela `dados_horario_subcidade`
+--
+ALTER TABLE `dados_horario_subcidade`
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -1007,7 +1089,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
-  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `lista_compra`
@@ -1131,6 +1213,13 @@ ALTER TABLE `dados_entrega`
 ALTER TABLE `dados_horario_entrega`
   ADD CONSTRAINT `fk_DadoArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`),
   ADD CONSTRAINT `fk_DadoHora` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`);
+
+--
+-- Restrições para tabelas `dados_horario_subcidade`
+--
+ALTER TABLE `dados_horario_subcidade`
+  ADD CONSTRAINT `fk_SubArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`),
+  ADD CONSTRAINT `fk_SubHor` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`);
 
 --
 -- Restrições para tabelas `forn_prod`

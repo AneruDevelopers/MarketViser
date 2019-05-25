@@ -1,4 +1,4 @@
-$(function() {
+function mask() {
   $('.date').mask('00/00/0000');
   $('.time').mask('00:00:00');
   $('.qtd').mask('000000000000000');
@@ -63,4 +63,6 @@ $(function() {
   })
 
   $('pre').each(function(i, e) {hljs.highlightBlock(e)});
-});
+}
+
+mask();

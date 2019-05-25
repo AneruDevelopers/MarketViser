@@ -9,42 +9,50 @@
             $json['armazem'] = 1;
             
             if(empty($_POST["usu_cep"])) {
-                $json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira seu CEP neste campo</p>";
+                $json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira o CEP do seu logradouro ou da sua cidade neste campo</p>";
             } else {
                 if(strlen($_POST['usu_cep']) < 9) {
                     $json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira seu CEP corretamente neste campo</p>";
                 } else {
-                    if(empty($_POST["usu_end"])) {
-                        $json["error_list"]["#usu_end"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
+                    if(empty($_POST["usu_uf"])) {
+                        $json["error_list"]["#usu_uf"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
                     } else {
-                        if(empty($_POST["usu_num"])) {
-                            $json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
+                        if(empty($_POST["usu_end"])) {
+                            $json["error_list"]["#usu_end"] = "<p class='msgErrorCad'>Por favor, insira seu logradouro neste campo</p>";
                         } else {
-                            if(!is_numeric($_POST["usu_num"])) {
-                                $json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
+                            if(empty($_POST["usu_bairro"])) {
+                                $json["error_list"]["#usu_bairro"] = "<p class='msgErrorCad'>Por favor, insira seu bairro neste campo</p>";
                             } else {
-                                $cid = $_POST["usu_cidade"];
-                                $verifica = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON a.cidade_id=c.cid_id WHERE a.armazem_id={$_SESSION['arm_id']}");
-                                $verifica->execute();
-                                if($verifica->rowCount() > 0) {
-                                    $permition = array();
-                                    $res = $verifica->fetchAll();
-                                    foreach($res as $v) {
-                                        if($cid != $v['cid_nome']) {
-                                            $regiao = explode(" - ", $v['cid_regiao']);
-                                            foreach($regiao as $val) {
-                                                if($cid == $val) {
+                                if(empty($_POST["usu_num"])) {
+                                    $json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
+                                } else {
+                                    if(!is_numeric($_POST["usu_num"])) {
+                                        $json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
+                                    } else {
+                                        $cid = $_POST["usu_cidade"];
+                                        $verifica = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON a.cidade_id=c.cid_id WHERE a.armazem_id={$_SESSION['arm_id']}");
+                                        $verifica->execute();
+                                        if($verifica->rowCount() > 0) {
+                                            $permition = array();
+                                            $res = $verifica->fetchAll();
+                                            foreach($res as $v) {
+                                                if($cid != $v['cid_nome']) {
+                                                    $regiao = explode(" - ", $v['cid_regiao']);
+                                                    foreach($regiao as $val) {
+                                                        if($cid == $val) {
+                                                            $permition[] = 1;
+                                                        }
+                                                    }
+                                                } else {
                                                     $permition[] = 1;
                                                 }
                                             }
-                                        } else {
-                                            $permition[] = 1;
+                
+                                            if(empty($permition)) {
+                                                $json['status'] = 0;
+                                                $json['armazem'] = 0;
+                                            }
                                         }
-                                    }
-        
-                                    if(empty($permition)) {
-                                        $json['status'] = 0;
-                                        $json['armazem'] = 0;
                                     }
                                 }
                             }
@@ -101,8 +109,14 @@
             } else {
                 $next_day = $today + 1;
             }
+
+            $cid_entrega = $_SESSION['end_agend'][6] . " - " . $_SESSION['end_agend'][7];
+            if($_SESSION['arm'] == $cid_entrega) {
+                $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
+            } else {
+                $sel = $conn->prepare("SELECT * FROM dados_horario_subcidade AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
+            }
             
-            $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND h.dia=$today OR h.dia=$next_day ORDER BY h.hora");
             $sel->execute();
             $res = $sel->fetchAll();
             $i = 1;
@@ -124,16 +138,6 @@
                     $dia_seguinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
                     if($i==1) {
                         $hora_disp_amanha[] = '
-                        <!--<table class="" border="1">
-                            <tr>
-                                <th class="">HOJE</th>
-                                <th class="">AMANHÃ</th>
-                            </tr>
-                            <tr>
-                                <td class=""></td>
-                                <td class=""></td>
-                            </tr>
-                        </table>-->
                         <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     } else {
                         $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
@@ -143,8 +147,8 @@
             }
             if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
                 echo '<form id="hora_agend">';
-                $hoje = substr($hoje,-2) . "/" . substr($hoje,5,2);
                 if(!empty($hora_disp_hoje)) {
+                    $hoje = substr($hoje,-2) . "/" . substr($hoje,5,2);
                     echo '
                         <table class="" border="1">
                             <tr>
@@ -188,7 +192,7 @@
                     </form>
                 ';
             } else {
-                echo 'Não há horários disponíveis para entrega hoje ou amanhã!! <a href="#">Veja os horários</a>';
+                echo 'Não há horários disponíveis para entrega hoje ou amanhã!! <a href="' . base_url_php() . 'ajuda/horario_armazem">Veja os horários</a>';
             }
         }
     } else {

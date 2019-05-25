@@ -99,15 +99,15 @@
 
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				<div class="modalProfileLeftContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-                <div class="modalProfileRightContent">
-                    <span class="closeModalArmazem">&times;</span>
+                <div class="modalArmTopContent">
                     <div class="meuArmazem">
                         
+                    </div>
+                    <span class="closeModalArmazem">&times;</span>
+                </div>
+                <div class="modalArmBottomContent">
+                    <div class="Armazens">
+
                     </div>
                 </div>
 			</div>

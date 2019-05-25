@@ -103,26 +103,38 @@
 		}
 
 		if(empty($_POST["usu_cep"])) {
-			$json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira seu CEP neste campo</p>";
+			$json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira o CEP do seu logradouro ou da sua cidade neste campo</p>";
 		} else {
-			if(empty($_POST["usu_uf"])) {
-				$json["error_list"]["#usu_uf"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
+			if(strlen($_POST["usu_cep"]) < 9) {
+				$json["error_list"]["#usu_cep"] = "<p class='msgErrorCad'>Por favor, insira seu CEP corretamente neste campo</p>";
 			} else {
-				if(empty($_POST["usu_num"])) {
-					$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
+				if(empty($_POST["usu_uf"])) {
+					$json["error_list"]["#usu_uf"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
 				} else {
-					if(!is_numeric($_POST["usu_num"])) {
-						$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
+					if(empty($_POST["usu_end"])) {
+						$json["error_list"]["#usu_end"] = "<p class='msgErrorCad'>Por favor, insira um <b>CEP</b> válido para que o endereço seja preenchido automaticamente</p>";
+					} else {
+						if(empty($_POST["usu_bairro"])) {
+							$json["error_list"]["#usu_bairro"] = "<p class='msgErrorCad'>Por favor, insira seu bairro neste campo</p>";
+						} else {
+							if(empty($_POST["usu_num"])) {
+								$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Por favor, insira o <b>número</b> de sua casa neste campo</p>";
+							} else {
+								if(!is_numeric($_POST["usu_num"])) {
+									$json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
+								}
+								//else {
+									// $cid = $_POST["usu_cidade"];
+									// $verifica = $conn->prepare("SELECT * FROM cidade WHERE cid_nome='$cid'");
+									// $verifica->execute();
+									// if($verifica->rowCount() == 0) {
+									// 	$_SESSION["msg"]["title"] = "E.conomize informa:";
+									// 	$_SESSION["msg"]["text"] = "Não há nenhum armazém em sua cidade ainda, desculpe-nos!";
+									// }
+								//}
+							}
+						}
 					}
-					//else {
-						// $cid = $_POST["usu_cidade"];
-						// $verifica = $conn->prepare("SELECT * FROM cidade WHERE cid_nome='$cid'");
-						// $verifica->execute();
-						// if($verifica->rowCount() == 0) {
-						// 	$_SESSION["msg"]["title"] = "E.conomize informa:";
-						// 	$_SESSION["msg"]["text"] = "Não há nenhum armazém em sua cidade ainda, desculpe-nos!";
-						// }
-					//}
 				}
 			}
 		}

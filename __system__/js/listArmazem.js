@@ -7,6 +7,11 @@ $(document).ready(function() {
             success: function(response) {
                 $('.Armazens').html(loadingRes("Buscando armazéns..."));
                 $('.Armazens').html(`
+                    <h5 class="titleModalArm">
+                        Sobre o meu armazém:<br/>
+                        <a href="` + BASE_URL + `ajuda/horario_armazem">Horários de entrega</a><br/>
+                        <a href="` + BASE_URL + `ajuda/subcidades">Subcidades</a>
+                    </h5>
                     <h5 class="titleModalArm">Escolha outro armazém:</h5>
                 `);
                 for (var i = 0; response.length > i; i++) {

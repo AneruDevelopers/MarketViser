@@ -29,8 +29,6 @@ function buscaCarrinho() {
 
 function buscaEndereco() {
     $('.carrega_pagina').load(BASE_URL + 'compra/endereco');
-    $('body').append('<script src="' + BASE_URL2 + 'js/JQuery/jquery-mask.js"></script>\
-    <script src="' + BASE_URL2 + 'js/mask.js"></script>');
 }
 
 function buscaAgendamento() {

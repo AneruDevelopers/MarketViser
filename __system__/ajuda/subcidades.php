@@ -1,17 +1,3 @@
-<?php
-    if(isset($_SESSION['query_tam'])) {
-        unset($_SESSION['query_tam']);
-    }
-    if(isset($_SESSION['query_marca'])) {
-        unset($_SESSION['query_marca']);
-    }
-    if(isset($_SESSION['query_preco'])) {
-        unset($_SESSION['query_preco']);
-    }
-    if(isset($_SESSION['query_fav'])) {
-        unset($_SESSION['query_preco']);
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,24 +16,52 @@
     <div class="l-wrapper_FiltroPesq">
         <div class="l-topNavFiltroPesq" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
 
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
         <div class="l-mainFiltroPesq">
-            <?php require_once 'functions/includes/filtroPesquisa.php'; ?>
+            <h2 class="tituloOfertas">SUBCIDADES</h2>
+            <p style="width:55%;margin:0 auto;text-align:justify;text-indent:30px;">Ao agendar uma compra, antes você necessita informar o endereço da entrega. Por isso, há restrições ao escolher determinadas cidades, pois não obrigatoriamente haverá suporte para entrega nesta cidade. Assim, existem as "subcidades", que são as cidades que seu armazém também faz entregas, não necessariamente cidades de toda a região, ou seja, caso tente escolher uma cidade que não tenha armazém ou que seja uma "subcidade", você não poderá completar a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades".</p>
+            <div class="l-subcid">
+                <?php
+                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
+                    $sel->execute();
+                    $res = $sel->fetchAll();
+                    foreach($res as $v) {
+                        if($v['cid_regiao'] != "") {
+                            $cid = explode(" - ", $v['cid_regiao']);
+                        }
+                    }
+
+                    if(isset($cid)) {
+                        echo '
+                            <h4 style="text-align:center;">' . $_SESSION['arm'] . ' presta serviço à:</h4>
+                        ';
+                        foreach($cid as $k => $v) {
+                            echo '
+                                <h5 style="text-align:center;">' . $v . '</h5>
+                            ';
+                        }
+                    } else {
+                        echo '
+                            <h4 style="text-align:center;">' . $_SESSION['arm'] . ' presta serviço à nenhuma cidade</h4>
+                        ';
+                    }
+                ?>
+            </div>
         </div>
         <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
@@ -102,12 +116,12 @@
         <!-- -------------------- -->
         <div class="l-footerFiltroPesq" id="footer">
         <?php
-            include('functions/includes/footer.php');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottomFiltroPesq" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>
@@ -118,10 +132,6 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?= base_url(); ?>js/procuraProdutos.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/meusFavoritos.js"></script>
-    <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
 </body>
 </html>
