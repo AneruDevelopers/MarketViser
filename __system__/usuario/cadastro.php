@@ -346,7 +346,7 @@
 						<?php $_SESSION["url_sair"] = "../cadastro"; ?>
 						window.location.href = "functions/sair";
 					} else {
-						window.location.href = "home";
+						window.location.href = BASE_URL;
 					}
 				});
 			</script>
