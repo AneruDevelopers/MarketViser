@@ -1,7 +1,7 @@
 <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
     <li class="progress-step is-complete">
         <span class="progress-marker"></span>
-        <span class="progress-text">
+        <span class="progress-text voltaCarrinho">
             <h4 class="progress-title">PASSO 1</h4>
             <i class="fas fa-shopping-cart"></i> CARRINHO
         </span>
@@ -103,6 +103,10 @@
                 $("#usu_num").focus();
             }
         });
+    });
+
+    $('.voltaCarrinho').click(function(e) {
+        buscaCarrinho();
     });
 
     $("#endereco_entrega").submit(function() {

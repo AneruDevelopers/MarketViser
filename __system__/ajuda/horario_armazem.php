@@ -156,6 +156,9 @@
 
                         echo '
                             </table>
+                            <p align="center">
+                                <a href="' . base_url_php() . 'ajuda/subcidades">Ver subcidades de ' . $_SESSION['arm'] . '</a>
+                            </p>
                         ';
                     } else {
                         echo '<h2 style="text-align:center;">Não há horários disponíveis para as subcidades</h2>';

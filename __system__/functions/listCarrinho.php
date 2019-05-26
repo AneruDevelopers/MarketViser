@@ -85,6 +85,7 @@
                 }
                 
                 if(isset($_SESSION['cupom_compra'])) {
+                    $_SESSION['totCompraCupom'] = $json['totCompra'];
                     $totCupomPorc = $json['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
                     $json['totCompra'] -= $totCupomPorc;
                 }

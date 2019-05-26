@@ -34,7 +34,7 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">SUBCIDADES</h2>
-            <p style="width:55%;margin:0 auto;text-align:justify;text-indent:30px;">Ao agendar uma compra, antes você necessita informar o endereço da entrega. Por isso, há restrições ao escolher determinadas cidades, pois não obrigatoriamente haverá suporte para entrega nesta cidade. Assim, existem as "subcidades", que são as cidades que seu armazém também faz entregas, não necessariamente cidades de toda a região, ou seja, caso tente escolher uma cidade que não tenha armazém ou que seja uma "subcidade", você não poderá completar a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades".</p>
+            <p style="width:55%;margin:0 auto;text-align:justify;text-indent:30px;">Ao agendar uma compra, antes você necessita informar o endereço da entrega. Por isso, há restrições ao escolher determinadas cidades, pois não obrigatoriamente haverá suporte para entrega nesta cidade. Assim, existem as "subcidades", que são as cidades que seu armazém também faz entregas, não necessariamente cidades de toda a região, ou seja, caso tente escolher uma cidade que não tenha armazém ou que não seja uma "subcidade" daquele armazém, você não poderá completar a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
             <div class="l-subcid">
                 <?php
                     $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");

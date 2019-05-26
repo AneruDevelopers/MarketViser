@@ -126,24 +126,13 @@
                     $hoje = Date('Y-m-d');
                     if(Date("H:i:s") < $hora) {
                         $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
-                        if($i==1) {
-                            $hora_disp_hoje[] = '<input type="radio" checked name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
-                            $i++;
-                        } else {
-                            $hora_disp_hoje[] = '<input type="radio" name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " às " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
-                        }
+                        $hora_disp_hoje[] = '<input type="radio" name="entrega_horario" id="horaAmanha' . $v['hora_id'] . '" value="' . $hoje . " " . $v['hora'] . '"/> <label for="horaAmanha' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                     }
                 } else {
                     $hora = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
                     $dia_seguinte = Date('Y-m-d', mktime(0, 0, 0, Date("m"), Date("d")+1, Date("Y")));
-                    if($i==1) {
-                        $hora_disp_amanha[] = '
-                        <input type="radio" checked name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
-                    } else {
-                        $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " às " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
-                    }
+                    $hora_disp_amanha[] = '<input type="radio" name="entrega_horario" id="hora' . $v['hora_id'] . '" value="' . $dia_seguinte . " " . $v['hora'] . '"/> <label for="hora' . $v['hora_id'] . '">' . $hora . "</label><br/>";
                 }
-                
             }
             if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
                 echo '<form id="hora_agend">';
@@ -156,11 +145,15 @@
                             </tr>
                     ';
                     foreach($hora_disp_hoje as $v) {
+                        if($i==1) {
+                            $v = str_replace("input", "input checked", $v);
+                        }
                         echo '
                             <tr>
                                 <td class="">' . $v . '</td>
                             </tr>
                         ';
+                        $i++;
                     }
                     echo '
                         </table>
@@ -176,11 +169,15 @@
                                 </tr>
                         ';
                         foreach($hora_disp_amanha as $v) {
+                            if($i==1) {
+                                $v = str_replace("input", "input checked", $v);
+                            }
                             echo '
                                 <tr>
                                     <td class="">' . $v . '</td>
                                 </tr>
                             ';
+                            $i++;
                         }
                         echo '
                             </table>
