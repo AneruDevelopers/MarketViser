@@ -28,7 +28,7 @@ function limpaVol() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ function limpaVol() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ function limpaMarca() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@ function limpaMarca() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@ function limpaPreco() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@ function limpaPreco() {
                                     <form class="formBuy">
                                         <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                         <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -252,7 +252,7 @@ function limpaFav() {
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                             <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                         </form>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@ function limpaFav() {
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
                                             <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                         </form>
                                     </div>
                                 </div>

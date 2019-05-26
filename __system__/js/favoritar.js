@@ -55,5 +55,6 @@ $(document).ready(function() {
             }
         });
         btnFavorito();
+        meusFavoritos();
     });
 });

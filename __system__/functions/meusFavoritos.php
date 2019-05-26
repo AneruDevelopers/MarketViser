@@ -8,11 +8,10 @@
         $json['produtos'] = array();
         
         if(isset($_SESSION['inf_usu']['usu_id'])) {
-            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN produtos_favorito AS pf ON p.produto_id=pf.produto_id WHERE pf.usu_id={$_SESSION['inf_usu']['usu_id']}");
+            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN produtos_favorito AS pf ON p.produto_id=pf.produto_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']} AND pf.usu_id={$_SESSION['inf_usu']['usu_id']}");
             $sel->execute();
             if($sel->rowCount() > 0) {
-                $rows = $sel->fetchAll();
-                foreach($rows as $v) {
+                while($v = $sel->fetch(PDO::FETCH_ASSOC)) {
                     if($v["produto_desconto_porcent"] <> "") {
                         $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
                         $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];

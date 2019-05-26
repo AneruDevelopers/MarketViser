@@ -9,29 +9,27 @@ function meusFavoritos() {
                     for (var i = 0; json['produtos'].length > i; i++) {
                         if(json['produtos'][i].produto_desconto_porcent) {
                             produtos[i] = `
-                                <div class="divProdCarousel">
-                                    <div class="btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `">
+                                <div class="prodFilter">
+                                    <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `"/>
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
                                     <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
                                     <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - ` + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>
-                                        <span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `
-                                    </p>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     <div>
-                                        <button class="btnBuy">COMPRAR</button>
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                            <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                         </form>
                                     </div>
                                 </div>
                             `;
                         } else {
                             produtos[i] = `
-                                <div class="divProdCarousel">
+                                <div class="prodFilter">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
@@ -40,26 +38,26 @@ function meusFavoritos() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     <div>
-                                        <button class="btnBuy">COMPRAR</button>
                                         <form class="formBuy">
                                             <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy" name="qtd_prod"/>
+                                            <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                         </form>
                                     </div>
                                 </div>
                             `;
                         }
                     }
-                    $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>\
-                    <div class="favoritos owl-carousel">\
-                    ` + produtos + `\
-                    </div>`);
+                    $('.l-favoritos').html("");
+                    for(c = 0; produtos.length > c; c++) {
+                        $('.l-favoritos').append(produtos[c]);
+                    }
                 } else {
-                    $('.l-favoritos').html(`<h2 class="tituloOfertas">MEUS FAVORITOS</h2>
-                    <h2 class="sem_fav">Ao favoritar produtos, eles aparecerão aqui</h2>`);
+                    $('.l-favoritos').html(`<h3 class="sem_fav">Você não tem produtos favoritados... Por enquanto</h3>`);
                 }
             }
             btnFavorito();
+            attCarrinho();
         }
     });
 }

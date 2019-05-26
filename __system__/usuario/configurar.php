@@ -11,12 +11,12 @@
     <title>e.conomize - Configurar perfil</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="<?php echo base_url(); ?>img/e_icon.png"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url(); ?>style/css/main.css">
-    <link href="<?php echo base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+	<link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>style/css/main.css">
+    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
 	<div class="l-wrapper_cadastro">
@@ -30,7 +30,8 @@
 			include('__system__/functions/includes/header.php');
 		?>    
 		</div>
-		<div class="l-mainCad" style="width:40%;margin:0 auto;">
+        <div class="l-mainCad" style="width:40%;margin:0 auto;">
+            <h2 class="tituloOfertas"><i class="fas fa-cog"></i> CONFIGURAÇÕES DO PERFIL</h2>
             <div class="showUsuario">
                 <h3><?= $_SESSION['inf_usu']['usu_tipo'] . "<br/>" . $_SESSION['inf_usu']['usu_nome'] . " " . $_SESSION['inf_usu']['usu_sobrenome']; ?></h3>
 
@@ -89,7 +90,7 @@
             </div>
 
             <div class="divMudarTelefone">
-                <button class="mudarTelefone">Mudar telefone(s)</button>
+                <button class="mudarTelefone">Mudar, excluir ou adicionar telefone(s)</button>
             </div>
 
             <div class="divMudarEndereco">
@@ -141,7 +142,7 @@
                     <p class="textModal">Olá, amigo!</p>
                     <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
                     <div class="divLinkCad">
-                        <a class="linkCadModal" href="<?php echo base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
+                        <a class="linkCadModal" href="<?= base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
                     </div>    
                 </div>
 			</div>
@@ -158,14 +159,16 @@
 		</div>
     </div>
 
-	<script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-	<script src="<?php echo base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/util.js"></script>
-    <script src="<?php echo base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?php echo base_url(); ?>js/login.js"></script>
-    <script src="<?php echo base_url(); ?>js/listArmazem.js"></script>
-    <script src="<?php echo base_url(); ?>js/configurarPerfil.js"></script>
-    <script src="<?php echo base_url(); ?>js/main.js"></script>
+	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+	<script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+	<script src="<?= base_url(); ?>js/mask.js"></script>
+	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
+    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= base_url(); ?>js/util.js"></script>
+    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
+    <script src="<?= base_url(); ?>js/listArmazem.js"></script>
+    <script src="<?= base_url(); ?>js/configurarPerfil.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
 </body>
 </html>

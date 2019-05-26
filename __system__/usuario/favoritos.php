@@ -1,17 +1,3 @@
-<?php
-    if(isset($_SESSION['query_tam'])) {
-        unset($_SESSION['query_tam']);
-    }
-    if(isset($_SESSION['query_marca'])) {
-        unset($_SESSION['query_marca']);
-    }
-    if(isset($_SESSION['query_preco'])) {
-        unset($_SESSION['query_preco']);
-    }
-    if(isset($_SESSION['query_fav'])) {
-        unset($_SESSION['query_preco']);
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,24 +16,28 @@
     <div class="l-wrapper_FiltroPesq">
         <div class="l-topNavFiltroPesq" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
 
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.html');
         ?>
         </div>
 
         <div class="l-mainFiltroPesq">
-            <?php require_once 'functions/includes/filtroPesquisa.php'; ?>
+            <h2 class="tituloOfertas"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
+
+            <div class="l-favoritos divShowProdFav">
+
+            </div>
         </div>
         <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
@@ -102,24 +92,24 @@
         <!-- -------------------- -->
         <div class="l-footerFiltroPesq" id="footer">
         <?php
-            include('functions/includes/footer.php');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottomFiltroPesq" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
+    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
+    <script src="<?= base_url(); ?>js/meusFavoritos.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?= base_url(); ?>js/procuraProdutos.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
     <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
 </body>

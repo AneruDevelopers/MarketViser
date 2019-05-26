@@ -67,6 +67,13 @@
             foreach($res as $v) {
                 $json['tel'][] = $v;
             }
+
+            $sel = $conn->prepare("SELECT * FROM tipo_tel");
+            $sel->execute();
+            $res = $sel->fetchAll();
+            foreach($res as $v) {
+                $json['tipo_tel'][] = $v;
+            }
         }
 
         echo json_encode($json);

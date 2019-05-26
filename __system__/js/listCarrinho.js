@@ -2,14 +2,12 @@ function listCarrinho() {
     $.ajax({
         url: BASE_URL + 'functions/listCarrinho',
         dataType: 'json',
-        beforeSend: function() {
-            $('.divShowProdFav').html(loadingRes("Verificando carrinho..."));
+        success: function(json) {
+            $('.divShowProdFav').html("");
             $('.divShowTot').html("");
             $('.divShowOpt').html("");
             $('.divShowOptBtn').html("");
             $('.divShowOptDesk').html("");
-        },
-        success: function(json) {
             if(!json['empty']) {
                 $('.divShowProdFav').html(`<tr class="trNames">
                 <th>PRODUTO</th>
