@@ -6391,6 +6391,46 @@ border-radius: 0;
         font-style: italic;
     }
 
+    /* ENDEREÇO DO AGENDAMENTO */
+    
+    .formAgendEnd {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin-top: 2rem;
+    }
+    
+    .agendEndTable {
+        position: relative;
+        width: 50%;
+        left: 25%;
+    }
+
+    .agendEndTable table {
+        width: 100%;
+        position: relative;
+        background-color: #fff;
+        left: 0%;
+    }
+
+    .btnAgendEnd {
+        background: #9C45EB;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        height: 2rem;
+        width: 50%;
+        margin-top: 2rem;
+        position: relative;
+        left: 25%;
+        font-family: "Raleway-Medium";
+    }
+
+    .btnAgendEnd:hover {
+        background: #252730;
+        transition: ease-in-out 250ms background;
+    }
+
     /* AJUDA ARMAZEM */
 
     .infoAgendText {
@@ -6400,5 +6440,75 @@ border-radius: 0;
         text-align: justify;
         line-height: 25px;
         font-family: 'Raleway-Medium';
+    }
+
+    /* TABELA DE HORARIOS */
+
+    .divTableArm {
+        position: relative;
+        width: 50%;
+        margin: 2rem auto;
+    }
+
+    .divTableArm table {
+        width: 100%;
+        background-color: #fff;
+    }
+      
+    .columnTitle {
+        width: 20%;
+        padding-left: 3%;
+    }
+      
+    .row100.head th {
+        padding: 2%;
+    }
+      
+    .row100 .column100.column1 {
+        padding: 1.5%;
+    }
+
+    .table100.ver6 {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #7918f2;
+        background: -webkit-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: -o-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: -moz-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: linear-gradient(-68deg, #ac32e4 , #4801ff);
+    }
+      
+    .table100.ver6 table {
+        background-color: transparent;
+    }
+      
+    .table100.ver6 td {
+        font-family: 'Karla';
+        font-size: 14px;
+        color: #fff;
+        line-height: 1.4;
+    }
+      
+    .table100.ver6 th {
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.4;
+        text-transform: uppercase;
+      
+        background-color: rgba(255,255,255,0.32);
+    }
+      
+    .table100.ver6 .row100:hover td {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+    .table100.ver6 .hov-column-ver6 {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+      
+    .table100.ver6 .row100 td:hover {
+        background-color: rgba(255,255,255,0.2);
     }
 }

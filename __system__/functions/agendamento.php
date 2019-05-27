@@ -135,12 +135,13 @@
                 }
             }
             if(!empty($hora_disp_hoje) || !empty($hora_disp_amanha)) {
-                echo '<form id="hora_agend">';
+                echo '<form id="hora_agend" class="formAgendEnd">';
                 if(!empty($hora_disp_hoje)) {
                     $hoje = substr($hoje,-2) . "/" . substr($hoje,5,2);
                     echo '
-                        <table class="" border="1">
-                            <tr>
+                    <div class="table100 ver6 agendEndTable">
+                        <table class="agendEndTable">
+                            <tr class="row100 head">
                                 <th class="">HOJE (' . $hoje . ')</th>
                             </tr>
                     ';
@@ -149,22 +150,25 @@
                             $v = str_replace("input", "input checked", $v);
                         }
                         echo '
-                            <tr>
-                                <td class="">' . $v . '</td>
+                            <tr class="row100">
+                                <td class="column100 column1 celAgendEndTable" style="text-align:center;">' . $v . '</td>
                             </tr>
                         ';
                         $i++;
                     }
                     echo '
                         </table>
+                        </div>
+                        <br>
                     ';
                 }
                 if(!empty($hora_disp_amanha)) {
                     if(count($hora_disp_hoje) <= 1) {
                         $dia_seguinte = substr($dia_seguinte,-2) . "/" . substr($dia_seguinte,5,2);
                         echo '
-                            <table class="" border="1">
-                                <tr>
+                        <div class="table100 ver6 agendEndTable">
+                            <table class="agendEndTable">
+                                <tr class="row100 head">
                                     <th class="">AMANHÃ (' . $dia_seguinte . ')</th>
                                 </tr>
                         ';
@@ -174,18 +178,19 @@
                             }
                             echo '
                                 <tr>
-                                    <td class="">' . $v . '</td>
+                                    <td class="column100 column1 celAgendEndTable" style="text-align:center;">' . $v . '</td>
                                 </tr>
                             ';
                             $i++;
                         }
                         echo '
                             </table>
+                            </div>
                         ';
                     }
                 }
                 echo '
-                        <button class="btnAgenda" type="submit"><i class="far fa-clock"></i> AGENDAR</button>
+                        <button class="btnAgendEnd" type="submit"><i class="far fa-clock"></i> AGENDAR</button>
                     </form>
                 ';
             } else {
