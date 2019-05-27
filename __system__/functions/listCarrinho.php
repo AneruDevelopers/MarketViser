@@ -7,19 +7,6 @@
         $json['totDesconto'] = 0;
         $json['logado'] = TRUE;
         $json['prods'] = array();
-
-        function getProducts() {
-            global $conn;
-            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE d.armazem_id={$_SESSION['arm_id']}");
-            $sel->execute();
-            if($sel->rowCount() > 0) {
-                $result = $sel->fetchAll();
-                foreach($result as $v) {
-                    $dados[] = $v;
-                }
-            }
-            return $dados;
-        }
     
         function getProductsByIds($ids) {
             global $conn;
@@ -49,7 +36,6 @@
                         $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
                         $results[$k] = $product;
                         $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
-                        $results[$k]["produto_desconto"] = number_format($results[$k]["produto_desconto"], 2, ',', '.');
                     } else {
                         $results[$k] = $product;
                         $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_preco'];
@@ -71,6 +57,7 @@
                 foreach($resultsCarts as $k => $v) {
                     if($v['produto_desconto_porcent'] <> "") {
                         $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
                         $json['totDesconto'] += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
                         $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
@@ -87,6 +74,7 @@
                 if(isset($_SESSION['cupom_compra'])) {
                     $_SESSION['totCompraCupom'] = $json['totCompra'];
                     $totCupomPorc = $json['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                    $totCupomPorc = number_format($totCupomPorc,2,'.','');
                     $json['totCompra'] -= $totCupomPorc;
                 }
                 $_SESSION['totCompra'] = $json['totCompra'];

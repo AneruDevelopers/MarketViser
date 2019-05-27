@@ -32,7 +32,7 @@ function verificaLogin() {
                 <div class="modalProfileRightContent">
                     <span class="close">&times;</span>
                     <p class="linkRight"><a href="` + BASE_URL + `usuario/favoritos"><i class="fas fa-heart"></i> &nbsp;MEUS PRODUTOS FAVORITOS</a></p>
-                    <p class="linkRight"><a href="#"><i class="fas fa-chart-line"></i> &nbsp;MINHAS ESTATÍSTICAS</a></p>
+                    <p class="linkRight"><a href="` + BASE_URL + `usuario/estatisticas"><i class="fas fa-chart-line"></i> &nbsp;MINHAS ESTATÍSTICAS</a></p>
                     <p class="linkRight"><a href="` + BASE_URL + `usuario/compras"><i class="fas fa-shopping-bag"></i> &nbsp;HISTÓRICO DE COMPRAS</a></p>
                     <p class="linkRight logout"><a href=""><i class="fas fa-sign-out-alt"></i> &nbsp;SAIR</a></p>   
                     <p class="linkDate">JUNTOS DESDE ` + json['usuario']['usu_registro'] + `</p>
