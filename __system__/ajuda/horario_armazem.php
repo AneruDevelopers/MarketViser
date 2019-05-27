@@ -108,7 +108,7 @@
                 <div class="table100 ver6 divTableArm">
                     <table align='center'>
                         <tr class="row100 head">
-                            <th class="column100" colspan='8' style="text-align:center;">   
+                            <th class="column100" colspan='8' style="text-align:center;">    
                                 Subcidades de <?= $_SESSION['arm']; ?>
                             </th>
                         </tr>
