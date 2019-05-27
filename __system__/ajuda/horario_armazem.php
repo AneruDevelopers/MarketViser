@@ -104,7 +104,6 @@
                         echo '<h2 style="text-align:center;">Não há horários disponíveis</h2>';
                     }
                 ?>
-
                 <div class="table100 ver6 divTableArm">
                     <table align='center'>
                         <tr class="row100 head">
