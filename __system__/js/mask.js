@@ -1,7 +1,7 @@
 function mask() {
   $('.date').mask('00/00/0000');
   $('.time').mask('00:00:00');
-  $('.qtd').mask('000000000000000');
+  $('.inputQtd').mask('00');
   $('.date_time').mask('00/00/0000 00:00:00');
   $('.cep').mask('00000-000');
   $('.phone').mask('0000-0000');

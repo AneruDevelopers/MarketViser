@@ -11,6 +11,7 @@
             $result = $sel->fetchAll();
             foreach($result as $row) {
                 $row["produto_desconto"] = $row["produto_preco"]*($row["produto_desconto_porcent"]/100);
+                $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
                 $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
                 
                 $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
