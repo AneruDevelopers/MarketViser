@@ -95,7 +95,6 @@
                                 ';
                             }
                         }
-
                         echo '
                             </table>
                         </div>
