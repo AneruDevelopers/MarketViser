@@ -34,7 +34,7 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">HORÁRIOS DE ENTREGA</h2>
-            <p style="width:55%;margin:0 auto;text-align:justify;text-indent:30px;">Ao agendar uma compra, você terá de escolher um horário de sua preferência para que sua compra seja entregue. Mas, há algumas restrições para escolher. Os horários disponíveis são o do próprio dia atual e do dia seguinte, sendo que, o dia seguinte só estará disponível caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma "subcidade", ela terá horários fixos para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre as "subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui.</a></p>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao agendar uma compra, você terá de escolher um horário de preferência para que ela seja entregue no endereço, previamente, definido. Contudo, há algumas restrições nessa escolha. Os horários disponíveis são do dia atual e do dia seguinte da compra, sendo que, os horários do dia seguinte só estarão disponíveis caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma <i>"subcidade"</i>, ela terá horários próprios para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre as "subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui</a></p>
             <div class="l-horarios">
                 <h4 style="text-align:center;"><?= $_SESSION['arm_nome'] . "<br/>" . $_SESSION['arm']; ?></h4>
                 <?php

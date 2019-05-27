@@ -34,7 +34,7 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">SUBCIDADES</h2>
-            <p style="width:55%;margin:0 auto;text-align:justify;text-indent:30px;">Ao agendar uma compra, antes você necessita informar o endereço da entrega. Por isso, há restrições ao escolher determinadas cidades, pois não obrigatoriamente haverá suporte para entrega nesta cidade. Assim, existem as "subcidades", que são as cidades que seu armazém também faz entregas, não necessariamente cidades de toda a região, ou seja, caso tente escolher uma cidade que não tenha armazém ou que não seja uma "subcidade" daquele armazém, você não poderá completar a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Há restrições quanto a escolha da cidade de entrega da compra, pois não obrigatoriamente haverá suporte para entrega nesta localidade. Por isso, antes de agendar uma, você necessita informar o endereço ao qual deseja envia-la. Cidades que não possuem armazém ainda assim podem ser atendidas, são conhecidas como <i>"subcidades"</i>. As subcidades são abastecidas por um armazém presente em um município de maior relevância na região. Caso tente escolher uma cidade que não tenha armazém e que não seja uma "subcidade", você não poderá concluir a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
             <div class="l-subcid">
                 <?php
                     $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
@@ -52,12 +52,12 @@
                         ';
                         foreach($cid as $k => $v) {
                             echo '
-                                <h5 style="text-align:center;">' . $v . '</h5>
+                                <h5 style="text-align:center;font-size:14px;">' . $v . '</h5>
                             ';
                         }
                     } else {
                         echo '
-                            <h4 style="text-align:center;">' . $_SESSION['arm'] . ' presta serviço à nenhuma cidade</h4>
+                            <h4 style="text-align:center;font-size:14px;">' . $_SESSION['arm'] . ' presta serviço à nenhuma cidade</h4>
                         ';
                     }
                 ?>

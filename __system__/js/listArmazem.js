@@ -8,11 +8,11 @@ $(document).ready(function() {
                 $('.Armazens').html(loadingRes("Buscando armazéns..."));
                 $('.Armazens').html(`
                     <h5 class="titleModalArm">
-                        Sobre o meu armazém:<br/>
-                        <a href="` + BASE_URL + `ajuda/horario_armazem">Horários de entrega</a><br/>
-                        <a href="` + BASE_URL + `ajuda/subcidades">Subcidades</a>
+                        <i class="fas fa-info-circle"></i> SOBRE ESTE ARMAZÉM: 
+                        <a class='linkAboutArm' href="` + BASE_URL + `ajuda/horario_armazem">HORÁRIOS DE ENTREGA</a> | 
+                        <a class='linkAboutArm' href="` + BASE_URL + `ajuda/subcidades">SUBCIDADES</a>
                     </h5>
-                    <h5 class="titleModalArm">Escolha outro armazém:</h5>
+                    <h5 class="titleModalArm"><i class="fas fa-warehouse"></i> ESCOLHA OUTRO ARMAZÉM:</h5>
                 `);
                 for (var i = 0; response.length > i; i++) {
                     if(response[i].meuArm) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
                     }
                 }
                 $('.Armazens').append(`
-                    <h5 class="linkModalArm">O preço dos produtos podem mudar de acordo com o armazém</h5>
+                    <h5 class="linkModalArm">* O preço dos produtos podem mudar de acordo com o armazém</h5>
                 `);
                 $('body').append('<script src="' + BASE_URL2 + 'js/escolherArmazem.js"></script>');
             }

@@ -4525,7 +4525,7 @@ border-radius: 0;
     }
     
     .modalArmazemContent {
-        background-color: #fefefe;
+        background-color: #ffffff;
         margin: 12% auto;
         border: none;
         width: 50%;
@@ -4553,6 +4553,7 @@ border-radius: 0;
         width: 100%;
         height: 80%;
         top: -5.5%;
+        padding-top: 1rem;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
     }
@@ -4564,6 +4565,7 @@ border-radius: 0;
         left: 2%;
         text-align: left;
         font-size: 14px;
+        margin: 1.4rem 0;
     }
 
     .titleModalArmName {
@@ -4596,7 +4598,12 @@ border-radius: 0;
         position: relative;
         width: 100%;
         text-align: center;
-        top: 5.5rem;
+        top: 6rem;
+    }
+
+    .linkAboutArm {
+        text-decoration: none;
+        color: #9C45EB;
     }
 
     .closeModalArmazem {
@@ -6382,5 +6389,16 @@ border-radius: 0;
 
     .endAgend {
         font-style: italic;
+    }
+
+    /* AJUDA ARMAZEM */
+
+    .infoAgendText {
+        position: relative;
+        width: 65%;
+        margin: auto;
+        text-align: justify;
+        line-height: 25px;
+        font-family: 'Raleway-Medium';
     }
 }
