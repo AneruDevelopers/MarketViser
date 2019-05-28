@@ -67,10 +67,10 @@
                 $_SESSION['end_agend'][0] = $_POST['usu_cep'];
                 $_SESSION['end_agend'][1] = $_POST['usu_end'];
                 $_SESSION['end_agend'][2] = $_POST['usu_num'];
-                $_SESSION['end_agend'][4] = $_POST['usu_complemento'];
-                $_SESSION['end_agend'][5] = $_POST['usu_bairro'];
-                $_SESSION['end_agend'][6] = $_POST['usu_cidade'];
-                $_SESSION['end_agend'][7] = $_POST['usu_uf'];
+                $_SESSION['end_agend'][3] = $_POST['usu_complemento'];
+                $_SESSION['end_agend'][4] = $_POST['usu_bairro'];
+                $_SESSION['end_agend'][5] = $_POST['usu_cidade'];
+                $_SESSION['end_agend'][6] = $_POST['usu_uf'];
                 
                 if(strlen(trim($_POST['usu_complemento'])) > 0) {
                     $json['agend_end'] = $_POST['usu_cep'] . ", " . $_POST['usu_end'] . " nº " . $_POST['usu_num'] . " - " . $_POST['usu_complemento'] . ", " . $_POST['usu_bairro'] . ", ". $_POST['usu_cidade'] . " - " . $_POST['usu_uf'];
