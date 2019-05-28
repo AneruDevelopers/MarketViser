@@ -83,7 +83,7 @@ function listCarrinho() {
                     </div>
                     <div class="divAddCupom"></div>
                     <div class="divAnswer"></div>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button>
+                    <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button>
                     `);
                 $('.divShowTot').html(`
                     <h2 class="summaryTitle">RESUMO</h2>
@@ -102,7 +102,7 @@ function listCarrinho() {
                     </div>
                     <div class="divAddCupom"></div>
                     <div class="divAnswer"></div>
-                    <button class="finalizaCompra">PRÓXIMA ETAPA <i class="fas fa-arrow-right"></i></button><br>
+                    <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button><br>
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                 `);
                 $('body').append(`

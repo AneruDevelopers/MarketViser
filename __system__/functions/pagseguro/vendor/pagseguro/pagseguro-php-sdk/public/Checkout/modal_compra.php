@@ -109,11 +109,11 @@ foreach($resultsCarts as $k => $v) {
     }
 }
 
-if(isset($_SESSION['cupom_compra'])) {
-    $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-    $totCupomPorc = number_format($totCupomPorc,2,'.','');
-    $payment->setExtraAmount($totCupomPorc);
-}
+// if(isset($_SESSION['cupom_compra'])) {
+//     $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+//     $totCupomPorc = number_format($totCupomPorc,2,'.','');
+//     $payment->setExtraAmount($totCupomPorc);
+// }
 
 $payment->setCurrency("BRL");
 $payment->setReference("LIBPHP000001");

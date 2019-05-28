@@ -18,25 +18,23 @@
 </div>
 <div class="footerList">
     <ul class="footer-nav">
-        <li><h6 class="titleListFooter">PRODUTOS</h6></li>
-        <li><a class="linkListFooter" href="#">Ice cream</a></li>
-        <li><a class="linkListFooter" href="#">Donuts</a></li>
-        <li><a class="linkListFooter" href="#">Tea</a></li>
-        <li><a class="linkListFooter" href="#">Coffee</a></li>
-    </ul>
-    <ul class="footer-nav">
-        <li><h6 class="titleListFooter">EMPRESA</h6></li>
-        <li><a class="linkListFooter" href="#">Ice cream</a></li>
-        <li><a class="linkListFooter" href="#">Donuts</a></li>
-        <li><a class="linkListFooter" href="#">Tea</a></li>
-        <li><a class="linkListFooter" href="#">Coffee</a></li>
-    </ul>
-    <ul class="footer-nav">
         <li><h6 class="titleListFooter">SAIBA MAIS</h6></li>
-        <li><a class="linkListFooter" href="#">Ice cream</a></li>
-        <li><a class="linkListFooter" href="#">Donuts</a></li>
-        <li><a class="linkListFooter" href="#">Tea</a></li>
-        <li><a class="linkListFooter" href="#">Coffee</a></li>
+        <li><a class="linkListFooter" href="#">Quem Somos</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/horario_armazem">Entregas</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/subcidades">Armazéns e Subcidades</a></li>
+        <li><a class="linkListFooter" href="#">Como comprar</a></li>
+        <li><a class="linkListFooter" href="#">Trocas e devoluções</a></li>
+    </ul>
+    <ul class="footer-nav ftNav2">
+        <li><h6 class="titleListFooter">PRODUTOS</h6></li>
+        <li><a class="linkListFooter" href="#">Departamentos</a></li>
+        <li><a class="linkListFooter" href="#">Venda de Congelados</a></li>
+    </ul>
+    <ul class="footer-nav ftNav3">
+        <li><h6 class="titleListFooter">SUPORTE</h6></li>
+        <li><a class="linkListFooter" href="#">Política de Privacidade</a></li>
+        <li><a class="linkListFooter" href="#">Dúvidas Frequentes</a></li>
+        <li><a class="linkListFooter" href="#">Atendimento online</a></li>
     </ul>
 </div>
 <div class="socialMediaDiv">

@@ -10,20 +10,27 @@
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 2</h4>
-            <i class="far fa-clock"></i> AGENDAMENTO
+            <i class="fas fa-map-marker-alt"></i> ENDEREÇO
         </span>
     </li>
     <li class="progress-step">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 3</h4>
-            <i class="far fa-credit-card"></i> PAGAMENTO
+            <i class="far fa-clock"></i> AGENDAMENTO
         </span>
     </li>
     <li class="progress-step">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 4</h4>
+            <i class="far fa-credit-card"></i> PAGAMENTO
+        </span>
+    </li>
+    <li class="progress-step">
+        <span class="progress-marker"></span>
+        <span class="progress-text">
+            <h4 class="progress-title">PASSO 5</h4>
             <i class="fas fa-file-alt"></i> EXTRATO
         </span>
     </li>

@@ -4352,6 +4352,7 @@ border-radius: 0;
         border-left: 1px solid #0F0617;
         padding-left: .2rem;
         top: .2rem;
+        cursor: pointer;
     }
 
     .celulaTopNavCity {
@@ -4364,6 +4365,7 @@ border-radius: 0;
         background: #0F0617;
         border-radius: 3px;
         top: .2rem;
+        cursor: pointer;
     }
 
     .linkMenuTopNavCity {
@@ -5227,6 +5229,7 @@ border-radius: 0;
         text-align: justify;
         float: right;
         top: 2rem;
+        left: 3%;
     }
 
     .footer-nav{
@@ -5234,9 +5237,18 @@ border-radius: 0;
         list-style: none;
         margin: 0;
         padding: 0;
-        left: 15%;
         position: relative;
-        width: 25%;
+        width: 28%;
+    }
+
+    .ftNav2 {
+        position: relative;
+        left: 4%;
+    }
+
+    .ftNav3 {
+        position: relative;
+        left: 4%;
     }
 
     .titleListFooter {
@@ -5247,13 +5259,13 @@ border-radius: 0;
     }
 
     .footer-nav li {
-        margin: .2rem 0;
+        margin: .2rem .5rem;
         font-family: "Open Sans";
     }
 
     .linkListFooter {
         text-decoration: none;
-        color: #ffffff;
+        color: #2f3640;
         font-size: 12px;
     }
 
@@ -5295,7 +5307,7 @@ border-radius: 0;
 
     .linkListSocialMedia {
         text-decoration: none;
-        color: #ffffff;
+        color: #2f3640;
         font-size: 27px;
         margin: .5rem;
     }
@@ -5560,6 +5572,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: 20px;
+        color: #0F0617;
     }
       
     .-simple input {
@@ -5572,14 +5585,14 @@ border-radius: 0;
         border: none;
         border-bottom: 2px solid #d3d2d2;
         outline: none;
-        font-family: "Raleway";
+        font-family: "Karla";
     }
       
     .-md input:focus,
     .-md input:hover {
         border-bottom: 2px solid #9C45EB;
         color: #0F0617;
-        font-family: "Raleway";
+        font-family: "Karla";
     }
 
     .labelCadSex {
@@ -5614,7 +5627,7 @@ border-radius: 0;
         left: 0em;
         font-size: .8em;
         color: #9C45EB;
-        font-family: "Raleway";
+        font-family: "Raleway-Medium";
     }
       
     input:placeholder-shown + label {
@@ -6055,8 +6068,8 @@ border-radius: 0;
         font-family: "Karla";
         position: absolute;
         top: 95%;
-        width: 100%;
-        left: 0;
+        width: 100.5%;
+        left: -.3%;
         cursor: pointer;
         font-weight: 700;
     }
@@ -6150,7 +6163,7 @@ border-radius: 0;
 
     .qtdProdCart {
         font-size: 14px;
-        width: 26%;
+        width: 32%;
         left: 40%;
         position: relative;
         height: 1.5rem;
@@ -6317,6 +6330,41 @@ border-radius: 0;
         top: 1rem;
     }
 
+    .inputAddCupom {
+        background: transparent;
+        color: #0F0617;
+        border: #9C45EB solid 1px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 2%;
+        left: 16%;
+        position: relative;
+    }
+
+    .remCupom {
+        background: rgb(235, 69, 69);
+        border: none;
+        padding: 7px 10px;
+        border-radius: 5px;
+        margin-top: 2%;
+        left: 16%;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .remCupom i {
+        color: #ffffff;
+    }
+
+    .divAnswer p {
+        text-align: center;
+        margin: .4rem;
+        margin-bottom: 0;
+        color: rgb(235, 69, 69);
+        font-family: 'Raleway-Medium';
+        font-size: 13px;
+    }
+
     /* PÁGINA DO AGENDADMENTO */
 
     .divAgend {
@@ -6391,6 +6439,46 @@ border-radius: 0;
         font-style: italic;
     }
 
+    /* ENDEREÇO DO AGENDAMENTO */
+    
+    .formAgendEnd {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        margin-top: 2rem;
+    }
+    
+    .agendEndTable {
+        position: relative;
+        width: 50%;
+        left: 25%;
+    }
+
+    .agendEndTable table {
+        width: 100%;
+        position: relative;
+        background-color: #fff;
+        left: 0%;
+    }
+
+    .btnAgendEnd {
+        background: #9C45EB;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        height: 2rem;
+        width: 50%;
+        margin-top: 2rem;
+        position: relative;
+        left: 25%;
+        font-family: "Raleway-Medium";
+    }
+
+    .btnAgendEnd:hover {
+        background: #252730;
+        transition: ease-in-out 250ms background;
+    }
+
     /* AJUDA ARMAZEM */
 
     .infoAgendText {
@@ -6400,5 +6488,75 @@ border-radius: 0;
         text-align: justify;
         line-height: 25px;
         font-family: 'Raleway-Medium';
+    }
+
+    /* TABELA DE HORARIOS */
+
+    .divTableArm {
+        position: relative;
+        width: 50%;
+        margin: 2rem auto;
+    }
+
+    .divTableArm table {
+        width: 100%;
+        background-color: #fff;
+    }
+      
+    .columnTitle {
+        width: 20%;
+        padding-left: 3%;
+    }
+      
+    .row100.head th {
+        padding: 2%;
+    }
+      
+    .row100 .column100.column1 {
+        padding: 1.5%;
+    }
+
+    .table100.ver6 {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #7918f2;
+        background: -webkit-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: -o-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: -moz-linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: linear-gradient(-68deg, #ac32e4 , #4801ff);
+    }
+      
+    .table100.ver6 table {
+        background-color: transparent;
+    }
+      
+    .table100.ver6 td {
+        font-family: 'Karla';
+        font-size: 14px;
+        color: #fff;
+        line-height: 1.4;
+    }
+      
+    .table100.ver6 th {
+        font-family: 'Karla';
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.4;
+        text-transform: uppercase;
+      
+        background-color: rgba(255,255,255,0.32);
+    }
+      
+    .table100.ver6 .row100:hover td {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+    .table100.ver6 .hov-column-ver6 {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+      
+    .table100.ver6 .row100 td:hover {
+        background-color: rgba(255,255,255,0.2);
     }
 }

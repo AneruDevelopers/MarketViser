@@ -1,7 +1,7 @@
 <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
-    <li class="progress-step is-complete">
+<li class="progress-step is-complete">
         <span class="progress-marker"></span>
-        <span class="progress-text voltaCarrinho">
+        <span class="progress-text">
             <h4 class="progress-title">PASSO 1</h4>
             <i class="fas fa-shopping-cart"></i> CARRINHO
         </span>
@@ -10,20 +10,27 @@
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 2</h4>
-            <i class="far fa-clock"></i> AGENDAMENTO
+            <i class="fas fa-map-marker-alt"></i> ENDEREÇO
         </span>
     </li>
     <li class="progress-step">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 3</h4>
-            <i class="far fa-credit-card"></i> PAGAMENTO
+            <i class="far fa-clock"></i> AGENDAMENTO
         </span>
     </li>
     <li class="progress-step">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 4</h4>
+            <i class="far fa-credit-card"></i> PAGAMENTO
+        </span>
+    </li>
+    <li class="progress-step">
+        <span class="progress-marker"></span>
+        <span class="progress-text">
+            <h4 class="progress-title">PASSO 5</h4>
             <i class="fas fa-file-alt"></i> EXTRATO
         </span>
     </li>
