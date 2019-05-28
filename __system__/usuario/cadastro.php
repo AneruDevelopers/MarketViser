@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-    <title>e.conomize - Cadastre-se</title>
+    <title>e.conomize | Cadastro</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
@@ -205,15 +205,15 @@
 		</div>
 		<div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
-				<div class="modalProfileLeftContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-                <div class="modalProfileRightContent">
-                    <span class="closeModalArmazem">&times;</span>
+                <div class="modalArmTopContent">
                     <div class="meuArmazem">
                         
+                    </div>
+                    <span class="closeModalArmazem">&times;</span>
+                </div>
+                <div class="modalArmBottomContent">
+                    <div class="Armazens">
+
                     </div>
                 </div>
 			</div>

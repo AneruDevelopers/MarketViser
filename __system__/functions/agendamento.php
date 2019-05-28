@@ -142,7 +142,7 @@
                     <div class="table100 ver6 agendEndTable">
                         <table class="agendEndTable">
                             <tr class="row100 head">
-                                <th class="">HOJE (' . $hoje . ')</th>
+                                <th class="" style="font-size:15px;">HOJE (' . $hoje . ')</th>
                             </tr>
                     ';
                     foreach($hora_disp_hoje as $v) {
