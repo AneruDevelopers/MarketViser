@@ -6488,6 +6488,16 @@ border-radius: 0;
         text-align: justify;
         line-height: 25px;
         font-family: 'Raleway-Medium';
+        font-size: 14px;
+    }
+
+    .imgMapArmSub {
+        position: relative;
+        margin: 2rem 0;
+        margin-bottom: 2.5rem;
+        left: 14.8%;
+        border-radius: 10px;
+        width: 70%;
     }
 
     /* TABELA DE HORARIOS */
@@ -6658,4 +6668,27 @@ border-radius: 0;
         top: -11rem;
         position: relative;
     }
+
+    /* PAGINA PAGAMENTO */
+
+    .bodyPagPage {
+        background: #9C45EB;
+    }
+
+    .warningMsgPag {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        top: 13rem;
+    }
+
+    .imgLogoPagPage {
+        position: relative;
+        width: 5%;
+        left: 48%;
+        top: 13rem;
+        margin: auto;
+    }
+
 }

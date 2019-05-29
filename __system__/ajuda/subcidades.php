@@ -34,7 +34,8 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">ARMAZÉNS</h2>
-            <br><br><br><br><br><br><br><br>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corporis laboriosam facilis nobis vel doloribus porro pariatur eum quia architecto repudiandae cupiditate aut sequi illum sunt aspernatur, quaerat dignissimos. Eius! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis dolores accusamus atque eveniet vitae magni officiis placeat odio molestiae iusto, harum eos quisquam est veniam. Placeat vero eum est fugiat! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus exercitationem, placeat qui ipsum eligendi animi iusto, voluptatibus accusamus illo quos ratione facilis soluta quam? Dolor placeat hic quam ab perferendis.</p>
+            <img class="imgMapArmSub" src="../__system__\img\Banner_TCC\MAPA_ARMAZEM.png" alt="">
             <h2 class="tituloOfertas">SUBCIDADES</h2>
             <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Há restrições quanto a escolha da cidade de entrega da compra, pois não obrigatoriamente haverá suporte para entrega nesta localidade. Por isso, antes de agendar uma, você necessita informar o endereço ao qual deseja envia-la. Cidades que não possuem armazém ainda assim podem ser atendidas, são conhecidas como <i>"subcidades"</i>. As subcidades são abastecidas por um armazém presente em um município de maior relevância na região. Caso tente escolher uma cidade que não tenha armazém e que não seja uma "subcidade", você não poderá concluir a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
             <div class="l-subcid">

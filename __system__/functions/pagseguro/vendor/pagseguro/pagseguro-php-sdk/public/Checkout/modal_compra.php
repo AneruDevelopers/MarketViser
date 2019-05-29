@@ -189,8 +189,10 @@ try {
         $onlyCheckoutCode
     );
 
-    echo "<h2>Criando requisi&ccedil;&atilde;o de pagamento. Aguarde...</h2>"
-        . "<p>C&oacute;digo da transa&ccedil;&atilde;o: <strong>" . $result->getCode() . "</strong></p>"
+    echo "
+        <img src='../__system__\img\E_zinho for Phone.png' class='imgLogoPagPage' alt='Equipe e.conomize'><br>
+        <h2 class='warningMsgPag'>Criando requisi&ccedil;&atilde;o de pagamento. Aguarde...</h2>"
+        . "<p class='warningMsgPag'>C&oacute;digo da transa&ccedil;&atilde;o: <strong>" . $result->getCode() . "</strong></p>"
         . "<script>PagSeguroLightbox('" . $result->getCode() . "');</script>";
 } catch (Exception $e) {
     die($e->getMessage());
