@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>e.conomize | Subcidades</title>
+    <title>e.conomize | Institucional</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
@@ -33,38 +33,43 @@
         </div>
 
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas">ARMAZÉNS</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corporis laboriosam facilis nobis vel doloribus porro pariatur eum quia architecto repudiandae cupiditate aut sequi illum sunt aspernatur, quaerat dignissimos. Eius! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis dolores accusamus atque eveniet vitae magni officiis placeat odio molestiae iusto, harum eos quisquam est veniam. Placeat vero eum est fugiat! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus exercitationem, placeat qui ipsum eligendi animi iusto, voluptatibus accusamus illo quos ratione facilis soluta quam? Dolor placeat hic quam ab perferendis.</p>
-            <img class="imgMapArmSub" src="../__system__\img\Banner_TCC\MAPA_ARMAZEM.png" alt="">
-            <h2 class="tituloOfertas">SUBCIDADES</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Há restrições quanto a escolha da cidade de entrega da compra, pois não obrigatoriamente haverá suporte para entrega nesta localidade. Por isso, antes de agendar uma, você necessita informar o endereço ao qual deseja envia-la. Cidades que não possuem armazém ainda assim podem ser atendidas, são conhecidas como <i>"subcidades"</i>. As subcidades são abastecidas por um armazém presente em um município de maior relevância na região. Caso tente escolher uma cidade que não tenha armazém e que não seja uma "subcidade", você não poderá concluir a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
-            <div class="l-subcid">
-                <?php
-                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN estado AS e ON c.est_id=e.est_id JOIN subcidade AS s ON s.cid_id=c.cid_id JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
-                    $sel->execute();
-                    $res = $sel->fetchAll();
-                    foreach($res as $v) {
-                        $subcid[] = $v['subcid_nome'] . " - " . $v['est_uf'];
-                    }
-
-                    if(isset($subcid)) {
-                        echo '
-                            <h4 style="text-align:center;">' . $_SESSION['arm'] . ' presta serviço à:</h4>
-                        ';
-                        foreach($subcid as $k => $v) {
-                            echo '
-                                <h5 style="text-align:center;font-size:14px;">' . $v . '</h5>
-                            ';
-                        }
-                    } else {
-                        echo '
-                            <h4 style="text-align:center;font-size:14px;">' . $_SESSION['arm'] . ' presta serviço à nenhuma cidade</h4>
-                        ';
-                    }
-                ?>
+            <h2 class="tituloOfertas">INSTITUCIONAL</h2>
+            <div class="obj I">
+                <h3>QUEM SOMOS</h3>
+                <img src="../__system__\img\Banner_TCC\startup-593296_640.jpg" alt="Equipe e.conomize">
             </div>
+            <p class="parag elementParag1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
+                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
+                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
+                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.</p>
+            <div class="obj II">
+                <h3>A FAMÍLIA E.CONOMIZE!</h3>
+                <img src="../__system__\img\Banner_TCC\adult-2449725_640.jpg" alt="Equipe e.conomize">
+            </div>
+            <p class="parag elementParag2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
+                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
+                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
+                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            </p>
+            <div class="obj III">
+                <h3>NOSSO OBJETIVO</h3>
+                <img src="../__system__\img\Banner_TCC\adult-2449725_640.jpg" alt="Equipe e.conomize">
+            </div>
+            <p class="parag elementParag3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
+                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
+                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
+                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            </p>
         </div>
+            
         <!-- -------------------- -->
+
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
                 <div class="modalArmTopContent">

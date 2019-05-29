@@ -19,7 +19,7 @@
 <div class="footerList">
     <ul class="footer-nav">
         <li><h6 class="titleListFooter">SAIBA MAIS</h6></li>
-        <li><a class="linkListFooter" href="#">Quem Somos</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/institucional">Institucional</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/horario_armazem">Entregas</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/subcidades">Armazéns e Subcidades</a></li>
         <li><a class="linkListFooter" href="#">Como comprar</a></li>

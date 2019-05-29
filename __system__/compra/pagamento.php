@@ -9,14 +9,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>e.conomize | Processo de Compra</title>
+    <title>e.conomize | Pagamento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css">
     <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/libraries/progress-tracker-master/app/styles/progress-tracker.css">
 </head>
-<body>
+<body class="bodyPagPage">
         <?php
             require_once '__system__/functions/pagseguro/vendor/pagseguro/pagseguro-php-sdk/public/Checkout/modal_compra.php';
             // $hora = substr($_SESSION['agend_horario'],0,2) . "h" . substr($_SESSION['agend_horario'],3,2);

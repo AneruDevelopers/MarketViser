@@ -6488,6 +6488,16 @@ border-radius: 0;
         text-align: justify;
         line-height: 25px;
         font-family: 'Raleway-Medium';
+        font-size: 14px;
+    }
+
+    .imgMapArmSub {
+        position: relative;
+        margin: 2rem 0;
+        margin-bottom: 2.5rem;
+        left: 14.8%;
+        border-radius: 10px;
+        width: 70%;
     }
 
     /* TABELA DE HORARIOS */
@@ -6559,4 +6569,126 @@ border-radius: 0;
     .table100.ver6 .row100 td:hover {
         background-color: rgba(255,255,255,0.2);
     }
+
+    /* PAGINA QUEM SOMOS */
+
+    .obj{
+        position: relative;
+        height: auto;
+        top: -7rem;
+    }
+
+    .I > img {
+        clip-path: polygon(5% 0, 85% 0, 100% 100%, 0 90%);
+        shape-outside: polygon(5% 0, 85% 0, 100% 100%, 0 90%);
+        float: left;
+        margin-top: 0rem;
+        margin-left: 5rem;
+        margin-right: 2rem;
+        width: 25%;
+        filter: grayscale(100%);
+    }
+
+    .II > img{
+        clip-path: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        shape-outside: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        float: right;
+        width: 30%;
+        margin-right: 5rem;
+        margin-left: 2rem;
+        filter: grayscale(100%);
+        top: -4rem;
+        position: relative;
+    }
+
+    .III > img{
+        clip-path: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        shape-outside: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        float: left;
+        width: 28%;
+        margin-right: 5rem;
+        margin-left: 2rem;
+        filter: grayscale(100%);
+        top: -4rem;
+        position: relative;
+    }
+
+
+    .I > h3, .II > h3{
+        font-family: 'Raleway-Medium';
+        color: #fff;
+        text-align: center;
+        line-height: 9.5;
+        z-index: 2;
+        position: relative;
+    }
+
+    .I > h3 {
+        width: 25%;
+        height: 6rem;
+        padding: 4px;
+        left: 5%;
+        top: 8rem;
+        font-size: 1.4rem;
+        position: relative;
+        color: #ffffff;
+    }
+
+    .II > h3 {
+        width: 20%;
+        height: 6rem;
+        padding: 4px;
+        left: 70%;
+        top: 5rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+    }
+
+    .parag {
+        font-family: 'Raleway-Medium';
+        color: black;
+        text-align: justify;
+        line-height: 30px;
+        text-indent: 2.5rem;
+        font-size: 14px;
+    }
+
+    .elementParag1{
+        clear: right;
+        padding-right: 8rem;
+        padding-left: 8rem;
+        top: -5rem;
+        position: relative;
+    }
+
+    .elementParag2{
+        clear: left;
+        padding-left: 8rem;
+        padding-right: 8rem;
+        top: -11rem;
+        position: relative;
+    }
+
+    /* PAGINA PAGAMENTO */
+
+    .bodyPagPage {
+        background: #9C45EB;
+    }
+
+    .warningMsgPag {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        top: 13rem;
+    }
+
+    .imgLogoPagPage {
+        position: relative;
+        width: 5%;
+        left: 48%;
+        top: 13rem;
+        margin: auto;
+    }
+
 }
