@@ -64,6 +64,7 @@
                     }
                     
                     $json['totCompra'] += $v['subtotal'];
+                    $_SESSION['subtotal'][$k] = $v['subtotal'];
                     $v['subtotal'] = number_format($v['subtotal'], 2, ',', '.');
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
                     $v['carrinho'] = $_SESSION['carrinho'][$v['produto_id']];

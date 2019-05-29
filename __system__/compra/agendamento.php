@@ -34,7 +34,7 @@
             <i class="fas fa-file-alt"></i> EXTRATO
         </span>
     </li>
-</ul>            
+</ul>
 <h2 class="tituloOfertas"><i class="far fa-clock"></i> AGENDAMENTO</h2>
 <div class="divAgend">
     <h4 class="titleStep2_1">Escolha o horário que você quer que entreguemos a compra (prazo máximo de uma hora e meia)!</h4>
@@ -43,7 +43,7 @@
         <p class="endAgendName">
             <?php
                 foreach($_SESSION['end_agend'] as $k => $v) {
-                    if(($v != "") && ($k != count($_SESSION['end_agend']))) {
+                    if(($v != "") && ($k != (count($_SESSION['end_agend']) - 1))) {
                         echo $v . ", ";
                     } else {
                         echo $v;
@@ -70,7 +70,7 @@
                         data: $(this).serialize(),
                         success: function(json) {
                             if(json['status']) {
-                                buscaPagamento();
+                                window.location.href = BASE_URL + 'compra/pagamento';
                             } else {
                                 Swal.fire({
                                     title: "E.conomize informa:",

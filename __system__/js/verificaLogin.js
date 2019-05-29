@@ -55,6 +55,11 @@ function verificaLogin() {
                     });
                     return false;
                 });
+                
+                var local = location;
+                if(local == BASE_URL + 'compra/etapas_compra') {
+                    listCarrinho();
+                }
             } else {
                 $('.s_login').html(`ENTRAR`);
             }

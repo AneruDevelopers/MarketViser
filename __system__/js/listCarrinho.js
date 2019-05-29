@@ -126,10 +126,10 @@ function listCarrinho() {
                 });
             } else {
                 $('.divShowProdFav').html("Sem produtos no carrinho!");
-                $('.divShowTot').html("");
-                $('.divShowOpt').html("");
-                $('.divShowOptBtn').html("");
-                $('.divShowOptDesk').html("");
+                $('.divShowTot').removeClass("divShowTot");
+                $('.divShowOpt').removeClass("divShowOpt");
+                $('.divShowOptBtn').removeClass("divShowOptBtn");
+                $('.divShowOptDesk').removeClass("divShowOptDesk");
             }
         }
     });

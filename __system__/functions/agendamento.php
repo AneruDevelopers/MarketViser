@@ -67,10 +67,10 @@
                 $_SESSION['end_agend'][0] = $_POST['usu_cep'];
                 $_SESSION['end_agend'][1] = $_POST['usu_end'];
                 $_SESSION['end_agend'][2] = $_POST['usu_num'];
-                $_SESSION['end_agend'][4] = $_POST['usu_complemento'];
-                $_SESSION['end_agend'][5] = $_POST['usu_bairro'];
-                $_SESSION['end_agend'][6] = $_POST['usu_cidade'];
-                $_SESSION['end_agend'][7] = $_POST['usu_uf'];
+                $_SESSION['end_agend'][3] = $_POST['usu_complemento'];
+                $_SESSION['end_agend'][4] = $_POST['usu_bairro'];
+                $_SESSION['end_agend'][5] = $_POST['usu_cidade'];
+                $_SESSION['end_agend'][6] = $_POST['usu_uf'];
                 
                 if(strlen(trim($_POST['usu_complemento'])) > 0) {
                     $json['agend_end'] = $_POST['usu_cep'] . ", " . $_POST['usu_end'] . " nº " . $_POST['usu_num'] . " - " . $_POST['usu_complemento'] . ", " . $_POST['usu_bairro'] . ", ". $_POST['usu_cidade'] . " - " . $_POST['usu_uf'];
@@ -110,7 +110,7 @@
                 $next_day = $today + 1;
             }
 
-            $cid_entrega = $_SESSION['end_agend'][6] . " - " . $_SESSION['end_agend'][7];
+            $cid_entrega = $_SESSION['end_agend'][5] . " - " . $_SESSION['end_agend'][6];
             if($_SESSION['arm'] == $cid_entrega) {
                 $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
             } else {

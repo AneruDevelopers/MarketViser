@@ -56,11 +56,19 @@ $(document).ready(function() {
 			            if(result.value) {
 							verificaLogin();
 							btnFavorito();
-							listCarrinho();
+
+							var local = location;
+							if(local == BASE_URL + 'compra/etapas_compra') {
+								listCarrinho();
+							}
 			            } else {
 							verificaLogin();
 							btnFavorito();
-							listCarrinho();
+							
+							var local = location;
+							if(local == BASE_URL + 'compra/etapas_compra') {
+								listCarrinho();
+							}
 						}
 			        });
 				} else {
