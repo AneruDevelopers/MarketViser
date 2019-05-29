@@ -37,6 +37,11 @@ function getContentCart() {
     return $results;
 }
 
+$tel = $conn->prepare("SELECT * FROM telefone AS t JOIN tipo_tel AS tt ON t.tpu_tel=tt.tpu_tel_id WHERE t.usu_id=:id");
+$tel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
+$tel->execute();
+$res = $tel->fetchAll();
+
 /**
  * 2007-2016 [PagSeguro Internet Ltda.]
  *
@@ -70,6 +75,10 @@ require_once "__system__/functions/pagseguro/vendor/autoload.php";
     <!DOCTYPE html>
     <html>
     <head>
+    <!-- 
+        EMAIL COMPRADOR: c42358207331366747669@sandbox.pagseguro.com.br
+        SENHA: 4303c40373589875
+    -->
         <?php if (\PagSeguro\Configuration\Configure::getEnvironment()->getEnvironment() == "sandbox") : ?>
             <!--Para integração em ambiente de testes no Sandbox use este link-->
             <script
@@ -109,26 +118,36 @@ foreach($resultsCarts as $k => $v) {
     }
 }
 
-// if(isset($_SESSION['cupom_compra'])) {
-//     $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-//     $totCupomPorc = number_format($totCupomPorc,2,'.','');
-//     $payment->setExtraAmount($totCupomPorc);
-// }
+if(isset($_SESSION['cupom_compra'])) {
+    $totCupom = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+    $totCupom = number_format($totCupom,2,'.','');
+    $payment->setExtraAmount('-' . $totCupom);
+}
 
 $payment->setCurrency("BRL");
-$payment->setReference("LIBPHP000001");
-
-$payment->setRedirectUrl("http://www.lojamodelo.com.br");
+$payment->setReference("ECONOMIZE0101");
 
 // Set your customer information.
-$payment->setSender()->setName('João Comprador');
-$payment->setSender()->setEmail('email@comprador.com.br');
-$payment->setSender()->setPhone()->withParameters(
-    11,
-    56273440
-);
+$payment->setSender()->setName($_SESSION['inf_usu']['usu_nome'] . $_SESSION['inf_usu']['usu_sobrenome']);
+$payment->setSender()->setEmail($_SESSION['inf_usu']['usu_email']);
+foreach($res as $v) {
+    $v['ddd'] = substr($v['tel_num'],1,2);
+    $v['num'] = substr($v['tel_num'],-10);
+    if(strpos($v['num']," ")) {
+        $v['num'] = str_replace($v['num']," ","");
+    }
+    $v['num'] = str_replace($v['num'], "-", "");
+
+    $payment->setSender()->setPhone()->withParameters(
+        $v['ddd'],
+        $v['num']
+    );
+}
+
+$cpf = str_replace($_SESSION['inf_usu']['usu_cpf'],"-","");
+$cpf = str_replace($_SESSION['inf_usu']['usu_cpf'],".","");
 $payment->setSender()->setDocument()->withParameters(
-    '15986210093',
+    $cpf,
     '07650258000182'
 );
 
@@ -157,11 +176,11 @@ $payment->addMetadata()->withParameters('PASSENGER_PASSPORT', '23456', 1);
 // $payment->addParameter()->withParameters('itemAmount', '201.40')->index(3);
 
 //Add items by parameter using an array
-$payment->addParameter()->withArray(['notificationURL', 'http://www.lojamodelo.com.br/nofitication']);
+//$payment->addParameter()->withArray(['notificationURL', 'http://www.lojamodelo.com.br/nofitication']);
 
 
-$payment->setRedirectUrl("http://www.lojamodelo.com.br");
-$payment->setNotificationUrl("http://www.lojamodelo.com.br/nofitication");
+$payment->setRedirectUrl(base_url_php() . "compra/extrato");
+$payment->setNotificationUrl(base_url_php() . "admin_area/notificacao");
 
 try {
     $onlyCheckoutCode = true;

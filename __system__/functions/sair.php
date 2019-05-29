@@ -5,22 +5,8 @@
         if(isset($_COOKIE['inf_usu'])) {
             setcookie("inf_usu");
         }
-        if(isset($_SESSION['carrinho'])) {
-            unset($_SESSION['carrinho']);
-        }
-        if(isset($_SESSION['totCompra'])) {
-          unset($_SESSION['totCompra']);
-        }
-        if(isset($_SESSION['totCompraCupom'])) {
-          unset($_SESSION['totCompraCupom']);
-        }
-        if(isset($_SESSION['end_agend'])) {
-          unset($_SESSION['end_agend']);
-        }
-        if(isset($_SESSION['agend_horario'])) {
-          unset($_SESSION['agend_horario']);
-        }
-        unset($_SESSION["inf_usu"]);
+        
+        session_destroy();
 
         if(isset($_SESSION["url_sair"])) {
             $url = $_SESSION['url_sair'];

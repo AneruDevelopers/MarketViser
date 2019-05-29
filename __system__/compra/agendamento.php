@@ -43,7 +43,7 @@
         <p class="endAgendName">
             <?php
                 foreach($_SESSION['end_agend'] as $k => $v) {
-                    if(($v != "") && ($k != count($_SESSION['end_agend']))) {
+                    if(($v != "") && ($k != (count($_SESSION['end_agend']) - 1))) {
                         echo $v . ", ";
                     } else {
                         echo $v;
