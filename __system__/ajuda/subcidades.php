@@ -39,20 +39,18 @@
             <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Há restrições quanto a escolha da cidade de entrega da compra, pois não obrigatoriamente haverá suporte para entrega nesta localidade. Por isso, antes de agendar uma, você necessita informar o endereço ao qual deseja envia-la. Cidades que não possuem armazém ainda assim podem ser atendidas, são conhecidas como <i>"subcidades"</i>. As subcidades são abastecidas por um armazém presente em um município de maior relevância na região. Caso tente escolher uma cidade que não tenha armazém e que não seja uma "subcidade", você não poderá concluir a compra. Se houver dúvidas, dê uma olhada em cada armazém e suas respectivas "subcidades". <a href="<?= base_url_php(); ?>ajuda/horario_armazem">Horários de entrega para <?= $_SESSION['arm']; ?></a></p>
             <div class="l-subcid">
                 <?php
-                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
+                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN estado AS e ON c.est_id=e.est_id JOIN subcidade AS s ON s.cid_id=c.cid_id JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
                     $sel->execute();
                     $res = $sel->fetchAll();
                     foreach($res as $v) {
-                        if($v['cid_regiao'] != "") {
-                            $cid = explode(" - ", $v['cid_regiao']);
-                        }
+                        $subcid[] = $v['subcid_nome'] . " - " . $v['est_uf'];
                     }
 
-                    if(isset($cid)) {
+                    if(isset($subcid)) {
                         echo '
                             <h4 style="text-align:center;">' . $_SESSION['arm'] . ' presta serviço à:</h4>
                         ';
-                        foreach($cid as $k => $v) {
+                        foreach($subcid as $k => $v) {
                             echo '
                                 <h5 style="text-align:center;font-size:14px;">' . $v . '</h5>
                             ';

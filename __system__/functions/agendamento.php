@@ -29,18 +29,23 @@
                                     if(!is_numeric($_POST["usu_num"])) {
                                         $json["error_list"]["#usu_num"] = "<p class='msgErrorCad'>Somente números neste campo</p>";
                                     } else {
-                                        $cid = $_POST["usu_cidade"];
-                                        $verifica = $conn->prepare("SELECT * FROM cidade AS c JOIN armazem AS a ON a.cidade_id=c.cid_id WHERE a.armazem_id={$_SESSION['arm_id']}");
+                                        $cid = $_POST["usu_cidade"] . " - " . $_POST['usu_uf'];
+                                        $verifica = $conn->prepare("SELECT * FROM cidade AS c JOIN estado AS e ON c.est_id=e.est_id JOIN armazem AS a ON a.cidade_id=c.cid_id WHERE a.armazem_id={$_SESSION['arm_id']}");
                                         $verifica->execute();
                                         if($verifica->rowCount() > 0) {
                                             $permition = array();
                                             $res = $verifica->fetchAll();
                                             foreach($res as $v) {
-                                                if($cid != $v['cid_nome']) {
-                                                    $regiao = explode(" - ", $v['cid_regiao']);
-                                                    foreach($regiao as $val) {
-                                                        if($cid == $val) {
+                                                $v['juncao_cid_uf'] = $v['cid_nome'] . " - " . $v['est_uf'];
+                                                if($cid != $v['juncao_cid_uf']) {
+                                                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN estado AS e ON c.est_id=e.est_id JOIN subcidade AS s ON s.cid_id=c.cid_id JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
+                                                    $sel->execute();
+                                                    $res = $sel->fetchAll();
+                                                    foreach($res as $val) {
+                                                        $val['juncao_cid_uf'] = $val['subcid_nome'] . " - " . $val['est_uf'];
+                                                        if($cid == $val['juncao_cid_uf']) {
                                                             $permition[] = 1;
+                                                            $_SESSION['subcid_id'] = $val['subcid_id'];
                                                         }
                                                     }
                                                 } else {
@@ -114,7 +119,7 @@
             if($_SESSION['arm'] == $cid_entrega) {
                 $sel = $conn->prepare("SELECT * FROM dados_horario_entrega AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
             } else {
-                $sel = $conn->prepare("SELECT * FROM dados_horario_subcidade AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
+                $sel = $conn->prepare("SELECT * FROM subcidade AS s JOIN dados_horario_subcidade AS d ON d.dados_subcidade=s.subcid_id JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id WHERE s.subcid_id={$_SESSION['subcid_id']} AND (h.dia=$today OR h.dia=$next_day) ORDER BY h.hora");
             }
             
             $sel->execute();

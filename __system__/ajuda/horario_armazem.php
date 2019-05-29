@@ -102,77 +102,110 @@
                     } else {
                         echo '<h2 style="text-align:center;">Não há horários disponíveis</h2>';
                     }
-                ?>
-                <div class="table100 ver6 divTableArm">
-                    <table align='center'>
-                        <tr class="row100 head">
-                            <th class="column100" colspan='8' style="text-align:center;">    
-                                Subcidades de <?= $_SESSION['arm']; ?>
-                            </th>
-                        </tr>
 
-                <?php
                     //HORÁRIOS DAS SUBCIDADES
-                    $sel = $conn->prepare("SELECT * FROM dados_horario_subcidade AS d JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id JOIN armazem AS a ON d.dados_armazem=a.armazem_id WHERE a.armazem_id={$_SESSION['arm_id']} ORDER BY h.dia");
+                    $sel = $conn->prepare("SELECT * FROM cidade AS c JOIN subcidade AS s ON s.cid_id=c.cid_id JOIN estado AS e ON s.est_id=e.est_id JOIN armazem AS a ON c.cid_id=a.cidade_id WHERE a.armazem_id={$_SESSION['arm_id']}");
                     $sel->execute();
                     if($sel->rowCount() > 0) {
-                        echo '
-                        ';
                         $res = $sel->fetchAll();
-                        $dia_sem = 0;
-                        $dia_semana = array();
-                        $hora = array();
-                        $c = -1;
+                        $sub = "";
                         foreach($res as $v) {
-                            if($v['dia'] == 1) 
-                                $dia = "SEGUNDA";
-                            elseif($v['dia'] == 2)
-                                $dia = "TERÇA";
-                            elseif($v['dia'] == 3)
-                                $dia = "QUARTA";
-                            elseif($v['dia'] == 4)
-                                $dia = "QUINTA";
-                            elseif($v['dia'] == 5)
-                                $dia = "SEXTA";
-                            elseif($v['dia'] == 6)
-                                $dia = "SÁBADO";
-                            else
-                                $dia = "DOMINGO";
-
-                            if($dia_sem != $v['dia']) {
-                                $dia_semana[] = $dia;
-                                $dia_sem = $v['dia'];
-                                $c++;
-                            }
-                            $hora[$c][] = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
-                        }
-
-                        if(!empty($dia_semana)) {
-                            foreach($dia_semana as $k => $v) {
-                                echo '
-                                <tr class="row100">
-                                    <td class="columnTitle">' . $v . '</td>
+                            if($sub != $v['subcid_nome']) {
+                                $subcidades[] = '
+                                    <div class="table100 ver6 divTableArm">
+                                        <table align="center">
+                                            <tr class="row100 head">
+                                                <th class="column100" colspan="8" style="text-align:center;">
+                                                    ' . $v['subcid_nome'] . ' - ' . $v['est_uf'] . ' | <small>Subcidade de ' . $_SESSION['arm'] . '</small>
+                                                </th>
+                                            </tr>
                                 ';
-                                foreach($hora[$k] as $key => $val) {
+                                $sub_fecho[] = '
+                                        </table>
+                                    </div>
+                                ';
+                                $subcid[] = $v;
+                                $sub = $v['subcid_nome'];
+                            }
+                        }
+                    }
+
+                    if(isset($subcidades)) {
+                        foreach($subcidades as $k => $v) {
+                            echo $v;
+                            //BUSCA OS HORÁRIOS DE CADA SUBCIDADE
+                            $sel = $conn->prepare("SELECT * FROM subcidade AS s JOIN dados_horario_subcidade AS d ON d.dados_subcidade=s.subcid_id JOIN horarios_entrega AS h ON d.dados_horario=h.hora_id WHERE s.subcid_id={$subcid[$k]['subcid_id']} ORDER BY h.dia");
+                            $sel->execute();
+                            if($sel->rowCount() > 0) {
+                                $res = $sel->fetchAll();
+                                $dia_sem = 0;
+                                $dia_semana = array();
+                                $hora = array();
+                                $c = -1;
+                                foreach($res as $v) {
+                                    if($v['dia'] == 1) 
+                                        $dia = "SEGUNDA";
+                                    elseif($v['dia'] == 2)
+                                        $dia = "TERÇA";
+                                    elseif($v['dia'] == 3)
+                                        $dia = "QUARTA";
+                                    elseif($v['dia'] == 4)
+                                        $dia = "QUINTA";
+                                    elseif($v['dia'] == 5)
+                                        $dia = "SEXTA";
+                                    elseif($v['dia'] == 6)
+                                        $dia = "SÁBADO";
+                                    else
+                                        $dia = "DOMINGO";
+        
+                                    if($dia_sem != $v['dia']) {
+                                        $dia_semana[] = $dia;
+                                        $dia_sem = $v['dia'];
+                                        $c++;
+                                    }
+                                    $hora[$c][] = substr($v['hora'],0,2) . "h" . substr($v['hora'],3,2);
+                                }
+
+                                if(!empty($dia_semana)) {
+                                    foreach($dia_semana as $k_d => $v_d) {
+                                        echo '
+                                            <tr class="row100">
+                                                <td class="columnTitle">' . $v_d . '</td>
+                                        ';
+                                        foreach($hora[$k_d] as $key => $val) {
+                                            echo '
+                                                <td class="column100 column1">' . $val . '</td>
+                                            ';
+                                        }
+                                        echo '
+                                            </tr>
+                                        ';
+                                    }
+                                } else {
                                     echo '
-                                        <td class="column100 column1">' . $val . '</td>
+                                        <tr class="row100">
+                                            <th colspan="8">- Sem horários disponíveis -</th>
+                                        </tr>
                                     ';
                                 }
+                            } else {
                                 echo '
-                                </tr>
+                                    <tr class="row100">
+                                        <th colspan="8">- Sem horários disponíveis -</th>
+                                    </tr>
                                 ';
                             }
+                            echo $sub_fecho[$k];
                         }
-
                         echo '
-                            </table>
-                            </div>
                             <p align="center">
                                 <a style="text-align:center;color:#9C45EB;text-decoration:none;font-weight:bold;" href="' . base_url_php() . 'ajuda/subcidades">Ver subcidades de ' . $_SESSION['arm'] . '</a>
                             </p>
                         ';
                     } else {
-                        echo '<h2 style="text-align:center;">Não há horários disponíveis para as subcidades</h2>';
+                        echo '
+                            <h2 style="text-align:center;">Não há subcidades para ' . $_SESSION['arm'] . '</h2>
+                        ';
                     }
                 ?>
             </div>
