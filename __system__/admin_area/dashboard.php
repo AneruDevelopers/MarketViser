@@ -6,12 +6,11 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Painel de controle - Administrador</title>
+    <title>e.conomize | Painel de controle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    
+    <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link href="<?= base_url_adm(); ?>style/admin.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"/>
+    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="l-wrapper">

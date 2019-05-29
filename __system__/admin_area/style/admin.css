@@ -1,13 +1,21 @@
-/* Aneru - 2018 */
+/* e.conomize - 2019 */
 /* ============ */
 
 /* PAGE --> ADMIN */
 
 @font-face {
-    font-family: 'Expletus Sans Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Expletus Sans Medium'), url('../webfonts/ExpletusSans-Medium.woff') format('woff');
+    font-family: "Rubik";
+    src: url('../../style/fonts/Rubik/Rubik-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Exo";
+    src: url('../../style/fonts/Exo2/Exo2-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: url('../../style/fonts/SourceSansPro/SourceSansPro-Regular.ttf');
 }
 
 body {
@@ -59,7 +67,7 @@ body {
     /* HOME */
 
     .tituloAdminPage {
-        font-family: 'Expletus Sans Medium';
+        font-family: 'Rubik';
         color: #00cfd0;
         font-size: 3rem;
         position: relative;
@@ -97,7 +105,7 @@ body {
     .linkTrocaPagina {
         text-decoration: none;
         color: #ffffff;
-        font-family: 'Titillium Web', sans-serif;
+        font-family: 'Exo';
         font-size: 1.1rem;
     }
 
@@ -106,7 +114,7 @@ body {
     .formInserirProdutos {
         position: relative;
         top: 2.5rem;
-        font-family: 'Titillium Web', sans-serif;
+        font-family: 'Exo';
     }
 
 }

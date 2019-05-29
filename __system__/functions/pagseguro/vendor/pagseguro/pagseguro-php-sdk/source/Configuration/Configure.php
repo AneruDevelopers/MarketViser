@@ -35,6 +35,7 @@ use PagSeguro\Resources\Responsibility;
  * Class Configure
  * @package PagSeguro\Configuration
  */
+
 class Configure
 {
     private static $accountCredentials;
