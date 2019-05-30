@@ -16,12 +16,12 @@
                                 <select name="subcateg_id[]">
                                     <option value="*000*">--- Selecione o subcateg: ---</option>
                                     <?php
-                                        $sel = $conn->prepare("SELECT * FROM subcateg");
+                                        $sel = $conn->prepare("SELECT * FROM subcateg AS s JOIN departamento AS d ON s.depart_id=d.depart_id");
                                         $sel->execute();
                                         if($sel->rowCount() > 0):
                                             $results = $sel->fetchAll();
                                             foreach($results as $k => $v):?>
-                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['subcateg_nome']; ?></option>
+                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['depart_nome'] . " / " . $v['subcateg_nome']; ?></option>
                                                 <?php
                                             endforeach;
                                         endif;
@@ -61,12 +61,12 @@
                                 <select name="subcateg_id[]">
                                     <option value="*000*">--- Selecione o subcateg: ---</option>
                                     <?php
-                                        $sel = $conn->prepare("SELECT * FROM subcateg");
+                                        $sel = $conn->prepare("SELECT * FROM subcateg AS s JOIN departamento AS d ON s.depart_id=d.depart_id");
                                         $sel->execute();
                                         if($sel->rowCount() > 0):
                                             $results = $sel->fetchAll();
                                             foreach($results as $k => $v):?>
-                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['subcateg_nome']; ?></option>
+                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['depart_nome'] . " / " . $v['subcateg_nome']; ?></option>
                                                 <?php
                                             endforeach;
                                         endif;
