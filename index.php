@@ -56,6 +56,7 @@
 			$_SESSION["inf_usu"]['usu_registro_hora'] = $dia."/".$mes."/".$ano." às ".$hora;
 
 			$_SESSION["inf_usu"]['usu_tipo'] = $row['tpu_usu_nome'];
+			$_SESSION["inf_usu"]['usu_tipo_id'] = $row['tpu_id'];
 		endforeach;
 	endif;
 

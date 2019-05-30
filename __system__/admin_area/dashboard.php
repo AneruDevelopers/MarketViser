@@ -1,5 +1,12 @@
 <?php
     require_once '__system__/functions/connection/conn.php';
+    // if(!isset($_SESSION['inf_usu']['usu_id'])) {
+    //     header("Location: " . base_url_php());
+    // } else {
+    //     if($_SESSION["inf_usu"]['usu_tipo_id'] != 3) {
+    //         header("Location: " . base_url_php());
+    //     }
+    // }
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,15 +25,15 @@
         </header>
         <section class="l-menu">
             <h1 class="tituloAdminPage">Admstr</h1>
-            <ul class="listaTrocaPagina">        
+            <ul class="listaTrocaPagina">
                 <li>
                     <ul>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_produto');"><a class="linkTrocaPagina" href="#">Inserir Produtos</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('armazem/inserir_armazem');"><a class="linkTrocaPagina" href="#">Armazém</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_marca');"><a class="linkTrocaPagina" href="#">Marca</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_dep');"><a class="linkTrocaPagina" href="#">Departamento</a></li> 
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_subcateg');"><a class="linkTrocaPagina" href="#">Subcategoria</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_categ');"><a class="linkTrocaPagina" href="#">Categoria</a></li>                     
+                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_produto');"><a class="linkTrocaPagina" href="#">Inserir produto</a></li>
+                        <li class="celulaTrocaPagina" onclick="carregar('armazem/inserir_produto_armazem');"><a class="linkTrocaPagina" href="#">Produtos ao armazém</a></li>
+                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_marca');"><a class="linkTrocaPagina" href="#">Inserir marca</a></li>
+                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_dep');"><a class="linkTrocaPagina" href="#">Inserir departamento</a></li>
+                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_subcateg');"><a class="linkTrocaPagina" href="#">Inserir subcategoria</a></li>
+                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_categ');"><a class="linkTrocaPagina" href="#">Inserir categoria</a></li>
                     </ul>
                 </li>
             </ul>
@@ -38,9 +45,13 @@
         </footer>
     </div>
 
-    <script src="<?php echo base_url(); ?>js/JQuery/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>js/JQuery/jquery-mask.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>js/mask.js" type="text/javascript"></script>
-    <script src="<?php echo base_url_adm(); ?>js/admin.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?= base_url(); ?>js/mask.js"></script>
+    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= base_url(); ?>js/util.js"></script>
+    <script src="<?= base_url_adm(); ?>js/admin.js"></script>
+    <script src="<?= base_url_adm(); ?>js/produto.js"></script>
+    <script src="<?= base_url_adm(); ?>js/armazem.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2019 às 11:50
+-- Tempo de geração: 30/05/2019 às 21:08
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -86,7 +86,9 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 (9, 'SEM GÁS', 2),
 (10, 'ARTIFICIAL', 3),
 (11, 'TINTO', 5),
-(12, 'ESPUMANTE', 5);
+(12, 'ESPUMANTE', 5),
+(14, 'LÁCTEOS', 9),
+(15, 'ACHOCOLATADOS', 9);
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,13 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (13, 6, 2, 400, '49.00', 37),
 (14, 7, 2, 400, '83.99', 62),
 (15, 8, 1, 200, '39.99', NULL),
-(16, 8, 2, 200, '45.99', 18);
+(16, 8, 2, 200, '45.99', 18),
+(17, 15, 1, 300, '3.50', 12),
+(19, 16, 1, 0, '6.99', NULL),
+(20, 15, 2, 300, '3.59', NULL),
+(21, 16, 2, 200, '7.39', 22),
+(22, 17, 1, 200, '5.49', 11),
+(23, 17, 2, 200, '6.40', NULL);
 
 -- --------------------------------------------------------
 
@@ -283,7 +291,15 @@ INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subci
 (20, 9, 1),
 (21, 11, 1),
 (22, 13, 1),
-(23, 15, 2);
+(23, 15, 2),
+(24, 15, 1),
+(25, 17, 1),
+(26, 19, 1),
+(27, 21, 1),
+(28, 23, 1),
+(29, 25, 1),
+(30, 27, 1),
+(31, 31, 1);
 
 -- --------------------------------------------------------
 
@@ -295,7 +311,7 @@ CREATE TABLE `departamento` (
   `depart_id` int(11) NOT NULL,
   `depart_nome` varchar(30) NOT NULL,
   `depart_icon` varchar(70) NOT NULL,
-  `depart_desc` varchar(50) DEFAULT NULL
+  `depart_desc` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -310,7 +326,7 @@ INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_d
 (5, 'GRÃOS', 'flaticon-009-wheat-flour', NULL),
 (6, 'HORTA', 'flaticon-031-healthy-food', NULL),
 (7, 'LATICÍNIOS', 'flaticon-043-products', NULL),
-(8, 'LEITE', 'flaticon-011-products-5', NULL),
+(8, 'MATINAIS', 'flaticon-011-products-5', 'Produtos para começar o dia com a energia e disposição que você precisa'),
 (9, 'LIMPEZA', 'flaticon-039-tools-and-utensils', NULL),
 (10, 'PADARIA', 'flaticon-008-baguettes', NULL),
 (11, 'PEIXARIA', 'flaticon-006-fishes', NULL),
@@ -527,7 +543,9 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
 (7, 'Schin'),
 (8, 'Del Valle'),
 (9, 'Chalise'),
-(10, 'Skol');
+(10, 'Skol'),
+(11, 'Nescau'),
+(12, 'Toddy');
 
 -- --------------------------------------------------------
 
@@ -571,7 +589,10 @@ INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produ
 (5, 'Água Mineral sem Gás Schin', 'A Água Mineral Sem Gás Schin é produzida a partir de oito fontes naturais. É uma água de altíssima qualidade, que atende aos mais exigentes requisitos de qualidade e segurança.', 'agua-mineral-500ml.jpg', 7, '500ml', 9),
 (6, 'Suco de Maracujá Del Valle Kapo', 'O Suco de Maracujá Del Valle Kapo traz nutrição para a lancheira do seu filho. Fonte de Vitaminas A, B3, B6, B12, C, D e E, é considerado um complexo vitamínico indicado para o desenvolvimento das crianças. Del Valle Kapo é adoçado com suco de maçã, por isso, tem menos açúcar adicionado.', 'del-valle-maracuja-200ml.jpg', 8, '200ml', 10),
 (7, 'Vinho Tinto Seco Chalise', 'O Vinho Tinto Seco Chalise é límpido, com coloração roxo vivo, reflexos violáceos, aroma característico de morango e framboesa, sabor suave e de grande permanência. Combina com carnes e queijos.', 'vinho-tinto-seco-chalise-750ml.jpg', 9, '750ml', 11),
-(8, 'Cerveja Skol Lata Pack', 'Cerveja Skol 18 unidades x 350ml', 'cerveja-skol-lt-18x350ml.jpg', 10, '18 unidades ~ 350ml', 5);
+(8, 'Cerveja Skol Lata Pack', 'Cerveja Skol 18 unidades x 350ml', 'cerveja-skol-lt-18x350ml.jpg', 10, '18 unidades ~ 350ml', 5),
+(15, 'Refrigerante Pepsi', 'Originalmente, a fórmula da Pepsi foi criada para fins medicinais. Mas seu sabor agradou tanto que o xarope começou a ser consumido simplesmente por prazer. Cinco anos mais tarde, a fórmula transformou-se em bebida e começou a ser comercializada. Hoje, a Pepsi é um refrigerante de cola com aroma natural, muito apreciado pelo sabor suave e pela refrescância.', 'pepsi-600ml.jpg', 4, '600 ml', 2),
+(16, 'Refrigerante Pepsi', 'Originalmente, a fórmula da Pepsi foi criada para fins medicinais. Mas seu sabor agradou tanto que o xarope começou a ser consumido simplesmente por prazer. Cinco anos mais tarde, a fórmula transformou-se em bebida e começou a ser comercializada. Hoje, a Pepsi é um refrigerante de cola com aroma natural, muito apreciado pelo sabor suave e pela refrescância.', 'pepsi-2litros.jpg', 4, '2 Litros', 2),
+(17, 'Achocolatado Original Toddy Pote', 'O Achocolatado em Pó Toddy Original é um achocolatado saboroso e cremoso que você já conhece, e que é fonte de vitaminas. Com ele qualquer dia fica mais gostoso!', 'achocolatado-toddy-400g.jpg', 12, '400g', 15);
 
 -- --------------------------------------------------------
 
@@ -661,7 +682,8 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 (3, 'SUCOS E REFRESCOS', 2),
 (4, 'CERVEJAS', 2),
 (5, 'VINHOS', 2),
-(6, 'ENERGÉTICOS E ISOTÔNICOS E HIDROTÔNICOS', 2);
+(6, 'ENERGÉTICOS E ISOTÔNICOS E HIDROTÔNICOS', 2),
+(9, 'LÁCTEOS E ACHOCOLATADOS', 8);
 
 -- --------------------------------------------------------
 
@@ -1022,7 +1044,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de tabela `categ`
 --
 ALTER TABLE `categ`
-  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `cidade`
@@ -1046,7 +1068,7 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
@@ -1064,13 +1086,13 @@ ALTER TABLE `dados_horario_entrega`
 -- AUTO_INCREMENT de tabela `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `entrega`
@@ -1124,7 +1146,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT de tabela `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`
@@ -1136,7 +1158,7 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_favorito`
@@ -1160,7 +1182,7 @@ ALTER TABLE `status_compra`
 -- AUTO_INCREMENT de tabela `subcateg`
 --
 ALTER TABLE `subcateg`
-  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `subcidade`

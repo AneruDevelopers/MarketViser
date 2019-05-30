@@ -117,4 +117,8 @@ body {
         font-family: 'Exo';
     }
 
+    .divCadProduto {
+        height: 600px;
+        overflow-y: auto;
+    }
 }
