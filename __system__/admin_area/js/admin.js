@@ -1,3 +1,3 @@
-function carregar(pagina){
+function carregar(pagina) {
     $("#conteudo").load(pagina);
 }

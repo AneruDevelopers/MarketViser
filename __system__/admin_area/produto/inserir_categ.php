@@ -1,71 +1,93 @@
-<!DOCTYPE>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Insrir Subcategoria</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/css/admin.css"/>
-</head>
-<body>
+    <div class="divCadProduto divCadCateg">
+        <form class="formInserirCateg">
+            <div class="divAddCadCateg">
+                <div style="margin-bottom:60px;">
+                    <table width="auto" align="center" border="2">
+                        <tr align="center">
+                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Nome da categoria:</b></td>
+                            <td><input type="text" name="categ_nome[]" size="60"></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Subcategoria da categ:</b></td>
+                            <td>
+                                <select name="subcateg_id[]">
+                                    <option value="*000*">--- Selecione o subcateg: ---</option>
+                                    <?php
+                                        $sel = $conn->prepare("SELECT * FROM subcateg");
+                                        $sel->execute();
+                                        if($sel->rowCount() > 0):
+                                            $results = $sel->fetchAll();
+                                            foreach($results as $k => $v):?>
+                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['subcateg_nome']; ?></option>
+                                                <?php
+                                            endforeach;
+                                        endif;
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="divSubmit" align="center">
+                <button type="button" class="addCadCateg">Adicionar mais categorias</button>
+            </div>
+            <div class="divSubmit" align="center">
+                <button type="submit" id="btnInsertCateg"><i class="fas fa-save"></i> Cadastrar</button>
+                <div class="help-block"></div>
+            </div>
+        </form>
+    </div>
 
-    <form class="formInserirProdutos" action="inserir_categ.php" method="post" enctype="multipart/form-data">
+    <script>
+        $('.addCadCateg').click(function(e) {
+            e.preventDefault();
+            $('.divAddCadCateg').append(`
+                <div>
+                    <table width="auto" align="center" border="2">
+                        <tr align="center">
+                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Nome da categoria:</b></td>
+                            <td><input type="text" name="categ_nome[]" size="60"></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Subcategoria da categ:</b></td>
+                            <td>
+                                <select name="subcateg_id[]">
+                                    <option value="*000*">--- Selecione o subcateg: ---</option>
+                                    <?php
+                                        $sel = $conn->prepare("SELECT * FROM subcateg");
+                                        $sel->execute();
+                                        if($sel->rowCount() > 0):
+                                            $results = $sel->fetchAll();
+                                            foreach($results as $k => $v):?>
+                                                <option value="<?= $v['subcateg_id'] ?>"><?= $v['subcateg_nome']; ?></option>
+                                                <?php
+                                            endforeach;
+                                        endif;
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="btnRemove">
+                        <a href="#" class="remover_div"><i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+            `);
+        });
 
-        <table width="auto" align="center" border="2">
-            <tr align="center">
-                <td colspan="8"><h2>Insira os dados aqui</h2></td>
-            </tr>
-            <tr>
-                <td align="center"><b>Nome da Categoria:</b></td>
-                <td><input type="text" name="nome_categ" size="60" required></td>
-            </tr>
-            <tr>
-                <td align="center"><b>Subcategoria:</b></td>
-                <td>
-                    <select name="nome_sub" id="">
-                        <option>Selecione a Subcategoria:</option>
-                        <?php
-                                
-                            $buscar_categ = "SELECT * FROM subcateg";
-
-                            $run_categ = mysqli_query($con, $buscar_categ);
-
-                            while ($row_categ = mysqli_fetch_array($run_categ)) {
-
-                                $categ_id = $row_categ['subcateg_id'];
-                                $categ_titulo = $row_categ['subcateg_nome'];
-
-                                echo "<option value='$categ_id'>$categ_titulo</option>";
-                            }
-
-                        ?>
-                    </select>
-                </td>
-                <tr align="center">
-                    <td colspan="8"><input type="submit" name="cadastrar_categ" value="Cadastrar"></td>
-                </tr>
-            </tr>
-        </table>
-
-    </form>
-
-</body>
-</html>
-<?php
-
-        if(isset($_POST['cadastrar_categ'])) {
+        // Remover o div anterior
+        $('.divAddCadCateg').on("click",".remover_div",function(e) {
+                e.preventDefault();
+                $(this).parent().parent('div').remove();
+                $(this).parent('div').remove();
+        });
         
-            $nome_categ = $_POST['nome_categ'];
-            $nome_sub = $_POST['nome_sub'];
-
-            $inserir_subcategoria = "INSERT INTO categ (categ_nome, subcateg_id) VALUES ('$nome_categ', '$nome_sub')";
-        
-            $inserir_subcateg = mysqli_query($con, $inserir_subcategoria);
-
-                if($inserir_subcateg) {
-                    echo "<script>alert('A subcategoria foi inserida com sucesso!')</script>";
-                    echo "<script>window.open('admin_center.php','_self')</script>";
-                }
-        }
-
-?>
+        insertCateg();
+    </script>

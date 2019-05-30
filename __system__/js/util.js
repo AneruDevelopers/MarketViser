@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost/economize/";
 const BASE_URL2 = "http://localhost/economize/__system__/";
 const BASE_URL3 = "http://localhost/economize/__system__/admin_area/imagens_produtos/";
+const BASE_URL4 = "http://localhost/economize/admin_area/";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -23,6 +24,13 @@ function showErrors(error_list) {
     clearErrors();
     $.each(error_list, function(id, message) {
         $(id).parent().siblings(".help-block").html(message);
+    })
+}
+
+function showErrorsAdmin(error_list) {
+    clearErrors();
+    $.each(error_list, function(id, message) {
+        $(id).siblings(".help-block").html(message);
     })
 }
 
