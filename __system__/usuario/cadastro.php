@@ -48,7 +48,7 @@
 								<li class="linkListaOnCad"><i class="far fa-check-circle"></i> Cupons de desconto</li>
 							</ul>
 						</div>
-						<div class="arrowCadTop"><img src="__system__\img\whitearrow.png" alt=""></div>
+						<div class="arrowCadTop"><img src="../__system__\img\whitearrow.png" alt=""></div>
 						<div class="divCadTop">
 							<h2>Cadastre-se</h2>
 							<div class="divCadLeft">

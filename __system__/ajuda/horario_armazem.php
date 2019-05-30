@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>e.conomize | Horários de Entrega</title>
+    <title>e.conomize | Entregas</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
@@ -33,14 +33,21 @@
         </div>
 
         <div class="l-mainFiltroPesq">
+            <h2 class="tituloOfertas">ENTREGAS</h2>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Através da maneira e.conomize&#174 de fazer comércio pela internet, com velocidade e praticidade, fazer compras online se tornou algo trivial. Parte da nossa proposta é proporcionar comodidade para nossos clientes, e isso passa muito pela estrutura 100% digital que desenvolvemos, onde ocorre todos os processos necessários para um consumo dinâmico e flexível por parte dos clientes. Com isso, a entrega em domcílio é etapa fundamental nesse sistema e tem um funcionamento voltado a maximizar o tempo e favorecer as diversas rotinas que os usuários possuem.</p>
+            <br>
+            <br>
             <h2 class="tituloOfertas">HORÁRIOS DE ENTREGA</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao agendar uma compra, você terá de escolher um horário de preferência para que ela seja entregue no endereço, previamente, definido. Contudo, há algumas restrições nessa escolha. Os horários disponíveis são do dia atual e do dia seguinte da compra, sendo que, os horários do dia seguinte só estarão disponíveis caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma <i>"subcidade"</i>, ela terá horários próprios para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre as "subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui</a></p>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao agendar uma compra, você terá de escolher um horário de preferência para que ela seja entregue no endereço, previamente, definido. Contudo, há algumas restrições nessa escolha. Os horários disponíveis são do dia atual e do dia seguinte da compra, sendo que, os horários do dia seguinte só estarão disponíveis caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma "subcidade", ela terá horários próprios para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre "Armazéns e Subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui</a>.</p>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confira os horários a seguir:</p>
             <div class="l-horarios">
+                <h3 class="itinerarioTitle">ITINERÁRIO do <?= $_SESSION['arm_nome'];?></h3>
+                <hr class="bottomTitle">
                 <div class="table100 ver6 divTableArm">
                     <table align='center'>
                         <tr class="row100 head">
                             <th class="column100" colspan='8' style="text-align:center;">   
-                                    <?= $_SESSION['arm_nome'] . "<br/>" . $_SESSION['arm']; ?>
+                                    <?= $_SESSION['arm'] .' | <small>Cidade sede</small>'; ?>
                             </th>
                         </tr>
                 <?php
@@ -197,11 +204,6 @@
                             }
                             echo $sub_fecho[$k];
                         }
-                        echo '
-                            <p align="center">
-                                <a style="text-align:center;color:#9C45EB;text-decoration:none;font-weight:bold;" href="' . base_url_php() . 'ajuda/subcidades">Ver subcidades de ' . $_SESSION['arm'] . '</a>
-                            </p>
-                        ';
                     } else {
                         echo '
                             <h2 style="text-align:center;">Não há subcidades para ' . $_SESSION['arm'] . '</h2>
