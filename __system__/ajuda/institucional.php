@@ -45,8 +45,8 @@
                     Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.</p>
             <div class="obj II">
-                <h3>A FAMÍLIA E.CONOMIZE!</h3>
-                <img src="../__system__\img\Banner_TCC\adult-2449725_640.jpg" alt="Equipe e.conomize">
+                <h3>NOSSO OBJETIVO</h3>
+                <img src="../__system__\img\Banner_TCC\desk-3139127_640.jpg" alt="Equipe e.conomize">
             </div>
             <p class="parag elementParag2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
                         alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
@@ -56,7 +56,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
             </p>
             <div class="obj III">
-                <h3>NOSSO OBJETIVO</h3>
+                <h3>A FAMÍLIA E.CONOMIZE!</h3>
                 <img src="../__system__\img\Banner_TCC\adult-2449725_640.jpg" alt="Equipe e.conomize">
             </div>
             <p class="parag elementParag3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 

@@ -6614,19 +6614,19 @@ border-radius: 0;
     }
 
     .III > img{
-        clip-path: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
-        shape-outside: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        clip-path: polygon(20% 20%, 100% 40%, 100% 100%, 30% 90%);
+        shape-outside: polygon(20% 20%, 100% 40%, 100% 100%, 30% 90%);
         float: left;
-        width: 28%;
+        width: 35%;
         margin-right: 5rem;
         margin-left: 2rem;
         filter: grayscale(100%);
-        top: -4rem;
+        top: -9rem;
         position: relative;
     }
 
 
-    .I > h3, .II > h3{
+    .I > h3, .II > h3, .III > h3{
         font-family: 'Raleway-Medium';
         color: #fff;
         text-align: center;
@@ -6656,6 +6656,16 @@ border-radius: 0;
         color: #ffffff;
     }
 
+    .III > h3 {
+        width: 20%;
+        height: 6rem;
+        padding: 4px;
+        left: 15%;
+        top: 4rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+    }
+
     .parag {
         font-family: 'Raleway-Medium';
         color: black;
@@ -6678,6 +6688,14 @@ border-radius: 0;
         padding-left: 8rem;
         padding-right: 8rem;
         top: -11rem;
+        position: relative;
+    }
+
+    .elementParag3{
+        clear: right;
+        padding-left: 8rem;
+        padding-right: 8rem;
+        top: -16rem;
         position: relative;
     }
 
