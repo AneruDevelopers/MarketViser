@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<<<<<<< HEAD
     <meta charset="utf-8">
     <title>e.conomize | Entregas</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-=======
-    <meta charset="utf-8"/>
-    <title>e.conomize | Horários de Entrega</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
->>>>>>> c5a5ff82fda719ba86373ec7e49134bf3aced455
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css"/>
     <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
