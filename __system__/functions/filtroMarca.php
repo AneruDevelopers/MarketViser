@@ -26,6 +26,11 @@
             if($sel->rowCount() > 0) {
                 $result = $sel->fetchAll();
                 foreach($result as $v) {
+                    if($v['produto_qtd'] > 0) {
+                        $v['empty'] = false;
+                    } else {
+                        $v['empty'] = true;
+                    }
                     if($v['produto_desconto_porcent'] <> "") {
                         $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
@@ -55,6 +60,11 @@
             if($sel->rowCount() > 0) {
                 $result = $sel->fetchAll();
                 foreach($result as $v) {
+                    if($v['produto_qtd'] > 0) {
+                        $v['empty'] = false;
+                    } else {
+                        $v['empty'] = true;
+                    }
                     if($v['produto_desconto_porcent'] <> "") {
                         $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');

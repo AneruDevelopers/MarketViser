@@ -765,6 +765,27 @@ border-radius: 0;
         outline: #9C45EB solid 1px;
     }
 
+    .esgotQtd {
+        position: absolute;
+        color: #9C45EB;
+        width: 90%;
+        margin: auto;
+        top: 79%;
+        height: 15px;
+        font-family: 'Karla';
+        font-size: 10px;
+    }
+    .esgotQtdFilter {
+        position: absolute;
+        color: #9C45EB;
+        width: 90%;
+        margin: auto;
+        top: 79%;
+        height: 15px;
+        font-family: 'Karla';
+        font-size: 10px;
+    }
+
     .btnBuy {
         background: #9C45EB;
         border: none;
@@ -2952,6 +2973,27 @@ border-radius: 0;
         outline: #9C45EB solid 1px;
     }
 
+    .esgotQtd {
+        position: absolute;
+        width: 90%;
+        margin: auto;
+        top: 81%;
+        height: 20px;
+        font-family: 'Karla';
+        font-size: 10px;
+        color: #9C45EB;
+    }
+    .esgotQtdFilter {
+        position: absolute;
+        width: 90%;
+        margin: auto;
+        top: 81%;
+        height: 20px;
+        font-family: 'Karla';
+        font-size: 10px;
+        color: #9C45EB;
+    }
+
     .btnBuy {
         background: #9C45EB;
         border: none;
@@ -5124,6 +5166,27 @@ border-radius: 0;
         height: 20px;
         font-family: 'Karla';
         padding-left: 4px;
+    }
+
+    .esgotQtd {
+        position: absolute;
+        width: 25%;
+        left: 65%;
+        top: 82.7%;
+        height: 20px;
+        font-size: 9pt;
+        color: #9C45EB;
+        font-family: 'Karla';
+    }
+    .esgotQtdFilter {
+        position: absolute;
+        width: 25%;
+        left: 75%;
+        top: 88%;
+        height: 20px;
+        font-size: 9pt;
+        color: #9C45EB;
+        font-family: 'Karla';
     }
 
     .btnBuy {

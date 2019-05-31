@@ -10,6 +10,11 @@
         if($sel->rowCount() > 0) {
             $result = $sel->fetchAll();
             foreach($result as $row) {
+                if($row['produto_qtd'] > 0) {
+                    $row['empty'] = false;
+                } else {
+                    $row['empty'] = true;
+                }
                 $row["produto_desconto"] = $row["produto_preco"]*($row["produto_desconto_porcent"]/100);
                 $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
                 $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];

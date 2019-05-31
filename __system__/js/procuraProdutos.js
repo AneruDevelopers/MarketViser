@@ -42,14 +42,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         } else {
                             produtos[i] = `
                                 <div class="prodFilter">
@@ -61,14 +74,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         }
                     }
                     $('.divShowProdFilter').html("");
@@ -116,14 +142,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         } else {
                             produtos[i] = `
                                 <div class="prodFilter">
@@ -135,14 +174,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         }
                     }
                     $('.divShowProdFilter').html("");
@@ -190,14 +242,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         } else {
                             produtos[i] = `
                                 <div class="prodFilter">
@@ -209,14 +274,27 @@ $(document).ready(function() {
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                     <div>
-                                        <form class="formBuy">
-                                            <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                            <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                            <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                        </form>
-                                    </div>
-                                </div>
                             `;
+                            if(!json['produtos'][i].empty) {
+                                produtos[i] += `
+                                            <form class="formBuy">
+                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                produtos[i] += `
+                                            <span class="esgotQtd">ESGOTADO</span>
+                                            <form class="formBuy">
+                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                `;
+                            }
                         }
                     }
                     $('.divShowProdFilter').html("");
@@ -265,14 +343,27 @@ $(document).ready(function() {
                                         <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                         <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
                                         <div>
-                                            <form class="formBuy">
-                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                                <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 `;
+                                if(!json['produtos'][i].empty) {
+                                    produtos[i] += `
+                                                <form class="formBuy">
+                                                    <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                    <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    `;
+                                } else {
+                                    produtos[i] += `
+                                                <span class="esgotQtd">ESGOTADO</span>
+                                                <form class="formBuy">
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
                             } else {
                                 produtos[i] = `
                                     <div class="prodFilter">
@@ -284,14 +375,27 @@ $(document).ready(function() {
                                         <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                         <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
                                         <div>
-                                            <form class="formBuy">
-                                                <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
-                                                <input type="number" min="0" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
-                                                <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 `;
+                                if(!json['produtos'][i].empty) {
+                                    produtos[i] += `
+                                                <form class="formBuy">
+                                                    <input type="hidden" value="` + json['produtos'][i].produto_id + `" name="id_prod"/>
+                                                    <input type="number" min="0" max="20" value="` + json['produtos'][i].carrinho + `" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    `;
+                                } else {
+                                    produtos[i] += `
+                                                <span class="esgotQtd">ESGOTADO</span>
+                                                <form class="formBuy">
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
                             }
                         }
                         $('.divShowProdFilter').html("");
