@@ -5569,7 +5569,7 @@ border-radius: 0;
         width: 2rem;
         float: right;
         left: 7%;
-        top: 44%;
+        top: 48%;
     }
 
     .arrowCadTop img {
@@ -6559,11 +6559,27 @@ border-radius: 0;
         margin: 2rem 0;
         margin-bottom: 2.5rem;
         left: 14.8%;
-        border-radius: 10px;
+        border-radius: 3px;
         width: 70%;
     }
 
     /* TABELA DE HORARIOS */
+
+    .itinerarioTitle {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-top: 2.5rem;
+        margin-bottom: .5rem;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .bottomTitle {
+        position: relative;
+        width: 30%;
+        color: #0F0617;
+    }
 
     .divTableArm {
         position: relative;
@@ -6592,27 +6608,23 @@ border-radius: 0;
     .table100.ver6 {
         border-radius: 16px;
         overflow: hidden;
-        background: #7918f2;
-        background: -webkit-linear-gradient(-68deg, #ac32e4 , #4801ff);
-        background: -o-linear-gradient(-68deg, #ac32e4 , #4801ff);
-        background: -moz-linear-gradient(-68deg, #ac32e4 , #4801ff);
-        background: linear-gradient(-68deg, #ac32e4 , #4801ff);
+        background: #9C45EB;
     }
       
     .table100.ver6 table {
-        background-color: transparent;
+        background-color: #9C45EB;
     }
       
     .table100.ver6 td {
-        font-family: 'Karla';
+        font-family: 'Raleway-Medium';
         font-size: 14px;
         color: #fff;
         line-height: 1.4;
     }
       
     .table100.ver6 th {
-        font-family: 'Karla';
-        font-size: 12px;
+        font-family: 'Raleway-Medium';
+        font-size: 14px;
         color: #fff;
         line-height: 1.4;
         text-transform: uppercase;
