@@ -6,27 +6,50 @@ $(function() {
             if(response['status']) {
                 var produtos = [];
                 for (var i = 0; response['produtos'].length > i; i++) {
-                    produtos[i] = `
-                        <div class="divProdCarousel">
-                            <div class="btnFavorito` + response['produtos'][i].produto_id + `"></div>
-                            <a class="linksProdCarousel">
-                                <img class="divProdImg" src="` + BASE_URL3 + response['produtos'][i].produto_img + `">
-                                <div class='divisorFilterCar'></div>
-                                <p class="divProdPromo">-` + response['produtos'][i].produto_desconto_porcent + `%</p>
-                                <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + ` - ` + response['produtos'][i].produto_tamanho + `</h4>
-                                <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>
-                                <div>
-                                    <form class="formBuy">
-                                        <input type="hidden" value="` + response['produtos'][i].produto_id + `" name="id_prod"/>
+                    if(!response['produtos'][i].empty) {
+                        produtos[i] = `
+                            <div class="divProdCarousel">
+                                <div class="btnFavorito` + response['produtos'][i].produto_id + `"></div>
+                                <a class="linksProdCarousel">
+                                    <img class="divProdImg" src="` + BASE_URL3 + response['produtos'][i].produto_img + `">
+                                    <div class='divisorFilterCar'></div>
+                                    <p class="divProdPromo">-` + response['produtos'][i].produto_desconto_porcent + `%</p>
+                                    <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + ` - ` + response['produtos'][i].produto_tamanho + `</h4>
+                                    <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>
+                                    <div>
+                                        <form class="formBuy">
+                                            <input type="hidden" value="` + response['produtos'][i].produto_id + `" name="id_prod"/>
+                                            <div class="quantity">
+                                                <input type="number" min="0" max="20" value="` + response['produtos'][i].carrinho + `" class="inputQtd inputBuy` + response['produtos'][i].produto_id + `" name="qtd_prod"/>
+                                            </div>
+                                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        </form>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                    } else {
+                        produtos[i] = `
+                            <div class="divProdCarousel">
+                                <div class="btnFavorito` + response['produtos'][i].produto_id + `"></div>
+                                <a class="linksProdCarousel">
+                                    <img class="divProdImg" src="` + BASE_URL3 + response['produtos'][i].produto_img + `">
+                                    <div class='divisorFilterCar'></div>
+                                    <p class="divProdPromo">-` + response['produtos'][i].produto_desconto_porcent + `%</p>
+                                    <h4 class="divProdTitle">` + response['produtos'][i].produto_nome + ` - ` + response['produtos'][i].produto_tamanho + `</h4>
+                                    <p class="divProdPrice"><span class="divProdPrice1">R$` + response['produtos'][i].produto_preco + `</span> R$` + response['produtos'][i].produto_desconto + `</p>
+                                    <div>
                                         <div class="quantity">
-                                            <input type="number" min="0" max="20" value="` + response['produtos'][i].carrinho + `" class="inputQtd inputBuy` + response['produtos'][i].produto_id + `" name="qtd_prod"/>
+                                            <span class="esgotQtd">ESGOTADO</span>
                                         </div>
-                                        <button class="btnBuy" type="submit">ADICIONAR</button>
-                                    </form>
-                                </div>
-                            </a>
-                        </div>
-                    `;
+                                        <form class="formBuy">
+                                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                                        </form>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                    }
                 }
                 $('.l-prods').html(`<div class="loop owl-carousel prodsCar"></div>`);
                 for(var i = 0; produtos.length > i; i++) {

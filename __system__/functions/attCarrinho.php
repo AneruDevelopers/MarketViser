@@ -110,6 +110,9 @@
                     $json['answer'] = "Produto não está mais no carrinho";
                 }
             }
+        } else {
+            $json['type'] = "error";
+            $json['answer'] = "Produto esgotado";
         }
 
         echo json_encode($json);
