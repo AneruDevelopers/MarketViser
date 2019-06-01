@@ -1,6 +1,6 @@
 <div class="topNavCity">
     <h6 class="linkMenuTopNavCityMobile linkArm" id="myBtnArmazemMobile">
-        <i class="fas fa-globe-americas"></i> <span class="armName"><?= $_SESSION['arm']; ?></span>
+        <i class="fas fa-globe-americas"></i> <span class="armName"><?= isset($_SESSION['arm_cm']) ? $_SESSION['arm_cm'] : $_SESSION['arm']; ?></span>
     </h6>
 </div>
 <div class="companyNameSpace">
@@ -19,7 +19,7 @@
 <ul class="menuTopNav">
     <li class="celulaTopNavCity linkArm" id="myBtnArmazem">
         <a class="linkMenuTopNavCity" href="#">
-            <span class="armName"><?= $_SESSION['arm']; ?></span>
+            <span class="armName"><?= isset($_SESSION['arm_cm']) ? $_SESSION['arm_cm'] : $_SESSION['arm']; ?></span>
         </a>
     </li>
     <li class="celulaTopNav">

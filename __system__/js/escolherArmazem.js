@@ -19,7 +19,18 @@ $(document).ready(function() {
                     data: dado,
                     url: BASE_URL + 'functions/escolherArmazem',
                     success: function(json) {
-                        window.location.href = BASE_URL;
+                        if(json['status']) {
+                            window.location.href = BASE_URL;
+                        } else {
+                            Swal.fire({
+                                title: "e.conomize informa:",
+                                text: "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo.",
+                                type: "error",
+                                showCancelButton: false,
+                                confirmButtonColor: "#A94442",
+                                confirmButtonText: "Ok"
+                            });
+                        }
                     }
                 });
             }

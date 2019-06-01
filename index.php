@@ -8,6 +8,15 @@
 			$result = $sel->fetchAll();
 			foreach($result as $v):
 				$_SESSION['arm'] = $v['cid_nome'] . " - " . $v['est_uf'];
+				$array = explode(" ",$v['cid_nome']);
+				if(count($array) > 1) {
+				$qtd = strlen($v['cid_nome']) - (strlen($array[0]) + 1);
+				$_SESSION['arm_cm'] = substr($v['cid_nome'],0,1) . " " . substr($v['cid_nome'],-$qtd) . " - " . $v['est_uf'];
+				} else {
+				if(isset($_SESSION['arm_cm'])) {
+					unset($_SESSION['arm_cm']);
+				}
+				}
 				$_SESSION['arm_nome'] = $v['armazem_nome'];
 				$_SESSION['arm_id'] = $v['armazem_id'];
 			endforeach;
@@ -20,6 +29,15 @@
 				$result = $sel->fetchAll();
 				foreach($result as $v):
 					$_SESSION['arm'] = $v['cid_nome'] . " - " . $v['est_uf'];
+					$array = explode(" ",$v['cid_nome']);
+					if(count($array) > 1) {
+					$qtd = strlen($v['cid_nome']) - (strlen($array[0]) + 1);
+					$_SESSION['arm_cm'] = substr($v['cid_nome'],0,1) . " " . substr($v['cid_nome'],-$qtd) . " - " . $v['est_uf'];
+					} else {
+					if(isset($_SESSION['arm_cm'])) {
+						unset($_SESSION['arm_cm']);
+					}
+					}
 					$_SESSION['arm_nome'] = $v['armazem_nome'];
 					$_SESSION['arm_id'] = $v['armazem_id'];
 				endforeach;
