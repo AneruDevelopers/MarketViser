@@ -1,8 +1,14 @@
+<?php
+    if(!isset($_SESSION['inf_usu']['usu_id'])) {
+        $_SESSION['msg_cad']['text'] = "Você precisa estar logado para ver seus produtos favoritos";
+        header("Location: " . base_url_php());
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>e.conomize - Ache seu produto rapidamente</title>
+    <title>e.conomize | Meus favoritos</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>

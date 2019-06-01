@@ -8,7 +8,7 @@
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-    <title>e.conomize - Configurar perfil</title>
+    <title>e.conomize | Configurar perfil</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>

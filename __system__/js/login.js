@@ -52,25 +52,10 @@ $(document).ready(function() {
 			            showCancelButton: false,
 			            confirmButtonColor: "#5FBA7D",
 			            confirmButtonText: "Ok"
-			        }).then((result) => {
-			            if(result.value) {
-							verificaLogin();
-							btnFavorito();
-
-							var local = location;
-							if(local == BASE_URL + 'compra/etapas_compra') {
-								listCarrinho();
-							}
-			            } else {
-							verificaLogin();
-							btnFavorito();
-							
-							var local = location;
-							if(local == BASE_URL + 'compra/etapas_compra') {
-								listCarrinho();
-							}
-						}
-			        });
+					});
+					verificaLogin();
+					btnFavorito();
+					listCarrinho();
 				} else {
 					$(".help-block-login").html(response["error"]);
 				}
