@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/05/2019 às 21:08
--- Versão do servidor: 10.1.38-MariaDB
--- Versão do PHP: 7.3.2
+-- Generation Time: 31-Maio-2019 às 03:46
+-- Versão do servidor: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `economize`
+-- Database: `economize`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `armazem`
+-- Estrutura da tabela `armazem`
 --
 
 CREATE TABLE `armazem` (
@@ -38,7 +38,7 @@ CREATE TABLE `armazem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `armazem`
+-- Extraindo dados da tabela `armazem`
 --
 
 INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `arma
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `banner`
+-- Estrutura da tabela `banner`
 --
 
 CREATE TABLE `banner` (
@@ -61,7 +61,7 @@ CREATE TABLE `banner` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categ`
+-- Estrutura da tabela `categ`
 --
 
 CREATE TABLE `categ` (
@@ -71,7 +71,7 @@ CREATE TABLE `categ` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `categ`
+-- Extraindo dados da tabela `categ`
 --
 
 INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
@@ -88,12 +88,19 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 (11, 'TINTO', 5),
 (12, 'ESPUMANTE', 5),
 (14, 'LÁCTEOS', 9),
-(15, 'ACHOCOLATADOS', 9);
+(15, 'ACHOCOLATADOS', 9),
+(16, 'IMPORTADA', 10),
+(17, 'CONCENTRADO', 3),
+(18, 'TUBINHOS', 11),
+(19, 'QUEIJO', 12),
+(20, 'FUNCIONAIS', 13),
+(21, 'TRADICIONAL', 14),
+(22, 'INTEGRAL', 14);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cidade`
+-- Estrutura da tabela `cidade`
 --
 
 CREATE TABLE `cidade` (
@@ -103,7 +110,7 @@ CREATE TABLE `cidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `cidade`
+-- Extraindo dados da tabela `cidade`
 --
 
 INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
@@ -114,7 +121,7 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `compra`
+-- Estrutura da tabela `compra`
 --
 
 CREATE TABLE `compra` (
@@ -129,7 +136,7 @@ CREATE TABLE `compra` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cupom`
+-- Estrutura da tabela `cupom`
 --
 
 CREATE TABLE `cupom` (
@@ -139,7 +146,7 @@ CREATE TABLE `cupom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `cupom`
+-- Extraindo dados da tabela `cupom`
 --
 
 INSERT INTO `cupom` (`cupom_id`, `cupom_codigo`, `cupom_desconto_porcent`) VALUES
@@ -148,7 +155,7 @@ INSERT INTO `cupom` (`cupom_id`, `cupom_codigo`, `cupom_desconto_porcent`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_armazem`
+-- Estrutura da tabela `dados_armazem`
 --
 
 CREATE TABLE `dados_armazem` (
@@ -161,7 +168,7 @@ CREATE TABLE `dados_armazem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_armazem`
+-- Extraindo dados da tabela `dados_armazem`
 --
 
 INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`, `produto_preco`, `produto_desconto_porcent`) VALUES
@@ -169,14 +176,12 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (2, 2, 1, 17, '5.49', NULL),
 (3, 3, 1, 300, '2.30', 14),
 (4, 4, 1, 200, '3.00', 9),
-(5, 5, 1, 200, '2.50', NULL),
 (6, 6, 1, 200, '2.50', 15),
 (7, 7, 1, 140, '23.39', NULL),
 (8, 1, 2, 400, '50.00', 68),
 (9, 2, 2, 400, '125.59', 50),
 (10, 3, 2, 400, '45.99', 35),
 (11, 4, 2, 400, '63.00', 87),
-(12, 5, 2, 400, '35.39', 77),
 (13, 6, 2, 400, '49.00', 37),
 (14, 7, 2, 400, '83.99', 62),
 (15, 8, 1, 200, '39.99', NULL),
@@ -186,12 +191,21 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (20, 15, 2, 300, '3.59', NULL),
 (21, 16, 2, 200, '7.39', 22),
 (22, 17, 1, 200, '5.49', 11),
-(23, 17, 2, 200, '6.40', NULL);
+(23, 17, 2, 200, '6.40', NULL),
+(25, 20, 1, 120, '2.32', NULL),
+(26, 21, 1, 50, '14.19', NULL),
+(27, 22, 1, 55, '21.48', 5),
+(28, 23, 1, 105, '8.32', NULL),
+(29, 24, 1, 36, '2.09', NULL),
+(30, 25, 1, 80, '49.12', 6),
+(31, 26, 1, 210, '4.38', 10),
+(32, 27, 1, 70, '3.67', NULL),
+(33, 28, 1, 95, '8.20', 8);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_entrega`
+-- Estrutura da tabela `dados_entrega`
 --
 
 CREATE TABLE `dados_entrega` (
@@ -203,7 +217,7 @@ CREATE TABLE `dados_entrega` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_horario_entrega`
+-- Estrutura da tabela `dados_horario_entrega`
 --
 
 CREATE TABLE `dados_horario_entrega` (
@@ -213,7 +227,7 @@ CREATE TABLE `dados_horario_entrega` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_horario_entrega`
+-- Extraindo dados da tabela `dados_horario_entrega`
 --
 
 INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem`) VALUES
@@ -270,7 +284,7 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_horario_subcidade`
+-- Estrutura da tabela `dados_horario_subcidade`
 --
 
 CREATE TABLE `dados_horario_subcidade` (
@@ -280,7 +294,7 @@ CREATE TABLE `dados_horario_subcidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_horario_subcidade`
+-- Extraindo dados da tabela `dados_horario_subcidade`
 --
 
 INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subcidade`) VALUES
@@ -304,7 +318,7 @@ INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subci
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `departamento`
+-- Estrutura da tabela `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -315,7 +329,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `departamento`
+-- Extraindo dados da tabela `departamento`
 --
 
 INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_desc`) VALUES
@@ -335,7 +349,7 @@ INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_d
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `entrega`
+-- Estrutura da tabela `entrega`
 --
 
 CREATE TABLE `entrega` (
@@ -354,7 +368,7 @@ CREATE TABLE `entrega` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estado`
+-- Estrutura da tabela `estado`
 --
 
 CREATE TABLE `estado` (
@@ -363,7 +377,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `estado`
+-- Extraindo dados da tabela `estado`
 --
 
 INSERT INTO `estado` (`est_id`, `est_uf`) VALUES
@@ -372,7 +386,7 @@ INSERT INTO `estado` (`est_id`, `est_uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forma_pag`
+-- Estrutura da tabela `forma_pag`
 --
 
 CREATE TABLE `forma_pag` (
@@ -381,7 +395,7 @@ CREATE TABLE `forma_pag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `forma_pag`
+-- Extraindo dados da tabela `forma_pag`
 --
 
 INSERT INTO `forma_pag` (`forma_id`, `forma_nome`) VALUES
@@ -392,7 +406,7 @@ INSERT INTO `forma_pag` (`forma_id`, `forma_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fornecedor`
+-- Estrutura da tabela `fornecedor`
 --
 
 CREATE TABLE `fornecedor` (
@@ -405,7 +419,7 @@ CREATE TABLE `fornecedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `fornecedor`
+-- Extraindo dados da tabela `fornecedor`
 --
 
 INSERT INTO `fornecedor` (`fornecedor_id`, `fornecedor_nome`, `fornecedor_responsavel_nome`, `fornecedor_cnpj`, `fornecedor_data_registro`, `fornecedor_img`) VALUES
@@ -415,7 +429,7 @@ INSERT INTO `fornecedor` (`fornecedor_id`, `fornecedor_nome`, `fornecedor_respon
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forn_prod`
+-- Estrutura da tabela `forn_prod`
 --
 
 CREATE TABLE `forn_prod` (
@@ -428,7 +442,7 @@ CREATE TABLE `forn_prod` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `forn_prod`
+-- Extraindo dados da tabela `forn_prod`
 --
 
 INSERT INTO `forn_prod` (`forn_prod_id`, `fornecedor_id`, `produto_id`, `produto_qtd`, `forn_prod_data_registro`, `armazem_id`) VALUES
@@ -438,7 +452,7 @@ INSERT INTO `forn_prod` (`forn_prod_id`, `fornecedor_id`, `produto_id`, `produto
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -453,7 +467,7 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `funcionario`
+-- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_registro`, `funcionario_cpf`, `funcionario_datanasc`, `funcionario_setor`, `horario_entrada`, `horario_saida`) VALUES
@@ -462,7 +476,7 @@ INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_re
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `horarios_entrega`
+-- Estrutura da tabela `horarios_entrega`
 --
 
 CREATE TABLE `horarios_entrega` (
@@ -472,7 +486,7 @@ CREATE TABLE `horarios_entrega` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `horarios_entrega`
+-- Extraindo dados da tabela `horarios_entrega`
 --
 
 INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
@@ -509,7 +523,7 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `lista_compra`
+-- Estrutura da tabela `lista_compra`
 --
 
 CREATE TABLE `lista_compra` (
@@ -521,7 +535,7 @@ CREATE TABLE `lista_compra` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `marca_prod`
+-- Estrutura da tabela `marca_prod`
 --
 
 CREATE TABLE `marca_prod` (
@@ -530,7 +544,7 @@ CREATE TABLE `marca_prod` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `marca_prod`
+-- Extraindo dados da tabela `marca_prod`
 --
 
 INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
@@ -545,12 +559,21 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
 (9, 'Chalise'),
 (10, 'Skol'),
 (11, 'Nescau'),
-(12, 'Toddy');
+(12, 'Toddy'),
+(13, 'Aguin'),
+(14, 'Asnov'),
+(15, 'Marreco'),
+(16, 'Maguavi'),
+(17, 'Green Foods'),
+(18, 'Smurnoff'),
+(19, 'Bobitos'),
+(20, 'Laktivia'),
+(21, 'Wickbread');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `postagem`
+-- Estrutura da tabela `postagem`
 --
 
 CREATE TABLE `postagem` (
@@ -564,7 +587,7 @@ CREATE TABLE `postagem` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -578,7 +601,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_tamanho`, `produto_categ`) VALUES
@@ -586,18 +609,26 @@ INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produ
 (2, 'Refrigerante Fanta Uva', 'Um dos melhores refrigerantes da América Latina desde 1963.', 'fanta-uva-2l.jpg', 3, '2 Litros', 2),
 (3, 'Cerveja Brahma Lata', 'Criada por um suíço que procurava um sabor mais europeu em solo brasileiro em 1888, no Rio de Janeiro; Brahma Chopp é uma cerveja de cor clara e aparência cristalina. Ela é leve e com aroma neutro, sabor encorpado mas com amargor suave. Foi a primeira cerveja brasileira a ser exportada e hoje está presente em mais de 15 países, entre América do Norte e Europa.', 'brahma_lata_350ml.jpg', 5, '350ml', 5),
 (4, 'Energético Red Bull', 'O Energético Red Bull tem em sua composição: Cafeína, Taurina, Vitaminas do grupo B, Sacarose, Glucose e Água das fontes alpinas. Estimula as funções cognitivas do corpo e ajuda a melhorar a concentração, aumentando o estado de vigilância ou alerta.', 'red-bull-250ml.jpg', 6, '250ml', 6),
-(5, 'Água Mineral sem Gás Schin', 'A Água Mineral Sem Gás Schin é produzida a partir de oito fontes naturais. É uma água de altíssima qualidade, que atende aos mais exigentes requisitos de qualidade e segurança.', 'agua-mineral-500ml.jpg', 7, '500ml', 9),
 (6, 'Suco de Maracujá Del Valle Kapo', 'O Suco de Maracujá Del Valle Kapo traz nutrição para a lancheira do seu filho. Fonte de Vitaminas A, B3, B6, B12, C, D e E, é considerado um complexo vitamínico indicado para o desenvolvimento das crianças. Del Valle Kapo é adoçado com suco de maçã, por isso, tem menos açúcar adicionado.', 'del-valle-maracuja-200ml.jpg', 8, '200ml', 10),
 (7, 'Vinho Tinto Seco Chalise', 'O Vinho Tinto Seco Chalise é límpido, com coloração roxo vivo, reflexos violáceos, aroma característico de morango e framboesa, sabor suave e de grande permanência. Combina com carnes e queijos.', 'vinho-tinto-seco-chalise-750ml.jpg', 9, '750ml', 11),
 (8, 'Cerveja Skol Lata Pack', 'Cerveja Skol 18 unidades x 350ml', 'cerveja-skol-lt-18x350ml.jpg', 10, '18 unidades ~ 350ml', 5),
 (15, 'Refrigerante Pepsi', 'Originalmente, a fórmula da Pepsi foi criada para fins medicinais. Mas seu sabor agradou tanto que o xarope começou a ser consumido simplesmente por prazer. Cinco anos mais tarde, a fórmula transformou-se em bebida e começou a ser comercializada. Hoje, a Pepsi é um refrigerante de cola com aroma natural, muito apreciado pelo sabor suave e pela refrescância.', 'pepsi-600ml.jpg', 4, '600 ml', 2),
 (16, 'Refrigerante Pepsi', 'Originalmente, a fórmula da Pepsi foi criada para fins medicinais. Mas seu sabor agradou tanto que o xarope começou a ser consumido simplesmente por prazer. Cinco anos mais tarde, a fórmula transformou-se em bebida e começou a ser comercializada. Hoje, a Pepsi é um refrigerante de cola com aroma natural, muito apreciado pelo sabor suave e pela refrescância.', 'pepsi-2litros.jpg', 4, '2 Litros', 2),
-(17, 'Achocolatado Original Toddy Pote', 'O Achocolatado em Pó Toddy Original é um achocolatado saboroso e cremoso que você já conhece, e que é fonte de vitaminas. Com ele qualquer dia fica mais gostoso!', 'achocolatado-toddy-400g.jpg', 12, '400g', 15);
+(17, 'Achocolatado Original Toddy Pote', 'O Achocolatado em Pó Toddy Original é um achocolatado saboroso e cremoso que você já conhece, e que é fonte de vitaminas. Com ele qualquer dia fica mais gostoso!', 'achocolatado-toddy-400g.jpg', 12, '400g', 15),
+(20, 'Água Mineral Sem Gás Aguin', 'Água Mineral Sem Gás Aguin', 'AGUA.png', 13, '500ml', 9),
+(21, 'Vodka Asnov Frutas Vermelhas', 'Vodka Asnov Frutas Vermelhas', 'askov frutas vermelhas.png', 14, '900ml', 16),
+(22, 'Vinho Tinto Marreco', 'Vinho Tinto Marreco', 'vinho de bar.png', 15, '750ml', 11),
+(23, 'Suco de Caju Concentrado Maguavi', 'Suco de Caju Concentrado Maguavi', 'suco caju 500ml.png', 16, '500ml', 17),
+(24, 'Tubinho Recheado Com Pasta de Amendoim Green Foods', 'Tubinho Recheado Com Pasta de Amendoim Green Foods', 'sei la.png', 17, '50g', 18),
+(25, 'Vodka Smurnoff Tradicional', 'Vodka Smurnoff Tradicional', 'sminorg.png', 18, '1.75L', 16),
+(26, 'Salgadinho Sabor Alho e Queijo Bobitos', 'Salgadinho Sabor Alho e Queijo Bobitos', 'sargadenho.png', 19, '96g', 19),
+(27, 'Iogurte Mix Café da Manhã Laktivia', 'Iogurte Mix Café da Manhã Laktivia', 'pra cagar ate nao querer mais.png', 20, '170g', 20),
+(28, 'Pão De Forma Integral Wickbread', 'Pão De Forma Integral Wickbread', 'paozinho.png', 21, '450g', 22);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produtos_favorito`
+-- Estrutura da tabela `produtos_favorito`
 --
 
 CREATE TABLE `produtos_favorito` (
@@ -607,7 +638,7 @@ CREATE TABLE `produtos_favorito` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `produtos_favorito`
+-- Extraindo dados da tabela `produtos_favorito`
 --
 
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
@@ -621,7 +652,7 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `setor`
+-- Estrutura da tabela `setor`
 --
 
 CREATE TABLE `setor` (
@@ -630,7 +661,7 @@ CREATE TABLE `setor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `setor`
+-- Extraindo dados da tabela `setor`
 --
 
 INSERT INTO `setor` (`setor_id`, `setor_nome`) VALUES
@@ -641,7 +672,7 @@ INSERT INTO `setor` (`setor_id`, `setor_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `status_compra`
+-- Estrutura da tabela `status_compra`
 --
 
 CREATE TABLE `status_compra` (
@@ -650,7 +681,7 @@ CREATE TABLE `status_compra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `status_compra`
+-- Extraindo dados da tabela `status_compra`
 --
 
 INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
@@ -663,7 +694,7 @@ INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `subcateg`
+-- Estrutura da tabela `subcateg`
 --
 
 CREATE TABLE `subcateg` (
@@ -673,7 +704,7 @@ CREATE TABLE `subcateg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `subcateg`
+-- Extraindo dados da tabela `subcateg`
 --
 
 INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
@@ -683,12 +714,17 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 (4, 'CERVEJAS', 2),
 (5, 'VINHOS', 2),
 (6, 'ENERGÉTICOS E ISOTÔNICOS E HIDROTÔNICOS', 2),
-(9, 'LÁCTEOS E ACHOCOLATADOS', 8);
+(9, 'LÁCTEOS E ACHOCOLATADOS', 8),
+(10, 'VODKA', 2),
+(11, 'DOCES', 12),
+(12, 'SALGADINHOS', 12),
+(13, 'IOGURTES', 7),
+(14, 'PÃO DE FORMA', 10);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `subcidade`
+-- Estrutura da tabela `subcidade`
 --
 
 CREATE TABLE `subcidade` (
@@ -699,7 +735,7 @@ CREATE TABLE `subcidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `subcidade`
+-- Extraindo dados da tabela `subcidade`
 --
 
 INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `cid_id`, `est_id`) VALUES
@@ -710,7 +746,7 @@ INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `cid_id`, `est_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `telefone`
+-- Estrutura da tabela `telefone`
 --
 
 CREATE TABLE `telefone` (
@@ -721,7 +757,7 @@ CREATE TABLE `telefone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `telefone`
+-- Extraindo dados da tabela `telefone`
 --
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
@@ -732,7 +768,7 @@ INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipousu`
+-- Estrutura da tabela `tipousu`
 --
 
 CREATE TABLE `tipousu` (
@@ -742,7 +778,7 @@ CREATE TABLE `tipousu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipousu`
+-- Extraindo dados da tabela `tipousu`
 --
 
 INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
@@ -753,7 +789,7 @@ INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo_tel`
+-- Estrutura da tabela `tipo_tel`
 --
 
 CREATE TABLE `tipo_tel` (
@@ -762,7 +798,7 @@ CREATE TABLE `tipo_tel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipo_tel`
+-- Extraindo dados da tabela `tipo_tel`
 --
 
 INSERT INTO `tipo_tel` (`tpu_tel_id`, `tpu_tel_nome`) VALUES
@@ -774,7 +810,7 @@ INSERT INTO `tipo_tel` (`tpu_tel_id`, `tpu_tel_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -797,7 +833,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
@@ -805,38 +841,38 @@ INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, 
 (2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `armazem`
+-- Indexes for table `armazem`
 --
 ALTER TABLE `armazem`
   ADD PRIMARY KEY (`armazem_id`),
   ADD KEY `fk_CidArm` (`cidade_id`);
 
 --
--- Índices de tabela `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`banner_id`);
 
 --
--- Índices de tabela `categ`
+-- Indexes for table `categ`
 --
 ALTER TABLE `categ`
   ADD PRIMARY KEY (`categ_id`),
   ADD KEY `FK_SubCateg` (`subcateg_id`);
 
 --
--- Índices de tabela `cidade`
+-- Indexes for table `cidade`
 --
 ALTER TABLE `cidade`
   ADD PRIMARY KEY (`cid_id`),
   ADD KEY `fk_Est` (`est_id`);
 
 --
--- Índices de tabela `compra`
+-- Indexes for table `compra`
 --
 ALTER TABLE `compra`
   ADD PRIMARY KEY (`compra_id`),
@@ -845,13 +881,13 @@ ALTER TABLE `compra`
   ADD KEY `fk_CompraPag` (`forma_id`);
 
 --
--- Índices de tabela `cupom`
+-- Indexes for table `cupom`
 --
 ALTER TABLE `cupom`
   ADD PRIMARY KEY (`cupom_id`);
 
 --
--- Índices de tabela `dados_armazem`
+-- Indexes for table `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
   ADD PRIMARY KEY (`dados_id`),
@@ -859,14 +895,14 @@ ALTER TABLE `dados_armazem`
   ADD KEY `fk_ArmProd` (`armazem_id`);
 
 --
--- Índices de tabela `dados_entrega`
+-- Indexes for table `dados_entrega`
 --
 ALTER TABLE `dados_entrega`
   ADD PRIMARY KEY (`dados_id`),
   ADD KEY `fk_DataCompra` (`entrega_id`);
 
 --
--- Índices de tabela `dados_horario_entrega`
+-- Indexes for table `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
   ADD PRIMARY KEY (`dados_id`),
@@ -874,7 +910,7 @@ ALTER TABLE `dados_horario_entrega`
   ADD KEY `fk_DadoArm` (`dados_armazem`) USING BTREE;
 
 --
--- Índices de tabela `dados_horario_subcidade`
+-- Indexes for table `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
   ADD PRIMARY KEY (`dados_id`),
@@ -882,37 +918,37 @@ ALTER TABLE `dados_horario_subcidade`
   ADD KEY `fk_SubSub` (`dados_subcidade`);
 
 --
--- Índices de tabela `departamento`
+-- Indexes for table `departamento`
 --
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`depart_id`);
 
 --
--- Índices de tabela `entrega`
+-- Indexes for table `entrega`
 --
 ALTER TABLE `entrega`
   ADD PRIMARY KEY (`entrega_id`);
 
 --
--- Índices de tabela `estado`
+-- Indexes for table `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`est_id`);
 
 --
--- Índices de tabela `forma_pag`
+-- Indexes for table `forma_pag`
 --
 ALTER TABLE `forma_pag`
   ADD PRIMARY KEY (`forma_id`);
 
 --
--- Índices de tabela `fornecedor`
+-- Indexes for table `fornecedor`
 --
 ALTER TABLE `fornecedor`
   ADD PRIMARY KEY (`fornecedor_id`);
 
 --
--- Índices de tabela `forn_prod`
+-- Indexes for table `forn_prod`
 --
 ALTER TABLE `forn_prod`
   ADD PRIMARY KEY (`forn_prod_id`),
@@ -921,20 +957,20 @@ ALTER TABLE `forn_prod`
   ADD KEY `fk_FornArm` (`armazem_id`);
 
 --
--- Índices de tabela `funcionario`
+-- Indexes for table `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`funcionario_id`),
   ADD KEY `fk_FuncSetor` (`funcionario_setor`);
 
 --
--- Índices de tabela `horarios_entrega`
+-- Indexes for table `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
   ADD PRIMARY KEY (`hora_id`);
 
 --
--- Índices de tabela `lista_compra`
+-- Indexes for table `lista_compra`
 --
 ALTER TABLE `lista_compra`
   ADD PRIMARY KEY (`lista_id`),
@@ -942,19 +978,19 @@ ALTER TABLE `lista_compra`
   ADD KEY `fk_ListaProd` (`produto_id`);
 
 --
--- Índices de tabela `marca_prod`
+-- Indexes for table `marca_prod`
 --
 ALTER TABLE `marca_prod`
   ADD PRIMARY KEY (`marca_id`);
 
 --
--- Índices de tabela `postagem`
+-- Indexes for table `postagem`
 --
 ALTER TABLE `postagem`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- Índices de tabela `produto`
+-- Indexes for table `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`produto_id`),
@@ -963,7 +999,7 @@ ALTER TABLE `produto`
 ALTER TABLE `produto` ADD FULLTEXT KEY `produto_nome` (`produto_nome`,`produto_descricao`,`produto_tamanho`);
 
 --
--- Índices de tabela `produtos_favorito`
+-- Indexes for table `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
   ADD PRIMARY KEY (`favorito_id`),
@@ -971,26 +1007,26 @@ ALTER TABLE `produtos_favorito`
   ADD KEY `fk_UsuProd` (`usu_id`);
 
 --
--- Índices de tabela `setor`
+-- Indexes for table `setor`
 --
 ALTER TABLE `setor`
   ADD PRIMARY KEY (`setor_id`);
 
 --
--- Índices de tabela `status_compra`
+-- Indexes for table `status_compra`
 --
 ALTER TABLE `status_compra`
   ADD PRIMARY KEY (`status_id`);
 
 --
--- Índices de tabela `subcateg`
+-- Indexes for table `subcateg`
 --
 ALTER TABLE `subcateg`
   ADD PRIMARY KEY (`subcateg_id`),
   ADD KEY `FK_Departamento` (`depart_id`);
 
 --
--- Índices de tabela `subcidade`
+-- Indexes for table `subcidade`
 --
 ALTER TABLE `subcidade`
   ADD PRIMARY KEY (`subcid_id`),
@@ -998,7 +1034,7 @@ ALTER TABLE `subcidade`
   ADD KEY `fk_SubEst` (`est_id`);
 
 --
--- Índices de tabela `telefone`
+-- Indexes for table `telefone`
 --
 ALTER TABLE `telefone`
   ADD PRIMARY KEY (`tel_id`),
@@ -1006,238 +1042,238 @@ ALTER TABLE `telefone`
   ADD KEY `fk_usuarioTel` (`usu_id`);
 
 --
--- Índices de tabela `tipousu`
+-- Indexes for table `tipousu`
 --
 ALTER TABLE `tipousu`
   ADD PRIMARY KEY (`tpu_id`);
 
 --
--- Índices de tabela `tipo_tel`
+-- Indexes for table `tipo_tel`
 --
 ALTER TABLE `tipo_tel`
   ADD PRIMARY KEY (`tpu_tel_id`);
 
 --
--- Índices de tabela `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`usu_id`),
   ADD KEY `fk_Tipo` (`usu_tipo`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `armazem`
+-- AUTO_INCREMENT for table `armazem`
 --
 ALTER TABLE `armazem`
   MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `categ`
+-- AUTO_INCREMENT for table `categ`
 --
 ALTER TABLE `categ`
-  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT de tabela `cidade`
+-- AUTO_INCREMENT for table `cidade`
 --
 ALTER TABLE `cidade`
   MODIFY `cid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `compra`
+-- AUTO_INCREMENT for table `compra`
 --
 ALTER TABLE `compra`
   MODIFY `compra_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `cupom`
+-- AUTO_INCREMENT for table `cupom`
 --
 ALTER TABLE `cupom`
   MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `dados_armazem`
+-- AUTO_INCREMENT for table `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT de tabela `dados_entrega`
+-- AUTO_INCREMENT for table `dados_entrega`
 --
 ALTER TABLE `dados_entrega`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `dados_horario_entrega`
+-- AUTO_INCREMENT for table `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT de tabela `dados_horario_subcidade`
+-- AUTO_INCREMENT for table `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT de tabela `departamento`
+-- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de tabela `entrega`
+-- AUTO_INCREMENT for table `entrega`
 --
 ALTER TABLE `entrega`
   MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `estado`
+-- AUTO_INCREMENT for table `estado`
 --
 ALTER TABLE `estado`
   MODIFY `est_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `forma_pag`
+-- AUTO_INCREMENT for table `forma_pag`
 --
 ALTER TABLE `forma_pag`
   MODIFY `forma_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `fornecedor`
+-- AUTO_INCREMENT for table `fornecedor`
 --
 ALTER TABLE `fornecedor`
   MODIFY `fornecedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `forn_prod`
+-- AUTO_INCREMENT for table `forn_prod`
 --
 ALTER TABLE `forn_prod`
   MODIFY `forn_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `funcionario`
+-- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
   MODIFY `funcionario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `horarios_entrega`
+-- AUTO_INCREMENT for table `horarios_entrega`
 --
 ALTER TABLE `horarios_entrega`
   MODIFY `hora_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT de tabela `lista_compra`
+-- AUTO_INCREMENT for table `lista_compra`
 --
 ALTER TABLE `lista_compra`
   MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `marca_prod`
+-- AUTO_INCREMENT for table `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de tabela `postagem`
+-- AUTO_INCREMENT for table `postagem`
 --
 ALTER TABLE `postagem`
   MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `produto`
+-- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT de tabela `produtos_favorito`
+-- AUTO_INCREMENT for table `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
   MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
--- AUTO_INCREMENT de tabela `setor`
+-- AUTO_INCREMENT for table `setor`
 --
 ALTER TABLE `setor`
   MODIFY `setor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `status_compra`
+-- AUTO_INCREMENT for table `status_compra`
 --
 ALTER TABLE `status_compra`
   MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de tabela `subcateg`
+-- AUTO_INCREMENT for table `subcateg`
 --
 ALTER TABLE `subcateg`
-  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT de tabela `subcidade`
+-- AUTO_INCREMENT for table `subcidade`
 --
 ALTER TABLE `subcidade`
   MODIFY `subcid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `telefone`
+-- AUTO_INCREMENT for table `telefone`
 --
 ALTER TABLE `telefone`
   MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `tipousu`
+-- AUTO_INCREMENT for table `tipousu`
 --
 ALTER TABLE `tipousu`
   MODIFY `tpu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `tipo_tel`
+-- AUTO_INCREMENT for table `tipo_tel`
 --
 ALTER TABLE `tipo_tel`
   MODIFY `tpu_tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `armazem`
+-- Limitadores para a tabela `armazem`
 --
 ALTER TABLE `armazem`
   ADD CONSTRAINT `fk_CidArm` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`cid_id`);
 
 --
--- Restrições para tabelas `categ`
+-- Limitadores para a tabela `categ`
 --
 ALTER TABLE `categ`
   ADD CONSTRAINT `FK_SubCateg` FOREIGN KEY (`subcateg_id`) REFERENCES `subcateg` (`subcateg_id`);
 
 --
--- Restrições para tabelas `cidade`
+-- Limitadores para a tabela `cidade`
 --
 ALTER TABLE `cidade`
   ADD CONSTRAINT `fk_Est` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
 
 --
--- Restrições para tabelas `compra`
+-- Limitadores para a tabela `compra`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `fk_CompraPag` FOREIGN KEY (`forma_id`) REFERENCES `forma_pag` (`forma_id`),
@@ -1245,35 +1281,35 @@ ALTER TABLE `compra`
   ADD CONSTRAINT `fk_UsuCompra` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
 
 --
--- Restrições para tabelas `dados_armazem`
+-- Limitadores para a tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
   ADD CONSTRAINT `fk_ArmProd` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`),
-  ADD CONSTRAINT `fk_ProdArm` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
+  ADD CONSTRAINT `fk_ProdArm` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_entrega`
+-- Limitadores para a tabela `dados_entrega`
 --
 ALTER TABLE `dados_entrega`
   ADD CONSTRAINT `fk_DataCompra` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`),
   ADD CONSTRAINT `fk_DataEnt` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`);
 
 --
--- Restrições para tabelas `dados_horario_entrega`
+-- Limitadores para a tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
   ADD CONSTRAINT `fk_DadoArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`),
   ADD CONSTRAINT `fk_DadoHora` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`);
 
 --
--- Restrições para tabelas `dados_horario_subcidade`
+-- Limitadores para a tabela `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
   ADD CONSTRAINT `fk_SubHor` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`),
   ADD CONSTRAINT `fk_SubSub` FOREIGN KEY (`dados_subcidade`) REFERENCES `subcidade` (`subcid_id`);
 
 --
--- Restrições para tabelas `forn_prod`
+-- Limitadores para a tabela `forn_prod`
 --
 ALTER TABLE `forn_prod`
   ADD CONSTRAINT `fk_FornArm` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`),
@@ -1281,54 +1317,54 @@ ALTER TABLE `forn_prod`
   ADD CONSTRAINT `fk_ProdForn` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
 
 --
--- Restrições para tabelas `funcionario`
+-- Limitadores para a tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_FuncSetor` FOREIGN KEY (`funcionario_setor`) REFERENCES `setor` (`setor_id`);
 
 --
--- Restrições para tabelas `lista_compra`
+-- Limitadores para a tabela `lista_compra`
 --
 ALTER TABLE `lista_compra`
   ADD CONSTRAINT `fk_CompraLista` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`compra_id`),
   ADD CONSTRAINT `fk_ListaProd` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `fk_CategProd` FOREIGN KEY (`produto_categ`) REFERENCES `categ` (`categ_id`),
   ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`);
 
 --
--- Restrições para tabelas `produtos_favorito`
+-- Limitadores para a tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
   ADD CONSTRAINT `fk_ProdUsu` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`),
   ADD CONSTRAINT `fk_UsuProd` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
 
 --
--- Restrições para tabelas `subcateg`
+-- Limitadores para a tabela `subcateg`
 --
 ALTER TABLE `subcateg`
   ADD CONSTRAINT `FK_Departamento` FOREIGN KEY (`depart_id`) REFERENCES `departamento` (`depart_id`);
 
 --
--- Restrições para tabelas `subcidade`
+-- Limitadores para a tabela `subcidade`
 --
 ALTER TABLE `subcidade`
   ADD CONSTRAINT `fk_SubCid` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cid_id`),
   ADD CONSTRAINT `fk_SubEst` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
 
 --
--- Restrições para tabelas `telefone`
+-- Limitadores para a tabela `telefone`
 --
 ALTER TABLE `telefone`
   ADD CONSTRAINT `fk_TipoTel` FOREIGN KEY (`tpu_tel`) REFERENCES `tipo_tel` (`tpu_tel_id`),
   ADD CONSTRAINT `fk_usuarioTel` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
 
 --
--- Restrições para tabelas `usuario`
+-- Limitadores para a tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_Tipo` FOREIGN KEY (`usu_tipo`) REFERENCES `tipousu` (`tpu_id`);

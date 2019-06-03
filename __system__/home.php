@@ -148,5 +148,21 @@
     <script src="<?= base_url(); ?>js/listProdutoPromocao.js"></script>
     <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
+    <?php
+        if(isset($_SESSION['msg_cad'])):?>
+            <script>
+                Swal.fire({
+                    title: "e.conomize informa:",
+                    text: "<?= $_SESSION['msg_cad']['text']; ?>",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#A94442",
+                    confirmButtonText: "Ok"
+                });
+            </script>
+            <?php
+            unset($_SESSION['msg_cad']);
+        endif;
+    ?>
 </body>
 </html>

@@ -21,23 +21,9 @@
 </head>
 <body>
     <div class="l-wrapper">
-        <header class="l-header">
-        </header>
-        <section class="l-menu">
-            <h1 class="tituloAdminPage">e.conomize admstr</h1>
-            <ul class="listaTrocaPagina">
-                <li>
-                    <ul>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_produto');"><a class="linkTrocaPagina" href="#">Inserir produto</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('armazem/inserir_produto_armazem');"><a class="linkTrocaPagina" href="#">Produtos ao armazém</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_marca');"><a class="linkTrocaPagina" href="#">Inserir marca</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_dep');"><a class="linkTrocaPagina" href="#">Inserir departamento</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_subcateg');"><a class="linkTrocaPagina" href="#">Inserir subcategoria</a></li>
-                        <li class="celulaTrocaPagina" onclick="carregar('produto/inserir_categ');"><a class="linkTrocaPagina" href="#">Inserir categoria</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
+        <?php
+            require 'functions/includes/menu.php';
+        ?>
         <section id="conteudo" class="l-main">
             <canvas id="myChart" width="200" height="200"></canvas>
         </section>

@@ -282,7 +282,7 @@
                         <label for="href" class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                         <ul class="listFilterOptions">
                         <?php
-                        foreach($result2 as $v):?>
+                        foreach($result2 as $k => $v):?>
                             <li class="celulaListFilterOpt"><input type="radio" name="prod_tam" id="<?= $k; ?>" class="produto_tamanho" value="<?= $v['tam']; ?>"/> <label for="<?= $k; ?>"><?= $v['tam']; ?></label></li>
                             <?php
                         endforeach;?>
@@ -439,7 +439,7 @@
                     <label for="href" class="titleConfigFilter FilterVol"><i class="fas fa-weight-hanging"></i> VOLUME</label>
                     <ul class="listFilterOptions">
                     <?php
-                    foreach($result2 as $v):?>
+                    foreach($result2 as $k => $v):?>
                         <li class="celulaListFilterOpt"><input type="radio" name="prod_tam" id="<?= $k; ?>" class="produto_tamanho" value="<?= $v['tam']; ?>"/> <label for="<?= $k; ?>"><?= $v['tam']; ?></label></li>
                         <?php
                     endforeach;?>

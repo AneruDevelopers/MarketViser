@@ -14,7 +14,7 @@ function insertProdutoArmazem() {
             success: function(json) {
                 if(json['status']) {
                     alert("Cadastrado com sucesso");
-                    carregar('armazem/inserir_produto_armazem');
+                    carregar('inserir_produto_armazem');
                 }
             }
         });

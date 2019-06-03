@@ -182,7 +182,7 @@
                                 $v = str_replace("input", "input checked", $v);
                             }
                             echo '
-                                <tr>
+                                <tr class="row100">
                                     <td class="column100 column1 celAgendEndTable" style="text-align:center;">' . $v . '</td>
                                 </tr>
                             ';

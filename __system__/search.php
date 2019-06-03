@@ -46,67 +46,48 @@
                         $sel->execute();
                         if($sel->rowCount() > 0) {
                             $rows = $sel->fetchAll();
-                            foreach($rows as $row) {
-                                if($row['produto_desconto_porcent']) {
-                                    $row["produto_desconto"] = $row["produto_preco"]*($row["produto_desconto_porcent"]/100);
-                                    $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
-                                    $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
-                                    $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
-                                    if(isset($_SESSION['carrinho'][$row['produto_id']])) {
-                                        $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
-                                    } else {
-                                        $row["carrinho"] = 0;
-                                    }
-                                    echo '
-                                        <div class="prodFilter">
-                                            <div class="btnFavoriteFilter btnFavorito' . $row['produto_id'] . '">
-                                                
-                                            </div>
-                                            <img src="' . base_url_adm() . 'imagens_produtos/' . $row['produto_img'] . '"/>
-                                            <p class="divProdPromo">-' . $row['produto_desconto_porcent'] . '%</p>
-                                            <div class="divisorFilter"></div>
-                                            <h5 class="titleProdFilter">' . $row['produto_nome'] . ' - ' . $row['produto_tamanho'] . '</h5>
-                                            <p class="priceProdFilter">
-                                                <span class="divProdPrice1">R$' . $row['produto_preco'] . '</span> R$' . $row['produto_desconto'] . '
-                                            </p>
-                                            <div>
-                                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
+                            foreach($rows as $v):?>
+                                <div class="prodFilter">
+                                    <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
+                                        
+                                    </div>
+                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                    <?php 
+                                        if($v['produto_desconto_porcent'] <> "") {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        }
+                                        $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
+                                    ?>
+                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                                    <p class='priceProdFilter'>
+                                        <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
+                                    </p>
+                                    <div>
+                                        <?php 
+                                            if($v["produto_qtd"] > 0):?>
                                                 <form class="formBuy">
-                                                    <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
-                                                    <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                    <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
+                                                    <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    ';
-                                } else {
-                                    $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
-                                    if(isset($_SESSION['carrinho'][$row['produto_id']])) {
-                                        $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
-                                    } else {
-                                        $row["carrinho"] = 0;
-                                    }
-                                    echo '
-                                        <div class="prodFilter">
-                                            <div class="btnFavoriteFilter btnFavorito' . $row['produto_id'] . '">
-                                                
-                                            </div>
-                                            <img src="' . base_url_adm() . 'imagens_produtos/' . $row['produto_img'] . '"/>
-                                            <div class="divisorFilter"></div>
-                                            <h5 class="titleProdFilter">' . $row['produto_nome'] . ' - ' . $row['produto_tamanho'] . '</h5>
-                                            <p class="priceProdFilter">
-                                                R$' . $row['produto_preco'] . '
-                                            </p>
-                                            <div>
-                                                <button class="btnBuyFilter btnBuy">ADICIONAR</button>
+                                                <?php
+                                            else:?>
+                                                <span class="esgotQtdFilter">ESGOTADO</span>
                                                 <form class="formBuy">
-                                                    <input type="hidden" value="' . $row['produto_id'] . '" name="id_prod"/>
-                                                    <input type="number" min="0" max="20" value="' . $row['carrinho'] . '" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                    <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    ';
-                                }
-                            }
+                                                <?php
+                                            endif;
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                            endforeach;
                         } else {
                             echo "
                                 <p class='msgHelpSearch'>
@@ -192,7 +173,7 @@
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/listSearch.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>

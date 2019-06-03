@@ -5,6 +5,23 @@
         $json['type'] = "success";
         $json['answer'] = NULL;
 
+        function limpaCompra() {
+            unset($_SESSION['carrinho']);
+            unset($_SESSION['totCompra']);
+            if(isset($_SESSION['totCompraCupom'])) {
+                unset($_SESSION['totCompraCupom']);
+            }
+            if(isset($_SESSION['end_agend'])) {
+                unset($_SESSION['end_agend']);
+            }
+            if(isset($_SESSION['agend_horario'])) {
+                unset($_SESSION['agend_horario']);
+            }
+            if(isset($_SESSION['subcid_id'])) {
+                unset($_SESSION['subcid_id']);
+            }
+        }
+
         if(isset($_POST['id_prod'])) {
             $id = $_POST['id_prod'];
             $qtd_post = $_POST['qtd_prod'];
@@ -32,11 +49,7 @@
                 if(isset($_SESSION['carrinho'][$id])) {
                     unset($_SESSION['carrinho'][$id]);
                     if(empty($_SESSION['carrinho'])) {
-                        unset($_SESSION['carrinho']);
-                        unset($_SESSION['totCompra']);
-                        if(isset($_SESSION['totCompraCupom'])) {
-                            unset($_SESSION['totCompraCupom']);
-                        }
+                        limpaCompra();
                     }
                     $json['answer'] = "Produto removido do carrinho";
                 } else {
@@ -53,19 +66,11 @@
                 $json['answer'] = "Produto não está mais no carrinho";
             }
             if(empty($_SESSION['carrinho'])) {
-                unset($_SESSION['carrinho']);
-                unset($_SESSION['totCompra']);
-                if(isset($_SESSION['totCompraCupom'])) {
-                    unset($_SESSION['totCompraCupom']);
-                }
+                limpaCompra();
             }
         } elseif(isset($_POST['limpaCart'])) {
             if(isset($_SESSION['carrinho'])) {
-                unset($_SESSION['carrinho']);
-                unset($_SESSION['totCompra']);
-                if(isset($_SESSION['totCompraCupom'])) {
-                    unset($_SESSION['totCompraCupom']);
-                }
+                limpaCompra();
                 $json['answer'] = "Carrinho foi limpo";
             } else {
                 $json['type'] = "error";
@@ -98,11 +103,7 @@
                 if(isset($_SESSION['carrinho'][$id])) {
                     unset($_SESSION['carrinho'][$id]);
                     if(empty($_SESSION['carrinho'])) {
-                        unset($_SESSION['carrinho']);
-                        unset($_SESSION['totCompra']);
-                        if(isset($_SESSION['totCompraCupom'])) {
-                            unset($_SESSION['totCompraCupom']);
-                        }
+                        limpaCompra();
                     }
                     $json['answer'] = "Produto removido do carrinho";
                 } else {

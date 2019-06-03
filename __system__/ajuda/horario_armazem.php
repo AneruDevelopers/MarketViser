@@ -34,7 +34,7 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">ENTREGAS</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Através da maneira e.conomize&#174 de fazer comércio pela internet, com velocidade e praticidade, fazer compras online se tornou algo trivial. Parte da nossa proposta é proporcionar comodidade para nossos clientes, e isso passa muito pela estrutura 100% digital que desenvolvemos, onde ocorre todos os processos necessários para um consumo dinâmico e flexível por parte dos clientes. Com isso, a entrega em domcílio é etapa fundamental nesse sistema e tem um funcionamento voltado a maximizar o tempo e favorecer as diversas rotinas que os usuários possuem.</p>
+            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Através da maneira e.conomize&#174 de fazer comércio pela internet, com velocidade e praticidade, fazer compras online se tornou algo trivial. Parte da nossa proposta é proporcionar comodidade para nossos clientes, e isso passa muito pela estrutura 100% digital que desenvolvemos, onde ocorre todos os processos necessários para um consumo dinâmico e flexível por parte dos clientes. Com isso, a entrega em domicílio é etapa fundamental nesse sistema e tem um funcionamento voltado a maximizar o tempo e favorecer as diversas rotinas que os usuários possuem.</p>
             <br>
             <br>
             <h2 class="tituloOfertas">HORÁRIOS DE ENTREGA</h2>
