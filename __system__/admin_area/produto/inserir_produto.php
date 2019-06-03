@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <td align="center"><b>Imagem do produto:</b></td>
-                            <td><input type="file" name="imagem_produto[]"></td>
+                            <td><input type="file" id="imagem_produto" name="imagem_produto[]"></td>
                         </tr>
                         <tr>
                             <td align="center"><b>Descrição do produto:</b></td>

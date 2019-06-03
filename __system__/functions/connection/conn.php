@@ -15,6 +15,9 @@
 	function base_url_adm() {
 		return "http://localhost/economize/__system__/admin_area/";
 	}
+	function base_url_adm_php() {
+		return "http://localhost/economize/admin_area/";
+	}
 
 	// FUNÇÃO VERIFICA SE A REQUISIÇÃO FEITA AO SERVIDOR É VIA AJAX
 	function isXmlHttpRequest() {

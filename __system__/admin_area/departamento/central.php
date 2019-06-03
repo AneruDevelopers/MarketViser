@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>e.conomize | Painel de controle</title>
+    <title>e.conomize | Central de departamentos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link href="<?= base_url_adm(); ?>style/admin.css" rel="stylesheet"/>
@@ -22,10 +22,13 @@
 <body>
     <div class="l-wrapper">
         <?php
-            require 'functions/includes/menu.php';
+            require '__system__/admin_area/functions/includes/menu.php';
         ?>
-        <section id="conteudo" class="l-main">
-        
+        <section class="l-main">
+            <a href="#" onclick="carregar('inserir_dep')">Inserir departamento</a>
+            <div id="conteudo">
+
+            </div>
         </section>
         <footer class="l-footer">
         </footer>
@@ -37,7 +40,6 @@
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>
-    <script src="<?= base_url_adm(); ?>js/produto.js"></script>
-    <script src="<?= base_url_adm(); ?>js/armazem.js"></script>
+    <script src="<?= base_url_adm(); ?>js/departamento.js"></script>
 </body>
 </html>

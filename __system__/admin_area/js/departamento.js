@@ -1,20 +1,20 @@
-function insertProdutoArmazem() {
-    $('.formInserirProdutoArmazem').submit(function(e) {
+function insertDep() {
+    $('.formInserirDep').submit(function(e) {
         e.preventDefault();
 
         $.ajax({
             dataType: 'json',
-            url: BASE_URL4 + 'functions/armazem',
+            url: BASE_URL4 + 'functions/departamento',
             type: 'POST',
             data: $(this).serialize(),
             beforeSend() {
                 clearErrors();
-                $("#btnInsertProdutoArmazem").siblings(".help-block").html(loadingRes("Verificando..."));
+                $("#btnInsertDep").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
                 if(json['status']) {
                     alert("Cadastrado com sucesso");
-                    carregar('inserir_produto_armazem');
+                    carregar('inserir_dep');
                 }
             }
         });

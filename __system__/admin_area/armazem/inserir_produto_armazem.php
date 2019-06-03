@@ -4,6 +4,9 @@
                 <div style="margin-bottom:60px;">
                     <div>
                         <table width="auto" align="center" border="2">
+                            <tr align="center">
+                                <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            </tr>
                             <tr>
                                 <td align="center"><b>Armazém</b></td>
                                 <td>
@@ -74,6 +77,9 @@
             $('.divProdutoArmazem').append(`
             <div>
                 <table width="auto" align="center" border="2">
+                    <tr align="center">
+                        <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                    </tr>
                     <tr>
                         <td align="center"><b>Armazém</b></td>
                         <td>

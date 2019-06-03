@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>e.conomize | Painel de controle</title>
+    <title>e.conomize | Central de funcionários</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link href="<?= base_url_adm(); ?>style/admin.css" rel="stylesheet"/>
@@ -21,9 +21,13 @@
 </head>
 <body>
     <div class="l-wrapper">
-        <?php
-            require 'functions/includes/menu.php';
-        ?>
+        <header class="l-header">
+        </header>
+        <section class="l-menu">
+            <?php
+                require '__system__/admin_area/functions/includes/menu.php';
+            ?>
+        </section>
         <section id="conteudo" class="l-main">
         
         </section>

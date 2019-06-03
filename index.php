@@ -10,19 +10,19 @@
 				$_SESSION['arm'] = $v['cid_nome'] . " - " . $v['est_uf'];
 				$array = explode(" ",$v['cid_nome']);
 				if(count($array) > 1) {
-				$qtd = strlen($v['cid_nome']) - (strlen($array[0]) + 1);
-				$_SESSION['arm_cm'] = substr($v['cid_nome'],0,1) . " " . substr($v['cid_nome'],-$qtd) . " - " . $v['est_uf'];
+					$qtd = strlen($v['cid_nome']) - (strlen($array[0]) + 1);
+					$_SESSION['arm_cm'] = substr($v['cid_nome'],0,1) . " " . substr($v['cid_nome'],-$qtd) . " - " . $v['est_uf'];
 				} else {
-				if(isset($_SESSION['arm_cm'])) {
-					unset($_SESSION['arm_cm']);
-				}
+					if(isset($_SESSION['arm_cm'])) {
+						unset($_SESSION['arm_cm']);
+					}
 				}
 				$_SESSION['arm_nome'] = $v['armazem_nome'];
 				$_SESSION['arm_id'] = $v['armazem_id'];
 			endforeach;
 		endif;
 	else:
-		if(!isset($_SESSION['arm'])):
+		if(!isset($_SESSION['arm_id'])):
 			$sel = $conn->prepare("SELECT c.cid_nome,e.est_uf,a.armazem_nome,a.armazem_id FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id WHERE c.cid_nome='LINS'");
 			$sel->execute();
 			if($sel->rowCount() > 0):
