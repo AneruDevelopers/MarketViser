@@ -25,7 +25,7 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a href="#" onclick="carregar('inserir_produto_armazem')">Inserir produto ao armazém</a>
+            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_produto_armazem')">Inserir produto ao armazém</a>
             <div id="conteudo">
                 
             </div>

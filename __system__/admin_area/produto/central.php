@@ -26,7 +26,7 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a href="#" onclick="carregar('inserir_produto')">Inserir Produto</a>
+            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_produto')">Inserir Produto</a>
             <div id="conteudo">
                 <!-- <table id="dt_prods" class="display">
                     <thead>
