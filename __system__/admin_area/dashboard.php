@@ -24,7 +24,7 @@
         <header class="l-header">
         </header>
         <section class="l-menu">
-            <h1 class="tituloAdminPage">Admstr</h1>
+            <h1 class="tituloAdminPage">e.conomize admstr</h1>
             <ul class="listaTrocaPagina">
                 <li>
                     <ul>
@@ -39,12 +39,30 @@
             </ul>
         </section>
         <section id="conteudo" class="l-main">
-        
+            <canvas id="myChart" width="200" height="200"></canvas>
         </section>
         <footer class="l-footer">
         </footer>
     </div>
-
+    
+    <script src="<?= base_url(); ?>style\libraries\ChartJS\chart.js\dist\Chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'month'
+                        }
+                    }]
+                }
+            }   
+        });
+    </script>
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
     <script src="<?= base_url(); ?>js/mask.js"></script>
