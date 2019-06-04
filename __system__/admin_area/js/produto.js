@@ -9,7 +9,7 @@ function dataProds() {
             if(json['status']) {
                 if(!json['empty']) {
                     $('.dataProds').html(`
-                        <table border="1" width="80%">
+                        <table width="80%">
                             <thead>
                                 <th width="10%">Imagem</th>
                                 <th width="30%">Nome</th>

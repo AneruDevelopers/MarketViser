@@ -18,6 +18,16 @@
     src: url('../../style/fonts/SourceSansPro/SourceSansPro-Regular.ttf');
 }
 
+@font-face {
+    font-family: "Raleway";
+    src: url('../../style/fonts/Raleway/Raleway-Light.ttf');
+}
+
+@font-face {
+    font-family: "Raleway-Medium";
+    src: url('../../style/fonts/Raleway/Raleway-Medium.ttf');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -31,7 +41,7 @@ body {
 @media(min-width: 82em) and (max-width: 99.9em) {
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 5em auto 15em;
+        grid-template-rows: 5em auto 5em;
         grid-template-areas:
         "menu menu header header header header header header header header header header"
         "menu menu main main main main main main main main main main"
@@ -48,28 +58,6 @@ body {
         border-top-right-radius: 0;
         z-index: 1; */
     }
-    .l-header .comapanyName {
-        width: 100%;
-        text-align: center;
-    }
-    .l-header .notification {
-        position: absolute;
-        right: 20px;
-        color: #fff;
-    }
-    .notification .qtdNotifi {
-        font-size: 10pt;
-        width: 100%;
-        text-align: center;
-        line-height: 22px;
-        background: red;
-        width: 20px;
-        height: 20px;
-        border-radius: 20px;
-        position: relative;
-        top: -50px;
-        left: 10px;
-    }
 
     .l-menu {
         grid-area: menu;
@@ -79,6 +67,8 @@ body {
     .l-main {
         grid-area: main;
         background-color: #ffffff;
+        border: solid 4px rgb(228, 225, 225);
+        border-right: none;
     }
 
     .l-footer{
@@ -91,7 +81,7 @@ body {
     .tituloAdminPage {
         font-family: 'Rubik';
         color: #333;
-        font-size: 3rem;
+        font-size: 2.2rem;
         position: relative;
         margin: 0;
         text-align: center;
@@ -99,6 +89,20 @@ body {
         line-height: 5rem;
     }
 
+    .linkCompanyNameAdm {
+        position: relative;
+        width: 100%;
+    }
+
+    .linkCompanyNameAdm img {
+        position: relative;
+        width: 15rem;
+    }
+
+    .comapanyName {
+        width: 100%;
+        text-align: center;
+    }
 
     .listaTrocaPagina {
         position: relative;
@@ -112,7 +116,8 @@ body {
 
     .celulaTrocaPagina {
         position: relative;
-        width: 100%;
+        width: 80%;
+        left: 10%;
         height: 2.4rem;
         transition: 200ms all ease-in-out;
         border: transparent solid 2px;
@@ -127,7 +132,41 @@ body {
         text-decoration: none;
         color: #ffffff;
         font-family: 'Exo';
-        font-size: 1.1rem;
+        font-size: 1rem;
+        text-align: left;
+        line-height: 40px;
+    }
+
+    .notification {
+        position: absolute;
+        right: 3%;
+        top: 2%;
+        font-size: 20px;
+        color: #fff;
+    }
+    
+    .qtdNotifi {
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+        line-height: 22px;
+        background: red;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        position: relative;
+        top: -45px;
+        left: 6px;
+    }
+
+    .linkAlterAdm {
+        text-decoration: none;
+        color: #9C45EB;
+        font-family: "Raleway-Medium";
+        position: relative;
+        left: 2%;
+        top: 1rem;
+        font-size: 14px;
     }
 
     /* PÁGINA --> inserir_produto.php */

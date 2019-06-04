@@ -25,7 +25,7 @@
             require 'functions/includes/menu.php';
         ?>
         <section id="conteudo" class="l-main">
-        
+
         </section>
         <footer class="l-footer">
         </footer>
