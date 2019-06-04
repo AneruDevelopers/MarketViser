@@ -1,9 +1,20 @@
 <header class="l-header">
-    <h2 class="notification"><i class="fas fa-bell"></i><p class="qtdNotifi">1</p></h2>
-    <h1 class="comapanyName"><a class="linkCompanyName" href="<?= base_url_php(); ?>"><img src="<?= base_url(); ?>img/Banner_TCC/logoPadrao.png" alt="e.conomize"></a></h1>
+    <h2 class="notification">
+        <i class="fas fa-bell"></i>
+        <p class="qtdNotifi">1</p>
+    </h2>
+    <h1 class="comapanyName">
+        <a class="linkCompanyNameAdm" href="<?= base_url_php(); ?>">
+            <img src="<?= base_url(); ?>img\Banner_TCC\logoPadrao.png" alt="e.conomize">
+        </a>
+    </h1>
 </header>
 <section class="l-menu">
-    <h1 class="tituloAdminPage">Admstr</h1>
+    <h1 class="tituloAdminPage">
+        <a class="linkAdmDash" href="<?= base_url_php(); ?>admin_area/dashboard">
+            Admstr
+        </a>
+    </h1>
     <ul class="listaTrocaPagina">
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
             <li class="celulaTrocaPagina">

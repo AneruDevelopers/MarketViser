@@ -26,21 +26,30 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a href="#" onclick="carregar('inserir_produto')">Inserir Produto</a>
+            <h3 class="titleAdm">ADMINISTRANDO PRODUTOS</h3>
             <div id="conteudo">
-                <!-- <table id="dt_prods" class="display">
+
+            </div>
+            <button class="linkAlterAdm" onclick="carregar('inserir_produto')"><i class="fa fa-plus"></i> &nbsp;Adicionar produto</button>
+            <div class="divSearch">
+                <form class="formSearch">
+                    <label for="searchProd">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchProd"/>
+                </form>
+            </div>
+            <div class="divEcoTable">
+                <table width="80%" class="tableView" align="center">
                     <thead>
-                        <tr>
-                            <th width="15%">Imagem</th>
-                            <th width="30%">Nome</th>
-                            <th width="35%">Volume</th>
-                            <th width="20%">Marca</th>
-                        </tr>
+                        <th class="thTitle" width="10%">Imagem</th>
+                        <th class="thTitle" width="30%">Nome</th>
+                        <th class="thTitle" width="25%">Volume</th>
+                        <th class="thTitle" width="20%">Marca</th>
+                        <th class="thTitle" width="15%">Ações</th>
                     </thead>
-                    <tbody>
-                        
+                    <tbody class="tbodyProd">
+
                     </tbody>
-                </table> -->
+                </table>
             </div>
             <div class="dataProds">
                 

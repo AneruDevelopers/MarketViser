@@ -21,15 +21,13 @@
 </head>
 <body>
     <div class="l-wrapper">
-        <header class="l-header">
-        </header>
-        <section class="l-menu">
-            <?php
-                require '__system__/admin_area/functions/includes/menu.php';
-            ?>
-        </section>
-        <section id="conteudo" class="l-main">
-        
+        <?php
+            require '__system__/admin_area/functions/includes/menu.php';
+        ?>
+        <section class="l-main">
+            <div id="conteudo">
+                
+            </div>
         </section>
         <footer class="l-footer">
         </footer>
