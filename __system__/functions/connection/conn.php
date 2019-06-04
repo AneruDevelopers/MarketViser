@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	session_start();
 	
 	// Ajustando horário
@@ -27,7 +27,7 @@
 
 	$servername = "localhost";
 	$username = "root";
-	$password = "senhadopedro";
+	$password = "";
 	$db = "economize";
 
 	try {

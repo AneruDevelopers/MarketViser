@@ -34,7 +34,7 @@
         <li><h6 class="titleListFooter">SUPORTE</h6></li>
         <li><a class="linkListFooter" href="#">Política de Privacidade</a></li>
         <li><a class="linkListFooter" href="#">Dúvidas Frequentes</a></li>
-        <li><a class="linkListFooter" href="#">Atendimento online</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>atendimento">Atendimento online</a></li>
     </ul>
 </div>
 <div class="socialMediaDiv">
