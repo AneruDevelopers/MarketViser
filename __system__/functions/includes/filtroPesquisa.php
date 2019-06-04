@@ -141,9 +141,8 @@
 
         <div class="divShowProdFilter">
             <?php
-            $_SESSION['qryLimit'] = 12;
-            $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} LIMIT {$_SESSION['qryLimit']} ");
-            $_SESSION['query_proc'] = "SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} LIMIT {$_SESSION['qryLimit']} ";
+            $sel2 = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
+            $_SESSION['query_proc'] = "SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} ";
             $sel2->execute();
             $result2 = $sel2->fetchAll();
             foreach($result2 as $v):?>

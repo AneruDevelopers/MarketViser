@@ -10,7 +10,11 @@
     </h1>
 </header>
 <section class="l-menu">
-    <h1 class="tituloAdminPage">Admstr</h1>
+    <h1 class="tituloAdminPage">
+        <a class="linkAdmDash" href="<?= base_url_php(); ?>admin_area/dashboard">
+            Admstr
+        </a>
+    </h1>
     <ul class="listaTrocaPagina">
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
             <li class="celulaTrocaPagina">
