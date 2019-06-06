@@ -209,64 +209,66 @@ $('.linksProdCarousel').click(function(e) {
             `);
         },
         success: function(json) {
-            if(json['produto']['produto_desconto_porcent']) {
-                var produto = `
-                    <div class="modalProdutoLeft">
-                        <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+            var produto = `
+                <div class="modalProdutoLeft">
+                    <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+                </div>
+                <div class="modalProdutoRight">
+                    <div class="infProduto">
+                        <span class="marcaProdutoModal">` + json['produto']['marca_nome'] + `</span>
+                        <h2 class="nomeProdutoModal">
+                            ` + json['produto']['produto_nome'] + `<br/>
+                            <span class="volProdutoModal">` + json['produto']['produto_tamanho'] + `</span>
+                        </h2>
                     </div>
-                    <div class="modalProdutoRight">
-                        <div class="infProduto">
-                            <span class="marcaProdutoModal">` + json['produto']['marca_nome'] + `</span>
-                            <h2 class="nomeProdutoModal">
-                                ` + json['produto']['produto_nome'] + `<br/>
-                                <span class="volProdutoModal">` + json['produto']['produto_tamanho'] + `</span>
-                            </h2>
-                        </div>
-                        <div class="precoProduto">
-                            <p class="precoProdutoModal">
-                                <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/> 
-                                R$ ` + json['produto']['produto_desconto'] + `
-                            </p>
-                        </div>
-                `;
-                if(!json['produto']['empty']) {
-                    produto += `
-                        <div class="cartProdutoModal">
-                            <form class="formBuy">
-                                <input type="hidden" value="` + json['produto']['produto_id'] + `" name="id_prod"/>
-                                <input type="number" min="0" max="20" value="` + json['produto']['carrinho'] + `" class="inputQtdModal inputBuy` + json['produto']['produto_id'] + `" name="qtd_prod"/>
-                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
-                            </form>
-                        </div>
-                    `;
-                } else {
-                    produto += `
-                        <div class="cartProdutoModal">
-                            <span class="esgotModal">ESGOTADO</span>
-                            <form class="formBuy">
-                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
-                            </form>
-                        </div>
-                    `;
-                }
+                    <div class="precoProduto">
+                        <p class="precoProdutoModal">
+            `;
+            if(json['produto']['produto_desconto_porcent']) {
                 produto += `
-                        <div class="compProduto">
-                            <p class="imgLust">Imagem meramente ilustrativa</p>
-                            <p class="compartProduto">
-                                Compartilhar: QR Code
-                            </p>
-                        </div>
-                        <div class="descProduto">
-                            <h4 class="descTitleProduto">Descrição:</h4>
-                            <p>
-                                ` + json['produto']['produto_descricao'] + `
-                            </p>
-                        </div>
+                            <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/>
+                `;
+            }
+            produto += `
+                            R$ ` + json['produto']['produto_desconto'] + `
+                        </p>
+                    </div>
+            `;
+            if(!json['produto']['empty']) {
+                produto += `
+                    <div class="cartProdutoModal">
+                        <form class="formBuy">
+                            <input type="hidden" value="` + json['produto']['produto_id'] + `" name="id_prod"/>
+                            <input type="number" min="0" max="20" value="` + json['produto']['carrinho'] + `" class="inputQtdModal inputBuy` + json['produto']['produto_id'] + `" name="qtd_prod"/>
+                            <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                        </form>
                     </div>
                 `;
             } else {
-                alert("kjhasd");
+                produto += `
+                    <div class="cartProdutoModal">
+                        <span class="esgotModal">ESGOTADO</span>
+                        <form class="formBuy">
+                            <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                        </form>
+                    </div>
+                `;
             }
+            produto += `
+                    <div class="compProduto">
+                        <p class="imgLust">Imagem meramente ilustrativa</p>
+                        <p class="compartProduto">
+                            Compartilhar: QR Code
+                        </p>
+                    </div>
+                    <div class="descProduto">
+                        <h4 class="descTitleProduto">Descrição:</h4>
+                        <p>
+                            ` + json['produto']['produto_descricao'] + `
+                        </p>
+                    </div>
+                </div>
+            `;
 
             $('.showProdutoModal').html(produto);
             attCarrinho();

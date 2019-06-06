@@ -834,9 +834,9 @@ border-radius: 0;
     }
 
     .imgProdutoModal {
-        width: 85%;
+        width: 80%;
         position: relative;
-        left: 7.5%;
+        left: 10%;
         max-height: 50%;
         top: 1%;
     }
@@ -879,7 +879,7 @@ border-radius: 0;
     }
 
     .cartProdutoModal {
-        width: 55%;
+        width: 65%;
         margin: 0 auto;
     }
     .inputQtdModal {
@@ -5623,6 +5623,14 @@ border-radius: 0;
         position: relative;
         top: 15%;
         left: 2%;
+    }
+    .descTitleProduto {
+        text-indent: 30px;
+    }
+    .descProduto p {
+        text-indent: 20px;
+        text-align: justify;
+        line-height: 25px;
     }
 
     .closeModalProduto {
