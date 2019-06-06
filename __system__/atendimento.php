@@ -49,7 +49,7 @@
 
 
        <div class="form_atd" align="Center" style="padding-left: 10%;">
-           <form id="form-atd" method="Post" action="functions/envatd" enctype="multipart/form-data">
+           <form id="form-atd" >
                <h1>Central de Atendimento</h1>
                <div  class="input-form">
                 <label>Nome:</label>
@@ -73,10 +73,6 @@
                     </optgroup>
                    
                 </select>
-               </div>
-               <div>
-                 <label>Print da tela:</label>
-                 <input type="file" name="arquivo_img">
                </div>
                <div class="input-form">
                 <label>Descrição do Problema:</label>
