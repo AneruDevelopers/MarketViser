@@ -19,6 +19,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
             <li class="celulaTrocaPagina">
                 Armazéns
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>armazem/inserir_produto_armazem')">
+                        <li>
+                            Inserir produto ao armazém
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>banner/central">
@@ -44,6 +51,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>departamento/central">
             <li class="celulaTrocaPagina">
                 Departamentos
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>departamento/inserir_dep')">
+                        <li>
+                            Inserir departamento
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>fornecedor/central">
@@ -64,6 +78,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>marca/central">
             <li class="celulaTrocaPagina">
                 Marcas
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>marca/inserir_marca')">
+                        <li>
+                            Inserir marca
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
@@ -74,6 +95,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>subcategoria/central">
             <li class="celulaTrocaPagina">
                 Subcategorias
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>subcategoria/inserir_subcateg')">
+                        <li>
+                            Inserir subcategoria
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>usuario/central">

@@ -2,19 +2,19 @@
         <form class="formInserirCateg">
             <div class="divAddCadCateg">
                 <div style="margin-bottom:60px;">
-                    <table width="auto" align="center" border="2">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
                         <tr align="center">
-                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR CATEGORIA</h2></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Nome da categoria:</b></td>
-                            <td><input type="text" name="categ_nome[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
+                            <td><input type="text" class="selectConfigArm" name="categ_nome[]" size="60"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Subcategoria da categ:</b></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>SUBCATEGORIA</b></td>
                             <td>
-                                <select name="subcateg_id[]">
-                                    <option value="*000*">--- Selecione o subcateg: ---</option>
+                                <select class="selectConfigArm" name="subcateg_id[]">
+                                    <option value="*000*"> -- Selecione o subcategoria: --</option>
                                     <?php
                                         $sel = $conn->prepare("SELECT * FROM subcateg AS s JOIN departamento AS d ON s.depart_id=d.depart_id");
                                         $sel->execute();
@@ -47,19 +47,19 @@
             e.preventDefault();
             $('.divAddCadCateg').append(`
                 <div>
-                    <table width="auto" align="center" border="2">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
                         <tr align="center">
-                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR CATEGORIA</h2></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Nome da categoria:</b></td>
-                            <td><input type="text" name="categ_nome[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
+                            <td><input type="text" class="selectConfigArm" name="categ_nome[]" size="60"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Subcategoria da categ:</b></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>SUBCATEGORIA</b></td>
                             <td>
-                                <select name="subcateg_id[]">
-                                    <option value="*000*">--- Selecione o subcateg: ---</option>
+                                <select class="selectConfigArm" name="subcateg_id[]">
+                                    <option value="*000*"> -- Selecione o subcategoria: --</option>
                                     <?php
                                         $sel = $conn->prepare("SELECT * FROM subcateg AS s JOIN departamento AS d ON s.depart_id=d.depart_id");
                                         $sel->execute();

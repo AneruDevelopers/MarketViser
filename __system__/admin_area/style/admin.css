@@ -138,7 +138,7 @@ body {
         color: #ffffff;
         font-family: 'Exo';
         font-size: 1rem;
-        text-align: left;
+        text-align: center;
         line-height: 40px;
     }
 
@@ -169,14 +169,18 @@ body {
         border: none;
         background: #252730; /* #9C45EB */
         color: #fff;
-        padding: 10px;
+        padding: 5px;
         border-radius: 3px;
         font-family: "Raleway-Medium";
         position: relative;
         left: 10%;
-        top: -.3rem;
-        font-size: 14pt;
+        top: -0rem;
+        font-size: 14px;
         cursor: pointer;
+    }
+
+    .linkAlterAdm i {
+        font-size: 14px;
     }
 
     .titleAdm {
@@ -187,7 +191,7 @@ body {
     .divSearch {
         position: absolute;
         right: 10%;
-        top: 2rem;
+        top: 1.4rem;
     }
 
     .tableView {
@@ -196,6 +200,8 @@ body {
 
     .thTitle {
         padding: 10px 0;
+        color: #9C45EB;
+        font-size: 14px;
     }
 
     .thNoData {
@@ -213,12 +219,58 @@ body {
     form {
         position: relative;
         top: 2.5rem;
-        font-family: 'Exo';
+        font-family: 'Raleway-Medium';
+    }
+
+    .formSearch label {
+        position: relative;
+        top: 0rem;
+        font-size: 14px;
+    }
+
+    .formSearch input {
+        height: 1.2rem;
+        border-radius: 2px;
+        border: solid 2px #9C45EB;
     }
 
     .divCadProduto {
         height: 600px;
         overflow-y: auto;
+    }
+
+    /* MENU */
+
+    .sub-menu {
+        display: none;
+        position: absolute;
+        background: #252730;
+        left: 100%;
+        z-index: 10;
+        top: .35rem;
+        width: 150%;
+        height: auto;
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .linkSubMenu {
+        color: #fff;
+        text-decoration: none;
+        list-style: none;
+        position: relative;
+        width: 100%;
+        height: 2.4rem;
+        left: 0;
+    }
+
+    .linkSubMenu li {
+        position: relative;
+        left: 0%;
+    }
+
+    .celulaTrocaPagina:hover > .sub-menu {
+        display: block;
     }
 
     /* MODAL VIEW */
@@ -315,6 +367,304 @@ body {
     .closeModalView:focus {
         color: #0F0617;
         text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* SEÇÕES EM GERAL */
+
+    .tableSectionConfigArm a:link {
+        color: #666;
+        font-weight: bold;
+        text-decoration:none;
+        font-family: "Raleway";
+    }
+
+    .tableSectionConfigArm a:visited {
+        color: #999999;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .tableSectionConfigArm a:active,
+    .tableSectionConfigArm a:hover {
+        color: #bd5a35;
+        text-decoration:underline;
+    }
+
+    .tableSectionConfigArm {
+        font-family:Arial, Helvetica, sans-serif;
+        color:#666;
+        font-size:12px;
+        text-shadow: 1px 1px 0px #fff;
+        background:#ffffff;
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border:#ccc 1px solid;
+        position: relative;
+        left: 10%;
+        font-family: "Raleway-Medium";
+    
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+    }
+
+    .tableSectionConfigArm th {
+        padding:21px 25px 22px 25px;
+        border-top:1px solid #fafafa;
+        border-bottom:1px solid #e0e0e0;
+    
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+    }
+
+    .tableSectionConfigArm th:first-child {
+        text-align: left;
+        padding-left:20px;
+    }
+
+    .tableSectionConfigArm tr:first-child th:first-child {
+        -moz-border-radius-topleft:3px;
+        -webkit-border-top-left-radius:3px;
+        border-top-left-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:first-child th:last-child {
+        -moz-border-radius-topright:3px;
+        -webkit-border-top-right-radius:3px;
+        border-top-right-radius:3px;
+    }
+
+    .tableSectionConfigArm tr {
+        text-align: center;
+        padding-left:20px;
+    }
+
+    .tableSectionConfigArm td:first-child {
+        text-align: left;
+        padding-left:20px;
+        border-left: 0;
+    }
+
+    .tableSectionConfigArm td {
+        padding:18px;
+        border-top: 1px solid #ffffff;
+        border-bottom:1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+    
+        background: #fafafa;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+        background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+    }
+
+    .tableSectionConfigArm tr.even td {
+        background: #f6f6f6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+        background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+    }
+
+    .tableSectionConfigArm tr:last-child td {
+        border-bottom:0;
+    }
+
+    .tableSectionConfigArm tr:last-child td:first-child {
+        -moz-border-radius-bottomleft:3px;
+        -webkit-border-bottom-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:last-child td:last-child {
+        -moz-border-radius-bottomright:3px;
+        -webkit-border-bottom-right-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:hover td {
+        background: #f2f2f2;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+        background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+    }
+
+    .selectConfigArm {
+        position: relative;
+        width: 50%;
+        margin: auto;
+        height: 1.5rem;
+        font-family: "Raleway-Medium";
+    }
+
+    .btnRemove {
+        position: relative;
+        float: right;
+        right: 5%;
+        top: -27.5rem;
+    }
+
+    .btnRemove a i {
+        color: #9C45EB;
+    }
+
+    .divSubmit button{
+        color: #ffffff;
+        background: #252730;
+        border: none;
+        padding: 8px;
+        font-family: "Raleway-Medium";
+        margin-bottom: 1rem;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    /* SEÇÃO ARMAZÉM */
+
+    .linkAlterAdmSpecial {
+        text-decoration: none;
+        border: none;
+        background: #252730; /* #9C45EB */
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        font-family: "Raleway-Medium";
+        position: relative;
+        left: 1.8%;
+        top: 1.5rem;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* SEÇÃO PRODUTO */
+
+    .tableProdConfigAdm a:link {
+        color: #666;
+        font-weight: bold;
+        text-decoration:none;
+        font-family: "Raleway";
+    }
+
+    .tableProdConfigAdm a:visited {
+        color: #999999;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .tableProdConfigAdm a:active,
+    .tableProdConfigAdm a:hover {
+        color: #bd5a35;
+        text-decoration:underline;
+    }
+
+    .tableProdConfigAdm {
+        font-family:Arial, Helvetica, sans-serif;
+        color:#666;
+        font-size:12px;
+        text-shadow: 1px 1px 0px #fff;
+        background:#ffffff;
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border:#ccc 1px solid;
+        position: relative;
+        left: 10%;
+        font-family: "Raleway-Medium";
+    
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+    }
+
+    .tableProdConfigAdm th {
+        padding:21px 25px 22px 25px;
+        border-top:1px solid #fafafa;
+        border-bottom:1px solid #e0e0e0;
+    
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+    }
+
+    .tableProdConfigAdm th:first-child {
+        text-align: left;
+        padding-left:20px;
+    }
+
+    .tableProdConfigAdm tr:first-child th:first-child {
+        -moz-border-radius-topleft:3px;
+        -webkit-border-top-left-radius:3px;
+        border-top-left-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:first-child th:last-child {
+        -moz-border-radius-topright:3px;
+        -webkit-border-top-right-radius:3px;
+        border-top-right-radius:3px;
+    }
+
+    .tableProdConfigAdm tr {
+        text-align: center;
+        padding-left:20px;
+    }
+
+    .tableProdConfigAdm td:first-child {
+        text-align: left;
+        padding-left:20px;
+        border-left: 0;
+    }
+
+    .tableProdConfigAdm td {
+        padding:18px;
+        border-top: 1px solid #ffffff;
+        border-bottom:1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+    
+        background: #fafafa;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+        background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+    }
+
+    .tableProdConfigAdm tr.even td {
+        background: #f6f6f6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+        background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+    }
+
+    .tableProdConfigAdm tr:last-child td {
+        border-bottom:0;
+    }
+
+    .tableProdConfigAdm tr:last-child td:first-child {
+        -moz-border-radius-bottomleft:3px;
+        -webkit-border-bottom-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:last-child td:last-child {
+        -moz-border-radius-bottomright:3px;
+        -webkit-border-bottom-right-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:hover td {
+        background: #f2f2f2;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+        background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+    }
+
+    .btnProductConfigAdm {
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        padding: 5px 0;
+        width: 30%;
         cursor: pointer;
     }
 }

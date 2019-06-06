@@ -26,7 +26,7 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <h3 class="titleAdm">ADMINISTRANDO PRODUTOS</h3>
+            <h3 class="titleAdm">GERENCIADOR DE PRODUTOS</h3>
             <div id="conteudo">
 
             </div>
@@ -38,13 +38,13 @@
                 </form>
             </div>
             <div class="divEcoTable">
-                <table width="80%" class="tableView" align="center">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
-                        <th class="thTitle" width="10%">Imagem</th>
-                        <th class="thTitle" width="30%">Nome</th>
-                        <th class="thTitle" width="25%">Volume</th>
-                        <th class="thTitle" width="20%">Marca</th>
-                        <th class="thTitle" width="15%">Ações</th>
+                        <th class="thTitle" width="10%">IMAGEM</th>
+                        <th class="thTitle" width="30%">NOME</th>
+                        <th class="thTitle" width="25%">VOLUME</th>
+                        <th class="thTitle" width="20%">MARCA</th>
+                        <th class="thTitle" width="15%">AÇÕES</th>
                     </thead>
                     <tbody class="tbodyProd">
 

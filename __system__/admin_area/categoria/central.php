@@ -25,7 +25,7 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_categ')">Inserir categoria</a>
+            <!-- <a class="linkAlterAdmSpecial" href="#" onclick="carregar('inserir_categ')">Inserir categoria</a> -->
             <div id="conteudo">
 
             </div>

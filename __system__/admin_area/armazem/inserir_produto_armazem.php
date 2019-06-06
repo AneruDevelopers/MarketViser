@@ -3,15 +3,15 @@
             <div class="divProdutoArmazem">
                 <div style="margin-bottom:60px;">
                     <div>
-                        <table width="auto" align="center" border="2">
+                        <table class="tableSectionConfigArm" width="80%" align="center">
                             <tr align="center">
-                                <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                                <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTOS POR ARMAZÉM</h2></td>
                             </tr>
                             <tr>
-                                <td align="center"><b>Armazém</b></td>
+                                <td align="center" style="text-align:center;color:#9C45EB;"><b>ARMAZÉM</b></td>
                                 <td>
-                                    <select name="armazem[]">
-                                        <option value="*000*">--- Selecione o armazém: ---</option>
+                                    <select class="selectConfigArm" name="armazem[]">
+                                        <option value="*000*"> -- Selecione o armazém: --</option>
                                         <?php
                                             $sel = $conn->prepare("SELECT * FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id");
                                             $sel->execute();
@@ -27,10 +27,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center"><b>Produto</b></td>
+                                <td align="center" style="text-align:center;color:#9C45EB;"><b>PRODUTO</b></td>
                                 <td>
-                                    <select name="produto[]">
-                                        <option value="*000*">--- Selecione o produto: ---</option>
+                                    <select class="selectConfigArm" name="produto[]">
+                                        <option value="*000*"> -- Selecione o produto: --</option>
                                         <?php
                                             $sel = $conn->prepare("SELECT * FROM produto");
                                             $sel->execute();
@@ -46,16 +46,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center"><b>Quantidade do produto:</b></td>
-                                <td><input type="text" class="qtd_prod" name="produto_qtd[]"></td>
+                                <td align="center" style="text-align:center;color:#9C45EB;"><b>QUANTIDADE</b></td>
+                                <td><input type="text" class="selectConfigArm qtd_prod" name="produto_qtd[]"></td>
                             </tr>
                             <tr>
-                                <td align="center"><b>Preço do produto:</b></td>
-                                <td><input type="text" class="money" name="produto_preco[]" size="60"></td>
+                                <td align="center" style="text-align:center;color:#9C45EB;"><b>PREÇO UNITÁRIO</b></td>
+                                <td><input type="text" class="selectConfigArm money" name="produto_preco[]" size="60"></td>
                             </tr>
                             <tr>
-                                <td align="center"><b>Desconto % do produto:</b></td>
-                                <td><input type="text" name="produto_desconto_porcent[]" placeholder="(Não obrigatório)" size="60"></td>
+                                <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
+                                <td><input type="text" class="selectConfigArm" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
                             </tr>
                         </table>
                     </div>
@@ -76,15 +76,15 @@
             e.preventDefault();
             $('.divProdutoArmazem').append(`
             <div>
-                <table width="auto" align="center" border="2">
+                <table class="tableSectionConfigArm" width="80%" align="center">
                     <tr align="center">
-                        <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTOS POR ARMAZÉM</h2></td>
                     </tr>
                     <tr>
-                        <td align="center"><b>Armazém</b></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>ARMAZÉM</b></td>
                         <td>
-                            <select name="armazem[]">
-                                <option value="*000*">--- Selecione o armazém: ---</option>
+                            <select class="selectConfigArm" name="armazem[]">
+                                <option value="*000*"> -- Selecione o armazém: --</option>
                                 <?php
                                     $sel = $conn->prepare("SELECT * FROM armazem AS a JOIN cidade AS c ON a.cidade_id=c.cid_id JOIN estado AS e ON c.est_id=e.est_id");
                                     $sel->execute();
@@ -100,10 +100,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center"><b>Produto</b></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PRODUTO</b></td>
                         <td>
-                            <select name="produto[]">
-                                <option value="*000*">--- Selecione o produto: ---</option>
+                            <select class="selectConfigArm" name="produto[]">
+                                <option value="*000*"> -- Selecione o produto: --</option>
                                 <?php
                                     $sel = $conn->prepare("SELECT * FROM produto");
                                     $sel->execute();
@@ -119,16 +119,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center"><b>Quantidade do produto:</b></td>
-                        <td><input type="text" class="qtd_prod" name="produto_qtd[]"></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>QUANTIDADE</b></td>
+                        <td><input type="text" class="selectConfigArm qtd_prod" name="produto_qtd[]"></td>
                     </tr>
                     <tr>
-                        <td align="center"><b>Preço do produto:</b></td>
-                        <td><input type="text" class="money" name="produto_preco[]" size="60"></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PREÇO UNITÁRIO</b></td>
+                        <td><input type="text" class="selectConfigArm money" name="produto_preco[]" size="60"></td>
                     </tr>
                     <tr>
-                        <td align="center"><b>Desconto % do produto:</b></td>
-                        <td><input type="text" name="produto_desconto_porcent[]" placeholder="(Não obrigatório)" size="60"></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
+                        <td><input type="text" class="selectConfigArm" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
                     </tr>
                 </table>
                 <div class="btnRemove">

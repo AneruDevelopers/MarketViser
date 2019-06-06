@@ -23,9 +23,9 @@ function dataProds() {
                                 <td class="tdCenter">` + json['produtos'][i].produto_tamanho + `</td>
                                 <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
                                 <td class="tdCenter">
-                                    <button class="myBtnView btnViewProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
-                                    <button class="btnEditProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
-                                    <button class="btnDelProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
+                                    <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
+                                    <button class="btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>
                         `);
