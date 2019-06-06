@@ -48,22 +48,6 @@
                 $json['status'] = 0;
                 $json['error_del'] = "Código erro: " . $del->errorCode();
             }
-        } elseif(isset($_POST['searchProd'])) {
-            $json['empty'] = TRUE;
-            $json['produtos'] = array();
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%'");
-            $sel->execute();
-            if($sel) {
-                if($sel->rowCount() > 0) {
-                    $json['empty'] = FALSE;
-                    $prods = $sel->fetchAll();
-                    foreach($prods as $v) {
-                        $json['produtos'][] = $v;
-                    }
-                }
-            } else {
-                $json['status'] = 0;
-            }
         } elseif(isset($_POST['viewProd_id'])) {
             $json['produto'] = NULL;
             $sel = $conn->prepare("SELECT c.categ_nome, s.subcateg_nome, d.depart_nome, p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_id={$_POST['viewProd_id']}");
@@ -78,9 +62,31 @@
             } else {
                 $json['status'] = 0;
             }
+        } elseif(isset($_POST['searchProd'])) {
+            $json['empty'] = TRUE;
+            $json['produtos'] = array();
+            $json['registrosTotal'] = 0;
+            $json['registrosMostra'] = 0;
+            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%'");
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    $json['empty'] = FALSE;
+                    $prods = $sel->fetchAll();
+                    foreach($prods as $v) {
+                        $json['produtos'][] = $v;
+                        $json['registrosTotal']++;
+                        $json['registrosMostra']++;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
         } else {
             $json['empty'] = TRUE;
             $json['produtos'] = array();
+            $json['registrosTotal'] = 0;
+            $json['registrosMostra'] = 0;
             $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id");
             $sel->execute();
             if($sel) {
@@ -89,6 +95,8 @@
                     $prods = $sel->fetchAll();
                     foreach($prods as $v) {
                         $json['produtos'][] = $v;
+                        $json['registrosTotal']++;
+                        $json['registrosMostra']++;
                     }
                 }
             } else {

@@ -111,6 +111,13 @@
                     $json['answer'] = "Produto não está mais no carrinho";
                 }
             }
+        } elseif(isset($_POST['attCampo_id'])) {
+            if(!isset($_SESSION['carrinho'][$_POST['attCampo_id']])) {
+                $qtd = 0;
+            } else {
+                $qtd = $_SESSION['carrinho'][$_POST['attCampo_id']];
+            }
+            $json['carrinho_qtd'] = $qtd;
         } else {
             $json['type'] = "error";
             $json['answer'] = "Produto esgotado";

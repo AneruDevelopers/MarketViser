@@ -50,11 +50,24 @@
 
                     </tbody>
                 </table>
+                <span class="registShow">
+                    
+                </span>
             </div>
             <div class="dataProds">
                 
             </div>
         </section>
+
+        <div class="myModalView" id="myModalView">
+            <div class="modalViewContent">
+                <span class="closeModalView">&times;</span>
+                <div class="showViewModal">
+
+                </div>
+            </div>
+        </div>
+
         <footer class="l-footer">
         </footer>
     </div>

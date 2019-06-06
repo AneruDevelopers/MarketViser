@@ -16,7 +16,7 @@ function inputCupom() {
                         title: 'Cupom foi adicionado'
                     });
                     $('.divAddCupom').html(`
-                        <span>
+                        <span class="codeCupom">
                             <b>Código cupom:</b> ` + json['cupom']['cupom_codigo'] + `
                         </span>
                         <button class="remCupom"><i class="far fa-times-circle"></i></button>
@@ -69,7 +69,7 @@ function verificaCupom() {
             if(!json['empty']) {
                 $('.divButtonCupom').html("");
                 $('.divAddCupom').html(`
-                    <span>
+                    <span class="codeCupom">
                         <b>Código cupom:</b> ` + json['cupom']['cupom_codigo'] + `
                     </span>
                     <button class="remCupom"><i class="far fa-times-circle"></i></button>
