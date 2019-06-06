@@ -193,6 +193,93 @@ span2.onclick = function() {
     modal2.style.display = "none";
 }
 
+var modalProd = document.getElementById('myModalProduto');
+
+$('.linksProdCarousel').click(function(e) {
+    e.preventDefault();
+    var dado = "buscaProd_id=" + $(this).attr("id-produto");
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dado,
+        url: BASE_URL + 'functions/buscaProduto',
+        beforeSend: function() {
+            $('.showProdutoModal').html(`
+                <p align="center"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;Buscando dados...</p>
+            `);
+        },
+        success: function(json) {
+            if(json['produto']['produto_desconto_porcent']) {
+                var produto = `
+                    <div class="modalProdutoLeft">
+                        <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+                    </div>
+                    <div class="modalProdutoRight">
+                        <div class="infProduto">
+                            <span class="marcaProdutoModal">` + json['produto']['marca_nome'] + `</span>
+                            <h2 class="nomeProdutoModal">
+                                ` + json['produto']['produto_nome'] + `<br/>
+                                <span class="volProdutoModal">` + json['produto']['produto_tamanho'] + `</span>
+                            </h2>
+                        </div>
+                        <div class="precoProduto">
+                            <p class="precoProdutoModal">
+                                <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/> 
+                                R$ ` + json['produto']['produto_desconto'] + `
+                            </p>
+                        </div>
+                `;
+                if(!json['produto']['empty']) {
+                    produto += `
+                        <div class="cartProdutoModal">
+                            <form class="formBuy">
+                                <input type="hidden" value="` + json['produto']['produto_id'] + `" name="id_prod"/>
+                                <input type="number" min="0" max="20" value="` + json['produto']['carrinho'] + `" class="inputQtdModal inputBuy` + json['produto']['produto_id'] + `" name="qtd_prod"/>
+                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                            </form>
+                        </div>
+                    `;
+                } else {
+                    produto += `
+                        <div class="cartProdutoModal">
+                            <span class="esgotModal">ESGOTADO</span>
+                            <form class="formBuy">
+                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                            </form>
+                        </div>
+                    `;
+                }
+                produto += `
+                        <div class="compProduto">
+                            <p class="imgLust">Imagem meramente ilustrativa</p>
+                            <p class="compartProduto">
+                                Compartilhar: QR Code
+                            </p>
+                        </div>
+                        <div class="descProduto">
+                            <h4 class="descTitleProduto">Descrição:</h4>
+                            <p>
+                                ` + json['produto']['produto_descricao'] + `
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                alert("kjhasd");
+            }
+
+            $('.showProdutoModal').html(produto);
+            attCarrinho();
+        }
+    });
+
+    modalProd.style.display = "block";
+
+    $('.closeModalProduto').click(function(e) {
+        e.preventDefault();
+        modalProd.style.display = "none";
+    });
+})
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -200,6 +287,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     } else if (event.target == modal2) {
         modal2.style.display = "none";
+    } else if (event.target == modalProd) {
+        modalProd.style.display = "none";
     }
 }
 

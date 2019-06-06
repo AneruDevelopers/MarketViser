@@ -800,6 +800,153 @@ border-radius: 0;
         cursor: pointer;
     }
 
+    /* MODAL PRODUTOS */
+
+    .myModalProduto {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalProdutoContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 90%;
+        height: 85%;
+        font-family: "Raleway";
+        position: relative;
+        top: 0rem;
+        overflow-y: auto;
+    }
+
+    .modalProdutoLeft {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .imgProdutoModal {
+        width: 85%;
+        position: relative;
+        left: 7.5%;
+        max-height: 50%;
+        top: 1%;
+    }
+
+    .modalProdutoRight {
+        width: 100%;
+        height: 100%;
+    }
+
+    .infProduto {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .marcaProdutoModal {
+        color: #333;
+    }
+    .nomeProdutoModal {
+        margin: 0;
+        color: #9C45EB;
+    }
+    .volProdutoModal {
+        color: #666;
+    }
+
+    .precoProduto {
+        width: 100%;
+        text-align: center;
+    }
+
+    .precoProdutoModal {
+        font-family: "Karla";
+        font-size: 18pt;
+        color: #9C45EB;
+    }
+    .antPreco {
+        color: #000;
+        text-decoration: line-through;
+        font-size: 13pt;
+    }
+
+    .cartProdutoModal {
+        width: 55%;
+        margin: 0 auto;
+    }
+    .inputQtdModal {
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        width: 25%;
+        height: 20px;
+        font-family: 'Karla';
+        padding-left: 4px;
+    }
+    .inputQtdModal:focus {
+        outline: #9C45EB solid 1px;
+    }
+    .btnBuyModal {
+        background: #9C45EB;
+        border: none;
+        height: 1.5rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        width: 8rem;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .compProduto {
+        width: 100%;
+        text-align: center;
+    }
+
+    .imgLust {
+        font-weight: bold;
+        color: #888;
+    }
+
+    .descProduto {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .descTitleProduto {
+        text-indent: 30px;
+        margin-bottom: 10px;
+        margin-top: 25px;
+    }
+    .descProduto p {
+        text-indent: 20px;
+        text-align: justify;
+        line-height: 25px;
+    }
+
+    .closeModalProduto {
+        color: #333;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: fixed;
+        top: 3rem;
+        right: 2rem;
+    }
+      
+    .closeModalProduto:hover,
+    .closeModalProduto:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     /* SVG */
 
     .svg-container {
@@ -2910,6 +3057,7 @@ border-radius: 0;
 
     .linksProdCarousel {
         text-decoration: none;
+        cursor: zoom-in;
     }
 
     .divProdImg {
@@ -3007,6 +3155,152 @@ border-radius: 0;
         left: 0;
         cursor: pointer;
         font-weight: 700;
+    }
+
+    /* MODAL PRODUTOS */
+
+    .myModalProduto {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalProdutoContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 90%;
+        height: 85%;
+        font-family: "Raleway";
+        position: relative;
+        top: 0rem;
+        overflow-y: auto;
+    }
+
+    .modalProdutoLeft {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .imgProdutoModal {
+        width: 70%;
+        position: relative;
+        left: 15%;
+        max-height: 50%;
+        top: 1%;
+    }
+
+    .modalProdutoRight {
+        width: 100%;
+        height: 100%;
+    }
+
+    .infProduto {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .marcaProdutoModal {
+        color: #333;
+    }
+    .nomeProdutoModal {
+        margin: 0;
+        color: #9C45EB;
+    }
+    .volProdutoModal {
+        color: #666;
+    }
+
+    .precoProduto {
+        width: 100%;
+        text-align: center;
+    }
+
+    .precoProdutoModal {
+        font-family: "Karla";
+        font-size: 18pt;
+        color: #9C45EB;
+    }
+    .antPreco {
+        color: #000;
+        text-decoration: line-through;
+        font-size: 13pt;
+    }
+
+    .cartProdutoModal {
+        width: 20%;
+        margin: 0 auto;
+    }
+    .inputQtdModal {
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        width: 25%;
+        height: 20px;
+        font-family: 'Karla';
+        padding-left: 4px;
+    }
+    .inputQtdModal:focus {
+        outline: #9C45EB solid 1px;
+    }
+    .btnBuyModal {
+        background: #9C45EB;
+        border: none;
+        height: 1.5rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        width: 8rem;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .compProduto {
+        width: 100%;
+        text-align: center;
+    }
+
+    .imgLust {
+        font-weight: bold;
+        color: #888;
+    }
+
+    .descProduto {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .descTitleProduto {
+        text-indent: 30px;
+        margin-bottom: 10px;
+        margin-top: 25px;
+    }
+    .descProduto p {
+        text-indent: 20px;
+        text-align: justify;
+        line-height: 25px;
+    }
+
+    .closeModalProduto {
+        color: #333;
+        font-size: 40px;
+        font-weight: bold;
+        position: fixed;
+        top: 8rem;
+        right: 5rem;
+    }
+      
+    .closeModalProduto:hover,
+    .closeModalProduto:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
     }
 
     /* SVG */
@@ -5103,6 +5397,7 @@ border-radius: 0;
 
     .linksProdCarousel {
         text-decoration: none;
+        cursor: zoom-in;
     }
 
     .divProdImg {
@@ -5202,6 +5497,149 @@ border-radius: 0;
         left: 0;
         cursor: pointer;
         font-weight: 700;
+    }
+
+    /* MODAL PRODUTOS */
+
+    .myModalProduto {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalProdutoContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 95%;
+        height: 90%;
+        font-family: "Raleway";
+        position: relative;
+        top: -8rem;
+        overflow-y: auto;
+    }
+
+    .modalProdutoLeft {
+        position: relative;
+        width: 50%;
+        height: 100%;
+    }
+
+    .imgProdutoModal {
+        width: 96%;
+        position: relative;
+        left: 2%;
+        max-height: 98%;
+        top: 1%;
+    }
+
+    .modalProdutoRight {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 2rem;
+    }
+
+    .infProduto {
+        width: 88%;
+        position: relative;
+        left: 2%;
+        top: 5%;
+    }
+    .marcaProdutoModal {
+        color: #333;
+    }
+    .nomeProdutoModal {
+        margin: 0;
+        color: #9C45EB;
+    }
+    .volProdutoModal {
+        color: #666;
+    }
+
+    .precoProduto {
+        width: 88%;
+        position: relative;
+        top: 8%;
+        left: 2%;
+    }
+
+    .precoProdutoModal {
+        font-family: "Karla";
+        font-size: 18pt;
+        color: #9C45EB;
+    }
+    .antPreco {
+        color: #000;
+        text-decoration: line-through;
+        font-size: 13pt;
+    }
+
+    .cartProdutoModal {
+        position: absolute;
+        right: 30%;
+    }
+    .inputQtdModal {
+        border: solid #d3d2d2 1px;
+        border-radius: 3px;
+        height: 20px;
+        font-family: 'Karla';
+        padding-left: 4px;
+    }
+    .btnBuyModal {
+        background: #9C45EB;
+        border: none;
+        height: 1.5rem;
+        color: #ffffff;
+        font-size: 12px;
+        font-family: "Karla";
+        width: 8rem;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .compProduto {
+        width: 88%;
+        position: relative;
+        top: 13%;
+        left: 2%;
+    }
+
+    .imgLust {
+        font-weight: bold;
+        color: #888;
+    }
+
+    .descProduto {
+        width: 88%;
+        position: relative;
+        top: 15%;
+        left: 2%;
+    }
+
+    .closeModalProduto {
+        color: #333;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: fixed;
+        top: 2.6rem;
+        right: 4rem;
+    }
+      
+    .closeModalProduto:hover,
+    .closeModalProduto:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
     }
 
     /* DISPLAY FAVORITES */
@@ -6402,6 +6840,13 @@ border-radius: 0;
         margin-top: 2%;
         left: 16%;
         position: relative;
+    }
+
+    .codeCupom {
+        color: #333;
+        font-family: 'Raleway-Medium';
+        position: relative;
+        left: 40px;
     }
 
     .remCupom {

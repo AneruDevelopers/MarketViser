@@ -210,6 +210,13 @@ body {
         text-align: center;
     }
 
+    .registShow {
+        font-size: 9pt;
+        color: #606060;
+        position: relative;
+        left: 10%;
+    }
+
     form {
         position: relative;
         top: 2.5rem;
@@ -225,7 +232,7 @@ body {
 
     .myModalView {
         display: none; /* Hidden by default */
-        position: absolute; /* Stay in place */
+        position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
         left: 0;
         top: 0;
@@ -306,9 +313,9 @@ body {
         float: right;
         font-size: 32px;
         font-weight: bold;
-        position: absolute;
-        top: .5rem;
-        right: 1rem;
+        position: fixed;
+        top: 2.6rem;
+        right: 4rem;
     }
       
     .closeModalView:hover,

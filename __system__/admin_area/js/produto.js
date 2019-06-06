@@ -30,7 +30,7 @@ function dataProds() {
                             </tr>
                         `);
                     }
-                    $('body').append(`
+                    $('.l-wrapper').append(`
                         <div class="myModalView" id="myModalView">
                             <div class="modalViewContent">
                                 <span class="closeModalView">&times;</span>
@@ -57,7 +57,14 @@ function dataProds() {
                     </tr>
                 `);
             }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
+            `);
         }
+        //Executar função de x em x segundo(s)
+        // complete: function() {
+        //     setTimeout(dataProds, 5000);
+        // }
     });
 }
 
@@ -117,6 +124,9 @@ function searchProduto() {
                             </tr>
                         `);
                     }
+                    $('.registShow').html(`
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
+                    `);
                 }
             });
         } else {
@@ -136,7 +146,7 @@ function viewProduto() {
                 url: BASE_URL4 + 'functions/produto',
                 beforeSend: function() {
                     $('.showViewModal').html(`
-                        <p align="center"> <i class='fa fa-circle-notch fa-spin'></i> &nbsp;Buscando dados...</p>
+                        <p align="center"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;Buscando dados...</p>
                     `);
                 },
                 success: function(json) {
@@ -256,7 +266,7 @@ function deleteProduto() {
         
         Swal.fire({
             title: "Deseja mesmo excuir este produto?",
-            text: "Uma vez feito, não haverá volta!",
+            text: "Uma vez feito, não haverá volta! (Qualquer relação qua há com esse produto, será também deletado)",
             type: "warning",
             showCancelButton: true,
             cancelButtonColor: "#494949",
