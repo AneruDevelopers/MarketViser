@@ -42,9 +42,9 @@ body {
 @media(min-width: 82em) and (max-width: 99.9em) {
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 5em auto 5em;
+        grid-template-rows: 3.5em auto 5em;
         grid-template-areas:
-        "menu menu header header header header header header header header header header"
+        "header header header header header header header header header header header header"
         "menu menu main main main main main main main main main main"
         "footer footer footer footer footer footer footer footer footer footer footer footer"
         ;
@@ -53,7 +53,7 @@ body {
     .l-header {
         grid-area: header;
         width: 100%;
-        background-color: #9C45EB;
+        background-color: #0F0617;
         /* font-size: 20px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -62,7 +62,7 @@ body {
 
     .l-menu {
         grid-area: menu;
-        background-color: #9C45EB;
+        background-color: #d1d1d1;
     }
 
     .l-main {
@@ -75,23 +75,29 @@ body {
 
     .l-footer{
         grid-area: footer;
-        background-color: #9C45EB;
+        background-color: #0F0617;
     }
 
     /* HOME */
 
     .tituloAdminPage {
         font-family: 'Rubik';
-        font-size: 2.2rem;
+        font-size: 1rem;
         position: relative;
         margin: 0;
         text-align: center;
-        height: 5rem;
-        line-height: 5rem;
+        height: 2rem;
     }
+
     .linkAdmDash {
         text-decoration: none;
-        color: #333;
+        color: #fff;
+        position: relative;
+    }
+
+    .divLinkCompanyNameAdm {
+        position: relative;
+        padding: 10px;
     }
 
     .linkCompanyNameAdm {
@@ -101,7 +107,9 @@ body {
 
     .linkCompanyNameAdm img {
         position: relative;
-        width: 15rem;
+        width: 20%;
+        left: 40%;
+        top: -4.8rem;
     }
 
     .comapanyName {
@@ -121,24 +129,25 @@ body {
 
     .celulaTrocaPagina {
         position: relative;
-        width: 80%;
-        left: 10%;
+        width: 90%;
+        left: 5%;
         height: 2.4rem;
         transition: 200ms all ease-in-out;
         border: transparent solid 2px;
         cursor: pointer;
+        text-align: left;
     }
 
     .celulaTrocaPagina:hover {
-        border-bottom: #ccc solid 2px;
+        border-bottom: #9C45EB solid 2px;
     }
 
     .linkTrocaPagina {
         text-decoration: none;
-        color: #ffffff;
+        color: #0F0617;
         font-family: 'Exo';
         font-size: 1rem;
-        text-align: center;
+        text-align: left;
         line-height: 40px;
     }
 
@@ -146,7 +155,7 @@ body {
         position: absolute;
         right: 3%;
         top: 2%;
-        font-size: 20px;
+        font-size: 16px;
         color: #fff;
     }
     
@@ -154,13 +163,13 @@ body {
         font-size: 10px;
         width: 100%;
         text-align: center;
-        line-height: 22px;
+        line-height: 16px;
         background: red;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         border-radius: 20px;
         position: relative;
-        top: -45px;
+        top: -38px;
         left: 6px;
     }
 
@@ -250,24 +259,27 @@ body {
     .sub-menu {
         display: none;
         position: absolute;
-        background: #252730;
+        background: #d1d1d1;
         left: 100%;
         z-index: 10;
-        top: .35rem;
+        top: 0rem;
         width: 150%;
         height: auto;
-        padding: 5px;
+        padding: 0px;
         border-radius: 3px;
+        border: solid 2px #9C45EB;
     }
 
     .linkSubMenu {
-        color: #fff;
+        text-align: left;
+        color: #0F0617;
         text-decoration: none;
         list-style: none;
         position: relative;
         width: 100%;
         height: 2.4rem;
-        left: 0;
+        left: 5%;
+        font-size: 14px;
     }
 
     .linkSubMenu li {
