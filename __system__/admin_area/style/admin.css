@@ -243,7 +243,6 @@ body {
 
     .divCadProduto {
         height: 600px;
-        overflow-y: auto;
     }
 
     /* MENU */
@@ -274,6 +273,7 @@ body {
     .linkSubMenu li {
         position: relative;
         left: 0%;
+        padding: 10px 0;
     }
 
     .celulaTrocaPagina:hover > .sub-menu {
@@ -372,6 +372,103 @@ body {
       
     .closeModalView:hover,
     .closeModalView:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    /* MODAL ADD */
+
+    .myModalAdd {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalAddContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 60%;
+        height: 90%;
+        font-family: "Raleway";
+        position: relative;
+        top: -8rem;
+        overflow-y: auto;
+    }
+
+    .modalAddLeft {
+        position: relative;
+        width: 50%;
+        height: 100%;
+    }
+
+    .imgProdModal {
+        width: 96%;
+        position: relative;
+        left: 2%;
+        max-height: 98%;
+        top: 1%;
+    }
+
+    .modalAddRight {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 2rem;
+    }
+
+    .infAdd {
+        width: 94%;
+        position: relative;
+        left: 2%;
+        top: 5%;
+    }
+    .marcaProdAdd {
+        color: #333;
+    }
+    .nomeProdAdd {
+        margin: 0;
+        color: #9C45EB;
+    }
+    .volProdAdd {
+        color: #666;
+    }
+
+    .categAdd {
+        width: 94%;
+        position: relative;
+        top: 8%;
+        left: 2%;
+    }
+
+    .descAdd {
+        width: 94%;
+        position: relative;
+        top: 13%;
+        left: 2%;
+    }
+
+    .closeModalAdd {
+        color: #fff;
+        font-size: 52px;
+        font-weight: bold;
+        position: fixed;
+        top: 1rem;
+        right: 15rem;
+    }
+      
+    .closeModalAdd:hover,
+    .closeModalAdd:focus {
         color: #0F0617;
         text-decoration: none;
         cursor: pointer;

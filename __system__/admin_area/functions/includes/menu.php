@@ -20,9 +20,14 @@
             <li class="celulaTrocaPagina">
                 Armazéns
                 <ul class="sub-menu">
-                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>armazem/inserir_produto_armazem')">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IPA">
                         <li>
                             Inserir produto ao armazém
+                        </li>
+                    </a>
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IA">
+                        <li>
+                            Inserir armazém
                         </li>
                     </a>
                 </ul>

@@ -28,3 +28,15 @@ function modalView() {
         }
     }
 }
+
+var modalAdd = document.getElementById('myModalAdd');
+$('.closeModalAdd').click(function(e) {
+    e.preventDefault();
+    modalAdd.style.display = "none";
+});
+
+window.onclick = function(event) {
+    if (event.target == modalAdd) {
+        modalAdd.style.display = "none";
+    }
+}

@@ -266,7 +266,7 @@ function deleteProduto() {
         
         Swal.fire({
             title: "Deseja mesmo excuir este produto?",
-            text: "Uma vez feito, não haverá volta! (Qualquer relação qua há com esse produto, será também deletado)",
+            text: "Uma vez feito, não haverá volta! (Qualquer relação que há com esse produto, será também deletado)",
             type: "warning",
             showCancelButton: true,
             cancelButtonColor: "#494949",
