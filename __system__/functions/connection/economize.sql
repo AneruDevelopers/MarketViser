@@ -840,6 +840,16 @@ CREATE TABLE `usuario` (
   `usu_registro` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE `atendimento`(
+ id_atd int NOT NULL AUTO_INCREMENT,
+ nome_usu varchar(50) NOT NULL,
+ email_usu varchar(150) NOT NULL,
+ tp_problema varchar(100) NOT NULL,
+ desc_problema text ,
+ dataenv_pro datetime DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(id_atd)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
 -- Despejando dados para a tabela `usuario`
 --
