@@ -128,7 +128,7 @@ $payment->setCurrency("BRL");
 $payment->setReference("ECONOMIZE0101");
 
 // Set your customer information.
-$payment->setSender()->setName($_SESSION['inf_usu']['usu_nome'] . $_SESSION['inf_usu']['usu_sobrenome']);
+$payment->setSender()->setName($_SESSION['inf_usu']['usu_nome']. ' ' . $_SESSION['inf_usu']['usu_sobrenome']);
 $payment->setSender()->setEmail($_SESSION['inf_usu']['usu_email']);
 foreach($res as $v) {
     $v['ddd'] = substr($v['tel_num'],1,2);
