@@ -41,6 +41,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>categoria/central">
             <li class="celulaTrocaPagina">
                 Categorias
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>categoria/inserir_categ')">
+                        <li>
+                            Inserir catregoria
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>compra/central">

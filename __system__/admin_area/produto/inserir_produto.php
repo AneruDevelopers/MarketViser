@@ -2,19 +2,19 @@
         <form class="formInserirProdutos" enctype="multipart/form-data">
             <div class="divAddCadProduto">
                 <div style="margin-bottom:60px;">
-                    <table width="auto" align="center" border="2">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
                         <tr align="center">
-                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTO</h2></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Nome do produto:</b></td>
-                            <td><input type="text" name="nome_produto[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="nome_produto[]" size="60"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Marca do produto:</b></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>MARCA</b></td>
                             <td>
-                                <select name="marca_produto[]">
-                                    <option value="*000*">--- Selecione a marca: ---</option>
+                                <select class="selectConfigArm" name="marca_produto[]">
+                                    <option value="*000*"> -- Selecione a marca: --</option>
                                     <?php
                                         $sel = $conn->prepare("SELECT * FROM marca_prod");
                                         $sel->execute();
@@ -30,10 +30,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Categoria do produto:</b></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
                             <td>
-                                <select name="categoria_produto[]">
-                                    <option>--- Selecione a categoria: ---</option>
+                                <select class="selectConfigArm" name="categoria_produto[]">
+                                    <option> -- Selecione a categoria: --</option>
                                     <?php
                                         $sel = $conn->prepare("SELECT * FROM categ AS c JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id");
                                         $sel->execute();
@@ -49,16 +49,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Imagem do produto:</b></td>
-                            <td><input type="file" id="imagem_produto" name="imagem_produto[]"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
+                            <td><input type="file" class="selectConfigArm" id="imagem_produto" name="imagem_produto[]"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Descrição do produto:</b></td>
-                            <td><textarea name="descricao_produto[]" cols="30" rows="10"></textarea></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
+                            <td><textarea name="descricao_produto[]" class="selectConfigArm" cols="30" rows="10"></textarea></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Volume do produto:</b></td>
-                            <td><input type="text" name="produto_tamanho[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>VOLUME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="produto_tamanho[]" size="60"></td>
                         </tr>
                     </table>
                 </div>
@@ -78,7 +78,7 @@
             e.preventDefault();
             $('.divAddCadProduto').append(`
             <div>
-                <table width="auto" align="center" border="2">
+                <table class="tableSectionConfigArm" width="80%" align="center">
                     <tr align="center">
                         <td colspan="8"><h2>Insira os dados aqui</h2></td>
                     </tr>
@@ -109,7 +109,7 @@
                         <td align="center"><b>Categoria do produto:</b></td>
                         <td>
                             <select name="categoria_produto[]">
-                                <option>--- Selecione a categoria: ---</option>
+                                <option> -- Selecione a categoria: --</option>
                                 <?php
                                     $sel = $conn->prepare("SELECT * FROM categ AS c JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id");
                                     $sel->execute();

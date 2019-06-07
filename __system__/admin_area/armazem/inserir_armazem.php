@@ -13,7 +13,7 @@
 
     <form class="formInserirProdutos" action="inserir_armazem" method="post" enctype="multipart/form-data">
 
-        <table class="" width="auto" align="center">
+        <table class="tableSectionConfigArm" width="80%" align="center">
             <tr align="center">
                 <td colspan="8"><h2>Insira os dados aqui</h2></td>
             </tr>
