@@ -30,7 +30,7 @@ function dataProds() {
                             </tr>
                         `);
                     }
-                    $('.l-wrapper').append(`
+                    $('body').append(`
                         <div class="myModalView" id="myModalView">
                             <div class="modalViewContent">
                                 <span class="closeModalView">&times;</span>
