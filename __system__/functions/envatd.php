@@ -23,7 +23,7 @@ require_once 'connection/conn.php';
       $json["msg"] = "Existe algum erro";
      }
     else{
-     $sql = "INSERT INTO atendimento(nome,email,tipo_problema,descricao) VALUES('{$_POST["name_usu"]}','{$_POST["email_usu"]}','{$_POST["opt"]}','{$_POST["txt_usu"]}')";
+     $sql = "INSERT INTO atendimento(nome_usu,email_usu,tp_problema,desc_problema) VALUES('{$_POST["name_usu"]}','{$_POST["email_usu"]}','{$_POST["opt"]}','{$_POST["txt_usu"]}')";
    
  if ($conn->exec($sql)) {
         $json['msg'] = "Enviado com Sucesso";

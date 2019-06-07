@@ -3,18 +3,18 @@
         <i class="fas fa-bell"></i>
         <p class="qtdNotifi">1</p>
     </h2>
-    <h1 class="comapanyName">
+    <div class="divLinkCompanyNameAdm">
         <a class="linkCompanyNameAdm" href="<?= base_url_php(); ?>">
-            <img src="<?= base_url(); ?>img\Banner_TCC\logoPadrao.png" alt="e.conomize">
+            <img src="<?= base_url(); ?>img\Logo cor_branca.png" alt="e.conomize">
         </a>
-    </h1>
+    </div>
 </header>
 <section class="l-menu">
-    <h1 class="tituloAdminPage">
+    <!-- <h1 class="tituloAdminPage">
         <a class="linkAdmDash" href="<?= base_url_php(); ?>admin_area/dashboard">
-            Admstr
+            PAINEL
         </a>
-    </h1>
+    </h1> -->
     <ul class="listaTrocaPagina">
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
             <li class="celulaTrocaPagina">
