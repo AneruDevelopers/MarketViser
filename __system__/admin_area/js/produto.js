@@ -24,7 +24,7 @@ function dataProds() {
                                 <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
                                 <td class="tdCenter">
                                     <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
-                                    <button class="btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="myBtnUpd btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
                                     <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>
@@ -39,10 +39,76 @@ function dataProds() {
                                 </div>
                             </div>
                         </div>
+
+                        <div class="myModalUpd" id="myModalUpd">
+                            <div class="modalUpdContent">
+                                <span class="closeModalUpd">&times;</span>
+                                <div class="showUpdModal">
+                                    <div class="divCadProduto">
+                                        <form class="formUpdateProdutos" enctype="multipart/form-data">
+                                            <div class="divAddCadProduto">
+                                                <div style="margin:25px 0;">
+                                                    <table class="tableSectionConfigArm" width="80%" align="center">
+                                                        <tr align="center">
+                                                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR PRODUTO</h2></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                                            <td><input type="hidden" id="prod_idUpd" name="id_produto_upd"><input type="text" class="selectConfigArm" id="prod_nomeUpd" name="nome_produto_upd" size="60"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>MARCA</b></td>
+                                                            <td>
+                                                                <select class="selectConfigArm" name="marca_produto_upd" id="prod_marcaUpd">
+                                                                    
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
+                                                            <td>
+                                                                <select class="selectConfigArm" name="categoria_produto_upd" id="prod_categUpd">
+                                                                    
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
+                                                            <td>
+                                                                <img class="imgUpload" src=""/><br/>
+                                                                <label for="imagem_produtoEdit" class="selectConfigArm labelFile"><i class="fas fa-upload"></i> Alterar imagem</label>
+                                                                <input type="file" class="selectConfigArm" accept="image/*" id="imagem_produtoEdit" name="imagem_produto_upd"/>
+                                                                <br/><br/>
+                                                                <small>* Caso não escolha nenhuma imagem, será mantida a atual</small>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
+                                                            <td><textarea name="descricao_produto_upd"  id="prod_descUpd" class="selectConfigArm" cols="30" rows="10"></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>VOLUME</b></td>
+                                                            <td><input type="text" id="prod_tamUpd" class="selectConfigArm" name="produto_tamanho_upd" size="60"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="divSubmit" align="center">
+                                                <button type="submit" id="btnUpdateProduto"><i class="fas fa-save"></i> Editar</button>
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     `);
                     deleteProduto();
                     modalView();
+                    modalUpd();
                     viewProduto();
+                    updProduto();
+                    uploadImg();
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
@@ -101,7 +167,7 @@ function searchProduto() {
                                         <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
                                         <td class="tdCenter">
                                             <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
-                                            <button class="btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="myBtnUpd btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
                                             <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
                                         </td>
                                     </tr>
@@ -109,7 +175,9 @@ function searchProduto() {
                             }
                             deleteProduto();
                             modalView();
+                            modalUpd();
                             viewProduto();
+                            updProduto();
                         } else {
                             $('.tbodyProd').html(`
                                 <tr>
@@ -138,7 +206,7 @@ function searchProduto() {
 function viewProduto() {
     $(".btnViewProd").click(function(e) {
         e.preventDefault();
-        var dado = "viewProd_id=" + $(this).attr("id-produto");
+        var dado = "getProd_id=" + $(this).attr("id-produto");
         $.ajax({
             dataType: 'json',
                 type: 'post',
@@ -177,6 +245,65 @@ function viewProduto() {
                             </div>
                         </div>
                     `);
+                }
+        });
+    });
+}
+
+function updProduto() {
+    $(".btnEditProd").click(function(e) {
+        e.preventDefault();
+        clearErrors();
+        var dado = "updProd_id=" + $(this).attr("id-produto");
+        $.ajax({
+            dataType: 'json',
+                type: 'post',
+                data: dado,
+                url: BASE_URL4 + 'functions/produto',
+                beforeSend: function() {
+                    $('#prod_idUpd').val("");
+                    $('#prod_nomeUpd').val("");
+                    $('#prod_marcaUpd').html("");
+                    $('#prod_categUpd').html("");
+                    $('#prod_descUpd').val("");
+                    $('#prod_tamUpd').val("");
+                },
+                success: function(json) {
+                    $('#prod_idUpd').val(json['produto']['produto_id']);
+                    $('#prod_nomeUpd').val(json['produto']['produto_nome']);
+                    $('#prod_marcaUpd').html(`
+                        <option value="*000*"> -- Selecione a marca: --</option>
+                    `);
+                    for(var i = 0; i < json['marca_prod'].length; i++) {
+                        if(json['marca_prod'][i].marca_id != json['produto']['produto_marca']) {
+                            $('#prod_marcaUpd').append(`
+                                <option value="` + json['marca_prod'][i].marca_id + `">` + json['marca_prod'][i].marca_nome + `</option>
+                            `);
+                        } else {
+                            $('#prod_marcaUpd').append(`
+                                <option selected value="` + json['marca_prod'][i].marca_id + `">` + json['marca_prod'][i].marca_nome + `</option>
+                            `);
+                        }
+                    }
+
+                    $('#prod_categUpd').html(`
+                        <option value="*000*"> -- Selecione a categoria: --</option>
+                    `);
+                    for(var i = 0; i < json['categ_prod'].length; i++) {
+                        if(json['categ_prod'][i].categ_id != json['produto']['produto_categ']) {
+                            $('#prod_categUpd').append(`
+                                <option value="` + json['categ_prod'][i].categ_id + `">` + json['categ_prod'][i].categ_nome + `</option>
+                            `);
+                        } else {
+                            $('#prod_categUpd').append(`
+                                <option selected value="` + json['categ_prod'][i].categ_id + `">` + json['categ_prod'][i].depart_nome + ` / ` + json['categ_prod'][i].subcateg_nome + ` / ` + json['categ_prod'][i].categ_nome + `</option>
+                            `);
+                        }
+                    }
+                    $('#prod_descUpd').val(json['produto']['produto_descricao']);
+                    $('#prod_tamUpd').val(json['produto']['produto_tamanho']);
+
+                    updateProduto();
                 }
         });
     });
@@ -266,15 +393,30 @@ function updateProduto() {
             data: formData,
             beforeSend() {
                 clearErrors();
-                $("#btnInsertProduto").siblings(".help-block").html(loadingRes("Verificando..."));
+                $("#btnUpdateProduto").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
                 clearErrors();
                 if(json['status']) {
-                    alert("Cadastrado com sucesso");
-                    carregar('inserir_produto');
+                    Swal.fire({
+                        title: "Produto editado com sucesso!",
+                        type: "success",
+                        showCancelButton: false,
+                        confirmButtonColor: "#333",
+                        confirmButtonText: "Ok",
+                    }).then((result) => {
+                        if(result.value) {
+                            var modalUpd = document.getElementById('myModalUpd');
+                            modalUpd.style.display = "none";
+                            dataProds();
+                        } else {
+                            var modalUpd = document.getElementById('myModalUpd');
+                            modalUpd.style.display = "none";
+                            dataProds();
+                        }
+                    });
                 } else {
-                    showErrorsAdmin(response["error_list"]);
+                    $("#btnUpdateProduto").siblings(".help-block").html(json['error']);
                 }
             },
             cache: false,

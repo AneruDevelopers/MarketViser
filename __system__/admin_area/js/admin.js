@@ -29,6 +29,33 @@ function modalView() {
     }
 }
 
+function modalUpd() {
+    var modalUpd = document.getElementById('myModalUpd');
+
+    var btnUpd = [];
+    for(var i = 0; i < $('.myBtnUpd').length; i++) {
+        btnUpd[i] = $('.myBtnUpd')[i];
+    }
+
+    for(var c = 0; c < btnUpd.length; c++) {
+        btnUpd[c].onclick = function() {
+            modalUpd.style.display = "block";
+        }
+    }
+
+    var span = document.getElementsByClassName("closeModalUpd")[0];
+
+    span.onclick = function() {
+        modalUpd.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modalUpd) {
+            modalUpd.style.display = "none";
+        }
+    }
+}
+
 
 var modalAdd = document.getElementById('myModalAdd');
 
