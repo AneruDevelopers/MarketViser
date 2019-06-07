@@ -1,7 +1,24 @@
+function attCampos(prod_id) {
+    var dado = "attCampo_id=" + prod_id;
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dado,
+        url: BASE_URL + 'functions/attCarrinho',
+        success: function(json) {
+            $(".inputBuy" + prod_id).val(json["carrinho_qtd"]);
+        }
+    });
+    return false;
+}
+
 function attCarrinho() {
     $('.formBuy').submit(function(e) {
         e.preventDefault();
         var dado = $(this).serialize();
+        var elementoPai = $(this).parent();
+        var elemento = elementoPai.find('[name = "id_prod"]').val();
 
         $.ajax({
             dataType: 'json',
@@ -13,6 +30,7 @@ function attCarrinho() {
                     type: json['type'],
                     title: json['answer']
                 });
+                attCampos(elemento);
             }
         });
         return false;

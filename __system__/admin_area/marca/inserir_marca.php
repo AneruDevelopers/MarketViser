@@ -2,13 +2,13 @@
         <form class="formInserirMarca">
             <div class="divAddCadMarca">
                 <div style="margin-bottom:60px;">
-                    <table width="auto" align="center" border="2">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
                         <tr align="center">
-                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR MARCA</h2></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Nome da marca:</b></td>
-                            <td><input type="text" name="marca_nome[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="marca_nome[]" size="60"></td>
                         </tr>
                     </table>
                 </div>

@@ -25,13 +25,23 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_dep')">Inserir departamento</a>
+            <h3 class="titleAdm">GERENCIADOR DE DEPARTAMENTOS</h3>
             <div id="conteudo">
 
             </div>
+            <!-- <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar departamento</button> -->
         </section>
         <footer class="l-footer">
         </footer>
+
+        <!-- <div class="myModalAdd" id="myModalAdd">
+            <div class="modalAddContent">
+                <span class="closeModalAdd">&times;</span>
+                <div class="showAddModal">
+                
+                </div>
+            </div>
+        </div> -->
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>

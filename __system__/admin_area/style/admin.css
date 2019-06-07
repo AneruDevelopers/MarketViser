@@ -42,9 +42,9 @@ body {
 @media(min-width: 82em) and (max-width: 99.9em) {
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 5em auto 5em;
+        grid-template-rows: 3.5em auto 5em;
         grid-template-areas:
-        "menu menu header header header header header header header header header header"
+        "header header header header header header header header header header header header"
         "menu menu main main main main main main main main main main"
         "footer footer footer footer footer footer footer footer footer footer footer footer"
         ;
@@ -53,7 +53,7 @@ body {
     .l-header {
         grid-area: header;
         width: 100%;
-        background-color: #9C45EB;
+        background-color: #0F0617;
         /* font-size: 20px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -62,7 +62,7 @@ body {
 
     .l-menu {
         grid-area: menu;
-        background-color: #9C45EB;
+        background-color: #d1d1d1;
     }
 
     .l-main {
@@ -75,23 +75,29 @@ body {
 
     .l-footer{
         grid-area: footer;
-        background-color: #9C45EB;
+        background-color: #0F0617;
     }
 
     /* HOME */
 
     .tituloAdminPage {
         font-family: 'Rubik';
-        font-size: 2.2rem;
+        font-size: 1rem;
         position: relative;
         margin: 0;
         text-align: center;
-        height: 5rem;
-        line-height: 5rem;
+        height: 2rem;
     }
+
     .linkAdmDash {
         text-decoration: none;
-        color: #333;
+        color: #fff;
+        position: relative;
+    }
+
+    .divLinkCompanyNameAdm {
+        position: relative;
+        padding: 10px;
     }
 
     .linkCompanyNameAdm {
@@ -101,7 +107,9 @@ body {
 
     .linkCompanyNameAdm img {
         position: relative;
-        width: 15rem;
+        width: 20%;
+        left: 40%;
+        top: -4.8rem;
     }
 
     .comapanyName {
@@ -121,21 +129,22 @@ body {
 
     .celulaTrocaPagina {
         position: relative;
-        width: 80%;
-        left: 10%;
+        width: 90%;
+        left: 5%;
         height: 2.4rem;
         transition: 200ms all ease-in-out;
         border: transparent solid 2px;
         cursor: pointer;
+        text-align: left;
     }
 
     .celulaTrocaPagina:hover {
-        border-bottom: #ccc solid 2px;
+        border-bottom: #9C45EB solid 2px;
     }
 
     .linkTrocaPagina {
         text-decoration: none;
-        color: #ffffff;
+        color: #0F0617;
         font-family: 'Exo';
         font-size: 1rem;
         text-align: left;
@@ -146,7 +155,7 @@ body {
         position: absolute;
         right: 3%;
         top: 2%;
-        font-size: 20px;
+        font-size: 16px;
         color: #fff;
     }
     
@@ -154,13 +163,13 @@ body {
         font-size: 10px;
         width: 100%;
         text-align: center;
-        line-height: 22px;
+        line-height: 16px;
         background: red;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         border-radius: 20px;
         position: relative;
-        top: -45px;
+        top: -38px;
         left: 6px;
     }
 
@@ -169,14 +178,18 @@ body {
         border: none;
         background: #252730; /* #9C45EB */
         color: #fff;
-        padding: 10px;
+        padding: 5px;
         border-radius: 3px;
         font-family: "Raleway-Medium";
         position: relative;
         left: 10%;
-        top: -.3rem;
-        font-size: 14pt;
+        top: -0rem;
+        font-size: 14px;
         cursor: pointer;
+    }
+
+    .linkAlterAdm i {
+        font-size: 14px;
     }
 
     .titleAdm {
@@ -187,7 +200,7 @@ body {
     .divSearch {
         position: absolute;
         right: 10%;
-        top: 2rem;
+        top: 4rem;
     }
 
     .tableView {
@@ -196,6 +209,8 @@ body {
 
     .thTitle {
         padding: 10px 0;
+        color: #9C45EB;
+        font-size: 14px;
     }
 
     .thNoData {
@@ -210,22 +225,78 @@ body {
         text-align: center;
     }
 
+    .registShow {
+        font-size: 9pt;
+        color: #606060;
+        position: relative;
+        left: 10%;
+    }
+
     form {
         position: relative;
-        top: 2.5rem;
-        font-family: 'Exo';
+        top: -.2rem;
+        font-family: 'Raleway-Medium';
+    }
+
+    .formSearch label {
+        position: relative;
+        top: 0rem;
+        font-size: 14px;
+    }
+
+    .formSearch input {
+        height: 1.2rem;
+        border-radius: 2px;
+        border: solid 2px #9C45EB;
     }
 
     .divCadProduto {
         height: 600px;
-        overflow-y: auto;
+    }
+
+    /* MENU */
+
+    .sub-menu {
+        display: none;
+        position: absolute;
+        background: #d1d1d1;
+        left: 100%;
+        z-index: 10;
+        top: 0rem;
+        width: 150%;
+        height: auto;
+        padding: 0px;
+        border-radius: 3px;
+        border: solid 2px #9C45EB;
+    }
+
+    .linkSubMenu {
+        text-align: left;
+        color: #0F0617;
+        text-decoration: none;
+        list-style: none;
+        position: relative;
+        width: 100%;
+        height: 2.4rem;
+        left: 5%;
+        font-size: 14px;
+    }
+
+    .linkSubMenu li {
+        position: relative;
+        left: 0%;
+        padding: 10px 0;
+    }
+
+    .celulaTrocaPagina:hover > .sub-menu {
+        display: block;
     }
 
     /* MODAL VIEW */
 
     .myModalView {
         display: none; /* Hidden by default */
-        position: absolute; /* Stay in place */
+        position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
         left: 0;
         top: 0;
@@ -306,15 +377,418 @@ body {
         float: right;
         font-size: 32px;
         font-weight: bold;
-        position: absolute;
-        top: .5rem;
-        right: 1rem;
+        position: fixed;
+        top: 2.6rem;
+        right: 4rem;
     }
       
     .closeModalView:hover,
     .closeModalView:focus {
         color: #0F0617;
         text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    /* MODAL ADD */
+
+    .myModalAdd {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalAddContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 60%;
+        height: 90%;
+        font-family: "Raleway";
+        position: relative;
+        top: -8rem;
+        overflow-y: auto;
+    }
+
+    .closeModalAdd {
+        color: #fff;
+        font-size: 52px;
+        font-weight: bold;
+        position: fixed;
+        top: 1rem;
+        right: 15rem;
+    }
+      
+    .closeModalAdd:hover,
+    .closeModalAdd:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* MODAL UPD */
+
+    .myModalUpd {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modalUpdContent {
+        background-color: #ffffff;
+        margin: 12% auto;
+        border: none;
+        width: 60%;
+        height: 90%;
+        font-family: "Raleway";
+        position: relative;
+        top: -8rem;
+        overflow-y: auto;
+    }
+
+    .closeModalUpd {
+        color: #fff;
+        font-size: 52px;
+        font-weight: bold;
+        position: fixed;
+        top: 1rem;
+        right: 15rem;
+    }
+    
+    .closeModalUpd:hover,
+    .closeModalUpd:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* SEÇÕES EM GERAL */
+
+    .tableSectionConfigArm a:link {
+        color: #666;
+        font-weight: bold;
+        text-decoration:none;
+        font-family: "Raleway";
+    }
+
+    .tableSectionConfigArm a:visited {
+        color: #999999;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .tableSectionConfigArm a:active,
+    .tableSectionConfigArm a:hover {
+        color: #bd5a35;
+        text-decoration:underline;
+    }
+
+    .tableSectionConfigArm {
+        font-family:Arial, Helvetica, sans-serif;
+        color:#666;
+        font-size:12px;
+        text-shadow: 1px 1px 0px #fff;
+        background:#ffffff;
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border:#ccc 1px solid;
+        position: relative;
+        left: 10%;
+        font-family: "Raleway-Medium";
+    
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+    }
+
+    .tableSectionConfigArm th {
+        padding:21px 25px 22px 25px;
+        border-top:1px solid #fafafa;
+        border-bottom:1px solid #e0e0e0;
+    
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+    }
+
+    .tableSectionConfigArm th:first-child {
+        text-align: left;
+        padding-left:20px;
+    }
+
+    .tableSectionConfigArm tr:first-child th:first-child {
+        -moz-border-radius-topleft:3px;
+        -webkit-border-top-left-radius:3px;
+        border-top-left-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:first-child th:last-child {
+        -moz-border-radius-topright:3px;
+        -webkit-border-top-right-radius:3px;
+        border-top-right-radius:3px;
+    }
+
+    .tableSectionConfigArm tr {
+        text-align: center;
+        padding-left:20px;
+    }
+
+    .tableSectionConfigArm td:first-child {
+        text-align: left;
+        padding-left:20px;
+        border-left: 0;
+    }
+
+    .tableSectionConfigArm td {
+        padding:18px;
+        border-top: 1px solid #ffffff;
+        border-bottom:1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+    
+        background: #fafafa;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+        background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+    }
+
+    .tableSectionConfigArm tr.even td {
+        background: #f6f6f6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+        background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+    }
+
+    .tableSectionConfigArm tr:last-child td {
+        border-bottom:0;
+    }
+
+    .tableSectionConfigArm tr:last-child td:first-child {
+        -moz-border-radius-bottomleft:3px;
+        -webkit-border-bottom-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:last-child td:last-child {
+        -moz-border-radius-bottomright:3px;
+        -webkit-border-bottom-right-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    .tableSectionConfigArm tr:hover td {
+        background: #f2f2f2;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+        background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+    }
+
+    .selectConfigArm {
+        position: relative;
+        width: 50%;
+        margin: auto;
+        height: 1.5rem;
+        font-family: "Raleway-Medium";
+    }
+    
+    .labelFile {
+        width: 50%;
+        background: #9C45EB;
+        color: #fff;
+        padding: 10px 40px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .imgUpload {
+        width: 30%;
+        margin-bottom: 10px;
+    }
+    input[type=file] {
+        display: none;
+    }
+
+    .newAdd {
+        position: relative;
+    }
+    .btnRemove {
+        position: absolute;
+        right: 5%;
+        top: 1%;
+    }
+
+    .btnRemove a i {
+        color: #9C45EB;
+    }
+
+    .divSubmit button{
+        color: #ffffff;
+        background: #252730;
+        border: none;
+        padding: 8px;
+        font-family: "Raleway-Medium";
+        margin-bottom: 1rem;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    /* SEÇÃO ARMAZÉM */
+
+    .linkAlterAdmSpecial {
+        text-decoration: none;
+        border: none;
+        background: #252730; /* #9C45EB */
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        font-family: "Raleway-Medium";
+        position: relative;
+        left: 1.8%;
+        top: 1.5rem;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* SEÇÃO PRODUTO */
+
+    .tableProdConfigAdm a:link {
+        color: #666;
+        font-weight: bold;
+        text-decoration:none;
+        font-family: "Raleway";
+    }
+
+    .tableProdConfigAdm a:visited {
+        color: #999999;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .tableProdConfigAdm a:active,
+    .tableProdConfigAdm a:hover {
+        color: #bd5a35;
+        text-decoration:underline;
+    }
+
+    .tableProdConfigAdm {
+        font-family:Arial, Helvetica, sans-serif;
+        color:#666;
+        font-size:12px;
+        text-shadow: 1px 1px 0px #fff;
+        background:#ffffff;
+        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border:#ccc 1px solid;
+        position: relative;
+        left: 10%;
+        font-family: "Raleway-Medium";
+    
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+    
+        -moz-box-shadow: 0 1px 2px #d1d1d1;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1;
+        box-shadow: 0 1px 2px #d1d1d1;
+    }
+
+    .tableProdConfigAdm th {
+        padding:21px 25px 22px 25px;
+        border-top:1px solid #fafafa;
+        border-bottom:1px solid #e0e0e0;
+    
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+    }
+
+    .tableProdConfigAdm th:first-child {
+        text-align: left;
+        padding-left:20px;
+    }
+
+    .tableProdConfigAdm tr:first-child th:first-child {
+        -moz-border-radius-topleft:3px;
+        -webkit-border-top-left-radius:3px;
+        border-top-left-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:first-child th:last-child {
+        -moz-border-radius-topright:3px;
+        -webkit-border-top-right-radius:3px;
+        border-top-right-radius:3px;
+    }
+
+    .tableProdConfigAdm tr {
+        text-align: center;
+        padding-left:20px;
+    }
+
+    .tableProdConfigAdm td:first-child {
+        text-align: left;
+        padding-left:20px;
+        border-left: 0;
+    }
+
+    .tableProdConfigAdm td {
+        padding:18px;
+        border-top: 1px solid #ffffff;
+        border-bottom:1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+    
+        background: #fafafa;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+        background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+    }
+
+    .tableProdConfigAdm tr.even td {
+        background: #f6f6f6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+        background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+    }
+
+    .tableProdConfigAdm tr:last-child td {
+        border-bottom:0;
+    }
+
+    .tableProdConfigAdm tr:last-child td:first-child {
+        -moz-border-radius-bottomleft:3px;
+        -webkit-border-bottom-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:last-child td:last-child {
+        -moz-border-radius-bottomright:3px;
+        -webkit-border-bottom-right-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    .tableProdConfigAdm tr:hover td {
+        background: #f2f2f2;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+        background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+    }
+
+    .btnProductConfigAdm {
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        padding: 5px 0;
+        width: 30%;
         cursor: pointer;
     }
 }

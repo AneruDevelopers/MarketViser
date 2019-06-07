@@ -2,21 +2,21 @@
         <form class="formInserirDep">
             <div class="divAddCadDep">
                 <div style="margin-bottom:60px;">
-                    <table width="auto" align="center" border="2">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
                         <tr align="center">
-                            <td colspan="8"><h2>Insira os dados aqui</h2></td>
+                            <td colspan="8" ><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR DEPARTAMENTO</h2></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Nome do departamento:</b></td>
-                            <td><input type="text" name="depart_nome[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="depart_nome[]" size="60"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Ícone do departamento:</b></td>
-                            <td><input type="text" name="depart_icon[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>ÍCONE</b></td>
+                            <td><input type="text" class="selectConfigArm" name="depart_icon[]" size="60"></td>
                         </tr>
                         <tr>
-                            <td align="center"><b>Descrição do departamento:</b></td>
-                            <td><input type="text" name="depart_desc[]" size="60"></td>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
+                            <td><input type="text" class="selectConfigArm" name="depart_desc[]" size="60"></td>
                         </tr>
                     </table>
                 </div>

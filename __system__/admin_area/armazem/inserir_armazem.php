@@ -10,10 +10,10 @@
      <script type="text/javascript" src="../js/admin.js" async></script>
 </head>
 <body>
-
+    * NÃO ESTÁ FUNCIONANDO AINDA * 
     <form class="formInserirProdutos" action="inserir_armazem" method="post" enctype="multipart/form-data">
 
-        <table width="auto" align="center" border="2">
+        <table class="tableSectionConfigArm" width="80%" align="center">
             <tr align="center">
                 <td colspan="8"><h2>Insira os dados aqui</h2></td>
             </tr>

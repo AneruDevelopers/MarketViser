@@ -25,13 +25,65 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_subcateg')">Inserir subcategoria</a>
+            <h3 class="titleAdm">GERENCIADOR DE SUBCATEGORIAS</h3>
             <div id="conteudo">
 
             </div>
+            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar subcategoria</button>
         </section>
         <footer class="l-footer">
         </footer>
+
+        <div class="myModalAdd" id="myModalAdd">
+            <div class="modalAddContent">
+                <span class="closeModalAdd">&times;</span>
+                <div class="showAddModal">
+                    <div class="divCadProduto divCadSubcateg">
+                        <form class="formInserir formInserirSubcateg">
+                            <div class="divAddCadSubcateg">
+                                <div style="margin-bottom:60px;">
+                                    <table class="tableSectionConfigArm" width="80%" align="center">
+                                        <tr align="center">
+                                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR SUBCATEGORIA</h2></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                            <td><input type="text" class="selectConfigArm" name="subcateg_nome[]" size="60"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DEPARTAMENTO</b></td>
+                                            <td>
+                                                <select class="selectConfigArm" name="depart_id[]">
+                                                    <option value="*000*"> -- Selecione o departamento: --</option>
+                                                    <?php
+                                                        $sel = $conn->prepare("SELECT * FROM departamento");
+                                                        $sel->execute();
+                                                        if($sel->rowCount() > 0):
+                                                            $results = $sel->fetchAll();
+                                                            foreach($results as $k => $v):?>
+                                                                <option value="<?= $v['depart_id'] ?>"><?= $v['depart_nome']; ?></option>
+                                                                <?php
+                                                            endforeach;
+                                                        endif;
+                                                    ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="button" class="addCadSubcateg">Adicionar mais subcategorias</button>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnInsertSubcateg"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
@@ -41,5 +93,64 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>
     <script src="<?= base_url_adm(); ?>js/subcategoria.js"></script>
+    <script>
+        $('.addCadSubcateg').click(function(e) {
+            e.preventDefault();
+            $('.divAddCadSubcateg').append(`
+                <div class="newAdd">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
+                        <tr align="center">
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR SUBCATEGORIA</h2></td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="subcateg_nome[]" size="60"></td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DEPARTAMENTO</b></td>
+                            <td>
+                                <select class="selectConfigArm" name="depart_id[]">
+                                    <option value="*000*"> -- Selecione o departamento: --</option>
+                                    <?php
+                                        $sel = $conn->prepare("SELECT * FROM departamento");
+                                        $sel->execute();
+                                        if($sel->rowCount() > 0):
+                                            $results = $sel->fetchAll();
+                                            foreach($results as $k => $v):?>
+                                                <option value="<?= $v['depart_id'] ?>"><?= $v['depart_nome']; ?></option>
+                                                <?php
+                                            endforeach;
+                                        endif;
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="btnRemove">
+                        <a href="#" class="remover_div"><i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+            `);
+        });
+
+        // Remover o div anterior
+        $('.divAddCadSubcateg').on("click",".remover_div",function(e) {
+                e.preventDefault();
+                $(this).parent().parent('div').remove();
+                $(this).parent('div').remove();
+        });
+        
+        insertSubcateg();
+    </script>
+    <?php
+        if(isset($_GET['fnc'])):
+            if($_GET['fnc'] == "IS"):?>
+                <script>
+                    modalAdd.style.display = "block";
+                </script>
+                <?php
+            endif;
+        endif;
+    ?>
 </body>
 </html>

@@ -26,11 +26,11 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <h3 class="titleAdm">ADMINISTRANDO PRODUTOS</h3>
+            <h3 class="titleAdm">GERENCIADOR DE PRODUTOS</h3>
             <div id="conteudo">
 
             </div>
-            <button class="linkAlterAdm" onclick="carregar('inserir_produto')"><i class="fa fa-plus"></i> &nbsp;Adicionar produto</button>
+            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar produto</button>
             <div class="divSearch">
                 <form class="formSearch">
                     <label for="searchProd">Procure: </label>
@@ -38,25 +38,117 @@
                 </form>
             </div>
             <div class="divEcoTable">
-                <table width="80%" class="tableView" align="center">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
-                        <th class="thTitle" width="10%">Imagem</th>
-                        <th class="thTitle" width="30%">Nome</th>
-                        <th class="thTitle" width="25%">Volume</th>
-                        <th class="thTitle" width="20%">Marca</th>
-                        <th class="thTitle" width="15%">Ações</th>
+                        <th class="thTitle" width="10%">IMAGEM</th>
+                        <th class="thTitle" width="30%">NOME</th>
+                        <th class="thTitle" width="25%">VOLUME</th>
+                        <th class="thTitle" width="20%">MARCA</th>
+                        <th class="thTitle" width="15%">AÇÕES</th>
                     </thead>
                     <tbody class="tbodyProd">
 
                     </tbody>
                 </table>
+                <span class="registShow">
+                    
+                </span>
             </div>
             <div class="dataProds">
                 
             </div>
         </section>
+
         <footer class="l-footer">
         </footer>
+
+        <div class="myModalAdd" id="myModalAdd">
+            <div class="modalAddContent">
+                <span class="closeModalAdd">&times;</span>
+                <div class="showAddModal">
+                    <div class="divCadProduto">
+                        <form class="formInserir formInserirProdutos" enctype="multipart/form-data">
+                            <div class="divAddCadProduto">
+                                <div style="margin-bottom:60px;">
+                                    <table class="tableSectionConfigArm" width="80%" align="center">
+                                        <tr align="center">
+                                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTO</h2></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                            <td><input type="text" class="selectConfigArm" name="nome_produto[]" size="60"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>MARCA</b></td>
+                                            <td>
+                                                <select class="selectConfigArm" name="marca_produto[]">
+                                                    <option value="*000*"> -- Selecione a marca: --</option>
+                                                    <?php
+                                                        $sel = $conn->prepare("SELECT * FROM marca_prod");
+                                                        $sel->execute();
+                                                        if($sel->rowCount() > 0):
+                                                            $results = $sel->fetchAll();
+                                                            foreach($results as $k => $v):?>
+                                                                <option value="<?= $v['marca_id'] ?>"><?= $v['marca_nome']; ?></option>
+                                                                <?php
+                                                            endforeach;
+                                                        endif;
+                                                    ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
+                                            <td>
+                                                <select class="selectConfigArm" name="categoria_produto[]">
+                                                    <option value="*000*"> -- Selecione a categoria: --</option>
+                                                    <?php
+                                                        $sel = $conn->prepare("SELECT * FROM categ AS c JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id");
+                                                        $sel->execute();
+                                                        if($sel->rowCount() > 0):
+                                                            $results = $sel->fetchAll();
+                                                            foreach($results as $k => $v):?>
+                                                                <option value="<?= $v['categ_id'] ?>"><?= $v['depart_nome'] . " / " . $v['subcateg_nome'] . " / " . $v['categ_nome']; ?></option>
+                                                                <?php
+                                                            endforeach;
+                                                        endif;
+                                                    ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
+                                            <td>
+                                                <img class="imgUpload" src=""/><br/>
+                                                <label for="imagem_produto" class="selectConfigArm labelFile"><i class="fas fa-upload"></i> Carregar imagem</label>
+                                                <input type="file" class="selectConfigArm" accept="image/*" id="imagem_produto" name="imagem_produto[]"/>
+                                                <br/><br/>
+                                                <small>* Caso não escolha nenhuma imagem, irá ser carregada uma padrão</small>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
+                                            <td><textarea name="descricao_produto[]" class="selectConfigArm" cols="30" rows="10"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>VOLUME</b></td>
+                                            <td><input type="text" class="selectConfigArm" name="produto_tamanho[]" size="60"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="button" class="addCadProduto">Adicionar mais produtos</button>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnInsertProduto"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
@@ -67,5 +159,107 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>
     <script src="<?= base_url_adm(); ?>js/produto.js"></script>
+    <script>
+        var c = 1;
+        $('.addCadProduto').click(function(e) {
+            e.preventDefault();
+            $('.divAddCadProduto').append(`
+            <div class="newAdd">
+                <table class="tableSectionConfigArm" width="80%" align="center">
+                    <tr align="center">
+                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTO</h2></td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                        <td><input type="text" class="selectConfigArm" name="nome_produto[]" size="60"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>MARCA</b></td>
+                        <td>
+                            <select class="selectConfigArm" name="marca_produto[]">
+                                <option value="*000*"> -- Selecione a marca: --</option>
+                                <?php
+                                    $sel = $conn->prepare("SELECT * FROM marca_prod");
+                                    $sel->execute();
+                                    if($sel->rowCount() > 0):
+                                        $results = $sel->fetchAll();
+                                        foreach($results as $k => $v):?>
+                                            <option value="<?= $v['marca_id'] ?>"><?= $v['marca_nome']; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CATEGORIA</b></td>
+                        <td>
+                            <select class="selectConfigArm" name="categoria_produto[]">
+                                <option value="*000*"> -- Selecione a categoria: --</option>
+                                <?php
+                                    $sel = $conn->prepare("SELECT * FROM categ AS c JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id");
+                                    $sel->execute();
+                                    if($sel->rowCount() > 0):
+                                        $results = $sel->fetchAll();
+                                        foreach($results as $k => $v):?>
+                                            <option value="<?= $v['categ_id'] ?>"><?= $v['depart_nome'] . " / " . $v['subcateg_nome'] . " / " . $v['categ_nome']; ?></option>
+                                            <?php
+                                        endforeach;
+                                    endif;
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
+                        <td>
+                            <img class="imgUpload" src=""/><br/>
+                            <label for="imagem_produto` + c + `" class="selectConfigArm labelFile"><i class="fas fa-upload"></i> Carregar imagem</label>
+                            <input type="file" class="selectConfigArm" accept="image/*" id="imagem_produto` + c + `" name="imagem_produto[]"/>
+                            <br/><br/>
+                            <small>* Caso não escolha nenhuma imagem, irá ser carregada uma padrão</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
+                        <td><textarea name="descricao_produto[]" class="selectConfigArm" cols="30" rows="10"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>VOLUME</b></td>
+                        <td><input type="text" class="selectConfigArm" name="produto_tamanho[]" size="60"></td>
+                    </tr>
+                </table>
+                <div class="btnRemove">
+                    <a href="#" class="remover_div"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+            `);
+            mask();
+            uploadImg();
+            c++;
+        });
+
+        // Remover o div anterior
+        $('.divAddCadProduto').on("click",".remover_div",function(e) {
+                e.preventDefault();
+                $(this).parent().parent('div').remove();
+                $(this).parent('div').remove();
+        });
+        
+        mask();
+        insertProduto();
+        uploadImg();
+    </script>
+    <?php
+        if(isset($_GET['fnc'])):
+            if($_GET['fnc'] == "IP"):?>
+                <script>
+                    modalAdd.style.display = "block";
+                </script>
+                <?php
+            endif;
+        endif;
+    ?>
 </body>
 </html>

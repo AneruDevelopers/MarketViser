@@ -25,13 +25,46 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <a class="linkAlterAdm" href="#" onclick="carregar('inserir_marca')">Inserir marca</a>
+            <h3 class="titleAdm">GERENCIADOR DE MARCAS</h3>
             <div id="conteudo">
-                
+
             </div>
+            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar marca</button>
         </section>
         <footer class="l-footer">
         </footer>
+
+        <div class="myModalAdd" id="myModalAdd">
+            <div class="modalAddContent">
+                <span class="closeModalAdd">&times;</span>
+                <div class="showAddModal">
+                    <div class="divCadProduto divCadMarca">
+                        <form class="formInserir formInserirMarca">
+                            <div class="divAddCadMarca">
+                                <div style="margin-bottom:60px;">
+                                    <table class="tableSectionConfigArm" width="80%" align="center">
+                                        <tr align="center">
+                                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR MARCA</h2></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                            <td><input type="text" class="selectConfigArm" name="marca_nome[]" size="60"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="button" class="addCadMarca">Adicionar mais marcas</button>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnInsertMarca"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
@@ -41,5 +74,45 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>
     <script src="<?= base_url_adm(); ?>js/marca.js"></script>
+    <script>
+        $('.addCadMarca').click(function(e) {
+            e.preventDefault();
+            $('.divAddCadMarca').append(`
+                <div class="newAdd">
+                    <table class="tableSectionConfigArm" width="80%" align="center">
+                        <tr align="center">
+                            <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRAR MARCA</h2></td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                            <td><input type="text" class="selectConfigArm" name="marca_nome[]" size="60"></td>
+                        </tr>
+                    </table>
+                    <div class="btnRemove">
+                        <a href="#" class="remover_div"><i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+            `);
+        });
+
+        // Remover o div anterior
+        $('.divAddCadMarca').on("click",".remover_div",function(e) {
+                e.preventDefault();
+                $(this).parent().parent('div').remove();
+                $(this).parent('div').remove();
+        });
+        
+        insertMarca();
+    </script>
+    <?php
+        if(isset($_GET['fnc'])):
+            if($_GET['fnc'] == "IM"):?>
+                <script>
+                    modalAdd.style.display = "block";
+                </script>
+                <?php
+            endif;
+        endif;
+    ?>
 </body>
 </html>

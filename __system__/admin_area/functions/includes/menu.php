@@ -3,22 +3,34 @@
         <i class="fas fa-bell"></i>
         <p class="qtdNotifi">1</p>
     </h2>
-    <h1 class="comapanyName">
+    <div class="divLinkCompanyNameAdm">
         <a class="linkCompanyNameAdm" href="<?= base_url_php(); ?>">
-            <img src="<?= base_url(); ?>img\Banner_TCC\logoPadrao.png" alt="e.conomize">
+            <img src="<?= base_url(); ?>img\Logo cor_branca.png" alt="e.conomize">
         </a>
-    </h1>
+    </div>
 </header>
 <section class="l-menu">
-    <h1 class="tituloAdminPage">
+    <!-- <h1 class="tituloAdminPage">
         <a class="linkAdmDash" href="<?= base_url_php(); ?>admin_area/dashboard">
-            Admstr
+            PAINEL
         </a>
-    </h1>
+    </h1> -->
     <ul class="listaTrocaPagina">
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
             <li class="celulaTrocaPagina">
                 Armazéns
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IPA">
+                        <li>
+                            Inserir produto ao armazém
+                        </li>
+                    </a>
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IA">
+                        <li>
+                            Inserir armazém
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>banner/central">
@@ -29,6 +41,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>categoria/central">
             <li class="celulaTrocaPagina">
                 Categorias
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>categoria/central?fnc=IC">
+                        <li>
+                            Inserir categoria
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>compra/central">
@@ -44,6 +63,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>departamento/central">
             <li class="celulaTrocaPagina">
                 Departamentos
+                <!-- <ul class="sub-menu">
+                    <a class="linkSubMenu" href="departamento/central?fnc=ID">
+                        <li>
+                            Inserir departamento
+                        </li>
+                    </a>
+                </ul> -->
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>fornecedor/central">
@@ -64,16 +90,37 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>marca/central">
             <li class="celulaTrocaPagina">
                 Marcas
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>marca/central?fnc=IM">
+                        <li>
+                            Inserir marca
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
             <li class="celulaTrocaPagina">
                 Produtos
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>produto/central?fnc=IP">
+                        <li>
+                            Inserir produto
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>subcategoria/central">
             <li class="celulaTrocaPagina">
                 Subcategorias
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>subcategoria/central?fnc=IS">
+                        <li>
+                            Inserir subcategoria
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>usuario/central">

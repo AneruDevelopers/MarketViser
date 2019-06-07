@@ -144,10 +144,9 @@
                 if(!empty($hora_disp_hoje)) {
                     $hoje = substr($hoje,-2) . "/" . substr($hoje,5,2);
                     echo '
-                    <div class="table100 ver6 agendEndTable">
-                        <table class="agendEndTable">
-                            <tr class="row100 head">
-                                <th class="" style="font-size:15px;">HOJE (' . $hoje . ')</th>
+                        <table class="tableSectionConfigArm" width="80%" align="center">
+                            <tr class="">
+                                <th class="" style="text-align:center;color:#9C45EB;font-size:14px;">HOJE (' . $hoje . ')</th>
                             </tr>
                     ';
                     foreach($hora_disp_hoje as $v) {
@@ -155,15 +154,14 @@
                             $v = str_replace("input", "input checked", $v);
                         }
                         echo '
-                            <tr class="row100">
-                                <td class="column100 column1 celAgendEndTable" style="text-align:center;">' . $v . '</td>
+                            <tr class="">
+                                <td class="" style="text-align:center;font-size:13px;"><b>' . $v . '</b></td>
                             </tr>
                         ';
                         $i++;
                     }
                     echo '
                         </table>
-                        </div>
                         <br>
                     ';
                 }
@@ -171,10 +169,9 @@
                     if(count($hora_disp_hoje) <= 1) {
                         $dia_seguinte = substr($dia_seguinte,-2) . "/" . substr($dia_seguinte,5,2);
                         echo '
-                        <div class="table100 ver6 agendEndTable">
-                            <table class="agendEndTable">
-                                <tr class="row100 head">
-                                    <th class="">AMANHÃ (' . $dia_seguinte . ')</th>
+                            <table class="tableSectionConfigArm" width="80%" align="center">
+                                <tr class="">
+                                    <th class="" style="text-align:center;color:#9C45EB;font-size:14px;">AMANHÃ (' . $dia_seguinte . ')</th>
                                 </tr>
                         ';
                         foreach($hora_disp_amanha as $v) {
@@ -182,15 +179,14 @@
                                 $v = str_replace("input", "input checked", $v);
                             }
                             echo '
-                                <tr class="row100">
-                                    <td class="column100 column1 celAgendEndTable" style="text-align:center;">' . $v . '</td>
+                                <tr class="">
+                                    <td class="" style="text-align:center;font-size:13px;">' . $v . '</td>
                                 </tr>
                             ';
                             $i++;
                         }
                         echo '
                             </table>
-                            </div>
                         ';
                     }
                 }

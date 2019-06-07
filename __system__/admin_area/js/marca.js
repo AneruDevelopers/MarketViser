@@ -12,9 +12,26 @@ function insertMarca() {
                 $("#btnInsertMarca").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
+                clearErrors();
                 if(json['status']) {
-                    alert("Cadastrado com sucesso");
-                    carregar('inserir_marca');
+                    Swal.fire({
+                        title: "Marca(s) cadastrada(s) com sucesso!",
+                        text: "Deseja continuar cadastrando marca(s)?",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#333",
+                        confirmButtonText: "Continuar",
+                        cancelButtonColor: "#999",
+                        cancelButtonText: "Sair"
+                    }).then((result) => {
+                        if(result.value) {
+                            mostraModalAdd();
+                        } else {
+                            modalAdd.style.display = "none";
+                        }
+                    });
+                } else {
+                    $("#btnInsertMarca").siblings(".help-block").html(json['error']);
                 }
             }
         });
