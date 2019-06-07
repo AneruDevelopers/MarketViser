@@ -3,41 +3,62 @@
         $json['status'] = 1;
 
         if(isset($_POST['nome_produto'])) {
-            $json['error_list'] = array();
+            $json['error'] = NULL;
 
             for($k=0; $k<count($_POST['nome_produto']); $k++) {
-                $nome_produto = trim($_POST['nome_produto'][$k]);
-                $marca_produto = $_POST['marca_produto'][$k];
-                $categoria_produto = $_POST['categoria_produto'][$k];
-                $descricao_produto = $_POST['descricao_produto'][$k];
-                $tamanho_produto = trim($_POST['produto_tamanho'][$k]);
+                $c = $k + 1;
+                $nome_produto[$k] = trim($_POST['nome_produto'][$k]);
+                $marca_produto[$k] = $_POST['marca_produto'][$k];
+                $categoria_produto[$k] = $_POST['categoria_produto'][$k];
+                $descricao_produto[$k] = $_POST['descricao_produto'][$k];
+                $tamanho_produto[$k] = trim($_POST['produto_tamanho'][$k]);
 
-                if(empty($nome_produto)) {
-                    $json["error_list"]["#nome_produto"] = "<p class='msgErrorCad'>Por favor, insira o nome do produto neste campo</p>";
-                }
+                $imagem_produto = $_FILES['imagem_produto']['name'];
+                $imagem_produto_tmp = $_FILES['imagem_produto']['tmp_name'];
 
-                if($marca_produto == "*000*") {
-                    $json["error_list"]["#marca_produto"] = "<p class='msgErrorCad'>Por favor, insira a marca do produto neste campo</p>";
-                }
-
-                if($categoria_produto == "*000*") {
-                    $json["error_list"]["#categoria_produto"] = "<p class='msgErrorCad'>Por favor, insira a categoria do produto neste campo</p>";
-                }
-
-                if(empty($tamanho_produto)) {
-                    $json["error_list"]["#tamanho_produto"] = "<p class='msgErrorCad'>Por favor, insira o volume do produto neste campo</p>";
-                }
-
-                if(!empty($json['error_list'])) {
-                    $json['status'] = 0;
+                if(empty($nome_produto[$k])) {
+                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o nome do produto na ' . $c . 'ª parte de cadastro</b></p>';
                 } else {
-                    $imagem_produto = $_FILES['imagem_produto']['name'];
-                    $imagem_produto_tmp = $_FILES['imagem_produto']['tmp_name'];
-                    move_uploaded_file($imagem_produto_tmp[$k], "__system__/admin_area/imagens_produtos/{$imagem_produto[$k]}");
+                    if($marca_produto[$k] == "*000*") {
+                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a marca do produto na ' . $c . 'ª parte de cadastro</b></p>';
+                    } else {
+                        if($categoria_produto[$k] == "*000*") {
+                            $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a categoria do produto na ' . $c . 'ª parte de cadastro</b></p>';
+                        } else {
+                            if(empty($tamanho_produto[$k])) {
+                                $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o volume do produto na ' . $c . 'ª parte de cadastro</b></p>';
+                            } else {
+                                $sel = $conn->prepare("SELECT produto_nome, produto_tamanho FROM produto WHERE produto_nome='{$nome_produto[$k]}' AND produto_tamanho='{$tamanho_produto[$k]}'");
+                                $sel->execute();
+                                if($sel->rowCount() > 0) {
+                                    $res = $sel->fetchAll();
+                                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que inseriu na ' . $c . 'ª parte já foi previamente cadastrado</b></p>';
+                                }
+                            }
+                        }
+                    }
+                }
 
-                    $ins = $conn->prepare("INSERT INTO produto(produto_nome,produto_descricao,produto_img,produto_marca,produto_tamanho, produto_categ) VALUES ('$nome_produto', '$descricao_produto','{$imagem_produto[$k]}','$marca_produto','$tamanho_produto','$categoria_produto')");
+                if($json['error']) {
+                    break;
+                }
+            }
+
+            if($json['error']) {
+                $json['status'] = 0;
+            } else {
+                for($k=0; $k<count($nome_produto); $k++) {
+                    if(empty($imagem_produto[$k])) {
+                        $imagem_produto[$k] = "img_default.png";
+                    } else {
+                        move_uploaded_file($imagem_produto_tmp[$k], "__system__/admin_area/imagens_produtos/{$imagem_produto[$k]}");
+                    }
+                    $ins = $conn->prepare("INSERT INTO produto(produto_nome,produto_descricao,produto_img,produto_marca,produto_tamanho, produto_categ) VALUES ('{$nome_produto[$k]}', '{$descricao_produto[$k]}','{$imagem_produto[$k]}','{$marca_produto[$k]}','{$tamanho_produto[$k]}','{$categoria_produto[$k]}')");
+
                     if(!$ins->execute()) {
                         $json['status'] = 0;
+                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu. Tente novamente!</b></p>';
+                        break;
                     }
                 }
             }

@@ -25,10 +25,11 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <!-- <a class="linkAlterAdmSpecial" href="#" onclick="carregar('inserir_produto_armazem')">Inserir produto ao armazém</a> -->
+            <h3 class="titleAdm">GERENCIADOR DE ARMAZÉNS</h3>
             <div id="conteudo">
 
             </div>
+            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar produto à armazém</button>
         </section>
         <footer class="l-footer">
         </footer>
@@ -38,7 +39,7 @@
                 <span class="closeModalAdd">&times;</span>
                 <div class="showAddModal">
                     <div class="divCadProduto divCadProdutoArmazem">
-                        <form class="formInserirProdutoArmazem">
+                        <form class="formInserir formInserirProdutoArmazem">
                             <div class="divProdutoArmazem">
                                 <div style="margin-bottom:60px;">
                                     <div>
@@ -125,7 +126,7 @@
         $('.addCadProdutoArmazem').click(function(e) {
             e.preventDefault();
             $('.divProdutoArmazem').append(`
-            <div>
+            <div class="newAdd">
                 <table class="tableSectionConfigArm" width="80%" align="center">
                     <tr align="center">
                         <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">CADASTRO DE PRODUTOS POR ARMAZÉM</h2></td>

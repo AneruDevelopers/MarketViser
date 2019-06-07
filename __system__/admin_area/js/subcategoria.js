@@ -12,9 +12,26 @@ function insertSubcateg() {
                 $("#btnInsertSubcateg").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
+                clearErrors();
                 if(json['status']) {
-                    alert("Cadastrado com sucesso");
-                    carregar('inserir_subcateg');
+                    Swal.fire({
+                        title: "Subcategoria(s) cadastrada(s) com sucesso!",
+                        text: "Deseja continuar cadastrando subcategoria(s)?",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#333",
+                        confirmButtonText: "Continuar",
+                        cancelButtonColor: "#999",
+                        cancelButtonText: "Sair"
+                    }).then((result) => {
+                        if(result.value) {
+                            mostraModalAdd();
+                        } else {
+                            modalAdd.style.display = "none";
+                        }
+                    });
+                } else {
+                    $("#btnInsertSubcateg").siblings(".help-block").html(json['error']);
                 }
             }
         });

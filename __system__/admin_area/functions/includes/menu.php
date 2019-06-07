@@ -42,9 +42,9 @@
             <li class="celulaTrocaPagina">
                 Categorias
                 <ul class="sub-menu">
-                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>categoria/inserir_categ')">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>categoria/central?fnc=IC">
                         <li>
-                            Inserir catregoria
+                            Inserir categoria
                         </li>
                     </a>
                 </ul>
@@ -63,13 +63,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>departamento/central">
             <li class="celulaTrocaPagina">
                 Departamentos
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>departamento/inserir_dep')">
+                <!-- <ul class="sub-menu">
+                    <a class="linkSubMenu" href="departamento/central?fnc=ID">
                         <li>
                             Inserir departamento
                         </li>
                     </a>
-                </ul>
+                </ul> -->
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>fornecedor/central">
@@ -91,7 +91,7 @@
             <li class="celulaTrocaPagina">
                 Marcas
                 <ul class="sub-menu">
-                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>marca/inserir_marca')">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>marca/central?fnc=IM">
                         <li>
                             Inserir marca
                         </li>
@@ -102,13 +102,20 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
             <li class="celulaTrocaPagina">
                 Produtos
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>produto/central?fnc=IP">
+                        <li>
+                            Inserir produto
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>subcategoria/central">
             <li class="celulaTrocaPagina">
                 Subcategorias
                 <ul class="sub-menu">
-                    <a class="linkSubMenu" href="#" onclick="carregar('<?= base_url_adm_php(); ?>subcategoria/inserir_subcateg')">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>subcategoria/central?fnc=IS">
                         <li>
                             Inserir subcategoria
                         </li>

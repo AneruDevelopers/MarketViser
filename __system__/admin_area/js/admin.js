@@ -29,7 +29,24 @@ function modalView() {
     }
 }
 
+
 var modalAdd = document.getElementById('myModalAdd');
+
+function mostraModalAdd() {
+    $('.formInserir').each(function() {
+        this.reset();
+    });
+    $('.help-block').html("");
+    $('.newAdd').remove();
+    $('.imgUpload').attr("src", "");
+}
+
+$('.linkAlterAdm').click(function(e) {
+    e.preventDefault();
+    mostraModalAdd();
+    modalAdd.style.display = "block";
+});
+
 $('.closeModalAdd').click(function(e) {
     e.preventDefault();
     modalAdd.style.display = "none";

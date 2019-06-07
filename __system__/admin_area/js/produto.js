@@ -100,9 +100,9 @@ function searchProduto() {
                                         <td class="tdCenter">` + json['produtos'][i].produto_tamanho + `</td>
                                         <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
                                         <td class="tdCenter">
-                                            <button class="myBtnView btnViewProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
-                                            <button class="btnEditProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
-                                            <button class="btnDelProd" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
+                                            <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
+                                            <button class="btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
                                         </td>
                                     </tr>
                                 `);
@@ -199,10 +199,25 @@ function insertProduto() {
             success: function(json) {
                 clearErrors();
                 if(json['status']) {
-                    alert("Cadastrado com sucesso");
-                    carregar('inserir_produto');
+                    dataProds();
+                    Swal.fire({
+                        title: "Produto(s) cadastrado(s) com sucesso!",
+                        text: "Deseja continuar cadastrando produto(s)?",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#333",
+                        confirmButtonText: "Continuar",
+                        cancelButtonColor: "#999",
+                        cancelButtonText: "Sair"
+                    }).then((result) => {
+                        if(result.value) {
+                            mostraModalAdd();
+                        } else {
+                            modalAdd.style.display = "none";
+                        }
+                    });
                 } else {
-                    showErrorsAdmin(response["error_list"]);
+                    $("#btnInsertProduto").siblings(".help-block").html(json['error']);
                 }
             },
             cache: false,
@@ -218,6 +233,24 @@ function insertProduto() {
             return myXhr;
             }
         });
+    });
+}
+
+function uploadImg() {
+    $("input[type=file]").on("change", function(e){
+        e.preventDefault();
+        var input = $(this);
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return;
+
+        if (/^image/.test( files[0].type)){
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+
+            reader.onload = function() {
+                input.siblings(".imgUpload").attr('src', this.result);
+            }
+        }
     });
 }
 

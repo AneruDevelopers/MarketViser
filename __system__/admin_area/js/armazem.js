@@ -12,9 +12,26 @@ function insertProdutoArmazem() {
                 $("#btnInsertProdutoArmazem").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
+                clearErrors();
                 if(json['status']) {
-                    alert("Cadastrado com sucesso");
-                    carregar('inserir_produto_armazem');
+                    Swal.fire({
+                        title: "Produto(s) cadastrado(s) com sucesso!",
+                        text: "Deseja continuar cadastrando produto(s) à armazém(ns)?",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#333",
+                        confirmButtonText: "Continuar",
+                        cancelButtonColor: "#999",
+                        cancelButtonText: "Sair"
+                    }).then((result) => {
+                        if(result.value) {
+                            mostraModalAdd();
+                        } else {
+                            modalAdd.style.display = "none";
+                        }
+                    });
+                } else {
+                    $("#btnInsertProdutoArmazem").siblings(".help-block").html(json['error']);
                 }
             }
         });

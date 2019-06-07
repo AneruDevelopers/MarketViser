@@ -10,7 +10,7 @@
      <script type="text/javascript" src="../js/admin.js" async></script>
 </head>
 <body>
-
+    * NÃO ESTÁ FUNCIONANDO AINDA * 
     <form class="formInserirProdutos" action="inserir_armazem" method="post" enctype="multipart/form-data">
 
         <table class="tableSectionConfigArm" width="80%" align="center">
