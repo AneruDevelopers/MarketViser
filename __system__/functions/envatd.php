@@ -1,7 +1,7 @@
-<?php 
+<?php require_once 'connection/conn.php';
    if(isXmlHttpRequest()) {
     
-require_once 'connection/conn.php';
+
      
         $json['msg'] = array(); 
         $json['error'] = array();

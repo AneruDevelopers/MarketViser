@@ -40,8 +40,8 @@
 <div class="socialMediaDiv">
     <h6 class="titleSocialMedia">FIQUE ANTENADO</h6>
     <ul class="listSocialMedia">
-        <li><a class="linkListSocialMedia" href="#"><i class="fab fa-facebook-square"></i></a></li>
-        <li><a class="linkListSocialMedia" href="#"><i class="fab fa-twitter-square"></i></a></li>
-        <li><a class="linkListSocialMedia" href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a class="linkListSocialMedia" href="https://www.facebook.com/economizebrazil/"><i class="fab fa-facebook-square"></i></a></li>
+        <li><a class="linkListSocialMedia" href="https://www.twitter.com/economizebrazil/"><i class="fab fa-twitter-square"></i></a></li>
+        <li><a class="linkListSocialMedia" href="https://www.instagram.com/economizebrazil/"><i class="fab fa-instagram"></i></a></li>
     </ul>
 </div>
