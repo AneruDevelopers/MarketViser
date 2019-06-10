@@ -1,12 +1,8 @@
 <?php
     require_once '__system__/functions/connection/conn.php';
-    // if(!isset($_SESSION['inf_usu']['usu_id'])) {
-    //     header("Location: " . base_url_php());
-    // } else {
-    //     if($_SESSION["inf_usu"]['usu_tipo_id'] != 3) {
-    //         header("Location: " . base_url_php());
-    //     }
-    // }
+    if(!isset($_SESSION['inf_func']['funcionario_id'])) {
+        header("Location: " . base_url_adm_php() . "login");
+    }
 ?>
 <!DOCTYPE html>
 <html>

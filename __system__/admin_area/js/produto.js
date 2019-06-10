@@ -30,7 +30,7 @@ function dataProds() {
                             </tr>
                         `);
                     }
-                    $('.l-wrapper').append(`
+                    $('body').append(`
                         <div class="myModalView" id="myModalView">
                             <div class="modalViewContent">
                                 <span class="closeModalView">&times;</span>
@@ -127,10 +127,6 @@ function dataProds() {
                 Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
             `);
         }
-        //Executar função de x em x segundo(s)
-        // complete: function() {
-        //     setTimeout(dataProds, 5000);
-        // }
     });
 }
 
@@ -139,6 +135,11 @@ function searchProduto() {
         e.preventDefault();
 
         if($(this).val().length > 0) {
+            $('.divResetSearch').html(`
+                <button type="reset" class="inputResetSearch">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            `);
             var dado = "searchProd=" + $(this).val();
             $.ajax({
                 dataType: 'json',
@@ -198,8 +199,81 @@ function searchProduto() {
                 }
             });
         } else {
+            $('.divResetSearch').html(``);
             dataProds();
         }
+    });
+}
+
+function ordenarProduto() {
+    $('.sort').click(function(e) {
+        e.preventDefault();
+
+        var elementoPai = $(this).parent();
+        var elementosFilho = elementoPai.find(".span_sort");
+        elementosFilho.html("");
+
+        var sort = $(this).find(".span_sort");
+        
+        var dado = "data_sort=" + $(this).attr("data-sort");
+
+        if($('#searchProd').val().length > 0) {
+            $('.divResetSearch').html(``);
+            $('#searchProd').val(``);
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dado,
+            url: BASE_URL4 + 'functions/produto',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    $('.tbodyProd').html("");
+                    if(json['sort'] == "up") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-up"></i>`);
+                    } else if(json['sort'] == "down") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
+                    }
+
+                    for(var i = 0; json['produtos'].length > i; i++) {
+                        $('.tbodyProd').append(`
+                            <tr>
+                                <td><img class="imgProd" style="width:100%;" src="` + BASE_URL3 + json['produtos'][i].produto_img + `"/></td>
+                                <td class="tdCenter">` + json['produtos'][i].produto_nome + `</td>
+                                <td class="tdCenter">` + json['produtos'][i].produto_tamanho + `</td>
+                                <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
+                                <td class="tdCenter">
+                                    <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
+                                    <button class="myBtnUpd btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    }
+                    deleteProduto();
+                    modalView();
+                    modalUpd();
+                    viewProduto();
+                    updProduto();
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+            }
+        });
     });
 }
 
@@ -485,3 +559,4 @@ function deleteProduto() {
 
 dataProds();
 searchProduto();
+ordenarProduto();

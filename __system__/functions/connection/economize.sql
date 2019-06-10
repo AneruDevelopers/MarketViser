@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/06/2019 às 10:35
+-- Tempo de geração: 10/06/2019 às 02:01
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -45,6 +45,53 @@ INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `arma
 (1, 'Armazém Lins', 'Carlos Felipe de Souza', '234.987.622-95', '2019-04-23 06:41:12', 1),
 (2, 'Armazém Marília', 'Paula Rodrigues de Oliveira', '340.139.871-22', '2019-05-16 05:44:55', 2),
 (3, 'Armazém Prudente', 'Alexsandro Renato de Souza', '497.235.681-34', '2019-05-17 02:13:13', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `atendimento`
+--
+
+CREATE TABLE `atendimento` (
+  `id_atd` int(11) NOT NULL,
+  `nome_usu` varchar(50) NOT NULL,
+  `email_usu` varchar(150) NOT NULL,
+  `tp_problema` varchar(100) NOT NULL,
+  `desc_problema` text,
+  `dataenv_pro` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `atendimento`
+--
+
+INSERT INTO `atendimento` (`id_atd`, `nome_usu`, `email_usu`, `tp_problema`, `desc_problema`, `dataenv_pro`) VALUES
+(1, 'Paulo Conceição', 'paulin_conc@gmail.com', 'Armazém', 'Não estou conseguindo comprar em nenhum armazém. O que será que está acontecendo?   \r\n                   ', '2019-06-07 16:01:59'),
+(2, 'Vinícius Ferreira', 'vinizinho@gmail.com', 'Entrega', 'Fiz uma compra há mais de duas horas e até agora ela não chegou. O que aconteceu?', '2019-06-08 10:15:04'),
+(3, 'Fábio Fernando da Silva', 'fabin@gmail.com', 'Cidade indisponível', 'Moro na cidade de Araçatuba. Fiquei sabendo de uns rumores de vocês virem pra cá. É verdade? Se sim, quando?', '2019-06-08 23:28:11'),
+(4, 'Kátia Paola Carvalho', 'katia_carvalho@gmail.com', 'cadastro', 'Ao tentar me cadastrar o sistema me dá um erro de endereço. Por quê?', '2019-06-09 20:43:47');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `atend_resposta`
+--
+
+CREATE TABLE `atend_resposta` (
+  `resp_id` int(11) NOT NULL,
+  `id_atd` int(11) NOT NULL,
+  `funcionario_id` int(11) NOT NULL,
+  `resp_atend` text NOT NULL,
+  `registro_resp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `atend_resposta`
+--
+
+INSERT INTO `atend_resposta` (`resp_id`, `id_atd`, `funcionario_id`, `resp_atend`, `registro_resp`) VALUES
+(1, 1, 3, 'Olá Paulo. Provavelmente você está tentando comprar em uma cidade \"inválida\". Caso não tenha achado uma resposta ainda, dê uma olhada nas páginas de \"subcidades\". Você terá uma resposta mais concreta. Para entrar nessa página você só tem de clicar no link de \"SUBCIDADES\" na janela que aparece ao clicar na cidade ao topo da página. Espero ter ajudado. Tenha uma boa noite!!', '2019-06-09 20:24:03'),
+(2, 3, 3, 'Boa noite Fábio. Em parte isso é verdade sim, mas, ainda tem muitas coisas à se resolver e muitas papeladas, por isso, não posso dizer com certeza quando isso pode acontecer. Muito obrigado pela preferência!', '2019-06-09 20:33:50');
 
 -- --------------------------------------------------------
 
@@ -202,6 +249,31 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (32, 27, 1, 70, '3.67', NULL),
 (33, 28, 1, 95, '8.20', 8),
 (34, 2, 3, 400, '5.50', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `dados_atend_func`
+--
+
+CREATE TABLE `dados_atend_func` (
+  `dados_id` int(11) NOT NULL,
+  `atendimento_id` int(11) NOT NULL,
+  `funcionario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `dados_atend_func`
+--
+
+INSERT INTO `dados_atend_func` (`dados_id`, `atendimento_id`, `funcionario_id`) VALUES
+(1, 1, 2),
+(2, 3, 3),
+(3, 2, 3),
+(4, 3, 2),
+(6, 2, 2),
+(7, 1, 3),
+(8, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -460,20 +532,23 @@ INSERT INTO `forn_prod` (`forn_prod_id`, `fornecedor_id`, `produto_id`, `produto
 CREATE TABLE `funcionario` (
   `funcionario_id` int(11) NOT NULL,
   `funcionario_nome` varchar(150) NOT NULL,
+  `funcionario_email` varchar(200) DEFAULT NULL,
+  `funcionario_senha` varchar(255) NOT NULL,
   `funcionario_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `funcionario_cpf` char(14) NOT NULL,
   `funcionario_datanasc` date NOT NULL,
-  `funcionario_setor` int(11) NOT NULL,
-  `horario_entrada` time NOT NULL,
-  `horario_saida` time NOT NULL
+  `funcionario_setor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_registro`, `funcionario_cpf`, `funcionario_datanasc`, `funcionario_setor`, `horario_entrada`, `horario_saida`) VALUES
-(1, 'Otávio Henrique Perene', '2019-04-23 07:04:33', '305.983.437-12', '1985-03-26', 1, '06:30:00', '12:30:00');
+INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_email`, `funcionario_senha`, `funcionario_registro`, `funcionario_cpf`, `funcionario_datanasc`, `funcionario_setor`) VALUES
+(2, 'Felipe Lorenzo Tronto', 'felipelor_t@gmail.com', '$2y$10$a99pEoCsLi/sNYAUT4JWeOG.AUm50CG6wwMSGUMgW2.VvlTiZh48y', '2019-06-08 20:10:33', '477.608.258-62', '1978-09-23', 1),
+(3, 'Larissa Carla Ferreira', 'lari_fer@gmail.com', '$2y$10$vf.DrgaiCFm1Ry.mAI6EyOMfSCa9bss4QfiP2B.XmErlN.bNbh2Ay', '2019-06-09 00:16:16', '309.826.521-33', '1989-10-06', 3),
+(4, 'Paula Rodrigues da Silva', 'paularod_silva@gmail.com', '$2y$10$KdxcAdIvYuzjTeyv8oFv3ebhv84j2cjDJ9JyTqwXwJLpFLaRAaJjq', '2019-06-09 20:53:08', '123.123.345-76', '2000-07-27', 2),
+(5, 'Izaias Moreno Filho', 'izaiasfilho@gmail.com', '$2y$10$iCuIeU6bw2h2tpr9yVpbvelPDWejCb3xbkimhcAsub0XkLNsx0g5q', '2019-06-09 20:56:44', '392.745.103-71', '1999-01-30', 1);
 
 -- --------------------------------------------------------
 
@@ -625,7 +700,8 @@ INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produ
 (25, 'Vodka Smurnoff Tradicional', 'Vodka Smurnoff Tradicional', 'sminorg.png', 18, '1.75L', 16),
 (26, 'Salgadinho Sabor Alho e Queijo Bobitos', 'Salgadinho Sabor Alho e Queijo Bobitos', 'sargadenho.png', 19, '96g', 19),
 (27, 'Iogurte Mix Café da Manhã Laktivia', 'Iogurte Mix Café da Manhã Laktivia', 'pra cagar ate nao querer mais.png', 20, '170g', 20),
-(28, 'Pão De Forma Integral Wickbread', 'Pão De Forma Integral Wickbread', 'paozinho.png', 21, '450g', 22);
+(28, 'Pão De Forma Integral Wickbread', 'Pão De Forma Integral Wickbread', 'paozinho.png', 21, '450g', 22),
+(29, 'TESTE', 'ASKJHDAKJHSD', 'img_default.png', 15, 'AKJSHD', 7);
 
 -- --------------------------------------------------------
 
@@ -646,10 +722,7 @@ CREATE TABLE `produtos_favorito` (
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (85, 1, 2),
 (87, 3, 2),
-(88, 8, 2),
-(106, 7, 1),
-(109, 1, 1),
-(110, 6, 1);
+(88, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -659,17 +732,18 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 
 CREATE TABLE `setor` (
   `setor_id` int(11) NOT NULL,
-  `setor_nome` varchar(50) NOT NULL
+  `setor_nome` varchar(50) NOT NULL,
+  `setor_permicao` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `setor`
 --
 
-INSERT INTO `setor` (`setor_id`, `setor_nome`) VALUES
-(1, 'Entregador'),
-(2, 'Balconista'),
-(3, 'Recepcionista');
+INSERT INTO `setor` (`setor_id`, `setor_nome`, `setor_permicao`) VALUES
+(1, 'Entregador', 'l'),
+(2, 'Supervisor', 'l-a-r'),
+(3, 'Administrador', 'l-a-e-r');
 
 -- --------------------------------------------------------
 
@@ -791,8 +865,7 @@ CREATE TABLE `tipousu` (
 
 INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
 (1, 'Cliente', NULL),
-(2, 'Associado', 20),
-(3, 'Administrador', NULL);
+(2, 'Associado', 20);
 
 -- --------------------------------------------------------
 
@@ -845,7 +918,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 3, '2019-04-26 05:06:09'),
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, '2019-04-26 05:06:09'),
 (2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
 
 --
@@ -858,6 +931,20 @@ INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, 
 ALTER TABLE `armazem`
   ADD PRIMARY KEY (`armazem_id`),
   ADD KEY `fk_CidArm` (`cidade_id`);
+
+--
+-- Índices de tabela `atendimento`
+--
+ALTER TABLE `atendimento`
+  ADD PRIMARY KEY (`id_atd`);
+
+--
+-- Índices de tabela `atend_resposta`
+--
+ALTER TABLE `atend_resposta`
+  ADD PRIMARY KEY (`resp_id`),
+  ADD KEY `fk_AtendResp` (`id_atd`),
+  ADD KEY `fk_FuncResp` (`funcionario_id`);
 
 --
 -- Índices de tabela `banner`
@@ -901,6 +988,14 @@ ALTER TABLE `dados_armazem`
   ADD PRIMARY KEY (`dados_id`),
   ADD KEY `fk_ProdArm` (`produto_id`),
   ADD KEY `fk_ArmProd` (`armazem_id`);
+
+--
+-- Índices de tabela `dados_atend_func`
+--
+ALTER TABLE `dados_atend_func`
+  ADD PRIMARY KEY (`dados_id`),
+  ADD KEY `fk_AtdFunc` (`atendimento_id`),
+  ADD KEY `fk_FuncAtd` (`funcionario_id`);
 
 --
 -- Índices de tabela `dados_entrega`
@@ -1079,6 +1174,18 @@ ALTER TABLE `armazem`
   MODIFY `armazem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de tabela `atendimento`
+--
+ALTER TABLE `atendimento`
+  MODIFY `id_atd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `atend_resposta`
+--
+ALTER TABLE `atend_resposta`
+  MODIFY `resp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `banner`
 --
 ALTER TABLE `banner`
@@ -1113,6 +1220,12 @@ ALTER TABLE `cupom`
 --
 ALTER TABLE `dados_armazem`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de tabela `dados_atend_func`
+--
+ALTER TABLE `dados_atend_func`
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
@@ -1172,7 +1285,7 @@ ALTER TABLE `forn_prod`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `funcionario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `funcionario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `horarios_entrega`
@@ -1202,13 +1315,13 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -1244,7 +1357,7 @@ ALTER TABLE `telefone`
 -- AUTO_INCREMENT de tabela `tipousu`
 --
 ALTER TABLE `tipousu`
-  MODIFY `tpu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tpu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_tel`
@@ -1267,6 +1380,13 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `armazem`
   ADD CONSTRAINT `fk_CidArm` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`cid_id`);
+
+--
+-- Restrições para tabelas `atend_resposta`
+--
+ALTER TABLE `atend_resposta`
+  ADD CONSTRAINT `fk_AtendResp` FOREIGN KEY (`id_atd`) REFERENCES `atendimento` (`id_atd`),
+  ADD CONSTRAINT `fk_FuncResp` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`);
 
 --
 -- Restrições para tabelas `categ`
@@ -1294,6 +1414,13 @@ ALTER TABLE `compra`
 ALTER TABLE `dados_armazem`
   ADD CONSTRAINT `fk_ArmProd` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`),
   ADD CONSTRAINT `fk_ProdArm` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `dados_atend_func`
+--
+ALTER TABLE `dados_atend_func`
+  ADD CONSTRAINT `fk_AtdFunc` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimento` (`id_atd`),
+  ADD CONSTRAINT `fk_FuncAtd` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`);
 
 --
 -- Restrições para tabelas `dados_entrega`

@@ -96,6 +96,22 @@ $(document).ready(function() {
 })();
 
 
+function removeAcentoProduto (text) {
+    text = text.toLowerCase();
+    for(var i = 0; text.length > i; i++) {
+        if(text[i] == " ") {
+            text= text.replace(" ", "_");
+        }
+    }
+    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+    text = text.replace(new RegExp('[Ç]','gi'), 'c');
+    return text;
+}
+
 
 // window.onscroll = function() {myFunction()};
 
@@ -272,6 +288,8 @@ $('.linksProdCarousel').click(function(e) {
                 </div>
             `;
 
+            // var resp = removeAcentoProduto(json['produto']['produto_nome'] + " " + json['produto']['produto_tamanho']);
+            // window.history.pushState('Object', 'e.conomize | Produto', BASE_URL + resp);
             $('.showProdutoModal').html(produto);
             attCarrinho();
         }
