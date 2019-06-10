@@ -108,7 +108,7 @@
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
-                        <button class="btnSend" type="submit" id="btn-login" value="Entrar">ENTRAR</button>
+                        <button class="btnSend" type="submit" id="btn-login">ENTRAR</button>
                         <div class="help-block-login"></div>
                     </form>
                 </div>

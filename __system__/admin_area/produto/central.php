@@ -1,12 +1,11 @@
 <?php
     require_once '__system__/functions/connection/conn.php';
-    // if(!isset($_SESSION['inf_usu']['usu_id'])) {
-    //     header("Location: " . base_url_php());
-    // } else {
-    //     if($_SESSION["inf_usu"]['usu_tipo_id'] != 3) {
-    //         header("Location: " . base_url_php());
-    //     }
-    // }
+    if(!isset($_SESSION['inf_func']['funcionario_id'])) {
+        header("Location: " . base_url_adm_php() . "login");
+    }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,15 +34,16 @@
                 <form class="formSearch">
                     <label for="searchProd">Procure: </label>
                     <input type="text" class="inputSearch" id="searchProd"/>
+                    <div class="divResetSearch"></div>
                 </form>
             </div>
             <div class="divEcoTable">
                 <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
                         <th class="thTitle" width="10%">IMAGEM</th>
-                        <th class="thTitle" width="30%">NOME</th>
-                        <th class="thTitle" width="25%">VOLUME</th>
-                        <th class="thTitle" width="20%">MARCA</th>
+                        <th class="thTitle sort" data-sort="produto_nome" width="30%">NOME <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="produto_tamanho" width="25%">VOLUME <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="marca_nome" width="20%">MARCA <span class="span_sort"></span></th>
                         <th class="thTitle" width="15%">AÇÕES</th>
                     </thead>
                     <tbody class="tbodyProd">

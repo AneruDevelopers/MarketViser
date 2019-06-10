@@ -36,10 +36,9 @@
                             }
                         }
                     }
-
-                    if($json['error']) {
-                        break;
-                    }
+                }
+                if($json['error']) {
+                    break;
                 }
             }
 

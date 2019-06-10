@@ -182,6 +182,35 @@
                     }
                 }
             }
+        } elseif(isset($_POST['data_sort'])) {
+            $sort = $_POST['data_sort'];
+            $json['sort'] = "up";
+            if(!isset($_SESSION['data_sort'][$sort])) {
+                $_SESSION['data_sort'][$sort] = "ASC";
+            } else {
+                if($_SESSION['data_sort'][$sort] == "ASC") {
+                    $_SESSION['data_sort'][$sort] = "DESC";
+                    $json['sort'] = "down";
+                } else {
+                    unset($_SESSION['data_sort'][$sort]);
+                    $json['sort'] = "none";
+                }
+            }
+
+            $json['produtos'] = array();
+            
+            if(isset($_SESSION['data_sort'][$sort])) {
+                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id ORDER BY $sort {$_SESSION['data_sort'][$sort]}");
+            } else {
+                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id");
+            }
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $prods = $sel->fetchAll();
+                foreach($prods as $v) {
+                    $json['produtos'][] = $v;
+                }
+            }
         } elseif(isset($_POST['searchProd'])) {
             $json['empty'] = TRUE;
             $json['produtos'] = array();

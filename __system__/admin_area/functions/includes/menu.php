@@ -1,8 +1,19 @@
 <header class="l-header">
-    <h2 class="notification">
+    <h2 class="notification btnModalNot">
         <i class="fas fa-bell"></i>
-        <p class="qtdNotifi">1</p>
+        <div class="numNot"></div>
     </h2>
+
+        <div class="modalNotContent" id="myModalNot">
+            <div class="headerNot" id="headerNot">
+                <span class="bHeaderNot" id="bHeaderNot">Notificações</span>
+                <span class="aNotMarca" id="aNotMarca">Marcar todas como lidas *Não funfa ainda</span>
+            </div>
+            <div class="showNotModal" id="showNotModal">
+
+            </div>
+        </div>
+
     <div class="divLinkCompanyNameAdm">
         <a class="linkCompanyNameAdm" href="<?= base_url_php(); ?>">
             <img src="<?= base_url(); ?>img\Logo cor_branca.png" alt="e.conomize">
@@ -31,6 +42,11 @@
                         </li>
                     </a>
                 </ul>
+            </li>
+        </a>
+        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>atendimento/central">
+            <li class="celulaTrocaPagina">
+                Atendimento online
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>banner/central">
@@ -80,6 +96,13 @@
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>funcionario/central">
             <li class="celulaTrocaPagina">
                 Funcionários
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>funcionario/central?fnc=IF">
+                        <li>
+                            Inserir funcionário
+                        </li>
+                    </a>
+                </ul>
             </li>
         </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>horarios/central">

@@ -57,7 +57,7 @@
                </div>
                <div class="input-form">
                 <label>Email:</label>
-                <input type="text" name="email_usu" >
+                <input type="text" name="email_usu">
                </div>
                <div class="input-form">
                 <label>Tipo do Problema:</label>
@@ -76,9 +76,7 @@
                </div>
                <div class="input-form">
                 <label>Descrição do Problema:</label>
-                   <textarea placeholder="mensagem" name="txt_usu">
-                       
-                   </textarea> 
+                   <textarea placeholder="mensagem" name="txt_usu"></textarea> 
                </div>
                <div class="input-form">
                  <input type="submit" value="Enviar"> 
