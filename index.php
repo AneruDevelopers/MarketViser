@@ -1,4 +1,5 @@
 <?php
+ob_start();
 	require_once '__system__/functions/connection/conn.php';
 
 	if((isset($_COOKIE['arm_id'])) && (!isset($_SESSION['arm_id']))):
