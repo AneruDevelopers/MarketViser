@@ -40,7 +40,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="l-main">
             <h2 class="tituloOfertas"><i class="fas fa-headset"></i> CENTRAL DE ATENDIMENTO</h2>
             <div class="form_atd divFormContactAttendance">
@@ -99,48 +98,6 @@
                 </div>
             </div>
         </div>
-=======
-
-
-       <div class="form_atd" align="Center" style="padding-left: 10%;">
-           <form id="form-atd" >
-               <h1>Central de Atendimento</h1>
-               <div  class="input-form">
-                <label>Nome:</label>
-                <input type="text" name="name_usu" >
-               </div>
-               <div class="input-form">
-                <label>Email:</label>
-                <input type="text" name="email_usu">
-               </div>
-               <div class="input-form">
-                <label>Tipo do Problema:</label>
-                <select name="opt">
-                    <optgroup label="Selecione um">
-                      <option value="compra">Compra</option>
-                      <option value="carrinho de compra">Carrinho de Compra</option> 
-                      <option value="armazem">Armázens</option> 
-                      <option value="entrega">Entrega</option>
-                      <option value="cidade indisponivel">Cidade Indisponivel</option>
-                      <option value="cadastro">Cadastro</option>
-                      <option value="login">Login</option>     
-                    </optgroup>
-                   
-                </select>
-               </div>
-               <div class="input-form">
-                <label>Descrição do Problema:</label>
-                   <textarea placeholder="mensagem" name="txt_usu"></textarea> 
-               </div>
-               <div class="input-form">
-                 <input type="submit" value="Enviar"> 
-               </div>
-           </form>
-       </div>
-
-
-
->>>>>>> 111e4d542d9df579891514c08561b0f205fc125a
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modalLeftContent">
