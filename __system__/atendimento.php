@@ -25,12 +25,6 @@
             include('functions/includes/header.php');
         ?>
         </nav>
-
-        <div class="l-bottomNav" id="bottomNav">
-        <?php
-            include('functions/includes/bottom.html');
-        ?>
-        </div>
         <div class="myModalArmazem" id="myModalArmazem">
             <div class="modalArmazemContent">
                 <div class="modalArmTopContent">
@@ -46,48 +40,64 @@
                 </div>
             </div>
         </div>
-
-
-       <div class="form_atd" align="Center" style="padding-left: 10%;">
-           <form id="form-atd" >
-               <h1>Central de Atendimento</h1>
-               <div  class="input-form">
-                <label>Nome:</label>
-                <input type="text" name="name_usu" >
-               </div>
-               <div class="input-form">
-                <label>Email:</label>
-                <input type="text" name="email_usu" >
-               </div>
-               <div class="input-form">
-                <label>Tipo do Problema:</label>
-                <select name="opt">
-                    <optgroup label="Selecione um">
-                      <option value="compra">Compra</option>
-                      <option value="carrinho de compra">Carrinho de Compra</option> 
-                      <option value="armazem">Armázens</option> 
-                      <option value="entrega">Entrega</option>
-                      <option value="cidade indisponivel">Cidade Indisponivel</option>
-                      <option value="cadastro">Cadastro</option>
-                      <option value="login">Login</option>     
-                    </optgroup>
-                   
-                </select>
-               </div>
-               <div class="input-form">
-                <label>Descrição do Problema:</label>
-                   <textarea placeholder="mensagem" name="txt_usu">
-                       
-                   </textarea> 
-               </div>
-               <div class="input-form">
-                 <input type="submit" value="Enviar"> 
-               </div>
-           </form>
-       </div>
-
-
-
+        <div class="l-main">
+            <h2 class="tituloOfertas"><i class="fas fa-headset"></i> CENTRAL DE ATENDIMENTO</h2>
+            <div class="form_atd divFormContactAttendance">
+            <h3 class="titleDivContactPage">ENVIE UM FEEDBACK</h3>
+                <form id="form-atd" >
+                    <div class="input-form">
+                        <label>NOME:</label><br>
+                        <input type="text" name="name_usu" >
+                    </div>
+                    <div class="input-form">
+                        <label>EMAIL:</label><br>
+                        <input type="text" name="email_usu" >
+                    </div>
+                    <div class="input-form">
+                        <label>CONTEÚDO DA MENSAGEM:</label><br>
+                        <select name="opt">
+                            <optgroup label="Selecione 1:">
+                            <option value="compra">Compra</option>
+                            <option value="carrinho de compra">Carrinho de Compra</option> 
+                            <option value="armazem">Armázens</option> 
+                            <option value="entrega">Entrega</option>
+                            <option value="cidade indisponivel">Cidade Indisponivel</option>
+                            <option value="cadastro">Cadastro</option>
+                            <option value="login">Login</option>     
+                            </optgroup>
+                        
+                        </select>
+                    </div>
+                    <div class="input-form">
+                        <label>MENSAGEM:</label><br>
+                        <textarea placeholder="mensagem" name="txt_usu"></textarea> 
+                    </div>
+                    <div class="input-form">
+                        <button class="btnDivFormContactAttendance" type="submit">ENVIAR</button> 
+                    </div>
+                </form>
+            </div>
+            <div class="divFormContactInformation">
+                <h3 class="titleDivContactPage">INFORMAÇÕES DE CONTATO</h3>
+                <div class="textDivFormContactInformation">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil sint, aut hic molestias fugiat consectetur, totam corrupti repudiandae incidunt veniam, dicta minus eligendi architecto itaque dolore a numquam porro. Quo!</p>
+                </div>
+                <div class="infoDivFormContactInformation">
+                    <p class="paragLineContactPage"><i class="fas fa-mobile-alt"></i> &nbsp;(14) 99999-9999</p>
+                    <p class="paragLineContactPage"><i class="far fa-envelope"></i> &nbsp;economize.contato@gmail.com</p>
+                    <p>
+                        <a class="linkSocialMediaContactPage" href="#"><i class="fab fa-facebook-square"></i></a> 
+                        &nbsp; 
+                        <a class="linkSocialMediaContactPage" href="#"><i class="fab fa-twitter-square"></i></a>
+                        &nbsp;
+                        <a class="linkSocialMediaContactPage" href="#"><i class="fab fa-instagram"></i></a>
+                        &nbsp;
+                        <a class="linkSocialMediaContactPage" href="#"><i class="fab fa-youtube-square"></i></a>
+                        &nbsp;
+                    </p>
+                </div>
+            </div>
+        </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modalLeftContent">

@@ -211,7 +211,9 @@ $('.linksProdCarousel').click(function(e) {
         success: function(json) {
             var produto = `
                 <div class="modalProdutoLeft">
-                    <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+                    <div class="divImgModalProduct">
+                        <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+                    </div>
                 </div>
                 <div class="modalProdutoRight">
                     <div class="infProduto">

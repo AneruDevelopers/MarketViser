@@ -10,12 +10,11 @@ function showTelefones() {
         success: function(json) {
             $(".divTelefones").html(loadingRes("Importando telefone(s)..."));
             $('.divTelefones').html(`
-                <h3>Telefone(s)</h3>
             `);
             for(var i = 0; json['tel'].length > i; i++) {
                 $('.divTelefones').append(`
-                    <b>Número:</b> ` + json['tel'][i].tel_num + ` 
-                    <b>Tipo:</b> ` + json['tel'][i].tpu_tel_nome + `<br/>
+                    <span class="specialSpan"><b>Número:</b> ` + json['tel'][i].tel_num + ` 
+                    <b>| Tipo:</b> ` + json['tel'][i].tpu_tel_nome + `</span><br/>
                 `);
             }
             adicionaInputsMudarTelefone();
@@ -72,8 +71,8 @@ function adicionaInputsMudarTelefone() {
             url: BASE_URL + 'functions/configurarPerfil',
             success: function(json) {
                 $('.divMudarTelefone').html(`
-                    <button class="cancelarMudarTelefone"><i class="far fa-times-circle"></i></button>
-                    <h4>Mude seu(s) telefone</h4>
+                    <button class="cancelarMudarSenha"><i class="far fa-times-circle"></i></button>
+                    <h4 class="titleChangePass"><i class="fas fa-mobile-alt"></i> MUDE SEU(S) TELEFONE(S)</h4>
                     <form id="formMudaTelefone">
                 `);
                 for(var i = 0; json['tel'].length > i; i++) {
@@ -98,7 +97,7 @@ function adicionaInputsMudarTelefone() {
                     `);
                 }
                 $('.divMudarTelefone').append(`
-                        <button id="btnSaveMudarTelefone" type="submit"><i class="fas fa-save"></i> Salvar</button>
+                        <button class="btnSaveMudarSenha" id="btnSaveMudarTelefone" type="submit"><i class="fas fa-save"></i> SALVAR</button>
                     </form>
                 `);
                 deletarTelefone();
@@ -150,7 +149,7 @@ function ButtonMudarSenha() {
 function adicionaButtonMudarSenha() {
     $('.cancelarMudarSenha').click(function(e) {
         $('.divMudarSenha').html(`
-            <button class="mudarSenha">Mudar senha</button>
+        
         `);
         adicionaInputsMudarSenha();
     });
@@ -161,31 +160,28 @@ function adicionaInputsMudarSenha() {
         e.preventDefault();
         $('.divMudarSenha').html(`
             <button class="cancelarMudarSenha"><i class="far fa-times-circle"></i></button>
-            <h4>Mude a senha</h4>
+            <h4 class="titleChangePass"><i class="fas fa-unlock"></i> MUDE A SENHA</h4>
             <div class="divInputSenha">
                 <form id="formMudarSenha">
-                    <div>
+                    <div class="sectionLabelInputChangePass">
                         <div>
                             <label>Senha atual</label><br/>
                             <input type="password" id="senha_atual" name="senha_atual"/><br/>
                         </div>
-                        <div class="help-block"></div>
                     </div>
-                    <div>
+                    <div class="sectionLabelInputChangePass">
                         <div>
                             <label>Nova senha</label><br/>
                             <input type="password" id="senha_nova" name="senha_nova"/><br/>
                         </div>
-                        <div class="help-block"></div>
                     </div>
-                    <div>
+                    <div class="sectionLabelInputChangePass">
                         <div>
                             <label>Confirme a senha</label><br/>
                             <input type="password" id="senha_nova_confirme" name="senha_nova_confirme"/><br/>
                         </div>
-                        <div class="help-block"></div>
                     </div>
-                    <button id="btnSaveMudarSenha" type="submit"><i class="fas fa-save"></i> Salvar</button>
+                    <button class="btnSaveMudarSenha" id="btnSaveMudarSenha" type="submit"><i class="fas fa-save"></i> SALVAR</button>
                 </form>
             </div>
         `);
