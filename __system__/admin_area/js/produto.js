@@ -366,7 +366,7 @@ function updProduto() {
                     for(var i = 0; i < json['categ_prod'].length; i++) {
                         if(json['categ_prod'][i].categ_id != json['produto']['produto_categ']) {
                             $('#prod_categUpd').append(`
-                                <option value="` + json['categ_prod'][i].categ_id + `">` + json['categ_prod'][i].categ_nome + `</option>
+                                <option value="` + json['categ_prod'][i].categ_id + `">` + json['categ_prod'][i].depart_nome + ` / ` + json['categ_prod'][i].subcateg_nome + ` / ` + json['categ_prod'][i].categ_nome + `</option>
                             `);
                         } else {
                             $('#prod_categUpd').append(`
@@ -374,6 +374,9 @@ function updProduto() {
                             `);
                         }
                     }
+
+                    $('.imgUpload').attr("src", BASE_URL3 + json['produto']['produto_img']);
+
                     $('#prod_descUpd').val(json['produto']['produto_descricao']);
                     $('#prod_tamUpd').val(json['produto']['produto_tamanho']);
 

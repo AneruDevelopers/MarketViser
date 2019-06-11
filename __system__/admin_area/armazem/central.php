@@ -91,7 +91,7 @@
                                             </tr>
                                             <tr>
                                                 <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
-                                                <td><input type="text" class="selectConfigArm" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
+                                                <td><input type="text" class="selectConfigArm porcent" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -175,7 +175,7 @@
                     </tr>
                     <tr>
                         <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
-                        <td><input type="text" class="selectConfigArm" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
+                        <td><input type="text" class="selectConfigArm porcent" name="produto_desconto_porcent[]" placeholder=" (Opcional)" size="60"></td>
                     </tr>
                 </table>
                 <div class="btnRemove">

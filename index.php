@@ -154,7 +154,7 @@ ob_start();
 							else:
 								$_SESSION['url3'] = $URL[3];
 								$_SESSION['categ_id'] = $result3[0]["categ_id"];
-								require '__system__/procuraProdutos.php';
+								require '__system__/departamento.php';
 							endif;
 						else:
 							require '__system__/404.php';
@@ -166,7 +166,7 @@ ob_start();
 							unset($_SESSION['categ_id']);
 							unset($_SESSION['url3']);
 						endif;
-						require '__system__/procuraProdutos.php';
+						require '__system__/departamento.php';
 					endif;
 				else:
 					require '__system__/404.php';
@@ -188,7 +188,7 @@ ob_start();
 						unset($_SESSION['url3']);
 					endif;
 				endif;
-				require '__system__/procuraProdutos.php';
+				require '__system__/departamento.php';
 			endif;
 		else:
 			require '__system__/404.php';
