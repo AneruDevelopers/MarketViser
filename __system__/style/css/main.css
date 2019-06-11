@@ -5544,12 +5544,20 @@ border-radius: 0;
         position: relative;
         top: -8rem;
         overflow-y: auto;
+        border-radius: 5px;
     }
 
     .modalProdutoLeft {
         position: relative;
         width: 50%;
         height: 100%;
+    }
+
+    .divImgModalProduct {
+        position: relative;
+        width: 50%;
+        left: 25%;
+        top: 7rem;
     }
 
     .imgProdutoModal {
@@ -7418,4 +7426,327 @@ border-radius: 0;
         margin: auto;
     }
 
+    /* PAGINA DE ATENDIMENTO */
+
+    .divFormContactAttendance {
+        position: relative;
+        float: left;
+        width: 40%;
+        margin-left: 5%;
+        height: 23rem;
+        border-radius: 3px;
+        /* background: #ededed; */
+        /* border: solid 3px #ededed; */
+        padding: 10px;
+        -webkit-box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+        -moz-box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+        box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+    }
+
+    .divFormContactInformation {
+        position: relative;
+        float: right;
+        width: 40%;
+        margin-right: 5%;
+        height: 23rem;
+        border-radius: 3px;
+        padding: 10px;
+    }
+
+    .titleDivContactPage {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #9C45EB;
+    }
+
+    .input-form {
+        margin: 1rem 0;
+    }
+
+    .input-form label {
+        color: #9C45EB;
+        font-family: 'Raleway';
+        font-size: 13px;
+        font-weight: bold;
+        position: relative;
+        width: 50%;
+        left: 25%;
+    }
+
+    .input-form input, .input-form select, .input-form textarea {
+        border: solid 2px #d3d2d2;
+        position: relative;
+        width: 50%;
+        left: 25%;
+        font-family: 'Raleway';
+        padding: 3px 0;
+    }
+
+    .btnDivFormContactAttendance {
+        background: #0F0617;
+        border: none;
+        color: #fff;
+        position: relative;
+        width: 30%;
+        left: 35%;
+        padding: 5px;
+        font-family: 'Raleway';
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .textDivFormContactInformation {
+        text-align: justify;
+        font-family: 'Raleway-Medium';
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .paragLineContactPage i {
+        color: #9C45EB;
+    }
+
+    .linkSocialMediaContactPage {
+        text-decoration: none;
+        color: #9C45EB;
+        font-size: 28px;
+    }
+
+    /* PAGINA DE CONFIGURAÇÃO DO PERFIL */
+
+    .leftContentConfigProfile {
+        position: relative;
+        width: 20%;
+        left: 15%;
+        float: left;
+    }
+
+    .showUsuario {
+        position: relative;
+        width: 40%;
+        right: 15%;
+        margin: 0 2%;
+        float: right;
+    }
+
+    .sectionConfigProfilePage {
+        position: relative;
+        width: 100%;
+        text-align: left;
+        min-height: 3rem;
+        padding: 5px 2%;
+        border-bottom: 2px solid #d3d2d2;
+        color: #9C45EB;
+        font-size: 13px;
+    }
+
+    .topDivConfigProfilePage {
+        position: relative;
+        width: 30%;
+        background: none;
+        height: 100%;
+        margin: 0;
+        float: left;
+    }
+
+    .topDivConfigProfilePage h5 {
+        font-size: 13px;
+        margin: 0;
+        position: relative;
+        top: 1rem;
+    }
+
+    .bottomDivConfigProfilePage {
+        position: relative;
+        width: 70%;
+        float: right;
+        background: none;
+        height: 100%;
+        margin: 0;
+        text-align: left;
+    }
+
+    .bottomDivConfigProfilePage .specialSpanEnd {
+        color: #0F0617;
+        font-weight: bold;
+        font-size: 12px;
+        text-transform: uppercase;
+        position: relative;
+        top: .1rem;
+    }
+
+    .bottomDivConfigProfilePage .specialSpan {
+        color: #0F0617;
+        font-weight: bold;
+        font-size: 12px;
+        text-transform: uppercase;
+        position: relative;
+        top: 1rem;
+    }
+
+    .sectionConfigProfilePage b .specialSpan {
+        color: #0F0617;
+        position: relative;
+        left: 25%;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .divConfigProfileFacts {
+        position: relative;
+        width: 100%;
+        background: #9C45EB;
+        height: 6rem;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .divConfigProfileFacts h4 {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-top: 0;
+        font-family: 'Karla';
+    }
+
+    .titleDivConfigProfileFacts {
+        position: relative;
+        width: 65%;
+        float: left;
+        margin-bottom: .5rem;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .textDivConfigProfileFacts {
+        position: relative;
+        width: 15%;
+        margin: 0;
+        float: right;
+        color: #fff;
+        text-align: right;
+    }
+
+    .sectionConfigProfilePageBottom {
+        clear: both;
+    }
+
+    .editIcon {
+        float: right;
+        position: relative;
+        top: 1rem;
+    }
+
+    .editIconEnd {
+        float: right;
+        position: relative;
+        top: -.8rem;
+    }
+
+    .editIconTel {
+        float: right;
+        position: relative;
+        top: 0rem;
+    }
+
+    .editIcon button {
+        background: none;
+        border: none;
+        padding: 0;
+        color: #9C45EB;
+        cursor: pointer;
+    }
+
+    .editIconEnd button {
+        background: none;
+        border: none;
+        padding: 0;
+        color: #9C45EB;
+        cursor: pointer;
+    }
+
+    .editIconTel button {
+        background: none;
+        border: none;
+        padding: 0;
+        color: #9C45EB;
+        cursor: pointer;
+    }
+
+    .sectionAlterConfigProfilePage {
+        position: relative;
+        background: #e2e3e6;
+        float: left;
+        width: 21.5%;
+        left: -5%;
+        top: 8rem;
+        border-radius: 5px;
+        margin: 0;
+    }
+
+    .cancelarMudarSenha {
+        position: relative;
+        float: right;
+        background: none;
+        border: none;
+        color: #9C45EB;
+        top: -.5rem;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .titleChangePass {
+        position: relative;
+        width: 76%;
+        left: 12%;
+        margin-top: .7rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #9C45EB;
+        font-size: 15px;
+    }
+
+    .sectionLabelInputChangePass {
+        position: relative;
+        margin-bottom: .5rem;
+        width: 80%;
+        left: 10%;
+    }
+
+    .sectionLabelInputChangePass div label {
+        font-family: 'Raleway-Medium';
+        font-size: 14px;
+        color: #9C45EB;
+    }
+
+    .sectionLabelInputChangePass div input {
+        position: relative;
+        width: 97%;
+        border: none;
+        padding: 4px;
+        font-family: 'Raleway';
+        border-radius: 3px;
+    }
+
+    .sectionLabelInputChangePass div input:focus {
+        outline-color: #9C45EB;
+    }
+
+    .btnSaveMudarSenha {
+        position: relative;
+        width: 30%;
+        left: 35%;
+        background: #9C45EB;
+        border: none;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        margin-top: .4rem;
+        margin-bottom: .8rem;
+        cursor: pointer;
+        font-family: 'Raleway-Medium';
+    }
 }

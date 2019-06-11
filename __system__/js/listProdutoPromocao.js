@@ -58,7 +58,7 @@ $(function() {
                 $('body').append(`
                     <div class="myModalProduto" id="myModalProduto">
                         <div class="modalProdutoContent">
-                            <span class="closeModalProduto">&times;</span>
+                        <span class="closeModalProduto">&times;</span>
                             <div class="showProdutoModal">
                                 
                             </div>
