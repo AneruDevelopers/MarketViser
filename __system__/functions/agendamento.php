@@ -195,7 +195,7 @@
                     </form>
                 ';
             } else {
-                echo 'Não há horários disponíveis para entrega hoje ou amanhã!! <a href="' . base_url_php() . 'ajuda/horario_armazem">Veja os horários</a>';
+                echo '<p class="semHorario">Não há horários disponíveis para entrega hoje ou amanhã!! <a href="' . base_url_php() . 'ajuda/horario_armazem">Veja os horários</a></p>';
             }
         }
     } else {

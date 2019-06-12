@@ -17,6 +17,7 @@
                 $res = $sel->fetchAll();
                 foreach($res as $v) {
                     $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                    $totCupomPorc = number_format($totCupomPorc, 2, '.', '');
                     $_SESSION['totCompraCupom'] = $_SESSION['totCompra'];
                     $_SESSION['totCompra'] -= $totCupomPorc;
                     $json['new_total_price'] = number_format($_SESSION['totCompra'], 2, ',', '.');
@@ -30,7 +31,7 @@
         } elseif(isset($_POST['remCupom'])) {
             if(isset($_SESSION['cupom_compra'])) {
                 $totCupomPorc = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-                $json['teste'] = $totCupomPorc;
+                $totCupomPorc = number_format($totCupomPorc, 2, '.', '');
                 $_SESSION['totCompra'] += $totCupomPorc;
                 unset($_SESSION['cupom_compra']);
                 unset($_SESSION['totCompraCupom']);

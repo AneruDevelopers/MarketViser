@@ -25,21 +25,7 @@
             include('functions/includes/header.php');
         ?>
         </nav>
-        <div class="myModalArmazem" id="myModalArmazem">
-            <div class="modalArmazemContent">
-                <div class="modalArmTopContent">
-                    <div class="meuArmazem">
-                        
-                    </div>
-                    <span class="closeModalArmazem">&times;</span>
-                </div>
-                <div class="modalArmBottomContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="l-main">
             <h2 class="tituloOfertas"><i class="fas fa-headset"></i> CENTRAL DE ATENDIMENTO</h2>
             <div class="form_atd divFormContactAttendance">
@@ -47,33 +33,36 @@
                 <form id="form-atd" >
                     <div class="input-form">
                         <label>NOME:</label><br>
-                        <input type="text" name="name_usu" >
+                        <input type="text" value="<?= isset($_SESSION['inf_usu']) ? $_SESSION['inf_usu']['usu_nome'] . " " . $_SESSION['inf_usu']['usu_sobrenome'] : "" ; ?>" id="name_usu" name="name_usu"/>
                     </div>
                     <div class="input-form">
                         <label>EMAIL:</label><br>
-                        <input type="text" name="email_usu" >
+                        <input type="text" value="<?= isset($_SESSION['inf_usu']) ? $_SESSION['inf_usu']['usu_email'] : "" ; ?>" id="email_usu" name="email_usu"/>
+                        <div class="help-block"></div>
                     </div>
                     <div class="input-form">
                         <label>CONTEÚDO DA MENSAGEM:</label><br>
-                        <select name="opt">
+                        <select name="opt" id="opt">
                             <optgroup label="Selecione 1:">
-                            <option value="compra">Compra</option>
-                            <option value="carrinho de compra">Carrinho de Compra</option> 
-                            <option value="armazem">Armázens</option> 
-                            <option value="entrega">Entrega</option>
-                            <option value="cidade indisponivel">Cidade Indisponivel</option>
-                            <option value="cadastro">Cadastro</option>
-                            <option value="login">Login</option>     
+                                <option value="compra">Compra</option>
+                                <option value="carrinho de compra">Carrinho de Compra</option> 
+                                <option value="armazem">Armázens</option> 
+                                <option value="entrega">Entrega</option>
+                                <option value="cidade indisponivel">Cidade Indisponivel</option>
+                                <option value="cadastro">Cadastro</option>
+                                <option value="login">Login</option>
                             </optgroup>
-                        
                         </select>
+                        <div class="help-block"></div>
                     </div>
                     <div class="input-form">
                         <label>MENSAGEM:</label><br>
-                        <textarea placeholder="mensagem" name="txt_usu"></textarea> 
+                        <textarea id="txt_usu" name="txt_usu"></textarea>
+                        <div class="help-block"></div>
                     </div>
                     <div class="input-form">
-                        <button class="btnDivFormContactAttendance" type="submit">ENVIAR</button> 
+                        <button class="btnDivFormContactAttendance" id="btnAtend" type="submit">ENVIAR</button>
+                        <div class="help-block"></div>
                     </div>
                 </form>
             </div>
@@ -98,41 +87,10 @@
                 </div>
             </div>
         </div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <div class="modalLeftContent">
-                    <form id="form-login">
-                        <!-- <i class="far fa-check-circle"></i> -->
-                        <h4 class="titleModalLogin">LOG IN</h4>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong><i class="fas fa-envelope"></i> EMAIL</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <button class="btnSend" type="submit" id="btn-login" value="Entrar">ENTRAR</button>
-                        <div class="help-block-login"></div>
-                    </form>
-                </div>
-                <div class="modalRightContent">
-                    <span class="close">&times;</span>
-                    <p class="textModal">Olá, amigo!</p>
-                    <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
-                    <div class="divLinkCad">
-                        <a class="linkCadModal" href="<?= base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
-                    </div>    
-                </div>
-            </div>
-        </div>
-        <!-- -------------------- -->
+
+        <?php
+            include('functions/includes/modal.php');
+        ?>
 
         <div class="l-footer" id="footer">
         <?php
@@ -147,18 +105,14 @@
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
-    <script src="<?= base_url(); ?>js/listProdutoPromocao.js"></script>
-    <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
     <script src="<?= base_url(); ?>js/envatd.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
         if(isset($_SESSION['msg_cad'])):?>
             <script>

@@ -17,7 +17,7 @@
 		if(empty($_POST["usu_nome"])) {
 			$json["error_list"]["#usu_nome"] = "<p class='msgErrorCad'>Por favor, insira seu nome neste campo</p>";
 		} else {
-			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_nome"])) {
+			if (!preg_match("/[\p{Latin}\d]+/i",$_POST["usu_nome"])) {
 				$json["error_list"]["#usu_nome"] = "<p class='msgErrorCad'>Por favor, somente somente letras ou espaços neste campo</p>";
 			} else {
 				if(substr_count($_POST["usu_nome"], " ") > 1) {
@@ -29,7 +29,7 @@
 		if(empty($_POST["usu_sobrenome"])) {
 			$json["error_list"]["#usu_sobrenome"] = "<p class='msgErrorCad'>Por favor, insira seu sobrenome neste campo</p>";
 		} else {
-			if (!preg_match("/^[a-zA-Z ]*$/",$_POST["usu_sobrenome"])) {
+			if (!preg_match("/[\p{Latin}\d]+/i",$_POST["usu_sobrenome"])) {
 				$json["error_list"]["#usu_sobrenome"] = "<p class='msgErrorCad'>Por favor, somente somente letras ou espaços neste campo</p>";
 			}
 		}

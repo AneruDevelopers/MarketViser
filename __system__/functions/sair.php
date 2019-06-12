@@ -13,9 +13,9 @@
             unset($_SESSION['url_sair']);
             header("Location: $url");
         } else {
-            header("Location: ../home");
+            header("Location: " . base_url_php());
         }
     } else {
-        header("Location: ../home");
+        header("Location: " . base_url_php());
     }
 ?>

@@ -1,3 +1,85 @@
+<?php
+    $empty = TRUE;
+    $logado = TRUE;
+    $totDesconto = 0;
+    $totCompra = 0;
+    $_SESSION['totCompra'] = 0;
+
+    function getProductsByIds($ids) {
+        global $conn;
+        $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent, m.marca_nome FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
+        $sel->execute();
+        if($sel->rowCount() > 0) {
+            while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                $dados[] = $v;
+            }
+        }
+        return $dados;
+    }
+
+    function getContentCart() {
+        global $conn;
+        $results = array();
+        
+        if(isset($_SESSION['carrinho'])) {
+            $cart = $_SESSION['carrinho'];
+            $products =  getProductsByIds(implode(',', array_keys($cart)));
+
+            foreach($products as $k => $product) {
+                if($product['produto_desconto_porcent'] != "") {
+                    $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
+                    $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
+                    $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
+                    $results[$k] = $product;
+                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
+                } else {
+                    $results[$k] = $product;
+                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_preco'];
+                }
+            }
+        }
+        
+        return $results;
+    }
+
+    if(isset($_SESSION['carrinho'])) {
+        if(!empty($_SESSION['carrinho'])) {
+            $empty = FALSE;
+            if(!isset($_SESSION['inf_usu']['usu_id'])) {
+                $logado = FALSE;
+            }
+            $resultsCarts = getContentCart();
+            
+            foreach($resultsCarts as $k => $v) {
+                if($v['produto_desconto_porcent'] <> "") {
+                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                    $totDesconto += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
+                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                }
+                
+                $_SESSION['totCompra'] += $v['subtotal'];
+                $_SESSION['subtotal'][$k] = $v['subtotal'];
+                $v['subtotal'] = number_format($v['subtotal'], 2, ',', '.');
+                $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
+                $v['carrinho'] = $_SESSION['carrinho'][$v['produto_id']];
+
+                $produtosCart[] = $v;
+            }
+            
+            if(isset($_SESSION['cupom_compra'])) {
+                $_SESSION['totCompraCupom'] = $_SESSION['totCompra'];
+                $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                $totCupomPorc = number_format($totCupomPorc,2,'.','');
+                $_SESSION['totCompra'] -= $totCupomPorc;
+            }
+
+            $totDesconto = number_format($totDesconto, 2, ',', '.');
+            $totCompra = number_format($_SESSION['totCompra'], 2, ',', '.');
+        }
+    }
+?>
 <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
     <li class="progress-step is-active">
         <span class="progress-marker"></span>
@@ -36,20 +118,129 @@
     </li>
 </ul>
 <h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
-<div class="divShowOpt">
-    
-</div>
-<div class="divShowOptBtn">
+<?php
+    if(!$empty):?>
+        <div class="divShowOpt">
+            <h2 class="summaryTitle">RESUMO</h2>
+            <div class="divisorSummary"></div>
+            <div class="summarySubTitles">
+                <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$<?= $totDesconto; ?></h3>
+            </div>
+            <div class="summarySubTitles">
+                <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$<?= $totCompra; ?></h2>
+            </div>
+        </div>
+        <div class="divShowOptBtn">
+            <a class="linkShop" href="<?= base_url_php(); ?>"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
+            <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+            <div class="divButtonCupom">
+                <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
+            </div>
+            <div class="divAddCupom"></div>
+            <div class="divAnswer"></div>
+            <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="divTable">
+            <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
+                <tr class="trNames">
+                    <th>PRODUTO</th>
+                    <th>QUANTIDADE</th>
+                    <th>PREÇO</th>
+                    <th>SUBTOTAL</th>
+                    <th></th>
+                </tr>
+                <?php
+                    foreach($produtosCart as $v):?>
+                        <tr class="trCart">
+                            <td class="tdCart" width="40%">
+                                <img class="imgCart" src="<?= base_url_adm() . "imagens_produtos/" . $v['produto_img']; ?>"/>
+                                <h5 class="titleProdCart">
+                                    <?= $v['produto_nome'] . " - " . $v['produto_tamanho']; ?>
+                                </h5>
+                                <h5 class="brandProdCart"><?= $v['marca_nome']; ?></h5>
+                            </td>
+                            <td class="tdCart" width="15%">
+                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="<?= $v['produto_id']; ?>" value="<?= $v['carrinho']; ?>">
+                            </td>
+                            <td class="tdCart" width="15%">
+                                <?php
+                                    if($v['produto_desconto_porcent']):?>
+                                        <h3 class="descProdCart">R$<?= $v['produto_preco']; ?></h3>
+                                        <h3 class="priceProdCart">R$<?= $v['produto_desconto']; ?></h3>
+                                        <?php
+                                    else:?>
+                                        <h3 class="descProdCart">-</h3>
+                                        <h3 class="priceProdCart">R$<?= $v['produto_preco']; ?></h3>
+                                        <?php
+                                    endif;
+                                ?>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <h3 class="priceProdCart subtot<?= $v['produto_id']; ?>">
+                                    R$<?= $v['subtotal']; ?>
+                                </h3>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <button class="tirarProd btnProdCart" id-prod="<?= $v['produto_id']; ?>"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <?php
+                    endforeach;
+                ?>
+            </table>
+        </div>
+        <div class="divShowTot">
+            <h2 class="summaryTitle">RESUMO</h2>
+            <div class="divisorSummary"></div>
+            <div class="summarySubTitles">
+                <h3 class="totalDesc">DESCONTOS:</h3><h3 class="valueDesc">- R$<?= $totDesconto; ?></h3>
+            </div>
+            <div class="summarySubTitles">
+                <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$<?= $totCompra; ?></h2>
+            </div>
+        </div>
+        <div class="divShowOptDesk">
+            <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
+            <div class="divButtonCupom">
+                <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
+            </div>
+            <div class="divAddCupom"></div>
+            <div class="divAnswer"></div>
+            <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button><br>
+            <a class="linkShop" href="<?= base_url_php(); ?>"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
+        </div>
+        <script>
+            attCarrinho();
+            verificaCupom();
+            botaoAddCupom();
 
-</div>
-<div class="divTable">
-    <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
-        
-    </table>
-</div>
-<div class="divShowTot">
-    
-</div>
-<div class="divShowOptDesk">
+            $('.finalizaCompra').click(function() {
+                <?php
+                    if($logado):?>
+                        buscaEndereco();
+                        <?php
+                    else:?>
+                        Toast.fire({
+                            type: 'error',
+                            title: 'Você precisa estar logado'
+                        });
 
-</div>
+                        $("#usu_email_login").val("");
+                        $("#usu_senha_login").val("");
+                        $(".help-block-login").html("");
+                        modal.style.display = "block";
+                        <?php
+                    endif;
+                ?>
+            });
+        </script>
+        <?php
+    else:?>
+        <div class="divTable">
+            <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
+                Sem produtos no carrinho!
+            </table>
+        </div>
+        <?php
+    endif;
+?>

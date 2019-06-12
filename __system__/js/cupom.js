@@ -105,9 +105,12 @@ function addCupom() {
     });
 }
 
-verificaCupom();
+function botaoAddCupom() {
+    $('.addCupom').click(function(e) {
+        e.preventDefault();
+        addCupom();
+    });
+}
 
-$('.addCupom').click(function(e) {
-    e.preventDefault();
-    addCupom();
-});
+verificaCupom();
+botaoAddCupom();

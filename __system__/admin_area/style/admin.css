@@ -414,6 +414,21 @@ body {
         background: #ccc;
     }
 
+    .spanActive {
+        font-size: 6pt;
+        padding: 7px;
+        background: #5FBA7D;
+        color: #fff;
+        float: right;
+    }
+    .spanNoActive {
+        font-size: 6pt;
+        padding: 5px;
+        background: rgb(168, 42, 33);
+        color: #fff;
+        float: right;
+    }
+
     /* MODAL VIEW */
 
     .myModalView {

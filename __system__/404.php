@@ -29,44 +29,16 @@
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('functions/includes/bottom.php');
         ?>
         </div>
         
         <h2>Página não encontrada</h2>
 
-        <div class="myModalArmazem" id="myModalArmazem">
-			<div class="modalArmazemContent">
-                <div class="modalArmTopContent">
-                    <div class="meuArmazem">
-                        
-                    </div>
-                    <span class="closeModalArmazem">&times;</span>
-                </div>
-                <div class="modalArmBottomContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-			</div>
-		</div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <form id="form-login">
-                    <span class="close">&times;</span>
-                    <!-- <i class="far fa-check-circle"></i> -->
-                    <h4 class="titleModalLogin"><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i> LOG IN <i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i><i class="fas fa-grip-lines"></i></h4>
-                    <strong><label class="labelInput">E-MAIL</label></strong>
-                    <input class="inputModal" type="text" placeholder=" E-mail" name="usu_email_login" id="usu_email_login"/><br/>
-                    <strong><label class="labelInput">SENHA</label></strong>
-                    <input class="inputModal" type="password" placeholder=" Senha" name="usu_senha_login" id="usu_senha_login"/><br/>
-                    <p class="textModal">Ainda não é cadastrado?<br>
-                    <a class="linkCadModal" href="<?= base_url_php(); ?>usuario/cadastro">Cadastre-se já</a></p>
-                    <input class="btnSend" type="submit" id="btn-login" value="Entrar"/>
-                    <div class="help-block-login"></div>
-                </form>
-            </div>
-        </div>
+        <?php
+            include('functions/includes/modal.php');
+        ?>
+        
         <div class="l-footer" id="footer">
         <?php
             include('functions/includes/footer.php');
@@ -80,14 +52,12 @@
     </div>
 
 	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/login.js"></script>
-    <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
 </body>
 </html>
