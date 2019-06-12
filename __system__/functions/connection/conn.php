@@ -7,16 +7,16 @@
 
 	// Padronizando a busca por arquivos via URL
 	function base_url() {
-		return "http://www.economize.ml/economize/__system__/";
+		return "http://localhost/economize/__system__/";
 	}
 	function base_url_php() {
-		return "http://www.economize.ml/economize/";
+		return "http://localhost/economize/";
 	}
 	function base_url_adm() {
-		return "http://www.economize.ml/economize/__system__/admin_area/";
+		return "http://localhost/economize/__system__/admin_area/";
 	}
 	function base_url_adm_php() {
-		return "http://www.economize.ml/economize/admin_area/";
+		return "http://localhost/economize/admin_area/";
 	}
 
 	// FUNÇÃO VERIFICA SE A REQUISIÇÃO FEITA AO SERVIDOR É VIA AJAX
@@ -26,9 +26,9 @@
 	}
 
 	$servername = "localhost";
-	$username = "id9782181_economizedevs";
-	$password = "npvw0101";
-	$db = "id9782181_economize";
+	$username = "root";
+	$password = "";
+	$db = "economize";
 
 	try {
     	$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
