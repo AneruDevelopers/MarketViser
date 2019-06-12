@@ -100,7 +100,7 @@ function removeAcentoProduto (text) {
     text = text.toLowerCase();
     for(var i = 0; text.length > i; i++) {
         if(text[i] == " ") {
-            text= text.replace(" ", "_");
+            text= text.replace(" ", "-");
         }
     }
     text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
@@ -300,6 +300,7 @@ $('.linksProdCarousel').click(function(e) {
     $('.closeModalProduto').click(function(e) {
         e.preventDefault();
         modalProd.style.display = "none";
+        // javascript:history.back();
     });
 })
 
@@ -311,6 +312,7 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     } else if (event.target == modalProd) {
         modalProd.style.display = "none";
+        // javascript:history.back();
     }
 }
 

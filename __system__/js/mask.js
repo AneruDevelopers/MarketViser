@@ -3,6 +3,7 @@ function mask() {
   $('.time').mask('00:00:00');
   $('.inputQtd').mask('00');
   $('.qtd_prod').mask('00000000000');
+  $('.porcent').mask('000');
   $('.date_time').mask('00/00/0000 00:00:00');
   $('.cep').mask('00000-000');
   $('.phone').mask('0000-0000');

@@ -1,5 +1,5 @@
 <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
-<li class="progress-step is-complete">
+    <li class="progress-step is-complete compCart">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 1</h4>
@@ -112,8 +112,12 @@
         });
     });
 
-    $('.voltaCarrinho').click(function(e) {
+    $('.is-complete').css({'cursor': 'pointer'});
+    $('.compCart').click(function(e) {
+        e.preventDefault();
+        
         buscaCarrinho();
+        listCarrinho();
     });
 
     $("#endereco_entrega").submit(function() {

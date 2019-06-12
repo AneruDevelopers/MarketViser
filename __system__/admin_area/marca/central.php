@@ -46,6 +46,10 @@
                                             <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
                                             <td><input type="text" class="selectConfigArm" name="marca_nome[]" size="60"></td>
                                         </tr>
+                                        <tr>
+                                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
+                                            <td><input type="text" placeholder="(Opcional)" class="selectConfigArm porcent" name="marca_promocao[]" size="60"></td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -83,12 +87,18 @@
                             <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
                             <td><input type="text" class="selectConfigArm" name="marca_nome[]" size="60"></td>
                         </tr>
+                        
+                        <tr>
+                            <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO (%)</b></td>
+                            <td><input type="text" placeholder="(Opcional)" class="selectConfigArm porcent" name="marca_promocao[]" size="60"></td>
+                        </tr>
                     </table>
                     <div class="btnRemove">
                         <a href="#" class="remover_div"><i class="fas fa-times"></i></a>
                     </div>
                 </div>
             `);
+            mask();
         });
 
         // Remover o div anterior
@@ -99,6 +109,7 @@
         });
         
         insertMarca();
+        mask();
     </script>
     <?php
         if(isset($_GET['fnc'])):

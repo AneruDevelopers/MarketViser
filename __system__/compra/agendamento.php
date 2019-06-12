@@ -1,12 +1,12 @@
 <ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
-    <li class="progress-step is-complete">
+    <li class="progress-step is-complete compCart">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 1</h4>
             <i class="fas fa-shopping-cart"></i> CARRINHO
         </span>
     </li>
-    <li class="progress-step is-complete">
+    <li class="progress-step is-complete compEnd">
         <span class="progress-marker"></span>
         <span class="progress-text">
             <h4 class="progress-title">PASSO 2</h4>
@@ -57,6 +57,19 @@
     </div>
 </div>
 <script>
+    $('.is-complete').css({'cursor': 'pointer'});
+    $('.compCart').click(function(e) {
+        e.preventDefault();
+        
+        buscaCarrinho();
+        listCarrinho();
+    });
+    $('.compEnd').click(function(e) {
+        e.preventDefault();
+        
+        buscaEndereco();
+    });
+
     $(function() {
         $.ajax({
             url: BASE_URL + 'functions/agendamento',
@@ -87,4 +100,4 @@
             }
         });
     });
-            </script>
+</script>

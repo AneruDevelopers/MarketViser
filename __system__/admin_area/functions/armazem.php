@@ -27,11 +27,24 @@
                             if(empty($produto_preco[$k])) {
                                 $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o preço do produto na ' . $c . 'ª parte de cadastro</b></p>';
                             } else {
-                                $sel = $conn->prepare("SELECT p.produto_nome, p.produto_tamanho, a.armazem_nome FROM dados_armazem AS d JOIN produto AS p ON d.produto_id=p.produto_id JOIN armazem AS a ON d.armazem_id=a.armazem_id WHERE d.produto_id={$produto_id[$k]} AND d.armazem_id={$armazem_id[$k]}");
-                                $sel->execute();
-                                if($sel->rowCount() > 0) {
-                                    $res = $sel->fetchAll();
-                                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que escolheu na ' . $c . 'ª parte já foi previamente cadastrado no ' . $res[0]['armazem_nome'] . '</b></p>';
+                                if(!empty($produto_desconto_porcent[$k])) {
+                                    if(($produto_desconto_porcent[$k] == 0) || ($produto_desconto_porcent[$k] > 100)) {
+                                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O desconto do produto inserido na ' . $c . 'ª parte de cadastro deve ser maior que 0 e menor ou igual a 100 (este campo não é obrigatório)</b></p>';
+                                    } else {
+                                        $sel = $conn->prepare("SELECT p.produto_nome, p.produto_tamanho, a.armazem_nome FROM dados_armazem AS d JOIN produto AS p ON d.produto_id=p.produto_id JOIN armazem AS a ON d.armazem_id=a.armazem_id WHERE d.produto_id={$produto_id[$k]} AND d.armazem_id={$armazem_id[$k]}");
+                                        $sel->execute();
+                                        if($sel->rowCount() > 0) {
+                                            $res = $sel->fetchAll();
+                                            $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que escolheu na ' . $c . 'ª parte já foi previamente cadastrado no ' . $res[0]['armazem_nome'] . '</b></p>';
+                                        }
+                                    }
+                                } else {
+                                    $sel = $conn->prepare("SELECT p.produto_nome, p.produto_tamanho, a.armazem_nome FROM dados_armazem AS d JOIN produto AS p ON d.produto_id=p.produto_id JOIN armazem AS a ON d.armazem_id=a.armazem_id WHERE d.produto_id={$produto_id[$k]} AND d.armazem_id={$armazem_id[$k]}");
+                                    $sel->execute();
+                                    if($sel->rowCount() > 0) {
+                                        $res = $sel->fetchAll();
+                                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que escolheu na ' . $c . 'ª parte já foi previamente cadastrado no ' . $res[0]['armazem_nome'] . '</b></p>';
+                                    }
                                 }
                             }
                         }
