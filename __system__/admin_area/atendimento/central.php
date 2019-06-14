@@ -26,8 +26,6 @@
 
             </div>
         </section>
-        <footer class="l-footer">
-        </footer>
 
         <div class="myModalAdd" id="myModalAdd">
             <div class="modalAddContent">

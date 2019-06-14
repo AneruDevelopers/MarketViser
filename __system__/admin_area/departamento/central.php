@@ -27,9 +27,6 @@
             </div>
             <!-- <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar departamento</button> -->
         </section>
-        <footer class="l-footer">
-        </footer>
-
         <!-- <div class="myModalAdd" id="myModalAdd">
             <div class="modalAddContent">
                 <span class="closeModalAdd">&times;</span>
