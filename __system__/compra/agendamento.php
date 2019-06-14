@@ -62,7 +62,6 @@
         e.preventDefault();
         
         buscaCarrinho();
-        listCarrinho();
     });
     $('.compEnd').click(function(e) {
         e.preventDefault();

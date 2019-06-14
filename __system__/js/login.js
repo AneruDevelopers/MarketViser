@@ -54,8 +54,13 @@ $(document).ready(function() {
 			            confirmButtonText: "Ok"
 					});
 					verificaLogin();
-					btnFavorito();
-					listCarrinho();
+
+					var url = location.href;
+					if(url.indexOf("etapas_compra") != -1) {
+						listCarrinho();
+					} else {
+						btnFavorito();
+					}
 				} else {
 					$(".help-block-login").html(response["error"]);
 				}

@@ -9,42 +9,44 @@ function listCarrinho() {
             $('.divShowOptBtn').html("");
             $('.divShowOptDesk').html("");
             if(!json['empty']) {
-                $('.divShowProdFav').html(`<tr class="trNames">
-                <th>PRODUTO</th>
-                <th>QUANTIDADE</th>
-                <th>PREÇO</th>
-                <th>SUBTOTAL</th>
-                <th></th>
-                </tr>`);
+                $('.divShowProdFav').html(`
+                    <tr class="trNames">
+                        <th>PRODUTO</th>
+                        <th>QUANTIDADE</th>
+                        <th>PREÇO</th>
+                        <th>SUBTOTAL</th>
+                        <th></th>
+                    </tr>
+                `);
                 for(var i = 0; json['prods'].length > i; i++) {
                     if(json['prods'][i].produto_desconto_porcent) {
                         $('.divShowProdFav').append(`
-                            <tr class="trCart">          
-                                <td class="tdCart" width="40%">
-                                    <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
-                                    <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
-                                    <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
-                                </td>
-                                <td class="tdCart" width="15%">
-                                    <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
-                                </td>
-                                <td class="tdCart" width="15%">
-                                    <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
-                                    <h3 class="priceProdCart">R$` + json['prods'][i].produto_desconto + `</h3>
-                                </td>
-                                <td class="tdCart" width="20%">
-                                    <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
-                                </td>
-                                <td class="tdCart" width="20%">
-                                    <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
-                                </td>
-                            </tr>
+                        <tr class="trCart">
+                            <td class="tdCart" width="40%">
+                                <img class="imgCart" src="` + BASE_URL3 + json['prods'][i].produto_img + `"/>
+                                <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
+                                <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
+                            </td>
+                            <td class="tdCart" width="15%">
+                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
+                            </td>
+                            <td class="tdCart" width="15%">
+                                <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
+                                <h3 class="priceProdCart">R$` + json['prods'][i].produto_desconto + `</h3>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
+                            </td>
+                            <td class="tdCart" width="20%">
+                                <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
                         `);
                     } else {
                         $('.divShowProdFav').append(`
                         <tr class="trCart">
                             <td class="tdCart" width="40%">
-                                <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
+                                <img class="imgCart" src="` + BASE_URL3 + json['prods'][i].produto_img + `"/>
                                 <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
                                 <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
                             </td>
@@ -76,7 +78,7 @@ function listCarrinho() {
                     </div>
                     `);
                 $('.divShowOptBtn').html(`
-                    <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
+                    <a class="linkShop" href="` + BASE_URL + `"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                     <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
                     <div class="divButtonCupom">
                         <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
@@ -105,10 +107,6 @@ function listCarrinho() {
                     <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button><br>
                     <a class="linkShop" href="` + BASE_URL + `home"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
                 `);
-                $('body').append(`
-                    <script src="` + BASE_URL2 + `js/cupom.js"></script>
-                    <script src="` + BASE_URL2 + `js/attCarrinho.js"></script>
-                `);
                 $('.finalizaCompra').click(function() {
                     if(json['logado']) {
                         buscaEndereco();
@@ -124,6 +122,10 @@ function listCarrinho() {
                         modal.style.display = "block";
                     }
                 });
+                
+                verificaCupom();
+                botaoAddCupom();
+                attCarrinho();
             } else {
                 $('.divShowProdFav').html("Sem produtos no carrinho!");
                 $('.divShowTot').removeClass("divShowTot");
@@ -148,5 +150,3 @@ function listParcialCarrinho() {
         }
     });
 }
-
-listCarrinho();

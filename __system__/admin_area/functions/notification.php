@@ -13,6 +13,23 @@
             } else {
                 $json['status'] = 0;
             }
+        } elseif(isset($_POST['id_func'])) {
+            $sel = $conn->prepare("SELECT id_atd FROM atendimento");
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $res = $sel->fetchAll();
+                foreach($res as $v) {
+                    $sel2 = $conn->prepare("SELECT dados_id FROM dados_atend_func WHERE atendimento_id={$v['id_atd']} AND funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
+                    $sel2->execute();
+                    if($sel2->rowCount() == 0) {
+                        $ins = $conn->prepare("INSERT INTO dados_atend_func(atendimento_id, funcionario_id) VALUES({$v['id_atd']}, {$_SESSION['inf_func']['funcionario_id']})");
+                        if(!$ins->execute()) {
+                            $json['status'] = 1;
+                            break;
+                        }
+                    }
+                }
+            }
         } else {
             // Saída Datetime
             // object(DateInterval)[3]
@@ -36,7 +53,7 @@
             $json['notificationVisu'] = array();
             $json['notificationNoVisu'] = array();
 
-            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.dataenv_pro FROM dados_atend_func AS d JOIN atendimento AS a ON d.atendimento_id=a.id_atd WHERE funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
+            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.dataenv_pro, ar.resp_id FROM dados_atend_func AS d JOIN atendimento AS a ON d.atendimento_id=a.id_atd LEFT JOIN atend_resposta AS ar ON ar.id_atd=a.id_atd WHERE d.funcionario_id={$_SESSION['inf_func']['funcionario_id']} ORDER BY a.dataenv_pro DESC");
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $res = $sel->fetchAll();
@@ -79,7 +96,7 @@
                 }
             }
             
-            $sel = $conn->prepare("SELECT id_atd,nome_usu,dataenv_pro FROM atendimento ORDER BY dataenv_pro DESC");
+            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.dataenv_pro, ar.resp_id FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON ar.id_atd=a.id_atd ORDER BY a.dataenv_pro DESC");
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $res = $sel->fetchAll();

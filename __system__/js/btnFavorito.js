@@ -12,7 +12,7 @@ function btnFavorito() {
                     }
                 }
             }
-            $('body').append('<script src="' + BASE_URL2 + 'js/favoritar.js"></script>');
+            favoritar();
         }
     });
 };

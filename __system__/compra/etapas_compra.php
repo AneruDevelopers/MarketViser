@@ -29,7 +29,7 @@
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('__system__/functions/includes/bottom.html');
+            include('__system__/functions/includes/bottom.php');
         ?>
         </div>
         
@@ -37,57 +37,9 @@
 
         </div>
 
-        <!-- -------------------- -->
-        <div class="myModalArmazem" id="myModalArmazem">
-			<div class="modalArmazemContent">
-                <div class="modalArmTopContent">
-                    <div class="meuArmazem">
-                        
-                    </div>
-                    <span class="closeModalArmazem">&times;</span>
-                </div>
-                <div class="modalArmBottomContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-			</div>
-		</div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <div class="modalLeftContent">
-                    <form id="form-login">
-                        <!-- <i class="far fa-check-circle"></i> -->
-                        <h4 class="titleModalLogin">LOG IN</h4>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>EMAIL</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong>SENHA</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <button class="btnSend" type="submit" id="btn-login" value="Entrar">ENTRAR</button>
-                        <div class="help-block-login"></div>
-                    </form>
-                </div>
-                <div class="modalRightContent">
-                    <span class="close">&times;</span>
-                    <p class="textModal">Olá, amigo!</p>
-                    <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
-                    <div class="divLinkCad">    
-                        <a class="linkCadModal" href="<?= base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
-                    </div>    
-                </div>
-            </div>
-        </div>
-        <!-- -------------------- -->
+        <?php
+            include('__system__/functions/includes/modal.php');
+        ?>
 
         <div class="l-footer" id="footer">
         <?php
@@ -105,15 +57,16 @@
     <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
     <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/etapasCompra.js"></script>
+    <script src="<?= base_url(); ?>js/cupom.js"></script>
     <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?= base_url(); ?>js/listCarrinho.js"></script>
+    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
+    <script src="<?= base_url(); ?>js/etapasCompra.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
         if(isset($_SESSION['msg'])):?>
             <script>

@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $('.linkArm').click(function(e) {
+    // O 'one click' faz com que a função seja chamada apenas uma vez
+    $('.linkArm').one("click", function(e) {
         e.preventDefault();
         $.ajax({
             dataType: 'json',

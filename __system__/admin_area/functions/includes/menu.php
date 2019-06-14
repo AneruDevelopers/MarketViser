@@ -7,7 +7,7 @@
         <div class="modalNotContent" id="myModalNot">
             <div class="headerNot" id="headerNot">
                 <span class="bHeaderNot" id="bHeaderNot">Notificações</span>
-                <span class="aNotMarca" id="aNotMarca">Marcar todas como lidas *Não funfa ainda</span>
+                <span class="aNotMarca" func-id="<?= $_SESSION['inf_func']['funcionario_id'] ?>" id="aNotMarca">Marcar todas como lidas</span>
             </div>
             <div class="showNotModal" id="showNotModal">
 

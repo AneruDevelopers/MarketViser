@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function favoritar() {
     $('.addFavorito').click(function(e) {
         e.preventDefault();
         var dado = 'add_prod_id=' + $(this).attr('id');
@@ -55,6 +55,10 @@ $(document).ready(function() {
             }
         });
         btnFavorito();
-        meusFavoritos();
+
+        var url = location.href;
+        if(url.indexOf("favoritos") != -1) {
+            meusFavoritos();
+        }
     });
-});
+}

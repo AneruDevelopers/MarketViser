@@ -41,49 +41,50 @@
     <form id="endereco_entrega">
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" CEP" class="cep placeholder-shown" id="usu_cep" value="<?= $_SESSION['inf_usu']['usu_cep'] ?>" name="usu_cep"/>
+                <input type="text" placeholder=" CEP" class="cep placeholder-shown" id="usu_cep" 
+                value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][0] : $_SESSION['inf_usu']['usu_cep']; ?>" name="usu_cep"/>
                 <label class="labelFieldCad"><strong>CEP</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Logradouro" class="placeholder-shown" id="usu_end" value="<?= $_SESSION['inf_usu']['usu_end'] ?>" name="usu_end"/>
+                <input type="text" placeholder=" Logradouro" class="placeholder-shown" id="usu_end" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][1] : $_SESSION['inf_usu']['usu_end']; ?>" name="usu_end"/>
                 <label class="labelFieldCad"><strong>LOGRADOURO</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Número" class="placeholder-shown" id="usu_num" value="<?= $_SESSION['inf_usu']['usu_num'] ?>" name="usu_num"/>
+                <input type="text" placeholder=" Número" class="placeholder-shown" id="usu_num" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][2] : $_SESSION['inf_usu']['usu_num']; ?>" name="usu_num"/>
                 <label class="labelFieldCad"><strong>NÚMERO</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Complemento" class="placeholder-shown" id="usu_complemento" value="<?= $_SESSION['inf_usu']['usu_complemento'] ?>" name="usu_complemento"/>
+                <input type="text" placeholder=" Complemento" class="placeholder-shown" id="usu_complemento" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][3] : $_SESSION['inf_usu']['usu_complemento']; ?>" name="usu_complemento"/>
                 <label class="labelFieldCad"><strong>COMPLEMENTO</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Bairro" class="placeholder-shown" id="usu_bairro" value="<?= $_SESSION['inf_usu']['usu_bairro'] ?>" name="usu_bairro"/>
+                <input type="text" placeholder=" Bairro" class="placeholder-shown" id="usu_bairro" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][4] : $_SESSION['inf_usu']['usu_bairro']; ?>" name="usu_bairro"/>
                 <label class="labelFieldCad"><strong>BAIRRO</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Cidade" class="placeholder-shown" readonly id="usu_cidade" value="<?= $_SESSION['inf_usu']['usu_cidade'] ?>" name="usu_cidade"/>
+                <input type="text" placeholder=" Cidade" class="placeholder-shown" readonly id="usu_cidade" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][5] : $_SESSION['inf_usu']['usu_cidade']; ?>" name="usu_cidade"/>
                 <label class="labelFieldCad"><strong>CIDADE</strong></label>
             </div>
             <div class="help-block"></div><br/>
         </div>
         <div class="outsideSecInputCad">
             <div class="field -md">
-                <input type="text" placeholder=" Estado" class="placeholder-shown" readonly id="usu_uf" value="<?= $_SESSION['inf_usu']['usu_uf'] ?>" name="usu_uf"/>
+                <input type="text" placeholder=" Estado" class="placeholder-shown" readonly id="usu_uf" value="<?= isset($_SESSION['end_agend']) ? $_SESSION['end_agend'][6] : $_SESSION['inf_usu']['usu_uf']; ?>" name="usu_uf"/>
                 <label class="labelFieldCad"><strong>ESTADO</strong></label>
             </div>
             <div class="help-block"></div><br/>
@@ -117,7 +118,6 @@
         e.preventDefault();
         
         buscaCarrinho();
-        listCarrinho();
     });
 
     $("#endereco_entrega").submit(function() {

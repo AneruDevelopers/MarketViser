@@ -11,6 +11,33 @@
     if(isset($_SESSION['query_fav'])) {
         unset($_SESSION['query_preco']);
     }
+
+    //BUSCANDO PRODUTOS COM PROMOÇÕES CUMUNS
+    $empty = TRUE;
+    $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.produto_desconto_porcent <> '' AND d.armazem_id={$_SESSION['arm_id']}");
+    $sel->execute();
+    if($sel->rowCount() > 0) {
+        $empty = FALSE;
+        while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+            if($row['produto_qtd'] > 0) {
+                $row['empty'] = FALSE;
+            } else {
+                $row['empty'] = TRUE;
+            }
+            $row["produto_desconto"] = $row["produto_preco"]*($row["produto_desconto_porcent"]/100);
+            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
+            $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
+            
+            $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
+            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
+            if(isset($_SESSION['carrinho'][$row['produto_id']])) {
+                $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
+            } else {
+                $row["carrinho"] = 0;
+            }
+            $produtos[] = $row;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,7 +69,7 @@
 
         <div class="l-bottomNav" id="bottomNav">
         <?php
-            include('functions/includes/bottom.html');
+            include('functions/includes/bottom.php');
         ?>
         </div>
         
@@ -66,63 +93,67 @@
 
         <div class="l-main">
             <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS</h2>
-            <div class="l-prods"></div>
-            <div class="l-favoritos"></div>
+            <div class="l-prods">
+                <?php
+                    if(!$empty):?>
+                        <div class="loop owl-carousel">
+                            <?php
+                            foreach($produtos as $v):?>
+                                <div class="divProdCarousel">
+                                    <div class="btnFavorito<?= $v['produto_id']; ?>"></div>
+                                    <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
+                                        <img class="divProdImg" src="<?= base_url_adm() . "imagens_produtos/" . $v['produto_img']; ?>">
+                                        <div class='divisorFilterCar'></div>
+                                        <p class="divProdPromo">-<?= $v['produto_desconto_porcent']; ?>%</p>
+                                        <h4 class="divProdTitle">
+                                            <?= $v['produto_nome'] . " - " . $v['produto_tamanho']; ?>
+                                        </h4>
+                                        <p class="divProdPrice">
+                                            <span class="divProdPrice1">R$ <?= $v['produto_preco']; ?></span> R$ <?= $v['produto_desconto']; ?>
+                                        </p>
+                                    </a>
+                                    <?php 
+                                        if($v['empty']):?>
+                                            <div>
+                                                <div class="quantity">
+                                                    <span class="esgotQtd">ESGOTADO</span>
+                                                </div>
+                                                <form class="formBuy">
+                                                    <button class="btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                            <?php
+                                        else:?>
+                                            <div>
+                                                <form class="formBuy">
+                                                    <input type="hidden" value="<?= $v['produto_id']; ?>" name="id_prod"/>
+                                                    <div class="quantity">
+                                                        <input type="number" min="0" max="20" value="<?= $v['carrinho']; ?>" class="inputQtd inputBuy<?= $v['produto_id']; ?>" name="qtd_prod"/>
+                                                    </div>
+                                                    <button class="btnBuy" type="submit">ADICIONAR</button>
+                                                </form>
+                                            </div>
+                                            <?php
+                                        endif;
+                                    ?>
+                                </div>
+                                <?php
+                            endforeach;?>
+                        </div>
+                        <?php
+                    else:?>
+                        <h2 class="sem_promo">Sem promoções hoje. Aproveite a barra de pesquisa</h2>
+                        <?php
+                    endif;
+                ?>
+            </div>
         </div>
 
         <!-- Display Products -->
 
-        <!-- -------------------- -->
-        <div class="myModalArmazem" id="myModalArmazem">
-			<div class="modalArmazemContent">
-                <div class="modalArmTopContent">
-                    <div class="meuArmazem">
-                        
-                    </div>
-                    <span class="closeModalArmazem">&times;</span>
-                </div>
-                <div class="modalArmBottomContent">
-                    <div class="Armazens">
-
-                    </div>
-                </div>
-			</div>
-		</div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <div class="modalLeftContent">
-                    <form id="form-login">
-                        <!-- <i class="far fa-check-circle"></i> -->
-                        <h4 class="titleModalLogin">LOG IN</h4>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="text" name="usu_email_login" id="usu_email_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong><i class="fas fa-envelope"></i> EMAIL</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <div class="outsideSecInputCad">
-                            <div class="field -md">
-                                <input type="password" name="usu_senha_login" id="usu_senha_login" class="placeholder-shown" placeholder="Some placeholder"/>
-                                <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
-                            </div>
-                            <div class="help-block"></div><br/>
-                        </div>
-                        <button class="btnSend" type="submit" id="btn-login">ENTRAR</button>
-                        <div class="help-block-login"></div>
-                    </form>
-                </div>
-                <div class="modalRightContent">
-                    <span class="close">&times;</span>
-                    <p class="textModal">Olá, amigo!</p>
-                    <p class="textModalBottom">Entre com seus detalhes pessoais e comece sua jornada conosco</p>
-                    <div class="divLinkCad">
-                        <a class="linkCadModal" href="<?= base_url_php(); ?>usuario/cadastro">Cadastre-se já</a>
-                    </div>    
-                </div>
-            </div>
-        </div>
-        <!-- -------------------- -->
+        <?php
+            include('functions/includes/modal.php');
+        ?>
 
         <div class="l-footer" id="footer">
         <?php
@@ -143,11 +174,12 @@
     <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
+    <script src="<?= base_url(); ?>js/favoritar.js"></script>
     <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
     <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
-    <script src="<?= base_url(); ?>js/listProdutoPromocao.js"></script>
-    <script src="<?= base_url(); ?>js/listDepartamento.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
+    <script src="<?= base_url(); ?>js/main.js"></script>
+    <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
         if(isset($_SESSION['msg_cad'])):?>
             <script>
