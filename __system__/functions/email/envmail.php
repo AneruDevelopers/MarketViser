@@ -1,0 +1,52 @@
+<?php
+date_default_timezone_set('America/Sao_Paulo');
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require 'vendor/autoload.php';
+
+// Instantiation and passing `true` enables exceptions
+function env_email($email,$nome){
+	 
+	$mail = new PHPMailer(true);
+
+	try {
+		//Server settings
+		$mail->SMTPDebug = 0;                                       // Enable verbose debug output
+		$mail->isSMTP();                                            // Set mailer to use SMTP
+		$mail->Host       = 'host.sdserver18.com ';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+		$mail->Username   = 'accounts@economize.top';                     // SMTP username
+		$mail->Password   = 'i&dd)mx#6m)2';                               // SMTP password
+		$mail->SMTPSecure = "ssl";                                  // Enable TLS encryption, `ssl` also accepted
+		$mail->Port       = 465;                                    // TCP port to connect to
+		$mail->setLanguage('pt-br', '/optional/path/to/language/directory/');
+		$mail->CharSet = 'UTF-8';
+		//Recipients
+		$mail->setFrom('accounts@economize.top', 'e.conomize');
+		$mail->addAddress($email, $nome);     // Add a recipient
+		//$mail->addAddress('ellen@example.com');               // Name is optional
+		//$mail->addReplyTo('info@example.com', 'Information');
+		//$mail->addCC('cc@example.com');
+		//$mail->addBCC('bcc@example.com');
+	
+		// Attachments
+		//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+	
+		// Content
+		$mail->isHTML(true);                                  // Set email format to HTML
+		$mail->Subject = 'Olá '.$nome.', Bem-Vindo ao e.conomize';
+		$mail->Body    = 'Ambiente de teste <b>Ufaaaa</b>';
+		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	
+		$mail->send();
+		
+	} catch (Exception $e) {
+		//echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	}
+ }
+?>
