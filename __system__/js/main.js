@@ -272,11 +272,15 @@ $('.linksProdCarousel').click(function(e) {
                     </div>
                 `;
             }
+
             produto += `
                     <div class="compProduto">
                         <p class="imgLust">Imagem meramente ilustrativa</p>
                         <p class="compartProduto">
-                            Compartilhar: QR Code
+                        <a href="https://www.facebook.com/sharer.php?u=www.economize.top/produtos/teste" target="_blank" title="Compartilhar "Produto" no Facebook"><i class="fab fa-facebook-f"></i>&nbsp;</a>
+                        <a href="https://web.whatsapp.com/send?text=www.economize.top/produtos/teste" class="pc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="whatsapp://send?link=vwww.economize.top/produtos/teste" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a>
+                        <a href="http://twitter.com/intent/tweet?text=Produto&url=http://www.economize.top/produtos/teste&via=economizebrazil" title="Twittar sobre <?php the_title();?>" target="_blank"><i class="fab fa-twitter"></i></a>
                         </p>
                     </div>
                     <div class="descProduto">
