@@ -253,9 +253,9 @@
                         <?php
                     endif;
                 ?>
-            </div>
-
-            <?php
+            </div> <center>
+            <img style="width:100%;" src="<?= base_url(); ?>img\Banner_TCC\diadospais.png" alt="The Last of us">
+            </center><?php
                 if(!$empty_promo):
                     foreach($produtos_promo as $k => $v):
                         echo $produtos_topo[$k];
