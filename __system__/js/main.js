@@ -211,102 +211,136 @@ span2.onclick = function() {
 
 var modalProd = document.getElementById('myModalProduto');
 
-$('.linksProdCarousel').click(function(e) {
-    e.preventDefault();
-    var dado = "buscaProd_id=" + $(this).attr("id-produto");
-    $.ajax({
-        dataType: 'json',
-        type: 'post',
-        data: dado,
-        url: BASE_URL + 'functions/buscaProduto',
-        beforeSend: function() {
-            $('.showProdutoModal').html(`
-                <p align="center"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;Buscando dados...</p>
-            `);
-        },
-        success: function(json) {
-            var produto = `
-                <div class="modalProdutoLeft">
-                    <div class="divImgModalProduct">
-                        <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
-                    </div>
-                </div>
-                <div class="modalProdutoRight">
-                    <div class="infProduto">
-                        <span class="marcaProdutoModal">` + json['produto']['marca_nome'] + `</span>
-                        <h2 class="nomeProdutoModal">
-                            ` + json['produto']['produto_nome'] + `<br/>
-                            <span class="volProdutoModal">` + json['produto']['produto_tamanho'] + `</span>
-                        </h2>
-                    </div>
-                    <div class="precoProduto">
-                        <p class="precoProdutoModal">
-            `;
-            if(json['produto']['produto_desconto_porcent'] || json['produto']['promo_desconto']) {
-                produto += `
-                            <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/>
-                `;
-            }
-            produto += `
-                            R$ ` + json['produto']['produto_desconto'] + `
-                        </p>
-                    </div>
-            `;
-            if(!json['produto']['empty']) {
-                produto += `
-                    <div class="cartProdutoModal">
-                        <form class="formBuy">
-                            <input type="hidden" value="` + json['produto']['produto_id'] + `" name="id_prod"/>
-                            <input type="number" min="0" max="20" value="` + json['produto']['carrinho'] + `" class="inputQtdModal inputBuy` + json['produto']['produto_id'] + `" name="qtd_prod"/>
-                            <button class="btnBuyModal" type="submit">ADICIONAR</button>
-                        </form>
-                    </div>
-                `;
-            } else {
-                produto += `
-                    <div class="cartProdutoModal">
-                        <span class="esgotModal">ESGOTADO</span>
-                        <form class="formBuy">
-                            <button class="btnBuyModal" type="submit">ADICIONAR</button>
-                        </form>
-                    </div>
-                `;
-            }
-
-            produto += `
-                    <div class="compProduto">
-                        <p class="imgLust">Imagem meramente ilustrativa</p>
-                        <p class="compartProduto">
-                        <a href="https://www.facebook.com/sharer.php?u=www.economize.top/produtos/teste" target="_blank" title="Compartilhar "Produto" no Facebook"><i class="fab fa-facebook-f"></i>&nbsp;</a>
-                        <a href="https://web.whatsapp.com/send?text=www.economize.top/produtos/teste" class="pc" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="whatsapp://send?link=vwww.economize.top/produtos/teste" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a>
-                        <a href="http://twitter.com/intent/tweet?text=Produto&url=http://www.economize.top/produtos/teste&via=economizebrazil" title="Twittar sobre <?php the_title();?>" target="_blank"><i class="fab fa-twitter"></i></a>
-                        </p>
-                    </div>
-                    <div class="descProduto">
-                        <h4 class="descTitleProduto">Descrição:</h4>
-                        <p>
-                            ` + json['produto']['produto_descricao'] + `
-                        </p>
-                    </div>
-                </div>
-            `;
-
-            // var resp = removeAcentoProduto(json['produto']['produto_nome'] + " " + json['produto']['produto_tamanho']);
-            // window.history.pushState('Object', 'e.conomize | Produto', BASE_URL + resp);
-            $('.showProdutoModal').html(produto);
-            attCarrinho();
-        }
-    });
-
-    modalProd.style.display = "block";
-
-    $('.closeModalProduto').click(function(e) {
+function abrirModal() {
+    $('.linksProdCarousel').click(function(e) {
         e.preventDefault();
-        modalProd.style.display = "none";
-        // javascript:history.back();
-    });
-})
+        var dado = "buscaProd_id=" + $(this).attr("id-produto");
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dado,
+            url: BASE_URL + 'functions/buscaProduto',
+            beforeSend: function() {
+                $('.showProdutoModal').html(`
+                    <p align="center"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;Buscando dados...</p>
+                `);
+            },
+            success: function(json) {
+                var produto = `
+                    <div class="modalProdutoLeft">
+                        <div class="divImgModalProduct">
+                            <img class="imgProdutoModal" src="` + BASE_URL3 + json['produto']['produto_img'] + `"/>
+                        </div>
+                    </div>
+                    <div class="modalProdutoRight">
+                        <div class="infProduto">
+                            <span class="marcaProdutoModal">` + json['produto']['marca_nome'] + `</span>
+                            <h2 class="nomeProdutoModal">
+                                ` + json['produto']['produto_nome'] + `<br/>
+                                <span class="volProdutoModal">` + json['produto']['produto_tamanho'] + `</span>
+                            </h2>
+                        </div>
+                        <div class="precoProduto">
+                            <p class="precoProdutoModal">
+                `;
+                if(json['produto']['produto_desconto_porcent'] || json['produto']['promo_desconto']) {
+                    produto += `
+                                <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/>
+                    `;
+                    produto += `
+                                    R$ ` + json['produto']['produto_desconto'] + `
+                                </p>
+                            </div>
+                    `;
+                } else {
+                    produto += `
+                                    R$ ` + json['produto']['produto_preco'] + `
+                                </p>
+                            </div>
+                    `;
+                }
+                if(!json['produto']['empty']) {
+                    produto += `
+                        <div class="cartProdutoModal">
+                            <form class="formBuy">
+                                <input type="hidden" value="` + json['produto']['produto_id'] + `" name="id_prod"/>
+                                <input type="number" min="0" max="20" value="` + json['produto']['carrinho'] + `" class="inputQtdModal inputBuy` + json['produto']['produto_id'] + `" name="qtd_prod"/>
+                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                            </form>
+                        </div>
+                    `;
+                } else {
+                    produto += `
+                        <div class="cartProdutoModal">
+                            <span class="esgotModal">ESGOTADO</span>
+                            <form class="formBuy">
+                                <button class="btnBuyModal" type="submit">ADICIONAR</button>
+                            </form>
+                        </div>
+                    `;
+                }
+
+                produto += `
+                        <div class="compProduto">
+                            <p class="imgLust">Imagem meramente ilustrativa</p>
+                            
+                            <a class="linkPageProd" href="` + BASE_URL + `produto/` + json['produto']['id_cript'] + `">
+                                <button class="btnPageProd">
+                                    Ver página oficial
+                                </button>
+                            </a>
+                            
+                            <p class="compartProduto">
+                                Compartilhar: &nbsp;&nbsp;
+                                <a class="linkShareProd" href="https://www.facebook.com/sharer.php?u=http://www.economize.top/produto/` + json['produto']['id_cript'] + `" target="_blank" title="Compartilhar produto no Facebook">
+                                    <button class="btnShareProd">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                </a>
+                                <a class="linkShareProd" href="http://twitter.com/intent/tweet?text=` + json['produto']['produto_nome'] + ` - ` + json['produto']['produto_tamanho'] + `&url=http://www.economize.top/produto/` + json['produto']['id_cript'] + `" title="Twittar produto" target="_blank">
+                                    <button class="btnShareProd">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                </a>
+                                <a class="linkShareProd" href="https://web.whatsapp.com/send?text=` + json['produto']['produto_nome'] + ` - ` + json['produto']['produto_tamanho'] + ` http://www.economize.top/produto/` + json['produto']['id_cript'] + `" title="Enviar mensagem no WhatsApp Web" target="_blank">
+                                    <button class="btnShareProd">
+                                        <i class="fab fa-whatsapp"></i> Web
+                                    </button>
+                                </a>
+                                <a class="linkShareProd" href="whatsapp://send?text=` + json['produto']['produto_nome'] + ` - ` + json['produto']['produto_tamanho'] + ` http://www.economize.top/produto/` + json['produto']['id_cript'] + `" title="Enviar mensagem no WhatsApp" data-action="share/whatsapp/share">
+                                    <button class="btnShareProd">
+                                        <i class="fab fa-whatsapp"></i> App
+                                    </button>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="descProduto">
+                            <h4 class="descTitleProduto">Descrição:</h4>
+                            <p>
+                                ` + json['produto']['produto_descricao'] + `
+                            </p>
+                        </div>
+                    </div>
+                `;
+
+                // var resp = removeAcentoProduto(json['produto']['produto_nome'] + " " + json['produto']['produto_tamanho']);
+                // window.history.pushState('Object', 'e.conomize | Produto', BASE_URL + resp);
+                $('.showProdutoModal').html(produto);
+                attCarrinho();
+            }
+        });
+
+        modalProd.style.display = "block";
+
+        $('.closeModalProduto').click(function(e) {
+            e.preventDefault();
+            modalProd.style.display = "none";
+            // javascript:history.back();
+        });
+    })
+}
+
+abrirModal();
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

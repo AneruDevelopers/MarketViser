@@ -93,7 +93,15 @@ ob_start();
 	
 	if(file_exists('__system__/' . $URL[1] . '.php')):
 		if(isset($URL[2])):
-			require '__system__/404.php';
+			if($URL[1] == "produto"):
+				if(!isset($URL[3])):
+					require '__system__/' . $URL[1] . '.php';
+				else:
+					require '__system__/404.php';
+				endif;
+			else:
+				require '__system__/404.php';
+			endif;
 		else:
 			require '__system__/' . $URL[1] . '.php';
 		endif;
