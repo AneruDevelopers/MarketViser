@@ -25,8 +25,6 @@
                 
             </div>
         </section>
-        <footer class="l-footer">
-        </footer>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
