@@ -76,6 +76,7 @@ $('.linkAlterAdm').click(function(e) {
 
 $('.closeModalAdd').click(function(e) {
     e.preventDefault();
+    $('.inpProd').html(``);
     modalAdd.style.display = "none";
 });
 
@@ -94,6 +95,7 @@ $('.notification').mouseover(function(e) {
 
 window.onclick = function(event) {
     if (event.target == modalAdd) {
+        $('.inpProd').html(``);
         modalAdd.style.display = "none";
     }
 }
@@ -173,8 +175,8 @@ function notification() {
             }
         },
         complete: function() {
-            setTimeout(notification, 500);
-            setTimeout(visuNot, 500);
+            setTimeout(notification, 3000);
+            setTimeout(visuNot, 3000);
         }
     });
 }
@@ -212,6 +214,7 @@ function allNot() {
             type: 'post',
             data: dado,
             success: function(json) {
+                notification();
                 if(json['status'] == 0) {
                     Toast.fire({
                         type: "error",

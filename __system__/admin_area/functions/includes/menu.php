@@ -134,6 +134,18 @@
                 </ul>
             </li>
         </a>
+        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
+            <li class="celulaTrocaPagina">
+                Promoção personalizada
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>promocao/central?fnc=IPP">
+                        <li>
+                            Inserir promoção personalizada
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>subcategoria/central">
             <li class="celulaTrocaPagina">
                 Subcategorias

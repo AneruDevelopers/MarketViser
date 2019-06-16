@@ -205,7 +205,7 @@
 		</div>
 		
 		<?php
-            include('functions/includes/modal.php');
+            include('__system__/functions/includes/modal.php');
 		?>
 		
 		<div class="l-footer" id="footer">

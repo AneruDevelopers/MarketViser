@@ -36,12 +36,12 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">
-                <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima" ; ?>
+                <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima"; ?>
             </h2>
             <div class="divShowProdFav">
                 <?php
                     if(isset($_POST['buscaBarra'])) {
-                        $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']} AND MATCH (p.produto_nome, p.produto_descricao, p.produto_tamanho) AGAINST (:search);");
+                        $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE d.armazem_id={$_SESSION['arm_id']} AND MATCH (p.produto_nome, p.produto_descricao, p.produto_tamanho) AGAINST (:search);");
                         $sel->bindValue(":search", "{$_POST["buscaBarra"]}");
                         $sel->execute();
                         if($sel->rowCount() > 0) {
@@ -58,10 +58,15 @@
                                             $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
                                             $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
                                             $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        } elseif($v['promo_desconto']) {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
                                         }
                                         $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
                                     ?>
-                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
+                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
                                     <div class='divisorFilter'></div>
                                     <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
                                     <p class='priceProdFilter'>

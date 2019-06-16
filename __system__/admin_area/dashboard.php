@@ -21,7 +21,11 @@
             require 'functions/includes/menu.php';
         ?>
         <section id="conteudo" class="l-main">
-
+            <pre>
+            <?php
+                print_r($_SESSION['inf_func']);
+            ?>
+            </pre>
         </section>
         <footer class="l-footer">
         </footer>

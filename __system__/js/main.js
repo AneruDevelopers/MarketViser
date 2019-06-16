@@ -242,7 +242,7 @@ $('.linksProdCarousel').click(function(e) {
                     <div class="precoProduto">
                         <p class="precoProdutoModal">
             `;
-            if(json['produto']['produto_desconto_porcent']) {
+            if(json['produto']['produto_desconto_porcent'] || json['produto']['promo_desconto']) {
                 produto += `
                             <span class="antPreco">R$ ` + json['produto']['produto_preco'] + `</span><br/>
                 `;

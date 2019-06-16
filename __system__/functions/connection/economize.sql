@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/06/2019 às 02:01
+-- Tempo de geração: 16/06/2019 às 17:41
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -69,7 +69,13 @@ INSERT INTO `atendimento` (`id_atd`, `nome_usu`, `email_usu`, `tp_problema`, `de
 (1, 'Paulo Conceição', 'paulin_conc@gmail.com', 'Armazém', 'Não estou conseguindo comprar em nenhum armazém. O que será que está acontecendo?   \r\n                   ', '2019-06-07 16:01:59'),
 (2, 'Vinícius Ferreira', 'vinizinho@gmail.com', 'Entrega', 'Fiz uma compra há mais de duas horas e até agora ela não chegou. O que aconteceu?', '2019-06-08 10:15:04'),
 (3, 'Fábio Fernando da Silva', 'fabin@gmail.com', 'Cidade indisponível', 'Moro na cidade de Araçatuba. Fiquei sabendo de uns rumores de vocês virem pra cá. É verdade? Se sim, quando?', '2019-06-08 23:28:11'),
-(4, 'Kátia Paola Carvalho', 'katia_carvalho@gmail.com', 'cadastro', 'Ao tentar me cadastrar o sistema me dá um erro de endereço. Por quê?', '2019-06-09 20:43:47');
+(4, 'Kátia Paola Carvalho', 'katia_carvalho@gmail.com', 'cadastro', 'Ao tentar me cadastrar o sistema me dá um erro de endereço. Por quê?', '2019-06-09 20:43:47'),
+(5, 'Tadeu Oliveira', 'tadeuoliveira@gmail.com', 'login', 'Boa tarde. Estou tentando fazer login desde sábado (08/06) e não consigo. O sistema me dá um erro de email e/ou senha incorretos. Eu fui deletado do sistema?', '2019-06-11 14:10:28'),
+(7, 'Pâmela Morais', 'pamelamorais@gmail.com', 'armazem', 'Sou da cidade de São José do Rio Preto. Quero muito que o economize venha pra cá. Quando vocês vem? Desde já, obrigada!', '2019-06-11 14:20:49'),
+(8, 'Nicolas Carvalho Avelaneda', 'carvanick@gmail.com', 'compra', 'KJAHS AMSND NMA DASNM DBNS DA DNBAS DNBAS DBND NBAS DNBD NAD A AS DNAD NAD ADNASBD NBASD ', '2019-06-14 09:31:45'),
+(9, 'AKJHDS', 'carvanick@gmail.com', 'compra', 'JAHKSGD', '2019-06-14 09:37:25'),
+(10, 'KJKJJKJ', 'carvanick@gmail.com', 'compra', 'MNA SDAS', '2019-06-14 09:45:45'),
+(11, 'Nicolas Carvalho Avelaneda', 'carvanick@gmail.com', 'compra', 'KJKJKJKJKJKJJ', '2019-06-14 10:08:13');
 
 -- --------------------------------------------------------
 
@@ -91,7 +97,8 @@ CREATE TABLE `atend_resposta` (
 
 INSERT INTO `atend_resposta` (`resp_id`, `id_atd`, `funcionario_id`, `resp_atend`, `registro_resp`) VALUES
 (1, 1, 3, 'Olá Paulo. Provavelmente você está tentando comprar em uma cidade \"inválida\". Caso não tenha achado uma resposta ainda, dê uma olhada nas páginas de \"subcidades\". Você terá uma resposta mais concreta. Para entrar nessa página você só tem de clicar no link de \"SUBCIDADES\" na janela que aparece ao clicar na cidade ao topo da página. Espero ter ajudado. Tenha uma boa noite!!', '2019-06-09 20:24:03'),
-(2, 3, 3, 'Boa noite Fábio. Em parte isso é verdade sim, mas, ainda tem muitas coisas à se resolver e muitas papeladas, por isso, não posso dizer com certeza quando isso pode acontecer. Muito obrigado pela preferência!', '2019-06-09 20:33:50');
+(2, 3, 3, 'Boa noite Fábio. Em parte isso é verdade sim, mas, ainda tem muitas coisas à se resolver e muitas papeladas, por isso, não posso dizer com certeza quando isso pode acontecer. Muito obrigado pela preferência!', '2019-06-09 20:33:50'),
+(3, 7, 3, 'Boa tarde Pâmela. Bom, isso é complicado. Tem muitas coisas que o economize leva em consideração para se instalar em uma cidade/região. Você é a primeira que faz um pedido da cidade de São José do Rio Preto. Caso haja mais pedidos daí, nós com certeza levaremos nosso mercado pra sua cidade, ok? Muito obrigado pela preferência!', '2019-06-11 17:22:29');
 
 -- --------------------------------------------------------
 
@@ -219,36 +226,35 @@ CREATE TABLE `dados_armazem` (
 --
 
 INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`, `produto_preco`, `produto_desconto_porcent`) VALUES
-(1, 1, 1, 200, '6.40', 24),
-(2, 2, 1, 17, '5.49', NULL),
-(3, 3, 1, 300, '2.30', 14),
-(4, 4, 1, 200, '3.00', 9),
-(6, 6, 1, 200, '2.50', 15),
+(1, 1, 1, 200, '6.40', 10),
+(2, 2, 1, 17, '5.49', 4),
+(3, 3, 1, 300, '2.30', NULL),
+(4, 4, 1, 200, '3.00', NULL),
+(6, 6, 1, 200, '2.50', 13),
 (7, 7, 1, 140, '23.39', NULL),
-(8, 1, 2, 400, '50.00', 68),
-(9, 2, 2, 400, '125.59', 50),
-(10, 3, 2, 400, '45.99', 35),
-(11, 4, 2, 400, '63.00', 87),
-(13, 6, 2, 400, '49.00', 37),
-(14, 7, 2, 400, '83.99', 62),
+(8, 1, 2, 400, '50.00', NULL),
+(9, 2, 2, 400, '125.59', NULL),
+(10, 3, 2, 400, '45.99', NULL),
+(11, 4, 2, 400, '63.00', NULL),
+(13, 6, 2, 400, '49.00', NULL),
+(14, 7, 2, 400, '83.99', NULL),
 (15, 8, 1, 200, '39.99', NULL),
-(16, 8, 2, 200, '45.99', 18),
-(17, 15, 1, 300, '3.50', 12),
+(16, 8, 2, 200, '45.99', NULL),
+(17, 15, 1, 300, '3.50', NULL),
 (19, 16, 1, 0, '6.99', NULL),
 (20, 15, 2, 300, '3.59', NULL),
-(21, 16, 2, 200, '7.39', 22),
-(22, 17, 1, 200, '5.49', 11),
+(21, 16, 2, 200, '7.39', NULL),
+(22, 17, 1, 200, '5.49', NULL),
 (23, 17, 2, 200, '6.40', NULL),
 (25, 20, 1, 120, '2.32', NULL),
 (26, 21, 1, 50, '14.19', NULL),
-(27, 22, 1, 55, '21.48', 5),
+(27, 22, 1, 55, '21.48', NULL),
 (28, 23, 1, 105, '8.32', NULL),
-(29, 24, 1, 36, '2.09', NULL),
-(30, 25, 1, 80, '49.12', 6),
-(31, 26, 1, 210, '4.38', 10),
+(29, 24, 1, 36, '2.09', 28),
+(30, 25, 1, 80, '49.12', NULL),
+(31, 26, 1, 210, '4.38', 17),
 (32, 27, 1, 70, '3.67', NULL),
-(33, 28, 1, 95, '8.20', 8),
-(34, 2, 3, 400, '5.50', 8);
+(33, 28, 1, 95, '8.20', NULL);
 
 -- --------------------------------------------------------
 
@@ -267,13 +273,16 @@ CREATE TABLE `dados_atend_func` (
 --
 
 INSERT INTO `dados_atend_func` (`dados_id`, `atendimento_id`, `funcionario_id`) VALUES
-(1, 1, 2),
-(2, 3, 3),
-(3, 2, 3),
-(4, 3, 2),
-(6, 2, 2),
-(7, 1, 3),
-(8, 4, 3);
+(20, 1, 2),
+(21, 2, 2),
+(22, 3, 2),
+(23, 4, 2),
+(24, 5, 2),
+(25, 7, 2),
+(26, 8, 2),
+(27, 9, 2),
+(28, 10, 2),
+(29, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -388,6 +397,35 @@ INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subci
 (29, 25, 1),
 (30, 27, 1),
 (31, 31, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `dados_promocao`
+--
+
+CREATE TABLE `dados_promocao` (
+  `dados_id` int(11) NOT NULL,
+  `produto_id` int(11) NOT NULL,
+  `armazem_id` int(11) NOT NULL,
+  `promo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `dados_promocao`
+--
+
+INSERT INTO `dados_promocao` (`dados_id`, `produto_id`, `armazem_id`, `promo_id`) VALUES
+(141, 3, 1, 17),
+(142, 8, 1, 17),
+(143, 22, 1, 17),
+(144, 7, 1, 17),
+(145, 21, 1, 17),
+(146, 4, 1, 17),
+(147, 25, 1, 17),
+(148, 15, 1, 18),
+(149, 17, 1, 18),
+(150, 23, 1, 18);
 
 -- --------------------------------------------------------
 
@@ -617,35 +655,37 @@ CREATE TABLE `lista_compra` (
 
 CREATE TABLE `marca_prod` (
   `marca_id` int(11) NOT NULL,
-  `marca_nome` varchar(30) NOT NULL
+  `marca_nome` varchar(30) NOT NULL,
+  `marca_promocao` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `marca_prod`
 --
 
-INSERT INTO `marca_prod` (`marca_id`, `marca_nome`) VALUES
-(1, 'Coca-Cola'),
-(2, 'Poty'),
-(3, 'Fanta'),
-(4, 'Pepsi'),
-(5, 'Brahma'),
-(6, 'Red Bull'),
-(7, 'Schin'),
-(8, 'Del Valle'),
-(9, 'Chalise'),
-(10, 'Skol'),
-(11, 'Nescau'),
-(12, 'Toddy'),
-(13, 'Aguin'),
-(14, 'Asnov'),
-(15, 'Marreco'),
-(16, 'Maguavi'),
-(17, 'Green Foods'),
-(18, 'Smurnoff'),
-(19, 'Bobitos'),
-(20, 'Laktivia'),
-(21, 'Wickbread');
+INSERT INTO `marca_prod` (`marca_id`, `marca_nome`, `marca_promocao`) VALUES
+(1, 'Coca-Cola', NULL),
+(2, 'Poty', NULL),
+(3, 'Fanta', NULL),
+(4, 'Pepsi', NULL),
+(5, 'Brahma', NULL),
+(6, 'Red Bull', NULL),
+(7, 'Schin', NULL),
+(8, 'Del Valle', NULL),
+(9, 'Chalise', NULL),
+(10, 'Skol', NULL),
+(11, 'Nescau', NULL),
+(12, 'Toddy', NULL),
+(13, 'Aguin', NULL),
+(14, 'Asnov', NULL),
+(15, 'Marreco', NULL),
+(16, 'Maguavi', NULL),
+(17, 'Green Foods', NULL),
+(18, 'Smurnoff', NULL),
+(19, 'Bobitos', NULL),
+(20, 'Laktivia', NULL),
+(21, 'Wickbread', NULL),
+(22, 'Bauducco', 30);
 
 -- --------------------------------------------------------
 
@@ -722,7 +762,35 @@ CREATE TABLE `produtos_favorito` (
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (85, 1, 2),
 (87, 3, 2),
-(88, 8, 2);
+(88, 8, 2),
+(92, 7, 1),
+(93, 22, 1),
+(96, 3, 1),
+(97, 1, 1),
+(98, 23, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `promocao_temp`
+--
+
+CREATE TABLE `promocao_temp` (
+  `promo_id` int(11) NOT NULL,
+  `promo_nome` varchar(40) NOT NULL,
+  `promo_subtit` varchar(100) DEFAULT NULL,
+  `promo_desconto` int(3) NOT NULL,
+  `promo_expira` datetime DEFAULT NULL,
+  `promo_status` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `promocao_temp`
+--
+
+INSERT INTO `promocao_temp` (`promo_id`, `promo_nome`, `promo_subtit`, `promo_desconto`, `promo_expira`, `promo_status`) VALUES
+(17, 'DIA DOS PAIS 2019', 'Economize seu tempo e dinheiro! Só aqui produtos 30% OFF para o seu paizão. Aproveite!', 30, '2019-06-30 15:00:00', b'1'),
+(18, 'FIM DE SEMANA ECONOMIZE', NULL, 14, '2019-07-30 15:00:00', b'1');
 
 -- --------------------------------------------------------
 
@@ -795,7 +863,8 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 (11, 'DOCES', 12),
 (12, 'SALGADINHOS', 12),
 (13, 'IOGURTES', 7),
-(14, 'PÃO DE FORMA', 10);
+(14, 'PÃO DE FORMA', 10),
+(15, 'BISCOITOS', 8);
 
 -- --------------------------------------------------------
 
@@ -1021,6 +1090,15 @@ ALTER TABLE `dados_horario_subcidade`
   ADD KEY `fk_SubSub` (`dados_subcidade`);
 
 --
+-- Índices de tabela `dados_promocao`
+--
+ALTER TABLE `dados_promocao`
+  ADD PRIMARY KEY (`dados_id`),
+  ADD KEY `fk_ProdPromo` (`produto_id`),
+  ADD KEY `fk_PromoArm` (`armazem_id`),
+  ADD KEY `fk_PromoProd` (`promo_id`);
+
+--
 -- Índices de tabela `departamento`
 --
 ALTER TABLE `departamento`
@@ -1110,6 +1188,12 @@ ALTER TABLE `produtos_favorito`
   ADD KEY `fk_UsuProd` (`usu_id`);
 
 --
+-- Índices de tabela `promocao_temp`
+--
+ALTER TABLE `promocao_temp`
+  ADD PRIMARY KEY (`promo_id`);
+
+--
 -- Índices de tabela `setor`
 --
 ALTER TABLE `setor`
@@ -1177,13 +1261,13 @@ ALTER TABLE `armazem`
 -- AUTO_INCREMENT de tabela `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `id_atd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_atd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `atend_resposta`
 --
 ALTER TABLE `atend_resposta`
-  MODIFY `resp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `resp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `banner`
@@ -1219,13 +1303,13 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT de tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `dados_atend_func`
 --
 ALTER TABLE `dados_atend_func`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de tabela `dados_entrega`
@@ -1244,6 +1328,12 @@ ALTER TABLE `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_subcidade`
   MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT de tabela `dados_promocao`
+--
+ALTER TABLE `dados_promocao`
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -1303,7 +1393,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT de tabela `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`
@@ -1321,7 +1411,13 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
+-- AUTO_INCREMENT de tabela `promocao_temp`
+--
+ALTER TABLE `promocao_temp`
+  MODIFY `promo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `setor`
@@ -1339,7 +1435,7 @@ ALTER TABLE `status_compra`
 -- AUTO_INCREMENT de tabela `subcateg`
 --
 ALTER TABLE `subcateg`
-  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `subcidade`
@@ -1385,8 +1481,8 @@ ALTER TABLE `armazem`
 -- Restrições para tabelas `atend_resposta`
 --
 ALTER TABLE `atend_resposta`
-  ADD CONSTRAINT `fk_AtendResp` FOREIGN KEY (`id_atd`) REFERENCES `atendimento` (`id_atd`),
-  ADD CONSTRAINT `fk_FuncResp` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`);
+  ADD CONSTRAINT `fk_AtendResp` FOREIGN KEY (`id_atd`) REFERENCES `atendimento` (`id_atd`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_FuncResp` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `categ`
@@ -1419,8 +1515,8 @@ ALTER TABLE `dados_armazem`
 -- Restrições para tabelas `dados_atend_func`
 --
 ALTER TABLE `dados_atend_func`
-  ADD CONSTRAINT `fk_AtdFunc` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimento` (`id_atd`),
-  ADD CONSTRAINT `fk_FuncAtd` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`);
+  ADD CONSTRAINT `fk_AtdFunc` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimento` (`id_atd`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_FuncAtd` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `dados_entrega`
@@ -1442,6 +1538,14 @@ ALTER TABLE `dados_horario_entrega`
 ALTER TABLE `dados_horario_subcidade`
   ADD CONSTRAINT `fk_SubHor` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`),
   ADD CONSTRAINT `fk_SubSub` FOREIGN KEY (`dados_subcidade`) REFERENCES `subcidade` (`subcid_id`);
+
+--
+-- Restrições para tabelas `dados_promocao`
+--
+ALTER TABLE `dados_promocao`
+  ADD CONSTRAINT `fk_ProdPromo` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_PromoArm` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_PromoProd` FOREIGN KEY (`promo_id`) REFERENCES `promocao_temp` (`promo_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `forn_prod`

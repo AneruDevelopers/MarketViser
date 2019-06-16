@@ -13,14 +13,14 @@ function limpaVol() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
                                 <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
@@ -112,14 +112,14 @@ function limpaMarca() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
                                 <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
@@ -211,14 +211,14 @@ function limpaPreco() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
                                 <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
                                 <div class='divisorFilter'></div>
                                 <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                 <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
@@ -315,14 +315,14 @@ function limpaFav() {
                 } else {
                     var produtos = [];
                     for(var i = 0; json['produtos'].length > i; i++) {
-                        if(json['produtos'][i].produto_desconto_porcent) {
+                        if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                             produtos[i] = `
                                 <div class="prodFilter">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
                                     <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
+                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
                                     <div class='divisorFilter'></div>
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
