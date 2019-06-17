@@ -93,7 +93,15 @@
 	
 	if(file_exists('__system__/' . $URL[0] . '.php')):
 		if(isset($URL[1])):
-			require '__system__/404.php';
+			if($URL[0] == "produto"):
+				if(!isset($URL[2])):
+					require '__system__/' . $URL[0] . '.php';
+				else:
+					require '__system__/404.php';
+				endif;
+			else:
+				require '__system__/404.php';
+			endif;
 		else:
 			require '__system__/' . $URL[0] . '.php';
 		endif;
