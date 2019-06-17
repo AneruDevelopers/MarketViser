@@ -34,6 +34,8 @@
                             $v["carrinho"] = 0;
                         }
 
+                        $v['id_cript'] = MD5($v['produto_id']);
+
                         $json['produto'] = $v;
                     }
                 }

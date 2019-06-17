@@ -52,11 +52,13 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -85,10 +87,12 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -119,6 +123,7 @@ $(document).ready(function() {
                     }
                     attCarrinho();
                     btnFavorito();
+                    abrirModal();
                 }
                 if(json['first']) {
                     $('.FilterVol').append(' &nbsp;&nbsp;&nbsp;<span class="limpaVol limpaBusca"><i class="fas fa-minus-square"></i></span>');
@@ -152,11 +157,13 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -185,10 +192,12 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -219,6 +228,7 @@ $(document).ready(function() {
                     }
                     attCarrinho();
                     btnFavorito();
+                    abrirModal();
                 }
                 if(json['first']) {
                     $('.FilterMarca').append(' &nbsp;&nbsp;&nbsp;<span class="limpaMarca limpaBusca"><i class="fas fa-minus-square"></i></span>');
@@ -252,11 +262,13 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -285,10 +297,12 @@ $(document).ready(function() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -319,6 +333,7 @@ $(document).ready(function() {
                     }
                     attCarrinho();
                     btnFavorito();
+                    abrirModal();
                 }
                 if(json['first']) {
                     $('.filterPreco').append(' &nbsp;&nbsp;&nbsp;<span class="limpaPreco limpaBusca"><i class="fas fa-minus-square"></i></span>');
@@ -353,11 +368,13 @@ $(document).ready(function() {
                                         <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                             
                                         </div>
-                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                        <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
-                                        <div class='divisorFilter'></div>
-                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                        <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                            <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                            <div class='divisorFilter'></div>
+                                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                            <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                        </a>
                                         <div>
                                 `;
                                 if(!json['produtos'][i].empty) {
@@ -386,10 +403,12 @@ $(document).ready(function() {
                                         <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                             
                                         </div>
-                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                        <div class='divisorFilter'></div>
-                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                        <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                            <div class='divisorFilter'></div>
+                                            <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                            <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                        </a>
                                         <div>
                                 `;
                                 if(!json['produtos'][i].empty) {
@@ -420,6 +439,7 @@ $(document).ready(function() {
                         }
                         attCarrinho();
                         btnFavorito();
+                        abrirModal();
                     }
                     $('.filterFav').append(' &nbsp;&nbsp;&nbsp;<span class="limpaFav limpaBusca"><i class="fas fa-minus-square"></i></span>');
                     $('.limpaFav').click(function(e) {

@@ -159,27 +159,29 @@
                         <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                             
                         </div>
-                        <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
-                        <?php 
-                            if($v['produto_desconto_porcent'] <> "") {
-                                $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                            } elseif($v['promo_desconto']) {
-                                $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                            }
-                            $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
-                        ?>
-                        <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
-                        <div class='divisorFilter'></div>
-                        <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
-                        <p class='priceProdFilter'>
-                            <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
-                        </p>
+                        <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
+                            <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                            <?php 
+                                if($v['produto_desconto_porcent'] <> "") {
+                                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                } elseif($v['promo_desconto']) {
+                                    $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                }
+                                $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
+                            ?>
+                            <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
+                            <div class='divisorFilter'></div>
+                            <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                            <p class='priceProdFilter'>
+                                <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
+                            </p>
+                        </a>
                         <div>
                             <?php 
                                 if($v["produto_qtd"] > 0):?>
@@ -360,27 +362,29 @@
                                 <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                                     
                                 </div>
-                                <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
-                                <?php 
-                                    if($v['produto_desconto_porcent'] <> "") {
-                                        $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                                    } elseif($v['promo_desconto']) {
-                                        $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                                    }
-                                    $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
-                                ?>
-                                <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
-                                <p class='priceProdFilter'>
-                                    <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
-                                </p>            
+                                <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
+                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                    <?php 
+                                        if($v['produto_desconto_porcent'] <> "") {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        } elseif($v['promo_desconto']) {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        }
+                                        $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
+                                    ?>
+                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                                    <p class='priceProdFilter'>
+                                        <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
+                                    </p>
+                                </a>
                                 <div>
                                     <?php 
                                         if($v["produto_qtd"] > 0):?>
@@ -535,27 +539,29 @@
                                 <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                                     
                                 </div>
-                                <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
-                                <?php 
-                                    if($v['produto_desconto_porcent'] <> "") {
-                                        $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                                    } elseif($v['promo_desconto']) {
-                                        $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                                    }
-                                    $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
-                                ?>
-                                <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v["promo_desconto"] . '%</p>' : '' ; ?>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
-                                <p class='priceProdFilter'>
-                                    <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
-                                </p>
+                                <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
+                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                    <?php 
+                                        if($v['produto_desconto_porcent'] <> "") {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        } elseif($v['promo_desconto']) {
+                                            $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                        }
+                                        $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
+                                    ?>
+                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v["promo_desconto"] . '%</p>' : '' ; ?>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                                    <p class='priceProdFilter'>
+                                        <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
+                                    </p>
+                                </a>
                                 <div>
                                     <?php 
                                         if($v["produto_qtd"] > 0):?>
