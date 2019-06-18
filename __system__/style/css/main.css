@@ -6090,6 +6090,74 @@ border-radius: 0;
         color: #d3d2d2;
     }
 
+    /* PÁGINA DÚVIDAS FREQUENTES */
+    .divSearchDuvida {
+        width: 50%;
+        margin: 30px auto;
+    }
+
+    .inputSearchDuvida {
+        width: 200px;
+        position: relative;
+        top: -2px;
+        border: solid #d3d2d2 1px;
+        height: 30px;
+        font-family: 'Karla';
+        font-size: 13px;
+        padding: 0px 10px;
+    }
+
+    .inputSearchDuvida:focus {
+        outline: #9C45EB solid 1px;
+    }
+
+    .loadDuvida {
+        width: 100%;
+        text-align: center;
+    }
+
+    .divDuvida {
+        width: 50%;
+        margin: 0 auto;
+        padding: 22px 10px;
+        background: #252730;
+        color: #fff;
+        border-top: .5px solid #ccc;
+        border-bottom: .5px solid #ccc;
+        cursor: pointer;
+    }
+
+    .perguntaDuvida {
+        margin: 0;
+    }
+
+    .respostaDuvida {
+        width: 50%;
+        margin: 0 auto;
+        padding: 22px 10px;
+        background: #ccc;
+        color: #252730;
+        text-indent: 20px;
+        line-height: 25px;
+        display: none;
+        text-align: justify;
+        transition: all .1s linear;
+    }
+
+    .linkDuvida {
+        width: 100%;
+        margin: 40px 0;
+        text-align: center;
+        font-weight: bolder;
+    }
+    .llinkDuvida {
+        color: #252730;
+        text-decoration: none;
+    }
+    .llinkDuvida:hover, .llinkDuvida:focus {
+        text-decoration: underline;
+    }
+
     /* PAGE --> CADASTRO.PHP */
 
     .l-wrapper_cadastro {

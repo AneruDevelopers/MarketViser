@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/06/2019 às 17:41
+-- Tempo de geração: 18/06/2019 às 20:26
 -- Versão do servidor: 10.1.38-MariaDB
 -- Versão do PHP: 7.3.2
 
@@ -461,6 +461,26 @@ INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_d
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `duvida_frequente`
+--
+
+CREATE TABLE `duvida_frequente` (
+  `duvida_id` int(11) NOT NULL,
+  `duvida_pergunta` varchar(255) NOT NULL,
+  `duvida_resposta` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `duvida_frequente`
+--
+
+INSERT INTO `duvida_frequente` (`duvida_id`, `duvida_pergunta`, `duvida_resposta`) VALUES
+(1, 'Como realizar uma compra?', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam.'),
+(2, 'Como mudar senha de usuário?', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat distinctio culpa, alias ipsum suscipit fuga quisquam assumenda quasi id, recusandae incidunt molestias possimus eius quibusdam amet sit. Aperiam, laboriosam.');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `entrega`
 --
 
@@ -767,7 +787,7 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (93, 22, 1),
 (96, 3, 1),
 (97, 1, 1),
-(98, 23, 1);
+(99, 16, 1);
 
 -- --------------------------------------------------------
 
@@ -1105,6 +1125,12 @@ ALTER TABLE `departamento`
   ADD PRIMARY KEY (`depart_id`);
 
 --
+-- Índices de tabela `duvida_frequente`
+--
+ALTER TABLE `duvida_frequente`
+  ADD PRIMARY KEY (`duvida_id`);
+
+--
 -- Índices de tabela `entrega`
 --
 ALTER TABLE `entrega`
@@ -1342,6 +1368,12 @@ ALTER TABLE `departamento`
   MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT de tabela `duvida_frequente`
+--
+ALTER TABLE `duvida_frequente`
+  MODIFY `duvida_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `entrega`
 --
 ALTER TABLE `entrega`
@@ -1411,7 +1443,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de tabela `promocao_temp`
