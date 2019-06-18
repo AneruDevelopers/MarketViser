@@ -17,12 +17,12 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
         
@@ -89,17 +89,17 @@
         </div>
 
         <?php
-            include('functions/includes/modal.php');
+            include('__system__/functions/includes/modal.php');
         ?>
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.php');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>
