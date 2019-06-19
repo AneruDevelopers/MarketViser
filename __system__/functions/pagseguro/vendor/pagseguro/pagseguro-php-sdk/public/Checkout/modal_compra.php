@@ -3,11 +3,10 @@ require_once '__system__/functions/connection/conn.php';
 
 function getProductsByIds($ids) {
     global $conn;
-    $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
+    $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent, m.marca_nome, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
     $sel->execute();
     if($sel->rowCount() > 0) {
-        $result = $sel->fetchAll();
-        foreach($result as $v) {
+        while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
             $dados[] = $v;
         }
     }
@@ -25,6 +24,11 @@ function getContentCart() {
         foreach($products as $k => $product) {
             if($product['produto_desconto_porcent'] != "") {
                 $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
+                $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
+                $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
+                $results[$k] = $product;
+            } elseif($product['promo_desconto']) {
+                $product["produto_desconto"] = $product["produto_preco"]*($product["promo_desconto"]/100);
                 $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
                 $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
                 $results[$k] = $product;
@@ -101,7 +105,7 @@ $payment = new \PagSeguro\Domains\Requests\Payment();
 
 $resultsCarts = getContentCart();
 foreach($resultsCarts as $k => $v) {
-    if($v['produto_desconto_porcent'] != "") {
+    if($v['produto_desconto_porcent'] || $v['promo_desconto']) {
         $payment->addItems()->withParameters(
             $v['produto_id'],
             $v['produto_nome'],

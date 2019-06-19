@@ -38,6 +38,113 @@
             $produtos[] = $row;
         }
     }
+
+
+    //BUSCANDO PROMOCÕES PERSONALIZADAS
+    $empty_promo = TRUE;
+    $sel_promo = $conn->prepare("SELECT p.produto_id, p.produto_nome, p.produto_img, p.produto_tamanho, pr.promo_id, pr.promo_desconto, pr.promo_nome, pr.promo_subtit, pr.promo_expira, d.produto_qtd, d.produto_preco FROM produto AS p JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id JOIN promocao_temp AS pr ON pr.promo_id=dp.promo_id JOIN dados_armazem AS d ON dp.produto_id=d.produto_id WHERE pr.promo_status=1 AND d.armazem_id={$_SESSION['arm_id']} ORDER BY pr.promo_id");
+    $sel_promo->execute();
+    if($sel_promo->rowCount() > 0) {
+        $empty_promo = FALSE;
+        $promo_id = "";
+        $c = 0;
+        while($row = $sel_promo->fetch( PDO::FETCH_ASSOC )) {
+            if($row['produto_qtd'] > 0) {
+                $row['empty'] = FALSE;
+            } else {
+                $row['empty'] = TRUE;
+            }
+            $row["produto_desconto"] = $row["produto_preco"]*($row["promo_desconto"]/100);
+            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
+            $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
+            
+            $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
+            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
+            if(isset($_SESSION['carrinho'][$row['produto_id']])) {
+                $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
+            } else {
+                $row["carrinho"] = 0;
+            }
+
+            // if($row['promo_expira'] != '') {
+            //     $temp[$c] = $row['promo_id'];
+            //     $exp = explode(" ", $row['promo_expira']);
+            //     $dia = explode("-", $exp[0]);
+            //     $hora = explode(":", $exp[1]);
+            //     $function[$c] = $dia[0] . ", " . $dia[1] . ", " . $dia[2] . 
+            //         ", " . $hora[0] . ", " . $hora[1] . ", " . $hora[2] . ", " . "'temp" . $row['promo_id'] . "'";
+            // } else {
+            //     $temp[$c] = FALSE;
+            // }
+
+            if($row['promo_expira'] != '') {
+                $exp = explode(" ", $row['promo_expira']);
+                $dia = explode("-", $exp[0]);
+                $hora = explode(":", $exp[1]);
+
+                $row['promo_expira'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $hora[0] . "h" . $hora[1];
+            }
+            
+            if($promo_id != $row['promo_id']) {
+                $produtos_topo[$c] = '
+                 
+                    <h4 class="subtitOfertas">' . $row['promo_subtit'] . '</h4>
+                    <h5 class="expiraOfertas temp' . $row['promo_id'] . '">Expira em ' . $row['promo_expira'] . '</h5>
+                    <div class="l-prods">
+                        <div class="loop owl-carousel">
+                ';
+                $promo_id = $row['promo_id'];
+            } else {
+                $produtos_topo[$c] = '';
+            }
+
+            $produtos_promo[$c] = '
+                <div class="divProdCarousel">
+                    <div class="btnFavorito' . $row['produto_id'] . '"></div>
+                    <a class="linksProdCarousel" id-produto="' .  $row['produto_id'] . '">
+                        <img class="divProdImg" src="' .  base_url_adm() . "imagens_produtos/" . $row['produto_img'] . '">
+                        <div class="divisorFilterCar"></div>
+                        <p class="divProdPromo">-' .  $row['promo_desconto'] . '%</p>
+                        <h4 class="divProdTitle">
+                            ' .  $row['produto_nome'] . " - " . $row['produto_tamanho'] . '
+                        </h4>
+                        <p class="divProdPrice">
+                            <span class="divProdPrice1">R$ ' .  $row['produto_preco'] . '</span> R$ ' . $row['produto_desconto'] . '
+                        </p>
+                    </a>
+            ';
+            
+            if($row['empty']) {
+                $produtos_promo[$c] .= '
+                    <div>
+                        <div class="quantity">
+                            <span class="esgotQtd">ESGOTADO</span>
+                        </div>
+                        <form class="formBuy">
+                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                        </form>
+                    </div>
+                ';
+            } else {
+                $produtos_promo[$c] .= '
+                    <div>
+                        <form class="formBuy">
+                            <input type="hidden" value="' .  $row['produto_id'] . '" name="id_prod"/>
+                            <div class="quantity">
+                                <input type="number" min="0" max="20" value="' .  $row['carrinho'] . '" class="inputQtd inputBuy' .  $row['produto_id'] . '" name="qtd_prod"/>
+                            </div>
+                            <button class="btnBuy" type="submit">ADICIONAR</button>
+                        </form>
+                    </div>
+                ';
+            }
+
+            $produtos_promo[$c] .= '
+                </div>
+            ';
+            $c++;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -146,7 +253,31 @@
                         <?php
                     endif;
                 ?>
-            </div>
+            </div> <center>
+            <img style="width:100%;" src="<?= base_url(); ?>img\Banner_TCC\diadospais.png" alt="The Last of us">
+            </center><?php
+                if(!$empty_promo):
+                    foreach($produtos_promo as $k => $v):
+                        echo $produtos_topo[$k];
+                        echo $v;
+
+                        $c = $k + 1;
+                        if(isset($produtos_topo[$c])) {
+                            if($produtos_topo[$c] != '') {
+                                echo '
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        } else {
+                            echo '
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    endforeach;
+                endif;
+            ?>
         </div>
 
         <!-- Display Products -->
@@ -195,6 +326,20 @@
             <?php
             unset($_SESSION['msg_cad']);
         endif;
+
+        // if(!$empty_promo):
+        //     $c = "";
+        //     foreach($produtos_promo as $k => $v):
+        //         if($c != $k):
+        //             if($temp[$k]):
+        //                 <script>
+        //                     atualizaContador();
+        //                 </script>
+        //             endif;
+        //             $c = $k;
+        //         endif;
+        //     endforeach;
+        // endif;
     ?>
 </body>
 </html>

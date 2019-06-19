@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>e.conomize | Busca de Produtos</title>
+    <title>e.conomize | Atendimento online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css"/>
@@ -17,12 +17,12 @@
 
         <div class="l-topNav" id="topNav">
         <?php
-            include('functions/includes/topNav.php');
+            include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
         <nav class="l-headerNav" id="headerNav">
         <?php
-            include('functions/includes/header.php');
+            include('__system__/functions/includes/header.php');
         ?>
         </nav>
         
@@ -89,17 +89,17 @@
         </div>
 
         <?php
-            include('functions/includes/modal.php');
+            include('__system__/functions/includes/modal.php');
         ?>
 
         <div class="l-footer" id="footer">
         <?php
-            include('functions/includes/footer.php');
+            include('__system__/functions/includes/footer.php');
         ?>
         </div>
         <div class="l-footerBottom" id="footerBottom">
         <?php
-            include('functions/includes/bottomFooter.html');
+            include('__system__/functions/includes/bottomFooter.html');
         ?>
         </div>
     </div>

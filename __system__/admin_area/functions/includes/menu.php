@@ -88,6 +88,18 @@
                 </ul> -->
             </li>
         </a>
+        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>duvida-frequente/central">
+            <li class="celulaTrocaPagina">
+                Dúvidas Frequentes
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IDF">
+                        <li>
+                            Inserir dúvida frequente
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </a>
         <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>fornecedor/central">
             <li class="celulaTrocaPagina">
                 Fornecedores
@@ -129,6 +141,18 @@
                     <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>produto/central?fnc=IP">
                         <li>
                             Inserir produto
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </a>
+        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
+            <li class="celulaTrocaPagina">
+                Promoção personalizada
+                <ul class="sub-menu">
+                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>promocao/central?fnc=IPP">
+                        <li>
+                            Inserir promoção personalizada
                         </li>
                     </a>
                 </ul>

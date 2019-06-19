@@ -36,37 +36,43 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas">
-                <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima" ; ?>
+                <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima"; ?>
             </h2>
             <div class="divShowProdFav">
                 <?php
                     if(isset($_POST['buscaBarra'])) {
-                        $sel = $conn->prepare("SELECT * FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.armazem_id={$_SESSION['arm_id']} AND MATCH (p.produto_nome, p.produto_descricao, p.produto_tamanho) AGAINST (:search);");
+                        $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE d.armazem_id={$_SESSION['arm_id']} AND MATCH (p.produto_nome, p.produto_descricao, p.produto_tamanho) AGAINST (:search);");
                         $sel->bindValue(":search", "{$_POST["buscaBarra"]}");
                         $sel->execute();
                         if($sel->rowCount() > 0) {
-                            $rows = $sel->fetchAll();
-                            foreach($rows as $v):?>
+                            while($v = $sel->fetch( PDO::FETCH_ASSOC )):?>
                                 <div class="prodFilter">
                                     <div class="btnFavoriteFilter btnFavorito<?= $v['produto_id']; ?>">
                                         
                                     </div>
-                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
-                                    <?php 
-                                        if($v['produto_desconto_porcent'] <> "") {
-                                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                                        }
-                                        $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
-                                    ?>
-                                    <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . '%</p>' : '' ; ?>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
-                                    <p class='priceProdFilter'>
-                                        <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
-                                    </p>
+                                    <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
+                                        <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                        <?php 
+                                            if($v['produto_desconto_porcent'] <> "") {
+                                                $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                                $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                            } elseif($v['promo_desconto']) {
+                                                $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                                                $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                                                $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                                            }
+                                            $v['produto_preco'] = number_format($v["produto_preco"], 2, ',', '.');
+                                        ?>
+                                        <?= isset($v["produto_desconto"]) ? '<p class="divProdPromo">-' . $v['produto_desconto_porcent'] . $v['promo_desconto'] . '%</p>' : '' ; ?>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'><?= $v["produto_nome"]; ?> - <?= $v["produto_tamanho"]; ?></h5>
+                                        <p class='priceProdFilter'>
+                                            <?= isset($v["produto_desconto"]) ? '<span class="divProdPrice1">R$' . $v['produto_preco'] . '</span> R$' . $v['produto_desconto'] : 'R$ ' . $v["produto_preco"]; ?>
+                                        </p>
+                                    </a>
                                     <div>
                                         <?php 
                                             if($v["produto_qtd"] > 0):?>
@@ -87,7 +93,7 @@
                                     </div>
                                 </div>
                                 <?php
-                            endforeach;
+                            endwhile;
                         } else {
                             echo "
                                 <p class='msgHelpSearch'>
@@ -127,7 +133,6 @@
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/listSearch.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
@@ -135,5 +140,6 @@
     <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
     <script src="<?= base_url(); ?>js/main.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
+    <script src="<?= base_url(); ?>js/listSearch.js"></script>
 </body>
 </html>

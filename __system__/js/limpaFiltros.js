@@ -13,17 +13,19 @@ function limpaVol() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -52,10 +54,12 @@ function limpaVol() {
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -86,6 +90,7 @@ function limpaVol() {
                 }
                 attCarrinho();
                 btnFavorito();
+                abrirModal();
             }
         }
     });
@@ -112,17 +117,19 @@ function limpaMarca() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -151,10 +158,12 @@ function limpaMarca() {
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -185,6 +194,7 @@ function limpaMarca() {
                 }
                 attCarrinho();
                 btnFavorito();
+                abrirModal();
             }
         }
     });
@@ -211,17 +221,19 @@ function limpaPreco() {
             } else {
                 var produtos = [];
                 for(var i = 0; json['produtos'].length > i; i++) {
-                    if(json['produtos'][i].produto_desconto_porcent) {
+                    if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                         produtos[i] = `
                             <div class="prodFilter">
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -250,10 +262,12 @@ function limpaPreco() {
                                 <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                     
                                 </div>
-                                <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                <div class='divisorFilter'></div>
-                                <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <div class='divisorFilter'></div>
+                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                </a>
                                 <div>
                         `;
                         if(!json['produtos'][i].empty) {
@@ -284,6 +298,7 @@ function limpaPreco() {
                 }
                 attCarrinho();
                 btnFavorito();
+                abrirModal();
             }
         }
     });
@@ -315,17 +330,19 @@ function limpaFav() {
                 } else {
                     var produtos = [];
                     for(var i = 0; json['produtos'].length > i; i++) {
-                        if(json['produtos'][i].produto_desconto_porcent) {
+                        if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
                             produtos[i] = `
                                 <div class="prodFilter">
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <p class="divProdPromo">-` + json['produtos'][i].produto_desconto_porcent + `%</p>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['produtos'][i].produto_preco + `</span> R$` + json['produtos'][i].produto_desconto + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -354,10 +371,12 @@ function limpaFav() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
-                                    <div class='divisorFilter'></div>
-                                    <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
-                                    <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
+                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <div class='divisorFilter'></div>
+                                        <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
+                                        <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
+                                    </a>
                                     <div>
                             `;
                             if(!json['produtos'][i].empty) {
@@ -388,6 +407,7 @@ function limpaFav() {
                     }
                     attCarrinho();
                     btnFavorito();
+                    abrirModal();
                 }
             } else {
                 Toast.fire({

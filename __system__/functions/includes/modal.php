@@ -9,7 +9,7 @@
                 </div>
                 <div class="modalArmBottomContent">
                     <div class="Armazens">
-
+                        <h1 align="center"><i class='fa fa-circle-notch fa-spin'></i></h1>
                     </div>
                 </div>
 			</div>

@@ -7,7 +7,7 @@
 
     function getProductsByIds($ids) {
         global $conn;
-        $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent, m.marca_nome FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
+        $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent, m.marca_nome, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
         $sel->execute();
         if($sel->rowCount() > 0) {
             while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
@@ -28,6 +28,12 @@
             foreach($products as $k => $product) {
                 if($product['produto_desconto_porcent'] != "") {
                     $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
+                    $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
+                    $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
+                    $results[$k] = $product;
+                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
+                } elseif($product['promo_desconto']) {
+                    $product["produto_desconto"] = $product["produto_preco"]*($product["promo_desconto"]/100);
                     $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
                     $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
                     $results[$k] = $product;
@@ -53,6 +59,12 @@
             foreach($resultsCarts as $k => $v) {
                 if($v['produto_desconto_porcent'] <> "") {
                     $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                    $totDesconto += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
+                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                } elseif($v['promo_desconto']) {
+                    $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
                     $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
                     $totDesconto += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
                     $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
@@ -164,7 +176,7 @@
                             </td>
                             <td class="tdCart" width="15%">
                                 <?php
-                                    if($v['produto_desconto_porcent']):?>
+                                    if($v['produto_desconto_porcent'] || $v['promo_desconto']):?>
                                         <h3 class="descProdCart">R$<?= $v['produto_preco']; ?></h3>
                                         <h3 class="priceProdCart">R$<?= $v['produto_desconto']; ?></h3>
                                         <?php

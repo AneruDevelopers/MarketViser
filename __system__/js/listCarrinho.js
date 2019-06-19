@@ -19,7 +19,7 @@ function listCarrinho() {
                     </tr>
                 `);
                 for(var i = 0; json['prods'].length > i; i++) {
-                    if(json['prods'][i].produto_desconto_porcent) {
+                    if(json['prods'][i].produto_desconto_porcent || json['prods'][i].promo_desconto) {
                         $('.divShowProdFav').append(`
                         <tr class="trCart">
                             <td class="tdCart" width="40%">

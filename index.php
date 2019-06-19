@@ -79,7 +79,7 @@ ob_start();
 		endforeach;
 	endif;
 
-	$REQUEST_URI = filter_input(INPUT_SERVER, 'REQUEST_URI');
+	$REQUEST_URI = $_SERVER["REQUEST_URI"];
 	
 	$INITE = strpos($REQUEST_URI, '?');
 	if($INITE):
@@ -93,7 +93,15 @@ ob_start();
 	
 	if(file_exists('__system__/' . $URL[1] . '.php')):
 		if(isset($URL[2])):
-			require '__system__/404.php';
+			if($URL[1] == "produto"):
+				if(!isset($URL[3])):
+					require '__system__/' . $URL[1] . '.php';
+				else:
+					require '__system__/404.php';
+				endif;
+			else:
+				require '__system__/404.php';
+			endif;
 		else:
 			require '__system__/' . $URL[1] . '.php';
 		endif;

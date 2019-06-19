@@ -6,6 +6,7 @@
 	setlocale(LC_ALL, 'pt_BR');
 
 	// Padronizando a busca por arquivos via URL
+	// NICOLAS IP: 192.168.0.103
 	function base_url() {
 		return "http://localhost/economize/__system__/";
 	}

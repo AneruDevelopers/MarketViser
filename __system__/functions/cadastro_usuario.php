@@ -1,6 +1,6 @@
 <?php 
 	require_once 'connection/conn.php';
-    require_once 'envmail.php';
+    require_once '__system__/functions/email/envmail.php';
 	if(isset($_POST["usu_email"])) {
 		$json = array();
 		$json["status"] = 1;
@@ -199,7 +199,7 @@
 								$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
 								$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
 								$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
-								
+								env_email($row['usu_email'],$_SESSION["inf_usu"]['usu_nome']);
 
 								$reg = $row['usu_registro'];
 								$ano = substr($reg,0,4);
@@ -213,7 +213,7 @@
 								$_SESSION["inf_usu"]['usu_tipo_id'] = $row['tpu_id'];
 								$nome = explode(" ", $_SESSION["inf_usu"]['usu_nome']);
 								$json["nome_usuario"] = $nome[0];
-								env_cad($_SESSION["inf_usu"]['usu_email'],$_SESSION["inf_usu"]['usu_nome']);
+								
 							}
 						} else {
 

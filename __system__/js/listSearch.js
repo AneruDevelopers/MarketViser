@@ -18,17 +18,19 @@ $(document).ready(function() {
                         var produtos = [];
                         $('.divShowProdFav').html("");
                         for(var i = 0; json['prods'].length > i; i++) {
-                            if(json['prods'][i].produto_desconto_porcent) {
+                            if(json['prods'][i].produto_desconto_porcent || json['prods'][i].promo_desconto) {
                                 produtos[i] = `
                                     <div class="prodFilter">
                                         <div class='btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `'>
                                             
                                         </div>
-                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
-                                        <p class="divProdPromo">-` + json['prods'][i].produto_desconto_porcent + `%</p>
-                                        <div class='divisorFilter'></div>
-                                        <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
-                                        <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `</p>
+                                        <a class="linksProdCarousel" id-produto="` + json['prods'][i].produto_id + `">
+                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
+                                            <p class="divProdPromo">-` + ((json['prods'][i].promo_desconto != null) ? json['prods'][i].promo_desconto : json['prods'][i].produto_desconto_porcent) + `%</p>
+                                            <div class='divisorFilter'></div>
+                                            <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
+                                            <p class='priceProdFilter'><span class="divProdPrice1">R$` + json['prods'][i].produto_preco + `</span> R$` + json['prods'][i].produto_desconto + `</p>
+                                        </a>
                                         <div>
                                 `;
                                 if(!json['prods'][i].empty) {
@@ -57,10 +59,12 @@ $(document).ready(function() {
                                         <div class='btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `'>
                                             
                                         </div>
-                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
-                                        <div class='divisorFilter'></div>
-                                        <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
-                                        <p class='priceProdFilter'>R$ ` + json['prods'][i].produto_preco + `</p>
+                                        <a class="linksProdCarousel" id-produto="` + json['prods'][i].produto_id + `">
+                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
+                                            <div class='divisorFilter'></div>
+                                            <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
+                                            <p class='priceProdFilter'>R$ ` + json['prods'][i].produto_preco + `</p>
+                                        </a>
                                         <div>
                                 `;
                                 if(!json['prods'][i].empty) {
@@ -90,6 +94,7 @@ $(document).ready(function() {
                         }
                         btnFavorito();
                         attCarrinho();
+                        abrirModal();
                     } else {
                         $('.divShowProdFav').html(`
                             <p class='msgHelpSearch'>
@@ -109,9 +114,4 @@ $(document).ready(function() {
             $('.divShowProdFav').html(``);
         }
     });
-
-    $('.formPesquisaHeader').submit(function(e) {
-        e.preventDefault();
-        return false;
-    })
 });

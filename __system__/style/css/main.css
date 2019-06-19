@@ -659,8 +659,8 @@ border-radius: 0;
         font-size: 11px;
         width: 100%;
         text-align: center;
-        padding: 10px 0;
-        margin: 1rem 0;
+        padding-top: 10px;
+        margin: 0;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -669,10 +669,25 @@ border-radius: 0;
         color: #9C45EB;
     }
 
+    .subtitOfertas {
+        font-family: "Exo";
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 8px;
+    }
+
+    .expiraOfertas {
+        font-family: "Exo";
+        font-size: 7px;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
     .l-prods {
         position: relative;
         width: 100vw;
-        top: -1rem;
         background: #ffffff;
         padding-top: 0;
         padding-bottom: 1.2rem;
@@ -918,6 +933,37 @@ border-radius: 0;
     .compProduto {
         width: 100%;
         text-align: center;
+    }
+
+    .btnPageProd {
+        border: none;
+        cursor: pointer;
+        background: #9C45EB;
+        color: #fff;
+        border-radius: 3px;
+        padding: .5rem;
+    }
+
+    .linkShareProd, 
+    .linkShareProd:hover, 
+    .linkShareProd:focus,
+    .btnShareProd:hover,
+    .btnShareProd:focus {
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btnShareProd {
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: #333;
+        padding: .4rem;
+        text-decoration: none;
+        font-size: 12pt;
+        font-weight: bolder;
+        font-family: 'Exo';
+        outline: none;
     }
 
     .imgLust {
@@ -1678,6 +1724,13 @@ border-radius: 0;
         width: 100%;
     }
 
+    .l-mainProduto {
+        grid-area: main;
+        margin: 1rem 0;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
     .l-footerFiltroPesq {
         grid-area: footer;
         background: #e2e3e6;
@@ -1686,6 +1739,35 @@ border-radius: 0;
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
         background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+    }
+
+    /* PÁGINA DO PRODUTO */
+    .l-pageProd {
+        position: relative;
+        width: 100vw;
+        background: #ffffff;
+        padding: 2rem 0;
+    }
+    .divProdutoLeft {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .imgProduto {
+        width: 60%;
+        margin-left: 20%;
+    }
+    .divProdutoRight {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .categProduto {
+        color: #999999;
+        font-size: 10pt;
+        text-decoration: italic;
+    }
+    .ponto {
+        position: relative;
+        top: -6px;
     }
 
     .center_header {
@@ -3015,8 +3097,7 @@ border-radius: 0;
         font-size: 16px;
         width: 100%;
         text-align: center;
-        padding: 10px 0;
-        margin: 2rem 0;
+        padding-top: 10px;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -3025,10 +3106,25 @@ border-radius: 0;
         color: #9C45EB;
     }
 
+    .subtitOfertas {
+        font-family: "Exo";
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .expiraOfertas {
+        font-family: "Exo";
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
     .l-prods {
         position: relative;
         width: 100vw;
-        top: -1rem;
         background: #ffffff;
         padding-top: 0;
         padding-bottom: 1.2rem;
@@ -3276,6 +3372,37 @@ border-radius: 0;
     .compProduto {
         width: 100%;
         text-align: center;
+    }
+
+    .btnPageProd {
+        border: none;
+        cursor: pointer;
+        background: #9C45EB;
+        color: #fff;
+        border-radius: 3px;
+        padding: .5rem;
+    }
+
+    .linkShareProd, 
+    .linkShareProd:hover, 
+    .linkShareProd:focus,
+    .btnShareProd:hover,
+    .btnShareProd:focus {
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btnShareProd {
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: #333;
+        padding: .4rem;
+        text-decoration: none;
+        font-size: 12pt;
+        font-weight: bolder;
+        font-family: 'Exo';
+        outline: none;
     }
 
     .imgLust {
@@ -4024,6 +4151,13 @@ border-radius: 0;
         width: 100%;
     }
 
+    .l-mainProduto {
+        grid-area: main;
+        margin: 1rem 0;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
     .l-footerFiltroPesq {
         grid-area: footer;
         background: #e2e3e6;
@@ -4037,6 +4171,36 @@ border-radius: 0;
     /* .filterMobile {
         display: none;
     } */
+
+    /* PÁGINA DO PRODUTO */
+    .l-pageProd {
+        position: relative;
+        width: 100vw;
+        background: #ffffff;
+        padding: 4rem 0;
+    }
+    .divProdutoLeft {
+        width: 70%;
+        margin: 0 auto;
+    }
+    .imgProduto {
+        width: 50%;
+        position: relative;
+        left: 25%;
+    }
+    .divProdutoRight {
+        width: 70%;
+        margin: 0 auto;
+    }
+    .categProduto {
+        color: #999999;
+        font-size: 13pt;
+        text-decoration: italic;
+    }
+    .ponto {
+        position: relative;
+        top: -6px;
+    }
 
     .center_header {
         position: relative;
@@ -5372,9 +5536,8 @@ border-radius: 0;
         font-size: 20px;
         width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding-top: 10px;
         margin-top: 1rem;
-        margin-bottom: 1.5rem;
         color: #0F0617;
         letter-spacing: 2px;
     }
@@ -5383,13 +5546,28 @@ border-radius: 0;
         color: #9C45EB;
     }
 
+    .subtitOfertas {
+        font-family: "Exo";
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .expiraOfertas {
+        font-family: "Exo";
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
     .l-prods {
         position: relative;
         width: 100vw;
-        top: -1rem;
         background: #ffffff;
         padding-top: 0;
-        padding-bottom: 1.2rem;
+        padding-bottom: 2rem;
     }
 
     .divProdCarousel {
@@ -5616,6 +5794,9 @@ border-radius: 0;
         position: absolute;
         right: 30%;
     }
+    .cartProd {
+        top: 160px;
+    }
     .inputQtdModal {
         border: solid #d3d2d2 1px;
         border-radius: 3px;
@@ -5640,6 +5821,37 @@ border-radius: 0;
         position: relative;
         top: 13%;
         left: 2%;
+    }
+
+    .btnPageProd {
+        border: none;
+        cursor: pointer;
+        background: #9C45EB;
+        color: #fff;
+        border-radius: 3px;
+        padding: .5rem;
+    }
+
+    .linkShareProd, 
+    .linkShareProd:hover, 
+    .linkShareProd:focus,
+    .btnShareProd:hover,
+    .btnShareProd:focus {
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btnShareProd {
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: #333;
+        padding: .4rem;
+        text-decoration: none;
+        font-size: 12pt;
+        font-weight: bolder;
+        font-family: 'Exo';
+        outline: none;
     }
 
     .imgLust {
@@ -5876,6 +6088,74 @@ border-radius: 0;
     .copyrightReserved a {
         text-decoration: none;
         color: #d3d2d2;
+    }
+
+    /* PÁGINA DÚVIDAS FREQUENTES */
+    .divSearchDuvida {
+        width: 50%;
+        margin: 30px auto;
+    }
+
+    .inputSearchDuvida {
+        width: 200px;
+        position: relative;
+        top: -2px;
+        border: solid #d3d2d2 1px;
+        height: 30px;
+        font-family: 'Karla';
+        font-size: 13px;
+        padding: 0px 10px;
+    }
+
+    .inputSearchDuvida:focus {
+        outline: #9C45EB solid 1px;
+    }
+
+    .loadDuvida {
+        width: 100%;
+        text-align: center;
+    }
+
+    .divDuvida {
+        width: 50%;
+        margin: 0 auto;
+        padding: 22px 10px;
+        background: #252730;
+        color: #fff;
+        border-top: .5px solid #ccc;
+        border-bottom: .5px solid #ccc;
+        cursor: pointer;
+    }
+
+    .perguntaDuvida {
+        margin: 0;
+    }
+
+    .respostaDuvida {
+        width: 50%;
+        margin: 0 auto;
+        padding: 22px 10px;
+        background: #ccc;
+        color: #252730;
+        text-indent: 20px;
+        line-height: 25px;
+        display: none;
+        text-align: justify;
+        transition: all .1s linear;
+    }
+
+    .linkDuvida {
+        width: 100%;
+        margin: 40px 0;
+        text-align: center;
+        font-weight: bolder;
+    }
+    .llinkDuvida {
+        color: #252730;
+        text-decoration: none;
+    }
+    .llinkDuvida:hover, .llinkDuvida:focus {
+        text-decoration: underline;
     }
 
     /* PAGE --> CADASTRO.PHP */
@@ -6386,6 +6666,13 @@ border-radius: 0;
         margin-bottom: 3rem;
     }
 
+    .l-mainProduto {
+        grid-area: main;
+        margin: 1rem 0;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
     .l-footerFiltroPesq {
         grid-area: footer;
         background: #e2e3e6;
@@ -6394,6 +6681,37 @@ border-radius: 0;
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
         background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+    }
+
+    /* PÁGINA DO PRODUTO */
+    .l-pageProd {
+        position: relative;
+        width: 100vw;
+        background: #ffffff;
+        padding: 4rem 0;
+    }
+    .divProdutoLeft {
+        width: 35%;
+        position: relative;
+        left: 5%;
+    }
+    .imgProduto {
+        width: 100%;
+    }
+    .divProdutoRight {
+        width: 45%;
+        position: absolute;
+        top: 4rem;
+        right: 5%;
+    }
+    .categProduto {
+        color: #999999;
+        font-size: 13pt;
+        text-decoration: italic;
+    }
+    .ponto {
+        position: relative;
+        top: -6px;
     }
 
     .center_header {

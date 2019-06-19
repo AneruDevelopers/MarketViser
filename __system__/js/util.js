@@ -51,3 +51,30 @@ function messages() {
         }
     });
 }
+
+// function atualizaContador(YY, MM, DD, HH, MI, SS, campo) {
+//     var hoje = new Date();
+//     var futuro = new Date(YY, MM-1, DD, HH, MI, SS);
+//     var ss = parseInt((futuro - hoje) / 1000);
+//     var mm = parseInt(ss / 60);
+//     var hh = parseInt(mm / 60);
+//     var dd = parseInt(hh / 24);
+
+//     ss = ss - (mm * 60);
+//     mm = mm - (hh * 60);
+//     hh = hh - (dd * 24);
+
+//     var faltam = '';
+//     faltam += (dd && dd > 1) ? dd + ' dias, ' : (dd == 1 ? '1 dia, ' : '');
+//     faltam += (toString(hh).length) ? hh + ' hr, ' : '';
+//     faltam += (toString(mm).length) ? mm + ' min e ' : '';
+//     faltam += ss + ' seg';
+ 
+//     if (dd+hh+mm+ss > 0) {
+//         $("." + campo).html(faltam);
+//         setTimeout(atualizaContador, 1000);
+//     } else {
+//         $("." + campo).html('Promoção expirada!');
+//         setTimeout(atualizaContador, 1000);
+//     }
+// }

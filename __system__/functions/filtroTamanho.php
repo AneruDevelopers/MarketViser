@@ -37,6 +37,11 @@
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
                         $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                    } elseif($v['promo_desconto']) {
+                        $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
                     }
                     
                     $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
@@ -68,6 +73,11 @@
                     }
                     if($v['produto_desconto_porcent'] <> "") {
                         $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
+                        $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
+                        $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                    } elseif($v['promo_desconto']) {
+                        $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
                         $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
                         $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');

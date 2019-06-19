@@ -40,7 +40,7 @@
 
         <div class="l-mainFiltroPesq">
             <h2 class="tituloOfertas"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
-
+            <br/><br/>
             <div class="l-favoritos divShowProdFav">
 
             </div>
@@ -68,11 +68,11 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/favoritar.js"></script>
     <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/meusFavoritos.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
     <script src="<?= base_url(); ?>js/main.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
+    <script src="<?= base_url(); ?>js/meusFavoritos.js"></script>
 </body>
 </html>

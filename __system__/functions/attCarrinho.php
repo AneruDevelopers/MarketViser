@@ -26,12 +26,11 @@
             $id = $_POST['id_prod'];
             $qtd_post = $_POST['qtd_prod'];
             if($qtd_post > 0) {
-                $sel = $conn->prepare("SELECT * FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
+                $sel = $conn->prepare("SELECT produto_qtd FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
                 $sel->execute();
-                $rows = $sel->fetchAll();
-                foreach($rows as $row) {
-                    $qtd_prod = $row['produto_qtd'];
-                }
+                $row = $sel->fetch( PDO::FETCH_ASSOC );
+                $qtd_prod = $row['produto_qtd'];
+                
                 if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Produto adicionado ao carrinho";
@@ -80,12 +79,11 @@
             $id = $_POST['prod_id'];
             $qtd_post = $_POST['qtd_prod'];
             if($qtd_post > 0) {
-                $sel = $conn->prepare("SELECT * FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
+                $sel = $conn->prepare("SELECT produto_qtd FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
                 $sel->execute();
-                $rows = $sel->fetchAll();
-                foreach($rows as $row) {
-                    $qtd_prod = $row['produto_qtd'];
-                }
+                $row = $sel->fetch( PDO::FETCH_ASSOC );
+                $qtd_prod = $row['produto_qtd'];
+                
                 if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
                     $_SESSION['carrinho'][$id] = $qtd_post;
                     $json['answer'] = "Carrinho atualizado";

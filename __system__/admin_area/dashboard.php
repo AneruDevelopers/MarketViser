@@ -21,6 +21,11 @@
             require 'functions/includes/menu.php';
         ?>
         <section id="conteudo" class="l-main">
+            <pre>
+            <?php
+               // print_r($_SESSION['inf_func']);
+            ?>
+            </pre>
             <div>
                 <h3 class="dashTitle">Dashboard</h3>
             </div>
