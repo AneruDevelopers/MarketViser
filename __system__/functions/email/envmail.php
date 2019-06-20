@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 // Instantiation and passing `true` enables exceptions
-function env_email($email,$nome){
+function env_email($email,$nome,$link){
 	 
 	$mail = new PHPMailer(true);
 
@@ -28,20 +28,12 @@ function env_email($email,$nome){
 		//Recipients
 		$mail->setFrom('accounts@economize.top', 'e.conomize');
 		$mail->addAddress($email, $nome);     // Add a recipient
-		//$mail->addAddress('ellen@example.com');               // Name is optional
-		//$mail->addReplyTo('info@example.com', 'Information');
-		//$mail->addCC('cc@example.com');
-		//$mail->addBCC('bcc@example.com');
-	
-		// Attachments
-		//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-		//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-	
+
 		// Content
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = 'Olá '.$nome.', Bem-Vindo ao e.conomize';
-		$mail->Body    = 'Ambiente de teste <b>Ufaaaa</b>';
-		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+		$mail->Body    = 'Por-Favor verifique sua conta.<a href="'.$link.'">Clique aqui para confirmar seu e-mail</a><br> <br>';
+		$mail->AltBody = 'e.conomize confirme seu e-mail.';
 	
 		$mail->send();
 		

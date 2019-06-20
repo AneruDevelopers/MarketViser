@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 18/06/2019 às 20:26
--- Versão do servidor: 10.1.38-MariaDB
--- Versão do PHP: 7.3.2
+-- Host: localhost
+-- Tempo de geração: 20/06/2019 às 00:13
+-- Versão do servidor: 10.3.15-MariaDB
+-- Versão do PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,7 @@ CREATE TABLE `armazem` (
   `armazem_nome` varchar(150) NOT NULL,
   `armazem_supervisor` varchar(150) NOT NULL,
   `armazem_supervisor_cpf` char(14) NOT NULL,
-  `armazem_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `armazem_registro` datetime DEFAULT current_timestamp(),
   `cidade_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -57,8 +57,8 @@ CREATE TABLE `atendimento` (
   `nome_usu` varchar(50) NOT NULL,
   `email_usu` varchar(150) NOT NULL,
   `tp_problema` varchar(100) NOT NULL,
-  `desc_problema` text,
-  `dataenv_pro` datetime DEFAULT CURRENT_TIMESTAMP
+  `desc_problema` text DEFAULT NULL,
+  `dataenv_pro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `atend_resposta` (
   `id_atd` int(11) NOT NULL,
   `funcionario_id` int(11) NOT NULL,
   `resp_atend` text NOT NULL,
-  `registro_resp` datetime DEFAULT CURRENT_TIMESTAMP
+  `registro_resp` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -180,12 +180,33 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
 
 CREATE TABLE `compra` (
   `compra_id` int(11) NOT NULL,
-  `compra_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `compra_registro` datetime DEFAULT current_timestamp(),
   `compra_total` float NOT NULL,
   `usu_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `forma_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `conf_mail`
+--
+
+CREATE TABLE `conf_mail` (
+  `cf_id` int(11) NOT NULL,
+  `cf_link` varchar(255) NOT NULL,
+  `cf_status` bit(1) NOT NULL DEFAULT b'0',
+  `cf_expiracao` datetime DEFAULT NULL,
+  `usu_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `conf_mail`
+--
+
+INSERT INTO `conf_mail` (`cf_id`, `cf_link`, `cf_status`, `cf_expiracao`, `usu_id`) VALUES
+(3, '5b29f46da1593c9c6bd56554ed3931b1', b'1', '2019-06-19 16:08:00', 10);
 
 -- --------------------------------------------------------
 
@@ -486,7 +507,7 @@ INSERT INTO `duvida_frequente` (`duvida_id`, `duvida_pergunta`, `duvida_resposta
 
 CREATE TABLE `entrega` (
   `entrega_id` int(11) NOT NULL,
-  `entrega_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `entrega_registro` datetime DEFAULT current_timestamp(),
   `entrega_horario` time NOT NULL,
   `entrega_cep` char(9) NOT NULL,
   `entrega_end` varchar(150) NOT NULL,
@@ -546,7 +567,7 @@ CREATE TABLE `fornecedor` (
   `fornecedor_nome` varchar(60) NOT NULL,
   `fornecedor_responsavel_nome` varchar(150) NOT NULL,
   `fornecedor_cnpj` char(18) NOT NULL,
-  `fornecedor_data_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fornecedor_data_registro` datetime DEFAULT current_timestamp(),
   `fornecedor_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -569,7 +590,7 @@ CREATE TABLE `forn_prod` (
   `fornecedor_id` int(11) NOT NULL,
   `produto_id` int(11) NOT NULL,
   `produto_qtd` int(11) NOT NULL,
-  `forn_prod_data_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `forn_prod_data_registro` datetime DEFAULT current_timestamp(),
   `armazem_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -592,7 +613,7 @@ CREATE TABLE `funcionario` (
   `funcionario_nome` varchar(150) NOT NULL,
   `funcionario_email` varchar(200) DEFAULT NULL,
   `funcionario_senha` varchar(255) NOT NULL,
-  `funcionario_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `funcionario_registro` datetime DEFAULT current_timestamp(),
   `funcionario_cpf` char(14) NOT NULL,
   `funcionario_datanasc` date NOT NULL,
   `funcionario_setor` int(11) NOT NULL
@@ -715,7 +736,7 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`, `marca_promocao`) VALUES
 
 CREATE TABLE `postagem` (
   `post_id` int(11) NOT NULL,
-  `post_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `post_registro` datetime DEFAULT current_timestamp(),
   `post_title` varchar(255) NOT NULL,
   `post_text` text NOT NULL,
   `post_img` varchar(255) DEFAULT NULL
@@ -730,7 +751,7 @@ CREATE TABLE `postagem` (
 CREATE TABLE `produto` (
   `produto_id` int(11) NOT NULL,
   `produto_nome` varchar(100) NOT NULL,
-  `produto_descricao` text,
+  `produto_descricao` text DEFAULT NULL,
   `produto_img` varchar(255) NOT NULL,
   `produto_marca` int(11) NOT NULL,
   `produto_tamanho` varchar(30) NOT NULL,
@@ -787,7 +808,7 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (93, 22, 1),
 (96, 3, 1),
 (97, 1, 1),
-(99, 16, 1);
+(98, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -932,9 +953,7 @@ CREATE TABLE `telefone` (
 --
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
-(1, '(14) 99755-8843', 1, 1),
-(2, '(14) 95104-7655', 2, 1),
-(3, '(14) 99543-0912', 2, 2);
+(11, '(12) 33434-3434', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -995,20 +1014,22 @@ CREATE TABLE `usuario` (
   `usu_end` varchar(150) NOT NULL,
   `usu_num` int(11) NOT NULL,
   `usu_complemento` varchar(50) DEFAULT NULL,
-  `usu_bairro` varchar(50) NOT NULL,
+  `usu_bairro` varchar(90) NOT NULL,
   `usu_cidade` varchar(50) NOT NULL,
   `usu_uf` char(2) NOT NULL,
   `usu_tipo` int(11) NOT NULL,
-  `usu_registro` datetime DEFAULT CURRENT_TIMESTAMP
+  `usu_mailmkt` bit(1) NOT NULL DEFAULT b'0',
+  `usu_registro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, '2019-04-26 05:06:09'),
-(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, '2019-05-17 01:36:37');
+INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_mailmkt`, `usu_registro`) VALUES
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, b'0', '2019-04-26 05:06:09'),
+(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, b'0', '2019-05-17 01:36:37'),
+(10, 'Walyson', 'Felipe', 'M', '342.352.353-53', 'walysondev@gmail.com', '$2y$10$pnzUkxbukURdS6PwGV34Yuh9kMf7w3z55/zLRBWGrbsJMm3QeoFOu', '16401-472', 'Rua Eugênio Faustini', 454, '', 'Conjunto Habitacional Francisco José de Oliveira Ratto', 'Lins', 'SP', 1, b'0', '2019-06-19 14:30:22');
 
 --
 -- Índices de tabelas apagadas
@@ -1063,6 +1084,13 @@ ALTER TABLE `compra`
   ADD KEY `fk_UsuCompra` (`usu_id`),
   ADD KEY `fk_CompraStatus` (`status_id`),
   ADD KEY `fk_CompraPag` (`forma_id`);
+
+--
+-- Índices de tabela `conf_mail`
+--
+ALTER TABLE `conf_mail`
+  ADD PRIMARY KEY (`cf_id`),
+  ADD KEY `fk_usu_conf` (`usu_id`);
 
 --
 -- Índices de tabela `cupom`
@@ -1320,6 +1348,12 @@ ALTER TABLE `compra`
   MODIFY `compra_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `conf_mail`
+--
+ALTER TABLE `conf_mail`
+  MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `cupom`
 --
 ALTER TABLE `cupom`
@@ -1479,7 +1513,7 @@ ALTER TABLE `subcidade`
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tipousu`
@@ -1497,7 +1531,7 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restrições para dumps de tabelas
@@ -1507,7 +1541,7 @@ ALTER TABLE `usuario`
 -- Restrições para tabelas `armazem`
 --
 ALTER TABLE `armazem`
-  ADD CONSTRAINT `fk_CidArm` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`cid_id`);
+  ADD CONSTRAINT `fk_CidArm` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`cid_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `atend_resposta`
@@ -1520,13 +1554,13 @@ ALTER TABLE `atend_resposta`
 -- Restrições para tabelas `categ`
 --
 ALTER TABLE `categ`
-  ADD CONSTRAINT `FK_SubCateg` FOREIGN KEY (`subcateg_id`) REFERENCES `subcateg` (`subcateg_id`);
+  ADD CONSTRAINT `FK_SubCateg` FOREIGN KEY (`subcateg_id`) REFERENCES `subcateg` (`subcateg_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `cidade`
 --
 ALTER TABLE `cidade`
-  ADD CONSTRAINT `fk_Est` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
+  ADD CONSTRAINT `fk_Est` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `compra`
@@ -1535,6 +1569,12 @@ ALTER TABLE `compra`
   ADD CONSTRAINT `fk_CompraPag` FOREIGN KEY (`forma_id`) REFERENCES `forma_pag` (`forma_id`),
   ADD CONSTRAINT `fk_CompraStatus` FOREIGN KEY (`status_id`) REFERENCES `status_compra` (`status_id`),
   ADD CONSTRAINT `fk_UsuCompra` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
+
+--
+-- Restrições para tabelas `conf_mail`
+--
+ALTER TABLE `conf_mail`
+  ADD CONSTRAINT `fk_usu_conf` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `dados_armazem`
@@ -1631,8 +1671,8 @@ ALTER TABLE `subcidade`
 -- Restrições para tabelas `telefone`
 --
 ALTER TABLE `telefone`
-  ADD CONSTRAINT `fk_TipoTel` FOREIGN KEY (`tpu_tel`) REFERENCES `tipo_tel` (`tpu_tel_id`),
-  ADD CONSTRAINT `fk_usuarioTel` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
+  ADD CONSTRAINT `fk_tpu` FOREIGN KEY (`tpu_tel`) REFERENCES `tipo_tel` (`tpu_tel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuarioTel` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `usuario`

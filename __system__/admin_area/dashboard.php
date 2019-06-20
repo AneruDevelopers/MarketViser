@@ -23,7 +23,7 @@
         <section id="conteudo" class="l-main">
             <pre>
             <?php
-                print_r($_SESSION['inf_func']);
+               // print_r($_SESSION['inf_func']);
             ?>
             </pre>
             <div>
