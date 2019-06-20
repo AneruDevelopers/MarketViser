@@ -286,7 +286,7 @@ function abrirModal() {
                             
                             <a class="linkPageProd" href="` + BASE_URL + `produto/` + json['produto']['id_cript'] + `">
                                 <button class="btnPageProd">
-                                    Ver página oficial
+                                    Ver produto
                                 </button>
                             </a>
                             
