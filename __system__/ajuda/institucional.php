@@ -33,17 +33,18 @@
         </div>
 
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas">INSTITUCIONAL</h2>
+            <h2 class="defaultTitle">INSTITUCIONAL</h2>
             <div class="obj I">
                 <h3>QUEM SOMOS</h3>
                 <img src="../__system__\img\Banner_TCC\startup-593296_640.jpg" alt="Equipe e.conomize">
             </div>
-            <p class="parag elementParag1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
+            <p class="parag elementParag1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at         labore tempore ipsum quia nemo pariatur, 
                         alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
                     illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
                     Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.</p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            </p>
             <div class="obj II">
                 <h3>NOSSO OBJETIVO</h3>
                 <img src="../__system__\img\Banner_TCC\desk-3139127_640.jpg" alt="Equipe e.conomize">

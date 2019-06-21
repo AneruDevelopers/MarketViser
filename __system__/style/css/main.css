@@ -6972,6 +6972,7 @@ border-radius: 0;
     .divShowOptDesk {
         width: 25%;
         float: right;
+        clear: right;
         right: 5%;
         position: relative;
     }
@@ -7312,7 +7313,7 @@ border-radius: 0;
         font-style: italic;
     }
 
-    /* TABLINHA DE HORÁRIOS DO PAGAMENTO */
+    /* TABELINHA DE HORÁRIOS DO PAGAMENTO */
 
     .tableSectionConfigArm a:link {
         color: #666;
@@ -7519,7 +7520,6 @@ border-radius: 0;
         text-align: justify;
         line-height: 25px;
         font-family: 'Raleway-Medium';
-        font-size: 14px;
     }
 
     .imgMapArmSub {
@@ -7533,6 +7533,60 @@ border-radius: 0;
 
     /* TABELA DE HORARIOS */
 
+    .imageOnLeft {
+        clip-path: polygon(0 0, 80% 0, 100% 100%, 0 90%);
+        shape-outside: polygon(5% 0, 80% 0, 100% 100%, 0 90%);
+        float: left;
+        margin-top: 2rem;
+        margin-left: 5rem;
+        margin-right: 2rem;
+        width: 25%;
+    }
+
+    .rightDiv {
+       position: relative;
+       width: 95%;
+    }
+
+    .paragOnRight {
+        font-family: 'Raleway-Medium';
+        color: black;
+        line-height: 28px;
+        text-align: justify;
+        text-indent: 2rem;
+    }
+
+    .imageOnRight {
+        float: right;
+        margin-top: 3rem;
+        margin-left: 5rem;
+        margin-right: 2rem;
+        width: 25%;
+    }
+
+    .leftDiv {
+        position: relative;
+        width: 95%;
+        margin-top: 4rem;
+    }
+
+    .leftDiv h2 {
+        position: relative;
+        text-align: center;
+        width: 70%;
+        left: 8%;
+    }
+ 
+    .paragOnLeft {
+        font-family: 'Raleway-Medium';
+        color: black;
+        line-height: 28px;
+        position: relative;
+        left: 6%;
+        text-indent: 2rem;
+        width: 70%;
+    }
+
     .itinerarioTitle {
         position: relative;
         width: 100%;
@@ -7540,7 +7594,7 @@ border-radius: 0;
         margin-top: 2.5rem;
         margin-bottom: .5rem;
         text-transform: uppercase;
-        font-size: 16px;
+        font-size: 22px;
     }
 
     .bottomTitle {
@@ -7613,7 +7667,7 @@ border-radius: 0;
         background-color: rgba(255,255,255,0.2);
     }
 
-    /* PAGINA QUEM SOMOS */
+    /* PAGINA INTITUCIONAL */
 
     .obj{
         position: relative;
@@ -8075,4 +8129,198 @@ border-radius: 0;
         cursor: pointer;
         font-family: 'Raleway-Medium';
     }
+
+    /* PÁGINA COMO COMPRAR */
+
+    .cartImgPageHowToBuy {
+        position: relative;
+        width: 32%;
+        float: right;
+        right: 8%;
+    }
+
+    .divPageHowToBuy {
+        float: left;
+        position: relative;
+        width: 40%;
+        left: 10%;
+    }
+
+    .divPageHowToBuy h2 {
+        font-size: 45px;
+        margin-top: 4rem;
+        position: relative;
+    }
+
+    .textPageHowToBuy {
+        line-height: 28px;
+        font-size: 17px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .Step0ImgPageHowToBuy {
+        position: relative;
+        width: 30%;
+        float: left;
+        left: 10%;
+        clear: left;
+        top: -4rem;
+    }
+
+    .Step0DivPageHowToBuy {
+        float: right;
+        position: relative;
+        width: 40%;
+        right: 10%;
+        clear: both;
+    }
+
+    .Step0DivPageHowToBuy h2{
+        font-size: 24px;
+        margin-top: 6rem;
+        position: relative;
+    }
+
+    .Step0TextPageHowToBuy {
+        line-height: 28px;
+        font-size: 17px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .Step1ImgPageHowToBuy {
+        position: relative;
+        width: 30%;
+        float: right;
+        right: 10%;
+        clear: right;
+        top: -4rem;
+    }
+
+    .Step1DivPageHowToBuy {
+        float: left;
+        position: relative;
+        width: 40%;
+        right: 10%;
+        clear: both;
+    }
+
+    .Step1DivPageHowToBuy h2{
+        font-size: 24px;
+        margin-top: 4rem;
+        position: relative;
+        left: 50%;
+    }
+
+    .Step1TextPageHowToBuy {
+        line-height: 28px;
+        font-size: 17px;
+        position: relative;
+        left: 50%;
+        font-family: 'Raleway-Medium';
+    }
+
+    .purplearrow {
+        width: 30%;
+        transform: rotate(130deg);
+        position: relative;
+        top: 5rem;
+        right: 14%;
+    }
+
+    .opositepurplearrow {
+        width: 30%;
+        transform: rotate(45deg);
+        position: relative;
+        top: 4rem;
+        left: 135%;
+    }
+
+    /* PÁGINA TROCAS E DEVOLUÇÕES */
+
+    .defaultTitle {
+        font-family: 'Raleway';
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 2rem;
+    }
+
+    .HowToBuyLink {
+        background: #9C45EB;
+        height: 2px;
+        border: none;
+    }
+
+    .HowToBuyLinkSpecial {
+        background: #9C45EB;
+        height: 2px;
+        border: none;
+        position: relative;
+        left: 50%;
+    }
+
+    .changesDevolutionContentDiv {
+        position: relative;
+        width: 80%;
+        margin: auto;
+    }
+
+    .devolutionText {
+        line-height: 28px;
+        text-align: justify;
+        border: solid 2px #e2e3e6;
+        border-bottom: none;
+    }
+
+    .changeDevolutionSiteLink {
+        color: #9C45EB;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .listChangesDevolutinPage {
+        line-height: 28px;
+        list-style: square;
+        text-align: justify;
+    }
+
+    .paragNotSameStyle {
+        line-height: 28px;
+        text-align: justify;
+        border: solid 2px #e2e3e6;
+        border-bottom: none;
+        border-top: none;
+        padding: 20px;
+        font-family: 'Raleway-Medium';
+    }
+
+    /* PÁGINA PERECÍVEIS E CONGELADOS */
+
+    .freezeDivContent {
+        position: relative;
+        width: 90%;
+        margin: auto;
+    }
+
+    .titleFreezeDiv {
+        position: relative;
+        width: 35%;
+        float: left;
+    }
+
+    .titleFreezeDiv p {
+        font-family: 'Raleway-Medium';
+        line-height: 28px;
+    }
+
+    .titleFreezeDiv h2 {
+        font-size: 35px;
+    }
+
+    .freezeDivContent img {
+        width: 65%;
+        float: right;
+    }
+
 }

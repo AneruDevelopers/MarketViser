@@ -33,13 +33,19 @@
         </div>
 
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas">ENTREGAS</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Através da maneira e.conomize&#174 de fazer comércio pela internet, com velocidade e praticidade, fazer compras online se tornou algo trivial. Parte da nossa proposta é proporcionar comodidade para nossos clientes, e isso passa muito pela estrutura 100% digital que desenvolvemos, onde ocorre todos os processos necessários para um consumo dinâmico e flexível por parte dos clientes. Com isso, a entrega em domicílio é etapa fundamental nesse sistema e tem um funcionamento voltado a maximizar o tempo e favorecer as diversas rotinas que os usuários possuem.</p>
+            <img class="imageOnLeft" src="../__system__\img\Banner_TCC\map.png" alt="Equipe e.conomize">
+            <div class="rightDiv">
+                <h2 class="defaultTitle">ENTREGAS E.CONOMIZE</h2>
+                <p class="paragOnRight"> Através da maneira e.conomize&#174 de fazer comércio pela internet, com velocidade e praticidade, fazer compras online se tornou algo trivial. Parte da nossa proposta é proporcionar comodidade para nossos clientes, e isso passa muito pela estrutura 100% digital que desenvolvemos, onde ocorre todos os processos necessários para um consumo dinâmico e flexível por parte dos clientes. Com isso, a entrega em domicílio é etapa fundamental nesse sistema e tem um funcionamento voltado a maximizar o tempo e favorecer as diversas rotinas que os usuários possuem.
+                </p>
+            </div>
             <br>
-            <br>
-            <h2 class="tituloOfertas">HORÁRIOS DE ENTREGA</h2>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao agendar uma compra, você terá de escolher um horário de preferência para que ela seja entregue no endereço, previamente, definido. Contudo, há algumas restrições nessa escolha. Os horários disponíveis são do dia atual e do dia seguinte da compra, sendo que, os horários do dia seguinte só estarão disponíveis caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma "subcidade", ela terá horários próprios para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre "Armazéns e Subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui</a>.</p>
-            <p class="infoAgendText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confira os horários a seguir:</p>
+
+            <img class="imageOnRight" src="../__system__\img\Banner_TCC\schedule.png" alt="Equipe e.conomize">
+            <div class="leftDiv">
+                <h2 class="defaultTitle">HORÁRIOS DE ENTREGA</h2>
+                <p class="paragOnLeft">Ao agendar uma compra, você terá de escolher um horário de preferência para que ela seja entregue no endereço, previamente, definido. Contudo, há algumas restrições nessa escolha. Os horários disponíveis são do dia atual e do dia seguinte da compra, sendo que, os horários do dia seguinte só estarão disponíveis caso haja somente um ou nenhum horário para o dia atual. Caso a sua cidade seja uma "subcidade", ela terá horários próprios para entrega, ou seja, não obrigatoriamente os horários serão iguais aos da cidade do seu armazém. Se tiver dúvida sobre "Armazéns e Subcidades" <a href="<?= base_url_php(); ?>ajuda/subcidades">clique aqui</a>.</p>
+            </div>
             <div class="l-horarios">
                 <h3 class="itinerarioTitle">ITINERÁRIO do <?= $_SESSION['arm_nome'];?></h3>
                 <hr class="bottomTitle">
