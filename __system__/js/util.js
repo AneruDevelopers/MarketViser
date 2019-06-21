@@ -14,6 +14,10 @@ function loadingRes(message="") {
     return "<p class='p-loading'><i class='fa fa-circle-notch fa-spin'></i> &nbsp;"+message+"</p>";
 }
 
+function loadingResSmall(message="") {
+    return "<small><i class='fa fa-circle-notch fa-spin'></i> &nbsp;"+message+"</small>";
+}
+
 function clearErrors() {
     $(".has-error").removeClass("has-error");
     $(".help-block").html("");
