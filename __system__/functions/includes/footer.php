@@ -22,25 +22,18 @@
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/institucional">Institucional</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/horario_armazem">Entregas</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/subcidades">Armazéns e Subcidades</a></li>
-        <li><a class="linkListFooter" href="#">Como comprar</a></li>
-        <li><a class="linkListFooter" href="#">Trocas e devoluções</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/como_comprar">Como comprar</a></li>
     </ul>
     <ul class="footer-nav ftNav2">
         <li><h6 class="titleListFooter">PRODUTOS</h6></li>
-        <li><a class="linkListFooter" href="#">Departamentos</a></li>
-        <li><a class="linkListFooter" href="#">Venda de Congelados</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/pereciveis_congelados">Perecíveis e Congelados</a></li>
     </ul>
     <ul class="footer-nav ftNav3">
         <li><h6 class="titleListFooter">SUPORTE</h6></li>
-<<<<<<< HEAD
-        <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/politica-de-privacidade">Política de Privacidade</a></li>
-        <li><a class="linkListFooter" href="#">Dúvidas Frequentes</a></li>
-        <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/atendimento">Atendimento online</a></li>
-=======
         <li><a class="linkListFooter" href="#">Política de Privacidade</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/trocas_devolucoes">Trocas e devoluções</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/duvida-frequente">Dúvidas Frequentes</a></li>
-        <li><a class="linkListFooter" href="<?= base_url_php(); ?>atendimento">Atendimento online</a></li>
->>>>>>> 10fa1781d2ef4b0d5b6a1094d4d5a9661e3da0fe
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/atendimento">Atendimento online</a></li>
     </ul>
 </div>
 <div class="socialMediaDiv">
