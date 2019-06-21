@@ -199,7 +199,17 @@
 								$_SESSION["inf_usu"]['usu_bairro'] = $row['usu_bairro'];
 								$_SESSION["inf_usu"]['usu_complemento'] = $row['usu_complemento'];
 								$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
-								env_email($row['usu_email'],$_SESSION["inf_usu"]['usu_nome']);
+								$valor_chave = md5(date('Y-m-d H:i'));
+			                    $data = date('Y-m-d H:i:s', strtotime('+1 hour'));
+								$link = base_url_php()."usuario/confirmar_emailz?code=".$valor_chave;
+								$env = $conn->prepare("INSERT INTO conf_mail(cf_link,cf_expiracao,usu_id) VALUES(:l,:d,:u)");
+								$env->bindvalue(":l", $link);
+								$env->bindValue(":d",$data);
+								$env->bindValue(":u", $row['usu_id']);
+								
+								
+								$env->execute();
+								env_email($row['usu_email'],$_SESSION["inf_usu"]['usu_nome'],$link);
 
 								$reg = $row['usu_registro'];
 								$ano = substr($reg,0,4);

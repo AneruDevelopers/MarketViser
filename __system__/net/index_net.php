@@ -1,5 +1,5 @@
 <?php
-  ob_start();
+    ob_start();
 	require_once '__system__/functions/connection/conn.php';
 
 	if((isset($_COOKIE['arm_id'])) && (!isset($_SESSION['arm_id']))):
@@ -203,5 +203,14 @@
 		endif;
 	endif;
 	
-	//print_r($URL);
+	$url = $_SERVER['SERVER_NAME'];
+    $exp = explode("www", $url);
+    if(count($exp) == 1) {
+        if($URL[0] == "home")
+            $new_url = "";
+        else
+            $new_url = implode("/", $URL);
+
+        header("Location: http://www.economize.top/" . $new_url);
+    }
 ?>
