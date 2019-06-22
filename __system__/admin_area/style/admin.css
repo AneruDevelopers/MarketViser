@@ -1034,4 +1034,169 @@ body {
         width: 30%;
         cursor: pointer;
     }
+
+    /* PÁGINA DE LOGIN */
+
+    .backgroundAdmLogin {
+        background: #9C45EB;
+        height: 100vh;
+    }
+
+    .modalAdmLogin {
+        background: #fff;
+        position: relative;
+        width: 35%;
+        margin: auto;
+        top: 10rem;
+        height: auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .modalAdmLogin h2 {
+        margin: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 28px;
+    }
+
+    .outsideSecInputCad {
+        width: 80%;
+        height: 3rem;
+        margin-bottom: .5rem;
+        left: 10%;
+        position: relative;
+    }
+
+    .outsideSecInputCadPlus {
+        width: 80%;
+        height: 3rem;
+        margin-bottom: .5rem;
+        left: -26.5%;
+        top: 4rem;
+        position: relative;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        -webkit-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        -moz-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+    }
+
+    .field {
+        position: relative;
+        color: #aaa;
+        width: 100%;
+    }
+
+    .field input {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        color: #0F0617;
+    }
+      
+    .-simple input {
+        border: 1px solid gainsboro;
+        border-radius: 4px;
+    }
+      
+    .-md input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #d3d2d2;
+        outline: none;
+        font-family: "Karla";
+        font-size: 14px;
+    }
+      
+    .-md input:focus,
+    .-md input:hover {
+        border-bottom: 2px solid #9C45EB;
+        color: #0F0617;
+        font-family: "Karla";
+    }
+      
+    .labelFieldCad {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        color: #d3d2d2;
+        transition: font-size .5s, color .5s, left .5s, top .5s;
+        font-size: 15px;
+        letter-spacing: .5px;
+        font-family: "Raleway";
+    }
+      
+    input:not(.placeholder-shown) + .labelFieldCad,
+    input:not(:placeholder-shown) + .labelFieldCad,
+    input:hover + .labelFieldCad,
+    input:focus + .labelFieldCad,
+    .labelFieldCad:hover {
+        /** input is not empty */
+        top: -1.4em;
+        left: 0em;
+        font-size: 15px;
+        color: #9C45EB;
+        font-family: "Raleway-Medium";
+    }
+      
+    input:placeholder-shown + label {
+        /** input is empty */
+    }
+      
+    ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: transparent;
+    }
+      
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: transparent;
+    }
+      
+    :-ms-input-placeholder {
+        /* IE 10+ */
+        color: transparent;
+    }
+      
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: transparent;
+    }
+
+    .selectTypeTel {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        position: relative;
+        top: .45rem;
+        border-radius: 2px;
+        font-family: "Raleway";
+        height: 1.9rem;
+    }
+
+    .btnSend {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        width: 40%;
+        height: 2rem;
+        border-radius: 30px;
+        font-family: "Raleway-Medium";
+        font-size: 14px;
+        color: #ffffff;
+        top: 0;
+        left: 30%;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+    }
+
+    .btnSend:hover {
+        background: #252730;
+        color: #ffffff;
+        transition: 250ms ease-in-out color;
+        transition: 250ms ease-in-out background;
+    }
 }
