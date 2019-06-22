@@ -30,31 +30,25 @@
 		</div>
 		<div class="l-mainCad">
 	<?php include('__system__/functions/confmail.php');
-/*	if(isset($_SESSION['inf_usu']['usu_nome'])){
-	 if(isset($_SESSION['conf_status']['vr'])){
-		if($_SESSION['conf_status']['vr'] == "Email Confirmado Com Sucesso"){
-			?>
-			<h2 class="tituloOfertas"><i class="fas fa-check-double"></i><?php echo $_SESSION['conf_status']['vr']; ?></h2>
-			<p>Olá <?php echo $_SESSION['inf_usu']['usu_nome'];?>, Bem-vindo ao e.conomize a equipe agradece sua inscrição.</p><br>
-			 <a href="configurar">Ir para seu perfil</a>
-			<?php 
-	      }elseif($_SESSION['conf_status']['vr'] == "Codigo Expirado"){
-			?>
-		    <h2 class="tituloOfertas">Codigo Expirado</h2>
-			<p>Olá <?php echo $_SESSION['inf_usu']['usu_nome'];?>, deseja que envie-mos um novo codigo ?</p><br>
-			 <button id="submit1" type="submit">Enviar novamente</button>
-			<?php
-		   }
-		   else{
-			   header("location:configurar");
-		   }
-	    }
-   }
 
- else{
-	 echo "Você Não está logado";
-  }
-		*/	?> 
+	if(isset($_SESSION['status']['success'])){ ?>
+     <h2 class="tituloOfertas"><i class="fas fa-check-double"></i><?php echo $_SESSION['status']['success']; ?></h2>
+	 <p><?php echo $_SESSION['status']['success'];?></p><br>
+	 <a href="configurar">Ir para seu perfil</a>
+	
+	<?
+	}
+		elseif(isset($_SESSION['status']['error'])){
+      		echo '<h2 class="tituloOfertas">'.$_SESSION['status']['error'].'</h2>';
+		}
+		elseif(isset($_SESSION['status']['error2'])){
+		  echo'<h2 class="tituloOfertas">Codigo Expirado</h2><p>Olá '.$_SESSION['inf_usu']['usu_nome'].', deseja que envie-mos um novo codigo ?</p><br><button id="submit1" type="submit">Enviar novamente</button>';
+		}
+		 else{
+			header("Location:../"); 
+		 }
+		 
+	?> 
 	
         
 

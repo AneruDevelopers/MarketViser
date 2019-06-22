@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 20/06/2019 às 00:13
+-- Tempo de geração: 22/06/2019 às 06:56
 -- Versão do servidor: 10.3.15-MariaDB
 -- Versão do PHP: 7.3.6
 
@@ -200,13 +200,6 @@ CREATE TABLE `conf_mail` (
   `cf_expiracao` datetime DEFAULT NULL,
   `usu_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `conf_mail`
---
-
-INSERT INTO `conf_mail` (`cf_id`, `cf_link`, `cf_status`, `cf_expiracao`, `usu_id`) VALUES
-(3, '5b29f46da1593c9c6bd56554ed3931b1', b'1', '2019-06-19 16:08:00', 10);
 
 -- --------------------------------------------------------
 
@@ -953,7 +946,7 @@ CREATE TABLE `telefone` (
 --
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
-(11, '(12) 33434-3434', 1, 10);
+(23, '(17) 89989-8980', 1, 22);
 
 -- --------------------------------------------------------
 
@@ -1018,7 +1011,8 @@ CREATE TABLE `usuario` (
   `usu_cidade` varchar(50) NOT NULL,
   `usu_uf` char(2) NOT NULL,
   `usu_tipo` int(11) NOT NULL,
-  `usu_mailmkt` bit(1) NOT NULL DEFAULT b'0',
+  `usu_cstatus` bit(1) DEFAULT b'0',
+  `usu_mailmkt` bit(1) DEFAULT b'0',
   `usu_registro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1026,10 +1020,10 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_mailmkt`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, b'0', '2019-04-26 05:06:09'),
-(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, b'0', '2019-05-17 01:36:37'),
-(10, 'Walyson', 'Felipe', 'M', '342.352.353-53', 'walysondev@gmail.com', '$2y$10$pnzUkxbukURdS6PwGV34Yuh9kMf7w3z55/zLRBWGrbsJMm3QeoFOu', '16401-472', 'Rua Eugênio Faustini', 454, '', 'Conjunto Habitacional Francisco José de Oliveira Ratto', 'Lins', 'SP', 1, b'0', '2019-06-19 14:30:22');
+INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_cstatus`, `usu_mailmkt`, `usu_registro`) VALUES
+(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, b'0', b'0', '2019-04-26 05:06:09'),
+(2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, b'0', b'0', '2019-05-17 01:36:37'),
+(22, 'Walyson', 'Felipe', 'M', '426.804.958-45', 'walysonfelipe25@gmail.com', '$2y$10$3n5wRU7PgrZ7mQ8wEJwizezGyQjQ5OM04kSFDXHkqWTEMfWFyBZgu', '16401-472', 'Rua Eugênio Faustini', 755, '', 'Conjunto Habitacional Francisco José de Oliveira Ratto', 'Lins', 'SP', 1, b'1', b'0', '2019-06-20 23:06:21');
 
 --
 -- Índices de tabelas apagadas
@@ -1351,7 +1345,7 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de tabela `conf_mail`
 --
 ALTER TABLE `conf_mail`
-  MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de tabela `cupom`
@@ -1513,7 +1507,7 @@ ALTER TABLE `subcidade`
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `tipousu`
@@ -1531,7 +1525,7 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restrições para dumps de tabelas
