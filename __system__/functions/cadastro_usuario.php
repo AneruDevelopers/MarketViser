@@ -1,6 +1,52 @@
 <?php 
 	require_once 'connection/conn.php';
-    require_once '__system__/functions/email/envmail.php';
+	require_once '__system__/functions/email/envmail.php';
+function validaCPF($cpf = null) {
+
+	// Verifica se um número foi informado
+	if(empty($cpf)) {
+		return false;
+	}
+
+	// Elimina possivel mascara
+	$cpf = preg_replace("/[^0-9]/", "", $cpf);
+	$cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
+	
+	// Verifica se o numero de digitos informados é igual a 11 
+	if (strlen($cpf) != 11) {
+		return false;
+	}
+	// Verifica se nenhuma das sequências invalidas abaixo 
+	// foi digitada. Caso afirmativo, retorna falso
+	else if ($cpf == '00000000000' || 
+		$cpf == '11111111111' || 
+		$cpf == '22222222222' || 
+		$cpf == '33333333333' || 
+		$cpf == '44444444444' || 
+		$cpf == '55555555555' || 
+		$cpf == '66666666666' || 
+		$cpf == '77777777777' || 
+		$cpf == '88888888888' || 
+		$cpf == '99999999999') {
+		return false;
+	 // Calcula os digitos verificadores para verificar se o
+	 // CPF é válido
+	 } else {   
+		
+		for ($t = 9; $t < 11; $t++) {
+			
+			for ($d = 0, $c = 0; $c < $t; $c++) {
+				$d += $cpf{$c} * (($t + 1) - $c);
+			}
+			$d = ((10 * $d) % 11) % 10;
+			if ($cpf{$c} != $d) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
 	if(isset($_POST["usu_email"])) {
 		$json = array();
 		$json["status"] = 1;
@@ -35,19 +81,25 @@
 		}
 
 		if(empty($_POST["usu_cpf"])) {
+	
 			$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Por favor, insira seu CPF neste campo</p>";
-		} else {
-			if(strlen($_POST["usu_cpf"]) < 14) {
-				$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Por favor, insira um CPF válido</p>";
-			} else {
-				$verifica = $conn->prepare("SELECT usu_cpf FROM usuario WHERE usu_cpf=:cpf");
-				$verifica->bindValue(":cpf", "{$_POST["usu_cpf"]}");
-				$verifica->execute();
-				if($verifica->rowCount() > 0) {
-					$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Esse CPF já foi cadastrado anteriormente</p>";
-				}
-			}
 		}
+		else{
+			
+		if(validaCPF($_POST["usu_cpf"]) == TRUE){
+		$verifica = $conn->prepare("SELECT usu_cpf FROM usuario WHERE usu_cpf=:cpf");
+		$verifica->bindValue(":cpf", "{$_POST["usu_cpf"]}");
+		$verifica->execute();
+		if($verifica->rowCount() > 0) {
+		$json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Esse CPF já foi 	cadastrado anteriormente</p>";
+}
+}
+else{
+ $json["error_list"]["#usu_cpf"] = "<p class='msgErrorCad'>Por favor, insira um CPF válidossssssss</p>";}
+			}
+
+	
+
 
 		if(empty($_POST["usu_email"])) {
 			$json["error_list"]["#usu_email"] = "<p class='msgErrorCad'>Por favor, insira seu e-mail neste campo</p>";
@@ -142,6 +194,7 @@
 		if((!empty($json["error_list"])) || (!empty($json["error_tel"]))) {
 			$json["status"] = 0;
 		} else {
+			
 			$_POST["usu_senha"] = password_hash($_POST["usu_senha"], PASSWORD_DEFAULT);
 			$ins = $conn->prepare("INSERT INTO usuario(usu_first_name,usu_last_name,usu_sexo,usu_cpf,usu_email,usu_senha,usu_cep,usu_end,usu_num,usu_complemento,usu_bairro,usu_cidade,usu_uf, usu_tipo) VALUES(:n,:l,:sx,:cpf,:e,:s,:ce,:en,:nu,:co,:b,:c,:u,1)");
 			$ins->bindValue(":n", "{$_POST["usu_nome"]}");
@@ -157,7 +210,7 @@
 			$ins->bindValue(":co", "{$_POST["usu_complemento"]}");
 			$ins->bindValue(":b", "{$_POST["usu_bairro"]}");
 			$ins->bindValue(":ce", "{$_POST["usu_cep"]}");
-			//$ins->bindValue(":t", "{$_POST["usu_tipo"]}");
+                       
 			if($ins->execute()) {
 				$sel = $conn->prepare("SELECT * FROM usuario WHERE usu_email=:email");
 				$sel->bindValue(":email", "{$_POST["usu_email"]}");
@@ -201,9 +254,9 @@
 								$_SESSION["inf_usu"]['usu_uf'] = $row['usu_uf'];
 								$valor_chave = md5(date('Y-m-d H:i'));
 			                    $data = date('Y-m-d H:i:s', strtotime('+1 hour'));
-								$link = base_url_php()."usuario/confirmar_emailz?code=".$valor_chave;
+								$link = base_url_php()."usuario/confirmar-email?code=".$valor_chave;
 								$env = $conn->prepare("INSERT INTO conf_mail(cf_link,cf_expiracao,usu_id) VALUES(:l,:d,:u)");
-								$env->bindvalue(":l", $link);
+								$env->bindvalue(":l", $valor_chave);
 								$env->bindValue(":d",$data);
 								$env->bindValue(":u", $row['usu_id']);
 								

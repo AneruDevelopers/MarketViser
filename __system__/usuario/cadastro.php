@@ -194,6 +194,7 @@
 									<input type="checkbox" class="radioCad" id="usu_cookie" name="usu_cookie"/> 
 									<label class="labelCadSexRadio" for="usu_cookie">Lembrar de mim</label>
 								</div>
+							
 								<div class="btnSendCad">
 									<button class="btnSubCad" type="submit" id="btn-cad" value="Cadastrar">CADASTRAR</button>
 									<div class="help-block"></div>
