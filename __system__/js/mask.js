@@ -1,9 +1,10 @@
 function mask() {
   $('.date').mask('00/00/0000');
   $('.time').mask('00:00:00');
+  $('.porcent').mask('000');
   $('.inputQtd').mask('00');
   $('.qtd_prod').mask('00000000000');
-  $('.porcent').mask('000');
+  $('.year').mask('0000');
   $('.datetime').mask('00/00/0000 00:00:00');
   $('.cep').mask('00000-000');
   $('.phone').mask('0000-0000');
@@ -40,7 +41,7 @@ function mask() {
 
   $('.crazy_cep').mask('00000-000', {onKeyPress: function(cep, e, field, options){
     var masks = ['00000-000', '0-00-00-00'];
-      mask = (cep.length>7) ? masks[1] : masks[0];
+      masks = (cep.length>7) ? masks[1] : masks[0];
     $('.crazy_cep').mask(mask, options);
   }});
 
