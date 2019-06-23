@@ -69,7 +69,7 @@
             <div class="divFormContactInformation">
                 <h3 class="titleDivContactPage">INFORMAÇÕES DE CONTATO</h3>
                 <div class="textDivFormContactInformation">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil sint, aut hic molestias fugiat consectetur, totam corrupti repudiandae incidunt veniam, dicta minus eligendi architecto itaque dolore a numquam porro. Quo!</p>
+                    <p>Qualquer dúvida ou pergunta que queira fazer fique a vontade. Temos uma equipe pronta para atendê-lo toda vez que achar necesário.</p>
                 </div>
                 <div class="infoDivFormContactInformation">
                     <p class="paragLineContactPage"><i class="fas fa-mobile-alt"></i> &nbsp;(14) 99999-9999</p>
