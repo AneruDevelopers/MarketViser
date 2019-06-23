@@ -1,17 +1,19 @@
 $(document).ready(function() {
   $("#usu_cep").focusout(function(){
-    $.ajax({
-      url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-      dataType: 'json',
-      success: function(resposta){
-        $("#usu_end").val(resposta.logradouro);
-        $("#usu_complemento").val(resposta.complemento);
-        $("#usu_bairro").val(resposta.bairro);
-        $("#usu_uf").val(resposta.uf);
-        $("#usu_cidade").val(resposta.localidade);
-        $("#usu_num").focus();
-      }
-    });
+    if($(this).val().length == 9) {
+      $.ajax({
+        url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+        dataType: 'json',
+        success: function(resposta){
+          $("#usu_end").val(resposta.logradouro);
+          $("#usu_complemento").val(resposta.complemento);
+          $("#usu_bairro").val(resposta.bairro);
+          $("#usu_uf").val(resposta.uf);
+          $("#usu_cidade").val(resposta.localidade);
+          $("#usu_num").focus();
+        }
+      });
+    }
   });
 
   $("#form-cadastro").submit(function() {

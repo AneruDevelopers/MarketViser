@@ -4,6 +4,9 @@ function mask() {
   $('.porcent').mask('000');
   $('.inputQtd').mask('00');
   $('.qtd_prod').mask('00000000000');
+  $('.numberPhone').mask('000000000');
+  $('.numberCard').mask('0000000000000000000');
+  $('.month').mask('00');
   $('.year').mask('0000');
   $('.datetime').mask('00/00/0000 00:00:00');
   $('.cep').mask('00000-000');
