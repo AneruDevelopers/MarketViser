@@ -76,6 +76,7 @@ html, body{
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
     font-weight: 400;
+    font-size: 15px;
 }
   
 @-moz-document url-prefix() {
@@ -7881,8 +7882,7 @@ border-radius: 0;
     .textDivFormContactInformation {
         text-align: justify;
         font-family: 'Raleway-Medium';
-        font-size: 14px;
-        line-height: 20px;
+        line-height: 28px;
     }
 
     .paragLineContactPage i {

@@ -30,7 +30,7 @@
 
         <div class="myModalAdd" id="myModalAdd">
             <div class="modalAddContent">
-                <span class="closeModalAdd">&times;</span>
+                <i class="closeModalAdd fas fa-times"></i>
                 <div class="showAddModal">
                     <div class="divCadProduto divCadCateg">
                         <form class="formInserir formInserirCateg">

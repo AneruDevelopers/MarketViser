@@ -94,7 +94,19 @@
                         <h5><i class="far fa-envelope"></i> EMAIL:</h5>
                     </div>
                     <div class="bottomDivConfigProfilePage">
-                        <span class="specialSpan"><?= $_SESSION['inf_usu']['usu_email']; ?></span>
+                        <span class="specialSpan"><?= $_SESSION['inf_usu']['usu_email']; 
+                         $selu = $conn->prepare("SELECT usu_cstatus FROM usuario WHERE usu_id=:id");
+                         $selu->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
+                         $selu->execute();
+                         while($row = $selu->fetch(PDO::FETCH_ASSOC)){
+                             if($row['usu_cstatus'] == 1){
+                                 echo " (Conta verificada)";
+                             }
+                             else{
+                                 echo " (Verifique sua conta)";
+                             }
+                         }
+                            ?></span></span>
                     </div>
                 </div>
                 <div class="sectionConfigProfilePage">

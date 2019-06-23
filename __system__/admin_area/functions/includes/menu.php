@@ -26,154 +26,102 @@
             PAINEL
         </a>
     </h1> -->
-    <ul class="listaTrocaPagina">
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>armazem/central">
-            <li class="celulaTrocaPagina">
-                Armazéns
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IPA">
-                        <li>
-                            Inserir produto ao armazém
-                        </li>
-                    </a>
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>armazem/central?fnc=IA">
-                        <li>
-                            Inserir armazém
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>atendimento/central">
-            <li class="celulaTrocaPagina">
-                Atendimento online
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>banner/central">
-            <li class="celulaTrocaPagina">
-                Banners promocionais
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>categoria/central">
-            <li class="celulaTrocaPagina">
-                Categorias
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>categoria/central?fnc=IC">
-                        <li>
-                            Inserir categoria
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>compra/central">
-            <li class="celulaTrocaPagina">
-                Compras
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>cupom/central">
-            <li class="celulaTrocaPagina">
-                Cupons
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>departamento/central">
-            <li class="celulaTrocaPagina">
-                Departamentos
-                <!-- <ul class="sub-menu">
-                    <a class="linkSubMenu" href="departamento/central?fnc=ID">
-                        <li>
-                            Inserir departamento
-                        </li>
-                    </a>
-                </ul> -->
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>duvida-frequente/central">
-            <li class="celulaTrocaPagina">
-                Dúvidas Frequentes
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IDF">
-                        <li>
-                            Inserir dúvida frequente
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>fornecedor/central">
-            <li class="celulaTrocaPagina">
-                Fornecedores
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>funcionario/central">
-            <li class="celulaTrocaPagina">
-                Funcionários
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>funcionario/central?fnc=IF">
-                        <li>
-                            Inserir funcionário
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>horarios/central">
-            <li class="celulaTrocaPagina">
-                Horários entrega
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>marca/central">
-            <li class="celulaTrocaPagina">
-                Marcas
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>marca/central?fnc=IM">
-                        <li>
-                            Inserir marca
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
-            <li class="celulaTrocaPagina">
-                Produtos
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>produto/central?fnc=IP">
-                        <li>
-                            Inserir produto
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>produto/central">
-            <li class="celulaTrocaPagina">
-                Promoção personalizada
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>promocao/central?fnc=IPP">
-                        <li>
-                            Inserir promoção personalizada
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>subcategoria/central">
-            <li class="celulaTrocaPagina">
-                Subcategorias
-                <ul class="sub-menu">
-                    <a class="linkSubMenu" href="<?= base_url_adm_php(); ?>subcategoria/central?fnc=IS">
-                        <li>
-                            Inserir subcategoria
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </a>
-        <a class="linkTrocaPagina" href="<?= base_url_adm_php(); ?>usuario/central">
-            <li class="celulaTrocaPagina">
-                Usuários
-            </li>
-        </a>
-    </ul>
+
+<!-- novo menu -->
+
+    <nav class="menuNavigation">
+        <div class="item">
+            <input type="checkbox" id="check1">
+            <label for="check1"><i class="fas fa-warehouse"></i>&nbsp; ARMAZÉM</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>armazem/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>armazem/central?fnc=IPA">ADICIONAR PRODUTO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>armazem/central?fnc=IPA">REGISTRAR ARMAZÉM</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check2">
+            <label for="check2"><i class="fas fa-headset"></i>&nbsp; ATENDIMENTO ONLINE</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>atendimento/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check3">
+            <label for="check3"><i class="fas fa-ad"></i>&nbsp; BANNERS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>banner/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check4">
+            <label for="check4"><i class="fas fa-shopping-basket"></i>&nbsp; COMPRAS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>compra/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check5">
+            <label for="check5"><i class="fas fa-ticket-alt"></i>&nbsp; CUPONS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>cupom/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check6">
+            <label for="check6"><i class="far fa-building"></i>&nbsp; DEPARTAMENTOS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>departamento/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>departamento/central?fnc=ID">INSERIR DEPARTAMENTO</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check7">
+            <label for="check7"><i class="far fa-question-circle"></i>&nbsp; DÚVIDAS FREQUENTES</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IDF">INSERIR DÚVIDA FREQUENTE</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check8">
+            <label for="check8"><i class="fas fa-pallet"></i>&nbsp; FORNECEDORES</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>fornecedor/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check9">
+            <label for="check9"><i class="fas fa-walking"></i>&nbsp; FUNCIONÁRIOS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>funcionario/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check10">
+            <label for="check10"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check11">
+            <label for="check11"><i class="fas fa-trademark"></i>&nbsp; PRODUTOS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>produto/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>produto/central?fnc=IM">INSERIR PRODUTO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>categoria/central?fnc=IC">INSERIR CATEGORIA</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>subcategoria/central?fnc=IS">INSERIR SUBCATEGORIA</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>marca/central?fnc=IM">INSERIR MARCA</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check12">
+            <label for="check12"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>usuario/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+    </nav>
 </section>

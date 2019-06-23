@@ -66,7 +66,7 @@ body {
 
     .l-menu {
         grid-area: menu;
-        background-color: #252730;
+        /* background-color: #252730; */
         z-index: 3;
     }
 
@@ -97,9 +97,9 @@ body {
 
     .linkCompanyNameAdm img {
         position: relative;
-        width: 40%;
-        left: 40%;
-        top: -4.8rem;
+        width: 30%;
+        left: 42%;
+        top: -4.4rem;
     }
 
     .comapanyName {
@@ -109,10 +109,12 @@ body {
 
     .dashTitle {
         position: relative;
-        left: 3%;
+        left: 5%;
         font-family: "Raleway";
         font-size: 25px;
-        width: 25%;
+        width: 15%;
+        margin: 0;
+        text-align: center;
     }
 
     .listaTrocaPagina {
@@ -152,7 +154,7 @@ body {
     .notification {
         position: absolute;
         right: 3%;
-        top: 2%;
+        top: .3rem;
         font-size: 16px;
         color: #252730;
         cursor: pointer;
@@ -274,42 +276,61 @@ body {
         z-index: 99;
     }
 
-    /* MENU */
+    /* NOVO MENU */
 
-    .sub-menu {
-        display: none;
-        position: absolute;
-        background: #d1d1d1;
-        left: 100%;
-        z-index: 10;
-        top: 0rem;
-        width: 150%;
-        height: auto;
-        padding: 0px;
-        border-radius: 3px;
-        border: solid 2px #9C45EB;
+    .menuNavigation {
+        width: 112%;
     }
 
-    .linkSubMenu {
-        text-align: left;
-        color: #0F0617;
-        text-decoration: none;
-        list-style: none;
-        position: relative;
-        width: 100%;
-        height: 2.4rem;
-        left: 5%;
-        font-size: 14px;
-    }
-
-    .linkSubMenu li {
-        position: relative;
-        left: 0%;
-        padding: 10px 0;
-    }
-
-    .celulaTrocaPagina:hover > .sub-menu {
+    .item label {
         display: block;
+        padding: 13px 15%;
+        background: #0F0617;
+        font-size: 13px;
+        cursor: pointer;
+        color: #fff;
+        border-bottom: solid 2px #9C45EB;
+        font-family: 'Raleway-Medium';
+        text-align: left;
+    }
+
+    .item label i {
+        color: #9C45EB;
+    }
+
+    .item input {
+        display: none;
+    }
+
+    .item ul {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding-inline-start: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: .4s linear all;
+    }
+
+    .item ul li a {
+        width: 100%;
+        padding: 13px 15%;
+        display: block;
+        text-decoration: none;
+        background-color: #f2f2f2;
+        color: #9C45EB;
+        font-size: 13px;
+    }
+
+    .item ul li a:hover {
+        background: #9C45EB;
+        color: #f2f2f2;
+    } 
+
+    .item input:checked ~ ul {
+        height: auto;
+        max-height: 200px;
+        transform: all;
     }
 
     /* MODAL NOTIFICAÇÃO */
@@ -552,18 +573,22 @@ body {
         height: 90%;
         font-family: "Raleway";
         position: relative;
-        top: -8rem;
+        top: -8.8rem;
         overflow-y: auto;
         z-index: 99;
+        border-radius: 5px;
+        padding: 10px;
+        overflow-y: hidden;
     }
 
     .closeModalAdd {
-        color: #fff;
-        font-size: 52px;
+        color: #9C45EB;
+        font-size: 20px;
         font-weight: bold;
         position: fixed;
-        top: 1rem;
-        right: 15rem;
+        margin-top: .6rem;
+        right: 21.5%;
+        cursor: pointer;
     }
       
     .closeModalAdd:hover,
@@ -802,7 +827,7 @@ body {
     }
 
     .tableSectionConfigArm td {
-        padding:18px;
+        padding:15px;
         border-top: 1px solid #ffffff;
         border-bottom:1px solid #e0e0e0;
         border-left: 1px solid #e0e0e0;
@@ -1033,5 +1058,170 @@ body {
         padding: 5px 0;
         width: 30%;
         cursor: pointer;
+    }
+
+    /* PÁGINA DE LOGIN */
+
+    .backgroundAdmLogin {
+        background: #9C45EB;
+        height: 100vh;
+    }
+
+    .modalAdmLogin {
+        background: #fff;
+        position: relative;
+        width: 35%;
+        margin: auto;
+        top: 10rem;
+        height: auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .modalAdmLogin h2 {
+        margin: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 28px;
+    }
+
+    .outsideSecInputCad {
+        width: 80%;
+        height: 3rem;
+        margin-bottom: .5rem;
+        left: 10%;
+        position: relative;
+    }
+
+    .outsideSecInputCadPlus {
+        width: 80%;
+        height: 3rem;
+        margin-bottom: .5rem;
+        left: -26.5%;
+        top: 4rem;
+        position: relative;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        -webkit-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        -moz-box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+        box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
+    }
+
+    .field {
+        position: relative;
+        color: #aaa;
+        width: 100%;
+    }
+
+    .field input {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        color: #0F0617;
+    }
+      
+    .-simple input {
+        border: 1px solid gainsboro;
+        border-radius: 4px;
+    }
+      
+    .-md input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #d3d2d2;
+        outline: none;
+        font-family: "Karla";
+        font-size: 14px;
+    }
+      
+    .-md input:focus,
+    .-md input:hover {
+        border-bottom: 2px solid #9C45EB;
+        color: #0F0617;
+        font-family: "Karla";
+    }
+      
+    .labelFieldCad {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        color: #d3d2d2;
+        transition: font-size .5s, color .5s, left .5s, top .5s;
+        font-size: 15px;
+        letter-spacing: .5px;
+        font-family: "Raleway";
+    }
+      
+    input:not(.placeholder-shown) + .labelFieldCad,
+    input:not(:placeholder-shown) + .labelFieldCad,
+    input:hover + .labelFieldCad,
+    input:focus + .labelFieldCad,
+    .labelFieldCad:hover {
+        /** input is not empty */
+        top: -1.4em;
+        left: 0em;
+        font-size: 15px;
+        color: #9C45EB;
+        font-family: "Raleway-Medium";
+    }
+      
+    input:placeholder-shown + label {
+        /** input is empty */
+    }
+      
+    ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: transparent;
+    }
+      
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: transparent;
+    }
+      
+    :-ms-input-placeholder {
+        /* IE 10+ */
+        color: transparent;
+    }
+      
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: transparent;
+    }
+
+    .selectTypeTel {
+        width: 100%;
+        border: none;
+        background: rgb(243, 240, 240);
+        position: relative;
+        top: .45rem;
+        border-radius: 2px;
+        font-family: "Raleway";
+        height: 1.9rem;
+    }
+
+    .btnSend {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        width: 40%;
+        height: 2rem;
+        border-radius: 30px;
+        font-family: "Raleway-Medium";
+        font-size: 14px;
+        color: #ffffff;
+        top: 0;
+        left: 30%;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+    }
+
+    .btnSend:hover {
+        background: #252730;
+        color: #ffffff;
+        transition: 250ms ease-in-out color;
+        transition: 250ms ease-in-out background;
     }
 }

@@ -30,7 +30,7 @@
     </ul>
     <ul class="footer-nav ftNav3">
         <li><h6 class="titleListFooter">SUPORTE</h6></li>
-        <li><a class="linkListFooter" href="#">Política de Privacidade</a></li>
+        <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/politica-de-privacidade">Política de Privacidade</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>ajuda/trocas_devolucoes">Trocas e devoluções</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/duvida-frequente">Dúvidas Frequentes</a></li>
         <li><a class="linkListFooter" href="<?= base_url_php(); ?>suporte/atendimento">Atendimento online</a></li>

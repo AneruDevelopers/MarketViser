@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 // Instantiation and passing `true` enables exceptions
-function env_email($email,$nome,$link){
+function env_email($email,$nome,$id,$link){
 	 
 	$mail = new PHPMailer(true);
 

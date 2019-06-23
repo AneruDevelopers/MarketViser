@@ -297,7 +297,7 @@ function abrirModal() {
                                         <i class="fab fa-facebook-f"></i>
                                     </button>
                                 </a>
-                                <a class="linkShareProd" href="http://twitter.com/intent/tweet?text=` + json['produto']['produto_nome'] + ` - ` + json['produto']['produto_tamanho'] + `&url=http://www.economize.top/produto/` + json['produto']['id_cript'] + `" title="Twittar produto" target="_blank">
+                                <a class="linkShareProd" href="http://twitter.com/intent/tweet?text=` + json['produto']['produto_nome'] + ` - ` + json['produto']['produto_tamanho'] + `&url=http://www.economize.top/produto/` + json['produto']['id_cript'] + `&via=economizebrazil00" title="Twittar produto" target="_blank">
                                     <button class="btnShareProd">
                                         <i class="fab fa-twitter"></i>
                                     </button>
