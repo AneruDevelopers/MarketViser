@@ -31,22 +31,22 @@
 		<div class="l-mainCad">
 	<?php include('__system__/functions/confmail.php');
 
-	if(isset($_SESSION['status']['success'])){ ?>
-     <h2 class="tituloOfertas"><i class="fas fa-check-double"></i><?php echo $_SESSION['status']['success']; ?></h2>
-	 <p><?php echo $_SESSION['status']['success'];?></p><br>
-	 <a href="configurar">Ir para seu perfil</a>
-	
-	<?
-	}
-		elseif(isset($_SESSION['status']['error'])){
-      		echo '<h2 class="tituloOfertas">'.$_SESSION['status']['error'].'</h2>';
+		if(isset($status)){
+			 if($status == 1):
+			   ?>
+			   <h1>Codigo Expirado, Deseja que envie-mos um novo codigo de verificação?</h1>
+			   <input id="submit1" type="button" value="Submit"/>
+			   <?php
+			   else:
+				?>
+				<h1>Sua conta foi verificada</h1>
+				<a href="configurar">Ir para seu perfil</a>
+				<?php
+			 endif;
+				
+		}else{
+			header("location:../");
 		}
-		elseif(isset($_SESSION['status']['error2'])){
-		  echo'<h2 class="tituloOfertas">Codigo Expirado</h2><p>Olá '.$_SESSION['inf_usu']['usu_nome'].', deseja que envie-mos um novo codigo ?</p><br><button id="submit1" type="submit">Enviar novamente</button>';
-		}
-		 else{
-			header("Location:../"); 
-		 }
 		 
 	?> 
 	

@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 // Instantiation and passing `true` enables exceptions
-function env_email($email,$nome,$link){
+function renv_email($email,$nome,$link){
 	 
 	$mail = new PHPMailer(true);
 
@@ -31,7 +31,7 @@ function env_email($email,$nome,$link){
 
 		// Content
 		$mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Cadastro Realizado com sucesso';
+    $mail->Subject = 'Novo Codigo de Verificação';
     $mail->Body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -425,14 +425,14 @@ function env_email($email,$nome,$link){
     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 0px; font-family: Trebuchet MS, Tahoma, sans-serif"><![endif]-->
     <div style="color:#555555;line-height:120%;padding-top:10px;padding-right:30px;padding-bottom:0px;padding-left:30px;">
     <div style="font-size: 12px; line-height: 14px;  color: #555555;">
-    <p style="font-size: 14px; line-height: 16px; margin: 0;"><strong><span style="font-size: 46px; line-height: 55px;">Bem-vindo, <span style="color: #3d3bee; line-height: 55px; font-size: 46px;">'.$nome.'</span>!</span></strong></p>
+    <p style="font-size: 14px; line-height: 16px; margin: 0;"><strong><span style="font-size: 46px; line-height: 55px;">Olá, <span style="color: #3d3bee; line-height: 55px; font-size: 46px;">'.$nome.'</span>!</span></strong></p>
     </div>
     </div>
     <!--[if mso]></td></tr></table><![endif]-->
     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 15px; padding-bottom: 5px; font-family: Arial, sans-serif"><![endif]-->
     <div style="color:#555555;line-height:150%;padding-top:15px;padding-right:30px;padding-bottom:5px;padding-left:30px;">
     <div style="font-size: 12px; line-height: 18px;  color: #555555;">
-    <p style="font-size: 12px; line-height: 18px; margin: 0;"><strong><span style="font-size: 20px; line-height: 30px;">Parabéns você é o novo membro da familia e.conomize.</span></strong></p>
+    <p style="font-size: 12px; line-height: 18px; margin: 0;"><strong><span style="font-size: 20px; line-height: 30px;">Clique no botão agora mesmo para confirmar seu email.</span></strong></p>
     </div>
     </div>
     <!--[if mso]></td></tr></table><![endif]-->
@@ -446,7 +446,7 @@ function env_email($email,$nome,$link){
     </div>
     <!--[if mso]></td></tr></table><![endif]-->
     <div align="center" class="button-container" style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$link.'" style="height:54pt; width:201pt; v-text-anchor:middle;" arcsize="13%" stroke="false" fillcolor="#4801ff"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:20px"><![endif]--><a href="'.$link.'" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #4801ff; border-radius: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; width: auto; width: auto; border-top: 1px solid #4801ff; border-right: 1px solid #4801ff; border-bottom: 1px solid #4801ff; border-left: 1px solid #4801ff; padding-top: 10px; padding-bottom: 10px; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:45px;padding-right:45px;font-size:20px;display:inline-block;">
+    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$code.'" style="height:54pt; width:201pt; v-text-anchor:middle;" arcsize="13%" stroke="false" fillcolor="#4801ff"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:20px"><![endif]--><a href="'.$code.'" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #4801ff; border-radius: 9px; -webkit-border-radius: 9px; -moz-border-radius: 9px; width: auto; width: auto; border-top: 1px solid #4801ff; border-right: 1px solid #4801ff; border-bottom: 1px solid #4801ff; border-left: 1px solid #4801ff; padding-top: 10px; padding-bottom: 10px; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:45px;padding-right:45px;font-size:20px;display:inline-block;">
     <span style="font-size: 16px; line-height: 32px;"><span style="font-size: 26px; line-height: 52px;"><strong><span style="font-size: 20px; line-height: 40px;">Confirmar e-mail</span></strong></span></span>
     </span></a>
     <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
@@ -476,183 +476,11 @@ function env_email($email,$nome,$link){
     </div>
     </div>
     </div>
-    <div style="background-color:#F4F4F4;">
-    <div class="block-grid" data-body-width-father="900px" rel="col-num-container-box-father" style="Margin: 0 auto; min-width: 320px; max-width: 900px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #FFFFFF;">
-    <div style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;">
-    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F4F4;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:900px"><tr class="layout-full-width" style="background-color:#FFFFFF"><![endif]-->
-    <!--[if (mso)|(IE)]><td align="center" width="900" style="background-color:#FFFFFF;width:900px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 5px; padding-left: 5px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num12" data-body-width-son="900" rel="col-num-container-box-son" style="min-width: 320px; max-width: 900px; display: table-cell; vertical-align: top;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 5px; padding-left: 5px;">
-    <!--<![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 35px; padding-top: 25px; padding-bottom: 0px; font-family: Trebuchet MS, Tahoma, sans-serif"><![endif]-->
-    <div style="color:#444444;line-height:120%;padding-top:25px;padding-right:10px;padding-bottom:0px;padding-left:35px;">
-    <div style="font-size: 12px; line-height: 14px;  color: #444444;">
-    <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="font-size: 14px; line-height: 16px;"><span style="font-size: 24px; line-height: 28px;"><span style="line-height: 28px; font-size: 24px;"> Comprar na e.conomize? Sem K.O.: </span></span></span></p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-    </div>
-    </div>
-    </div>
-    <div style="background-color:transparent;">
-    <div class="block-grid mixed-two-up" data-body-width-father="900px" rel="col-num-container-box-father" style="Margin: 0 auto; min-width: 320px; max-width: 900px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
-    <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:900px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-    <!--[if (mso)|(IE)]><td align="center" width="225" style="background-color:transparent;width:225px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 20px; padding-top:0px; padding-bottom:20px;"><![endif]-->
-    <div class="col num3" data-body-width-son="225" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 225px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:20px; padding-right: 0px; padding-left: 20px;">
-    <!--<![endif]-->
-    <div align="center" class="img-container center autowidth fullwidth" style="padding-right: 0px;padding-left: 0px;">
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth fullwidth" src="http://www.economize.top/__system__/img/teste/cartPurple.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 205px; display: block;" title="Image" width="205"/>
-    <!--[if mso]></td></tr></table><![endif]-->
-    </div>
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td><td align="center" width="675" style="background-color:transparent;width:675px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num9" data-body-width-son="675" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; min-width: 320px; max-width: 675px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-    <!--<![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 24px; text-align: center; margin: 0;"><span style="font-size: 20px;"><strong><span style="line-height: 24px; font-size: 20px;">1 - Faça o cadastro ou esteja logado na sua conta</span></strong></span></p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 18px; text-align: left; margin: 0;"><span style="font-size: 15px;">Caso seja novo entre nós, realize o seu cadastro, é bem rápido! Se já for da casa, certifique-se que está logado. Fazendo parte da nossa família é o único jeito de poder desfrutar de nossas imperdíveis vantagens.</span></p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-    </div>
-    </div>
-    </div>
-    <div style="background-color:transparent;">
-    <div class="block-grid mixed-two-up" data-body-width-father="900px" rel="col-num-container-box-father" style="Margin: 0 auto; min-width: 320px; max-width: 900px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
-    <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:900px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-    <!--[if (mso)|(IE)]><td align="center" width="675" style="background-color:transparent;width:675px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num9" data-body-width-son="675" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; min-width: 320px; max-width: 675px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-    <!--<![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;fline-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 24px; margin: 0;"><span style="font-size: 20px;"><strong>2 - Adicione os produtos de sua escolha no carrinho de compras</strong></span></p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;">Fique a vontade e explore toda a variedade que a e.conomize proporciona aos seu clientes. Sempre que encontrar o produto que procura, basta adiciona-lo ao seu carrinho de compras. Para visualizar os produtos já adicionados, acesse o carrinho clicando no botão na parte suprior direita no topo de toda página do site.</p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td><td align="center" width="225" style="background-color:transparent;width:225px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num3" data-body-width-son="225" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 225px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-    <!--<![endif]-->
-    <div align="center" class="img-container center autowidth fullwidth" style="padding-right: 0px;padding-left: 0px;">
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth fullwidth" src="http://www.economize.top/__system__/img/teste/loginPurpleBorder.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 225px; display: block;" title="Image" width="225"/>
-    <!--[if mso]></td></tr></table><![endif]-->
-    </div>
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-    </div>
-    </div>
-    </div>
-    <div style="background-color:transparent;">
-    <div class="block-grid mixed-two-up" data-body-width-father="900px" rel="col-num-container-box-father" style="Margin: 0 auto; min-width: 320px; max-width: 900px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
-    <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:900px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-    <!--[if (mso)|(IE)]><td align="center" width="300" style="background-color:transparent;width:300px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num4" data-body-width-son="300" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 300px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-    <!--<![endif]-->
-    <div align="center" class="img-container center fullwidthOnMobile fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center fullwidthOnMobile fixedwidth" src="http://www.economize.top/__system__/img/teste/pay.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 240px; display: block;" title="Image" width="240"/>
-    <!--[if mso]></td></tr></table><![endif]-->
-    </div>
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td><td align="center" width="600" style="background-color:transparent;width:600px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-    <div class="col num8" data-body-width-son="600" rel="col-num-container-box-son" style="display: table-cell; vertical-align: top; min-width: 320px; max-width: 600px;">
-    <div style="width:100% !important;">
-    <!--[if (!mso)&(!IE)]><!-->
-    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-    <!--<![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"><strong><span style="font-size: 20px; line-height: 24px;">3 - Complete os processos de compra e efetue o pagamento</span></strong></p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-    <div style="color:#555555;;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-    <div style=" font-size: 12px; line-height: 14px; color: #555555;">
-    <p style="font-size: 14px; line-height: 16px; margin: 0;">Este passo é onde você define os produtos a serem comprados, determina o endereço de entrega e agenda o horário que melhor se encaixa na sua rotina. Após efetuar o pagamento, basta esperar... sua compra já está sendo processada!</p>
-    </div>
-    </div>
-    <!--[if mso]></td></tr></table><![endif]-->
-    <!--[if (!mso)&(!IE)]><!-->
-    </div>
-    <!--<![endif]-->
-    </div>
-    </div>
-    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-    </div>
-    </div>
-    </div>
+   
+    
+ 
+ 
+   
     <div style="background-image:url(`images/bg_wave_2.png`);background-position:top center;background-repeat:repeat;background-color:#F4F4F4;">
     <div class="block-grid" data-body-width-father="900px" rel="col-num-container-box-father" style="Margin: 0 auto; min-width: 320px; max-width: 900px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
     <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
