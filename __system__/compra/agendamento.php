@@ -82,7 +82,7 @@
                         data: $(this).serialize(),
                         success: function(json) {
                             if(json['status']) {
-                                window.location.href = BASE_URL + 'compra/pagamento';
+                                buscaPagamento();
                             } else {
                                 Swal.fire({
                                     title: "E.conomize informa:",

@@ -1,4 +1,60 @@
-<?php require_once "configuration.php"; ?>
+<?php 
+    require_once "configuration.php";
+
+    $inf_compra['status'] = 1;
+    $inf_compra['error'] = NULL;
+
+    if(isset($_SESSION['inf_usu']['usu_id'])) {
+        //BUSCANDO OS TELEFONES DO CLIENTE
+        $tel = $conn->prepare("SELECT tel_num FROM telefone WHERE usu_id=:id LIMIT 1");
+        $tel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
+        $tel->execute();
+        $v = $tel->fetch( PDO::FETCH_ASSOC );
+        $v['ddd'] = substr($v['tel_num'],1,2);
+        $v['num'] = substr($v['tel_num'],-10);
+        $pos = strpos($v['num']," ");
+        if($pos) {
+            $v['num'] = str_replace(" ", "", $v['num']);
+        }
+        $v['num'] = str_replace("-", "", $v['num']);
+
+        $inf_compra['client'] = $_SESSION['inf_usu'];
+        $inf_compra['client']['tel_ddd'] = $v['ddd'];
+        $inf_compra['client']['tel_num'] = $v['num'];
+
+        if(!isset($_SESSION['carrinho'])) {
+            $inf_compra['status'] = 0;
+            $inf_compra['error'] = "<small>Voçê precisa ter produto(s) no carrinho para efetuar o pagamento!</small>";
+        } else {
+            if(!isset($_SESSION['end_agend'])) {
+                $inf_compra['status'] = 0;
+                $inf_compra['error'] = "<small>Voçê precisa informar o endereço de entrega para efetuar o pagamento!</small>";
+            } else {
+                $inf_compra['end_entrega'] = $_SESSION['end_agend'];
+                if(!isset($_SESSION['agend_horario'])) {
+                    $inf_compra['status'] = 0;
+                    $inf_compra['error'] = "<small>Voçê precisa agendar a entrega para efetuar o pagamento!</small>";
+                } else {
+                    $exp = explode(" ", $_SESSION['agend_horario']);
+                    $day = explode("-", $exp[0]);
+                    $hour = explode(":", $exp[1]);
+        
+                    $inf_compra['agend_horario'] = "Para " . $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $hour[0] . "h" . $hour[1];
+
+                    if(isset($_SESSION['cupom_compra'])) {
+                        $totCupom = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                        $totCupom = number_format($totCupom,2,'.','');
+                    }
+
+                    $totCompra = number_format($_SESSION['totCompra'], 2, ".", "");
+                }
+            }
+        }
+    } else {
+        $inf_compra['status'] = 0;
+        $inf_compra['error'] = "<small>Voçê precisa estar logado para efetuar o pagamento!</small>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,78 +65,193 @@
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
     <link href="<?= base_url(); ?>functions/pagseguro-transparente/style/main.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css"/>
 </head>
 <body>
-    <form id="formBuyPagSeguro">
-        <input type="hidden" name="paymentMethod" id="paymentMethod" value="creditCard"/>
-        <input type="hidden" name="receiverEmail" id="receiverEmail" value="<?= EMAIL_LOJA; ?>"/>
-        <input type="hidden" name="currency" id="currency" value="<?= MOEDA_PAGAMENTO; ?>"/>
-        <input type="hidden" name="extraAmount" id="extraAmount" value=""/>
+    <?php
+    if($inf_compra['status']):?>
+        <div id="answer"></div>
+        <form id="formBuyPagSeguro">
+            <h4>Tipo de pagamento</h4>
+            <input type="radio" name="paymentMethod" id="paymentMethodCreditCard" value="creditCard" checked/>
+            <label for="paymentMethodCreditCard"> Cartão de crédito</label>
 
-        <input type="hidden" name="itemId1" id="itemId1" value="0001"/>
-        <input type="hidden" name="itemDescription" id="itemDescription" value="SAMSUNG GALAXY J5"/>
-        <input type="hidden" name="itemAmount1" id="itemAmount1" value="600.00"/>
-        <input type="hidden" name="itemQuantity1" id="itemQuantity1" value="1"/>
-        
-        <input type="hidden" name="notificationURL" id="notificationURL" value="<?= URL_NOTIFICATION; ?>"/>
-        <input type="hidden" name="reference" id="reference" value="ECONOMIZE0101"/>
+            <input type="radio" name="paymentMethod" id="paymentMethodBoleto" value="boleto"/>
+            <label for="paymentMethodBoleto"> Boleto</label>
 
-        <h4>Dados do comprador</h4>
-        <div class="infComp"></div>
+            <input type="radio" name="paymentMethod" id="paymentMethodEft" value="eft"/>
+            <label for="paymentMethodEft"> Débito online</label>
 
-        <h4>Endereco da entrega</h4>
-        <div class="endComp"></div>
 
-        <h4>Agendamento da entrega</h4>
-        <div class="agendComp"></div>
+            <div class="divDebitoOnline">
+                <h4>Escolha o banco</h4>
+                <select name="bankName" id="bankName">
 
-        <h4>Dados do cartao</h4>
-        <label for="inputNumCard">Numero:</label>
-        <input type="text" name="inputNumCard" class="numberCard" id="inputNumCard"/>
-        <span class="brandCard"></span>
-        <br/>
+                </select>
+            </div>
+            
 
-        <label for="inputBrandCard">Bandeira:</label>
-        <input type="text" name="inputBrandCard" id="inputBrandCard"/><br/>
+            <input type="hidden" name="receiverEmail" id="receiverEmail" value="<?= EMAIL_LOJA; ?>"/>
+            <input type="hidden" name="currency" id="currency" value="<?= MOEDA_PAGAMENTO; ?>"/>
 
-        <label for="inputCvvCard">CVV:</label>
-        <input type="text" name="inputCvvCard" class="cvv" id="inputCvvCard"/><br/>
+            <input type="hidden" name="amount" id="amount" value="<?= $totCompra; ?>"/>
+            <input type="hidden" name="extraAmount" id="extraAmount" value="<?= isset($totCupom) ? "-" . $totCupom : ""; ?>"/>
+            
+            <input type="hidden" name="notificationURL" id="notificationURL" value="<?= URL_NOTIFICATION; ?>"/>
+            <input type="hidden" name="reference" id="reference" value="ECONOMIZE0101"/>
 
-        <label for="inputMonthValid">Mes de validade (mm):</label>
-        <input type="text" name="inputMonthValid" class="month" id="inputMonthValid"/><br/>
+            <h4>Dados do comprador</h4>
+            <div class="infComp">
+                <?= $inf_compra['client']['usu_nome'] . " " . $inf_compra['client']['usu_sobrenome']; ?><br/>
+                <?= $inf_compra['client']['usu_cpf']; ?><br/>
+                <?= $inf_compra['client']['tel_ddd'] . " " . $inf_compra['client']['tel_num']; ?><br/>
 
-        <label for="inputYearValid">Ano de validade (aaaa):</label>
-        <input type="text" name="inputYearValid" class="year" id="inputYearValid"/><br/>
+                <input type="hidden" name="inputSenderName" id="inputSenderName" value="<?= $inf_compra['client']['usu_nome'] . " " . $inf_compra['client']['usu_sobrenome']; ?>"/>
+                <input type="hidden" name="inputSenderCPF" id="inputSenderCPF" value="<?= $inf_compra['client']['usu_cpf']; ?>"/>
+                <input type="hidden" name="inputSenderDDD" id="inputSenderDDD" value="<?= $inf_compra['client']['tel_ddd']; ?>"/>
+                <input type="hidden" name="inputSenderNum" id="inputSenderNum" value="<?= $inf_compra['client']['tel_num']; ?>"/>
+                <input type="text" name="inputSenderEmail" id="inputSenderEmail" value="c42358207331366747669@sandbox.pagseguro.com.br"/>
+            </div>
 
-        <label for="selQtdParc">Quantidade de parcelas:</label>
-        <select name="selQtdParc" id="selQtdParc" disabled></select><br/>
-        
-        <input type="hidden" name="inputParcValue" id="inputParcValue"/><br/>
+            <h4>Endereco da entrega</h4>
+            <div class="endComp">
+                <?= $inf_compra['end_entrega'][0]; ?><br/>
+                <?= $inf_compra['end_entrega'][1] . " nº " . $inf_compra['end_entrega'][2]; ?><br/>
+                <?= (($inf_compra['end_entrega'][3] != "") ? ", {$inf_compra['end_entrega'][3]} <br/>" : ""); ?>
+                <?= $inf_compra['end_entrega'][4]; ?><br/>
+                <?= $inf_compra['end_entrega'][5] . " - " . $inf_compra['end_entrega'][6]; ?>
 
-        <label for="creditCardHolderCPF">CPF:</label>
-        <input type="text" name="creditCardHolderCPF" class="cpf" id="creditCardHolderCPF"/><br/>
+                <input type="hidden" name="shippingType" id="shippingType" value="3"/> <!-- Tipo de entrega -->
+                <input type="hidden" name="shippingCost" id="shippingCost" value="0.00"/> <!-- Valor frete -->
 
-        <label for="creditCardHolderNome">Nome:</label>
-        <input type="text" name="creditCardHolderNome" id="creditCardHolderNome"/><br/>
+                <input type="hidden" name="shippingAddressRequired" id="shippingAddressRequired" value="true"/>
+                <input type="hidden" name="shippingAddressPostalCode" id="shippingAddressPostalCode" value="<?= $inf_compra['end_entrega'][0]; ?>"/>
+                <input type="hidden" name="shippingAddressStreet" id="shippingAddressStreet" value="<?= $inf_compra['end_entrega'][1]; ?>"/>
+                <input type="hidden" name="shippingAddressNumber" id="shippingAddressNumber" value="<?= $inf_compra['end_entrega'][2]; ?>"/>
+                <input type="hidden" name="shippingAddressComplement" id="shippingAddressComplement" value="<?= $inf_compra['end_entrega'][3]; ?>"/>
+                <input type="hidden" name="shippingAddressDistrict" id="shippingAddressDistrict" value="<?= $inf_compra['end_entrega'][4]; ?>"/>
+                <input type="hidden" name="shippingAddressCity" id="shippingAddressCity" value="<?= $inf_compra['end_entrega'][5]; ?>"/>
+                <input type="hidden" name="shippingAddressState" id="shippingAddressState" value="<?= $inf_compra['end_entrega'][6]; ?>"/>
+                <input type="hidden" name="shippingAddressCountry" id="shippingAddressCountry" value="BRA"/>
+            </div>
 
-        <h4>Endereco da fatura do cartao</h4>
-        <input type="radio" checked value="1" name="billingAddress" id="sameAddress"/><label for="sameAddress"> Mesmo endereco da entrega</label>
-        <input type="radio" value="0" name="billingAddress" id="otherAddress"/><label for="otherAddress"> Outro endereco</label>
+            <h4>Agendamento da entrega</h4>
+            <div class="agendComp">
+                <?= $inf_compra['agend_horario']; ?>
+            </div>
 
-        <input type="hidden" name="inputTokenCard" id="inputTokenCard"/><br/>
-        <input type="hidden" name="inputHashSender" id="inputHashSender"/><br/>
+            <div class="CardsData">
+                <h4>Dados do cartao</h4>
+                <label for="inputNumCard">Numero:</label>
+                <input type="text" name="inputNumCard" class="numberCard" id="inputNumCard"/>
+                <span class="brandCard"></span>
+                <br/>
+                
+                <input type="hidden" name="inputBrandCard" id="inputBrandCard"/>
 
-        <button type="submit" name="btnBuyPagSeguro" id="btnBuyPagSeguro">Comprar</button>
-    </form>
+                <label for="inputCvvCard">CVV:</label>
+                <input type="text" name="inputCvvCard" class="porcent" id="inputCvvCard"/><br/>
 
-    <div class="listPayments"></div>
+                <label for="inputMonthValid">Mes de validade (mm):</label>
+                <input type="text" name="inputMonthValid" class="month" id="inputMonthValid"/><br/>
 
-    <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= SCRIPT_PAGSEGURO; ?>"></script>
-    <script src="<?= base_url(); ?>functions/pagseguro-transparente/js/pagseguro.js"></script>
+                <label for="inputYearValid">Ano de validade (aaaa):</label>
+                <input type="text" name="inputYearValid" class="year" id="inputYearValid"/><br/>
+
+                <label for="selQtdParc">Quantidade de parcelas:</label>
+                <select name="selQtdParc" id="selQtdParc" disabled></select><br/>
+                
+                <input type="hidden" name="inputParcValue" id="inputParcValue"/><br/>
+
+                <label for="creditCardHolderCPF">CPF:</label>
+                <input type="text" name="creditCardHolderCPF" class="cpf" id="creditCardHolderCPF"/><br/>
+
+                <label for="creditCardHolderName">Nome:</label>
+                <input type="text" name="creditCardHolderName" id="creditCardHolderName"/><br/>
+
+                <label for="creditCardHolderBirthDate">Data de Nascimento:</label>
+                <input type="text" name="creditCardHolderBirthDate" class="date" id="creditCardHolderBirthDate"/><br/>
+
+                <label>Telefone:</label>
+                <input type="text" name="creditCardHolderAreaCode" id="creditCardHolderAreaCode" placeholder="DDD" class="month"/>
+                <input type="text" name="creditCardHolderPhone" id="creditCardHolderPhone" placeholder="Número" class="numberPhone"/><br/>
+                <div class="help-card"></div>
+
+                <h4>Endereco da fatura do cartao</h4>
+                
+                <input type="radio" value="1" name="billingAddress" id="sameAddress" checked/>
+                <label for="sameAddress"> Mesmo endereco da entrega</label>
+                <div class="divEndFatura">
+                    <?= $inf_compra['end_entrega'][0]; ?><br/>
+                    <?= $inf_compra['end_entrega'][1] . " nº " . $inf_compra['end_entrega'][2]; ?><br/>
+                    <?= (($inf_compra['end_entrega'][3] != "") ? ", {$inf_compra['end_entrega'][3]}<br/>" : ""); ?>
+                    <?= $inf_compra['end_entrega'][4]; ?><br/>
+                    <?= $inf_compra['end_entrega'][5] . " - " . $inf_compra['end_entrega'][6]; ?>
+                    
+                    <input type="hidden" name="billingAddressPostalCode" id="billingAddressPostalCode" value="<?= $inf_compra['end_entrega'][0]; ?>"/>
+                    <input type="hidden" name="billingAddressStreet" id="billingAddressStreet" value="<?= $inf_compra['end_entrega'][1]; ?>"/>
+                    <input type="hidden" name="billingAddressNumber" id="billingAddressNumber" value="<?= $inf_compra['end_entrega'][2]; ?>"/>
+                    <input type="hidden" name="billingAddressComplement" id="billingAddressComplement" value="<?= $inf_compra['end_entrega'][3]; ?>"/>
+                    <input type="hidden" name="billingAddressDistrict" id="billingAddressDistrict" value="<?= $inf_compra['end_entrega'][4]; ?>"/>
+                    <input type="hidden" name="billingAddressCity" id="billingAddressCity" value="<?= $inf_compra['end_entrega'][5]; ?>"/>
+                    <input type="hidden" name="billingAddressState" id="billingAddressState" value="<?= $inf_compra['end_entrega'][6]; ?>"/>
+                    <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRA"/>
+                </div><br/>
+                
+                <input type="radio" value="0" name="billingAddress" id="otherAddress"/>
+                <label for="otherAddress"> Outro endereco</label>
+                <div class="divOtherEndFatura" style="display:none;">
+                    <label for="billingAddressOtherPostalCode">CEP: </label><input type="text" class="cep" name="billingAddressOtherPostalCode" id="billingAddressOtherPostalCode"/><br/>
+                    <label for="billingAddressOtherStreet">Rua: </label><input type="text" name="billingAddressOtherStreet" id="billingAddressOtherStreet"/><br/>
+                    <label for="billingAddressOtherNumber">Numero: </label><input type="text" name="billingAddressOtherNumber" id="billingAddressOtherNumber"/><br/>
+                    <label for="billingAddressOtherComplement">Complemento: </label><input type="text" name="billingAddressOtherComplement" id="billingAddressOtherComplement"/><br/>
+                    <label for="billingAddressOtherDistrict">Bairro: </label><input type="text" name="billingAddressOtherDistrict" id="billingAddressOtherDistrict"/><br/>
+                    <label for="billingAddressOtherCity">Cid: </label><input type="text" name="billingAddressOtherCity" id="billingAddressOtherCity"/><br/>
+                    <label for="billingAddressOtherState">Estado: </label><input type="text" name="billingAddressOtherState" id="billingAddressOtherState"/>
+                    <input type="hidden" name="billingAddressOtherCountry" id="billingAddressOtherCountry" value="BRA"/>
+                </div>
+            </div>
+
+            <input type="hidden" name="inputTokenCard" id="inputTokenCard"/><br/>
+            <input type="hidden" name="inputHashSender" id="inputHashSender"/><br/>
+
+            <button type="submit" name="btnBuyPagSeguro" id="btnBuyPagSeguro">Comprar</button>
+        </form>
+
+        <div class="listPayments"></div>
+
+        <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+        <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+        <script src="<?= base_url(); ?>js/mask.js"></script>
+        <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
+        <script src="<?= base_url(); ?>js/util.js"></script>
+        <script src="<?= SCRIPT_PAGSEGURO; ?>"></script>
+        <script src="<?= base_url(); ?>functions/pagseguro-transparente/js/pagseguro.js"></script>
+        <script>
+            $("#billingAddressOtherPostalCode").focusout(function() {
+                if($(this).val().length == 9) {
+                    $.ajax({
+                        url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+                        dataType: 'json',
+                        success: function(resposta) {
+                            $("#billingAddressOtherStreet").val(resposta.logradouro);
+                            $("#billingAddressOtherComplement").val(resposta.complemento);
+                            $("#billingAddressOtherDistrict").val(resposta.bairro);
+                            $("#billingAddressOtherState").val(resposta.uf);
+                            $("#billingAddressOtherCity").val(resposta.localidade);
+                            $("#billingAddressOtherNumber").focus();
+                        }
+                    });
+                }
+            });
+        </script>
+        <?php
+    else:?>
+        <div class="msgNoProds">
+            <h3><?= $inf_compra['error']; ?></h3>
+        </div>
+        <?php
+    endif;
+    ?>
 </body>
 </html>

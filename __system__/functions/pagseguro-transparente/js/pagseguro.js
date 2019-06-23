@@ -1,5 +1,4 @@
-var amount = "600.00";
-getPurchase();
+var amount = $('#amount').val();
 payment();
 
 function payment() {
@@ -39,10 +38,13 @@ function listDirectPayment() {
                 <span><img src="https://stc.pagseguro.uol.com.br` + response.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path + `"/></span>
             `);
             
+            $('#bankName').html(`<option value="*000*">...</option>`);
+
             // Buscando Débitos Online
             $('.listPayments').append(`<h4>Débito Online</h4>`);
             $.each(response.paymentMethods.ONLINE_DEBIT.options, function(i, obj) {
                 $('.listPayments').append(`<span><img src="https://stc.pagseguro.uol.com.br` + obj.images.SMALL.path + `"/></span>`);
+                $('#bankName').append(`<option value="` + obj.name + `">` + obj.displayName + `</option>`);
             });
         },
         error: function(response) {
@@ -54,57 +56,32 @@ function listDirectPayment() {
     });
 }
 
-function getPurchase() {
-    $.ajax({
-        dataType: 'json',
-        url: BASE_URL + 'functions/pagseguro-transparente/getPurchase',
-        beforeSend: function() {
-            $('.infComp').html(loadingResSmall("Buscando cliente..."));
-            $('.endComp').html(loadingResSmall("Buscando endereço da entrega..."));
-            $('.agendComp').html(loadingResSmall("Buscando agendamento da entrega..."));
-        },
-        success: function(response) {
-            if(response['status']) {
-                $('.infComp').html(`
-                    <b>Nome: </b>` + response['client'].usu_nome + ` ` + response['client'].usu_sobrenome + `<br/>
-                    <b>CPF: </b>` + response['client'].usu_cpf + `<br/>
-                    <b>Telefone: </b>` + response['client'].tel_ddd + ` ` + response['client'].tel_num + `<br/>
-                    <b>Email: </b>` + response['client'].usu_email + `
+$('[name=paymentMethod]').change(function(e) {
+    e.preventDefault();
+    var dado = $(this).val();
+    if(dado == "creditCard") {
+        $('.divDebitoOnline').css({'display':'none'});
+        $('.CardsData').css({'display':'block'});
+    } else if (dado == "boleto") {
+        $('.divDebitoOnline').css({'display':'none'});
+        $('.CardsData').css({'display':'none'});
+    } else {
+        $('.divDebitoOnline').css({'display':'block'});
+        $('.CardsData').css({'display':'none'});
+    }
+});
 
-                    <input type="hidden" name="inputSenderName" id="inputSenderName" value="` + response['client'].usu_nome + ` ` + response['client'].usu_sobrenome + `"/>
-                    <input type="hidden" name="inputSenderCPF" id="inputSenderCPF" value="` + response['client'].usu_cpf + `"/>
-                    <input type="hidden" name="inputSenderDDD" id="inputSenderDDD" value="` + response['client'].tel_ddd + `"/>
-                    <input type="hidden" name="inputSenderNum" id="inputSenderNum" value="` + response['client'].tel_num  + `"/>
-                    <input type="hidden" name="inputSenderEmail" id="inputSenderEmail" value="` + response['client'].usu_email + `"/>
-                `);
-                
-                $('.endComp').html(`
-                    ` + response['end_entrega'][0] + `<br/>
-                    ` + response['end_entrega'][1] + ` nº ` + response['end_entrega'][2] + `
-                    ` + ((response['end_entrega'][3] != "") ? `, ` + response['end_entrega'][3] : ``) + `
-                    ` + response['end_entrega'][4] + `
-                    ` + response['end_entrega'][5] + ` - ` + response['end_entrega'][6] + `
-
-                    <input type="hidden" name="shippingAddressRequired" id="shippingAddressRequired" value="true"/>
-                    <input type="hidden" name="shippingAddressPostalCode" id="shippingAddressPostalCode" value="` + response['end_entrega'][0] + `"/>
-                    <input type="hidden" name="shippingAddressStreet" id="shippingAddressStreet" value="` + response['end_entrega'][1] + `"/>
-                    <input type="hidden" name="shippingAddressNumber" id="shippingAddressNumber" value="` + response['end_entrega'][2] + `"/>
-                    <input type="hidden" name="shippingAddressComplement" id="shippingAddressComplement" value="` + response['end_entrega'][3]  + `"/>
-                    <input type="hidden" name="shippingAddressDistrict" id="shippingAddressDistrict" value="` + response['end_entrega'][4]  + `"/>
-                    <input type="hidden" name="shippingAddressCity" id="shippingAddressCity" value="` + response['end_entrega'][5]  + `"/>
-                    <input type="hidden" name="shippingAddressState" id="shippingAddressState" value="` + response['end_entrega'][6]  + `"/>
-                    <input type="hidden" name="shippingAddressCountry" id="shippingAddressCountry" value="BRA"/>
-                `);
-                
-                $('.agendComp').html(`
-                    <b>Nome: </b>` + response['client'].usu_nome + ` ` + response['client'].usu_sobrenome + `<br/>
-                `);
-            } else {
-                return false;
-            }
-        }
-    });
-}
+$('[name=billingAddress]').change(function(e) {
+    e.preventDefault();
+    var dado = $(this).val();
+    if(!dado) {
+        $('.divEndFatura').hide().fadeOut('slow');
+        $('.divOtherEndFatura').show().fadeIn('slow');
+    } else {
+        $('.divOtherEndFatura').hide().fadeOut('slow');
+        $('.divEndFatura').show().fadeIn('slow');
+    }
+});
 
 $('#inputNumCard').keyup(function(e) {
     e.preventDefault();
@@ -125,6 +102,9 @@ $('#inputNumCard').keyup(function(e) {
             },
             error: function() {
                 $('.brandCard').html(`<small>Cartão inválido!</small>`);
+                $('#inputBrandCard').val(``);
+                $('#selQtdParc').html(``);
+                $('#selQtdParc').attr('disabled', true);
             },
             complete: function(response) {
                 //tratamento comum para todas chamadas
@@ -134,12 +114,13 @@ $('#inputNumCard').keyup(function(e) {
         $('.brandCard').html(``);
         $('#selQtdParc').html(``);
         $('#selQtdParc').attr('disabled', true);
+        $('#inputBrandCard').val(``);
     }
 });
 
 // RECUPERANDO A QUANTIDADE DE PARCELAS E SEUS RESPECTIVOS VALORES
 function getParcelas(brand) {
-    var maxInstallment = 3;
+    var maxInstallment = 2;
     PagSeguroDirectPayment.getInstallments({
         amount: amount,
         maxInstallmentNoInterest: maxInstallment,
@@ -154,14 +135,15 @@ function getParcelas(brand) {
                 $.each(obja, function(ib, objb) {
                     var valorParc = objb.installmentAmount.toFixed(2).replace(".", ","); // Padrão BR
                     var totalAmount = objb.totalAmount.toFixed(2).replace(".", ","); // Padrão BR
+                    var valorParcDouble = objb.installmentAmount.toFixed(2); // Com 2 casas decimais
 
                     if(c <= maxInstallment) {
                         $('#selQtdParc').append(`
-                            <option value="` + objb.quantity + `" data-parcelas="` + objb.installmentAmount + `">` + objb.quantity + ` x R$ ` + valorParc + ` = R$ ` + totalAmount + ` sem juros</option>
+                            <option value="` + objb.quantity + `" data-parcelas="` + valorParcDouble + `">` + objb.quantity + ` x R$ ` + valorParc + ` = R$ ` + totalAmount + ` sem acréscimo</option>
                         `);
                     } else {
                         $('#selQtdParc').append(`
-                            <option value="` + objb.quantity + `" data-parcelas="` + objb.installmentAmount + `">` + objb.quantity + ` x R$ ` + valorParc + ` = R$ ` + totalAmount + `</option>
+                            <option value="` + objb.quantity + `" data-parcelas="` + valorParcDouble + `">` + objb.quantity + ` x R$ ` + valorParc + ` = R$ ` + totalAmount + `</option>
                         `);
                     }
                     c++;
@@ -185,31 +167,42 @@ $('#selQtdParc').change(function(e) {
 
 $('#formBuyPagSeguro').submit(function(e) {
     e.preventDefault();
-    
-    // RECUPERANDO TOKEN DO CARTÃO DE CRÉDITO
-    PagSeguroDirectPayment.createCardToken({
-        cardNumber: $('#inputNumCard').val(), // Número do cartão de crédito
-        brand: $('#inputBrandCard').val(), // Bandeira do cartão
-        cvv: $('#inputCvvCard').val(), // CVV do cartão
-        expirationMonth: $('#inputMonthValid').val(), // Mês da expiração do cartão
-        expirationYear: $('#inputYearValid').val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
-        success: function(response) {
-            $('#inputTokenCard').val(response.card.token);
-        },
-        error: function(response) {
-            console.log(response);
-            return false;
-        },
-        complete: function(response) {
-            // Callback para todas chamadas.
-            recupHashCard();
-        }
-    });
+    var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+    if(paymentMethod == "creditCard") {
+        // RECUPERANDO TOKEN DO CARTÃO DE CRÉDITO
+        PagSeguroDirectPayment.createCardToken({
+            cardNumber: $('#inputNumCard').val(), // Número do cartão de crédito
+            brand: $('#inputBrandCard').val(), // Bandeira do cartão
+            cvv: $('#inputCvvCard').val(), // CVV do cartão
+            expirationMonth: $('#inputMonthValid').val(), // Mês da expiração do cartão
+            expirationYear: $('#inputYearValid').val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
+            success: function(response) {
+                $('.help-card').html(``);
+                $('#inputTokenCard').val(response.card.token);
+                recupHash();
+            },
+            error: function(response) {
+                console.log(response);
+                $.each(response.errors, function(i, obj) {
+                    $('.help-card').html(`<p>Erro ` + i + ` - ` + obj + `</p>`);
+                });
+                return false;
+            },
+            complete: function(response) {
+
+            }
+        });
+    } else if(paymentMethod == "boleto") {
+        recupHash();
+    } else {
+        recupHash();
+    }
 
     return false;
 });
 
-function recupHashCard() {
+function recupHash() {
     // RECUPERANDO O HASH DO CARTÃO
     PagSeguroDirectPayment.onSenderHashReady(function(response){
         if(response.status == 'error') {
@@ -228,10 +221,21 @@ function recupHashCard() {
 
                 },
                 success: function(response) {
-                    console.log("Sucesso " + retorno);
+                    if(response.dados.paymentMethod.type == 1) {
+
+                    } else if(response.dados.paymentMethod.type == 2) {
+                        $('#answer').html(`
+                            <p>Transação realizada com sucesso</p>
+                            <a target="_blank" href="` + response.dados.paymentLink + `">Gerar boleto</a>
+                        `);
+                    } else {
+                        window.open(response.dados.paymentLink);
+                    }
                 },
                 error: function() {
-                    console.log("ERROR")
+                    $('#answer').html(`
+                        <p>Erro ao realizar a transação</p>
+                    `);
                 }
             });
         }

@@ -11,10 +11,7 @@ function buscaAgendamento() {
 }
 
 function buscaPagamento() {
-    // $('.carrega_pagina').load(BASE_URL + 'compra/pagamento');
-    // $('.pagseguro').load(BASE_URL + 'functions/pagseguro/modal_compra');
-    // console.log('Tra');
-    window.location.href = BASE_URL + 'compra/pagamento';
+    $('.carrega_pagina').load(BASE_URL + 'compra/pagamento');
 }
 
 function buscaExtrato() {
