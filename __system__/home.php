@@ -88,8 +88,8 @@
             if($promo_id != $row['promo_id']) {
                 $produtos_topo[$c] = '
                  
-                    // <h4 class="subtitOfertas">' . $row['promo_subtit'] . '</h4>
-                    // <h5 class="expiraOfertas temp' . $row['promo_id'] . '">Expira em ' . $row['promo_expira'] . '</h5>
+                    <!-- <h4 class="subtitOfertas">' . $row['promo_subtit'] . '</h4>
+                    <h5 class="expiraOfertas temp' . $row['promo_id'] . '">Expira em ' . $row['promo_expira'] . '</h5> -->
                     <div class="l-prods">
                         <div class="loop owl-carousel">
                 ';
