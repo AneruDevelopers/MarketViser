@@ -1,6 +1,6 @@
 <?php
 	require_once 'connection/conn.php';
-    require_once '__system__/functions/email/envmail.php';
+    require_once '__system__/functions/email/novEmail.php';
 
 
 								$valor_chave = md5(date('Y-m-d H:i'));
@@ -14,9 +14,9 @@
 								
 								$env->execute();
                                 
-                                env_email($_SESSION["inf_usu"]['usu_email'],$_SESSION["inf_usu"]['usu_nome'],$link);
+                                renv_email($_SESSION["inf_usu"]['usu_email'],$_SESSION["inf_usu"]['usu_nome'],$link);
 
-                                $json['env'] =  1;
+                               
 
                                 echo json_encode($json);
                           ?>

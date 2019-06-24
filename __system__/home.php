@@ -87,9 +87,7 @@
             
             if($promo_id != $row['promo_id']) {
                 $produtos_topo[$c] = '
-                 
-                    <!-- <h4 class="subtitOfertas">' . $row['promo_subtit'] . '</h4>
-                    <h5 class="expiraOfertas temp' . $row['promo_id'] . '">Expira em ' . $row['promo_expira'] . '</h5> -->
+                <br>
                     <div class="l-prods">
                         <div class="loop owl-carousel">
                 ';
@@ -199,7 +197,7 @@
         <!-- Title/Display Products -->
 
         <div class="l-main">
-            <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS</h2>
+            <h2 class="defaultTitle">OFERTAS IMPERDÍVEIS</h2>
             <div class="l-prods">
                 <?php
                     if(!$empty):?>
@@ -253,9 +251,11 @@
                         <?php
                     endif;
                 ?>
-            </div> <center>
-            <img width="100%"  src="<?= base_url(); ?>img\Banner_TCC\bannerDiaDosPaisAtt2.png" alt="The Last of us">
-            </center><?php
+            </div> 
+                <center>
+                    <img width="100%"  src="<?= base_url(); ?>img\Banner_TCC\bannerDiaDosPaisRoxo.png" alt="Banner Dia dos Pais">
+                </center>
+                <?php
                 if(!$empty_promo):
                     foreach($produtos_promo as $k => $v):
                         echo $produtos_topo[$k];
@@ -278,6 +278,7 @@
                     endforeach;
                 endif;
             ?>
+            
         </div>
 
         <!-- Display Products -->
