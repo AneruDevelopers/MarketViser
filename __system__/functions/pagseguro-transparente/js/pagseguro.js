@@ -6,9 +6,6 @@ function payment() {
         url: BASE_URL + 'functions/pagseguro-transparente/payment',
         type: 'post',
         dataType: 'json',
-        beforeSend: function() {
-            $('.listPayments').html(loadingRes("Criando sessão..."));
-        },
         success: function(sessionId) {
             // console.log(sessionId);
             PagSeguroDirectPayment.setSessionId(sessionId.id);
@@ -22,28 +19,42 @@ function payment() {
 function listDirectPayment() {
     PagSeguroDirectPayment.getPaymentMethods({
         amount: amount,
-        beforeSend: function() {
-            $('.listPayments').html(loadingRes("Buscando meios de pagamento..."));
-        },
         success: function(response) {
             // Buscando Cartões de Crédito
-            $('.listPayments').html(`<h4>Cartão de Crédito</h4>`);
+            $('.divShowCards').html(`
+                <h4 class="hCardTitle">Cartões de Crédito</h4>
+                <a class="a_hrefPayment ocultCardShow" href="#">Ocultar &nbsp;<i class="far fa-times-circle"></i></button></a>
+            `);
             $.each(response.paymentMethods.CREDIT_CARD.options, function(i, obj) {
-                $('.listPayments').append(`<span><img src="https://stc.pagseguro.uol.com.br` + obj.images.SMALL.path + `"/></span>`);
+                $('.divShowCards').append(`
+                    <div class="divShowCard">
+                        <img src="https://stc.pagseguro.uol.com.br` + obj.images.SMALL.path + `"/><br/>
+                        <span class="displayNameCard">` + obj.displayName + `</span>
+                    </div>
+                `);
+            });
+
+            $('.a_cardDiv').click(function(e) {
+                e.preventDefault();
+                $('.divShowCards').css({'display':'block'});
+            });
+
+            $('.ocultCardShow').click(function(e) {
+                e.preventDefault();
+                $('.divShowCards').css({'display':'none'});
             });
 
             // Buscando Boleto
-            $('.listPayments').append(`
-                <h4>Boleto</h4>
-                <span><img src="https://stc.pagseguro.uol.com.br` + response.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path + `"/></span>
+            $('.divMethodBoleto').html(`
+                <div class="divShowBol">
+                    <img class="imgBoleto" src="https://stc.pagseguro.uol.com.br` + response.paymentMethods.BOLETO.options.BOLETO.images.MEDIUM.path + `"/><br/>
+                    Tarifa de boleto = R$ 1,00<br/>
+                    Tarifa aplicada para cobrir os custos de gestão de risco do meio de pagamento.
+                </div>
             `);
             
             $('#bankName').html(`<option value="*000*">...</option>`);
-
-            // Buscando Débitos Online
-            $('.listPayments').append(`<h4>Débito Online</h4>`);
             $.each(response.paymentMethods.ONLINE_DEBIT.options, function(i, obj) {
-                $('.listPayments').append(`<span><img src="https://stc.pagseguro.uol.com.br` + obj.images.SMALL.path + `"/></span>`);
                 $('#bankName').append(`<option value="` + obj.name + `">` + obj.displayName + `</option>`);
             });
         },
@@ -58,23 +69,40 @@ function listDirectPayment() {
 
 $('[name=paymentMethod]').change(function(e) {
     e.preventDefault();
+    $('.help-submit-pag').html(``);
+
     var dado = $(this).val();
     if(dado == "creditCard") {
         $('.divDebitoOnline').css({'display':'none'});
+        $('.divMethodBoleto').css({'display':'none'});
+        
+        $('.divMethodCard').css({'display':'block'});
+        $('.divSaveCard').css({'display':'block'});
         $('.CardsData').css({'display':'block'});
+        $('#btnBuyPagSeguro').html(`Efetuar pagamento`);
     } else if (dado == "boleto") {
         $('.divDebitoOnline').css({'display':'none'});
+        $('.divMethodCard').css({'display':'none'});
         $('.CardsData').css({'display':'none'});
+        $('.divSaveCard').css({'display':'none'});
+
+        $('.divMethodBoleto').css({'display':'block'});
+        $('#btnBuyPagSeguro').html(`Gerar boleto`);
     } else {
-        $('.divDebitoOnline').css({'display':'block'});
+        $('.divMethodCard').css({'display':'none'});
         $('.CardsData').css({'display':'none'});
+        $('.divMethodBoleto').css({'display':'none'});
+        $('.divSaveCard').css({'display':'none'});
+
+        $('.divDebitoOnline').css({'display':'block'});
+        $('#btnBuyPagSeguro').html(`Acessar página do banco`);
     }
 });
 
 $('[name=billingAddress]').change(function(e) {
     e.preventDefault();
     var dado = $(this).val();
-    if(!dado) {
+    if(dado == 0) {
         $('.divEndFatura').hide().fadeOut('slow');
         $('.divOtherEndFatura').show().fadeIn('slow');
     } else {
@@ -90,7 +118,7 @@ $('#inputNumCard').keyup(function(e) {
     var qtdNum = numCard.length;
 
     if(qtdNum >= 6) {
-        $('.brandCard').html(loadingResSmall("Buscando bandeira..."));
+        $('.brandCard').html(loadingResSmall());
         PagSeguroDirectPayment.getBrand({
             cardBin: numCard,
             success: function(response) {
@@ -149,6 +177,15 @@ function getParcelas(brand) {
                     c++;
                 });
             });
+
+            c--;
+            if(c > 0) {
+                if(c > 1) {
+                    $('#labelPagQuantity').html(`Pague em até ` + c + ` vezes`);
+                } else {
+                    $('#labelPagQuantity').html(`Pague em uma vez`);
+                }
+            }
         },
         error: function(response) {
             // callback para chamadas que falharam.
@@ -167,6 +204,7 @@ $('#selQtdParc').change(function(e) {
 
 $('#formBuyPagSeguro').submit(function(e) {
     e.preventDefault();
+    $('.help-submit-pag').html(`<p class="loading"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;&nbsp;Verificando...</p>`);
     var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
     if(paymentMethod == "creditCard") {
@@ -183,10 +221,7 @@ $('#formBuyPagSeguro').submit(function(e) {
                 recupHash();
             },
             error: function(response) {
-                console.log(response);
-                $.each(response.errors, function(i, obj) {
-                    $('.help-card').html(`<p>Erro ` + i + ` - ` + obj + `</p>`);
-                });
+                $('.help-submit-pag').html(`<p class="infErrorPag">Preencha os campos corretamente, por favor!</p>`);
                 return false;
             },
             complete: function(response) {
@@ -204,9 +239,11 @@ $('#formBuyPagSeguro').submit(function(e) {
 
 function recupHash() {
     // RECUPERANDO O HASH DO CARTÃO
-    PagSeguroDirectPayment.onSenderHashReady(function(response){
+    $('.help-submit-pag').html(`<p class="loading"><i class='fa fa-circle-notch fa-spin'></i> &nbsp;&nbsp;Recuperando hash...</p>`);
+
+    PagSeguroDirectPayment.onSenderHashReady(function(response) {
         if(response.status == 'error') {
-            console.log(response.message);
+            $('.help-submit-pag').html(`<p class="infErrorPag">Ocorreu um erro ao buscar o hash! Tente novamente, por favor.</p>`);
             return false;
         } else {
             $('#inputHashSender').val(response.senderHash);
@@ -217,24 +254,45 @@ function recupHash() {
                 url: BASE_URL + 'functions/pagseguro-transparente/processPurchase',
                 data: dataForm,
                 dataType: 'json',
-                beforeSend: function() {
-
-                },
                 success: function(response) {
-                    if(response.dados.paymentMethod.type == 1) {
-
-                    } else if(response.dados.paymentMethod.type == 2) {
-                        $('#answer').html(`
-                            <p>Transação realizada com sucesso</p>
-                            <a target="_blank" href="` + response.dados.paymentLink + `">Gerar boleto</a>
-                        `);
+                    if(response.dados.error) {
+                        $('.help-submit-pag').html(`<p class="infErrorPag">Preencha os campos corretamente, por favor!</p>`);
                     } else {
-                        window.open(response.dados.paymentLink);
+                        if(response.dados.errorInsert) {
+                            $('.help-submit-pag').html(`<p class="infErrorPag">` + response.dados.errorInsert + `</p>`);
+                        } else {
+                            if(response.dados.paymentMethod.type == 1) {
+                                buscaExtrato();
+                            } else if(response.dados.paymentMethod.type == 2) {
+                                buscaExtrato();
+                                $('.answer').html(`
+                                    <a target="_blank" href="` + response.dados.paymentLink + `">Gerar boleto</a>
+                                `);
+                            } else {
+                                buscaExtrato();
+                                window.open(response.dados.paymentLink);
+                            }
+
+                            $('.answer').append(`
+                                <h4>Total pago: R$` + response.dados.grossAmount + `</h4>
+                                <h4>Sua compra</h4>
+                            `);
+                            $.each(response.dados.items, function(ia, obja) {
+                                $.each(obja, function(ib, objb) {
+                                    $('.answer').append(`
+                                        <p>
+                                            Produto: ` + objb.description + `<br/>
+                                            Quantidade: ` + objb.quantity + `
+                                        </p>
+                                    `);
+                                });
+                            });
+                        }
                     }
                 },
                 error: function() {
-                    $('#answer').html(`
-                        <p>Erro ao realizar a transação</p>
+                    $('.help-submit-pag').html(`
+                        <p>Ocorreu um erro ao realizar a transação! Tente novamente, por favor.</p>
                     `);
                 }
             });

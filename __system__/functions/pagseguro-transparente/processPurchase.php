@@ -116,8 +116,14 @@
         $dadosArray["creditCardHolderName"] = $dados['creditCardHolderName'];
         $dadosArray["creditCardHolderCPF"] = $dados['creditCardHolderCPF'];
         $dadosArray["creditCardHolderBirthDate"] = $dados['creditCardHolderBirthDate'];
-        $dadosArray["creditCardHolderAreaCode"] = $dados['creditCardHolderAreaCode'];
-        $dadosArray["creditCardHolderPhone"] = $dados['creditCardHolderPhone'];
+
+        $ddd = substr($dados['creditCardHolderPhone'], 1, 2);
+        $num = substr($dados['creditCardHolderPhone'], -10);
+        $num = str_replace(" ", "", $num);
+        $num = str_replace("-", "", $num);
+
+        $dadosArray["creditCardHolderAreaCode"] = $ddd;
+        $dadosArray["creditCardHolderPhone"] = $num;
 
         if($dados['billingAddress'] == 1) {
             $dadosArray["billingAddressStreet"] = $dados['billingAddressStreet'];
@@ -154,7 +160,38 @@
     curl_close($curl);
     $xml = simplexml_load_string($answer);
 
-    $json = ['dados' => $xml, "dadosArray" => $dadosArray];
+    if(!isset($xml->error)) {
+        $ins = $conn->prepare("INSERT INTO compra(compra_hash, compra_total, usu_id, status_id, forma_id) 
+        VALUES('{$xml->code}', {$xml->grossAmount}, {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
+        if(!$ins->execute()) {
+            $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
+        } else {
+            $sel = $conn->prepare("SELECT compra_id FROM compra WHERE compra_hash='{$xml->code}'");
+            $sel->execute();
+            $res = $sel->fetch( PDO::FETCH_ASSOC );
+
+            foreach($resultsCarts as $k => $v) {
+                $ins = $conn->prepare("INSERT INTO lista_compra(compra_id, produto_id, produto_qtd) VALUES({$res['compra_id']}, {$v['produto_id']}, {$_SESSION['carrinho'][$v['produto_id']]})");
+                if(!$ins->execute()) {
+                    $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
+                    break;
+                }
+            }
+
+            if(!isset($xml->errorInsert)) {
+                $cep = substr($xml->shipping->address->postalCode, 0, 5) . "-" . substr($xml->shipping->address->postalCode, -3);
+
+                $ins = $conn->prepare("INSERT INTO entrega(compra_id, entrega_horario, entrega_cep, entrega_end, entrega_num, entrega_complemento, entrega_bairro, entrega_cidade, entrega_uf) VALUES({$res['compra_id']}, '{$_SESSION['agend_horario']}', '$cep', '{$xml->shipping->address->street}', {$xml->shipping->address->number}, '{$xml->shipping->address->complement}', '{$xml->shipping->address->district}', '{$xml->shipping->address->city}', '{$xml->shipping->address->state}')");
+                if(!$ins->execute()) {
+                    $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
+                } else {
+                    $_SESSION['paymentDone'] = TRUE;
+                }
+            }
+        }
+    }
+
+    $json = ['dados' => $xml];
 
     echo json_encode($json);
 ?>

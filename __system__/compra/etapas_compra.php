@@ -68,6 +68,29 @@
     <script src="<?= base_url(); ?>js/main.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
+        if(!isset($_SESSION['carrinho'])):?>
+            <script>buscaCarrinho();</script>
+            <?php
+        else:
+            if(!isset($_SESSION['end_agend'])):?>
+                <script>buscaCarrinho();</script>
+                <?php
+            else:
+                if(!isset($_SESSION['agend_horario'])):?>
+                    <script>buscaEndereco();</script>
+                    <?php
+                else:
+                    if(!isset($_SESSION['pagamento'])):?>
+                        <script>buscaAgendamento();</script>
+                        <?php
+                    else:?>
+                        <script>buscaPagamento();</script>
+                        <?php
+                    endif;
+                endif;
+            endif;
+        endif;
+
         if(isset($_SESSION['msg'])):?>
             <script>
                 Swal.fire({

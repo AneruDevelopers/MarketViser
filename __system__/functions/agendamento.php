@@ -45,10 +45,37 @@
                                                         $val['juncao_cid_uf'] = $val['subcid_nome'] . " - " . $val['est_uf'];
                                                         if($cid == $val['juncao_cid_uf']) {
                                                             $permition[] = 1;
-                                                            $_SESSION['subcid_id'] = $val['subcid_id'];
+                                                            if(isset($_SESSION['subcid_id'])) {
+                                                                if($_SESSION['subcid_id'] != $val['subcid_id']) {
+                                                                    $_SESSION['totCompra'] = number_format($_SESSION['totCompra'], 2, ".", "");
+                                                                    $_SESSION['totCompra'] -= $_SESSION['subcid_frete'];
+
+                                                                    $_SESSION['subcid_id'] = $val['subcid_id'];
+                                                                    $_SESSION['subcid_frete'] = $val['subcid_frete'];
+
+                                                                    $_SESSION['totCompra'] = number_format($_SESSION['totCompra'], 2, ".", "");
+                                                                    $_SESSION['totCompra'] += $_SESSION['subcid_frete'];
+                                                                }
+                                                            } else {
+                                                                $_SESSION['subcid_id'] = $val['subcid_id'];
+                                                                $_SESSION['subcid_frete'] = $val['subcid_frete'];
+    
+                                                                $_SESSION['totCompra'] = number_format($_SESSION['totCompra'], 2, ".", "");
+                                                                $_SESSION['totCompra'] += $_SESSION['subcid_frete'];
+                                                            }
+                                                            break;
                                                         }
                                                     }
                                                 } else {
+                                                    if(isset($_SESSION['subcid_id']))
+                                                        unset($_SESSION['subcid_id']);
+
+                                                    if(isset($_SESSION['subcid_frete'])) {
+                                                        $_SESSION['totCompra'] = number_format($_SESSION['totCompra'], 2, ".", "");
+                                                        $_SESSION['totCompra'] -= $_SESSION['subcid_frete'];
+                                                        unset($_SESSION['subcid_frete']);
+                                                    }
+
                                                     $permition[] = 1;
                                                 }
                                             }
@@ -76,6 +103,9 @@
                 $_SESSION['end_agend'][4] = $_POST['usu_bairro'];
                 $_SESSION['end_agend'][5] = $_POST['usu_cidade'];
                 $_SESSION['end_agend'][6] = $_POST['usu_uf'];
+
+                if(isset($_SESSION['agend_horario']))
+                    unset($_SESSION['agend_horario']);
                 
                 if(strlen(trim($_POST['usu_complemento'])) > 0) {
                     $json['agend_end'] = $_POST['usu_cep'] . ", " . $_POST['usu_end'] . " nº " . $_POST['usu_num'] . " - " . $_POST['usu_complemento'] . ", " . $_POST['usu_bairro'] . ", ". $_POST['usu_cidade'] . " - " . $_POST['usu_uf'];

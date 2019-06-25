@@ -17,5 +17,3 @@ function buscaPagamento() {
 function buscaExtrato() {
     $('.carrega_pagina').load(BASE_URL + 'compra/extrato');
 }
-
-buscaCarrinho();

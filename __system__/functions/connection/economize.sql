@@ -90,6 +90,7 @@ CREATE TABLE `atend_resposta` (
   `resp_atend` text NOT NULL,
   `registro_resp` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 --
 -- Extraindo dados da tabela `atend_resposta`
@@ -99,6 +100,9 @@ INSERT INTO `atend_resposta` (`resp_id`, `id_atd`, `funcionario_id`, `resp_atend
 (1, 1, 3, 'Olá Paulo. Provavelmente você está tentando comprar em uma cidade \"inválida\". Caso não tenha achado uma resposta ainda, dê uma olhada nas páginas de \"subcidades\". Você terá uma resposta mais concreta. Para entrar nessa página você só tem de clicar no link de \"SUBCIDADES\" na janela que aparece ao clicar na cidade ao topo da página. Espero ter ajudado. Tenha uma boa noite!!', '2019-06-09 20:24:03'),
 (2, 3, 3, 'Boa noite Fábio. Em parte isso é verdade sim, mas, ainda tem muitas coisas à se resolver e muitas papeladas, por isso, não posso dizer com certeza quando isso pode acontecer. Muito obrigado pela preferência!', '2019-06-09 20:33:50'),
 (3, 7, 3, 'Boa tarde Pâmela. Bom, isso é complicado. Tem muitas coisas que o economize leva em consideração para se instalar em uma cidade/região. Você é a primeira que faz um pedido da cidade de São José do Rio Preto. Caso haja mais pedidos daí, nós com certeza levaremos nosso mercado pra sua cidade, ok? Muito obrigado pela preferência!', '2019-06-11 17:22:29');
+=======
+-- Error reading data for table economi8_ecnomize.atend_resposta: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`atend_resposta`' na linha 1
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 -- --------------------------------------------------------
 
@@ -111,6 +115,7 @@ CREATE TABLE `banner` (
   `banner_nome` varchar(50) DEFAULT NULL,
   `banner_path` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- Error reading data for table economi8_ecnomize.banner: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`banner`' na linha 1
 
 -- --------------------------------------------------------
 
@@ -123,6 +128,7 @@ CREATE TABLE `categ` (
   `categ_nome` varchar(30) NOT NULL,
   `subcateg_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 --
 -- Extraindo dados da tabela `categ`
@@ -150,6 +156,9 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 (20, 'FUNCIONAIS', 13),
 (21, 'TRADICIONAL', 14),
 (22, 'INTEGRAL', 14);
+=======
+-- Error reading data for table economi8_ecnomize.categ: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`categ`' na linha 1
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 -- --------------------------------------------------------
 
@@ -162,6 +171,7 @@ CREATE TABLE `cidade` (
   `cid_nome` varchar(50) NOT NULL,
   `est_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 --
 -- Extraindo dados da tabela `cidade`
@@ -171,6 +181,9 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
 (1, 'Lins', 1),
 (2, 'Marília', 1),
 (3, 'Presidente Prudente', 1);
+=======
+-- Error reading data for table economi8_ecnomize.cidade: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`cidade`' na linha 1
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 -- --------------------------------------------------------
 
@@ -180,12 +193,19 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
 
 CREATE TABLE `compra` (
   `compra_id` int(11) NOT NULL,
+<<<<<<< HEAD
   `compra_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `compra_total` float NOT NULL,
+=======
+  `compra_hash` varchar(255) NOT NULL,
+  `compra_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  `compra_total` decimal(10,2) NOT NULL,
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
   `usu_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `forma_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- Error reading data for table economi8_ecnomize.compra: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`compra`' na linha 1
 
 -- --------------------------------------------------------
 
@@ -200,6 +220,13 @@ CREATE TABLE `conf_mail` (
   `cf_expiracao` datetime DEFAULT NULL,
   `usu_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `conf_mail`
+--
+
+INSERT INTO `conf_mail` (`cf_id`, `cf_link`, `cf_status`, `cf_expiracao`, `usu_id`) VALUES
+(54, 'ffc369fb8b651424691400bb705e2616', b'0', '2019-06-23 01:35:44', 23);
 
 -- --------------------------------------------------------
 
@@ -410,7 +437,10 @@ INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subci
 (28, 23, 1),
 (29, 25, 1),
 (30, 27, 1),
-(31, 31, 1);
+(31, 31, 1),
+(32, 1, 2),
+(33, 3, 2),
+(34, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -500,6 +530,11 @@ INSERT INTO `duvida_frequente` (`duvida_id`, `duvida_pergunta`, `duvida_resposta
 
 CREATE TABLE `entrega` (
   `entrega_id` int(11) NOT NULL,
+<<<<<<< HEAD
+=======
+  `compra_id` int(11) NOT NULL,
+  `funcionario_id` int(11) DEFAULT NULL,
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
   `entrega_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `entrega_horario` time NOT NULL,
   `entrega_cep` char(9) NOT NULL,
@@ -510,6 +545,14 @@ CREATE TABLE `entrega` (
   `entrega_cidade` varchar(50) NOT NULL,
   `entrega_uf` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `entrega`
+--
+
+INSERT INTO `entrega` (`entrega_id`, `compra_id`, `funcionario_id`, `entrega_registro`, `entrega_horario`, `entrega_cep`, `entrega_end`, `entrega_num`, `entrega_complemento`, `entrega_bairro`, `entrega_cidade`, `entrega_uf`) VALUES
+(1, 2, NULL, '2019-06-24 13:22:50', '14:00:00', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP'),
+(2, 3, NULL, '2019-06-24 13:28:20', '14:00:00', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP');
 
 -- --------------------------------------------------------
 
@@ -546,8 +589,8 @@ CREATE TABLE `forma_pag` (
 
 INSERT INTO `forma_pag` (`forma_id`, `forma_nome`) VALUES
 (1, 'CARTÃO CRÉDITO'),
-(2, 'CARTÃO DÉBITO'),
-(3, 'BOLETO');
+(2, 'BOLETO'),
+(3, 'DÉBITO ONLINE');
 
 -- --------------------------------------------------------
 
@@ -678,8 +721,19 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 CREATE TABLE `lista_compra` (
   `lista_id` int(11) NOT NULL,
   `compra_id` int(11) NOT NULL,
-  `produto_id` int(11) NOT NULL
+  `produto_id` int(11) NOT NULL,
+  `produto_qtd` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `lista_compra`
+--
+
+INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`) VALUES
+(1, 2, 15, 6),
+(2, 2, 6, 3),
+(3, 3, 15, 6),
+(4, 3, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -796,12 +850,7 @@ CREATE TABLE `produtos_favorito` (
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 (85, 1, 2),
 (87, 3, 2),
-(88, 8, 2),
-(92, 7, 1),
-(93, 22, 1),
-(96, 3, 1),
-(97, 1, 1),
-(98, 23, 1);
+(88, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -863,11 +912,11 @@ CREATE TABLE `status_compra` (
 --
 
 INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
-(1, 'COMPRA REALIZADA'),
-(2, 'À ESPERAR'),
+(1, 'À ESPERAR'),
+(2, 'DEVOLVIDA'),
 (3, 'ENTREGUE'),
-(4, 'CANCELADO'),
-(5, 'PAGO');
+(4, 'CANCELADA'),
+(5, 'PAGA');
 
 -- --------------------------------------------------------
 
@@ -909,6 +958,7 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 CREATE TABLE `subcidade` (
   `subcid_id` int(11) NOT NULL,
   `subcid_nome` varchar(30) NOT NULL,
+  `subcid_frete` decimal(10,2) DEFAULT '0.00',
   `cid_id` int(11) NOT NULL,
   `est_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -917,16 +967,16 @@ CREATE TABLE `subcidade` (
 -- Extraindo dados da tabela `subcidade`
 --
 
-INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `cid_id`, `est_id`) VALUES
-(1, 'Guaiçara', 1, 1),
-(2, 'Cafelândia', 1, 1),
-(3, 'Guaimbê', 1, 1),
-(7, 'Alvinlândia', 2, 1),
-(8, 'Vera Cruz', 2, 1),
-(9, 'Garça', 2, 1),
-(10, 'Álvares Machado', 3, 1),
-(11, 'Regente Feijó', 3, 1),
-(12, 'Indiana', 3, 1);
+INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `subcid_frete`, `cid_id`, `est_id`) VALUES
+(1, 'Guaiçara', '5.00', 1, 1),
+(2, 'Cafelândia', '3.00', 1, 1),
+(3, 'Guaimbê', '0.00', 1, 1),
+(7, 'Alvinlândia', '0.00', 2, 1),
+(8, 'Vera Cruz', '0.00', 2, 1),
+(9, 'Garça', '0.00', 2, 1),
+(10, 'Álvares Machado', '0.00', 3, 1),
+(11, 'Regente Feijó', '0.00', 3, 1),
+(12, 'Indiana', '0.00', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -947,7 +997,11 @@ CREATE TABLE `telefone` (
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
 (23, '(17) 89989-8980', 1, 22),
+<<<<<<< HEAD
 (25, '(14) 99736-5243', 1, 24);
+=======
+(24, '(14) 99663-3593', 1, 23);
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 -- --------------------------------------------------------
 
@@ -960,6 +1014,7 @@ CREATE TABLE `tipousu` (
   `tpu_usu_nome` varchar(30) NOT NULL,
   `tpu_desc` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 --
 -- Extraindo dados da tabela `tipousu`
@@ -968,6 +1023,9 @@ CREATE TABLE `tipousu` (
 INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`, `tpu_desc`) VALUES
 (1, 'Cliente', NULL),
 (2, 'Associado', 20);
+=======
+-- Error reading data for table economi8_ecnomize.tipousu: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `economi8_ecnomize`.`tipousu`' na linha 1
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 -- --------------------------------------------------------
 
@@ -1022,10 +1080,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_cstatus`, `usu_mailmkt`, `usu_registro`) VALUES
-(1, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.355-98', 'carvanick@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 2, b'0', b'0', '2019-04-26 05:06:09'),
 (2, 'Daniel', 'Costa de Bezerra', 'M', '438.953.093-62', 'dani_costa@gmail.com', '$2y$10$u/yagUufHVeRE/4rvFjem.NUrEhssuowI3VfudfmQ2E0CMjFoHvcy', '16400-120', 'Rua Terceiro-Sargento-Aeronáutica João Sá Faria', 238, 'Fundos', 'Vila Ramalho', 'Lins', 'SP', 1, b'0', b'0', '2019-05-17 01:36:37'),
 (22, 'Walyson', 'Felipe', 'M', '426.804.958-45', 'walysonfelipe25@gmail.com', '$2y$10$3n5wRU7PgrZ7mQ8wEJwizezGyQjQ5OM04kSFDXHkqWTEMfWFyBZgu', '16401-472', 'Rua Eugênio Faustini', 755, '', 'Conjunto Habitacional Francisco José de Oliveira Ratto', 'Lins', 'SP', 1, b'1', b'0', '2019-06-20 23:06:21'),
+<<<<<<< HEAD
 (24, 'Pedro', 'Cardoso Todorovski', 'M', '404.449.728-11', 'pedroc.todorovskibr@gmail.com', '$2y$10$hplbGJK9QpLz7Ft3dQNfOu1DSrKtg8UDbHK2vVyZLm.vIANqI5pEy', '16400-460', 'Rua José Garcia de Carvalho', 300, 'Apto. 31 B', 'Jardim Ariano', 'Lins', 'SP', 1, b'1', b'0', '2019-06-23 13:28:00');
+=======
+(23, 'Nicolas', 'Carvalho Avelaneda', 'M', '477.608.258-62', 'carvalhonick2002@gmail.com', '$2y$10$xdyfOP8apn1.MkMAGTXkkODJgWxwkxevRqTDaOxijb.MZRTywM9FW', '16403-525', 'Rua José Rafael Rosa Pacini', 107, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 1, b'0', b'0', '2019-06-23 00:35:44');
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 --
 -- Indexes for dumped tables
@@ -1158,7 +1219,8 @@ ALTER TABLE `duvida_frequente`
 -- Indexes for table `entrega`
 --
 ALTER TABLE `entrega`
-  ADD PRIMARY KEY (`entrega_id`);
+  ADD PRIMARY KEY (`entrega_id`),
+  ADD KEY `fk_EntFunc` (`funcionario_id`);
 
 --
 -- Indexes for table `estado`
@@ -1341,13 +1403,17 @@ ALTER TABLE `cidade`
 -- AUTO_INCREMENT for table `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `compra_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `compra_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `conf_mail`
 --
 ALTER TABLE `conf_mail`
+<<<<<<< HEAD
   MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 --
 -- AUTO_INCREMENT for table `cupom`
@@ -1383,7 +1449,7 @@ ALTER TABLE `dados_horario_entrega`
 -- AUTO_INCREMENT for table `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `dados_promocao`
@@ -1407,7 +1473,7 @@ ALTER TABLE `duvida_frequente`
 -- AUTO_INCREMENT for table `entrega`
 --
 ALTER TABLE `entrega`
-  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `estado`
@@ -1449,7 +1515,7 @@ ALTER TABLE `horarios_entrega`
 -- AUTO_INCREMENT for table `lista_compra`
 --
 ALTER TABLE `lista_compra`
-  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `marca_prod`
@@ -1473,7 +1539,11 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
+<<<<<<< HEAD
   MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+=======
+  MODIFY `favorito_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 --
 -- AUTO_INCREMENT for table `promocao_temp`
@@ -1509,7 +1579,11 @@ ALTER TABLE `subcidade`
 -- AUTO_INCREMENT for table `telefone`
 --
 ALTER TABLE `telefone`
+<<<<<<< HEAD
   MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+=======
+  MODIFY `tel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 --
 -- AUTO_INCREMENT for table `tipousu`
@@ -1527,7 +1601,11 @@ ALTER TABLE `tipo_tel`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
+<<<<<<< HEAD
   MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+=======
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 
 --
 -- Constraints for dumped tables
@@ -1616,6 +1694,15 @@ ALTER TABLE `dados_promocao`
   ADD CONSTRAINT `fk_PromoProd` FOREIGN KEY (`promo_id`) REFERENCES `promocao_temp` (`promo_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+<<<<<<< HEAD
+=======
+-- Limitadores para a tabela `entrega`
+--
+ALTER TABLE `entrega`
+  ADD CONSTRAINT `fk_EntFunc` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+>>>>>>> 2343139f2f83890861b6586c6851292f85f454c4
 -- Limitadores para a tabela `forn_prod`
 --
 ALTER TABLE `forn_prod`
@@ -1647,8 +1734,8 @@ ALTER TABLE `produto`
 -- Limitadores para a tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
-  ADD CONSTRAINT `fk_ProdUsu` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`),
-  ADD CONSTRAINT `fk_UsuProd` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`);
+  ADD CONSTRAINT `fk_ProdUsu` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_UsuProd` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `subcateg`

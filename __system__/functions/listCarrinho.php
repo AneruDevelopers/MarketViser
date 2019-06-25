@@ -89,6 +89,13 @@
                     $totCupomPorc = number_format($totCupomPorc,2,'.','');
                     $json['totCompra'] -= $totCupomPorc;
                 }
+
+                if(isset($_SESSION['subcid_frete'])) {
+                    if($_SESSION['subcid_frete'] > 0) {
+                        $json['totCompra'] += $_SESSION['subcid_frete'];
+                    }
+                }
+                
                 $_SESSION['totCompra'] = $json['totCompra'];
 
                 $json['totDesconto'] = number_format($json['totDesconto'], 2, ',', '.');

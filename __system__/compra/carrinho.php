@@ -87,6 +87,13 @@
                 $_SESSION['totCompra'] -= $totCupomPorc;
             }
 
+            if(isset($_SESSION['subcid_frete'])) {
+                if($_SESSION['subcid_frete'] > 0) {
+                    $_SESSION['totCompra'] += $_SESSION['subcid_frete'];
+                }
+                $frete = number_format($_SESSION['subcid_frete'], 2, ',', '.');
+            }
+
             $totDesconto = number_format($totDesconto, 2, ',', '.');
             $totCompra = number_format($_SESSION['totCompra'], 2, ',', '.');
         }
@@ -141,6 +148,17 @@
             <div class="summarySubTitles">
                 <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$<?= $totCompra; ?></h2>
             </div>
+            <?php
+                if(isset($_SESSION['subcid_frete'])):?>
+                    <div class="summarySubTitles">
+                        <h2 class="totalFrete">FRETE:</h2><h2 class="valueFrete">R$<?= $frete; ?></h2>
+                    </div>
+                    <script>
+                        $('.divShowTot').css({'height':'auto'});
+                    </script>
+                    <?php
+                endif;
+            ?>
         </div>
         <div class="divShowOptBtn">
             <div class="inlineDivShowOptBtn">
@@ -216,6 +234,17 @@
             <div class="summarySubTitles">
                 <h2 class="totalPrice">TOTAL DA COMPRA:</h2><h2 class="valueBuy">R$<?= $totCompra; ?></h2>
             </div>
+            <?php
+                if(isset($_SESSION['subcid_frete'])):?>
+                    <div class="summarySubTitles">
+                        <h2 class="totalFrete">FRETE:</h2><h2 class="valueFrete">R$<?= $frete; ?></h2>
+                    </div>
+                    <script>
+                        $('.divShowTot').css({'height':'auto'});
+                    </script>
+                    <?php
+                endif;
+            ?>
         </div>
         <div class="divShowOptDesk">
             <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
