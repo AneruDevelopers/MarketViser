@@ -129,7 +129,7 @@
         </span>
     </li>
 </ul>
-<h2 class="tituloOfertas"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
+<h2 class="defaultTitle"><i class="fas fa-shopping-cart"></i> MEU CARRINHO</h2>
 <?php
     if(!$empty):?>
         <div class="divShowOpt">
@@ -143,14 +143,20 @@
             </div>
         </div>
         <div class="divShowOptBtn">
-            <a class="linkShop" href="<?= base_url_php(); ?>"><i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO</a>
-            <button class="limparCart">LIMPAR CARRINHO <i class="far fa-trash-alt"></i></button>
-            <div class="divButtonCupom">
-                <button class="addCupom">ADICIONAR CUPOM <i class="fas fa-tag"></i></button>
+            <div class="inlineDivShowOptBtn">
+                <a class="linkShop" href="<?= base_url_php(); ?>">CONTINUAR COMPRANDO<br><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <div class="inlineDivShowOptBtn">
+                <button class="limparCart">LIMPAR CARRINHO<br><i class="far fa-trash-alt"></i></button>
+            </div>
+            <div class="inlineDivShowOptBtn">
+                <button class="addCupom">ADICIONAR CUPOM<br><i class="fas fa-tag"></i></button>
             </div>
             <div class="divAddCupom"></div>
             <div class="divAnswer"></div>
-            <button class="finalizaCompra">PRÓXIMO PASSO <i class="fas fa-arrow-right"></i></button>
+            <div class="inlineDivShowOptBtn">
+                <button class="finalizaCompra">PRÓXIMO PASSO<br><i class="fas fa-arrow-right"></i></button>
+            </div>    
         </div>
         <div class="divTable">
             <table class="divShowProdFav tableCart" width="100%" padding="0" margin="0">
@@ -164,7 +170,7 @@
                 <?php
                     foreach($produtosCart as $v):?>
                         <tr class="trCart">
-                            <td class="tdCart" width="40%">
+                            <td class="tdCart" width="50%">
                                 <img class="imgCart" src="<?= base_url_adm() . "imagens_produtos/" . $v['produto_img']; ?>"/>
                                 <h5 class="titleProdCart">
                                     <?= $v['produto_nome'] . " - " . $v['produto_tamanho']; ?>
@@ -187,12 +193,12 @@
                                     endif;
                                 ?>
                             </td>
-                            <td class="tdCart" width="20%">
+                            <td class="tdCart" width="15%">
                                 <h3 class="priceProdCart subtot<?= $v['produto_id']; ?>">
                                     R$<?= $v['subtotal']; ?>
                                 </h3>
                             </td>
-                            <td class="tdCart" width="20%">
+                            <td class="tdCart" width="5%">
                                 <button class="tirarProd btnProdCart" id-prod="<?= $v['produto_id']; ?>"><i class="far fa-times-circle"></i></button>
                             </td>
                         </tr>

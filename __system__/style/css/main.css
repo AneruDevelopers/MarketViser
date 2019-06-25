@@ -152,6 +152,7 @@ border-radius: 0;
     .l-footer {
         grid-area: footer;
         background: #e2e3e6;
+        margin-top: 1rem;
     }
 
     .l-footerBottom {
@@ -501,6 +502,384 @@ border-radius: 0;
         text-decoration: none;
         cursor: pointer;
     }
+
+    /* MODAL */
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: absolute; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: hidden; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 12% auto;
+        border: none;
+        width: 80%;
+        border-radius: 10px;
+        height: 14rem;
+        font-family: "Raleway";
+        position: relative;
+        top: 4rem;
+    }
+
+    .modalLeftContent {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+
+    .modalRightContent {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        float: right;
+        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .close {
+        color: #ffffff;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: relative;
+        top: 0rem;
+        right: 1rem;
+    }
+      
+    .close:hover,
+    .close:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
+     
+    .fechar {
+        display:block;
+        text-align:right;
+    }
+
+    .modalLeftContent form {
+        position: relative;
+        top: 4rem;
+    }
+
+    .titleModalLogin {
+        font-family: "Raleway-Medium";
+        text-align: center;
+        margin: .4rem;
+        margin-bottom: 2rem;
+        font-size: 24px;
+        background: #ffffff;
+    }
+
+    .labelInput {
+        font-family: "Raleway-Medium";
+        font-size: 14px;
+        position: relative;
+        left: .4rem;
+        top: 1rem;
+        color: #9C45EB;
+    }
+
+    .inputModal {
+        margin: .4rem;
+        width: 91.5%;
+        font-family: "Raleway";
+        border-radius: 5%;
+        border: solid 1px #0F0617;
+        padding: 3px;
+        height: 1.5rem;
+        font-size: 13px;
+        position: relative;
+        top: .7rem;
+    }
+
+    .linkCadModal {
+        font-family: "Raleway";
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .linkPerfil {
+        font-family: "Raleway";
+    }
+    .linkPerfil a {
+        text-decoration: none;
+        transition: color .2s;
+    }
+    .linkPerfil a:hover, .linkPerfil a:focus {
+        text-decoration: none;
+        color: #b2b4b8;
+    }
+
+    .textModal {
+        text-align: center;
+        font-size: 24px;
+        margin: .4rem 0;
+        position: relative;
+        top: 6.5rem;
+        color: #ffffff;
+        font-family: "Raleway-Medium";
+    }
+
+    .textModalBottom {
+        text-align: center;
+        font-size: 14px;
+        margin: 1rem 0;
+        position: relative;
+        top: 6.5rem;
+        color: #ffffff;
+        font-family: "Raleway";
+        width: 70%;
+        left: 15%;
+    }
+
+    .divLinkCad {
+        border: solid 2px #ffffff;
+        background: #9C45EB;
+        border-radius: 30px;
+        width: 50%;
+        height: 2rem;
+        left: 25%;
+        top: 6.5rem;
+        position: relative;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .btnNewArm {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        height: 2.4rem;
+        width: 35%;
+        padding: .5rem 0;
+        border-radius: 5px;
+        font-family: "Raleway-Medium";
+        font-size: 12px;
+        color: #ffffff;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        cursor: pointer;
+        text-align: center;
+        outline: none;
+        top: .4rem;
+        left: 35%;
+    }
+
+    .btnSend {
+        position: relative;
+        background: #9C45EB;
+        border: none;
+        width: 30%;
+        height: 2.4rem;
+        border-radius: 30px;
+        font-family: "Raleway-Medium";
+        color: #ffffff;
+        top: .4rem;
+        left: 35%;
+        -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+    }
+
+    .btnSend:hover {
+        background: #0F0617;
+        color: #ffffff;
+        transition: 250ms ease-in-out color;
+        transition: 250ms ease-in-out background;
+    }
+
+    .fa-grip-lines {
+        position: relative;
+        color: #9C45EB;
+    }
+
+    .help-block, .help-block-tel, .help-block-login {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        top: -1rem;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+    }
+    .help-block-login {
+        position: relative;
+        top: .8rem;
+    }
+
+    /* PROFILE MODAL */
+
+    .divModalProfile {
+        position: relative;
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    .titleModalProfile {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #9C45EB;
+    }
+
+    .titleModalProfileName {
+        background: transparent;
+        width: auto;
+        margin: .6rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #0F0617;
+    }
+
+    .sectionAccountInfo {
+        position: relative;
+    }
+
+    .modalProfileLeftContent {
+        position: relative;
+        width: 65%;
+        height: 100%;
+        float: left;
+        /* padding-left: 7.5px; */
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        background-color: #ffffff;
+    }
+    
+    .modalProfileRightContent {
+        position: relative;
+        width: 35%;
+        height: 100%;
+        float: right;
+        /* padding-left: 7.5px; */
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+        -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
+        box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
+    }
+
+    .sectionAccountInfo h5 {
+        color: #9C45EB;
+        text-align: left;
+        margin-top: 1rem;
+        margin-bottom: .4rem;
+        padding-left: 5%;
+        font-family: 'Raleway-Medium';
+    }
+
+    .accountInfoData {
+        text-align: left;
+        padding-left: 5%;
+        font-size: 14px;
+        font-family: 'Raleway-Medium';
+        padding: 3px 0;
+        position: relative;
+        width: 90%;
+        left: 5%;
+        border-radius: 5px;
+    }
+
+    .linhaProfile {
+        position: relative;
+        width: 96%;
+        left: 2%;
+        margin: .4rem 0;
+    }
+
+    .divisorFilterProfile {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 3px;
+        background: #9C45EB;
+        border-radius: 2px;
+    }
+
+    .linkConfig {
+        position: absolute;
+        top: 90%;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .linkConfig a {
+        text-decoration: none;
+        color: #9C45EB;
+        text-align: left;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkRight {
+        position: relative;
+        margin: .5rem 0;
+        width: 100%;
+        text-align: left;
+        margin-top: 1rem;
+        top: 2.4rem;
+    }
+
+    .linkRight a {
+        text-decoration: none;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        padding-left: 5%;
+        font-weight: 700;
+    }
+
+    .linkDate {
+        position: absolute;
+        top: 87.5%;
+        width: 100%;
+        text-align: center;
+        color: #9C45EB;
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .closeProfile {
+        color: #ffffff;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        position: relative;
+        top: 0rem;
+        right: 1rem;
+    }
+      
+    .closeProfile:hover,
+    .closeProfile:focus {
+        color: #0F0617;
+        text-decoration: none;
+        cursor: pointer;
+    }
      
     .fechar {
         display:block;
@@ -654,6 +1033,15 @@ border-radius: 0;
         width: 100%;
     }
 
+    .defaultTitle {
+        font-family: 'Raleway';
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 1rem;
+    }
+
     .tituloOfertas {
         position: relative;
         font-family: "Bowlby";
@@ -690,8 +1078,6 @@ border-radius: 0;
         position: relative;
         width: 100vw;
         background: #ffffff;
-        padding-top: 0;
-        padding-bottom: 1.2rem;
     }
 
     .divProdCarousel {
@@ -1871,7 +2257,6 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: 100%;
-        float: right;
     }
 
     .divShowProdFav {
@@ -1883,14 +2268,14 @@ border-radius: 0;
 
     .divShowProdFilter .prodFilter, .divShowProdFav .prodFilter {
         position: relative;
-        width: 29%;
+        width: 42%;
         float: left;
         margin: auto;
         border: #e2e3e6 solid 1px;
         border-radius: 3px;
         padding: .5rem;
-        margin-left: 1%;
-        margin-bottom: 5%;
+        margin-left: 2%;
+        margin-bottom: 2rem;
     }
 
     .divShowProdFilter .prodFilter img, .divShowProdFav .prodFilter img {
@@ -1967,10 +2352,10 @@ border-radius: 0;
     }
 
     /* PAGINA DO CARRINHO */
-
+    
     .divShowOpt {
         position: relative;
-        width: 35%;
+        width: 85%;
         margin: auto;
         background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
@@ -1979,8 +2364,8 @@ border-radius: 0;
 
     .divShowOptBtn {
         position: relative;
-        width: 50%;
-        left: 25%;
+        width: 90%;
+        left: 5%;
         margin-top: 1rem;
         display: inline-flex;
     }
@@ -1992,7 +2377,8 @@ border-radius: 0;
     .divTable {
         position: relative;
         width: 90%;
-        margin: 2rem 0;
+        margin: 3.8rem 0;
+        margin-bottom: 0;
         left: 5%;
     }
 
@@ -2009,7 +2395,7 @@ border-radius: 0;
         color: #9C45EB;
         font-weight: 700;
         font-family: 'Raleway-Medium';
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .tdCart {
@@ -2020,14 +2406,14 @@ border-radius: 0;
 
     .imgCart {
         position: relative;
-        width: 2rem;
+        width: 20%;
         float: left;
         top: .8rem;
     }
 
     .titleProdCart {
         font-family: 'Raleway-Medium';
-        font-size: 12px;
+        font-size: 10px;
         margin: .2rem 0;
         float: right;
         width: 75%;
@@ -2035,14 +2421,14 @@ border-radius: 0;
     }
 
     .brandProdCart {
-        font-size: 11px;
+        font-size: 10px;
         margin: .2rem 0;
         float: right;
         width: 75%;
     }
 
     .qtdProdCart {
-        font-size: 13px;
+        font-size: 11px;
         width: 40%;
         left: 30%;
         position: relative;
@@ -2053,13 +2439,13 @@ border-radius: 0;
     }
 
     .priceProdCart {
-        font-size: 12px;
+        font-size: 11px;
         text-align: center;
         font-family: 'Karla';
     }
 
     .descProdCart {
-        font-size: 10px;
+        font-size: 9px;
         text-align: center;
         font-family: 'Karla';
         text-decoration: line-through;
@@ -2166,48 +2552,684 @@ border-radius: 0;
         top: -.2rem;
     }
 
-    .limparCart {
-        background: #9C45EB;
-        border: none;
-        padding: 10px 5px;
+    .inlineDivShowOptBtn {
+        position: relative;
+        display: inline-block;
         height: auto;
-        margin-left: 4%;
-        font-family: 'Raleway-Medium';
-        color: #ffffff;
-        border-radius: 5px;
-        font-size: 10px;
-        cursor: pointer;
-        width: 33%;
+        padding: 5px 0;
+        width: 25%;
+        background: #9C45EB;
+        margin: 0 .2rem;
         text-align: center;
+        border-radius: 5px;
+    }
+
+
+    .linkShop {
+        text-decoration: none;
+        color: #fff;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        font-size: 12px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .limparCart {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 12px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        line-height: 18px;
+    }
+
+    .addCupom {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 12px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        line-height: 18px;
+    }
+
+    .divButtonCupom {
+        position: relative;
+        width: 25%;
+        top: 4rem;
     }
 
     .finalizaCompra {
-        background: #9C45EB;
+        background: none;
         border: none;
-        padding: 10px 5px;
-        height: auto;
-        margin-left: 4%;
-        font-family: 'Raleway-Medium';
-        color: #ffffff;
+        color: #fff;
+        font-size: 12px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        line-height: 18px;
+    }
+
+    .inputAddCupom {
+        position: absolute;
+        top: 5.5rem;
+        width: 50%;
+        height: 1.8rem;
+        left: 17%;
+        border: solid 2px #9C45EB;
         border-radius: 5px;
+        color: #0F0617;
+    }
+
+    .codeCupom {
+        color: #333;
+        font-family: 'Raleway-Medium';
+        position: relative;
+        left: 40px;
+    }
+
+    .remCupom {
+        position: absolute;
+        top: 5.5rem;
+        width: 10%;
+        height: 2.2rem;
+        background: #9C45EB;
+        color: #fff;
+        border: none;
+        left: 70%;
+    }
+
+    .remCupom i {
+        color: #ffffff;
+    }
+
+    .divAnswer p {
+        text-align: center;
+        margin: .4rem;
+        margin-bottom: 0;
+        color: rgb(235, 69, 69);
+        font-family: 'Raleway-Medium';
+        font-size: 13px;
+    }
+
+     /* AJUDA ARMAZEM */
+
+     .infoAgendText {
+        position: relative;
+        width: 85%;
+        margin: auto;
+        text-align: justify;
+        line-height: 24px;
+        font-size: 12px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .imgMapArmSub {
+        position: relative;
+        margin: 2rem 0;
+        left: 7.5%;
+        border-radius: 3px;
+        width: 85%;
+    }
+
+    /* TABELA DE HORARIOS */
+
+    .imageOnLeft {
+        clip-path: polygon(0 0, 80% 0, 100% 100%, 0 90%);
+        shape-outside: polygon(5% 0, 80% 0, 100% 100%, 0 90%);
+        float: left;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        width: 25%;
+    }
+
+    .rightDiv {
+       position: relative;
+       width: 85%;
+       left: 7.5%;
+    }
+
+    .paragOnRight {
+        font-family: 'Raleway-Medium';
+        color: black;
+        line-height: 24px;
+        text-align: justify;
+        font-size: 12px;
+    }
+
+    .imageOnRight {
+        float: right;
+        margin-top: 3rem;
+        margin-left: 5rem;
+        margin-right: 2rem;
+        width: 25%;
+    }
+
+    .leftDiv {
+        position: relative;
+        width: 85%;
+        left: 7.5%;
+    }
+
+    .leftDiv h2 {
+        position: relative;
+        text-align: center;
+        width: 70%;
+        left: 5%;
+    }
+ 
+    .paragOnLeft {
+        font-family: 'Raleway-Medium';
+        color: black;
+        line-height: 24px;
+        text-align: justify;
+        font-size: 12px;
+    }
+
+    .itinerarioTitle {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-top: 4rem;
+        margin-bottom: .5rem;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .bottomTitle {
+        position: relative;
+        width: 65%;
+        color: #0F0617;
+    }
+
+    .divTableArm {
+        position: relative;
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    .divTableArm table {
+        width: 100%;
+        background-color: #fff;
+    }
+      
+    .columnTitle {
+        width: 20%;
+        padding-left: 3%;
+    }
+      
+    .row100.head th {
+        padding: 2%;
+    }
+      
+    .row100 .column100.column1 {
+        padding: 1.5%;
+    }
+
+    .table100.ver6 {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #9C45EB;
+    }
+      
+    .table100.ver6 table {
+        background-color: #9C45EB;
+    }
+      
+    .table100.ver6 td {
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.4;
+    }
+      
+    .table100.ver6 th {
+        font-family: 'Raleway-Medium';
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.4;
+        text-transform: uppercase;
+      
+        background-color: rgba(255,255,255,0.32);
+    }
+      
+    .table100.ver6 .row100:hover td {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+    .table100.ver6 .hov-column-ver6 {
+        background-color: rgba(255,255,255,0.1);
+    }
+      
+      
+    .table100.ver6 .row100 td:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    /* PAGINA INTITUCIONAL */
+
+    .obj{
+        position: relative;
+        height: auto;
+        top: -5rem;
+    }
+
+    .I > img {
+        clip-path: polygon(5% 0, 85% 0, 100% 100%, 0 90%);
+        shape-outside: polygon(5% 0, 85% 0, 100% 100%, 0 90%);
+        float: left;
+        margin-top: 0rem;
+        margin-left: 3rem;
+        margin-right: 0rem;
+        width: 35%;
+        filter: grayscale(100%);
+    }
+
+    .II > img{
+        clip-path: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        shape-outside: polygon(22% 0, 95% 20%, 100% 100%, 0 80%);
+        float: right;
+        width: 35%;
+        margin-right: 3rem;
+        margin-left: 4rem;
+        filter: grayscale(100%);
+        top: -4rem;
+        position: relative;
+    }
+
+    .III > img{
+        clip-path: polygon(20% 20%, 100% 40%, 100% 100%, 30% 90%);
+        shape-outside: polygon(20% 20%, 100% 40%, 100% 100%, 30% 90%);
+        float: left;
+        width: 45%;
+        margin-right: 0rem;
+        margin-left: 0rem;
+        filter: grayscale(100%);
+        top: -9rem;
+        position: relative;
+    }
+
+
+    .I > h3, .II > h3, .III > h3{
+        font-family: 'Raleway-Medium';
+        color: #fff;
+        text-align: center;
+        line-height: 9.5;
+        z-index: 2;
+        position: relative;
+    }
+
+    .I > h3 {
+        width: 25%;
+        height: 6rem;
+        padding: 4px;
+        left: 14%;
+        top: 6rem;
+        font-size: 14px;
+        position: relative;
+        color: #ffffff;
+    }
+
+    .II > h3 {
+        width: 30%;
+        height: 6rem;
+        padding: 0px;
+        left: 58%;
+        top: 1.8rem;
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .III > h3 {
+        width: 30%;
+        height: 6rem;
+        padding: 4px;
+        left: 12%;
+        top: 0rem;
         font-size: 10px;
+        color: #ffffff;
+    }
+
+    .parag {
+        font-family: 'Raleway-Medium';
+        color: black;
+        text-align: justify;
+        line-height: 24px;
+        font-size: 12px;
+    }
+
+    .elementParag1{
+        clear: right;
+        width: 85%;
+        left: 7.5%;
+        top: -5rem;
+        position: relative;
+    }
+
+    .elementParag2{
+        clear: left;
+        width: 85%;
+        left: 7.5%;
+        top: -9rem;
+        position: relative;
+    }
+
+    .elementParag3{
+        clear: right;
+        width: 85%;
+        left: 7.5%;
+        top: -15rem;
+        position: relative;
+    }
+
+    /* PAGINA PAGAMENTO */
+
+    .bodyPagPage {
+        background: #9C45EB;
+    }
+
+    .warningMsgPag {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        top: 13rem;
+    }
+
+    .imgLogoPagPage {
+        position: relative;
+        width: 5%;
+        left: 48%;
+        top: 13rem;
+        margin: auto;
+    }
+
+    /* PAGINA DE ATENDIMENTO */
+
+    .divFormContactAttendance {
+        position: relative;
+        width: 85%;
+        left: 7.5%;
+        height: auto;
+        margin-top: 2rem;
+        border-radius: 3px;
+        padding: 10px 0px;
+        -webkit-box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+        -moz-box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+        box-shadow: 10px 10px 20px 7px rgba(209,205,209,1);
+    }
+
+    .divFormContactInformation {
+        position: relative;
+        width: 85%;
+        left: 7.5%;
+        height: 23rem;
+        border-radius: 3px;
+        padding: 10px 0;
+        margin-top: 1rem;
+    }
+
+    .titleDivContactPage {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+        color: #9C45EB;
+    }
+
+    .input-form {
+        margin: 1rem 0;
+    }
+
+    .input-form label {
+        color: #9C45EB;
+        font-family: 'Raleway';
+        font-size: 13px;
+        font-weight: bold;
+        position: relative;
+        width: 80%;
+        left: 10%;
+    }
+
+    .input-form input, .input-form select, .input-form textarea {
+        border: solid 2px #d3d2d2;
+        position: relative;
+        width: 80%;
+        left: 10%;
+        font-family: 'Raleway';
+        padding: 3px 0;
+    }
+
+    .btnDivFormContactAttendance {
+        background: #0F0617;
+        border: none;
+        color: #fff;
+        position: relative;
+        width: 30%;
+        left: 35%;
+        padding: 5px;
+        font-family: 'Raleway';
+        border-radius: 5px;
         cursor: pointer;
-        width: 33%;
+        font-weight: bold;
+    }
+
+    .textDivFormContactInformation {
+        text-align: justify;
+        font-family: 'Raleway-Medium';
+        line-height: 24px;
+        font-size: 13px;
+    }
+
+    .paragLineContactPage i {
+        color: #9C45EB;
+    }
+
+    .linkSocialMediaContactPage {
+        text-decoration: none;
+        color: #9C45EB;
+        font-size: 28px;
+    }
+
+    /* PÁGINA COMO COMPRAR */
+
+    .cartImgPageHowToBuy {
+        position: relative;
+        width: 40%;
+        float: right;
+        right: 8%;
+        top: 2rem;
+    }
+
+    .divPageHowToBuy {
+        float: left;
+        position: relative;
+        width: 40%;
+        left: 10%;
+    }
+
+    .divPageHowToBuy h2 {
+        font-size: 25px;
+        margin-top: 4rem;
+        position: relative;
+    }
+
+    .textPageHowToBuy {
+        line-height: 24px;
+        font-size: 14px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .Step0ImgPageHowToBuy {
+        position: relative;
+        width: 36%;
+        float: left;
+        left: 10%;
+        clear: left;
+        top: 2rem;
+    }
+
+    .Step0DivPageHowToBuy {
+        float: right;
+        position: relative;
+        width: 40%;
+        right: 10%;
+        clear: both;
+    }
+
+    .Step0DivPageHowToBuy h2{
+        font-size: 19px;
+        margin-top: 6rem;
+        position: relative;
+    }
+
+    .Step0TextPageHowToBuy {
+        line-height: 24px;
+        font-size: 14px;
+        font-family: 'Raleway-Medium';
+    }
+
+    .Step1ImgPageHowToBuy {
+        position: relative;
+        width: 36%;
+        float: right;
+        right: 10%;
+        clear: right;
+        top: 2rem;
+    }
+
+    .Step1DivPageHowToBuy {
+        float: left;
+        position: relative;
+        width: 40%;
+        right: 10%;
+        clear: both;
+    }
+
+    .Step1DivPageHowToBuy h2{
+        font-size: 24px;
+        margin-top: 4rem;
+        position: relative;
+        left: 50%;
+    }
+
+    .Step1TextPageHowToBuy {
+        line-height: 24px;
+        font-size: 14px;
+        font-family: 'Raleway-Medium';
+        left: 50%;
+        position: relative;
+    }
+
+    .purplearrow {
+        width: 40%;
+        transform: rotate(130deg);
+        position: relative;
+        top: 2rem;
+        right: 32%;
+    }
+
+    .opositepurplearrow {
+        width: 40%;
+        transform: rotate(45deg);
+        position: relative;
+        top: 2rem;
+        left: 135%;
+    }
+
+    /* PÁGINA TROCAS E DEVOLUÇÕES */
+
+    .defaultTitle {
+        font-family: 'Raleway';
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 1.2rem;
+    }
+
+    .HowToBuyLink {
+        background: #9C45EB;
+        height: 2px;
+        border: none;
+    }
+
+    .HowToBuyLinkSpecial {
+        background: #9C45EB;
+        height: 2px;
+        border: none;
+        position: relative;
+        left: 50%;
+    }
+
+    .changesDevolutionContentDiv {
+        position: relative;
+        width: 80%;
+        margin: auto;
+    }
+
+    .devolutionText {
+        line-height: 24px;
+        text-align: justify;
+        border: solid 2px #e2e3e6;
+        border-bottom: none;
+    }
+
+    .changeDevolutionSiteLink {
+        color: #9C45EB;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .listChangesDevolutinPage {
+        line-height: 24px;
+        list-style: square;
+        text-align: justify;
+    }
+
+    .paragNotSameStyle {
+        line-height: 24px;
+        text-align: justify;
+        border: solid 2px #e2e3e6;
+        border-bottom: none;
+        border-top: none;
+        padding: 20px;
+        font-family: 'Raleway-Medium';
+    }
+
+    /* PÁGINA PERECÍVEIS E CONGELADOS */
+
+    .freezeDivContent {
+        position: relative;
+        width: 90%;
+        margin: auto;
+    }
+
+    .titleFreezeDiv {
+        position: relative;
+        width: 85%;
+        margin: auto;
+    }
+
+    .titleFreezeDiv p {
+        font-family: 'Raleway-Medium';
+        line-height: 24px;
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .titleFreezeDiv h2 {
+        font-size: 25px;
         text-align: center;
     }
 
-    .linkShop {
-        background: #9C45EB;
-        border: none;
-        padding: 10px 5px;
-        height: auto;
-        font-family: 'Raleway-Medium';
-        color: #ffffff;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 10px;
-        width: 33%;
-        text-align: center;
+    .freezeDivContent img {
+        width: 100%;
     }
 }
 
@@ -2706,7 +3728,7 @@ border-radius: 0;
 
     .modal {
         display: none; /* Hidden by default */
-        position: absolute; /* Stay in place */
+        position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
         left: 0;
         top: 0;
@@ -2721,12 +3743,12 @@ border-radius: 0;
         background-color: #fefefe;
         margin: 12% auto;
         border: none;
-        width: 50%;
+        width: 80%;
         border-radius: 10px;
         height: 20rem;
         font-family: "Raleway";
         position: relative;
-        top: -0rem;
+        top: -10rem;
     }
 
     .modalLeftContent {
@@ -4763,13 +5785,14 @@ border-radius: 0;
         font-family: "Rubik";
         text-align: center;
         margin: 0 0;
+        float: left;
     }
 
     .linkCompanyName {
         color: #0F0617;
         text-decoration: none;
         position: relative;
-        top: .25rem;
+        top: .4rem;
     }
 
     .linkCompanyName img {

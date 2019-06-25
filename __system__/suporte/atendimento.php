@@ -27,7 +27,7 @@
         </nav>
         
         <div class="l-main">
-            <h2 class="tituloOfertas"><i class="fas fa-headset"></i> CENTRAL DE ATENDIMENTO</h2>
+            <h2 class="defaultTitle"><i class="fas fa-headset"></i> CENTRAL DE ATENDIMENTO</h2>
             <div class="form_atd divFormContactAttendance">
             <h3 class="titleDivContactPage">ENVIE UM FEEDBACK</h3>
                 <form id="form-atd" >
