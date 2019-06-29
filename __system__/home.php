@@ -190,7 +190,7 @@
             <div id="owl-demo" class="owl-carousel">
                 <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="The Last of us"></div>
                 <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="GTA V"></div>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="Mirror Edge"></div>
+                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_junina.jpg" alt="Mirror Edge"></div>
             </div>
         </div>
 
