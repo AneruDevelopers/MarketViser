@@ -7646,6 +7646,131 @@ border-radius: 0;
         transform: rotate(180deg);
     }
 
+    /* PAGE --> usuario/compras.php */
+
+    .divCompraLeft {
+        width: 20%;
+        height: 550px;
+        overflow-y: auto;
+    }
+
+    .menuTit {
+        width: 100%;
+        text-align: center;
+        color: #9C45EB;
+    }
+
+    .menuSubtit {
+        width: 100%;
+        text-align: center;
+        font-family: "Karla";
+    }
+
+    .divCompraRight {
+        width: 65%;
+        float: right;
+        background: #e9ebee;
+        color: #333;
+        position: relative;
+        right: 5rem;
+        height: 550px;
+        overflow-y: auto;
+    }
+
+    .searchPurch {
+        width: 82%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .help-block-purch {
+        position: absolute;
+        top: .3rem;
+        right: 0;
+    }
+
+    .answer-purch {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 250px;
+    }
+
+    .p_showPurch {
+        width: 90%;
+        padding: .2rem 5%;
+        color: #333;
+        background: #b2b4b8;
+        transition: .4s all;
+        font-family: "Karla";
+    }
+
+    .viewPurchase {
+        text-decoration: none;
+    }
+
+    .p_showPurch:hover {
+        background: #333;
+        color: #fff;
+    }
+
+    .headerShowPurch {
+        width: 90%;
+        margin: 0;
+        padding: .8rem 5%;
+        position: relative;
+        background: #333;
+        color: #fff;
+        font-family: "Karla";
+    }
+
+    .hashHeaderPurch {
+        font-size: 13pt;
+        font-weight: bolder;
+    }
+    
+    .totHeaderPurch {
+        position: absolute;
+        right: 2.5rem;
+        top: .8rem;
+        font-size: 11.5pt;
+        font-weight: bolder;
+    }
+
+    .mainShowPurch {
+        font-family: "Karla";
+        color: #333;
+        width: 80%;
+        padding: 2rem 10%;
+        margin: 0;
+        line-height: 24px;
+    }
+
+    .productsShowPurch {
+        width: 90%;
+        padding: 0 5%;
+        color: #333;
+        font-family: "Karla";
+    }
+
+    .itCart {
+        width: 100%;
+        text-align: center;
+    }
+
+    .productCart {
+        width: 100%;
+    }
+
+    .p_prodCart {
+        width: 20rem;
+        margin: 2rem;
+        display: inline-table;
+    }
+
+
     /* PAGE --> filtroPesqusia.php */
 
     .l-wrapper_FiltroPesq {
@@ -9238,12 +9363,12 @@ border-radius: 0;
     }
 
     .editIconTel {
-        float: right;
-        position: relative;
-        top: 0rem;
+        position: absolute;
+        right: .7rem;
+        top: .3rem;
     }
 
-    .editIcon button {
+    .editIcon button, .btnDel {
         background: none;
         border: none;
         padding: 0;
@@ -9267,6 +9392,13 @@ border-radius: 0;
         cursor: pointer;
     }
 
+    .btnDel {
+        font-size: 9pt;
+        position: absolute;
+        right: -20px;
+        top: 24px;
+    }
+
     .sectionAlterConfigProfilePage {
         position: relative;
         background: #e2e3e6;
@@ -9278,7 +9410,9 @@ border-radius: 0;
         margin: 0;
     }
 
-    .cancelarMudarSenha {
+    .cancelarMudarSenha, 
+    .cancelarMudarTel, 
+    .cancelarMudarEnd {
         position: relative;
         float: right;
         background: none;
@@ -9313,7 +9447,8 @@ border-radius: 0;
         color: #9C45EB;
     }
 
-    .sectionLabelInputChangePass div input {
+    .sectionLabelInputChangePass div input, 
+    .sectionLabelInputChangePass div select {
         position: relative;
         width: 97%;
         border: none;
@@ -9322,7 +9457,8 @@ border-radius: 0;
         border-radius: 3px;
     }
 
-    .sectionLabelInputChangePass div input:focus {
+    .sectionLabelInputChangePass div input:focus, 
+    .sectionLabelInputChangePass div select:focus {
         outline-color: #9C45EB;
     }
 

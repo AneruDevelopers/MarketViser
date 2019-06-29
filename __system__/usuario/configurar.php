@@ -23,7 +23,7 @@
 		<div class="l-topNavCad" id="topNav">
 		<?php
 			include('__system__/functions/includes/topNav.php');
-		?>    
+		?>
 		</div>
 		<div class="l-headerNavMobile" id="headerNav">
 		<?php
@@ -35,39 +35,47 @@
             <div class="leftContentConfigProfile">
 
             <div class="divConfigProfileFacts">
-                    <h4>FATOS DESSA CONTA</h4>
-                    <b class="titleDivConfigProfileFacts"><i class="fas fa-shopping-bag"></i> Total de compras:</b>
-                    <p class="textDivConfigProfileFacts">
-                    <b><?php
-                        $sel = $conn->prepare("SELECT COUNT(usu_id) AS qtd_compra, SUM(compra_total) AS total_compra FROM compra WHERE usu_id=:id");
+                <h4>FATOS DESSA CONTA</h4>
+                <b class="titleDivConfigProfileFacts"><i class="fas fa-shopping-bag"></i> Total de compras:</b>
+                <?php
+                    $sel = $conn->prepare("SELECT COUNT(usu_id) AS qtd_compra, SUM(compra_total) AS total_compra FROM compra WHERE usu_id=:id");
+                    $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
+                    $sel->execute();
+                    $res = $sel->fetchAll();
+                    if($res[0]['qtd_compra'] > 0) {
+                        echo '
+                            <p class="textDivConfigProfileFacts">
+                                <b>' . $res[0]['qtd_compra'] . '</b>
+                            </p>
+
+                            <!--
+                            <b class="titleDivConfigProfileFacts"><i class="fas fa-shopping-bag"></i> Total de gastos:</b>
+                            <p class="textDivConfigProfileFacts">
+                                <b>R$' . number_format($res[0]['total_compra'], 2, ',', '.') . '</b>
+                            </p>-->
+                        ';
+                    } else {
+                        echo '
+                            <p class="textDivConfigProfileFacts">
+                                <b>0</b>
+                            </p>';
+                    }
+                ?>
+
+                <b class="titleDivConfigProfileFacts"><i class="fas fa-heart"></i> Produtos favoritos:</b> 
+                <p class="textDivConfigProfileFacts">
+                <b>
+                    <?php
+                        $sel = $conn->prepare("SELECT COUNT(usu_id) AS qtd_fav FROM produtos_favorito WHERE usu_id=:id");
                         $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
                         $sel->execute();
-                        $res = $sel->fetchAll();
-                        if($res[0]['qtd_compra'] > 0) {
-                            echo '
-                                ' . $res[0]['qtd_compra'] . '
-                                <br/><b>Total de gastos:</b> R$' . number_format($res[0]['total_compra'], 2, ',', '.')
-                            ;
+                        if($sel->rowCount() > 0) {
+                            $res = $sel->fetchAll();
+                            echo $res[0]['qtd_fav'];
                         } else {
                             echo "0";
                         }
                     ?>
-                    </b>
-                    </p>
-                <b class="titleDivConfigProfileFacts"><i class="fas fa-heart"></i> Produtos favoritos:</b> 
-                <p class="textDivConfigProfileFacts">
-                <b>
-                <?php
-                    $sel = $conn->prepare("SELECT COUNT(usu_id) AS qtd_fav FROM produtos_favorito WHERE usu_id=:id");
-                    $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
-                    $sel->execute();
-                    if($sel->rowCount() > 0) {
-                        $res = $sel->fetchAll();
-                        echo $res[0]['qtd_fav'];
-                    } else {
-                        echo "0";
-                    }
-                ?>
                 </b>
                 </p>
                 </div>
@@ -126,13 +134,13 @@
                     <div class="topDivConfigProfilePage">
                         <h5><i class="fas fa-map-marker-alt"></i> ENDEREÇO:</h5>
                     </div>
-                    <div class="bottomDivConfigProfilePage">
+                    <div class="bottomDivConfigProfilePage divMostraEndereco">
                         <span class="specialSpanEnd">
                         <?= $_SESSION['inf_usu']['usu_end'] . ", " . $_SESSION['inf_usu']['usu_num']; ?>
                         <?= $_SESSION['inf_usu']['usu_complemento']; ?>
                         </span><br/>
                         <span class="specialSpanEnd">
-                        <?= $_SESSION['inf_usu']['usu_cep']; ?>
+                            <?= $_SESSION['inf_usu']['usu_cep']; ?>
                         </span><br/>
                         <span class="specialSpanEnd">
                         <?= $_SESSION['inf_usu']['usu_bairro'] . ", " . $_SESSION['inf_usu']['usu_cidade'] . " - " . $_SESSION['inf_usu']['usu_uf']; ?>
@@ -154,6 +162,9 @@
                     <span class="editIconTel">
                         <button class="mudarTelefone">
                             <i class="fas fa-edit"></i>
+                        </button><br/><br/>
+                        <button class="addTelefone">
+                            <i class="fas fa-plus"></i>
                         </button>
                     </span>
                 </div>
