@@ -1217,19 +1217,11 @@ ALTER TABLE `armazem`
 
 --
 -- Indexes for table `atendimento`
-<<<<<<< HEAD
 --
 ALTER TABLE `atendimento`
   ADD PRIMARY KEY (`id_atd`);
 
 --
-=======
---
-ALTER TABLE `atendimento`
-  ADD PRIMARY KEY (`id_atd`);
-
---
->>>>>>> 199277ba33d1be082f7125db743cc536bc3fd066
 -- Indexes for table `atend_resposta`
 --
 ALTER TABLE `atend_resposta`
