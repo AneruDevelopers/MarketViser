@@ -8000,6 +8000,7 @@ border-radius: 0;
         padding: .5rem;
         margin-left: 1%;
         margin-bottom: 5%;
+        min-height: 16rem;
     }
 
     .divShowProdFilter .prodFilter img, .divShowProdFav .prodFilter img {

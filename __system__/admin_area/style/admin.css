@@ -578,7 +578,7 @@ body {
         z-index: 99;
         border-radius: 5px;
         padding: 10px;
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
     }
 
     .closeModalAdd {
