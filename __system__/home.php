@@ -71,7 +71,6 @@
             }
             if($promo_id != $row['promo_id']) {
                 $produtos_topo[$c] = '
-                <br>
                     <div class="l-prods">
                         <div class="loop owl-carousel">
                 ';
@@ -169,7 +168,7 @@
         <!-- Title/Display Products -->
         <div class="l-main">
             <center>
-                <img style="margin: 1rem 0;" width="100%"  src="<?= base_url(); ?>img\Banner_TCC/bannerofreta.png" alt="Banner Ofertas Imperdíveis">
+                <img class="bannerOfertasImperdivies" width="100%" src="<?= base_url(); ?>img\Banner_TCC/bannerofreta.png" alt="Banner Ofertas Imperdíveis">
             </center>
             <div class="l-prods">
                 <?php
@@ -226,7 +225,7 @@
                 ?>
             </div> 
                 <center>
-                    <img width="100%"  src="<?= base_url(); ?>img\Banner_TCC\bannerDiaDosPaisRoxo.png" alt="Banner Dia dos Pais">
+                    <img class="bannerDiaDosPais" width="100%"  src="<?= base_url(); ?>img\Banner_TCC\bannerDiaDosPaisRoxo.png" alt="Banner Dia dos Pais">
                 </center>
                 <?php
                 if(!$empty_promo):

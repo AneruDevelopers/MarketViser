@@ -68,6 +68,8 @@ $(document).ready(function() {
       items:4,
       loop:false,
       margin:8,
+      dots:false,
+      nav:false,
       responsive:{
           600:{
               items:7
