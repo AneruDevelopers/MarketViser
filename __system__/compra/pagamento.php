@@ -2,6 +2,7 @@
     require_once "__system__/functions/pagseguro-transparente/configuration.php";
 
     $_SESSION['totCompra'] = 0;
+    $totDesconto = 0;
 
     function getProductsByIds($ids) {
         global $conn;
