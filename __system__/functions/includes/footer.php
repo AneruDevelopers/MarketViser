@@ -1,10 +1,3 @@
-<!-- <div class="links">
-    <a href="admin_area\admin_center">
-        <ul>
-            <li>Admin Area</li>
-        </ul>
-    </a>
-</div> -->
 <div class="svg-container">
     <div class="header-hero">
         <h1>Um mercado online<br/> como você nunca viu antes</h1>
