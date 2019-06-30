@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Jun-2019 às 00:19
+-- Generation Time: 30-Jun-2019 às 03:25
 -- Versão do servidor: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -219,13 +219,6 @@ CREATE TABLE `compra` (
   `status_id` int(11) NOT NULL,
   `forma_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `compra`
---
-
-INSERT INTO `compra` (`compra_id`, `compra_hash`, `compra_registro`, `compra_total`, `usu_id`, `status_id`, `forma_id`) VALUES
-(1, '26465012-79D5-4B2E-BEDD-82385D3FBA72', '2019-06-26 00:46:52', '95.77', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -515,7 +508,8 @@ INSERT INTO `dados_promocao` (`dados_id`, `produto_id`, `armazem_id`, `promo_id`
 (144, 7, 1, 17),
 (145, 21, 1, 17),
 (146, 4, 1, 17),
-(147, 25, 1, 17);
+(147, 25, 1, 17),
+(151, 36, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -587,13 +581,6 @@ CREATE TABLE `entrega` (
   `entrega_cidade` varchar(50) NOT NULL,
   `entrega_uf` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `entrega`
---
-
-INSERT INTO `entrega` (`entrega_id`, `compra_id`, `entrega_registro`, `entrega_horario`, `entrega_cep`, `entrega_end`, `entrega_num`, `entrega_complemento`, `entrega_bairro`, `entrega_cidade`, `entrega_uf`) VALUES
-(1, 1, '2019-06-26 00:46:52', '08:00:00', '16430-000', 'Rua Dolores de Souza', 107, '', 'Clementina', 'Guaiçara', 'SP');
 
 -- --------------------------------------------------------
 
@@ -765,14 +752,6 @@ CREATE TABLE `lista_compra` (
   `produto_id` int(11) NOT NULL,
   `produto_qtd` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `lista_compra`
---
-
-INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`) VALUES
-(1, 1, 8, 3),
-(2, 1, 24, 5);
 
 -- --------------------------------------------------------
 
@@ -1567,7 +1546,7 @@ ALTER TABLE `dados_horario_subcidade`
 -- AUTO_INCREMENT for table `dados_promocao`
 --
 ALTER TABLE `dados_promocao`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `departamento`
