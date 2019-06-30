@@ -12,7 +12,7 @@ $(document).ready(function(){
                 });
                     
             },
-            success: function () {
+            success: function (response) {
                
                 Toast.fire({
                     type: 'success',
