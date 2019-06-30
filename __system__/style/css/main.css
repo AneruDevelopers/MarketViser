@@ -8595,13 +8595,15 @@ border-radius: 0;
 
     /* PÁGINA DE PAGAMENTO */
     .divShowTotPag {
-        position: absolute;
+        position: relative;
         width: 25%;
         height: 10rem;
         left: 2%;
+        top: 3rem;
         background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 1rem 0;
+        float: left;
     }
 
     .pagseguroLogo {
