@@ -1,27 +1,27 @@
-$(document).ready(function(){
-    $('#submit1').click(function(){
+
+    $("#form-esqsenha").submit(function() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: BASE_URL + 'functions/novEmail',
+            url: BASE_URL + 'functions/esqSenha',
             data: $(this).serialize(),
             beforeSend: function () {
                 Toast.fire({
                     type: 'success',
                     title: 'Email está sendo enviado'
-                });
-                    
+                }); 
+                 
             },
-            success: function (response) {
-               
+            success: function (json) {
+                if(json['status'] == 1){
+              
                 Toast.fire({
                     type: 'success',
                     title: 'Email enviado com sucesso'
                 });
-            
+                }
+
             }
                             });
     });
-});;
 
-  
