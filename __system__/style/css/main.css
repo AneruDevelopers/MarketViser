@@ -7699,6 +7699,14 @@ border-radius: 0;
         overflow-y: auto;
     }
 
+    .btnClosePurch {
+        position: absolute;
+        top: .9rem;
+        left: .8rem;
+        color: #9C45EB;
+        cursor: pointer;
+    }
+
     .searchPurch {
         width: 82%;
         margin: 0 auto;
@@ -7724,9 +7732,10 @@ border-radius: 0;
         width: 90%;
         padding: .2rem 5%;
         color: #333;
-        background: #b2b4b8;
+        background: #e9ebee;
         transition: .4s all;
         font-family: "Karla";
+        margin-bottom: .1rem;
     }
 
     .viewPurchase {
@@ -7791,6 +7800,13 @@ border-radius: 0;
         width: 20rem;
         margin: 2rem;
         display: inline-table;
+    }
+
+    .msgErrorPurch {
+        width: 100%;
+        font-size: 9pt;
+        font-weight: bolder;
+        text-align: center;
     }
 
 
