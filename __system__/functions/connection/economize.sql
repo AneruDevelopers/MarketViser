@@ -220,6 +220,13 @@ CREATE TABLE `compra` (
   `forma_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `compra`
+--
+
+INSERT INTO `compra` (`compra_id`, `compra_hash`, `compra_registro`, `compra_total`, `usu_id`, `status_id`, `forma_id`) VALUES
+(1, '26465012-79D5-4B2E-BEDD-82385D3FBA72', '2019-06-26 00:46:52', '95.77', 1, 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -581,6 +588,13 @@ CREATE TABLE `entrega` (
   `entrega_uf` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `entrega`
+--
+
+INSERT INTO `entrega` (`entrega_id`, `compra_id`, `entrega_registro`, `entrega_horario`, `entrega_cep`, `entrega_end`, `entrega_num`, `entrega_complemento`, `entrega_bairro`, `entrega_cidade`, `entrega_uf`) VALUES
+(1, 1, '2019-06-26 00:46:52', '08:00:00', '16430-000', 'Rua Dolores de Souza', 107, '', 'Clementina', 'Guaiçara', 'SP');
+
 -- --------------------------------------------------------
 
 --
@@ -751,6 +765,14 @@ CREATE TABLE `lista_compra` (
   `produto_id` int(11) NOT NULL,
   `produto_qtd` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `lista_compra`
+--
+
+INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`) VALUES
+(1, 1, 8, 3),
+(2, 1, 24, 5);
 
 -- --------------------------------------------------------
 
