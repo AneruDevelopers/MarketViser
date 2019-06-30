@@ -34,6 +34,7 @@
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esqueceu a senha? <a href="<?= base_url_php(); ?>usuario/esqueceu-senha">Clique aqui!</a><br/>
                         <button class="btnSend" type="submit" id="btn-login">ENTRAR</button>
                         <div class="help-block-login"></div>
                     </form>
