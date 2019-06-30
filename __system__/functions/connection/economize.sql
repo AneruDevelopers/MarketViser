@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 30/06/2019 às 05:12
+-- Tempo de geração: 30/06/2019 às 06:28
 -- Versão do servidor: 5.7.26
 -- Versão do PHP: 7.3.5
 
@@ -234,6 +234,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `compra_hash` varchar(255) NOT NULL,
   `compra_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `compra_total` decimal(10,2) NOT NULL,
+  `compra_link` varchar(255) DEFAULT NULL,
   `usu_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `forma_id` int(11) NOT NULL,
@@ -243,13 +244,6 @@ CREATE TABLE IF NOT EXISTS `compra` (
   KEY `fk_CompraPag` (`forma_id`),
   KEY `fk_CompArm` (`armazem_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `compra`
---
-
-INSERT INTO `compra` (`compra_id`, `armazem_id`, `compra_hash`, `compra_registro`, `compra_total`, `usu_id`, `status_id`, `forma_id`) VALUES
-(1, 1, '26465012-79D5-4B2E-BEDD-82385D3FBA72', '2019-06-26 00:46:52', '95.77', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -648,13 +642,6 @@ CREATE TABLE IF NOT EXISTS `entrega` (
   KEY `fk_EntCompra` (`compra_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `entrega`
---
-
-INSERT INTO `entrega` (`entrega_id`, `compra_id`, `entrega_registro`, `entrega_horario`, `entrega_cep`, `entrega_end`, `entrega_num`, `entrega_complemento`, `entrega_bairro`, `entrega_cidade`, `entrega_uf`) VALUES
-(1, 1, '2019-06-26 00:46:52', '2019-06-27 08:00:00', '16430-000', 'Rua Dolores de Souza', 107, '', 'Clementina', 'Guaiçara', 'SP');
-
 -- --------------------------------------------------------
 
 --
@@ -845,14 +832,6 @@ CREATE TABLE IF NOT EXISTS `lista_compra` (
   KEY `fk_CompraLista` (`compra_id`),
   KEY `fk_ListaProd` (`produto_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `lista_compra`
---
-
-INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`) VALUES
-(1, 1, 8, 3),
-(2, 1, 24, 5);
 
 -- --------------------------------------------------------
 
@@ -1377,7 +1356,7 @@ ALTER TABLE `conf_mail`
 -- Restrições para tabelas `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  ADD CONSTRAINT `fk_ArmProd` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`),
+  ADD CONSTRAINT `fk_ArmProd` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_ProdArm` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1440,8 +1419,8 @@ ALTER TABLE `funcionario`
 -- Restrições para tabelas `lista_compra`
 --
 ALTER TABLE `lista_compra`
-  ADD CONSTRAINT `fk_CompraLista` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`compra_id`),
-  ADD CONSTRAINT `fk_ListaProd` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
+  ADD CONSTRAINT `fk_CompraLista` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`compra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ListaProd` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `produto`

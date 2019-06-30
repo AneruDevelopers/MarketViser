@@ -161,8 +161,13 @@
     $xml = simplexml_load_string($answer);
 
     if(!isset($xml->error)) {
-        $ins = $conn->prepare("INSERT INTO compra(armazem_id, compra_hash, compra_total, usu_id, status_id, forma_id) 
-        VALUES({$_SESSION['arm_id']}, '{$xml->code}', {$xml->grossAmount}, {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
+        if($xml->paymentMethod->type == 2) {
+            $ins = $conn->prepare("INSERT INTO compra(armazem_id, compra_hash, compra_total, compra_link, usu_id, status_id, forma_id) 
+            VALUES({$_SESSION['arm_id']}, '{$xml->code}', {$xml->grossAmount}, '{$xml->paymentLink}', {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
+        } else {
+            $ins = $conn->prepare("INSERT INTO compra(armazem_id, compra_hash, compra_total, usu_id, status_id, forma_id) 
+            VALUES({$_SESSION['arm_id']}, '{$xml->code}', {$xml->grossAmount}, {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
+        }
         if(!$ins->execute()) {
             $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
         } else {
@@ -186,6 +191,35 @@
                     $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
                 } else {
                     $_SESSION['paymentDone'] = TRUE;
+
+                    $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.compra_id={$res['compra_id']}");
+                    $sel->execute();
+                    
+                    $c = 0;
+                    while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $row['compra_registro']);
+                        $day = explode("-", $exp[0]);
+                        $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
+                        " às " . $exp[1];
+    
+                        $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
+    
+                        $_SESSION['compra']['id'] = $row['compra_id'];
+                        $_SESSION['compra']['armazem'] = $row['armazem_nome'] . " &nbsp;| &nbsp;" . $row['cid_nome'] . " - " . $row['est_uf'];
+                        $_SESSION['compra']['hash'] = $row['compra_hash'];
+                        $_SESSION['compra']['total'] = $row['compra_total'];
+                        $_SESSION['compra']['status'] = $row['status_nome'];
+                        $_SESSION['compra']['forma_pag'] = $row['forma_nome'];
+    
+                        if($row['compra_link'] != '') {
+                            $_SESSION['compra']['link'] = $row['compra_link'];
+                        }
+    
+                        $_SESSION['produto_id'][$c] = $row['produto_id'];
+                        $_SESSION['produto_nome'][$c] = $row['produto_nome'];
+                        $_SESSION['produto_qtd'][$c] = $row['produto_qtd'];
+                        $c++;
+                    }
                 }
             }
         }

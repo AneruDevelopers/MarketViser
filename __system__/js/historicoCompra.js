@@ -27,8 +27,8 @@ function showPurch() {
                             Armazém: <b>` + json['compra']['armazem'] + `</b><br/>
                             Status: <b>` + json['compra']['status'] + `</b><br/>
                             Meio de pagamento: <b>` + json['compra']['forma_pag'] + `</b> 
-                            <span class="linkPayment"><span><br/>
-                            <a href="` + BASE_URL + `usuario/nota-fiscal-historico?compra=` + json['compra']['id'] + `">Gerar PDF</a>
+                            <span class="linkPayment"></span><br/>
+                            <a href="` + BASE_URL + `usuario/nota-fiscal?compra=` + json['compra']['id'] + `">Gerar PDF</a>
                         </div>
 
                         <div class="productsShowPurch">
@@ -48,7 +48,7 @@ function showPurch() {
                     `);
 
                     if(json['compra']['link']) {
-                        $('.linkPayment').html(`<a href="` + json['compra']['link'] + `">Abrir link<a>`);
+                        $('.linkPayment').html(`<a href="` + json['compra']['link'] + `">Abrir link</a>`);
                     }
 
                     for(var i = 0; i < json['produto_id'].length; i++) {

@@ -7810,6 +7810,95 @@ border-radius: 0;
     }
 
 
+    /* PAGE --> extrato.php */
+    .divThanks {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        margin: 1.4rem 0;
+    }
+
+    .thanksPurchase {
+        padding: 2rem 0;
+        width: 35%;
+        margin: 0 auto;
+        text-align: center;
+        background: #9C45EB;
+        color: #fff;
+        border-radius: 3px;
+        box-shadow: 0px 0px 5px rgba(0,0,0,.4);
+    }
+
+    .hashPurchase {
+        width: 100%;
+        text-align: center;
+        padding: .4rem 0;
+        margin: 1.4rem 0;
+        font-size: 14pt;
+        color: #0F0617;
+        font-family: "Karla";
+    }
+
+    .infPurchase {
+        font-family: "Karla";
+        width: 30%;
+        float: right;
+        position: relative;
+        right: 5%;
+    }
+
+    .totPurchase {
+        font-size: 12pt;
+        color: #333;
+        font-weight: bolder;
+        margin: .6rem 0;
+    }
+
+    .linkBoleto {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .btnBoleto {
+        cursor: pointer;
+        padding: .3rem;
+        border: none;
+        background: #9C45EB;
+        color: #fff;
+        border-radius: 2px;
+        outline: none;
+    }
+
+    .itemsCart {
+        font-family: "Karla";
+        width: 50%;
+        position: relative;
+        left: 5%;
+        margin: 0;
+    }
+
+    .titCartPurchase {
+        width: 100%;
+        text-align: center;
+        font-size: 12.5pt;
+        margin: .2rem 0;
+    }
+
+    .productCart {
+        width: 45%;
+        margin: 1rem;
+        display: inline-table;
+    }
+
+    .footPurch {
+        width: 45%;
+        position: relative;
+        left: 5%;
+        margin: 2rem 0;
+        line-height: 24px;
+    }
+
+
     /* PAGE --> filtroPesqusia.php */
 
     .l-wrapper_FiltroPesq {

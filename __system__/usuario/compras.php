@@ -9,7 +9,7 @@
     $sel->execute();
     $inf_compra = $sel->fetch( PDO::FETCH_ASSOC );
     if($sel->rowCount() > 0) {
-        $sel = $conn->prepare("SELECT c.compra_id, c.compra_registro, c.compra_total, f.forma_nome FROM compra AS c JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id WHERE c.usu_id=:id");
+        $sel = $conn->prepare("SELECT c.compra_id, c.compra_registro, c.compra_total, f.forma_nome FROM compra AS c JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id WHERE c.usu_id=:id ORDER BY c.compra_registro DESC");
         $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
         $sel->execute();
         while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
