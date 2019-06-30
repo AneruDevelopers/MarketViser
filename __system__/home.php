@@ -11,7 +11,6 @@
     if(isset($_SESSION['query_fav'])) {
         unset($_SESSION['query_preco']);
     }
-
     //BUSCANDO PRODUTOS COM PROMOÇÕES CUMUNS
     $empty = TRUE;
     $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.produto_desconto_porcent <> '' AND d.armazem_id={$_SESSION['arm_id']}");
@@ -38,8 +37,6 @@
             $produtos[] = $row;
         }
     }
-
-
     //BUSCANDO PROMOCÕES PERSONALIZADAS
     $empty_promo = TRUE;
     $sel_promo = $conn->prepare("SELECT p.produto_id, p.produto_nome, p.produto_img, p.produto_tamanho, pr.promo_id, pr.promo_desconto, pr.promo_nome, pr.promo_subtit, pr.promo_expira, d.produto_qtd, d.produto_preco FROM produto AS p JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id JOIN promocao_temp AS pr ON pr.promo_id=dp.promo_id JOIN dados_armazem AS d ON dp.produto_id=d.produto_id WHERE pr.promo_status=1 AND d.armazem_id={$_SESSION['arm_id']} ORDER BY pr.promo_id");
@@ -65,18 +62,6 @@
             } else {
                 $row["carrinho"] = 0;
             }
-
-            // if($row['promo_expira'] != '') {
-            //     $temp[$c] = $row['promo_id'];
-            //     $exp = explode(" ", $row['promo_expira']);
-            //     $dia = explode("-", $exp[0]);
-            //     $hora = explode(":", $exp[1]);
-            //     $function[$c] = $dia[0] . ", " . $dia[1] . ", " . $dia[2] . 
-            //         ", " . $hora[0] . ", " . $hora[1] . ", " . $hora[2] . ", " . "'temp" . $row['promo_id'] . "'";
-            // } else {
-            //     $temp[$c] = FALSE;
-            // }
-
             if($row['promo_expira'] != '') {
                 $exp = explode(" ", $row['promo_expira']);
                 $dia = explode("-", $exp[0]);
@@ -84,7 +69,6 @@
 
                 $row['promo_expira'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $hora[0] . "h" . $hora[1];
             }
-            
             if($promo_id != $row['promo_id']) {
                 $produtos_topo[$c] = '
                 <br>
@@ -95,7 +79,6 @@
             } else {
                 $produtos_topo[$c] = '';
             }
-
             $produtos_promo[$c] = '
                 <div class="divProdCarousel">
                     <div class="btnFavorito' . $row['produto_id'] . '"></div>
@@ -111,7 +94,6 @@
                         </p>
                     </a>
             ';
-            
             if($row['empty']) {
                 $produtos_promo[$c] .= '
                     <div>
@@ -136,7 +118,6 @@
                     </div>
                 ';
             }
-
             $produtos_promo[$c] .= '
                 </div>
             ';
@@ -160,7 +141,6 @@
 </head>
 <body>
     <div class="l-wrapper">
-
         <div class="l-topNav" id="topNav">
         <?php
             include('functions/includes/topNav.php');
@@ -177,27 +157,20 @@
             include('functions/includes/bottom.php');
         ?>
         </div>
-        
-
-        
         <!-- -------------------- -->
-
-
-
         <!-- Carousel -->
-        
         <div class="l-carousel">
             <div id="owl-demo" class="owl-carousel">
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="The Last of us"></div>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="GTA V"></div>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_junina.jpg" alt="Mirror Edge"></div>
+                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_junina.jpg" alt="Banner da Festa Junina"></div>
+                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="Banner Promoção de Vinhos"></div>
+                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="Banner promoção de Ovo de Páscoa"></div>
             </div>
         </div>
-
         <!-- Title/Display Products -->
-
         <div class="l-main">
-            <h2 class="defaultTitle">OFERTAS IMPERDÍVEIS</h2>
+            <center>
+                <img style="margin: 1rem 0;" width="100%"  src="<?= base_url(); ?>img\Banner_TCC/bannerofreta.png" alt="Banner Ofertas Imperdíveis">
+            </center>
             <div class="l-prods">
                 <?php
                     if(!$empty):?>
@@ -278,11 +251,8 @@
                     endforeach;
                 endif;
             ?>
-            
         </div>
-
         <!-- Display Products -->
-
         <?php
             include('functions/includes/modal.php');
         ?>
@@ -298,7 +268,6 @@
         ?>
         </div>
     </div>
-
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
     <script src="<?= base_url(); ?>js/mask.js"></script>
@@ -327,20 +296,6 @@
             <?php
             unset($_SESSION['msg_cad']);
         endif;
-
-        // if(!$empty_promo):
-        //     $c = "";
-        //     foreach($produtos_promo as $k => $v):
-        //         if($c != $k):
-        //             if($temp[$k]):
-        //                 <script>
-        //                     atualizaContador();
-        //                 </script>
-        //             endif;
-        //             $c = $k;
-        //         endif;
-        //     endforeach;
-        // endif;
     ?>
 </body>
 </html>

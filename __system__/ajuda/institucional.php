@@ -38,35 +38,25 @@
                 <h3>QUEM SOMOS</h3>
                 <img src="../__system__\img\Banner_TCC\startup-593296_640.jpg" alt="Equipe e.conomize">
             </div>
-            <p class="parag elementParag1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at         labore tempore ipsum quia nemo pariatur, 
-                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
-                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
-                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            <p class="parag elementParag1"> A <span style="color:#9C45EB;"><b>e.conomize</b></span> é uma das empresas mais visionárias da atualidade. Somos um <b>mercado 100% digital</b> que inova na maneira de vender produtos pela internet e no jeito de se relacionar com seus clientes. Somos uma empresa jovem com o espírito de um jovem, criativa, destemida e sonhadora, ao mesmo passo que, somos compromissados com as responsabilidades envolvidas em oferecer um serviço de qualidade e excelência aos nossos tão amados clientes. Gostamos muito de lidar com pessoas, por isso consideramos que nossos clientes são nossa maior conquista e maior prioridade. Sendo assim, <b>NÓS</b>, somos eu, você, e todos aqueles que todos os dias trabalham para que este projeto mantenha-se como uma realidade positiva na vida de muitas pessoas.
             </p>
             <div class="obj II">
                 <h3>NOSSO OBJETIVO</h3>
                 <img src="../__system__\img\Banner_TCC\desk-3139127_640.jpg" alt="Equipe e.conomize">
             </div>
-            <p class="parag elementParag2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
-                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
-                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
-                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            <p class="parag elementParag2">Nosso maior objetivo é possibilitar que as pessoas possam aproveitar mais a vida, sim a vida, porque nós não apenas vendemos produtos, nós vendemos tempo. Através desse pensamento, criamos essa plataforma aonde nossos clientes podem, por meio de alguns poucos 'clicks', fazer compras e agenda-las, para que sejam entregues quando e aonde quiserem, esse é o nosso propósito. O grande desafio foi garantir que a tecnologia tornasse o processo simples, seguro e rápido. E conseguimos! Esqueça as antigas necessidades de ter que se deslocar sempre que precisar comprar alguma coisinha no mercado. Agora é o futuro, que já começou. Estamos aqui, prontos para te atender, seja dia ou seja noite, <span style="color:#9C45EB;"><b>e.conomize</b></span> em tudo, menos em viver.
             </p>
             <div class="obj III">
                 <h3>A FAMÍLIA E.CONOMIZE!</h3>
                 <img src="../__system__\img\Banner_TCC\adult-2449725_640.jpg" alt="Equipe e.conomize">
             </div>
-            <p class="parag elementParag3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure quaerat laborum at labore tempore ipsum quia nemo pariatur, 
-                        alias eius, consectetur iste reiciendis, unde minima! Minima, quo sit. Nesciunt.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia optio amet sint asperiores, voluptatem sunt debitis error 
-                    illum odit repudiandae eos deleniti ratione maiores blanditiis, ipsam suscipit, commodi earum magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque ea cum tempore maiores praesentium iste! 
-                    Aut iure perspiciatis consequuntur illum qui molestiae? Tenetur culpa suscipit numquam ab assumenda in!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae placeat expedita error ullam, voluptate vel in recusandae, quas doloremque fuga sequi, ipsum nesciunt animi sapiente exercitationem iusto dolores! Soluta, placeat.
+            <p class="parag elementParag3">Este projeto não seria possível sem a colaboração de muitas pessoas. Nós agradecemos, profundamente, nossas famílias por todo o apoio dado, nossos amigos por toda admiração recebida, e sobretudo, todos os professores que fizeram parte desta nossa empreitada. Vocês <b>SÃO</b> a equipe <span style="color:#9C45EB;"><b>e.conomize</b></span>. Cada conselho dado, cada incentivo dirijido, cada palavra dissertada, cada momento vivido. Sempre levaremos conosco. Somos gratos pela <b>ETEC DE LINS</b>, por proporcionar, a nós jovens, um espaço para a expansão de conhecimento, que despertou, em cada um de nós, a fome do crescimento pessoal. Não foi fácil, nem disseram que seria. Mas aqui está o resultado.
             </p>
+            <div class="fotoDaTurma">
+                <h4>"Somos eternos aprendizes e esse é só o nosso primeiro passo"</h4>
+                <h6>Turma WEB, ETEC de Lins - 2019</h6>
+                <img src="../__system__\img\Banner_TCC/fotodaturma.jpeg" alt="">
+            </div>
         </div>
             
         <?php
