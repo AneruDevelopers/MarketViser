@@ -19,19 +19,16 @@
             include('__system__/functions/includes/topNav.php');
         ?>    
         </div>
-
         <nav class="l-headerNav" id="headerNav">
         <?php
             include('__system__/functions/includes/header.php');
         ?>
         </nav>
-
         <div class="l-bottomNav" id="bottomNav">
         <?php
             include('__system__/functions/includes/bottom.php');
         ?>
         </div>
-
         <div class="l-mainFiltroPesq">
             <h2 class="defaultTitle">INSTITUCIONAL</h2>
             <div class="obj I">
@@ -44,7 +41,7 @@
                 <h3>NOSSO OBJETIVO</h3>
                 <img src="../__system__\img\Banner_TCC\desk-3139127_640.jpg" alt="Equipe e.conomize">
             </div>
-            <p class="parag elementParag2">Nosso maior objetivo é possibilitar que as pessoas possam aproveitar mais a vida, sim a vida, porque nós não apenas vendemos produtos, nós vendemos tempo. Através desse pensamento, criamos essa plataforma aonde nossos clientes podem, por meio de alguns poucos 'clicks', fazer compras e agenda-las, para que sejam entregues quando e aonde quiserem, esse é o nosso propósito. O grande desafio foi garantir que a tecnologia tornasse o processo simples, seguro e rápido. E conseguimos! Esqueça as antigas necessidades de ter que se deslocar sempre que precisar comprar alguma coisinha no mercado. Agora é o futuro, que já começou. Estamos aqui, prontos para te atender, seja dia ou seja noite, <span style="color:#9C45EB;"><b>e.conomize</b></span> em tudo, menos em viver.
+            <p class="parag elementParag2">Nosso maior objetivo é possibilitar que as pessoas possam aproveitar mais a vida, sim a vida, porque nós não apenas vendemos produtos, nós vendemos tempo. Através desse pensamento, criamos essa plataforma onde nossos clientes podem, por meio de alguns poucos 'clicks', fazer compras e agenda-las, para que sejam entregues quando e aonde quiserem, esse é o nosso propósito. O grande desafio foi garantir que a tecnologia tornasse o processo simples, seguro e rápido. E conseguimos! Esqueça as antigas necessidades de ter que se deslocar sempre que precisar comprar alguma coisinha no mercado. Agora é o futuro, que já começou. Estamos aqui, prontos para te atender, seja dia ou seja noite, <span style="color:#9C45EB;"><b>e.conomize</b></span> em tudo, menos em viver.
             </p>
             <div class="obj III">
                 <h3>A FAMÍLIA E.CONOMIZE!</h3>
@@ -58,11 +55,9 @@
                 <img src="../__system__\img\Banner_TCC/fotodaturma.jpeg" alt="">
             </div>
         </div>
-            
         <?php
             include('__system__/functions/includes/modal.php');
         ?>
-        
         <div class="l-footerFiltroPesq" id="footer">
         <?php
             include('__system__/functions/includes/footer.php');
@@ -74,7 +69,6 @@
         ?>
         </div>
     </div>
-
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>

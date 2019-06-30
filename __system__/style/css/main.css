@@ -9087,6 +9087,7 @@ border-radius: 0;
         font-size: 1.4rem;
         position: relative;
         color: #ffffff;
+        top: 8rem;
     }
 
     .II > h3 {
@@ -9096,6 +9097,7 @@ border-radius: 0;
         left: 70%;
         font-size: 1.4rem;
         color: #ffffff;
+        top: 4rem;
     }
 
     .III > h3 {
@@ -9105,6 +9107,7 @@ border-radius: 0;
         left: 15%;
         font-size: 1.4rem;
         color: #ffffff;
+        top: 14rem;
     }
 
     .parag {
