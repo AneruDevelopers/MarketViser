@@ -20,11 +20,15 @@ function showPurch() {
                             <span class="totHeaderPurch">Valor total: R$` + json['compra']['total'] + `</span>
                         </div>
 
+                        <span class="btnClosePurch"><i class="far fa-times-circle"></i></span>
+
                         <div class="mainShowPurch">
                             Data realizada: <b>` + json['compra']['registro'] + `</b><br/>
+                            Armazém: <b>` + json['compra']['armazem'] + `</b><br/>
                             Status: <b>` + json['compra']['status'] + `</b><br/>
                             Meio de pagamento: <b>` + json['compra']['forma_pag'] + `</b> 
-                            <span class="linkPayment"><span>
+                            <span class="linkPayment"></span><br/>
+                            <a href="` + BASE_URL + `usuario/nota-fiscal?compra=` + json['compra']['id'] + `">Gerar PDF</a>
                         </div>
 
                         <div class="productsShowPurch">
@@ -44,7 +48,7 @@ function showPurch() {
                     `);
 
                     if(json['compra']['link']) {
-                        $('.linkPayment').html(`<a href="` + json['compra']['link'] + `">Abrir link<a>`);
+                        $('.linkPayment').html(`<a href="` + json['compra']['link'] + `">Abrir link</a>`);
                     }
 
                     for(var i = 0; i < json['produto_id'].length; i++) {
@@ -56,6 +60,7 @@ function showPurch() {
                             </p>
                         `);
                     }
+                    closePurch();
                 } else {
                     $('.answer-purch').html(`
                         <p class="msgErrorPurch">` + json['error'] + `</p>
@@ -63,6 +68,17 @@ function showPurch() {
                 }
             }
         });
+    });
+}
+
+function closePurch() {
+    $('.btnClosePurch').click(function(e) {
+        e.preventDefault();
+        $('.divCompraRight').html(`
+            <div class="answer-purch">
+                <h1>Clique em uma compra e ela aparecerá aqui!</h1>
+            </div>
+        `);
     });
 }
 
@@ -82,7 +98,7 @@ function writePurch() {
                         <a href="#" class="viewPurchase" data-purch="` + json['compra'][i].compra_id + `">
                             <p class="p_showPurch">
                                 Data: ` + json['compra'][i].compra_registro + `<br/>
-                                Status: ` + json['compra'][i].status_nome + ` | Total: R$` + json['compra'][i].compra_total + `<br/>
+                                Total: R$` + json['compra'][i].compra_total + `<br/>
                                 Meio Pag.: ` + json['compra'][i].forma_nome + `
                             </p>
                         </a>
@@ -121,7 +137,7 @@ $('#inputSearchPurch').keyup(function(e) {
                             <a href="#" class="viewPurchase" data-purch="` + json['compra'][i].compra_id + `">
                                 <p class="p_showPurch">
                                     Data: ` + json['compra'][i].compra_registro + `<br/>
-                                    Status: ` + json['compra'][i].status_nome + ` | Total: R$` + json['compra'][i].compra_total + `<br/>
+                                    Total: R$` + json['compra'][i].compra_total + `<br/>
                                     Meio Pag.: ` + json['compra'][i].forma_nome + `
                                 </p>
                             </a>
