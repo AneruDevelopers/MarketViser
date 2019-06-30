@@ -36,7 +36,7 @@
             $compra_id = $_POST['showPurch'];
             $json['error'] = NULL;
 
-            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.usu_id=:id AND c.compra_id=:c_id");
+            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.usu_id=:id AND c.compra_id=:c_id");
             $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
             $sel->bindValue(":c_id", "{$compra_id}");
             $sel->execute();
@@ -57,6 +57,7 @@
                     $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
 
                     $json['compra']['id'] = $row['compra_id'];
+                    $json['compra']['armazem'] = $row['armazem_nome'] . " &nbsp;| &nbsp;" . $row['cid_nome'] . " - " . $row['est_uf'];
                     $json['compra']['registro'] = $row['compra_registro'];
                     $json['compra']['hash'] = $row['compra_hash'];
                     $json['compra']['total'] = $row['compra_total'];

@@ -22,6 +22,7 @@ function showPurch() {
 
                         <div class="mainShowPurch">
                             Data realizada: <b>` + json['compra']['registro'] + `</b><br/>
+                            Armazém: <b>` + json['compra']['armazem'] + `</b><br/>
                             Status: <b>` + json['compra']['status'] + `</b><br/>
                             Meio de pagamento: <b>` + json['compra']['forma_pag'] + `</b> 
                             <span class="linkPayment"><span>

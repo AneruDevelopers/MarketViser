@@ -7739,7 +7739,8 @@ border-radius: 0;
         font-weight: bolder;
     }
 
-    .mainShowPurch {
+    .mainShowPurch, 
+    .shippingShowPurch {
         font-family: "Karla";
         color: #333;
         width: 80%;

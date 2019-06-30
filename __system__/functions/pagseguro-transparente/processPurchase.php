@@ -161,8 +161,8 @@
     $xml = simplexml_load_string($answer);
 
     if(!isset($xml->error)) {
-        $ins = $conn->prepare("INSERT INTO compra(compra_hash, compra_total, usu_id, status_id, forma_id) 
-        VALUES('{$xml->code}', {$xml->grossAmount}, {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
+        $ins = $conn->prepare("INSERT INTO compra(armazem_id, compra_hash, compra_total, usu_id, status_id, forma_id) 
+        VALUES({$_SESSION['arm_id']}, '{$xml->code}', {$xml->grossAmount}, {$_SESSION['inf_usu']['usu_id']}, {$xml->status}, {$xml->paymentMethod->type})");
         if(!$ins->execute()) {
             $xml->errorInsert = "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo. Desculpe-nos!";
         } else {
