@@ -128,7 +128,7 @@
             $pdf->Cell(78, 10, "Muito obrigado e volte sempre!", 0, 1, "C");
 
             $y -= 4;
-            $pdf->Image('__system__/img/Banner_TCC/logo_fundo degrade.png', 78, $y, 50);
+            $pdf->Image('__system__/img/Banner_TCC/Logo_fundo degrade.png', 78, $y, 50);
             
             $pdf->Output($arquivo, $tipo_pdf);
         } else {
