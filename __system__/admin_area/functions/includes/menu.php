@@ -1,4 +1,8 @@
 <header class="l-header">
+    <h2 class="logout">
+        <a href="<?= base_url_adm_php(); ?>functions/logout"><i class="fas fa-sign-out-alt"></i></a>
+    </h2>
+
     <h2 class="notification btnModalNot">
         <i class="fas fa-bell"></i>
         <div class="numNot"></div>
@@ -53,18 +57,19 @@
                 <li><a href="<?= base_url_adm_php(); ?>banner/central">GERENCIADOR</a></li>
             </ul>
         </div>
-        <div class="item">
+        <!-- <div class="item">
             <input type="checkbox" id="check4">
             <label for="check4"><i class="fas fa-shopping-basket"></i>&nbsp; COMPRAS</label>
             <ul>
-                <li><a href="<?= base_url_adm_php(); ?>compra/central">GERENCIADOR</a></li>
+                <li><a href="compra/central">GERENCIADOR</a></li>
             </ul>
-        </div>
+        </div> -->
         <div class="item">
             <input type="checkbox" id="check5">
             <label for="check5"><i class="fas fa-ticket-alt"></i>&nbsp; CUPONS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>cupom/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>cupom/central?fnc=IC">INSERIR CUPOM</a></li>
             </ul>
         </div>
         <div class="item">
@@ -72,7 +77,6 @@
             <label for="check6"><i class="far fa-building"></i>&nbsp; DEPARTAMENTOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>departamento/central">GERENCIADOR</a></li>
-                <li><a href="<?= base_url_adm_php(); ?>departamento/central?fnc=ID">INSERIR DEPARTAMENTO</a></li>
             </ul>
         </div>
         <div class="item">
@@ -95,6 +99,7 @@
             <label for="check9"><i class="fas fa-pallet"></i>&nbsp; FORNECEDORES</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>fornecedor/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>fornecedor/central?fnc=IF">INSERIR FORNECEDOR</a></li>
             </ul>
         </div>
         <div class="item">

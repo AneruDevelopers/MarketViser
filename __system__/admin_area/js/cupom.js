@@ -2,7 +2,7 @@ var qtd_result = 5;
 var page = 1;
 var max_links = 2;
 
-function dataDuvidas(page, qtd_result) {
+function dataCupons(page, qtd_result) {
     var dados = new FormData();
     dados.append("page", page);
     dados.append("qtd_result", qtd_result);
@@ -14,7 +14,7 @@ function dataDuvidas(page, qtd_result) {
 		cache: false,
 		contentType: false,
 		processData: false,
-        url: BASE_URL4 + 'functions/duvida',
+        url: BASE_URL4 + 'functions/cupom',
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>
@@ -28,49 +28,54 @@ function dataDuvidas(page, qtd_result) {
             if(json['status']) {
                 if(!json['empty']) {
                     $('.tbodyProd').html("");
-                    for(var i = 0; json['duvidas'].length > i; i++) {
+                    for(var i = 0; json['cupons'].length > i; i++) {
                         $('.tbodyProd').append(`
                             <tr>
-                                <td>` + json['duvidas'][i].duvida_pergunta + `</td>
-                                <td class="tdCenter">` + json['duvidas'][i].duvida_resposta + `</td>
+                                <td>` + json['cupons'][i].cupom_codigo + `</td>
+                                <td class="tdCenter">` + json['cupons'][i].cupom_desconto_porcent + `</td>
                                 <td class="tdCenter">
-                                    <button class="myBtnUpd btnEditDuvida btnProductConfigAdm" id-duvida="` + json['duvidas'][i].duvida_id + `"><i class="fa fa-edit"></i></button>
-                                    <button class="btnDelDuvida btnProductConfigAdm" id-duvida="` + json['duvidas'][i].duvida_id + `"><i class="fa fa-times"></i></button>
+                                    <button class="myBtnUpd btnEditCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>
                         `);
                     }
                     $('body').append(`
+                        <div class="myModalView" id="myModalView">
+                            <div class="modalViewContent">
+                                <span class="closeModalView">&times;</span>
+                                <div class="showViewModal">
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="myModalUpd" id="myModalUpd">
                             <div class="modalUpdContent">
                                 <span class="closeModalUpd">&times;</span>
                                 <div class="showUpdModal">
-                                    <div class="divCadDuvida">
-                                        <form class="formUpdateDuvida">
-                                            <div class="divUpdCadDuvida">
+                                    <div class="divCadCupom">
+                                        <form class="formUpdateCupom">
+                                            <div class="divUpdCadCupom">
                                                 <div style="margin:25px 0;">
                                                 <table class="tableSectionConfigArm" width="80%" align="center">
                                                     <tr align="center">
-                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR DÚVIDA FREQUENTE</h2></td>
+                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR CUPOM</h2></td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PERGUNTA</b></td>
-                                                        <td>
-                                                            <input type="hidden" id="duvida_idUpd" name="duvida_idUpd"/>
-                                                            <textarea type="text" class="selectConfigArm" name="duvida_perguntaUpd" id="duvida_perguntaUpd"></textarea>
-                                                        </td>
+                                                        <input type="hidden" id="cupom_idUpd" name="cupom_idUpd">
+                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CÓDIGO</b></td>
+                                                        <td><input type="text" class="selectConfigArm" id="cupom_codigoUpd" name="cupom_codigoUpd" size="60"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>RESPOSTA</b></td>
-                                                        <td>
-                                                            <textarea type="text" class="selectConfigArm" name="duvida_respostaUpd" id="duvida_respostaUpd"></textarea>
-                                                        </td>
+                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO %</b></td>
+                                                        <td><input type="text" class="selectConfigArm porcent" id="cupom_desconto_porcentUpd" name="cupom_desconto_porcentUpd" size="60"></td>
                                                     </tr>
                                                 </table>
                                                 </div>
                                             </div>
                                             <div class="divSubmit" align="center">
-                                                <button type="submit" id="btnUpdateDuvida"><i class="fas fa-save"></i> Editar</button>
+                                                <button type="submit" id="btnUpdateCupom"><i class="fas fa-save"></i> Editar</button>
                                                 <div class="help-block"></div>
                                             </div>
                                         </form>
@@ -79,13 +84,13 @@ function dataDuvidas(page, qtd_result) {
                             </div>
                         </div>
                     `);
-                    deleteDuvida();
+                    deleteCupom();
                     modalUpd();
-                    updDuvida();
+                    updCupom();
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">- NÃO HÁ DÚVIDAS CADASTRADAS -</th>
+                            <th colspan="5" class="thNoData">- NÃO HÁ CUPONS CADASTRADOS -</th>
                         </tr>
                     `);
                 }
@@ -103,13 +108,13 @@ function dataDuvidas(page, qtd_result) {
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
 
             $('.paginacao').html(`
-                <a href="#" class="linkPaginacao" onclick="dataDuvidas(1, qtd_result)">Primeira</a> 
+                <a href="#" class="linkPaginacao" onclick="dataCupons(1, qtd_result)">Primeira</a> 
             `);
 
             for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                 if(pag_ant >= 1) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="dataDuvidas(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        <button class="btnPaginacao" onclick="dataCupons(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                     `);
                 }
             }
@@ -119,64 +124,64 @@ function dataDuvidas(page, qtd_result) {
             for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                 if(pag_dep <= totPage) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="dataDuvidas(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        <button class="btnPaginacao" onclick="dataCupons(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                     `);
                 }
             }
 
             $('.paginacao').append(`
-                <a href="#" class="linkPaginacao" onclick="dataDuvidas(` + totPage + `, qtd_result)">Última</a>
+                <a href="#" class="linkPaginacao" onclick="dataCupons(` + totPage + `, qtd_result)">Última</a>
             `);
         }
     });
 }
 
-function updDuvida() {
-    $(".btnEditDuvida").click(function(e) {
+function updCupom() {
+    $(".btnEditCupom").click(function(e) {
         e.preventDefault();
         clearErrors();
-        var dado = "updDuvida_id=" + $(this).attr("id-duvida");
+        var dado = "updCupom_id=" + $(this).attr("id-cupom");
         $.ajax({
             dataType: 'json',
                 type: 'post',
                 data: dado,
-                url: BASE_URL4 + 'functions/duvida',
+                url: BASE_URL4 + 'functions/cupom',
                 beforeSend: function() {
-                    $('#duvida_idUpd').val("");
-                    $('#duvida_perguntaUpd').val("");
-                    $('#duvida_respostaUpd').val("");
+                    $('#cupom_idUpd').val("");
+                    $('#cupom_codigoUpd').val("");
+                    $('#cupom_desconto_porcentUpd').val("");
                 },
                 success: function(json) {
-                    $('#duvida_idUpd').val(json['duvida']['duvida_id']);
+                    $('#cupom_idUpd').val(json['cupom']['cupom_id']);
 
-                    $('#duvida_perguntaUpd').val(json['duvida']['duvida_pergunta']);
+                    $('#cupom_codigoUpd').val(json['cupom']['cupom_codigo']);
 
-                    $('#duvida_respostaUpd').val(json['duvida']['duvida_resposta']);
-                    updateDuvida();
+                    $('#cupom_desconto_porcentUpd').val(json['cupom']['cupom_desconto_porcent']);
+                    updateCupom();
                 }
         });
     });
 }
 
-function updateDuvida() {
-    $('.formUpdateDuvida').submit(function(e) {
+function updateCupom() {
+    $('.formUpdateCupom').submit(function(e) {
         e.preventDefault();
-        var formDuvida = $(this).serialize();
+        var formCupom = $(this).serialize();
 
         $.ajax({
             dataType: 'json',
-            url: BASE_URL4 + 'functions/duvida',
+            url: BASE_URL4 + 'functions/cupom',
             type: 'POST',
-            data: formDuvida,
+            data: formCupom,
             beforeSend() {
                 clearErrors();
-                $("#btnUpdateDuvida").siblings(".help-block").html(loadingRes("Verificando..."));
+                $("#btnUpdateCupom").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
                 clearErrors();
                 if(json['status']) {
                     Swal.fire({
-                        title: "Dúvida editada com sucesso!",
+                        title: "Cupom editado com sucesso!",
                         type: "success",
                         showCancelButton: false,
                         confirmButtonColor: "#333",
@@ -185,40 +190,43 @@ function updateDuvida() {
                         if(result.value) {
                             var modalUpd = document.getElementById('myModalUpd');
                             modalUpd.style.display = "none";
-                            dataDuvidas(page, qtd_result);
+                            dataCupons(page, qtd_result);
                         } else {
                             var modalUpd = document.getElementById('myModalUpd');
                             modalUpd.style.display = "none";
-                            dataDuvidas(page, qtd_result);
+                            dataCupons(page, qtd_result);
                         }
                     });
                 } else {
-                    $("#btnUpdateDuvida").siblings(".help-block").html(json['error']);
+                    $("#btnUpdateCupom").siblings(".help-block").html(json['error']);
                 }
             }
         });
     });
 }
 
-function insertDuvida() {
-    $('.formInserirDuvida').submit(function(e) {
+function insertCupom() {
+    $('.formInserirCupom').submit(function(e) {
         e.preventDefault();
+        var formCupom = $(this).serialize();
 
         $.ajax({
             dataType: 'json',
-            url: BASE_URL4 + 'functions/duvida',
+            url: BASE_URL4 + 'functions/cupom',
             type: 'POST',
-            data: $(this).serialize(),
+            data: formCupom,
             beforeSend() {
                 clearErrors();
-                $("#btnInsertDuvida").siblings(".help-block").html(loadingRes("Verificando..."));
+                $("#btnInsertCupom").siblings(".help-block").html(loadingRes("Verificando..."));
             },
             success: function(json) {
                 clearErrors();
+                dataCupons(page, qtd_result);
+                
                 if(json['status']) {
                     Swal.fire({
-                        title: "Dúvida(s) cadastrada(s) com sucesso!",
-                        text: "Deseja continuar cadastrando dúvidas(s)?",
+                        title: "Cupom(ns) cadastrado(s) com sucesso!",
+                        text: "Deseja continuar cadastrando Cupom(ns)?",
                         type: "success",
                         showCancelButton: true,
                         confirmButtonColor: "#333",
@@ -232,22 +240,20 @@ function insertDuvida() {
                             modalAdd.style.display = "none";
                         }
                     });
-                    dataDuvidas(page, qtd_result);
                 } else {
-                    $("#btnInsertDuvida").siblings(".help-block").html(json['error']);
+                    $("#btnInsertCupom").siblings(".help-block").html(json['error']);
                 }
             }
         });
-        return false;
     });
 }
 
-function deleteDuvida() {
-    $('.btnDelDuvida').click(function(e) {
+function deleteCupom() {
+    $('.btnDelCupom').click(function(e) {
         e.preventDefault();
         
         Swal.fire({
-            title: "Deseja mesmo excuir esta dúvida?",
+            title: "Deseja mesmo excuir este cupom?",
             text: "Uma vez feito, não haverá volta!",
             type: "warning",
             showCancelButton: true,
@@ -257,25 +263,25 @@ function deleteDuvida() {
             confirmButtonText: "Sim, excluir"
         }).then((result) => {
             if(result.value) {
-                var dado = "delDuvida_id=" + $(this).attr("id-duvida");
+                var dado = "delCupom_id=" + $(this).attr("id-cupom");
                 $.ajax({
                     dataType: 'json',
-                    url: BASE_URL4 + 'functions/duvida',
+                    url: BASE_URL4 + 'functions/cupom',
                     type: 'POST',
                     data: dado,
                     success: function(json) {
                         if(json['status']) {
                             Swal.fire({
-                                title: "Dúvida excluida com sucesso!",
+                                title: "Cupom excluido com sucesso!",
                                 type: "success",
                                 showCancelButton: false,
                                 confirmButtonColor: "#494949",
                                 confirmButtonText: "Ok"
                             });
-                            dataDuvidas(page, qtd_result);
+                            dataCupons(page, qtd_result);
                         } else {
                             Swal.fire({
-                                title: "Ocorreu um erro ao excluir dúvida!",
+                                title: "Ocorreu um erro ao excluir cupom!",
                                 text: json['error_del'],
                                 type: "error",
                                 showCancelButton: false,
@@ -290,4 +296,4 @@ function deleteDuvida() {
     });
 }
 
-dataDuvidas(page, qtd_result);
+dataCupons(page, qtd_result);

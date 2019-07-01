@@ -21,20 +21,38 @@
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <h3 class="titleAdm">GERENCIADOR DE DEPARTAMENTOS</h3>
             <div id="conteudo">
+                <h3 class="titleAdm">GERENCIADOR DE DEPARTAMENTOS</h3>
+                <div id="conteudo">
 
-            </div>
-            <!-- <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar departamento</button> -->
-        </section>
-        <!-- <div class="myModalAdd" id="myModalAdd">
-            <div class="modalAddContent">
-                <span class="closeModalAdd">&times;</span>
-                <div class="showAddModal">
-                
+                </div>
+                <div class="divSearch">
+                    <form class="formSearch">
+                        <label for="searchDepart">Procure: </label>
+                        <input type="text" class="inputSearch" id="searchDepart"/>
+                        <div class="divResetSearch"></div>
+                    </form>
+                </div>
+                <div class="divEcoTable">
+                    <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                        <thead>
+                            <th class="thTitle" data-sort="depart_nome" width="40%">DEPARTAMENTO <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="depart_desc" width="45%">DESCRIÇÃO <span class="span_sort"></span></th>
+                            <th class="thTitle" width="15%">AÇÕES</th>
+                        </thead>
+                        <tbody class="tbodyProd">
+
+                        </tbody>
+                    </table>
+                    <span class="paginacao"></span>
+
+                    <span class="registShow"></span>
+                </div>
+                <div class="dataProds">
+                    
                 </div>
             </div>
-        </div> -->
+        </section>
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
