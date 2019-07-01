@@ -53,26 +53,24 @@
         </div>
         
         <div class="l-mainCad">
-            <h2 class="tituloOfertas"><i class="fas fa-shopping-bag"></i> HISTÓRICO DE COMPRAS</h2>
-
+            <h2 class="defaultTitle"><i class="fas fa-shopping-bag"></i> HISTÓRICO DE COMPRAS</h2>
             <div class="divCompraRight">
                 <div class="answer-purch">
                     <h1>Clique em uma compra e ela aparecerá aqui!</h1>
                 </div>
             </div>
-
             <div class="divCompraLeft">
                 <div class="titleLeft">
-                    <h2 class="menuTit">MENU</h2>
+                    <h2 class="menuTit">HISTÓRICO</h2>
                     
                     <p class="menuSubtit">
-                        <b>Total de compras:</b> <?= $inf_compra['qtd_compra']; ?><br/>
+                        <b>Total de compras:</b> <?= $inf_compra['qtd_compra']; ?><br/><br>
                         <b>Total de gastos:</b> R$<?= number_format($inf_compra['soma_compra'], 2, ',', '.'); ?>
                     </p>
                         <?php
                             if(isset($compra)):?>
                                 <div class="searchPurch">
-                                    <input type="text" class="inputSearchDuvida" name="inputSearchPurch" id="inputSearchPurch"/>
+                                    <input type="text" class="inputHistoric" name="inputSearchPurch" id="inputSearchPurch" placeholder="Pesquise">
                                     <span class="help-block-purch"></span>
                                 </div>
                                 <div class="showCompras">

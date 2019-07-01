@@ -35,7 +35,7 @@
         </span>
     </li>
 </ul>
-<h2 class="tituloOfertas"><i class="fas fa-truck"></i> ENDEREÇO DA ENTREGA</h2>
+<h2 class="defaultTitle"><i class="fas fa-truck"></i> ENDEREÇO DA ENTREGA</h2>
 <div class="divAgend">
     <h2>Confirme ou mude o endereço para fazermos a entrega!</h2>
     <form id="endereco_entrega">

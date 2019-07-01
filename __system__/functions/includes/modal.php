@@ -1,4 +1,3 @@
-        <!-- -------------------- -->
         <div class="myModalArmazem" id="myModalArmazem">
 			<div class="modalArmazemContent">
                 <div class="modalArmTopContent">
@@ -18,7 +17,6 @@
             <div class="modal-content">
                 <div class="modalLeftContent">
                     <form id="form-login">
-                        <!-- <i class="far fa-check-circle"></i> -->
                         <h4 class="titleModalLogin">LOG IN</h4>
                         <div class="outsideSecInputCad">
                             <div class="field -md">
@@ -34,9 +32,11 @@
                             </div>
                             <div class="help-block"></div><br/>
                         </div>
-                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esqueceu a senha? <a href="<?= base_url_php(); ?>usuario/esqueceu-senha">Clique aqui!</a><br/>
                         <button class="btnSend" type="submit" id="btn-login">ENTRAR</button>
                         <div class="help-block-login"></div>
+                        <p class="linkForgotPassword">Esqueceu a senha?
+                        <br><a href="<?= base_url_php(); ?>usuario/esqueceu-senha">Clique aqui!</a>
+                        </p>
                     </form>
                 </div>
                 <div class="modalRightContent">
