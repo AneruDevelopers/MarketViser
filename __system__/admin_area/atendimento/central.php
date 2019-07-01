@@ -27,18 +27,18 @@
             </div>
             <div class="divSearch">
                 <form class="formSearch">
-                    <label for="searchProd">Procure: </label>
-                    <input type="text" class="inputSearch" id="searchProd"/>
+                    <label for="searchAtend">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchAtend"/>
                     <div class="divResetSearch"></div>
                 </form>
             </div>
             <div class="divEcoTable">
                 <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
-                        <th class="thTitle sort" data-sort="nome_usu" width="20%">USUÁRIO</th>
-                        <th class="thTitle sort" data-sort="tp_problema" width="15%">TIPO MSG <span class="span_sort"></span></th>
-                        <th class="thTitle sort" data-sort="desc_problema" width="30%">MENSAGEM <span class="span_sort"></span></th>
-                        <th class="thTitle sort" data-sort="dataenv_pro" width="20%">DATA <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="a.nome_usu" width="25%">USUÁRIO</th>
+                        <th class="thTitle sort" data-sort="a.tp_problema" width="20%">TIPO MSG <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="ar.resp_id" width="20%">STATUS <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="a.dataenv_pro" width="20%">DATA <span class="span_sort"></span></th>
                         <th class="thTitle" width="15%">AÇÕES</th>
                     </thead>
                     <tbody class="tbodyProd">
@@ -120,8 +120,6 @@
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>

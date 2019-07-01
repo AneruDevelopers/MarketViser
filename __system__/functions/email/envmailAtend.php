@@ -48,7 +48,7 @@ function envmailAtend($email, $name, $func_name, $question, $question_regis, $an
 
                 <h4>Sua mensagem:</h4>
                 <p>' . $question . '<br/>Em ' . $question_regis . '</p>
-                <img src="__system__/img/Banner_TCC/logo_economize.png"/>
+                <img src="http://www.economize.top/__system__/img/Banner_TCC/logo_economize.png"/>
             </body>
             </html>
         ';

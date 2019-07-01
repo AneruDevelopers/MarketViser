@@ -117,7 +117,7 @@
             <label for="check12"><i class="fas fa-trademark"></i>&nbsp; PRODUTOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>produto/central">GERENCIADOR</a></li>
-                <li><a href="<?= base_url_adm_php(); ?>produto/central?fnc=IM">INSERIR PRODUTO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>produto/central?fnc=IP">INSERIR PRODUTO</a></li>
                 <li><a href="<?= base_url_adm_php(); ?>categoria/central?fnc=IC">INSERIR CATEGORIA</a></li>
                 <li><a href="<?= base_url_adm_php(); ?>subcategoria/central?fnc=IS">INSERIR SUBCATEGORIA</a></li>
                 <li><a href="<?= base_url_adm_php(); ?>marca/central?fnc=IM">INSERIR MARCA</a></li>
