@@ -61,6 +61,69 @@
                     }
                 }
             }
+        } elseif(isset($_POST['showAtend'])) {
+            $id_atd = $_POST['showAtend'];
+
+            $sel = $conn->prepare("SELECT * FROM atendimento WHERE id_atd={$id_atd}");
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $row = $sel->fetch( PDO::FETCH_ASSOC );
+                
+                $exp = explode(" ", $row['dataenv_pro']);
+                $dia = explode("-", $exp[0]);
+                $row['dataenv_pro'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
+                $json['mensagem'] = $row;
+
+                $sel2 = $conn->prepare("SELECT f.funcionario_nome, a.registro_resp, a.resp_atend FROM atend_resposta AS a JOIN funcionario AS f ON a.funcionario_id=f.funcionario_id WHERE id_atd={$id_atd}");
+                $sel2->execute();
+                if($sel2->rowCount() > 0) {
+                    $row2 = $sel2->fetch( PDO::FETCH_ASSOC );
+
+                    $exp = explode(" ", $row2['registro_resp']);
+                    $dia = explode("-", $exp[0]);
+                    $row2['registro_resp'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
+                    $json['resposta'] = $row2;
+                }
+            }
+        } elseif(isset($_POST['searchAtend'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+            $json['empty'] = TRUE;
+            $json['atendimentos'] = array();
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(a.id_atd) AS qtd FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON a.id_atd=ar.id_atd WHERE a.nome_usu LIKE '%{$_POST['searchAtend']}%' OR a.tp_problema LIKE '%{$_POST['searchAtend']}%' OR a.desc_problema LIKE '%{$_POST['searchAtend']}%' OR a.dataenv_pro LIKE '%{$_POST['searchAtend']}%' OR ar.resp_atend LIKE '%{$_POST['searchAtend']}%'");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.tp_problema, ar.resp_id, a.dataenv_pro FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON a.id_atd=ar.id_atd WHERE a.nome_usu LIKE '%{$_POST['searchAtend']}%' OR a.tp_problema LIKE '%{$_POST['searchAtend']}%' OR a.desc_problema LIKE '%{$_POST['searchAtend']}%' OR a.dataenv_pro LIKE '%{$_POST['searchAtend']}%' OR ar.resp_atend LIKE '%{$_POST['searchAtend']}%' ORDER BY ar.resp_id LIMIT $begin, $qtd_result");
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    $json['empty'] = FALSE;
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $v['dataenv_pro']);
+                        $day = explode("-", $exp[0]);
+                        $v['dataenv_pro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
+
+                        if($v['resp_id'] == '')
+                            $v['resp_id'] = "<span class='noVisuAtend'>ESPERANDO RESPOSTA</span>";
+                        else
+                            $v['resp_id'] = "<span class='jaVisuAtend'>JÁ RESPONDIDA</span>";
+
+                        $json['atendimentos'][] = $v;
+                        $json['registrosMostra']++;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
         } else {
             $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
             $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
@@ -76,7 +139,7 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.tp_problema, ar.resp_id, a.dataenv_pro FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON a.id_atd=ar.id_atd LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.tp_problema, ar.resp_id, a.dataenv_pro FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON a.id_atd=ar.id_atd ORDER BY ar.resp_id LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
@@ -89,7 +152,7 @@
                         if($v['resp_id'] == '')
                             $v['resp_id'] = "<span class='noVisuAtend'>ESPERANDO RESPOSTA</span>";
                         else
-                            $v['resp_id'] = "<span class='noVisuAtend'>ESPERANDO RESPOSTA</span>";
+                            $v['resp_id'] = "<span class='jaVisuAtend'>JÁ RESPONDIDA</span>";
 
                         $json['atendimentos'][] = $v;
                         $json['registrosMostra']++;

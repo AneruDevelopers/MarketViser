@@ -280,6 +280,24 @@ body {
         margin: 4px;
     }
 
+    .noVisuAtend {
+        font-size: 6pt;
+        padding: 5px;
+        background: rgb(168, 42, 33);
+        color: #fff;
+        text-shadow: none;
+        font-weight: bolder;
+    }
+
+    .jaVisuAtend {
+        font-size: 6pt;
+        padding: 7px;
+        background: #5FBA7D;
+        color: #fff;
+        text-shadow: none;
+        font-weight: bolder;
+    }
+
     form {
         position: relative;
         top: -.2rem;
