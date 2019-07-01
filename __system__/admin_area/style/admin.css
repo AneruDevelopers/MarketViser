@@ -257,6 +257,27 @@ body {
         position: relative;
         right: 120px;
         text-align: right;
+        font-family: 'Karla';
+    }
+
+    .linkPaginacao {
+        text-decoration: none;
+        color: #0F0617;
+        font-size: 11pt;
+        padding: 0 4px;
+    }
+
+    .linkPaginacao:hover {
+        text-decoration: underline;
+    }
+
+    .btnPaginacao {
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        padding: 3px 6px;
+        cursor: pointer;
+        margin: 4px;
     }
 
     form {

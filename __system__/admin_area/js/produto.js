@@ -149,7 +149,7 @@ function dataProds(page, qtd_result) {
             for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                 if(pag_ant >= 1) {
                     $('.paginacao').append(`
-                        <button onclick="dataProds(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        <button class="btnPaginacao" onclick="dataProds(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                     `);
                 }
             }
@@ -159,7 +159,7 @@ function dataProds(page, qtd_result) {
             for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                 if(pag_dep <= totPage) {
                     $('.paginacao').append(`
-                        <button onclick="dataProds(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        <button class="btnPaginacao" onclick="dataProds(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                     `);
                 }
             }
@@ -171,7 +171,114 @@ function dataProds(page, qtd_result) {
     });
 }
 
-function searchProduto() {
+function searchProdutoSec(page, qtd_result) {
+    if($('#searchProd').val().length > 0) {
+        $('.divResetSearch').html(`
+            <button type="reset" class="inputResetSearch">
+                <i class="far fa-times-circle"></i>
+            </button>
+        `);
+        
+        var dados = new FormData();
+        dados.append("searchProd",  $('#searchProd').val());
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/produto',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    if(!json['empty']) {
+                        $('.tbodyProd').html("");
+                        for(var i = 0; json['produtos'].length > i; i++) {
+                            $('.tbodyProd').append(`
+                                <tr>
+                                    <td><img class="imgProd" style="width:100%;" src="` + BASE_URL3 + json['produtos'][i].produto_img + `"/></td>
+                                    <td class="tdCenter">` + json['produtos'][i].produto_nome + `</td>
+                                    <td class="tdCenter">` + json['produtos'][i].produto_tamanho + `</td>
+                                    <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
+                                    <td class="tdCenter">
+                                        <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
+                                        <button class="myBtnUpd btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                        <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                            `);
+                        }
+                        deleteProduto();
+                        modalView();
+                        modalUpd();
+                        viewProduto();
+                        updProduto();
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                            </tr>
+                        `);
+                    }
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="searchProdutoSec(1, qtd_result)">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchProdutoSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchProdutoSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="searchProdutoSec(` + totPage + `, qtd_result)">Última</a>
+                `);
+            }
+        });
+    } else {
+        $('.divResetSearch').html(``);
+        dataProds(1, qtd_result);
+    }
+}
+
+function searchProduto(page, qtd_result) {
     $('#searchProd').keyup(function(e) {
         e.preventDefault();
 
@@ -181,11 +288,19 @@ function searchProduto() {
                     <i class="far fa-times-circle"></i>
                 </button>
             `);
-            var dado = "searchProd=" + $(this).val();
+            
+            var dados = new FormData();
+            dados.append("searchProd",  $(this).val());
+            dados.append("page", page);
+            dados.append("qtd_result", qtd_result);
+
             $.ajax({
                 dataType: 'json',
                 type: 'post',
-                data: dado,
+                data: dados,
+                cache: false,
+                contentType: false,
+                processData: false,
                 url: BASE_URL4 + 'functions/produto',
                 beforeSend: function() {
                     $('.tbodyProd').html(`
@@ -237,16 +352,141 @@ function searchProduto() {
                     $('.registShow').html(`
                         Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
                     `);
+    
+                    var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+        
+                    $('.paginacao').html(`
+                        <a href="#" class="linkPaginacao" onclick="searchProdutoSec(1, qtd_result)">Primeira</a> 
+                    `);
+        
+                    for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                        if(pag_ant >= 1) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchProdutoSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(` ` + page + ` `);
+        
+                    for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                        if(pag_dep <= totPage) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchProdutoSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(`
+                        <a href="#" class="linkPaginacao" onclick="searchProdutoSec(` + totPage + `, qtd_result)">Última</a>
+                    `);
                 }
             });
         } else {
             $('.divResetSearch').html(``);
-            dataProds();
+            dataProds(1, qtd_result);
         }
     });
 }
 
-function ordenarProduto() {
+function ordenarProdutoSec(page, qtd_result, sortType) {
+    var tipoSort = sortType;
+
+    var dados = new FormData();
+    dados.append("data_sort",  sortType);
+    dados.append("page", page);
+    dados.append("qtd_result", qtd_result);
+    dados.append("sec",  "1");
+
+    if($('#searchProd').val().length > 0) {
+        $('.divResetSearch').html(``);
+        $('#searchProd').val(``);
+    }
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dados,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: BASE_URL4 + 'functions/produto',
+        beforeSend: function() {
+            $('.tbodyProd').html(`
+                <tr>
+                    <th colspan="5" class="thNoData">
+                        - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                    </th>
+                </tr>
+            `);
+        },
+        success: function(json) {
+            if(json['status']) {
+                $('.tbodyProd').html("");
+
+                for(var i = 0; json['produtos'].length > i; i++) {
+                    $('.tbodyProd').append(`
+                        <tr>
+                            <td><img class="imgProd" style="width:100%;" src="` + BASE_URL3 + json['produtos'][i].produto_img + `"/></td>
+                            <td class="tdCenter">` + json['produtos'][i].produto_nome + `</td>
+                            <td class="tdCenter">` + json['produtos'][i].produto_tamanho + `</td>
+                            <td class="tdCenter">` + json['produtos'][i].marca_nome + `</td>
+                            <td class="tdCenter">
+                                <button class="myBtnView btnViewProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-eye"></i></button>
+                                <button class="myBtnUpd btnEditProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-edit"></i></button>
+                                <button class="btnDelProd btnProductConfigAdm" id-produto="` + json['produtos'][i].produto_id + `"><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                    `);
+                }
+                deleteProduto();
+                modalView();
+                modalUpd();
+                viewProduto();
+                updProduto();
+            } else {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                    </tr>
+                `);
+            }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
+            `);
+
+            var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+
+            $('.paginacao').html(`
+                <a href="#" class="linkPaginacao" onclick="ordenarProdutoSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+            `);
+
+            for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                if(pag_ant >= 1) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarProdutoSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(` ` + page + ` `);
+
+            for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                if(pag_dep <= totPage) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarProdutoSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(`
+                <a href="#" class="linkPaginacao" onclick="ordenarProdutoSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+            `);
+        }
+    });
+}
+
+function ordenarProduto(page, qtd_result) {
     $('.sort').click(function(e) {
         e.preventDefault();
 
@@ -256,7 +496,12 @@ function ordenarProduto() {
 
         var sort = $(this).find(".span_sort");
         
-        var dado = "data_sort=" + $(this).attr("data-sort");
+        var tipoSort = $(this).attr("data-sort");
+
+        var dados = new FormData();
+        dados.append("data_sort",  $(this).attr("data-sort"));
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
 
         if($('#searchProd').val().length > 0) {
             $('.divResetSearch').html(``);
@@ -266,7 +511,10 @@ function ordenarProduto() {
         $.ajax({
             dataType: 'json',
             type: 'post',
-            data: dado,
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
             url: BASE_URL4 + 'functions/produto',
             beforeSend: function() {
                 $('.tbodyProd').html(`
@@ -313,6 +561,37 @@ function ordenarProduto() {
                         </tr>
                     `);
                 }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` produtos
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarProdutoSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarProdutoSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarProdutoSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarProdutoSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                `);
             }
         });
     });
@@ -444,7 +723,7 @@ function insertProduto() {
             success: function(json) {
                 clearErrors();
                 if(json['status']) {
-                    dataProds();
+                    dataProds(page, qtd_result);
                     Swal.fire({
                         title: "Produto(s) cadastrado(s) com sucesso!",
                         text: "Deseja continuar cadastrando produto(s)?",
@@ -526,11 +805,11 @@ function updateProduto() {
                         if(result.value) {
                             var modalUpd = document.getElementById('myModalUpd');
                             modalUpd.style.display = "none";
-                            dataProds();
+                            dataProds(page, qtd_result);
                         } else {
                             var modalUpd = document.getElementById('myModalUpd');
                             modalUpd.style.display = "none";
-                            dataProds();
+                            dataProds(page, qtd_result);
                         }
                     });
                 } else {
@@ -583,7 +862,7 @@ function deleteProduto() {
                                 confirmButtonColor: "#494949",
                                 confirmButtonText: "Ok"
                             });
-                            dataProds();
+                            dataProds(page, qtd_result);
                         } else {
                             Swal.fire({
                                 title: "Ocorreu um erro ao excluir produto!",
@@ -602,5 +881,5 @@ function deleteProduto() {
 }
 
 dataProds(page, qtd_result);
-searchProduto();
-ordenarProduto();
+searchProduto(1, qtd_result);
+ordenarProduto(1, qtd_result);

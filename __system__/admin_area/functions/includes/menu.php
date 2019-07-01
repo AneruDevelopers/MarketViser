@@ -124,8 +124,8 @@
             </ul>
         </div>
         <div class="item">
-            <input type="checkbox" id="check12">
-            <label for="check12"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
+            <input type="checkbox" id="check13">
+            <label for="check13"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>usuario/central">GERENCIADOR</a></li>
             </ul>

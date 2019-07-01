@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 30/06/2019 às 06:28
+-- Tempo de geração: 01/07/2019 às 02:22
 -- Versão do servidor: 5.7.26
 -- Versão do PHP: 7.3.5
 
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
   KEY `fk_CompraStatus` (`status_id`),
   KEY `fk_CompraPag` (`forma_id`),
   KEY `fk_CompArm` (`armazem_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `dados_atend_func` (
   PRIMARY KEY (`dados_id`),
   KEY `fk_AtdFunc` (`atendimento_id`),
   KEY `fk_FuncAtd` (`funcionario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `dados_atend_func`
@@ -407,7 +407,17 @@ INSERT INTO `dados_atend_func` (`dados_id`, `atendimento_id`, `funcionario_id`) 
 (26, 8, 2),
 (27, 9, 2),
 (28, 10, 2),
-(29, 11, 2);
+(29, 11, 2),
+(30, 1, 3),
+(31, 2, 3),
+(32, 3, 3),
+(33, 4, 3),
+(34, 5, 3),
+(35, 7, 3),
+(36, 8, 3),
+(37, 9, 3),
+(38, 10, 3),
+(39, 11, 3);
 
 -- --------------------------------------------------------
 
@@ -419,9 +429,10 @@ DROP TABLE IF EXISTS `dados_entrega`;
 CREATE TABLE IF NOT EXISTS `dados_entrega` (
   `dados_id` int(11) NOT NULL AUTO_INCREMENT,
   `entrega_id` int(11) NOT NULL,
-  `compra_id` int(11) NOT NULL,
+  `funcionario_id` int(11) NOT NULL,
   PRIMARY KEY (`dados_id`),
-  KEY `fk_DataCompra` (`entrega_id`)
+  KEY `fk_DataCompra` (`entrega_id`),
+  KEY `fk_DataFunc` (`funcionario_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -640,7 +651,7 @@ CREATE TABLE IF NOT EXISTS `entrega` (
   `entrega_uf` char(2) NOT NULL,
   PRIMARY KEY (`entrega_id`),
   KEY `fk_EntCompra` (`compra_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -831,7 +842,7 @@ CREATE TABLE IF NOT EXISTS `lista_compra` (
   PRIMARY KEY (`lista_id`),
   KEY `fk_CompraLista` (`compra_id`),
   KEY `fk_ListaProd` (`produto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1370,8 +1381,8 @@ ALTER TABLE `dados_atend_func`
 -- Restrições para tabelas `dados_entrega`
 --
 ALTER TABLE `dados_entrega`
-  ADD CONSTRAINT `fk_DataCompra` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`),
-  ADD CONSTRAINT `fk_DataEnt` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`);
+  ADD CONSTRAINT `fk_DataEnt` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DataFunc` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `dados_horario_entrega`
