@@ -40,6 +40,25 @@
                 if(!$ins->execute()) {
                     $json['status'] = 0;
                     $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu. Tente novamente!</b></p>';
+                } else {
+                    require_once '__system__/functions/email/envmailAtend.php';
+
+                    $sel = $conn->prepare("SELECT a.nome_usu, a.dataenv_pro, a.desc_problema, a.email_usu, ar.resp_atend, ar.registro_resp, f.funcionario_nome FROM atendimento AS a JOIN atend_resposta AS ar ON ar.id_atd=a.id_atd JOIN funcionario AS f ON ar.funcionario_id=f.funcionario_id WHERE a.id_atd=$id_atd");
+                    $sel->execute();
+                    $row = $sel->fetch( PDO::FETCH_ASSOC );
+
+                    $exp = explode(" ", $row['dataenv_pro']);
+                    $dia = explode("-", $exp[0]);
+                    $row['dataenv_pro'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
+                    $exp = explode(" ", $row['registro_resp']);
+                    $dia = explode("-", $exp[0]);
+                    $row['registro_resp'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
+                    if(!envmailAtend($row['email_usu'], $row['nome_usu'], $row['funcionario_nome'], $row['desc_problema'], $row['dataenv_pro'], $row['resp_atend'], $row['registro_resp'])) {
+                        $json['status'] = 0;
+                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu ao enviar email!</b></p>';
+                    }
                 }
             }
         }

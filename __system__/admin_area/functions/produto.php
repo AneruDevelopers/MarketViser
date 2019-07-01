@@ -183,48 +183,72 @@
                 }
             }
         } elseif(isset($_POST['data_sort'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+            
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(produto_id) AS qtd FROM produto");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
             $sort = $_POST['data_sort'];
-            $json['sort'] = "up";
-            if(!isset($_SESSION['data_sort'][$sort])) {
-                $_SESSION['data_sort'][$sort] = "ASC";
-            } else {
-                if($_SESSION['data_sort'][$sort] == "ASC") {
-                    $_SESSION['data_sort'][$sort] = "DESC";
-                    $json['sort'] = "down";
+
+            if(!isset($_POST['sec'])) {
+                $json['sort'] = "up";
+                if(!isset($_SESSION['data_sort'][$sort])) {
+                    $_SESSION['data_sort'][$sort] = "ASC";
                 } else {
-                    unset($_SESSION['data_sort'][$sort]);
-                    $json['sort'] = "none";
+                    if($_SESSION['data_sort'][$sort] == "ASC") {
+                        $_SESSION['data_sort'][$sort] = "DESC";
+                        $json['sort'] = "down";
+                    } else {
+                        unset($_SESSION['data_sort'][$sort]);
+                        $json['sort'] = "none";
+                    }
                 }
             }
 
             $json['produtos'] = array();
             
             if(isset($_SESSION['data_sort'][$sort])) {
-                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id ORDER BY $sort {$_SESSION['data_sort'][$sort]}");
+                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
             } else {
-                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id");
+                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
             }
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $prods = $sel->fetchAll();
                 foreach($prods as $v) {
                     $json['produtos'][] = $v;
+                    $json['registrosMostra']++;
                 }
             }
         } elseif(isset($_POST['searchProd'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
             $json['empty'] = TRUE;
             $json['produtos'] = array();
-            $json['registrosTotal'] = 0;
             $json['registrosMostra'] = 0;
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%'");
+
+            $sel = $conn->prepare("SELECT COUNT(p.produto_id) AS qtd FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%'");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%' LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
-                    $prods = $sel->fetchAll();
-                    foreach($prods as $v) {
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
                         $json['produtos'][] = $v;
-                        $json['registrosTotal']++;
                         $json['registrosMostra']++;
                     }
                 }
@@ -232,19 +256,28 @@
                 $json['status'] = 0;
             }
         } else {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+
             $json['empty'] = TRUE;
             $json['produtos'] = array();
-            $json['registrosTotal'] = 0;
             $json['registrosMostra'] = 0;
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id");
+
+            $sel = $conn->prepare("SELECT COUNT(produto_id) AS qtd FROM produto");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
-                    $prods = $sel->fetchAll();
-                    foreach($prods as $v) {
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
                         $json['produtos'][] = $v;
-                        $json['registrosTotal']++;
                         $json['registrosMostra']++;
                     }
                 }

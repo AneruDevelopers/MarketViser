@@ -9,16 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 // Instantiation and passing `true` enables exceptions
-function env_email_rec($email, $name, $new_password) {
-    $hour = Date("H");
-    if(($hour > 05) && ($hour < 12)) {
-        $cump = "Bom dia";
-    } elseif(($hour > 12) && ($hour < 18)) {
-        $cump = "Boa tarde";
-    } else {
-        $cump = "Boa noite";
-    }
-
+function envmailAtend($email, $name, $func_name, $question, $question_regis, $answer, $answer_regis) {
 	$mail = new PHPMailer(true);
 
 	try {
@@ -39,7 +30,7 @@ function env_email_rec($email, $name, $new_password) {
 
 		// Content
 		$mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Recupere uma nova senha';
+        $mail->Subject = 'Resposta do atendimento online';
         $mail->Body = '
             <!DOCTYPE html>
             <head>
@@ -49,10 +40,15 @@ function env_email_rec($email, $name, $new_password) {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
             </head>
             <body>
-                <h3>' . $cump . ', ' . $name . '!</h3>
-                <p>Aqui está sua nova senha: ' . $new_password . '</p>
-                <p>Fique à vontade para mudá-la quando quiser em nosso sistema</p>
-                <img src="www.economize.top/__system__/img/Banner_TCC/logo_economize.png"/>
+                <h3>Atendimento online</h3>
+
+                <h4>Resposta dada por ' . $func_name . '</h4>
+                <h5>Em ' . $answer_regis . '</h5>
+                <p>' . $answer . '</p>
+
+                <h4>Sua mensagem:</h4>
+                <p>' . $question . '<br/>Em ' . $question_regis . '</p>
+                <img src="__system__/img/Banner_TCC/logo_economize.png"/>
             </body>
             </html>
         ';

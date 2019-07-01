@@ -1,5 +1,6 @@
 <?php
     require_once 'configuration.php';
+    require_once '__system__/functions/email/compramail.php';
     header("Content-Type: application/json");
 
     function getProductsByIds($ids) {
@@ -219,6 +220,9 @@
                         $_SESSION['produto_nome'][$c] = $row['produto_nome'];
                         $_SESSION['produto_qtd'][$c] = $row['produto_qtd'];
                         $c++;
+
+                        penv_email($_SESSION["inf_usu"]['usu_email'], $_SESSION["inf_usu"]['usu_nome'], $_SESSION['compra']['id']);
+                    
                     }
                 }
             }

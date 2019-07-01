@@ -156,7 +156,7 @@ body {
         right: 3%;
         top: .3rem;
         font-size: 16px;
-        color: #252730;
+        color: #0F0617;
         cursor: pointer;
     }
     
@@ -166,6 +166,7 @@ body {
         text-align: center;
         line-height: 16px;
         background: red;
+        color: #fff;
         width: 16px;
         height: 16px;
         border-radius: 20px;
@@ -247,6 +248,36 @@ body {
         color: #606060;
         position: relative;
         left: 10%;
+        padding-bottom: 3rem;
+    }
+
+    .paginacao {
+        float: right;
+        width: 40%;
+        position: relative;
+        right: 120px;
+        text-align: right;
+        font-family: 'Karla';
+    }
+
+    .linkPaginacao {
+        text-decoration: none;
+        color: #0F0617;
+        font-size: 11pt;
+        padding: 0 4px;
+    }
+
+    .linkPaginacao:hover {
+        text-decoration: underline;
+    }
+
+    .btnPaginacao {
+        background: #9C45EB;
+        border: none;
+        color: #ffffff;
+        padding: 3px 6px;
+        cursor: pointer;
+        margin: 4px;
     }
 
     form {
@@ -456,7 +487,7 @@ body {
     .myModalView {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
+        z-index: 999; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -706,7 +737,7 @@ body {
     .myModalUpd {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
+        z-index: 999; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -911,6 +942,14 @@ body {
         margin-bottom: 1rem;
         cursor: pointer;
         border-radius: 3px;
+    }
+
+    .notifEnt {
+        padding: 4px;
+        border-radius: 2px;
+        background: red;
+        color: #fff;
+        display: none;
     }
 
     /* SEÇÃO ARMAZÉM */

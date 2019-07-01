@@ -85,29 +85,36 @@
         </div>
         <div class="item">
             <input type="checkbox" id="check8">
-            <label for="check8"><i class="fas fa-pallet"></i>&nbsp; FORNECEDORES</label>
+            <label for="check8"><i class="fas fa-truck"></i>&nbsp; ENTREGAS <span class="notifEnt"></span></label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>entrega/central">GERENCIADOR</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check9">
+            <label for="check9"><i class="fas fa-pallet"></i>&nbsp; FORNECEDORES</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>fornecedor/central">GERENCIADOR</a></li>
             </ul>
         </div>
         <div class="item">
-            <input type="checkbox" id="check9">
-            <label for="check9"><i class="fas fa-walking"></i>&nbsp; FUNCIONÁRIOS</label>
+            <input type="checkbox" id="check10">
+            <label for="check10"><i class="fas fa-walking"></i>&nbsp; FUNCIONÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>funcionario/central">GERENCIADOR</a></li>
                 <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
             </ul>
         </div>
         <div class="item">
-            <input type="checkbox" id="check10">
-            <label for="check10"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
+            <input type="checkbox" id="check11">
+            <label for="check11"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>horarios/central">GERENCIADOR</a></li>
             </ul>
         </div>
         <div class="item">
-            <input type="checkbox" id="check11">
-            <label for="check11"><i class="fas fa-trademark"></i>&nbsp; PRODUTOS</label>
+            <input type="checkbox" id="check12">
+            <label for="check12"><i class="fas fa-trademark"></i>&nbsp; PRODUTOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>produto/central">GERENCIADOR</a></li>
                 <li><a href="<?= base_url_adm_php(); ?>produto/central?fnc=IM">INSERIR PRODUTO</a></li>
@@ -117,8 +124,8 @@
             </ul>
         </div>
         <div class="item">
-            <input type="checkbox" id="check12">
-            <label for="check12"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
+            <input type="checkbox" id="check13">
+            <label for="check13"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>usuario/central">GERENCIADOR</a></li>
             </ul>
