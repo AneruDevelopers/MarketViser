@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Jul-2019 às 05:37
+-- Generation Time: 01-Jul-2019 às 07:14
 -- Versão do servidor: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -184,8 +184,28 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 (54, 'BACALHAU', 32),
 (55, 'CAMARÃO', 32),
 (56, 'TILAPIA', 32),
-(57, 'LINGUADO', 32),
-(58, 'SARDINHA', 32);
+(57, 'LINGUADO', 33),
+(58, 'SARDINHA', 32),
+(59, 'PINTADO', 33),
+(60, 'TRADICIONAL', 34),
+(61, 'DESODORANTE', 35),
+(62, 'ESPONJA DE BANHO', 35),
+(63, 'ESCOVA DE AÇO', 36),
+(64, 'ESPONJA DE LOUÇA', 36),
+(65, 'MUFFIN', 30),
+(66, 'ESPRESSO', 37),
+(67, 'TIPO 1', 38),
+(68, 'ERVA DOCE', 39),
+(69, 'ERVA CIDREIRA', 40),
+(70, 'ERVAS FINAS', 39),
+(71, 'FEIJÃO', 41),
+(72, 'CARNE', 41),
+(73, 'LIMÃO', 42),
+(74, 'MANGA', 42),
+(75, 'PERA', 42),
+(76, 'MELÃO', 42),
+(77, 'LARANJA', 42),
+(78, 'MELANCIA', 42);
 
 -- --------------------------------------------------------
 
@@ -350,7 +370,34 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 (75, 71, 1, 30, '66.99', 10),
 (76, 72, 1, 35, '6.99', NULL),
 (77, 73, 1, 40, '6.29', 5),
-(78, 74, 1, 25, '23.76', 7);
+(78, 74, 1, 25, '23.76', 7),
+(79, 75, 1, 30, '40.89', 14),
+(80, 76, 1, 45, '25.77', 5),
+(81, 77, 1, 50, '22.45', NULL),
+(82, 78, 1, 20, '20.36', NULL),
+(83, 79, 1, 28, '89.00', NULL),
+(84, 80, 1, 30, '12.21', 22),
+(85, 81, 1, 66, '6.97', NULL),
+(86, 82, 1, 24, '11.01', 4),
+(87, 83, 1, 70, '7.77', NULL),
+(88, 84, 1, 32, '3.20', 15),
+(89, 85, 1, 35, '5.20', NULL),
+(90, 86, 1, 50, '1.20', 5),
+(91, 87, 1, 56, '1.99', NULL),
+(92, 88, 1, 60, '1.99', NULL),
+(93, 89, 1, 40, '32.08', 20),
+(94, 90, 1, 35, '14.32', NULL),
+(95, 92, 1, 70, '3.12', NULL),
+(96, 93, 1, 44, '4.66', 8),
+(97, 94, 1, 28, '3.44', NULL),
+(98, 95, 1, 59, '0.98', NULL),
+(99, 96, 1, 52, '2.77', 25),
+(100, 97, 1, 30, '1.98', NULL),
+(101, 98, 1, 33, '3.97', 7),
+(102, 99, 1, 40, '2.20', NULL),
+(103, 100, 1, 20, '1.25', NULL),
+(104, 101, 1, 80, '2.50', NULL),
+(105, 102, 1, 15, '18.12', 6);
 
 -- --------------------------------------------------------
 
@@ -839,7 +886,17 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`, `marca_promocao`) VALUES
 (49, 'Yatute', NULL),
 (50, 'PescaBrava', NULL),
 (51, 'Vualitá', NULL),
-(52, 'Pescado Novo', NULL);
+(52, 'Pescado Novo', NULL),
+(53, 'Tove', NULL),
+(54, 'Dom Abril', NULL),
+(55, 'Grippe', NULL),
+(56, 'Bancco', NULL),
+(57, 'Juan Baldéz', NULL),
+(58, 'Santtos', NULL),
+(59, 'Penata', NULL),
+(60, 'Tynor', NULL),
+(61, 'Akinor', NULL),
+(62, 'economize', NULL);
 
 -- --------------------------------------------------------
 
@@ -938,7 +995,35 @@ INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produ
 (71, 'Bacalhau Salgado PescaBrava', '1Kg de bacalhau salgado - PescaBrava', 'bacalhau.png', 50, '1Kg', 54),
 (72, 'Sardinha Vácuo Pescado Novo', '500g de sardinha a vácuo - Pescado Novo', 'sardinha salgada.png', 52, '500g', 58),
 (73, 'Sardinha Bandeja Pescado Novo', '450g de sardinha na bandeja - Pescado Novo', 'sardinha.png', 52, '450g', 58),
-(74, 'Filé de Linguado PescaBrava', '500g de filé de linguado - PescaBrava', 'file de linguado.png', 50, '500g', 57);
+(74, 'Filé de Linguado PescaBrava', '500g de filé de linguado - PescaBrava', 'file de linguado.png', 50, '500g', 57),
+(75, 'Filé de Pintado Congelado PescaBrava', '800g de filé de pintado congelado - PescaBrava', 'file de pintado congelado(peixe congelado).png', 50, '800g', 59),
+(76, 'Filé de Tilápia Congelado Vualitá', '500 g de filé de tilápia congelado - Vualitá', 'file de tilapia.png', 51, '500g', 56),
+(77, 'Camarão Descascado Cozido Congelado Vualitá', '400g de camarão descascado cozido congelado - Vualitá', 'camarão.png', 51, '400g', 55),
+(78, 'Costela Tilápia Resfriada Bandeja Pescado Novo', '500g de costela tilápia resfriada bandeja - Pescado Novo', 'costelinha de tilapia.png', 52, '500g', 56),
+(79, 'Bolinho Bob Sponja Brigadeiro Pãomann', 'Bolinho de 40g - Pãomann', 'bolinho_bob.png', 48, '40g', 52),
+(80, 'Panetone de Frutas Vualitá', 'panetone de 350g de frutas - Vualitá', 'paneton.png', 51, '350g', 60),
+(81, 'Desodorante Roll-On Invisible Tove', 'Desodorante 5oml roll-on - Tove', 'rolão masculino kkkk.png', 53, '50ml', 61),
+(82, 'Desodorante Spray Black Tove', 'Desodorante spray de 113g black - Tove', 'desodorante.png', 53, '113g', 61),
+(83, 'Desodorante Spray Neutral Feminino Tove', 'Desodorante spray 150ml neutral feminino - Tove', 'desodorante_feminino.png', 53, '150ml', 61),
+(84, 'Esponja de Banho Dual Vualitá', 'Esponja de banho 150g dual - Vualitá', 'esponja.jpg', 51, '100g', 62),
+(85, 'Esponja de Banho Natural Tove', 'Esponja de banho 110g natural - Tove', 'esponja2.png', 53, '120g', 62),
+(86, 'Esponja de Aço Dom Abril', 'Esponja de aço 60g com 8 unidades - Dom Abril', 'lã de aço.png', 54, '60g com 8 unidades', 63),
+(87, 'Esponja de Louça Multiuso Leve 4 Pague 3 Grippe', 'Esponja de louça multiuso leve 4 pague 3 - Grippe', 'b_esponja.png', 55, '300g', 64),
+(88, 'Muffin de Chocolate Bancoo', 'Muffin de 40g de chocolate Bancoo', 'bolo.png', 56, '40g', 65),
+(89, 'Café Espresso Grãos Premium Juan Baldéz', 'Café espresso grãos premium - Juan Baldéz', 'cafe em grãos.png', 57, '1Kg', 66),
+(90, 'Café Gourmet Grãos Santtos', '250g de café gourmet grãos - Santtos', 'cafe em graos2.png', 58, '250g', 66),
+(91, 'Desodorante Spray Blue Masculino Tove', 'Desodorante spray 150ml blue masculino - Tove', 'desodorante.png', 53, '150ml', 61),
+(92, 'Farinha de Trigo Tipo 1 Penata', 'Farinha de trigo 1Kg tipo 1 - Penata', 'farinha.png', 59, '1Kg', 67),
+(93, 'Erva Doce Tradicional Tynor', '40g de erva doce tradicional - Tynor', 'erva doce.png', 60, '40g', 68),
+(94, 'Erva Cidreira Triturada Tynor', '200g de erva cidreira triturada - Tynor', 'erva cidreira2.png', 60, '200g', 69),
+(95, 'Ervas Finas Akinor', '7g de ervas finas - Akinor', 'ervas finas1.png', 61, '7g', 70),
+(96, 'Tempero para Feijão Tynor', '60g de tempero para feijão - Tynor', 'tempeiro feão.png', 60, '60g', 71),
+(97, 'Tempero para Carne Akinor', '36g de tempero para carne - Akinor', 'tempero carne.png', 61, '36', 72),
+(98, 'Tempero para Carne Tynor', '60g de tempero para carne - Tynor', 'tempero carne2.png', 60, '60g', 72),
+(99, 'Limão Tahiti', '500g de limão tahiti - economize', 'limao.png', 62, '500g', 73),
+(100, 'Melancia Graúda economize', '1Kg de melancia - economize', 'melancia.png', 62, '1Kg', 78),
+(101, 'Laranja Pera Fresca economize', '500g de laranja pera fresca - economize', 'laranja.png', 62, '500g', 77),
+(102, 'Melão Amarelo Fresco economize', '2Kg de melão amarelo fresco - economize', 'melao.png', 62, '2Kg', 76);
 
 -- --------------------------------------------------------
 
@@ -1075,7 +1160,17 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 (29, 'PIPOCA', 12),
 (30, 'BOLO', 10),
 (31, 'LEITE FERMENTADO', 7),
-(32, 'MAR', 11);
+(32, 'MAR', 11),
+(33, 'RIO', 11),
+(34, 'PANETONE', 10),
+(35, 'HIGIENE', 9),
+(36, 'CASA', 9),
+(37, 'CAFÉ', 5),
+(38, 'FARINHA DE TRIGO', 10),
+(39, 'ESPECIARIAS', 6),
+(40, 'CHÁS', 6),
+(41, 'TEMPERO', 6),
+(42, 'FRUTAS', 4);
 
 -- --------------------------------------------------------
 
@@ -1511,7 +1606,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `categ`
 --
 ALTER TABLE `categ`
-  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `categ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `cidade`
@@ -1541,7 +1636,7 @@ ALTER TABLE `cupom`
 -- AUTO_INCREMENT for table `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
-  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `dados_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `dados_atend_func`
@@ -1637,7 +1732,7 @@ ALTER TABLE `lista_compra`
 -- AUTO_INCREMENT for table `marca_prod`
 --
 ALTER TABLE `marca_prod`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `postagem`
@@ -1649,7 +1744,7 @@ ALTER TABLE `postagem`
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `produto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `produtos_favorito`
@@ -1679,7 +1774,7 @@ ALTER TABLE `status_compra`
 -- AUTO_INCREMENT for table `subcateg`
 --
 ALTER TABLE `subcateg`
-  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `subcateg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `subcidade`
