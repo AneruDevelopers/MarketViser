@@ -59,7 +59,7 @@
 								<div class="outsideSecInputCad">
 									<div class="field -md">
 										<input type="text" id="usu_nome" maxlength="150" name="usu_nome" class="placeholder-shown" placeholder="Some placeholder"/>
-										<label for="usu_nome" class="labelFieldCad"><strong>NOME</strong></label>
+										<label class="labelFieldCad"><strong>NOME</strong></label>
 									</div>
 									<div class="help-block"></div><br/>
 								</div>
