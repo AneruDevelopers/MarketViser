@@ -61,6 +61,34 @@
                     }
                 }
             }
+        } else {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+            $json['empty'] = TRUE;
+            $json['atendimentos'] = array();
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(id_atd) AS qtd FROM atendimento");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM atendimento AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    $json['empty'] = FALSE;
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $json['atendimentos'][] = $v;
+                        $json['registrosMostra']++;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
         }
 
         echo json_encode($json);

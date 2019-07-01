@@ -25,6 +25,33 @@
             <div id="conteudo">
                 
             </div>
+            <div class="divSearch">
+                <form class="formSearch">
+                    <label for="searchProd">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchProd"/>
+                    <div class="divResetSearch"></div>
+                </form>
+            </div>
+            <div class="divEcoTable">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                    <thead>
+                        <th class="thTitle sort" data-sort="nome_usu" width="20%">USUÁRIO</th>
+                        <th class="thTitle sort" data-sort="tp_problema" width="15%">TIPO MSG <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="desc_problema" width="30%">MENSAGEM <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="dataenv_pro" width="20%">DATA <span class="span_sort"></span></th>
+                        <th class="thTitle" width="15%">AÇÕES</th>
+                    </thead>
+                    <tbody class="tbodyProd">
+
+                    </tbody>
+                </table>
+                <span class="paginacao"></span>
+
+                <span class="registShow"></span>
+            </div>
+            <div class="dataProds">
+                
+            </div>
         </section>
 
         <div class="myModalAdd" id="myModalAdd">
