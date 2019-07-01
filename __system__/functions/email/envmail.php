@@ -439,9 +439,7 @@ function env_email($email,$nome,$link){
     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 15px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
     <div style="color:#7C7C7C;line-height:150%;padding-top:15px;padding-right:30px;padding-bottom:20px;padding-left:30px;">
     <div style="font-size: 12px; line-height: 18px;  color: #7C7C7C;">
-    <p style="font-size: 12px; line-height: 24px; margin: 0;"><span style="font-size: 16px;">Morbi quis vulputate metus. Duis eget metus facilisis, elementum eros a, tristique nisi. Duis erat lectus, dictum fringilla luctus non, ullamcorper et risus. Duis lacinia consequat facilisis. Nullam venenatis massa sit amet arcu tincidunt scelerisque. </span></p>
-    <p style="font-size: 12px; line-height: 24px; margin: 0;"><span style="font-size: 16px;">Fusce felis lectus, consequat at dui eget, volutpat finibus nibh. Curabitur ornare non.</span></p>
-    <p style="font-size: 12px; line-height: 18px; margin: 0;"> </p>
+    <p style="font-size: 12px; line-height: 24px; margin: 0;"><span style="font-size: 16px;">Você acaba de adentrar no mercado 100% digital mais incrível do mundo! Aproveite as dezenas de ofertas que estão presentes em todos os nossos departametos, mas antes, não se esqueça de confirmar seu endereço de email aqui em baixo!</span></p>
     </div>
     </div>
     <!--[if mso]></td></tr></table><![endif]-->

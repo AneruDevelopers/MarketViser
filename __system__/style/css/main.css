@@ -4790,6 +4790,17 @@ border-radius: 0;
         transition: 250ms ease-in-out background;
     }
 
+    .linkForgotPassword {
+        position: relative;
+        text-align: center;
+        top: .5rem;
+        font-size: 10px;
+    }
+
+    .linkForgotPassword a {
+        font-size: 10px;
+    }
+
     .fa-grip-lines {
         position: relative;
         color: #9C45EB;
@@ -7231,6 +7242,17 @@ border-radius: 0;
         color: #ffffff;
         transition: 250ms ease-in-out color;
         transition: 250ms ease-in-out background;
+    }
+
+    .linkForgotPassword {
+        position: relative;
+        text-align: center;
+        top: 1rem;
+        font-size: 14px;
+    }
+
+    .linkForgotPassword a {
+        font-size: 10px;
     }
 
     .fa-grip-lines {
