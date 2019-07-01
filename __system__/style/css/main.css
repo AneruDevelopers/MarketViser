@@ -1599,28 +1599,30 @@ border-radius: 0;
     }
     
     .zigzag {
-        font-size: 8rem;
+        font-size: 5rem;
         float: left;
         color: #9C45EB;
         top: 8rem;
+        left: 1%;
         position: relative;
     }
 
     .zigzag2 {
-        font-size: 8rem;
+        font-size: 5rem;
         float: right;
+        right: 1%;
         color: #9C45EB;
         position: relative;
         top: 30rem;
     }
 
     .zigzag3 {
-        font-size: 8rem;
+        font-size: 5rem;
         float: left;
         color: #9C45EB;
         position: relative;
         top: 55rem;
-        left: -7%;
+        left: -5.5%;
     }
 
 
@@ -1632,7 +1634,7 @@ border-radius: 0;
     .divBehindCad {
         position: relative;
         width: 60%;
-        height: 73rem;
+        height: 79rem;
         background: #9C45EB;
         border-radius: 10px;
         margin: auto;
@@ -1669,7 +1671,7 @@ border-radius: 0;
     
     .divCadTop {
         position: relative;
-        width: 80%;
+        width: 100%;
         top: 1.5rem;
         left: -10%;
         height: 38.5rem;
@@ -1684,9 +1686,9 @@ border-radius: 0;
 
     .divCadBottom {
         position: relative;
-        width: 80%;
+        width: 100%;
         top: 3rem;
-        left: 27%;
+        left: 10%;
         height: 36rem;
         border: none;
         border-radius: 10px;
@@ -1721,6 +1723,7 @@ border-radius: 0;
         float: right;
         left: -10%;
         top: 49%;
+        display: none;
     }
 
     .arrowCadTop img {
@@ -1729,6 +1732,7 @@ border-radius: 0;
         -o-transform: scaleY(-1) rotate(-60deg);
         -webkit-transform: scaleY(-1) rotate(-60deg);
         transform: scaleY(-1) rotate(-60deg);
+        display: none;
     }
 
     .divisorTitle {
@@ -1756,18 +1760,18 @@ border-radius: 0;
     .outsideSecInputCad {
         width: 85%;
         height: 3rem;
-        margin-bottom: 0rem;
+        margin-bottom: .5rem;
         left: 7.5%;
         top: .5rem;
         position: relative;
     }
 
     .outsideSecInputCadPlus {
-        width: 50%;
+        width: 40%;
         height: 3rem;
         margin-bottom: .5rem;
-        left: 115%;
-        top: -26rem;
+        left: 105%;
+        top: -20rem;
         position: relative;
         background: #ffffff;
         padding: 15px 26px;
@@ -1782,6 +1786,7 @@ border-radius: 0;
         color: #aaa;
         width: 90%;
         left: 0;
+        max-height: 3rem;
     }
 
     .field input {
@@ -1914,8 +1919,8 @@ border-radius: 0;
     .remover_campo {
         color: red;
         position: relative;
-        top: -2rem;
-        left: -1.2rem;
+        top: 23.6rem;
+        right: 5.5rem;
         font-size: 15px;
     }
 
