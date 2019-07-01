@@ -17,7 +17,6 @@
     <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
     <link href="<?= base_url_adm(); ?>style/admin.css" rel="stylesheet"/>
     <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
-    <link href="<?= base_url(); ?>style/libraries/DataTables/datatables.min.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="l-wrapper">
@@ -50,9 +49,9 @@
 
                     </tbody>
                 </table>
-                <span class="registShow">
-                    
-                </span>
+                <span class="paginacao"></span>
+
+                <span class="registShow"></span>
             </div>
             <div class="dataProds">
                 
@@ -151,7 +150,6 @@
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
     <script src="<?= base_url(); ?>js/mask.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/DataTables/datatables.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>

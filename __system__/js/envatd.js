@@ -17,7 +17,7 @@ $("#form-atd").submit(function() {
                 clearErrors();
                 Swal.fire({
                     title: "Mensagem enviada com sucesso!",
-                    text: "O e.conomize agradece sua disponibilidade! Você receberá sua resposta em breve.",
+                    text: "O e.conomize agradece sua disponibilidade! Você receberá sua resposta em breve no email inserido no formulário.",
                     type: "success",
                     showCancelButton: false,
                     confirmButtonColor: "#9C45EB",

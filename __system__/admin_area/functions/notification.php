@@ -143,6 +143,22 @@
                     }
                 }
             }
+
+            $day = Date("d");
+            $sel = $conn->prepare("SELECT e.entrega_horario FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id WHERE c.status_id=1 AND DAY(e.entrega_horario)=$day");
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $json['entrega_pendente'] = 0;
+                while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+                    $regis = substr($row['entrega_horario'], 11, 2);
+
+                    $hour = Date("H");
+                    $hour = strtotime($hour, "-2 hour");
+                    if($hour <= $hour) {
+                        $json['entrega_pendente']++;
+                    }
+                }
+            }
         }
 
         echo json_encode($json);

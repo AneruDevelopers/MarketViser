@@ -232,19 +232,28 @@
                 $json['status'] = 0;
             }
         } else {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+
             $json['empty'] = TRUE;
             $json['produtos'] = array();
-            $json['registrosTotal'] = 0;
             $json['registrosMostra'] = 0;
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id");
+
+            $sel = $conn->prepare("SELECT COUNT(produto_id) AS qtd FROM produto");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
-                    $prods = $sel->fetchAll();
-                    foreach($prods as $v) {
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
                         $json['produtos'][] = $v;
-                        $json['registrosTotal']++;
                         $json['registrosMostra']++;
                     }
                 }

@@ -172,11 +172,19 @@ function notification() {
                     $('.showNotModal').append(``);
                 }
                 visuNot();
+
+                if(json['entrega_pendente']) {
+                    $('.notifEnt').css({'display':'block'});
+                    $('.notifEnt').html(json['entrega_pendente']);
+                } else {
+                    $('.notifEnt').css({'display':'none'});
+                    $('.notifEnt').html(``);
+                }
             }
         },
         complete: function() {
-            setTimeout(notification, 3000);
-            setTimeout(visuNot, 3000);
+            // setTimeout(notification, 3000);
+            // setTimeout(visuNot, 3000);
         }
     });
 }
