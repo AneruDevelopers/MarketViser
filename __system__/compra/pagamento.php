@@ -141,7 +141,7 @@
     $totCompra = number_format($_SESSION['totCompra'], 2, ',', '.');
 ?>
 
-<div class="divShowTotPag">
+<!-- <div class="divShowTotPag">
     <h2 class="summaryTitle">RESUMO</h2>
     <div class="divisorSummary"></div>
     <div class="summarySubTitles">
@@ -150,10 +150,10 @@
     <div class="summarySubTitles">
         <h2 class="totalFrete">FRETE:</h2><h2 class="valueFrete">R$<?= isset($frete) ? $frete : '0,00'; ?></h2>
     </div>
-</div>
+</div> -->
 
 <div>
-    <h2 class="tituloOfertas"><i class="far fa-credit-card"></i> PAGAMENTO</h2>
+    <h2 class="defaultTitle"><i class="far fa-credit-card"></i> PAGAMENTO</h2>
 </div>
 <div class="divAgend">
 <?php 

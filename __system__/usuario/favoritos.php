@@ -39,7 +39,7 @@
         </div>
 
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
+            <h2 class="defaultTitle"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
             <br/><br/>
             <div class="l-favoritos divShowProdFav">
 

@@ -31,7 +31,7 @@
 		?>    
 		</div>
         <div class="l-mainCad">
-            <h2 class="tituloOfertas"><i class="fas fa-cog"></i> CONFIGURAÇÕES DO PERFIL</h2>
+            <h2 class="defaultTitle"><i class="fas fa-cog"></i> CONFIGURAÇÕES DO PERFIL</h2>
             <div class="leftContentConfigProfile">
 
             <div class="divConfigProfileFacts">
