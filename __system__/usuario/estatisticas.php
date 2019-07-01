@@ -16,28 +16,45 @@
     <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+
 </head>
 <body>
-	<div class="l-wrapper_cadastro">
-		<div class="l-topNavCad" id="topNav">
-		<?php
-			include('__system__/functions/includes/topNav.php');
-		?>    
-		</div>
-		<div class="l-headerNavMobile" id="headerNav">
-		<?php
-			include('__system__/functions/includes/header.php');
-		?>    
-		</div>
-        <div class="l-mainCad" style="width:40%;margin:0 auto;">
-            <h2 class="tituloOfertas"><i class="fas fa-chart-line"></i> MINHAS ESTATÍSTICAS</h2>
+<div class="l-wrapper_FiltroPesq">
+        <div class="l-topNavFiltroPesq" id="topNav">
+        <?php
+            include('__system__/functions/includes/topNav.php');
+        ?>    
         </div>
 
+        <nav class="l-headerNav" id="headerNav">
         <?php
-            include('__system__/functions/includes/modal.php');
+            include('__system__/functions/includes/header.php');
         ?>
-        
+        </nav>
+
+        <div class="l-bottomNav" id="bottomNav">
+        <?php
+            include('__system__/functions/includes/bottom.php');
+        ?>
+        </div>
+
+
+		<div class="l-mainCad">
+		 <h2 align="center" class="tituloOfertas"><i class="fas fa-chart-line"></i> MINHAS ESTATÍSTICAS</h2>
+		<center>
+		 <div  id="chart-container">
+      		<canvas id="mycanvas"></canvas>
+    	</div>
+	   </center>
+	   </div>
+
+	 
+		
+		<?php
+            include('__system__/functions/includes/modal.php');
+		?>
+		
 		<div class="l-footer" id="footer">
         <?php
             include('__system__/functions/includes/footer.php');
@@ -51,6 +68,7 @@
     </div>
 
 	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+	<script src="<?= base_url(); ?>style/libraries/ChartJS/Chart.min.js"></script>
 	<script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
 	<script src="<?= base_url(); ?>js/mask.js"></script>
 	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
@@ -58,8 +76,11 @@
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
+	<script src="<?= base_url(); ?>js/mostrarEstatisticas.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
     <script src="<?= base_url(); ?>js/configurarPerfil.js"></script>
+	<script src="<?= base_url(); ?>js/mostrarEstatisticas.js"></script>
     <script src="<?= base_url(); ?>js/main.js"></script>
+
 </body>
 </html>

@@ -10661,3 +10661,9 @@ border-radius: 0;
     }
 
 }
+
+#chart-container {
+    width: 640px;
+    height: auto;
+   
+  }
