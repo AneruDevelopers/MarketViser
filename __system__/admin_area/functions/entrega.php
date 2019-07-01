@@ -20,7 +20,7 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT c.compra_hash, e.entrega_horario, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT e.entrega_id, c.compra_hash, e.entrega_horario, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {

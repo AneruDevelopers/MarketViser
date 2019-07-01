@@ -76,12 +76,21 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM atendimento AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT a.id_atd, a.nome_usu, a.tp_problema, ar.resp_id, a.dataenv_pro FROM atendimento AS a LEFT JOIN atend_resposta AS ar ON a.id_atd=ar.id_atd LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $v['dataenv_pro']);
+                        $day = explode("-", $exp[0]);
+                        $v['dataenv_pro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
+
+                        if($v['resp_id'] == '')
+                            $v['resp_id'] = "<span class='noVisuAtend'>ESPERANDO RESPOSTA</span>";
+                        else
+                            $v['resp_id'] = "<span class='noVisuAtend'>ESPERANDO RESPOSTA</span>";
+
                         $json['atendimentos'][] = $v;
                         $json['registrosMostra']++;
                     }
