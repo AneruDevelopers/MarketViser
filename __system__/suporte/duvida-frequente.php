@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     $empty = TRUE;
     $sel = $conn->prepare("SELECT duvida_id, duvida_pergunta FROM duvida_frequente ORDER BY duvida_pergunta");
     $sel->execute();
@@ -39,7 +39,7 @@
         </nav>
         
         <div class="l-main">
-            <h2 class="tituloOfertas"><i class="fas fa-question"></i> DÚVIDAS FREQUENTES</h2>
+            <h2 class="defaultTitle"><i class="fas fa-question"></i> DÚVIDAS FREQUENTES</h2>
             <div class="divSearchDuvida">
                 <label for="search_duvida">Digite o que está procurando: </label><input type="text" class="inputSearchDuvida" id="search_duvida" name="search_duvida"/>
             </div>

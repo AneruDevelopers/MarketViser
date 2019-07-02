@@ -1,6 +1,6 @@
-<?php
+﻿<?php
     require_once 'configuration.php';
-    require_once '__system__/functions/email/compramail.php';
+    require_once '__system__/functions/email/compraMail.php';
     header("Content-Type: application/json");
 
     function getProductsByIds($ids) {

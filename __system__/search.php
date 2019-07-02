@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
 		<!-- Title/Display Products -->
 
         <div class="l-mainFiltroPesq">
-            <h2 class="tituloOfertas">
+            <h2 class="defaultTitle">
                 <?= isset($_POST['buscaBarra']) ? "Sua pesquisa sobre: " . $_POST['buscaBarra'] : "Pesquise seu produto no campo acima"; ?>
             </h2>
             <div class="divShowProdFav">

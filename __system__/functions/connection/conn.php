@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	session_start();
 	
 	// Ajustando horário
@@ -6,16 +6,18 @@
 	setlocale(LC_ALL, 'pt_BR');
 
 	// Padronizando a busca por arquivos via URL
-	// NICOLAS IP: 192.168.0.103
 	function base_url() {
 		return "http://localhost/economize/__system__/";
 	}
+
 	function base_url_php() {
 		return "http://localhost/economize/";
 	}
+
 	function base_url_adm() {
 		return "http://localhost/economize/__system__/admin_area/";
 	}
+
 	function base_url_adm_php() {
 		return "http://localhost/economize/admin_area/";
 	}
@@ -33,7 +35,8 @@
 
 	try {
     	$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-    	$conn->exec("SET CHARACTER SET utf8");
+		$conn->exec("SET CHARACTER SET utf8");
+		
     	// set the PDO error mode to exception
     	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $e) {

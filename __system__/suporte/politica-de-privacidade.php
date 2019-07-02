@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
         </nav>
         
         <div class="l-main">
-        <h1 class="tituloOfertas">POLÍTICA DE PRIVACIDADE </h1>
+        <h1 class="defaultTitle">POLÍTICA DE PRIVACIDADE </h1>
         <h4>SEÇÃO 1 - O QUE FAREMOS COM SUAS INFORMAÇÕES?</h4>
 
 <p>Quando você realiza alguma transação com nosso serviço, como parte do processo de compra e entrega, coletamos as suas  informações pessoais que você nos dá tais como: nome, e-mail e endereço aos quais utilizamos para mostrar determinados produtos com base no usuario.</p>

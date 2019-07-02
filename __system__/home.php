@@ -159,12 +159,20 @@
         <!-- -------------------- -->
         <!-- Carousel -->
         <div class="l-carousel">
-            <div id="owl-demo" class="owl-carousel">
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_junina.jpg" alt="Banner da Festa Junina"></div>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner_Wine.png" alt="Banner Promoção de Vinhos"></div>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\Banner2_Otimizado.png" alt="Banner promoção de Ovo de Páscoa"></div>
-            </div>
-        </div>
+          <div id="owl-demo" class="owl-carousel">  
+                <?php  $selb = $conn->prepare("SELECT * FROM banner WHERE banner_status = 1"); 
+                    $selb->execute();
+                    if($selb->rowCount() > 0):
+                        while($rowb = $selb->fetch( PDO::FETCH_ASSOC )):
+                ?>
+                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\<?= $rowb['banner_path']; ?>" alt="<?= $rowb['banner_nome']; ?>" title="<?= $rowb['banner_nome']; ?>"></div>
+           
+        
+           <?php 
+           endwhile;
+           else:
+             echo  "<span>Sem Banners</span>";
+           endif; ?> </div></div>
         <!-- Title/Display Products -->
         <div class="l-main">
             <center>

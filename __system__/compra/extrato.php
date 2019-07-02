@@ -1,4 +1,4 @@
-<ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
+﻿<ul class="progress-tracker progress-tracker--word progress-tracker--word-left progress-tracker--center anim-ripple-large">
     <li class="progress-step is-complete">
         <span class="progress-marker"></span>
         <span class="progress-text">
@@ -36,7 +36,7 @@
     </li>
 </ul>
 
-<h2 class="tituloOfertas"><i class="fas fa-file-alt"></i> EXTRATO</h2>
+<h2 class="defaultTitle"><i class="fas fa-file-alt"></i> EXTRATO</h2>
 
 <?php
     if(isset($_SESSION['paymentDone'])):

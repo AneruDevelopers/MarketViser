@@ -8,7 +8,6 @@ $(document).ready(function(){
         var qtd = [];
         for(var i = 0; data.length > i; i++) {
     
-  
           mes.push(data[i].mes);
       
           qtd.push(data[i].qtd);

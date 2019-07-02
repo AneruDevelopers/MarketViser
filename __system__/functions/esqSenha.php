@@ -56,9 +56,9 @@
 
                 $upd = $conn->prepare("UPDATE usuario SET usu_senha='{$hash_password}' WHERE usu_email='{$mail}'");
                 if($upd->execute()) {
-                    if(!env_email_rec($mail, $name, $new_password)) {
-                        $json["status"] = 0;
-                        $json["error"] = "Não conseguimos enviar o email, tente novamente, por favor!";
+                    if(env_email_rec($mail, $name, $new_password)) {
+                 /*       $json["status"] = 0;
+                        $json["error"] = "Não conseguimos enviar o email, tente novamente, por favor!";*/
                     }
                 } else {
                     $json["status"] = 0;
