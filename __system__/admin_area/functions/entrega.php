@@ -4,6 +4,78 @@
 
         if(isset($_POST['searchEntrega'])) {
 
+        } elseif(isset($_POST['getEnt_id'])) {
+            $json['entrega'] = NULL;
+            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN usuario AS u ON u.usu_id=c.usu_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE e.entrega_id=:id");
+            $sel->bindValue("id", $_POST['getEnt_id']);
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $row['compra_registro']);
+                        $day = explode("-", $exp[0]);
+                        $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
+                        " às " . $exp[1];
+                        
+                        $exp = explode(" ", $row['entrega_horario']);
+                        $day = explode("-", $exp[0]);
+                        $row['entrega_horario'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
+                        " às " . $exp[1];
+
+                        $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
+
+                        $json['compra']['id'] = $row['compra_id'];
+                        $json['compra']['armazem'] = $row['armazem_nome'] . " &nbsp;| &nbsp;" . $row['cid_nome'] . " - " . $row['est_uf'];
+                        $json['compra']['registro'] = $row['compra_registro'];
+                        $json['compra']['hash'] = $row['compra_hash'];
+                        $json['compra']['total'] = $row['compra_total'];
+                        $json['compra']['status'] = $row['status_nome'];
+                        $json['compra']['forma_pag'] = $row['forma_nome'];
+
+                        if($row['compra_link'] != '') {
+                            $json['compra']['link'] = $row['compra_link'];
+                        }
+                    
+                        $json['end']['horario'] = $row['entrega_horario'];
+                        $json['end']['cep'] = $row['entrega_cep'];
+                        $json['end']['log'] = $row['entrega_end'];
+                        $json['end']['num'] = $row['entrega_num'];
+                        $json['end']['complemento'] = $row['entrega_complemento'];
+                        $json['end']['bairro'] = $row['entrega_bairro'];
+                        $json['end']['cidade'] = $row['entrega_cidade'];
+                        $json['end']['uf'] = $row['entrega_uf'];
+
+                        $json['produto_id'][$c] = $row['produto_id'];
+                        $json['produto_nome'][$c] = $row['produto_nome'];
+                        $json['produto_qtd'][$c] = $row['produto_qtd'];
+                        
+                        $json['entrega'] = $v;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
+        } elseif($_POST['updEnt_id']) {
+            $sel = $conn->prepare("SELECT funcionario_id, funcionario_nome, funcionario_cpf FROM funcionario");
+            $sel->execute();
+            while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+                $json['funcionarios'][] = $row;
+            }
+        } elseif(isset($_POST['funcionario_entrega'])) {
+            $sel = $conn->prepare("SELECT s.setor_permicao FROM funcionario AS f JOIN setor AS s ON f.funcionario_setor=s.setor_id WHERE f.funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
+            $sel->execute();
+            $res = $sel->fetchAll();
+            $permicoes = explode("-", $res[0]['setor_permicao']);
+            if(!in_array("a", $permicoes)) {
+                $json['status'] = 0;
+                $json['error'] = 'Você não tem permição para adicionar';
+            } else {
+                $ins = $conn->prepare("INSERT INTO dados_entrega(entrega_id, funcionario_id) VALUES({$_POST['entrega_id']}, {$_POST['funcionario_entrega']})");
+                if(!$ins->execute()) {
+                    $json['status'] = 0;
+                    $json['error_del'] = "Código erro: " . $upd->errorCode();
+                }
+            }
         } else {
             $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
             $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);

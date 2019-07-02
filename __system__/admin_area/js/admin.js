@@ -174,7 +174,7 @@ function notification() {
                 visuNot();
 
                 if(json['entrega_pendente']) {
-                    $('.notifEnt').css({'display':'block'});
+                    $('.notifEnt').css({'display':'inline-block'});
                     $('.notifEnt').html(json['entrega_pendente']);
                 } else {
                     $('.notifEnt').css({'display':'none'});
@@ -183,8 +183,8 @@ function notification() {
             }
         },
         complete: function() {
-            // setTimeout(notification, 3000);
-            // setTimeout(visuNot, 3000);
+            setTimeout(notification, 3000);
+            setTimeout(visuNot, 3000);
         }
     });
 }

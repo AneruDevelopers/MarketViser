@@ -1,13 +1,16 @@
 <?php
     // GERA PDF DA COMPRA NA PÁGINA DE HISTÓRICO DE COMPRAS DO CLIENTE
-    if(isset($_GET['compra']) && isset($_SESSION['inf_usu']['usu_id'])) {
+    if(isset($_SESSION['inf_func']) || isset($_SESSION['inf_usu']['usu_id'])) {
+        $perm = 1;
+    }
+
+    if(isset($_GET['compra']) && isset($perm)) {
         require_once '__system__/functions/connection/conn.php';
         require_once '__system__/functions/fpdf/fpdf.php';
 
         $compra = $_GET['compra'];
         
-        $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.usu_id=:usu_id AND c.compra_id=:c_id");
-        $sel->bindValue(":usu_id", "{$_SESSION['inf_usu']['usu_id']}");
+        $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.compra_id=:c_id");
         $sel->bindValue(":c_id", "{$compra}");
         $sel->execute();
         

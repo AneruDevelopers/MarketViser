@@ -22,14 +22,14 @@
             <form id="form-login-adm">
                 <div class="outsideSecInputCad">
                     <div class="field -md">
-                        <input type="text" name="funcionario_cpf" value="477.608.258-62" id="funcionario_cpf" class="placeholder-shown" placeholder="Some placeholder"/>
+                        <input type="text" name="funcionario_cpf" id="funcionario_cpf" class="placeholder-shown cpf" placeholder="Some placeholder"/>
                         <label class="labelFieldCad"><strong><i class="fas fa-id-card"></i> CPF</strong></label>
                     </div>
                     <div class="help-block"></div><br/>
                 </div>
                 <div class="outsideSecInputCad">
                     <div class="field -md">
-                        <input type="password" value="economize" name="funcionario_senha" id="funcionario_senha" class="placeholder-shown" placeholder="Some placeholder"/>
+                        <input type="password" name="funcionario_senha" id="funcionario_senha" class="placeholder-shown" placeholder="Some placeholder"/>
                         <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
                     </div>
                     <div class="help-block"></div><br/>
@@ -42,6 +42,8 @@
     </div>
     
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
+    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/login.js"></script>
