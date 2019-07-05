@@ -23,15 +23,15 @@
 					}
 				} else {
 					$json["status"] = 0;
-					$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
+					$json["error"] = "<p style='text-align:center;color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 				}
 			} else {
 				$json["status"] = 0;
-				$json["error"] = "<p style='color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
+				$json["error"] = "<p style='text-align:center;color:red;'><b>E-mail e/ou senha inválido(s)!</b></p>";
 			}
 		} else {
 			$json["status"] = 0;
-			$json["error"] = "<p style='color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
+			$json["error"] = "<p style='text-align:center;color:red;'><b>Erro inesperado. Tente novamente mais tarde!</b></p>";
 		}
 		
     	echo json_encode($json);

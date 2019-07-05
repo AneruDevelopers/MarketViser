@@ -130,7 +130,15 @@
         </div>
         <div class="item">
             <input type="checkbox" id="check13">
-            <label for="check13"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
+            <label for="check13"><i class="fas fa-file-alt"></i>&nbsp; RELATÓRIOS</label>
+            <ul>
+                <li><a href="<?= base_url_adm_php(); ?>relatorio/central">ESPECÍFICO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>relatorio/geral">GERAL</a></li>
+            </ul>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="check14">
+            <label for="check14"><i class="fas fa-users"></i>&nbsp; USUÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>usuario/central">GERENCIADOR</a></li>
             </ul>

@@ -183,8 +183,8 @@ function notification() {
             }
         },
         complete: function() {
-            setTimeout(notification, 3000);
-            setTimeout(visuNot, 3000);
+            // setTimeout(notification, 3000);
+            // setTimeout(visuNot, 3000);
         }
     });
 }

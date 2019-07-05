@@ -8,6 +8,7 @@ function mask() {
   $('.numberCard').mask('0000000000000000000');
   $('.month').mask('00');
   $('.year').mask('0000');
+  $('.month-year').mask('00/0000')
   $('.datetime').mask('00/00/0000 00:00:00');
   $('.cep').mask('00000-000');
   $('.phone').mask('0000-0000');
@@ -68,7 +69,6 @@ function mask() {
     $(".mask-on-div").fadeOut(500).fadeIn(500)
   })
 
-  $('pre').each(function(i, e) {hljs.highlightBlock(e)});
 }
 
 mask();

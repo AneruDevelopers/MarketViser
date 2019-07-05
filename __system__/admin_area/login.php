@@ -23,19 +23,19 @@
                 <div class="outsideSecInputCad">
                     <div class="field -md">
                         <input type="text" name="funcionario_cpf" id="funcionario_cpf" class="placeholder-shown cpf" placeholder="Some placeholder"/>
-                        <label class="labelFieldCad"><strong><i class="fas fa-id-card"></i> CPF</strong></label>
+                        <label class="labelFieldCad" for="funcionario_cpf"><strong><i class="fas fa-id-card"></i> CPF</strong></label>
                     </div>
                     <div class="help-block"></div><br/>
                 </div>
                 <div class="outsideSecInputCad">
                     <div class="field -md">
                         <input type="password" name="funcionario_senha" id="funcionario_senha" class="placeholder-shown" placeholder="Some placeholder"/>
-                        <label class="labelFieldCad"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
+                        <label class="labelFieldCad" for="funcionario_senha"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
                     </div>
                     <div class="help-block"></div><br/>
                 </div>
                 <button type="submit" class="btnSend" id="btnLogin">ENTRAR</button>
-                <div class="help-block-login"></div>
+                <div class="help-block"></div>
                 </div>
             </form>
         </div>

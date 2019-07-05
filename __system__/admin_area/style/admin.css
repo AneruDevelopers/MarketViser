@@ -54,6 +54,12 @@ body {
         ;
     }
 
+    .p-loading {
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+    }
+
     .l-header {
         grid-area: header;
         width: 100%;
@@ -556,11 +562,11 @@ body {
     }
 
     .modalViewRight {
-        width: 50%;
+        width: 45%;
         height: 100%;
         position: absolute;
         top: 0;
-        right: 2rem;
+        right: 3rem;
     }
 
     .infView {
@@ -982,6 +988,42 @@ body {
         background: red;
         color: #fff;
         display: none;
+    }
+
+    .delFuncEntrega {
+        border: none;
+        background: none;
+        color: #9C45EB;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .headerShowPurch, .shippingShowPurch {
+        width: 93%;
+        padding-left: 7%;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        line-height: 24px;
+    }
+
+    .funcRemet {
+        width: 93%;
+        padding-left: 7%;
+        padding-bottom: 30px;
+        line-height: 24px;
+    }
+
+    .cartItems {
+        width: 80%;
+        padding: 30px 0;
+    }
+
+    .p_prodCart {
+        line-height: 24px;
+    }
+
+    .itCart {
+        margin-top: 0;
     }
 
     /* SEÇÃO ARMAZÉM */
