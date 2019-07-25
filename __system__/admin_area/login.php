@@ -22,14 +22,14 @@
             <form id="form-login-adm">
                 <div class="outsideSecInputCad">
                     <div class="field -md">
-                        <input type="text" name="funcionario_cpf" id="funcionario_cpf" class="placeholder-shown cpf" placeholder="Some placeholder"/>
+                        <input type="text" name="funcionario_cpf" id="funcionario_cpf" class="placeholder-shown cpf" placeholder=" " value="309.826.521-33"/>
                         <label class="labelFieldCad" for="funcionario_cpf"><strong><i class="fas fa-id-card"></i> CPF</strong></label>
                     </div>
                     <div class="help-block"></div><br/>
                 </div>
                 <div class="outsideSecInputCad">
                     <div class="field -md">
-                        <input type="password" name="funcionario_senha" id="funcionario_senha" class="placeholder-shown" placeholder="Some placeholder"/>
+                        <input type="password" name="funcionario_senha" id="funcionario_senha" class="placeholder-shown" placeholder=" " value="laranja123"/>
                         <label class="labelFieldCad" for="funcionario_senha"><strong><i class="fas fa-unlock"></i> SENHA</strong></label>
                     </div>
                     <div class="help-block"></div><br/>

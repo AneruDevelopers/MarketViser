@@ -37,9 +37,10 @@
                 <div class="divEcoTable">
                     <table width="80%" class="tableView tableProdConfigAdm" align="center">
                         <thead>
-                            <th class="thTitle" data-sort="fornecedor_nome" width="30%">NOME <span class="span_sort"></span></th>
-                            <th class="thTitle sort" data-sort="fornecedor_responsavel_nome" width="30%">RESPONSÁVEL <span class="span_sort"></span></th>
-                            <th class="thTitle sort" data-sort="fornecedor_cnpj" width="25%">CNPJ <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="fornecedor_nome" width="25%">NOME <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="fornecedor_responsavel_nome" width="25%">RESPONSÁVEL <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="fornecedor_cnpj" width="17%">CNPJ <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="fornecedor_data_registro" width="18%">REGISTRO <span class="span_sort"></span></th>
                             <th class="thTitle" width="15%">AÇÕES</th>
                         </thead>
                         <tbody class="tbodyProd">
@@ -96,6 +97,50 @@
                             </div>
                             <div class="divSubmit" align="center">
                                 <button type="submit" id="btnInsertFornecedor"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="myModalUpd" id="myModalUpd">
+            <div class="modalUpdContent">
+                <span class="closeModalUpd">&times;</span>
+                <div class="showUpdModal">
+                    <div class="divCadFornecedor">
+                        <form class="formUpdateFornecedor">
+                            <div class="divUpdCadFornecedor">
+                                <div style="margin:25px 0;">
+                                <table class="tableSectionConfigArm" width="80%" align="center">
+                                    <tr align="center">
+                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR FORNECEDOR</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                        <td>
+                                            <input type="hidden" name="fornecedor_idUpd" id="fornecedor_idUpd"/>
+                                            <input type="text" class="selectConfigArm" name="fornecedor_nomeUpd" id="fornecedor_nomeUpd"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME RESPONSÁVEL</b></td>
+                                        <td>
+                                            <input type="text" class="selectConfigArm" name="fornecedor_responsavel_nomeUpd" id="fornecedor_responsavel_nomeUpd"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CNPJ</b></td>
+                                        <td>
+                                            <input type="text" class="selectConfigArm cnpj" name="fornecedor_cnpjUpd" id="fornecedor_cnpjUpd"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnUpdateFornecedor"><i class="fas fa-save"></i> Editar</button>
                                 <div class="help-block"></div>
                             </div>
                         </form>

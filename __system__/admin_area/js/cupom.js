@@ -40,50 +40,6 @@ function dataCupons(page, qtd_result) {
                             </tr>
                         `);
                     }
-                    $('body').append(`
-                        <div class="myModalView" id="myModalView">
-                            <div class="modalViewContent">
-                                <span class="closeModalView">&times;</span>
-                                <div class="showViewModal">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="myModalUpd" id="myModalUpd">
-                            <div class="modalUpdContent">
-                                <span class="closeModalUpd">&times;</span>
-                                <div class="showUpdModal">
-                                    <div class="divCadCupom">
-                                        <form class="formUpdateCupom">
-                                            <div class="divUpdCadCupom">
-                                                <div style="margin:25px 0;">
-                                                <table class="tableSectionConfigArm" width="80%" align="center">
-                                                    <tr align="center">
-                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR CUPOM</h2></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <input type="hidden" id="cupom_idUpd" name="cupom_idUpd">
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CÓDIGO</b></td>
-                                                        <td><input type="text" class="selectConfigArm" id="cupom_codigoUpd" name="cupom_codigoUpd" size="60"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO %</b></td>
-                                                        <td><input type="text" class="selectConfigArm porcent" id="cupom_desconto_porcentUpd" name="cupom_desconto_porcentUpd" size="60"></td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                            </div>
-                                            <div class="divSubmit" align="center">
-                                                <button type="submit" id="btnUpdateCupom"><i class="fas fa-save"></i> Editar</button>
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
                     deleteCupom();
                     modalUpd();
                     updCupom();
@@ -102,7 +58,7 @@ function dataCupons(page, qtd_result) {
                 `);
             }
             $('.registShow').html(`
-                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` cupons
             `);
 
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
@@ -296,4 +252,412 @@ function deleteCupom() {
     });
 }
 
+function ordenarCuponsSec(page, qtd_result, sortType) {
+    var tipoSort = sortType;
+
+    var dados = new FormData();
+    dados.append("data_sort",  sortType);
+    dados.append("page", page);
+    dados.append("qtd_result", qtd_result);
+    dados.append("sec",  "1");
+
+    if($('#searchCupom').val().length > 0) {
+        $('.divResetSearch').html(``);
+        $('#searchCupom').val(``);
+    }
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dados,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: BASE_URL4 + 'functions/cupom',
+        beforeSend: function() {
+            $('.tbodyProd').html(`
+                <tr>
+                    <th colspan="5" class="thNoData">
+                        - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                    </th>
+                </tr>
+            `);
+        },
+        success: function(json) {
+            if(json['status']) {
+                $('.tbodyProd').html("");
+
+                for(var i = 0; json['cupons'].length > i; i++) {
+                    $('.tbodyProd').append(`
+                        <tr>
+                            <td>` + json['cupons'][i].cupom_codigo + `</td>
+                            <td class="tdCenter">` + json['cupons'][i].cupom_desconto_porcent + `</td>
+                            <td class="tdCenter">
+                                <button class="myBtnUpd btnEditCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-edit"></i></button>
+                                <button class="btnDelCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                    `);
+                }
+                deleteCupom();
+                modalUpd();
+                updCupom();
+            } else {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                    </tr>
+                `);
+            }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` cupons
+            `);
+
+            var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+
+            $('.paginacao').html(`
+                <a href="#" class="linkPaginacao" onclick="ordenarCuponsSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+            `);
+
+            for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                if(pag_ant >= 1) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarCuponsSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(` ` + page + ` `);
+
+            for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                if(pag_dep <= totPage) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarCuponsSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(`
+                <a href="#" class="linkPaginacao" onclick="ordenarCuponsSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+            `);
+        }
+    });
+}
+
+function ordenarCupons(page, qtd_result) {
+    $('.sort').click(function(e) {
+        e.preventDefault();
+
+        var elementoPai = $(this).parent();
+        var elementosFilho = elementoPai.find(".span_sort");
+        elementosFilho.html("");
+
+        var sort = $(this).find(".span_sort");
+        
+        var tipoSort = $(this).attr("data-sort");
+
+        var dados = new FormData();
+        dados.append("data_sort",  $(this).attr("data-sort"));
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        if($('#searchCupom').val().length > 0) {
+            $('.divResetSearch').html(``);
+            $('#searchCupom').val(``);
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/cupom',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    $('.tbodyProd').html("");
+                    if(json['sort'] == "up") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-up"></i>`);
+                    } else if(json['sort'] == "down") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
+                    }
+
+                    for(var i = 0; json['cupons'].length > i; i++) {
+                        $('.tbodyProd').append(`
+                            <tr>
+                                <td>` + json['cupons'][i].cupom_codigo + `</td>
+                                <td class="tdCenter">` + json['cupons'][i].cupom_desconto_porcent + `</td>
+                                <td class="tdCenter">
+                                    <button class="myBtnUpd btnEditCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    }
+                    deleteCupom();
+                    modalUpd();
+                    updCupom();
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` cupons
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarCuponsSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarCuponsSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarCuponsSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarCuponsSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                `);
+            }
+        });
+    });
+}
+
+function searchCuponsSec(page, qtd_result) {
+    if($('#searchCupom').val().length > 0) {
+        $('.divResetSearch').html(`
+            <button type="reset" class="inputResetSearch">
+                <i class="far fa-times-circle"></i>
+            </button>
+        `);
+        
+        var dados = new FormData();
+        dados.append("searchCupom",  $('#searchCupom').val());
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/cupom',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    if(!json['empty']) {
+                        $('.tbodyProd').html("");
+                        for(var i = 0; json['cupons'].length > i; i++) {
+                            $('.tbodyProd').append(`
+                                <tr>
+                                    <td>` + json['cupons'][i].cupom_codigo + `</td>
+                                    <td class="tdCenter">` + json['cupons'][i].cupom_desconto_porcent + `</td>
+                                    <td class="tdCenter">
+                                        <button class="myBtnUpd btnEditCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-edit"></i></button>
+                                        <button class="btnDelCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                            `);
+                        }
+                        deleteCupom();
+                        modalUpd();
+                        updCupom();
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                            </tr>
+                        `);
+                    }
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` cupons
+                `);
+    
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="searchCuponsSec(1, qtd_result)">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchCuponsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchCuponsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="searchCuponsSec(` + totPage + `, qtd_result)">Última</a>
+                `);
+            }
+        });
+    } else {
+        $('.divResetSearch').html(``);
+        dataCupons(1, qtd_result);
+    }
+}
+
+function searchCupons(page, qtd_result) {
+    $('#searchCupom').keyup(function(e) {
+        e.preventDefault();
+
+        if($(this).val().length > 0) {
+            $('.divResetSearch').html(`
+                <button type="reset" class="inputResetSearch">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            `);
+            
+            var dados = new FormData();
+            dados.append("searchCupom",  $(this).val());
+            dados.append("page", page);
+            dados.append("qtd_result", qtd_result);
+
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                data: dados,
+                cache: false,
+                contentType: false,
+                processData: false,
+                url: BASE_URL4 + 'functions/cupom',
+                beforeSend: function() {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">
+                                - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                            </th>
+                        </tr>
+                    `);
+                },
+                success: function(json) {
+                    if(json['status']) {
+                        if(!json['empty']) {
+                            $('.tbodyProd').html("");
+                            for(var i = 0; json['cupons'].length > i; i++) {
+                                $('.tbodyProd').append(`
+                                    <tr>
+                                        <td>` + json['cupons'][i].cupom_codigo + `</td>
+                                        <td class="tdCenter">` + json['cupons'][i].cupom_desconto_porcent + `</td>
+                                        <td class="tdCenter">
+                                            <button class="myBtnUpd btnEditCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="btnDelCupom btnProductConfigAdm" id-cupom="` + json['cupons'][i].cupom_id + `"><i class="fa fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                `);
+                            }
+                            deleteCupom();
+                            modalUpd();
+                            updCupom();
+                        } else {
+                            $('.tbodyProd').html(`
+                                <tr>
+                                    <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                </tr>
+                            `);
+                        }
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            </tr>
+                        `);
+                    }
+                    $('.registShow').html(`
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` cupons
+                    `);
+        
+                    var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+        
+                    $('.paginacao').html(`
+                        <a href="#" class="linkPaginacao" onclick="searchCuponsSec(1, qtd_result)">Primeira</a> 
+                    `);
+        
+                    for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                        if(pag_ant >= 1) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchCuponsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(` ` + page + ` `);
+        
+                    for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                        if(pag_dep <= totPage) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchCuponsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(`
+                        <a href="#" class="linkPaginacao" onclick="searchCuponsSec(` + totPage + `, qtd_result)">Última</a>
+                    `);
+                }
+            });
+        } else {
+            $('.divResetSearch').html(``);
+            dataCupons(1, qtd_result);
+        }
+    });
+}
+
 dataCupons(page, qtd_result);
+searchCupons(1, qtd_result);
+ordenarCupons(1, qtd_result);

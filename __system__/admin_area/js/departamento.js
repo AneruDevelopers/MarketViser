@@ -39,47 +39,12 @@ function dataDeparts(page, qtd_result) {
                             </tr>
                         `);
                     }
-                    $('body').append(`
-                        <div class="myModalUpd" id="myModalUpd">
-                            <div class="modalUpdContent">
-                                <span class="closeModalUpd">&times;</span>
-                                <div class="showUpdModal">
-                                    <div class="divCadDepart">
-                                        <form class="formUpdateDepart">
-                                            <div class="divUpdCadDepart">
-                                                <div style="margin:25px 0;">
-                                                <table class="tableSectionConfigArm" width="80%" align="center">
-                                                    <tr align="center">
-                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR DEPARTAMENTO</h2></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <input type="hidden" id="depart_idUpd" name="depart_idUpd">
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
-                                                        <td><input type="text" class="selectConfigArm" id="depart_nomeUpd" name="depart_nomeUpd" size="60"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCRIÇÃO</b></td>
-                                                        <td><input type="text" class="selectConfigArm porcent" id="depart_descUpd" name="depart_descUpd" size="60"></td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                            </div>
-                                            <div class="divSubmit" align="center">
-                                                <button type="submit" id="btnUpdateDepart"><i class="fas fa-save"></i> Editar</button>
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
                     modalUpd();
                     updDepart();
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">- NÃO HÁ CUPONS CADASTRADOS -</th>
+                            <th colspan="5" class="thNoData">- NÃO HÁ DEPARTAMENTOS CADASTRADOS -</th>
                         </tr>
                     `);
                 }
@@ -91,7 +56,7 @@ function dataDeparts(page, qtd_result) {
                 `);
             }
             $('.registShow').html(`
-                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` departamentos
             `);
 
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
@@ -194,4 +159,404 @@ function updateDepart() {
     });
 }
 
+function ordenarDepartsSec(page, qtd_result, sortType) {
+    var tipoSort = sortType;
+
+    var dados = new FormData();
+    dados.append("data_sort",  sortType);
+    dados.append("page", page);
+    dados.append("qtd_result", qtd_result);
+    dados.append("sec",  "1");
+
+    if($('#searchDepart').val().length > 0) {
+        $('.divResetSearch').html(``);
+        $('#searchDepart').val(``);
+    }
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dados,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: BASE_URL4 + 'functions/departamento',
+        beforeSend: function() {
+            $('.tbodyProd').html(`
+                <tr>
+                    <th colspan="5" class="thNoData">
+                        - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                    </th>
+                </tr>
+            `);
+        },
+        success: function(json) {
+            if(json['status']) {
+                $('.tbodyProd').html("");
+
+                for(var i = 0; json['departamentos'].length > i; i++) {
+                    $('.tbodyProd').append(`
+                        <tr>
+                            <td>` + json['departamentos'][i].depart_nome + `</td>
+                            <td class="tdCenter">` + json['departamentos'][i].depart_desc + `</td>
+                            <td class="tdCenter">
+                                <button class="myBtnUpd btnEditDepart btnProductConfigAdm" id-depart="` + json['departamentos'][i].depart_id + `"><i class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    `);
+                }
+                modalUpd();
+                updDepart();
+            } else {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                    </tr>
+                `);
+            }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` departamentos
+            `);
+
+            var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+
+            $('.paginacao').html(`
+                <a href="#" class="linkPaginacao" onclick="ordenarDepartsSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+            `);
+
+            for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                if(pag_ant >= 1) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarDepartsSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(` ` + page + ` `);
+
+            for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                if(pag_dep <= totPage) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarDepartsSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(`
+                <a href="#" class="linkPaginacao" onclick="ordenarDepartsSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+            `);
+        }
+    });
+}
+
+function ordenarDeparts(page, qtd_result) {
+    $('.sort').click(function(e) {
+        e.preventDefault();
+
+        var elementoPai = $(this).parent();
+        var elementosFilho = elementoPai.find(".span_sort");
+        elementosFilho.html("");
+
+        var sort = $(this).find(".span_sort");
+        
+        var tipoSort = $(this).attr("data-sort");
+
+        var dados = new FormData();
+        dados.append("data_sort",  $(this).attr("data-sort"));
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        if($('#searchDepart').val().length > 0) {
+            $('.divResetSearch').html(``);
+            $('#searchDepart').val(``);
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/departamento',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    $('.tbodyProd').html("");
+                    if(json['sort'] == "up") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-up"></i>`);
+                    } else if(json['sort'] == "down") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
+                    }
+
+                    for(var i = 0; json['departamentos'].length > i; i++) {
+                        $('.tbodyProd').append(`
+                            <tr>
+                                <td>` + json['departamentos'][i].depart_nome + `</td>
+                                <td class="tdCenter">` + json['departamentos'][i].depart_desc + `</td>
+                                <td class="tdCenter">
+                                    <button class="myBtnUpd btnEditDepart btnProductConfigAdm" id-depart="` + json['departamentos'][i].depart_id + `"><i class="fa fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    }
+                    modalUpd();
+                    updDepart();
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` departamentos
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarDepartsSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarDepartsSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarDepartsSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarDepartsSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                `);
+            }
+        });
+    });
+}
+
+function searchDepartsSec(page, qtd_result) {
+    if($('#searchDepart').val().length > 0) {
+        $('.divResetSearch').html(`
+            <button type="reset" class="inputResetSearch">
+                <i class="far fa-times-circle"></i>
+            </button>
+        `);
+        
+        var dados = new FormData();
+        dados.append("searchDepart",  $('#searchDepart').val());
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/departamento',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    if(!json['empty']) {
+                        $('.tbodyProd').html("");
+                        for(var i = 0; json['departamentos'].length > i; i++) {
+                            $('.tbodyProd').append(`
+                                <tr>
+                                    <td>` + json['departamentos'][i].depart_nome + `</td>
+                                    <td class="tdCenter">` + json['departamentos'][i].depart_desc + `</td>
+                                    <td class="tdCenter">
+                                        <button class="myBtnUpd btnEditDepart btnProductConfigAdm" id-depart="` + json['departamentos'][i].depart_id + `"><i class="fa fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                            `);
+                        }
+                        modalUpd();
+                        updDepart();
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                            </tr>
+                        `);
+                    }
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` departamentos
+                `);
+    
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="searchDepartsSec(1, qtd_result)">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="searchDepartsSec(` + totPage + `, qtd_result)">Última</a>
+                `);
+            }
+        });
+    } else {
+        $('.divResetSearch').html(``);
+        dataDeparts(1, qtd_result);
+    }
+}
+
+function searchDeparts(page, qtd_result) {
+    $('#searchDepart').keyup(function(e) {
+        e.preventDefault();
+
+        if($(this).val().length > 0) {
+            $('.divResetSearch').html(`
+                <button type="reset" class="inputResetSearch">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            `);
+            
+            var dados = new FormData();
+            dados.append("searchDepart",  $(this).val());
+            dados.append("page", page);
+            dados.append("qtd_result", qtd_result);
+
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                data: dados,
+                cache: false,
+                contentType: false,
+                processData: false,
+                url: BASE_URL4 + 'functions/departamento',
+                beforeSend: function() {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">
+                                - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                            </th>
+                        </tr>
+                    `);
+                },
+                success: function(json) {
+                    if(json['status']) {
+                        if(!json['empty']) {
+                            $('.tbodyProd').html("");
+                            for(var i = 0; json['departamentos'].length > i; i++) {
+                                $('.tbodyProd').append(`
+                                    <tr>
+                                        <td>` + json['departamentos'][i].depart_nome + `</td>
+                                        <td class="tdCenter">` + json['departamentos'][i].depart_desc + `</td>
+                                        <td class="tdCenter">
+                                            <button class="myBtnUpd btnEditDepart btnProductConfigAdm" id-depart="` + json['departamentos'][i].depart_id + `"><i class="fa fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+                                `);
+                            }
+                            modalUpd();
+                            updDepart();
+                        } else {
+                            $('.tbodyProd').html(`
+                                <tr>
+                                    <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                </tr>
+                            `);
+                        }
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            </tr>
+                        `);
+                    }
+                    $('.registShow').html(`
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` departamentos
+                    `);
+        
+                    var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+        
+                    $('.paginacao').html(`
+                        <a href="#" class="linkPaginacao" onclick="searchDepartsSec(1, qtd_result)">Primeira</a> 
+                    `);
+        
+                    for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                        if(pag_ant >= 1) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(` ` + page + ` `);
+        
+                    for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                        if(pag_dep <= totPage) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(`
+                        <a href="#" class="linkPaginacao" onclick="searchDepartsSec(` + totPage + `, qtd_result)">Última</a>
+                    `);
+                }
+            });
+        } else {
+            $('.divResetSearch').html(``);
+            dataDeparts(1, qtd_result);
+        }
+    });
+}
+
 dataDeparts(page, qtd_result);
+searchDeparts(1, qtd_result);
+ordenarDeparts(1, qtd_result);

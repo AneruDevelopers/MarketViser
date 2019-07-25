@@ -41,64 +41,7 @@ function dataBanners(page, qtd_result) {
                             </tr>
                         `);
                     }
-                    $('body').append(`
-                        <div class="myModalView" id="myModalView">
-                            <div class="modalViewContent">
-                                <span class="closeModalView">&times;</span>
-                                <div class="showViewModal">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="myModalUpd" id="myModalUpd">
-                            <div class="modalUpdContent">
-                                <span class="closeModalUpd">&times;</span>
-                                <div class="showUpdModal">
-                                    <div class="divCadBanner">
-                                        <form class="formUpdateBanner" enctype="multipart/form-data">
-                                            <div class="divUpdCadBanner">
-                                                <div style="margin:25px 0;">
-                                                <table class="tableSectionConfigArm" width="80%" align="center">
-                                                    <tr align="center">
-                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR BANNER PROMOCIONAL</h2></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <input type="hidden" id="banner_idUpd" name="banner_idUpd"/>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
-                                                        <td><input type="text" placeholder=" (Opcional)" class="selectConfigArm" id="banner_nomeUpd" name="banner_nomeUpd" size="60"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>STATUS</b></td>
-                                                        <td>
-                                                            <select class="selectConfigArm" id="banner_statusUpd" name="banner_statusUpd">
-                                                                <option id="status01" value="*000*"> -- Selecione o status: --</option>
-                                                                <option id="status1" value="1">Ativado</option>
-                                                                <option id="status0" value="0">Desativado</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
-                                                        <td>
-                                                            <img class="imgUpload" src=""/><br/>
-                                                            <label for="banner_pathUpd" class="selectConfigArm labelFile"><i class="fas fa-upload"></i> Alterar imagem</label>
-                                                            <input type="file" class="selectConfigArm" accept="image/*" id="banner_pathUpd" name="banner_pathUpd"/>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                            </div>
-                                            <div class="divSubmit" align="center">
-                                                <button type="submit" id="btnUpdateBanner"><i class="fas fa-save"></i> Editar</button>
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+                    
                     deleteBanner();
                     modalUpd();
                     updBanner();
@@ -365,4 +308,424 @@ function deleteBanner() {
     });
 }
 
+function ordenarBannerSec(page, qtd_result, sortType) {
+    var tipoSort = sortType;
+
+    var dados = new FormData();
+    dados.append("data_sort",  sortType);
+    dados.append("page", page);
+    dados.append("qtd_result", qtd_result);
+    dados.append("sec",  "1");
+
+    if($('#searchBanner').val().length > 0) {
+        $('.divResetSearch').html(``);
+        $('#searchBanner').val(``);
+    }
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dados,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: BASE_URL4 + 'functions/banner',
+        beforeSend: function() {
+            $('.tbodyProd').html(`
+                <tr>
+                    <th colspan="5" class="thNoData">
+                        - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                    </th>
+                </tr>
+            `);
+        },
+        success: function(json) {
+            if(json['status']) {
+                $('.tbodyProd').html("");
+
+                for(var i = 0; json['banners'].length > i; i++) {
+                    $('.tbodyProd').append(`
+                        <tr>
+                            <td><img class="imgBanner" style="width:100%;" src="` + BASE_URL2 + `img/Banner_TCC/` + json['banners'][i].banner_path + `"/></td>
+                            <td class="tdCenter">` + json['banners'][i].banner_nome + `</td>
+                            <td class="tdCenter">` + json['banners'][i].banner_status + `</td>
+                            <td class="tdCenter">
+                                <button class="myBtnUpd btnEditBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-edit"></i></button>
+                                <button class="btnDelBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                    `);
+                }
+                
+                deleteBanner();
+                modalUpd();
+                updBanner();
+                uploadImg();
+            } else {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                    </tr>
+                `);
+            }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+            `);
+
+            var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+
+            $('.paginacao').html(`
+                <a href="#" class="linkPaginacao" onclick="ordenarBannerSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+            `);
+
+            for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                if(pag_ant >= 1) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarBannerSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(` ` + page + ` `);
+
+            for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                if(pag_dep <= totPage) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarBannerSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(`
+                <a href="#" class="linkPaginacao" onclick="ordenarBannerSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+            `);
+        }
+    });
+}
+
+function ordenarBanner(page, qtd_result) {
+    $('.sort').click(function(e) {
+        e.preventDefault();
+
+        var elementoPai = $(this).parent();
+        var elementosFilho = elementoPai.find(".span_sort");
+        elementosFilho.html("");
+
+        var sort = $(this).find(".span_sort");
+        
+        var tipoSort = $(this).attr("data-sort");
+
+        var dados = new FormData();
+        dados.append("data_sort",  $(this).attr("data-sort"));
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        if($('#searchBanner').val().length > 0) {
+            $('.divResetSearch').html(``);
+            $('#searchBanner').val(``);
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/banner',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    $('.tbodyProd').html("");
+                    if(json['sort'] == "up") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-up"></i>`);
+                    } else if(json['sort'] == "down") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
+                    }
+
+                    for(var i = 0; json['banners'].length > i; i++) {
+                        $('.tbodyProd').append(`
+                            <tr>
+                                <td><img class="imgBanner" style="width:100%;" src="` + BASE_URL2 + `img/Banner_TCC/` + json['banners'][i].banner_path + `"/></td>
+                                <td class="tdCenter">` + json['banners'][i].banner_nome + `</td>
+                                <td class="tdCenter">` + json['banners'][i].banner_status + `</td>
+                                <td class="tdCenter">
+                                    <button class="myBtnUpd btnEditBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    }
+                    
+                    deleteBanner();
+                    modalUpd();
+                    updBanner();
+                    uploadImg();
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarBannerSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarBannerSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarBannerSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarBannerSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                `);
+            }
+        });
+    });
+}
+
+function searchBannerSec(page, qtd_result) {
+    if($('#searchBanner').val().length > 0) {
+        $('.divResetSearch').html(`
+            <button type="reset" class="inputResetSearch">
+                <i class="far fa-times-circle"></i>
+            </button>
+        `);
+        
+        var dados = new FormData();
+        dados.append("searchBanner",  $('#searchBanner').val());
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/banner',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    if(!json['empty']) {
+                        $('.tbodyProd').html("");
+                        for(var i = 0; json['banners'].length > i; i++) {
+                            $('.tbodyProd').append(`
+                                <tr>
+                                    <td><img class="imgBanner" style="width:100%;" src="` + BASE_URL2 + `img/Banner_TCC/` + json['banners'][i].banner_path + `"/></td>
+                                    <td class="tdCenter">` + json['banners'][i].banner_nome + `</td>
+                                    <td class="tdCenter">` + json['banners'][i].banner_status + `</td>
+                                    <td class="tdCenter">
+                                        <button class="myBtnUpd btnEditBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-edit"></i></button>
+                                        <button class="btnDelBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                            `);
+                        }
+                        
+                        deleteBanner();
+                        modalUpd();
+                        updBanner();
+                        uploadImg();
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                            </tr>
+                        `);
+                    }
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                `);
+    
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="searchBannerSec(1, qtd_result)">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchBannerSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchBannerSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="searchBannerSec(` + totPage + `, qtd_result)">Última</a>
+                `);
+            }
+        });
+    } else {
+        $('.divResetSearch').html(``);
+        dataBanners(1, qtd_result);
+    }
+}
+
+function searchBanner(page, qtd_result) {
+    $('#searchBanner').keyup(function(e) {
+        e.preventDefault();
+
+        if($(this).val().length > 0) {
+            $('.divResetSearch').html(`
+                <button type="reset" class="inputResetSearch">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            `);
+            
+            var dados = new FormData();
+            dados.append("searchBanner",  $(this).val());
+            dados.append("page", page);
+            dados.append("qtd_result", qtd_result);
+
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                data: dados,
+                cache: false,
+                contentType: false,
+                processData: false,
+                url: BASE_URL4 + 'functions/banner',
+                beforeSend: function() {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">
+                                - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                            </th>
+                        </tr>
+                    `);
+                },
+                success: function(json) {
+                    if(json['status']) {
+                        if(!json['empty']) {
+                            $('.tbodyProd').html("");
+                            for(var i = 0; json['banners'].length > i; i++) {
+                                $('.tbodyProd').append(`
+                                    <tr>
+                                        <td><img class="imgBanner" style="width:100%;" src="` + BASE_URL2 + `img/Banner_TCC/` + json['banners'][i].banner_path + `"/></td>
+                                        <td class="tdCenter">` + json['banners'][i].banner_nome + `</td>
+                                        <td class="tdCenter">` + json['banners'][i].banner_status + `</td>
+                                        <td class="tdCenter">
+                                            <button class="myBtnUpd btnEditBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="btnDelBanner btnProductConfigAdm" id-banner="` + json['banners'][i].banner_id + `"><i class="fa fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                `);
+                            }
+                            
+                            deleteBanner();
+                            modalUpd();
+                            updBanner();
+                            uploadImg();
+                        } else {
+                            $('.tbodyProd').html(`
+                                <tr>
+                                    <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                </tr>
+                            `);
+                        }
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            </tr>
+                        `);
+                    }
+                    $('.registShow').html(`
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                    `);
+        
+                    var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+        
+                    $('.paginacao').html(`
+                        <a href="#" class="linkPaginacao" onclick="searchBannerSec(1, qtd_result)">Primeira</a> 
+                    `);
+        
+                    for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                        if(pag_ant >= 1) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchBannerSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(` ` + page + ` `);
+        
+                    for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                        if(pag_dep <= totPage) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchBannerSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(`
+                        <a href="#" class="linkPaginacao" onclick="searchBannerSec(` + totPage + `, qtd_result)">Última</a>
+                    `);
+                }
+            });
+        } else {
+            $('.divResetSearch').html(``);
+            dataBanners(1, qtd_result);
+        }
+    });
+}
+
 dataBanners(page, qtd_result);
+searchBanner(1, qtd_result);
+ordenarBanner(1, qtd_result);

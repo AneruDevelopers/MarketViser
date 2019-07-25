@@ -55,6 +55,7 @@
             <label for="check3"><i class="fas fa-ad"></i>&nbsp; BANNERS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>banner/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>banner/central?fnc=IB">INSERIR BANNER</a></li>
             </ul>
         </div>
         <!-- <div class="item">

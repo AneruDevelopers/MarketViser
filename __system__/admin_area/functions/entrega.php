@@ -17,12 +17,16 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT e.entrega_id, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS fp ON c.forma_id=fp.forma_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN usuario AS u ON c.usu_id=u.usu_id LEFT JOIN dados_entrega AS d ON e.entrega_id=d.entrega_id LEFT JOIN funcionario AS f ON d.funcionario_id=f.funcionario_id WHERE e.entrega_horario LIKE '%{$_POST['searchEnt']}%' OR e.entrega_cep LIKE '%{$_POST['searchEnt']}%' OR e.entrega_end LIKE '%{$_POST['searchEnt']}%' OR e.entrega_num LIKE '%{$_POST['searchEnt']}%' OR e.entrega_complemento LIKE '%{$_POST['searchEnt']}%' OR e.entrega_bairro LIKE '%{$_POST['searchEnt']}%' OR e.entrega_cidade LIKE '%{$_POST['searchEnt']}%' OR e.entrega_uf LIKE '%{$_POST['searchEnt']}%' OR c.compra_hash LIKE '%{$_POST['searchEnt']}%' OR c.compra_total LIKE '%{$_POST['searchEnt']}%' OR fp.forma_nome LIKE '%{$_POST['searchEnt']}%' OR s.status_nome LIKE '%{$_POST['searchEnt']}%' OR f.funcionario_nome LIKE '%{$_POST['searchEnt']}%' OR f.funcionario_cpf LIKE '%{$_POST['searchEnt']}%' OR u.usu_first_name LIKE '%{$_POST['searchEnt']}%' OR u.usu_last_name LIKE '%{$_POST['searchEnt']}%' OR u.usu_cpf LIKE '%{$_POST['searchEnt']}%' OR a.armazem_nome LIKE '%{$_POST['searchEnt']}%' LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT e.entrega_id, e.entrega_horario, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS fp ON c.forma_id=fp.forma_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN usuario AS u ON c.usu_id=u.usu_id LEFT JOIN dados_entrega AS d ON e.entrega_id=d.entrega_id LEFT JOIN funcionario AS f ON d.funcionario_id=f.funcionario_id WHERE e.entrega_horario LIKE '%{$_POST['searchEnt']}%' OR e.entrega_cep LIKE '%{$_POST['searchEnt']}%' OR e.entrega_end LIKE '%{$_POST['searchEnt']}%' OR e.entrega_num LIKE '%{$_POST['searchEnt']}%' OR e.entrega_complemento LIKE '%{$_POST['searchEnt']}%' OR e.entrega_bairro LIKE '%{$_POST['searchEnt']}%' OR e.entrega_cidade LIKE '%{$_POST['searchEnt']}%' OR e.entrega_uf LIKE '%{$_POST['searchEnt']}%' OR c.compra_hash LIKE '%{$_POST['searchEnt']}%' OR c.compra_total LIKE '%{$_POST['searchEnt']}%' OR fp.forma_nome LIKE '%{$_POST['searchEnt']}%' OR s.status_nome LIKE '%{$_POST['searchEnt']}%' OR f.funcionario_nome LIKE '%{$_POST['searchEnt']}%' OR f.funcionario_cpf LIKE '%{$_POST['searchEnt']}%' OR u.usu_first_name LIKE '%{$_POST['searchEnt']}%' OR u.usu_last_name LIKE '%{$_POST['searchEnt']}%' OR u.usu_cpf LIKE '%{$_POST['searchEnt']}%' OR a.armazem_nome LIKE '%{$_POST['searchEnt']}%' LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $v['entrega_horario']);
+                        $dia = explode("-", $exp[0]);
+                        $v['entrega_horario'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
                         if($v['status_id'] < 5) {
                             $v['status_id'] = '<span class="noVisuAtend">PENDENTE</span>';
                         } else {
@@ -69,14 +73,18 @@
             $json['entregas'] = array();
             
             if(isset($_SESSION['data_sort'][$sort])) {
-                $sel = $conn->prepare("SELECT  e.entrega_id, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
+                $sel = $conn->prepare("SELECT e.entrega_id, e.entrega_horario, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
             } else {
-                $sel = $conn->prepare("SELECT  e.entrega_id, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id LIMIT $begin, $qtd_result");
+                $sel = $conn->prepare("SELECT e.entrega_id, e.entrega_horario, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id LIMIT $begin, $qtd_result");
             }
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $prods = $sel->fetchAll();
                 foreach($prods as $v) {
+                    $exp = explode(" ", $v['entrega_horario']);
+                    $dia = explode("-", $exp[0]);
+                    $v['entrega_horario'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
                     if($v['status_id'] < 5) {
                         $v['status_id'] = '<span class="noVisuAtend">PENDENTE</span>';
                     } else {
@@ -276,12 +284,16 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT e.entrega_id, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id ORDER BY c.status_id AND c.compra_id LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT e.entrega_id, e.entrega_horario, c.compra_hash, c.status_id, e.entrega_cidade, e.entrega_uf, e.entrega_cidade, a.armazem_nome FROM entrega AS e JOIN compra AS c ON e.compra_id=c.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id ORDER BY c.status_id AND c.compra_id LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $exp = explode(" ", $v['entrega_horario']);
+                        $dia = explode("-", $exp[0]);
+                        $v['entrega_horario'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $exp[1];
+
                         if($v['status_id'] < 5) {
                             $v['status_id'] = '<span class="noVisuAtend">PENDENTE</span>';
                         } else {

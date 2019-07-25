@@ -1,4 +1,4 @@
-var qtd_result = 5;
+var qtd_result = 6;
 var page = 1;
 var max_links = 2;
 
@@ -18,7 +18,7 @@ function dataEntrega(page, qtd_result) {
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>
-                    <th colspan="5" class="thNoData">
+                    <th colspan="6" class="thNoData">
                         - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                     </th>
                 </tr>
@@ -33,6 +33,7 @@ function dataEntrega(page, qtd_result) {
                             <tr>
                                 <td class="tdCenter">` + json['entregas'][i].compra_hash + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].status_id + `</td>
+                                <td class="tdCenter">` + json['entregas'][i].entrega_horario + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].entrega_cidade + ` - ` + json['entregas'][i].entrega_uf + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].armazem_nome + `</td>
                                 <td class="tdCenter">
@@ -49,14 +50,14 @@ function dataEntrega(page, qtd_result) {
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">- NÃO HÁ ENTREGAS CADASTRADAS -</th>
+                            <th colspan="6" class="thNoData">- NÃO HÁ ENTREGAS CADASTRADAS -</th>
                         </tr>
                     `);
                 }
             } else {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
                     </tr>
                 `);
             }
@@ -119,7 +120,7 @@ function searchEntregaSec(page, qtd_result) {
             beforeSend: function() {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="5" class="thNoData">
+                        <th colspan="6" class="thNoData">
                             - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                         </th>
                     </tr>
@@ -134,6 +135,7 @@ function searchEntregaSec(page, qtd_result) {
                                 <tr>
                                     <td class="tdCenter">` + json['entregas'][i].compra_hash + `</td>
                                     <td class="tdCenter">` + json['entregas'][i].status_id + `</td>
+                                    <td class="tdCenter">` + json['entregas'][i].entrega_horario + `</td>
                                     <td class="tdCenter">` + json['entregas'][i].entrega_cidade + ` - ` + json['entregas'][i].entrega_uf + `</td>
                                     <td class="tdCenter">` + json['entregas'][i].armazem_nome + `</td>
                                     <td class="tdCenter">
@@ -150,14 +152,14 @@ function searchEntregaSec(page, qtd_result) {
                     } else {
                         $('.tbodyProd').html(`
                             <tr>
-                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                <th colspan="6" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
                             </tr>
                         `);
                     }
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
                         </tr>
                     `);
                 }
@@ -227,7 +229,7 @@ function searchEntrega(page, qtd_result) {
                 beforeSend: function() {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">
+                            <th colspan="6" class="thNoData">
                                 - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                             </th>
                         </tr>
@@ -242,6 +244,7 @@ function searchEntrega(page, qtd_result) {
                                     <tr>
                                         <td class="tdCenter">` + json['entregas'][i].compra_hash + `</td>
                                         <td class="tdCenter">` + json['entregas'][i].status_id + `</td>
+                                        <td class="tdCenter">` + json['entregas'][i].entrega_horario + `</td>
                                         <td class="tdCenter">` + json['entregas'][i].entrega_cidade + ` - ` + json['entregas'][i].entrega_uf + `</td>
                                         <td class="tdCenter">` + json['entregas'][i].armazem_nome + `</td>
                                         <td class="tdCenter">
@@ -258,14 +261,14 @@ function searchEntrega(page, qtd_result) {
                         } else {
                             $('.tbodyProd').html(`
                                 <tr>
-                                    <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                    <th colspan="6" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
                                 </tr>
                             `);
                         }
                     } else {
                         $('.tbodyProd').html(`
                             <tr>
-                                <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                                <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
                             </tr>
                         `);
                     }
@@ -334,7 +337,7 @@ function ordenarEntregaSec(page, qtd_result, sortType) {
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>
-                    <th colspan="5" class="thNoData">
+                    <th colspan="6" class="thNoData">
                         - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                     </th>
                 </tr>
@@ -348,6 +351,7 @@ function ordenarEntregaSec(page, qtd_result, sortType) {
                         <tr>
                             <td class="tdCenter">` + json['entregas'][i].compra_hash + `</td>
                             <td class="tdCenter">` + json['entregas'][i].status_id + `</td>
+                            <td class="tdCenter">` + json['entregas'][i].entrega_horario + `</td>
                             <td class="tdCenter">` + json['entregas'][i].entrega_cidade + ` - ` + json['entregas'][i].entrega_uf + `</td>
                             <td class="tdCenter">` + json['entregas'][i].armazem_nome + `</td>
                             <td class="tdCenter">
@@ -364,7 +368,7 @@ function ordenarEntregaSec(page, qtd_result, sortType) {
             } else {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
                     </tr>
                 `);
             }
@@ -436,7 +440,7 @@ function ordenarEntrega(page, qtd_result) {
             beforeSend: function() {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="5" class="thNoData">
+                        <th colspan="6" class="thNoData">
                             - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                         </th>
                     </tr>
@@ -456,6 +460,7 @@ function ordenarEntrega(page, qtd_result) {
                             <tr>
                                 <td class="tdCenter">` + json['entregas'][i].compra_hash + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].status_id + `</td>
+                                <td class="tdCenter">` + json['entregas'][i].entrega_horario + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].entrega_cidade + ` - ` + json['entregas'][i].entrega_uf + `</td>
                                 <td class="tdCenter">` + json['entregas'][i].armazem_nome + `</td>
                                 <td class="tdCenter">
@@ -472,7 +477,7 @@ function ordenarEntrega(page, qtd_result) {
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
                         </tr>
                     `);
                 }

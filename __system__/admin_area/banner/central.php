@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,6 +101,63 @@
                             </div>
                             <div class="divSubmit" align="center">
                                 <button type="submit" id="btnInsertBanner"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="myModalView" id="myModalView">
+            <div class="modalViewContent">
+                <span class="closeModalView">&times;</span>
+                <div class="showViewModal">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="myModalUpd" id="myModalUpd">
+            <div class="modalUpdContent">
+                <span class="closeModalUpd">&times;</span>
+                <div class="showUpdModal">
+                    <div class="divCadBanner">
+                        <form class="formUpdateBanner" enctype="multipart/form-data">
+                            <div class="divUpdCadBanner">
+                                <div style="margin:25px 0;">
+                                <table class="tableSectionConfigArm" width="80%" align="center">
+                                    <tr align="center">
+                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR BANNER PROMOCIONAL</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <input type="hidden" id="banner_idUpd" name="banner_idUpd"/>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
+                                        <td><input type="text" placeholder=" (Opcional)" class="selectConfigArm" id="banner_nomeUpd" name="banner_nomeUpd" size="60"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>STATUS</b></td>
+                                        <td>
+                                            <select class="selectConfigArm" id="banner_statusUpd" name="banner_statusUpd">
+                                                <option id="status01" value="*000*"> -- Selecione o status: --</option>
+                                                <option id="status1" value="1">Ativado</option>
+                                                <option id="status0" value="0">Desativado</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>IMAGEM</b></td>
+                                        <td>
+                                            <img class="imgUpload" src=""/><br/>
+                                            <label for="banner_pathUpd" class="selectConfigArm labelFile"><i class="fas fa-upload"></i> Alterar imagem</label>
+                                            <input type="file" class="selectConfigArm" accept="image/*" id="banner_pathUpd" name="banner_pathUpd"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnUpdateBanner"><i class="fas fa-save"></i> Editar</button>
                                 <div class="help-block"></div>
                             </div>
                         </form>

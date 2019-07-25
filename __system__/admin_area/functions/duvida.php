@@ -120,6 +120,85 @@
                     $json['error_del'] = "Código erro: " . $del->errorCode();
                 }
             }
+        } elseif(isset($_POST['data_sort'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+            
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(duvida_id) AS qtd FROM duvida_frequente");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sort = $_POST['data_sort'];
+
+            if(!isset($_POST['sec'])) {
+                $json['sort'] = "up";
+                if(!isset($_SESSION['data_sort'][$sort])) {
+                    $_SESSION['data_sort'][$sort] = "ASC";
+                } else {
+                    if($_SESSION['data_sort'][$sort] == "ASC") {
+                        $_SESSION['data_sort'][$sort] = "DESC";
+                        $json['sort'] = "down";
+                    } else {
+                        unset($_SESSION['data_sort'][$sort]);
+                        $json['sort'] = "none";
+                    }
+                }
+            }
+
+            $json['duvidas'] = array();
+            
+            if(isset($_SESSION['data_sort'][$sort])) {
+                $sel = $conn->prepare("SELECT * FROM duvida_frequente ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
+            } else {
+                $sel = $conn->prepare("SELECT * FROM duvida_frequente LIMIT $begin, $qtd_result");
+            }
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $duv = $sel->fetchAll();
+                foreach($duv as $v) {
+                    $v['duvida_pergunta'] = (strlen($v['duvida_pergunta']) > 50) ? substr($v['duvida_pergunta'],0,50) . '...' : $v['duvida_pergunta'];
+                    $v['duvida_resposta'] = (strlen($v['duvida_resposta']) > 250) ? substr($v['duvida_resposta'],0,250) . '...' : $v['duvida_resposta'];
+
+                    $json['duvidas'][] = $v;
+                    $json['registrosMostra']++;
+                }
+            }
+        } elseif(isset($_POST['searchDuvida'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+            $json['empty'] = TRUE;
+            $json['duvidas'] = array();
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(duvida_id) AS qtd FROM duvida_frequente WHERE duvida_pergunta LIKE '%{$_POST['searchDuvida']}%' OR duvida_resposta LIKE '%{$_POST['searchDuvida']}%'");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT * FROM duvida_frequente WHERE duvida_pergunta LIKE '%{$_POST['searchDuvida']}%' OR duvida_resposta LIKE '%{$_POST['searchDuvida']}%' LIMIT $begin, $qtd_result");
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    $json['empty'] = FALSE;
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $v['duvida_pergunta'] = (strlen($v['duvida_pergunta']) > 50) ? substr($v['duvida_pergunta'],0,50) . '...' : $v['duvida_pergunta'];
+                        $v['duvida_resposta'] = (strlen($v['duvida_resposta']) > 250) ? substr($v['duvida_resposta'],0,250) . '...' : $v['duvida_resposta'];
+    
+                        $json['duvidas'][] = $v;
+                        $json['registrosMostra']++;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
         } else {
             $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
             $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
@@ -142,6 +221,9 @@
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        $v['duvida_pergunta'] = (strlen($v['duvida_pergunta']) > 50) ? substr($v['duvida_pergunta'],0,50) . '...' : $v['duvida_pergunta'];
+                        $v['duvida_resposta'] = (strlen($v['duvida_resposta']) > 250) ? substr($v['duvida_resposta'],0,250) . '...' : $v['duvida_resposta'];
+
                         $json['duvidas'][] = $v;
                         $json['registrosMostra']++;
                     }
