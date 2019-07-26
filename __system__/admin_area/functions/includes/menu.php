@@ -108,7 +108,8 @@
             <label for="check10"><i class="fas fa-walking"></i>&nbsp; FUNCIONÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>funcionario/central">GERENCIADOR</a></li>
-                <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>funcionario/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>setor/central">SETORES</a></li>
             </ul>
         </div>
         <div class="item">
@@ -116,6 +117,7 @@
             <label for="check11"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>horarios/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central?fnc=IH">INSERIR HORÁRIO</a></li>
             </ul>
         </div>
         <div class="item">

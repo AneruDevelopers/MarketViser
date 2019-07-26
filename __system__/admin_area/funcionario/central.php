@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 
     function gerar_senha($tamanho, $maiusculas, $minusculas, $numeros, $simbolos) {
         $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
@@ -48,18 +51,46 @@
 </head>
 <body>
     <div class="l-wrapper">
-        <?php
+    <?php
             require '__system__/admin_area/functions/includes/menu.php';
         ?>
         <section class="l-main">
-            <h3 class="titleAdm">GERENCIADOR DE FUNCIONÁRIOS</h3>
             <div id="conteudo">
+                <h3 class="titleAdm">GERENCIADOR DE FUNCIONÁRIOS</h3>
+                <div id="conteudo">
 
+                </div>
+                <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar funcionário</button>
+                <div class="divSearch">
+                    <form class="formSearch">
+                        <label for="searchFunc">Procure: </label>
+                        <input type="text" class="inputSearch" id="searchFunc"/>
+                        <div class="divResetSearch"></div>
+                    </form>
+                </div>
+                <div class="divEcoTable">
+                    <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                        <thead>
+                            <th class="thTitle sort" data-sort="f.funcionario_nome" width="20%">NOME <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="f.funcionario_cpf" width="15%">CPF <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="f.funcionario_datanasc" width="18%">DATA NASC <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="f.funcionario_registro" width="18%">REGISTRO <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="s.setor_nome" width="16%">SETOR <span class="span_sort"></span></th>
+                            <th class="thTitle" width="13%">AÇÕES</th>
+                        </thead>
+                        <tbody class="tbodyProd">
+
+                        </tbody>
+                    </table>
+                    <span class="paginacao"></span>
+
+                    <span class="registShow"></span>
+                </div>
+                <div class="dataProds">
+                    
+                </div>
             </div>
-            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar funcionário</button>
         </section>
-        <footer class="l-footer">
-        </footer>
 
         <div class="myModalAdd" id="myModalAdd">
             <div class="modalAddContent">
@@ -115,12 +146,6 @@
                                                     <input type="hidden" value="<?= $senha; ?>" name="funcionario_senha[]"/>
                                                 </td>
                                             </tr>
-                                            <!-- <tr>
-                                                <td align="center" style="text-align:center;color:#9C45EB;"><b>PERMIÇÕES</b></td>
-                                                <td>
-                                                    <input type="checkbox" value="L" class="" id="per_ler" name="funcionario_permicao"/> <label for="per_ler">LER</label> <input type="checkbox" value="A" class="" id="per_alt" name="funcionario_permicao"/> <label for="per_alt">ALTERAR</label> <input type="checkbox" value="E" class="" id="per_exc" name="funcionario_permicao"/> <label for="per_exc">EXCLUIR</label> <input type="checkbox" value="R" class="" id="per_res" name="funcionario_permicao"/> <label for="per_res">RESPONDER MENSAGENS</label>
-                                                </td>
-                                            </tr> -->
                                             <tr>
                                                 <td align="center" style="text-align:center;color:#9C45EB;"><b>CPF</b></td>
                                                 <td><input type="text" class="selectConfigArm cpf" name="funcionario_cpf[]"/></td>

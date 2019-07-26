@@ -278,7 +278,7 @@ function ordenarFornecedorSec(page, qtd_result, sortType) {
         cache: false,
         contentType: false,
         processData: false,
-        url: BASE_URL4 + 'functions/duvida',
+        url: BASE_URL4 + 'functions/fornecedor',
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>

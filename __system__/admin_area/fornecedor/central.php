@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>

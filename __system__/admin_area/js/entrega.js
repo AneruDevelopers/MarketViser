@@ -1,4 +1,4 @@
-var qtd_result = 6;
+var qtd_result = 5;
 var page = 1;
 var max_links = 2;
 

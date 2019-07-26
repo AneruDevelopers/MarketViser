@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,32 @@
 
             </div>
             <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar categoria</button>
+            <div class="divSearch">
+                <form class="formSearch">
+                    <label for="searchCateg">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchCateg"/>
+                    <div class="divResetSearch"></div>
+                </form>
+            </div>
+            <div class="divEcoTable">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                    <thead>
+                        <th class="thTitle sort" width="30%">NOME <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="banner_nome" width="35%">SUBCAT / DEPART <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="banner_status" width="20%">QTD PROD. <span class="span_sort"></span></th>
+                        <th class="thTitle" width="15%">AÇÕES</th>
+                    </thead>
+                    <tbody class="tbodyProd">
+
+                    </tbody>
+                </table>
+                <span class="paginacao"></span>
+
+                <span class="registShow"></span>
+            </div>
+            <div class="dataProds">
+                
+            </div>
         </section>
 
         <div class="myModalAdd" id="myModalAdd">

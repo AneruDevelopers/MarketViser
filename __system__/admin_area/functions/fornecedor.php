@@ -217,7 +217,6 @@
 
             $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
 
-
             $json['empty'] = TRUE;
             $json['fornecedores'] = array();
             $json['registrosMostra'] = 0;

@@ -2,7 +2,7 @@ var qtd_result = 5;
 var page = 1;
 var max_links = 2;
 
-function dataFunc(page, qtd_result) {
+function dataSetor(page, qtd_result) {
     var dados = new FormData();
     dados.append("page", page);
     dados.append("qtd_result", qtd_result);
@@ -14,11 +14,11 @@ function dataFunc(page, qtd_result) {
 		cache: false,
 		contentType: false,
 		processData: false,
-        url: BASE_URL4 + 'functions/funcionario',
+        url: BASE_URL4 + 'functions/setor',
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>
-                    <th colspan="6" class="thNoData">
+                    <th colspan="3" class="thNoData">
                         - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                     </th>
                 </tr>
@@ -28,17 +28,14 @@ function dataFunc(page, qtd_result) {
             if(json['status']) {
                 if(!json['empty']) {
                     $('.tbodyProd').html("");
-                    for(var i = 0; json['funcionarios'].length > i; i++) {
+                    for(var i = 0; json['setores'].length > i; i++) {
                         $('.tbodyProd').append(`
                             <tr>
-                                <td>` + json['funcionarios'][i].funcionario_nome + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_cpf + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_datanasc + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_registro + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].setor_nome + `</td>
+                                <td>` + json['setores'][i].setor_nome + `</td>
+                                <td class="tdCenter">` + json['setores'][i].setor_permicao + `</td>
                                 <td class="tdCenter">
-                                    <button class="myBtnUpd btnEditFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-edit"></i></button>
-                                    <button class="btnDelFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-times"></i></button>
+                                    <button class="myBtnUpd btnEditSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>
                         `);
@@ -46,31 +43,31 @@ function dataFunc(page, qtd_result) {
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="6" class="thNoData">- NÃO HÁ FUNCIONÁRIOS CADASTRADOS -</th>
+                            <th colspan="3" class="thNoData">- NÃO HÁ SETORES CADASTRADOS -</th>
                         </tr>
                     `);
                 }
             } else {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
+                        <th colspan="3" class="thNoData">- OCORREU UM ERRO -</th>
                     </tr>
                 `);
             }
             $('.registShow').html(`
-                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` funcionários
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` setores
             `);
 
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
 
             $('.paginacao').html(`
-                <a href="#" class="linkPaginacao" onclick="dataFunc(1, qtd_result)">Primeira</a> 
+                <a href="#" class="linkPaginacao" onclick="dataSetor(1, qtd_result)">Primeira</a> 
             `);
 
             for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                 if(pag_ant >= 1) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="dataFunc(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        <button class="btnPaginacao" onclick="dataSetor(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                     `);
                 }
             }
@@ -80,61 +77,19 @@ function dataFunc(page, qtd_result) {
             for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                 if(pag_dep <= totPage) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="dataFunc(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        <button class="btnPaginacao" onclick="dataSetor(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                     `);
                 }
             }
 
             $('.paginacao').append(`
-                <a href="#" class="linkPaginacao" onclick="dataFunc(` + totPage + `, qtd_result)">Última</a>
+                <a href="#" class="linkPaginacao" onclick="dataSetor(` + totPage + `, qtd_result)">Última</a>
             `);
         }
     });
 }
 
-function insertFuncionario() {
-    $('.formInserirFuncionario').submit(function(e) {
-        e.preventDefault();
-
-        $.ajax({
-            dataType: 'json',
-            url: BASE_URL4 + 'functions/funcionario',
-            type: 'POST',
-            data: $(this).serialize(),
-            beforeSend() {
-                clearErrors();
-                $("#btnInsertFuncionario").siblings(".help-block").html(loadingRes("Verificando..."));
-            },
-            success: function(json) {
-                clearErrors();
-                if(json['status']) {
-                    Swal.fire({
-                        title: "Funcionário(s) cadastrado(s) com sucesso!",
-                        text: "Deseja continuar cadastrando funcionário(s)?",
-                        type: "success",
-                        showCancelButton: true,
-                        confirmButtonColor: "#333",
-                        confirmButtonText: "Continuar",
-                        cancelButtonColor: "#999",
-                        cancelButtonText: "Sair"
-                    }).then((result) => {
-                        if(result.value) {
-                            mostraModalAdd();
-                        } else {
-                            modalAdd.style.display = "none";
-                        }
-                    });
-                    dataFunc(page, qtd_result);
-                } else {
-                    $("#btnInsertFuncionario").siblings(".help-block").html(json['error']);
-                }
-            }
-        });
-        return false;
-    });
-}
-
-function ordenarFuncSec(page, qtd_result, sortType) {
+function ordenarSetorSec(page, qtd_result, sortType) {
     var tipoSort = sortType;
 
     var dados = new FormData();
@@ -143,9 +98,9 @@ function ordenarFuncSec(page, qtd_result, sortType) {
     dados.append("qtd_result", qtd_result);
     dados.append("sec",  "1");
 
-    if($('#searchFunc').val().length > 0) {
+    if($('#searchSetor').val().length > 0) {
         $('.divResetSearch').html(``);
-        $('#searchFunc').val(``);
+        $('#searchSetor').val(``);
     }
 
     $.ajax({
@@ -155,11 +110,11 @@ function ordenarFuncSec(page, qtd_result, sortType) {
         cache: false,
         contentType: false,
         processData: false,
-        url: BASE_URL4 + 'functions/funcionario',
+        url: BASE_URL4 + 'functions/setor',
         beforeSend: function() {
             $('.tbodyProd').html(`
                 <tr>
-                    <th colspan="6" class="thNoData">
+                    <th colspan="3" class="thNoData">
                         - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                     </th>
                 </tr>
@@ -169,17 +124,14 @@ function ordenarFuncSec(page, qtd_result, sortType) {
             if(json['status']) {
                 $('.tbodyProd').html("");
 
-                for(var i = 0; json['funcionarios'].length > i; i++) {
+                for(var i = 0; json['setores'].length > i; i++) {
                     $('.tbodyProd').append(`
                         <tr>
-                            <td>` + json['funcionarios'][i].funcionario_nome + `</td>
-                            <td class="tdCenter">` + json['funcionarios'][i].funcionario_cpf + `</td>
-                            <td class="tdCenter">` + json['funcionarios'][i].funcionario_datanasc + `</td>
-                            <td class="tdCenter">` + json['funcionarios'][i].funcionario_registro + `</td>
-                            <td class="tdCenter">` + json['funcionarios'][i].setor_nome + `</td>
+                            <td>` + json['setores'][i].setor_nome + `</td>
+                            <td class="tdCenter">` + json['setores'][i].setor_permicao + `</td>
                             <td class="tdCenter">
-                                <button class="myBtnUpd btnEditFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-edit"></i></button>
-                                <button class="btnDelFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-times"></i></button>
+                                <button class="myBtnUpd btnEditSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-edit"></i></button>
+                                <button class="btnDelSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>
                     `);
@@ -187,24 +139,24 @@ function ordenarFuncSec(page, qtd_result, sortType) {
             } else {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
+                        <th colspan="3" class="thNoData">- OCORREU UM ERRO -</th>
                     </tr>
                 `);
             }
             $('.registShow').html(`
-                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` funcionários
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` setores
             `);
 
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
 
             $('.paginacao').html(`
-                <a href="#" class="linkPaginacao" onclick="ordenarFuncSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                <a href="#" class="linkPaginacao" onclick="ordenarSetorSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
             `);
 
             for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                 if(pag_ant >= 1) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="ordenarFuncSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                        <button class="btnPaginacao" onclick="ordenarSetorSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
                     `);
                 }
             }
@@ -214,19 +166,19 @@ function ordenarFuncSec(page, qtd_result, sortType) {
             for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                 if(pag_dep <= totPage) {
                     $('.paginacao').append(`
-                        <button class="btnPaginacao" onclick="ordenarFuncSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                        <button class="btnPaginacao" onclick="ordenarSetorSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
                     `);
                 }
             }
 
             $('.paginacao').append(`
-                <a href="#" class="linkPaginacao" onclick="ordenarFuncSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                <a href="#" class="linkPaginacao" onclick="ordenarSetorSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
             `);
         }
     });
 }
 
-function ordenarFunc(page, qtd_result) {
+function ordenarSetor(page, qtd_result) {
     $('.sort').click(function(e) {
         e.preventDefault();
 
@@ -243,9 +195,9 @@ function ordenarFunc(page, qtd_result) {
         dados.append("page", page);
         dados.append("qtd_result", qtd_result);
 
-        if($('#searchFunc').val().length > 0) {
+        if($('#searchSetor').val().length > 0) {
             $('.divResetSearch').html(``);
-            $('#searchFunc').val(``);
+            $('#searchSetor').val(``);
         }
 
         $.ajax({
@@ -255,11 +207,11 @@ function ordenarFunc(page, qtd_result) {
             cache: false,
             contentType: false,
             processData: false,
-            url: BASE_URL4 + 'functions/funcionario',
+            url: BASE_URL4 + 'functions/setor',
             beforeSend: function() {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="6" class="thNoData">
+                        <th colspan="3" class="thNoData">
                             - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                         </th>
                     </tr>
@@ -274,17 +226,14 @@ function ordenarFunc(page, qtd_result) {
                         sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
                     }
 
-                    for(var i = 0; json['funcionarios'].length > i; i++) {
+                    for(var i = 0; json['setores'].length > i; i++) {
                         $('.tbodyProd').append(`
                             <tr>
-                                <td>` + json['funcionarios'][i].funcionario_nome + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_cpf + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_datanasc + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].funcionario_registro + `</td>
-                                <td class="tdCenter">` + json['funcionarios'][i].setor_nome + `</td>
+                                <td>` + json['setores'][i].setor_nome + `</td>
+                                <td class="tdCenter">` + json['setores'][i].setor_permicao + `</td>
                                 <td class="tdCenter">
-                                    <button class="myBtnUpd btnEditFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-edit"></i></button>
-                                    <button class="btnDelFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-times"></i></button>
+                                    <button class="myBtnUpd btnEditSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-times"></i></button>
                                 </td>
                             </tr>
                         `);
@@ -292,24 +241,24 @@ function ordenarFunc(page, qtd_result) {
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
+                            <th colspan="3" class="thNoData">- OCORREU UM ERRO -</th>
                         </tr>
                     `);
                 }
                 $('.registShow').html(`
-                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` funcionários
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` setores
                 `);
 
                 var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
     
                 $('.paginacao').html(`
-                    <a href="#" class="linkPaginacao" onclick="ordenarFuncSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                    <a href="#" class="linkPaginacao" onclick="ordenarSetorSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
                 `);
     
                 for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                     if(pag_ant >= 1) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="ordenarFuncSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                            <button class="btnPaginacao" onclick="ordenarSetorSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
                         `);
                     }
                 }
@@ -319,21 +268,21 @@ function ordenarFunc(page, qtd_result) {
                 for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                     if(pag_dep <= totPage) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="ordenarFuncSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                            <button class="btnPaginacao" onclick="ordenarSetorSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
                         `);
                     }
                 }
     
                 $('.paginacao').append(`
-                    <a href="#" class="linkPaginacao" onclick="ordenarFuncSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                    <a href="#" class="linkPaginacao" onclick="ordenarSetorSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
                 `);
             }
         });
     });
 }
 
-function searchFuncSec(page, qtd_result) {
-    if($('#searchFunc').val().length > 0) {
+function searchSetorSec(page, qtd_result) {
+    if($('#searchSetor').val().length > 0) {
         $('.divResetSearch').html(`
             <button type="reset" class="inputResetSearch">
                 <i class="far fa-times-circle"></i>
@@ -341,7 +290,7 @@ function searchFuncSec(page, qtd_result) {
         `);
         
         var dados = new FormData();
-        dados.append("searchFunc",  $('#searchFunc').val());
+        dados.append("searchSetor",  $('#searchSetor').val());
         dados.append("page", page);
         dados.append("qtd_result", qtd_result);
 
@@ -352,11 +301,11 @@ function searchFuncSec(page, qtd_result) {
             cache: false,
             contentType: false,
             processData: false,
-            url: BASE_URL4 + 'functions/funcionario',
+            url: BASE_URL4 + 'functions/setor',
             beforeSend: function() {
                 $('.tbodyProd').html(`
                     <tr>
-                        <th colspan="6" class="thNoData">
+                        <th colspan="3" class="thNoData">
                             - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                         </th>
                     </tr>
@@ -366,17 +315,14 @@ function searchFuncSec(page, qtd_result) {
                 if(json['status']) {
                     if(!json['empty']) {
                         $('.tbodyProd').html("");
-                        for(var i = 0; json['funcionarios'].length > i; i++) {
+                        for(var i = 0; json['setores'].length > i; i++) {
                             $('.tbodyProd').append(`
                                 <tr>
-                                    <td>` + json['funcionarios'][i].funcionario_nome + `</td>
-                                    <td class="tdCenter">` + json['funcionarios'][i].funcionario_cpf + `</td>
-                                    <td class="tdCenter">` + json['funcionarios'][i].funcionario_datanasc + `</td>
-                                    <td class="tdCenter">` + json['funcionarios'][i].funcionario_registro + `</td>
-                                    <td class="tdCenter">` + json['funcionarios'][i].setor_nome + `</td>
+                                    <td>` + json['setores'][i].setor_nome + `</td>
+                                    <td class="tdCenter">` + json['setores'][i].setor_permicao + `</td>
                                     <td class="tdCenter">
-                                        <button class="myBtnUpd btnEditFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-edit"></i></button>
-                                        <button class="btnDelFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-times"></i></button>
+                                        <button class="myBtnUpd btnEditSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-edit"></i></button>
+                                        <button class="btnDelSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-times"></i></button>
                                     </td>
                                 </tr>
                             `);
@@ -384,31 +330,31 @@ function searchFuncSec(page, qtd_result) {
                     } else {
                         $('.tbodyProd').html(`
                             <tr>
-                                <th colspan="6" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                <th colspan="3" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
                             </tr>
                         `);
                     }
                 } else {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
+                            <th colspan="3" class="thNoData">- OCORREU UM ERRO -</th>
                         </tr>
                     `);
                 }
                 $('.registShow').html(`
-                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` funcionários
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` setores
                 `);
     
                 var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
     
                 $('.paginacao').html(`
-                    <a href="#" class="linkPaginacao" onclick="searchFuncSec(1, qtd_result)">Primeira</a> 
+                    <a href="#" class="linkPaginacao" onclick="searchSetorSec(1, qtd_result)">Primeira</a> 
                 `);
     
                 for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                     if(pag_ant >= 1) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="searchFuncSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            <button class="btnPaginacao" onclick="searchSetorSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                         `);
                     }
                 }
@@ -418,24 +364,24 @@ function searchFuncSec(page, qtd_result) {
                 for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                     if(pag_dep <= totPage) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="searchFuncSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            <button class="btnPaginacao" onclick="searchSetorSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                         `);
                     }
                 }
     
                 $('.paginacao').append(`
-                    <a href="#" class="linkPaginacao" onclick="searchFuncSec(` + totPage + `, qtd_result)">Última</a>
+                    <a href="#" class="linkPaginacao" onclick="searchSetorSec(` + totPage + `, qtd_result)">Última</a>
                 `);
             }
         });
     } else {
         $('.divResetSearch').html(``);
-        dataFunc(1, qtd_result);
+        dataSetor(1, qtd_result);
     }
 }
 
-function searchFunc(page, qtd_result) {
-    $('#searchFunc').keyup(function(e) {
+function searchSetor(page, qtd_result) {
+    $('#searchSetor').keyup(function(e) {
         e.preventDefault();
 
         if($(this).val().length > 0) {
@@ -446,7 +392,7 @@ function searchFunc(page, qtd_result) {
             `);
             
             var dados = new FormData();
-            dados.append("searchFunc",  $(this).val());
+            dados.append("searchSetor",  $(this).val());
             dados.append("page", page);
             dados.append("qtd_result", qtd_result);
 
@@ -457,11 +403,11 @@ function searchFunc(page, qtd_result) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                url: BASE_URL4 + 'functions/funcionario',
+                url: BASE_URL4 + 'functions/setor',
                 beforeSend: function() {
                     $('.tbodyProd').html(`
                         <tr>
-                            <th colspan="6" class="thNoData">
+                            <th colspan="3" class="thNoData">
                                 - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
                             </th>
                         </tr>
@@ -471,17 +417,14 @@ function searchFunc(page, qtd_result) {
                     if(json['status']) {
                         if(!json['empty']) {
                             $('.tbodyProd').html("");
-                            for(var i = 0; json['funcionarios'].length > i; i++) {
+                            for(var i = 0; json['setores'].length > i; i++) {
                                 $('.tbodyProd').append(`
                                     <tr>
-                                        <td>` + json['funcionarios'][i].funcionario_nome + `</td>
-                                        <td class="tdCenter">` + json['funcionarios'][i].funcionario_cpf + `</td>
-                                        <td class="tdCenter">` + json['funcionarios'][i].funcionario_datanasc + `</td>
-                                        <td class="tdCenter">` + json['funcionarios'][i].funcionario_registro + `</td>
-                                        <td class="tdCenter">` + json['funcionarios'][i].setor_nome + `</td>
+                                        <td>` + json['setores'][i].setor_nome + `</td>
+                                        <td class="tdCenter">` + json['setores'][i].setor_permicao + `</td>
                                         <td class="tdCenter">
-                                            <button class="myBtnUpd btnEditFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-edit"></i></button>
-                                            <button class="btnDelFunc btnProductConfigAdm" id-funcionario="` + json['funcionarios'][i].funcionario_id + `"><i class="fa fa-times"></i></button>
+                                            <button class="myBtnUpd btnEditSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="btnDelSetor btnProductConfigAdm" id-setor="` + json['setores'][i].setor_id + `"><i class="fa fa-times"></i></button>
                                         </td>
                                     </tr>
                                 `);
@@ -489,31 +432,31 @@ function searchFunc(page, qtd_result) {
                         } else {
                             $('.tbodyProd').html(`
                                 <tr>
-                                    <th colspan="6" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                    <th colspan="3" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
                                 </tr>
                             `);
                         }
                     } else {
                         $('.tbodyProd').html(`
                             <tr>
-                                <th colspan="6" class="thNoData">- OCORREU UM ERRO -</th>
+                                <th colspan="3" class="thNoData">- OCORREU UM ERRO -</th>
                             </tr>
                         `);
                     }
                     $('.registShow').html(`
-                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` funcionários
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` setores
                     `);
         
                     var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
         
                     $('.paginacao').html(`
-                        <a href="#" class="linkPaginacao" onclick="searchFuncSec(1, qtd_result)">Primeira</a> 
+                        <a href="#" class="linkPaginacao" onclick="searchSetorSec(1, qtd_result)">Primeira</a> 
                     `);
         
                     for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                         if(pag_ant >= 1) {
                             $('.paginacao').append(`
-                                <button class="btnPaginacao" onclick="searchFuncSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                                <button class="btnPaginacao" onclick="searchSetorSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                             `);
                         }
                     }
@@ -523,23 +466,23 @@ function searchFunc(page, qtd_result) {
                     for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                         if(pag_dep <= totPage) {
                             $('.paginacao').append(`
-                                <button class="btnPaginacao" onclick="searchFuncSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                                <button class="btnPaginacao" onclick="searchSetorSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                             `);
                         }
                     }
         
                     $('.paginacao').append(`
-                        <a href="#" class="linkPaginacao" onclick="searchFuncSec(` + totPage + `, qtd_result)">Última</a>
+                        <a href="#" class="linkPaginacao" onclick="searchSetorSec(` + totPage + `, qtd_result)">Última</a>
                     `);
                 }
             });
         } else {
             $('.divResetSearch').html(``);
-            dataFunc(1, qtd_result);
+            dataSetor(1, qtd_result);
         }
     });
 }
 
-dataFunc(page, qtd_result);
-searchFunc(1, qtd_result);
-ordenarFunc(1, qtd_result);
+dataSetor(page, qtd_result);
+searchSetor(1, qtd_result);
+ordenarSetor(1, qtd_result);
