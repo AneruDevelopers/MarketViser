@@ -449,7 +449,7 @@ function ordenarDuvida(page, qtd_result) {
     });
 }
 
-function searchDepartsSec(page, qtd_result) {
+function searchDuvidaSec(page, qtd_result) {
     if($('#searchDuvida').val().length > 0) {
         $('.divResetSearch').html(`
             <button type="reset" class="inputResetSearch">
@@ -519,13 +519,13 @@ function searchDepartsSec(page, qtd_result) {
                 var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
     
                 $('.paginacao').html(`
-                    <a href="#" class="linkPaginacao" onclick="searchDepartsSec(1, qtd_result)">Primeira</a> 
+                    <a href="#" class="linkPaginacao" onclick="searchDuvidaSec(1, qtd_result)">Primeira</a> 
                 `);
     
                 for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                     if(pag_ant >= 1) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            <button class="btnPaginacao" onclick="searchDuvidaSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                         `);
                     }
                 }
@@ -535,13 +535,13 @@ function searchDepartsSec(page, qtd_result) {
                 for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                     if(pag_dep <= totPage) {
                         $('.paginacao').append(`
-                            <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            <button class="btnPaginacao" onclick="searchDuvidaSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                         `);
                     }
                 }
     
                 $('.paginacao').append(`
-                    <a href="#" class="linkPaginacao" onclick="searchDepartsSec(` + totPage + `, qtd_result)">Última</a>
+                    <a href="#" class="linkPaginacao" onclick="searchDuvidaSec(` + totPage + `, qtd_result)">Última</a>
                 `);
             }
         });
@@ -551,7 +551,7 @@ function searchDepartsSec(page, qtd_result) {
     }
 }
 
-function searchDeparts(page, qtd_result) {
+function searchDuvida(page, qtd_result) {
     $('#searchDuvida').keyup(function(e) {
         e.preventDefault();
 
@@ -624,13 +624,13 @@ function searchDeparts(page, qtd_result) {
                     var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
         
                     $('.paginacao').html(`
-                        <a href="#" class="linkPaginacao" onclick="searchDepartsSec(1, qtd_result)">Primeira</a> 
+                        <a href="#" class="linkPaginacao" onclick="searchDuvidaSec(1, qtd_result)">Primeira</a> 
                     `);
         
                     for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
                         if(pag_ant >= 1) {
                             $('.paginacao').append(`
-                                <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                                <button class="btnPaginacao" onclick="searchDuvidaSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
                             `);
                         }
                     }
@@ -640,13 +640,13 @@ function searchDeparts(page, qtd_result) {
                     for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
                         if(pag_dep <= totPage) {
                             $('.paginacao').append(`
-                                <button class="btnPaginacao" onclick="searchDepartsSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                                <button class="btnPaginacao" onclick="searchDuvidaSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
                             `);
                         }
                     }
         
                     $('.paginacao').append(`
-                        <a href="#" class="linkPaginacao" onclick="searchDepartsSec(` + totPage + `, qtd_result)">Última</a>
+                        <a href="#" class="linkPaginacao" onclick="searchDuvidaSec(` + totPage + `, qtd_result)">Última</a>
                     `);
                 }
             });
@@ -658,5 +658,5 @@ function searchDeparts(page, qtd_result) {
 }
 
 dataDuvida(page, qtd_result);
-searchDeparts(1, qtd_result);
+searchDuvida(1, qtd_result);
 ordenarDuvida(1, qtd_result);

@@ -78,7 +78,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="center" style="text-align:center;color:#9C45EB;"><b>PERMIÇÕES</b></td>
+                                                <td align="center" style="text-align:center;color:#9C45EB;"><b>PERMIÇÕES DE DADOS</b></td>
                                                 <td>
                                                     <input type="checkbox" value="a" class="" id="per_adc" name="setor_permicao"/> 
                                                     <label for="per_adc">ADICIONAR</label> <input type="checkbox" value="e" class="" id="per_edit" name="setor_permicao"/> <label for="per_edit">EDITAR</label> <input type="checkbox" value="d" class="" id="per_del" name="setor_permicao"/> <label for="per_del">DELETAR</label>
@@ -171,7 +171,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PERMIÇÕES</b></td>
+                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PERMIÇÕES DE DADOS</b></td>
                         <td>
                             <input type="checkbox" value="a" class="" id="per_adc" name="setor_permicao"/> 
                             <label for="per_adc">ADICIONAR</label> <input type="checkbox" value="e" class="" id="per_edit" name="setor_permicao"/> <label for="per_edit">EDITAR</label> <input type="checkbox" value="d" class="" id="per_del" name="setor_permicao"/> <label for="per_del">DELETAR</label>

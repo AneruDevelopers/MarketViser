@@ -3,11 +3,11 @@ $('.selTypeDate').change(function(e) {
     var type = $(this).val();
 
     if(type == "day") {
-        $('.divTypeDate').html(`<input type="text" class="selectConfigArm date" name="dayRelat" id="dayRelat" size="60"/>`);
+        $('.divTypeDate').html(`<input type="text" class="selectConfigArm date" placeholder="dd/mm/aaaa" name="dayRelat" id="dayRelat" size="60"/>`);
     } else if(type == "month") {
-        $('.divTypeDate').html(`<input type="text" class="selectConfigArm month-year" name="dayRelat" id="monthRelat" size="60"/>`);
+        $('.divTypeDate').html(`<input type="text" class="selectConfigArm month-year" placeholder="mm/aaaa" name="dayRelat" id="monthRelat" size="60"/>`);
     } else if(type == "year") {
-        $('.divTypeDate').html(`<input type="text" class="selectConfigArm year" name="dayRelat" id="yearRelat" size="60"/>`);
+        $('.divTypeDate').html(`<input type="text" class="selectConfigArm year" placeholder="aaaa" name="dayRelat" id="yearRelat" size="60"/>`);
     }
 
     mask();

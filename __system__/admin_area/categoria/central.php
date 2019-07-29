@@ -39,9 +39,9 @@
             <div class="divEcoTable">
                 <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
-                        <th class="thTitle sort" width="30%">NOME <span class="span_sort"></span></th>
-                        <th class="thTitle sort" data-sort="banner_nome" width="35%">SUBCAT / DEPART <span class="span_sort"></span></th>
-                        <th class="thTitle sort" data-sort="banner_status" width="20%">QTD PROD. <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="c.categ_nome" width="30%">NOME <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="s.subcateg_nome" width="35%">SUBCAT / DEPART <span class="span_sort"></span></th>
+                        <th class="thTitle" width="20%">QTD PROD.</th>
                         <th class="thTitle" width="15%">AÇÕES</th>
                     </thead>
                     <tbody class="tbodyProd">
@@ -110,8 +110,6 @@
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>

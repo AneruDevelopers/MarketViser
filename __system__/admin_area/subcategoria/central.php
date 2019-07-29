@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,31 @@
 
             </div>
             <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar subcategoria</button>
+            <div class="divSearch">
+                <form class="formSearch">
+                    <label for="searchSubcateg">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchSubcateg"/>
+                    <div class="divResetSearch"></div>
+                </form>
+            </div>
+            <div class="divEcoTable">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                    <thead>
+                        <th class="thTitle sort" data-sort="s.subcateg_nome" width="41%">NOME <span class="span_sort"></span></th>
+                        <th class="thTitle sort" data-sort="d.depart_nome" width="41%">DEPART <span class="span_sort"></span></th>
+                        <th class="thTitle" width="18%">AÇÕES</th>
+                    </thead>
+                    <tbody class="tbodyProd">
+
+                    </tbody>
+                </table>
+                <span class="paginacao"></span>
+
+                <span class="registShow"></span>
+            </div>
+            <div class="dataProds">
+                
+            </div>
         </section>
 
         <div class="myModalAdd" id="myModalAdd">
@@ -81,8 +109,6 @@
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>

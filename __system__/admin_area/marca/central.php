@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,30 @@
 
             </div>
             <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar marca</button>
+            <div class="divSearch">
+                <form class="formSearch">
+                    <label for="searchMarca">Procure: </label>
+                    <input type="text" class="inputSearch" id="searchMarca"/>
+                    <div class="divResetSearch"></div>
+                </form>
+            </div>
+            <div class="divEcoTable">
+                <table width="80%" class="tableView tableProdConfigAdm" align="center">
+                    <thead>
+                        <th class="thTitle sort" data-sort="marca_nome" width="80%">NOME <span class="span_sort"></span></th>
+                        <th class="thTitle" width="20%">AÇÕES</th>
+                    </thead>
+                    <tbody class="tbodyProd">
+
+                    </tbody>
+                </table>
+                <span class="paginacao"></span>
+
+                <span class="registShow"></span>
+            </div>
+            <div class="dataProds">
+                
+            </div>
         </section>
 
         <div class="myModalAdd" id="myModalAdd">
@@ -66,8 +93,6 @@
     </div>
 
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>

@@ -1,4 +1,8 @@
 <header class="l-header">
+    <h2 class="user_perf">
+        <a href="<?= base_url_adm_php(); ?>user"><i class="far fa-user-circle"></i></a>
+    </h2>
+
     <h2 class="logout">
         <a href="<?= base_url_adm_php(); ?>functions/logout"><i class="fas fa-sign-out-alt"></i></a>
     </h2>

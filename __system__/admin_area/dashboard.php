@@ -22,9 +22,9 @@
         ?>
         <section id="conteudo" class="l-main">
             <pre>
-            <?php
-               // print_r($_SESSION['inf_func']);
-            ?>
+                <?php
+                    // print_r($_SESSION['inf_func']);
+                ?>
             </pre>
             <div>
                 <h3 class="dashTitle">Dashboard</h3>
@@ -38,8 +38,6 @@
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
     <script src="<?= base_url_adm(); ?>js/admin.js"></script>
-    <script src="<?= base_url_adm(); ?>js/produto.js"></script>
-    <script src="<?= base_url_adm(); ?>js/armazem.js"></script>
     <?php
         // session_destroy();
     ?>
