@@ -2,47 +2,30 @@
     if(isXmlHttpRequest()) {
         $json['status'] = 1;
 
-        if(isset($_POST['nome_produto'])) {
+        if(isset($_POST['post_title'])) {
             $json['error'] = NULL;
 
-            for($k=0; $k<count($_POST['nome_produto']); $k++) {
+            for($k=0; $k<count($_POST['post_title']); $k++) {
                 $c = $k + 1;
-                $nome_produto[$k] = trim($_POST['nome_produto'][$k]);
-                $marca_produto[$k] = $_POST['marca_produto'][$k];
-                $categoria_produto[$k] = $_POST['categoria_produto'][$k];
-                $descricao_produto[$k] = $_POST['descricao_produto'][$k];
-                $tamanho_produto[$k] = trim($_POST['produto_tamanho'][$k]);
+                $post_title[$k] = $_POST['post_title'][$k];
+                $post_text[$k] = $_POST['post_text'][$k];
+                $post_envio[$k] = $_POST['post_envio'][$k];
 
-                $imagem_produto = $_FILES['imagem_produto']['name'];
-                $imagem_produto_tmp = $_FILES['imagem_produto']['tmp_name'];
+                $post_img = $_FILES['post_img']['name'];
+                $post_img_tmp = $_FILES['post_img']['tmp_name'];
 
-                if(empty($nome_produto[$k])) {
-                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o nome do produto na ' . $c . 'ª parte de cadastro</b></p>';
+                if(empty($post_title[$k])) {
+                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o título da postagem na ' . $c . 'ª parte de cadastro</b></p>';
                 } else {
-                    if($marca_produto[$k] == "*000*") {
-                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a marca do produto na ' . $c . 'ª parte de cadastro</b></p>';
+                    if(empty($post_text[$k])) {
+                        $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o texto da postagem na ' . $c . 'ª parte de cadastro</b></p>';
                     } else {
-                        if($categoria_produto[$k] == "*000*") {
-                            $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a categoria do produto na ' . $c . 'ª parte de cadastro</b></p>';
-                        } else {
-                            if(empty($tamanho_produto[$k])) {
-                                $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o volume do produto na ' . $c . 'ª parte de cadastro</b></p>';
-                            } else {
-                                $sel = $conn->prepare("SELECT produto_nome, produto_tamanho FROM produto WHERE produto_nome='{$nome_produto[$k]}' AND produto_tamanho='{$tamanho_produto[$k]}'");
-                                $sel->execute();
-                                if($sel->rowCount() > 0) {
-                                    $res = $sel->fetchAll();
-                                    $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que inseriu na ' . $c . 'ª parte já foi previamente cadastrado</b></p>';
-                                } else {
-                                    $sel = $conn->prepare("SELECT s.setor_permicao FROM funcionario AS f JOIN setor AS s ON f.funcionario_setor=s.setor_id WHERE f.funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
-                                    $sel->execute();
-                                    $res = $sel->fetchAll();
-                                    $permicoes = explode("-", $res[0]['setor_permicao']);
-                                    if(!in_array("a", $permicoes)) {
-                                        $json['error'] = '<p style="color:red;text-align:center;"><b>Você não tem permição para adicionar</b></p>';
-                                    }
-                                }
-                            }
+                        $sel = $conn->prepare("SELECT s.setor_permicao FROM funcionario AS f JOIN setor AS s ON f.funcionario_setor=s.setor_id WHERE f.funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
+                        $sel->execute();
+                        $res = $sel->fetchAll();
+                        $permicoes = explode("-", $res[0]['setor_permicao']);
+                        if(!in_array("a", $permicoes)) {
+                            $json['error'] = '<p style="color:red;text-align:center;"><b>Você não tem permição para adicionar</b></p>';
                         }
                     }
                 }
@@ -55,18 +38,28 @@
             if($json['error']) {
                 $json['status'] = 0;
             } else {
-                for($k=0; $k<count($nome_produto); $k++) {
-                    if(empty($imagem_produto[$k])) {
-                        $imagem_produto[$k] = "img_default.png";
+                for($k=0; $k<count($post_img); $k++) {
+                    if(empty($post_img[$k])) {
+                        $post_img[$k] = "logo_economize.png";
                     } else {
-                        move_uploaded_file($imagem_produto_tmp[$k], "__system__/admin_area/imagens_produtos/{$imagem_produto[$k]}");
+                        move_uploaded_file($post_img_tmp[$k], "__system__/img/postagem/{$post_img[$k]}");
                     }
-                    $ins = $conn->prepare("INSERT INTO produto(produto_nome,produto_descricao,produto_img,produto_marca,produto_tamanho, produto_categ) VALUES ('{$nome_produto[$k]}', '{$descricao_produto[$k]}','{$imagem_produto[$k]}','{$marca_produto[$k]}','{$tamanho_produto[$k]}','{$categoria_produto[$k]}')");
+                    $ins = $conn->prepare("INSERT INTO postagem(post_img,post_title,post_text) VALUES('{$post_img[$k]}', '{$post_title[$k]}','{$post_text[$k]}')");
 
                     if(!$ins->execute()) {
                         $json['status'] = 0;
                         $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu. Tente novamente!</b></p>';
                         break;
+                    } else {
+                        if($post_envio[$k] == 1) {
+                            $sel = $conn->prepare("SELECT usu_email FROM usuario WHERE usu_mailmkt=1");
+                            $sel->execute();
+                            if($sel->rowCount() > 0) {
+                                while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
+                                    // Envia email para os usuários com mailmkt ativados
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -121,22 +114,22 @@
         } elseif(isset($_POST['nome_produto_upd'])) {
             $json['error'] = NULL;
             $id_produto = trim($_POST['id_produto_upd']);
-            $nome_produto = trim($_POST['nome_produto_upd']);
-            $marca_produto = $_POST['marca_produto_upd'];
-            $categoria_produto = $_POST['categoria_produto_upd'];
-            $descricao_produto = $_POST['descricao_produto_upd'];
+            $post_img = trim($_POST['nome_produto_upd']);
+            $post_title = $_POST['marca_produto_upd'];
+            $post_text = $_POST['categoria_produto_upd'];
+            $post_envio = $_POST['descricao_produto_upd'];
             $tamanho_produto = trim($_POST['produto_tamanho_upd']);
 
             $imagem_produto = $_FILES['imagem_produto_upd']['name'];
             $imagem_produto_tmp = $_FILES['imagem_produto_upd']['tmp_name'];
 
-            if(empty($nome_produto)) {
+            if(empty($post_img)) {
                 $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira o nome do produto</b></p>';
             } else {
-                if($marca_produto == "*000*") {
+                if($post_title == "*000*") {
                     $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a marca do produto</b></p>';
                 } else {
-                    if($categoria_produto == "*000*") {
+                    if($post_text == "*000*") {
                         $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Insira a categoria do produto</b></p>';
                     } else {
                         if(empty($tamanho_produto)) {
@@ -146,16 +139,16 @@
                             $sel->execute();
                             if($sel->rowCount() > 0) {
                                 $res = $sel->fetchAll();
-                                if(($nome_produto == $res[0]['produto_nome']) &&
-                                    ($marca_produto == $res[0]['produto_marca']) &&
-                                    ($categoria_produto == $res[0]['produto_categ']) &&
+                                if(($post_img == $res[0]['produto_nome']) &&
+                                    ($post_title == $res[0]['produto_marca']) &&
+                                    ($post_text == $res[0]['produto_categ']) &&
                                     (empty($imagem_produto)) &&
-                                    ($descricao_produto == $res[0]['produto_descricao']) &&
+                                    ($post_envio == $res[0]['produto_descricao']) &&
                                     ($tamanho_produto == $res[0]['produto_tamanho'])
                                     ) {
                                     $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Não houve alterações</b></p>';
                                 } else {
-                                    $sel = $conn->prepare("SELECT produto_nome, produto_tamanho FROM produto WHERE produto_nome='$nome_produto' AND produto_tamanho='$tamanho_produto' AND produto_id <> $id_produto");
+                                    $sel = $conn->prepare("SELECT produto_nome, produto_tamanho FROM produto WHERE produto_nome='$post_img' AND produto_tamanho='$tamanho_produto' AND produto_id <> $id_produto");
                                     $sel->execute();
                                     if($sel->rowCount() > 0) {
                                         $res = $sel->fetchAll();
@@ -177,13 +170,13 @@
                 }
 
                 if(isset($new_img)) {
-                    $upd = $conn->prepare("UPDATE produto SET produto_nome='$nome_produto', produto_marca=$marca_produto, produto_categ=$categoria_produto, produto_img='$imagem_produto', produto_descricao='$descricao_produto', produto_tamanho='$tamanho_produto' WHERE produto_id=$id_produto");
+                    $upd = $conn->prepare("UPDATE produto SET produto_nome='$post_img', produto_marca=$post_title, produto_categ=$post_text, produto_img='$imagem_produto', produto_descricao='$post_envio', produto_tamanho='$tamanho_produto' WHERE produto_id=$id_produto");
                     if(!$upd->execute()) {
                         $json['status'] = 0;
                         $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu. Tente novamente!</b></p>';
                     }
                 } else {
-                    $upd = $conn->prepare("UPDATE produto SET produto_nome='$nome_produto', produto_marca=$marca_produto, produto_categ=$categoria_produto, produto_descricao='$descricao_produto', produto_tamanho='$tamanho_produto' WHERE produto_id=$id_produto");
+                    $upd = $conn->prepare("UPDATE produto SET produto_nome='$post_img', produto_marca=$post_title, produto_categ=$post_text, produto_descricao='$post_envio', produto_tamanho='$tamanho_produto' WHERE produto_id=$id_produto");
                     if(!$upd->execute()) {
                         $json['status'] = 0;
                         $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>Um erro inesperado aconteceu. Tente novamente!</b></p>';
@@ -198,7 +191,7 @@
             
             $json['registrosMostra'] = 0;
 
-            $sel = $conn->prepare("SELECT COUNT(produto_id) AS qtd FROM produto");
+            $sel = $conn->prepare("SELECT COUNT(post_id) AS qtd FROM postagem");
             $sel->execute();
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
@@ -220,43 +213,57 @@
                 }
             }
 
-            $json['produtos'] = array();
+            $json['postagens'] = array();
             
             if(isset($_SESSION['data_sort'][$sort])) {
-                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
+                $sel = $conn->prepare("SELECT * FROM postagem ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
             } else {
-                $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
+                $sel = $conn->prepare("SELECT * FROM postagem LIMIT $begin, $qtd_result");
             }
             $sel->execute();
             if($sel->rowCount() > 0) {
                 $prods = $sel->fetchAll();
                 foreach($prods as $v) {
-                    $json['produtos'][] = $v;
+                    $v['post_title'] = (strlen($v['post_title']) > 100) ? substr($v['post_title'],0,100) . "..." : $v['post_title'];
+                    $v['post_text'] = (strlen($v['post_text']) > 250) ? substr($v['post_text'],0,250) . "..." : $v['post_text'];
+
+                    $exp = explode(" ", $v['post_registro']);
+                    $day = explode("-", $exp[0]);
+                    $v['post_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
+
+                    $json['postagens'][] = $v;
                     $json['registrosMostra']++;
                 }
             }
-        } elseif(isset($_POST['searchProd'])) {
+        } elseif(isset($_POST['searchPost'])) {
             $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
             $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
 
             $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
 
             $json['empty'] = TRUE;
-            $json['produtos'] = array();
+            $json['postagens'] = array();
             $json['registrosMostra'] = 0;
 
-            $sel = $conn->prepare("SELECT COUNT(p.produto_id) AS qtd FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%'");
+            $sel = $conn->prepare("SELECT COUNT(post_id) AS qtd FROM postagem WHERE post_title LIKE '%{$_POST['searchPost']}%' OR post_text LIKE '%{$_POST['searchPost']}%' OR post_registro LIKE '%{$_POST['searchPost']}%'");
             $sel->execute();
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN categ AS c ON c.categ_id=p.produto_categ JOIN subcateg AS s ON c.subcateg_id=s.subcateg_id JOIN departamento AS d ON s.depart_id=d.depart_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id WHERE p.produto_nome LIKE '%{$_POST['searchProd']}%' OR p.produto_descricao LIKE '%{$_POST['searchProd']}%' OR p.produto_tamanho LIKE '%{$_POST['searchProd']}%' OR m.marca_nome LIKE '%{$_POST['searchProd']}%' OR c.categ_nome LIKE '%{$_POST['searchProd']}%' OR s.subcateg_nome LIKE '%{$_POST['searchProd']}%' OR d.depart_nome LIKE '%{$_POST['searchProd']}%' LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT * FROM postagem WHERE post_title LIKE '%{$_POST['searchPost']}%' OR post_text LIKE '%{$_POST['searchPost']}%' OR post_registro LIKE '%{$_POST['searchPost']}%' LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
-                        $json['produtos'][] = $v;
+                        $v['post_title'] = (strlen($v['post_title']) > 100) ? substr($v['post_title'],0,100) . "..." : $v['post_title'];
+                        $v['post_text'] = (strlen($v['post_text']) > 250) ? substr($v['post_text'],0,250) . "..." : $v['post_text'];
+
+                        $exp = explode(" ", $v['post_registro']);
+                        $day = explode("-", $exp[0]);
+                        $v['post_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
+
+                        $json['postagens'][] = $v;
                         $json['registrosMostra']++;
                     }
                 }
@@ -271,21 +278,28 @@
 
 
             $json['empty'] = TRUE;
-            $json['produtos'] = array();
+            $json['postagens'] = array();
             $json['registrosMostra'] = 0;
 
-            $sel = $conn->prepare("SELECT COUNT(produto_id) AS qtd FROM produto");
+            $sel = $conn->prepare("SELECT COUNT(post_id) AS qtd FROM postagem");
             $sel->execute();
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_nome, p.produto_tamanho, m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT * FROM postagem LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {
                     $json['empty'] = FALSE;
                     while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
-                        $json['produtos'][] = $v;
+                        $v['post_title'] = (strlen($v['post_title']) > 100) ? substr($v['post_title'],0,100) . "..." : $v['post_title'];
+                        $v['post_text'] = (strlen($v['post_text']) > 250) ? substr($v['post_text'],0,250) . "..." : $v['post_text'];
+
+                        $exp = explode(" ", $v['post_registro']);
+                        $day = explode("-", $exp[0]);
+                        $v['post_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
+
+                        $json['postagens'][] = $v;
                         $json['registrosMostra']++;
                     }
                 }

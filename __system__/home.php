@@ -292,11 +292,11 @@
     <script src="<?= base_url(); ?>js/main.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
-        if(isset($_SESSION['msg_cad'])):?>
+        if(isset($_SESSION['msg'])):?>
             <script>
                 Swal.fire({
                     title: "e.conomize informa:",
-                    text: "<?= $_SESSION['msg_cad']['text']; ?>",
+                    text: "<?= $_SESSION['msg']; ?>",
                     type: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#A94442",
@@ -304,7 +304,7 @@
                 });
             </script>
             <?php
-            unset($_SESSION['msg_cad']);
+            unset($_SESSION['msg']);
         endif;
     ?>
 </body>

@@ -97,6 +97,8 @@
             <label for="check8"><i class="fas fa-truck"></i>&nbsp; ENTREGAS <span class="notifEnt"></span></label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>entrega/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central">HORÁRIOS</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central?fnc=IH">INSERIR HORÁRIO</a></li>
             </ul>
         </div>
         <div class="item">
@@ -118,10 +120,10 @@
         </div>
         <div class="item">
             <input type="checkbox" id="check11">
-            <label for="check11"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
+            <label for="check11"><i class="fas fa-mail-bulk"></i>&nbsp; POSTAGENS</label>
             <ul>
-                <li><a href="<?= base_url_adm_php(); ?>horarios/central">GERENCIADOR</a></li>
-                <li><a href="<?= base_url_adm_php(); ?>horarios/central?fnc=IH">INSERIR HORÁRIO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>postagem/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>postagem/central?fnc=IP">INSERIR POSTAGEM</a></li>
             </ul>
         </div>
         <div class="item">
