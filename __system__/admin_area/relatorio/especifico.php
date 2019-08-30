@@ -75,7 +75,7 @@
                 
                 $pdf->SetX(63);
                 $pdf->SetFont("Arial", "", 10);
-                $pdf->Cell(40, 10, "Total de lucro", 1, 0, "C");
+                $pdf->Cell(40, 10, "Total de receita", 1, 0, "C");
                 
                 $pdf->SetFont("Arial", "B", 10);
                 $pdf->Cell(40, 10, "R$ " . $row['totVal'], 1, 1, "C");
@@ -133,7 +133,7 @@
                         
                         $pdf->SetX($x);
                         $pdf->SetFont("Arial", "", 10);
-                        $pdf->Cell(40, 10, "Total de lucro", 1, 0, "C");
+                        $pdf->Cell(40, 10, "Total de receita", 1, 0, "C");
                         
                         $pdf->SetFont("Arial", "B", 10);
                         $pdf->Cell(40, 10, "R$ " . $row2['totVal'], 1, 1, "C");

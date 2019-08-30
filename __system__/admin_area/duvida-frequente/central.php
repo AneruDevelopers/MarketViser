@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +40,7 @@
                 <div class="divEcoTable">
                     <table width="80%" class="tableView tableProdConfigAdm" align="center">
                         <thead>
-                            <th class="thTitle" data-sort="duvida_pergunta" width="35%">PERGUNTA <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="duvida_pergunta" width="35%">PERGUNTA <span class="span_sort"></span></th>
                             <th class="thTitle sort" data-sort="duvida_resposta" width="50%">RESPOSTA <span class="span_sort"></span></th>
                             <th class="thTitle" width="15%">AÇÕES</th>
                         </thead>
@@ -89,6 +92,44 @@
                             </div>
                             <div class="divSubmit" align="center">
                                 <button type="submit" id="btnInsertDuvida"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="myModalUpd" id="myModalUpd">
+            <div class="modalUpdContent">
+                <span class="closeModalUpd">&times;</span>
+                <div class="showUpdModal">
+                    <div class="divCadDuvida">
+                        <form class="formUpdateDuvida">
+                            <div class="divUpdCadDuvida">
+                                <div style="margin:25px 0;">
+                                <table class="tableSectionConfigArm" width="80%" align="center">
+                                    <tr align="center">
+                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR DÚVIDA FREQUENTE</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>PERGUNTA</b></td>
+                                        <td>
+                                            <input type="hidden" id="duvida_idUpd" name="duvida_idUpd"/>
+                                            <textarea type="text" class="selectConfigArm" name="duvida_perguntaUpd" id="duvida_perguntaUpd"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>RESPOSTA</b></td>
+                                        <td>
+                                            <textarea type="text" class="selectConfigArm" name="duvida_respostaUpd" id="duvida_respostaUpd"></textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnUpdateDuvida"><i class="fas fa-save"></i> Editar</button>
                                 <div class="help-block"></div>
                             </div>
                         </form>

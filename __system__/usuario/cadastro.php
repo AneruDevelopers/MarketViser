@@ -190,9 +190,13 @@
 									</div>
 									<div class="help-block"></div><br/>
 								</div>
-								<div class="outsideSecInputCad">
+								<div class="outsideSecInputCad" style="margin-bottom:-20px;">
 									<input type="checkbox" class="radioCad" id="usu_cookie" name="usu_cookie"/> 
 									<label class="labelCadSexRadio" for="usu_cookie">Lembrar de mim</label>
+								</div>
+								<div class="outsideSecInputCad">
+									<input type="checkbox" class="radioCad" id="usu_mailmkt" name="usu_mailmkt"/> 
+									<label class="labelCadSexRadio" for="usu_mailmkt">Desejo receber notificações do economize no meu email</label>
 								</div>
 							
 								<div class="btnSendCad">
@@ -300,8 +304,8 @@
 					confirmButtonText: "Ok, logout"
 				}).then((result) => {
 					if(result.value) {
-						<?php $_SESSION["url_sair"] = "../cadastro"; ?>
-						window.location.href = "functions/sair";
+						<?php $_SESSION["url_sair"] = base_url_php() . "usuario/cadastro"; ?>
+						window.location.href = BASE_URL + "functions/sair";
 					} else {
 						window.location.href = BASE_URL;
 					}

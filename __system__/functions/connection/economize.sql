@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 05/07/2019 às 00:06
+-- Generation Time: 25-Jul-2019 às 20:50
 -- Versão do servidor: 5.7.26
--- Versão do PHP: 7.3.5
+-- versão do PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `economize`
+-- Database: `economize`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `armazem`
+-- Estrutura da tabela `armazem`
 --
 
 DROP TABLE IF EXISTS `armazem`;
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `armazem` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `armazem`
+-- Extraindo dados da tabela `armazem`
 --
 
 INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `armazem_supervisor_cpf`, `armazem_registro`, `cidade_id`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `armazem` (`armazem_id`, `armazem_nome`, `armazem_supervisor`, `arma
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `atendimento`
+-- Estrutura da tabela `atendimento`
 --
 
 DROP TABLE IF EXISTS `atendimento`;
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `atendimento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `atendimento`
+-- Extraindo dados da tabela `atendimento`
 --
 
 INSERT INTO `atendimento` (`id_atd`, `nome_usu`, `email_usu`, `tp_problema`, `desc_problema`, `dataenv_pro`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `atendimento` (`id_atd`, `nome_usu`, `email_usu`, `tp_problema`, `de
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `atend_resposta`
+-- Estrutura da tabela `atend_resposta`
 --
 
 DROP TABLE IF EXISTS `atend_resposta`;
@@ -101,10 +101,10 @@ CREATE TABLE IF NOT EXISTS `atend_resposta` (
   PRIMARY KEY (`resp_id`),
   KEY `fk_AtendResp` (`id_atd`),
   KEY `fk_FuncResp` (`funcionario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `atend_resposta`
+-- Extraindo dados da tabela `atend_resposta`
 --
 
 INSERT INTO `atend_resposta` (`resp_id`, `id_atd`, `funcionario_id`, `resp_atend`, `registro_resp`) VALUES
@@ -113,12 +113,14 @@ INSERT INTO `atend_resposta` (`resp_id`, `id_atd`, `funcionario_id`, `resp_atend
 (3, 7, 3, 'Boa tarde Pâmela. Bom, isso é complicado. Tem muitas coisas que o economize leva em consideração para se instalar em uma cidade/região. Você é a primeira que faz um pedido da cidade de São José do Rio Preto. Caso haja mais pedidos daí, nós com certeza levaremos nosso mercado pra sua cidade, ok? Muito obrigado pela preferência!', '2019-06-11 17:22:29'),
 (4, 12, 3, 'Olá senhor! Sua marmita chegará ás 14:30 sem falta.', '2019-07-01 14:18:59'),
 (5, 13, 3, 'testes', '2019-07-01 15:52:21'),
-(6, 14, 3, 'Olooko hein. Aí sim', '2019-07-02 14:13:10');
+(6, 14, 3, 'Olooko hein. Aí sim', '2019-07-02 14:13:10'),
+(7, 11, 3, 'ASDasdASD', '2019-07-24 16:54:37'),
+(8, 9, 3, 'adasd', '2019-07-25 11:46:17');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `banner`
+-- Estrutura da tabela `banner`
 --
 
 DROP TABLE IF EXISTS `banner`;
@@ -131,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `banner` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `banner`
+-- Extraindo dados da tabela `banner`
 --
 
 INSERT INTO `banner` (`banner_id`, `banner_nome`, `banner_path`, `banner_status`) VALUES
@@ -143,7 +145,7 @@ INSERT INTO `banner` (`banner_id`, `banner_nome`, `banner_path`, `banner_status`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categ`
+-- Estrutura da tabela `categ`
 --
 
 DROP TABLE IF EXISTS `categ`;
@@ -156,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `categ` (
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `categ`
+-- Extraindo dados da tabela `categ`
 --
 
 INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
@@ -241,7 +243,7 @@ INSERT INTO `categ` (`categ_id`, `categ_nome`, `subcateg_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cidade`
+-- Estrutura da tabela `cidade`
 --
 
 DROP TABLE IF EXISTS `cidade`;
@@ -254,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `cidade` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `cidade`
+-- Extraindo dados da tabela `cidade`
 --
 
 INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
@@ -265,7 +267,7 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `compra`
+-- Estrutura da tabela `compra`
 --
 
 DROP TABLE IF EXISTS `compra`;
@@ -287,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `compra`
+-- Extraindo dados da tabela `compra`
 --
 
 INSERT INTO `compra` (`compra_id`, `armazem_id`, `compra_hash`, `compra_registro`, `compra_total`, `compra_link`, `usu_id`, `status_id`, `forma_id`) VALUES
@@ -303,7 +305,7 @@ INSERT INTO `compra` (`compra_id`, `armazem_id`, `compra_hash`, `compra_registro
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `conf_mail`
+-- Estrutura da tabela `conf_mail`
 --
 
 DROP TABLE IF EXISTS `conf_mail`;
@@ -318,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `conf_mail` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `conf_mail`
+-- Extraindo dados da tabela `conf_mail`
 --
 
 INSERT INTO `conf_mail` (`cf_id`, `cf_link`, `cf_status`, `cf_expiracao`, `usu_id`) VALUES
@@ -328,7 +330,7 @@ INSERT INTO `conf_mail` (`cf_id`, `cf_link`, `cf_status`, `cf_expiracao`, `usu_i
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cupom`
+-- Estrutura da tabela `cupom`
 --
 
 DROP TABLE IF EXISTS `cupom`;
@@ -337,20 +339,21 @@ CREATE TABLE IF NOT EXISTS `cupom` (
   `cupom_codigo` varchar(30) NOT NULL,
   `cupom_desconto_porcent` float NOT NULL,
   PRIMARY KEY (`cupom_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `cupom`
+-- Extraindo dados da tabela `cupom`
 --
 
 INSERT INTO `cupom` (`cupom_id`, `cupom_codigo`, `cupom_desconto_porcent`) VALUES
-(1, 'AKPLD765', 50),
-(8, 'FGBCH85', 25);
+(1, 'AKPLD750', 50),
+(9, 'FBDAO31', 31),
+(10, 'ZCGST20', 20);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_armazem`
+-- Estrutura da tabela `dados_armazem`
 --
 
 DROP TABLE IF EXISTS `dados_armazem`;
@@ -367,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `dados_armazem` (
 ) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_armazem`
+-- Extraindo dados da tabela `dados_armazem`
 --
 
 INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qtd`, `produto_preco`, `produto_desconto_porcent`) VALUES
@@ -458,7 +461,7 @@ INSERT INTO `dados_armazem` (`dados_id`, `produto_id`, `armazem_id`, `produto_qt
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_atend_func`
+-- Estrutura da tabela `dados_atend_func`
 --
 
 DROP TABLE IF EXISTS `dados_atend_func`;
@@ -469,10 +472,10 @@ CREATE TABLE IF NOT EXISTS `dados_atend_func` (
   PRIMARY KEY (`dados_id`),
   KEY `fk_AtdFunc` (`atendimento_id`),
   KEY `fk_FuncAtd` (`funcionario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_atend_func`
+-- Extraindo dados da tabela `dados_atend_func`
 --
 
 INSERT INTO `dados_atend_func` (`dados_id`, `atendimento_id`, `funcionario_id`) VALUES
@@ -500,12 +503,13 @@ INSERT INTO `dados_atend_func` (`dados_id`, `atendimento_id`, `funcionario_id`) 
 (41, 12, 3),
 (42, 13, 2),
 (43, 13, 3),
-(44, 14, 3);
+(44, 14, 3),
+(45, 14, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_entrega`
+-- Estrutura da tabela `dados_entrega`
 --
 
 DROP TABLE IF EXISTS `dados_entrega`;
@@ -519,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `dados_entrega` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_entrega`
+-- Extraindo dados da tabela `dados_entrega`
 --
 
 INSERT INTO `dados_entrega` (`dados_id`, `entrega_id`, `funcionario_id`) VALUES
@@ -528,7 +532,7 @@ INSERT INTO `dados_entrega` (`dados_id`, `entrega_id`, `funcionario_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_horario_entrega`
+-- Estrutura da tabela `dados_horario_entrega`
 --
 
 DROP TABLE IF EXISTS `dados_horario_entrega`;
@@ -542,7 +546,7 @@ CREATE TABLE IF NOT EXISTS `dados_horario_entrega` (
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_horario_entrega`
+-- Extraindo dados da tabela `dados_horario_entrega`
 --
 
 INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem`) VALUES
@@ -600,7 +604,7 @@ INSERT INTO `dados_horario_entrega` (`dados_id`, `dados_horario`, `dados_armazem
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_horario_subcidade`
+-- Estrutura da tabela `dados_horario_subcidade`
 --
 
 DROP TABLE IF EXISTS `dados_horario_subcidade`;
@@ -614,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `dados_horario_subcidade` (
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_horario_subcidade`
+-- Extraindo dados da tabela `dados_horario_subcidade`
 --
 
 INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subcidade`) VALUES
@@ -638,7 +642,7 @@ INSERT INTO `dados_horario_subcidade` (`dados_id`, `dados_horario`, `dados_subci
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dados_promocao`
+-- Estrutura da tabela `dados_promocao`
 --
 
 DROP TABLE IF EXISTS `dados_promocao`;
@@ -654,7 +658,7 @@ CREATE TABLE IF NOT EXISTS `dados_promocao` (
 ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `dados_promocao`
+-- Extraindo dados da tabela `dados_promocao`
 --
 
 INSERT INTO `dados_promocao` (`dados_id`, `produto_id`, `armazem_id`, `promo_id`) VALUES
@@ -666,7 +670,7 @@ INSERT INTO `dados_promocao` (`dados_id`, `produto_id`, `armazem_id`, `promo_id`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `departamento`
+-- Estrutura da tabela `departamento`
 --
 
 DROP TABLE IF EXISTS `departamento`;
@@ -679,11 +683,11 @@ CREATE TABLE IF NOT EXISTS `departamento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `departamento`
+-- Extraindo dados da tabela `departamento`
 --
 
 INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_desc`) VALUES
-(1, 'ACOUGUE', 'flaticon-038-steaks', NULL),
+(1, 'ACOUGUE', 'flaticon-038-steaks', ''),
 (2, 'BEBIDAS', 'flaticon-020-products-3', 'Águas e Chás, Cervejas e tudo o mais'),
 (3, 'PREPARADOS', 'flaticon-018-products-4', ''),
 (4, 'HORTIFRUTI', 'flaticon-022-healthy-food-1', NULL),
@@ -699,7 +703,7 @@ INSERT INTO `departamento` (`depart_id`, `depart_nome`, `depart_icon`, `depart_d
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `duvida_frequente`
+-- Estrutura da tabela `duvida_frequente`
 --
 
 DROP TABLE IF EXISTS `duvida_frequente`;
@@ -711,7 +715,7 @@ CREATE TABLE IF NOT EXISTS `duvida_frequente` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `duvida_frequente`
+-- Extraindo dados da tabela `duvida_frequente`
 --
 
 INSERT INTO `duvida_frequente` (`duvida_id`, `duvida_pergunta`, `duvida_resposta`) VALUES
@@ -720,7 +724,7 @@ INSERT INTO `duvida_frequente` (`duvida_id`, `duvida_pergunta`, `duvida_resposta
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `entrega`
+-- Estrutura da tabela `entrega`
 --
 
 DROP TABLE IF EXISTS `entrega`;
@@ -741,7 +745,7 @@ CREATE TABLE IF NOT EXISTS `entrega` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `entrega`
+-- Extraindo dados da tabela `entrega`
 --
 
 INSERT INTO `entrega` (`entrega_id`, `compra_id`, `entrega_registro`, `entrega_horario`, `entrega_cep`, `entrega_end`, `entrega_num`, `entrega_complemento`, `entrega_bairro`, `entrega_cidade`, `entrega_uf`) VALUES
@@ -757,7 +761,7 @@ INSERT INTO `entrega` (`entrega_id`, `compra_id`, `entrega_registro`, `entrega_h
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estado`
+-- Estrutura da tabela `estado`
 --
 
 DROP TABLE IF EXISTS `estado`;
@@ -768,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `estado` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `estado`
+-- Extraindo dados da tabela `estado`
 --
 
 INSERT INTO `estado` (`est_id`, `est_uf`) VALUES
@@ -777,7 +781,7 @@ INSERT INTO `estado` (`est_id`, `est_uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forma_pag`
+-- Estrutura da tabela `forma_pag`
 --
 
 DROP TABLE IF EXISTS `forma_pag`;
@@ -788,7 +792,7 @@ CREATE TABLE IF NOT EXISTS `forma_pag` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `forma_pag`
+-- Extraindo dados da tabela `forma_pag`
 --
 
 INSERT INTO `forma_pag` (`forma_id`, `forma_nome`) VALUES
@@ -799,7 +803,7 @@ INSERT INTO `forma_pag` (`forma_id`, `forma_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fornecedor`
+-- Estrutura da tabela `fornecedor`
 --
 
 DROP TABLE IF EXISTS `fornecedor`;
@@ -810,19 +814,20 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `fornecedor_cnpj` char(18) NOT NULL,
   `fornecedor_data_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`fornecedor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `fornecedor`
+-- Extraindo dados da tabela `fornecedor`
 --
 
 INSERT INTO `fornecedor` (`fornecedor_id`, `fornecedor_nome`, `fornecedor_responsavel_nome`, `fornecedor_cnpj`, `fornecedor_data_registro`) VALUES
-(8, 'Coca-Bola Company', 'Raquel Ferreira', '38.461.723/8572-52', '2019-07-01 12:34:18');
+(8, 'Coca-Bola Company', 'Raquel Ferreira', '38.461.723/8572-52', '2019-07-01 12:34:18'),
+(9, 'Fanta', 'Rosângela Faria', '37.253.729/2745-19', '2019-07-25 17:25:16');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forn_prod`
+-- Estrutura da tabela `forn_prod`
 --
 
 DROP TABLE IF EXISTS `forn_prod`;
@@ -842,7 +847,7 @@ CREATE TABLE IF NOT EXISTS `forn_prod` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `funcionario`
 --
 
 DROP TABLE IF EXISTS `funcionario`;
@@ -860,7 +865,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `funcionario`
+-- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_email`, `funcionario_senha`, `funcionario_registro`, `funcionario_cpf`, `funcionario_datanasc`, `funcionario_setor`) VALUES
@@ -872,7 +877,7 @@ INSERT INTO `funcionario` (`funcionario_id`, `funcionario_nome`, `funcionario_em
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `horarios_entrega`
+-- Estrutura da tabela `horarios_entrega`
 --
 
 DROP TABLE IF EXISTS `horarios_entrega`;
@@ -884,7 +889,7 @@ CREATE TABLE IF NOT EXISTS `horarios_entrega` (
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `horarios_entrega`
+-- Extraindo dados da tabela `horarios_entrega`
 --
 
 INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
@@ -921,7 +926,7 @@ INSERT INTO `horarios_entrega` (`hora_id`, `hora`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `lista_compra`
+-- Estrutura da tabela `lista_compra`
 --
 
 DROP TABLE IF EXISTS `lista_compra`;
@@ -936,7 +941,7 @@ CREATE TABLE IF NOT EXISTS `lista_compra` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `lista_compra`
+-- Extraindo dados da tabela `lista_compra`
 --
 
 INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`) VALUES
@@ -957,7 +962,7 @@ INSERT INTO `lista_compra` (`lista_id`, `compra_id`, `produto_id`, `produto_qtd`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `marca_prod`
+-- Estrutura da tabela `marca_prod`
 --
 
 DROP TABLE IF EXISTS `marca_prod`;
@@ -969,7 +974,7 @@ CREATE TABLE IF NOT EXISTS `marca_prod` (
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `marca_prod`
+-- Extraindo dados da tabela `marca_prod`
 --
 
 INSERT INTO `marca_prod` (`marca_id`, `marca_nome`, `marca_promocao`) VALUES
@@ -1039,7 +1044,7 @@ INSERT INTO `marca_prod` (`marca_id`, `marca_nome`, `marca_promocao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `postagem`
+-- Estrutura da tabela `postagem`
 --
 
 DROP TABLE IF EXISTS `postagem`;
@@ -1055,7 +1060,7 @@ CREATE TABLE IF NOT EXISTS `postagem` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 DROP TABLE IF EXISTS `produto`;
@@ -1073,7 +1078,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
 ) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produto_img`, `produto_marca`, `produto_tamanho`, `produto_categ`) VALUES
@@ -1164,7 +1169,7 @@ INSERT INTO `produto` (`produto_id`, `produto_nome`, `produto_descricao`, `produ
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produtos_favorito`
+-- Estrutura da tabela `produtos_favorito`
 --
 
 DROP TABLE IF EXISTS `produtos_favorito`;
@@ -1178,7 +1183,7 @@ CREATE TABLE IF NOT EXISTS `produtos_favorito` (
 ) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `produtos_favorito`
+-- Extraindo dados da tabela `produtos_favorito`
 --
 
 INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
@@ -1194,7 +1199,7 @@ INSERT INTO `produtos_favorito` (`favorito_id`, `produto_id`, `usu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `promocao_temp`
+-- Estrutura da tabela `promocao_temp`
 --
 
 DROP TABLE IF EXISTS `promocao_temp`;
@@ -1209,7 +1214,7 @@ CREATE TABLE IF NOT EXISTS `promocao_temp` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `promocao_temp`
+-- Extraindo dados da tabela `promocao_temp`
 --
 
 INSERT INTO `promocao_temp` (`promo_id`, `promo_nome`, `promo_subtit`, `promo_desconto`, `promo_expira`, `promo_status`) VALUES
@@ -1218,7 +1223,7 @@ INSERT INTO `promocao_temp` (`promo_id`, `promo_nome`, `promo_subtit`, `promo_de
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `setor`
+-- Estrutura da tabela `setor`
 --
 
 DROP TABLE IF EXISTS `setor`;
@@ -1230,7 +1235,7 @@ CREATE TABLE IF NOT EXISTS `setor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `setor`
+-- Extraindo dados da tabela `setor`
 --
 
 INSERT INTO `setor` (`setor_id`, `setor_nome`, `setor_permicao`) VALUES
@@ -1241,7 +1246,7 @@ INSERT INTO `setor` (`setor_id`, `setor_nome`, `setor_permicao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `status_compra`
+-- Estrutura da tabela `status_compra`
 --
 
 DROP TABLE IF EXISTS `status_compra`;
@@ -1252,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS `status_compra` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `status_compra`
+-- Extraindo dados da tabela `status_compra`
 --
 
 INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
@@ -1265,7 +1270,7 @@ INSERT INTO `status_compra` (`status_id`, `status_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `subcateg`
+-- Estrutura da tabela `subcateg`
 --
 
 DROP TABLE IF EXISTS `subcateg`;
@@ -1278,7 +1283,7 @@ CREATE TABLE IF NOT EXISTS `subcateg` (
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `subcateg`
+-- Extraindo dados da tabela `subcateg`
 --
 
 INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
@@ -1326,7 +1331,7 @@ INSERT INTO `subcateg` (`subcateg_id`, `subcateg_nome`, `depart_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `subcidade`
+-- Estrutura da tabela `subcidade`
 --
 
 DROP TABLE IF EXISTS `subcidade`;
@@ -1342,7 +1347,7 @@ CREATE TABLE IF NOT EXISTS `subcidade` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `subcidade`
+-- Extraindo dados da tabela `subcidade`
 --
 
 INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `subcid_frete`, `cid_id`, `est_id`) VALUES
@@ -1359,7 +1364,7 @@ INSERT INTO `subcidade` (`subcid_id`, `subcid_nome`, `subcid_frete`, `cid_id`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `telefone`
+-- Estrutura da tabela `telefone`
 --
 
 DROP TABLE IF EXISTS `telefone`;
@@ -1374,7 +1379,7 @@ CREATE TABLE IF NOT EXISTS `telefone` (
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `telefone`
+-- Extraindo dados da tabela `telefone`
 --
 
 INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
@@ -1389,7 +1394,7 @@ INSERT INTO `telefone` (`tel_id`, `tel_num`, `tpu_tel`, `usu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipousu`
+-- Estrutura da tabela `tipousu`
 --
 
 DROP TABLE IF EXISTS `tipousu`;
@@ -1400,7 +1405,7 @@ CREATE TABLE IF NOT EXISTS `tipousu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipousu`
+-- Extraindo dados da tabela `tipousu`
 --
 
 INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`) VALUES
@@ -1410,7 +1415,7 @@ INSERT INTO `tipousu` (`tpu_id`, `tpu_usu_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo_tel`
+-- Estrutura da tabela `tipo_tel`
 --
 
 DROP TABLE IF EXISTS `tipo_tel`;
@@ -1421,7 +1426,7 @@ CREATE TABLE IF NOT EXISTS `tipo_tel` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipo_tel`
+-- Extraindo dados da tabela `tipo_tel`
 --
 
 INSERT INTO `tipo_tel` (`tpu_tel_id`, `tpu_tel_nome`) VALUES
@@ -1433,7 +1438,7 @@ INSERT INTO `tipo_tel` (`tpu_tel_id`, `tpu_tel_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 DROP TABLE IF EXISTS `usuario`;
@@ -1461,7 +1466,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, `usu_cpf`, `usu_email`, `usu_senha`, `usu_cep`, `usu_end`, `usu_num`, `usu_complemento`, `usu_bairro`, `usu_cidade`, `usu_uf`, `usu_tipo`, `usu_cstatus`, `usu_mailmkt`, `usu_registro`) VALUES
@@ -1474,45 +1479,45 @@ INSERT INTO `usuario` (`usu_id`, `usu_first_name`, `usu_last_name`, `usu_sexo`, 
 (27, 'Guilherme', 'Carvalho Nitta', 'M', '386.598.708-75', 'guicarvalhonitta@gmail.com', '$2y$10$gI4EJlzwRbXO0/jPvZhJQ.jpZe/Xq28H0PCezD8eUIWuboFBw29Sy', '16403-526', 'Rua Alfredo Weiler', 160, '', 'Jardim Manoel Scalfi', 'Lins', 'SP', 1, b'0', b'0', '2019-07-01 19:50:31');
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `produto`
+-- Indexes for table `produto`
 --
 ALTER TABLE `produto` ADD FULLTEXT KEY `produto_nome` (`produto_nome`,`produto_descricao`,`produto_tamanho`);
 
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `armazem`
+-- Limitadores para a tabela `armazem`
 --
 ALTER TABLE `armazem`
   ADD CONSTRAINT `fk_CidArm` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`cid_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `atend_resposta`
+-- Limitadores para a tabela `atend_resposta`
 --
 ALTER TABLE `atend_resposta`
   ADD CONSTRAINT `fk_AtendResp` FOREIGN KEY (`id_atd`) REFERENCES `atendimento` (`id_atd`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_FuncResp` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `categ`
+-- Limitadores para a tabela `categ`
 --
 ALTER TABLE `categ`
   ADD CONSTRAINT `FK_SubCateg` FOREIGN KEY (`subcateg_id`) REFERENCES `subcateg` (`subcateg_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `cidade`
+-- Limitadores para a tabela `cidade`
 --
 ALTER TABLE `cidade`
   ADD CONSTRAINT `fk_Est` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `compra`
+-- Limitadores para a tabela `compra`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `fk_CompArm` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1521,48 +1526,48 @@ ALTER TABLE `compra`
   ADD CONSTRAINT `fk_UsuCompra` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `conf_mail`
+-- Limitadores para a tabela `conf_mail`
 --
 ALTER TABLE `conf_mail`
   ADD CONSTRAINT `fk_usu_conf` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_armazem`
+-- Limitadores para a tabela `dados_armazem`
 --
 ALTER TABLE `dados_armazem`
   ADD CONSTRAINT `fk_ArmProd` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_ProdArm` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_atend_func`
+-- Limitadores para a tabela `dados_atend_func`
 --
 ALTER TABLE `dados_atend_func`
   ADD CONSTRAINT `fk_AtdFunc` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimento` (`id_atd`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_FuncAtd` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_entrega`
+-- Limitadores para a tabela `dados_entrega`
 --
 ALTER TABLE `dados_entrega`
   ADD CONSTRAINT `fk_DataEnt` FOREIGN KEY (`entrega_id`) REFERENCES `entrega` (`entrega_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_DataFunc` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`funcionario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_horario_entrega`
+-- Limitadores para a tabela `dados_horario_entrega`
 --
 ALTER TABLE `dados_horario_entrega`
-  ADD CONSTRAINT `fk_DadoArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`),
-  ADD CONSTRAINT `fk_DadoHora` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`);
+  ADD CONSTRAINT `fk_DadoArm` FOREIGN KEY (`dados_armazem`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DadoHora` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_horario_subcidade`
+-- Limitadores para a tabela `dados_horario_subcidade`
 --
 ALTER TABLE `dados_horario_subcidade`
-  ADD CONSTRAINT `fk_SubHor` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`),
-  ADD CONSTRAINT `fk_SubSub` FOREIGN KEY (`dados_subcidade`) REFERENCES `subcidade` (`subcid_id`);
+  ADD CONSTRAINT `fk_SubHor` FOREIGN KEY (`dados_horario`) REFERENCES `horarios_entrega` (`hora_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_SubSub` FOREIGN KEY (`dados_subcidade`) REFERENCES `subcidade` (`subcid_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `dados_promocao`
+-- Limitadores para a tabela `dados_promocao`
 --
 ALTER TABLE `dados_promocao`
   ADD CONSTRAINT `fk_ProdPromo` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1570,71 +1575,71 @@ ALTER TABLE `dados_promocao`
   ADD CONSTRAINT `fk_PromoProd` FOREIGN KEY (`promo_id`) REFERENCES `promocao_temp` (`promo_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `entrega`
+-- Limitadores para a tabela `entrega`
 --
 ALTER TABLE `entrega`
   ADD CONSTRAINT `fk_EntCompra` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`compra_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `forn_prod`
+-- Limitadores para a tabela `forn_prod`
 --
 ALTER TABLE `forn_prod`
   ADD CONSTRAINT `fk_FornArm` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`armazem_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_FornProd` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedor` (`fornecedor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_ProdForn` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`);
+  ADD CONSTRAINT `fk_ProdForn` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `funcionario`
+-- Limitadores para a tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD CONSTRAINT `fk_FuncSetor` FOREIGN KEY (`funcionario_setor`) REFERENCES `setor` (`setor_id`);
+  ADD CONSTRAINT `fk_FuncSetor` FOREIGN KEY (`funcionario_setor`) REFERENCES `setor` (`setor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `lista_compra`
+-- Limitadores para a tabela `lista_compra`
 --
 ALTER TABLE `lista_compra`
   ADD CONSTRAINT `fk_CompraLista` FOREIGN KEY (`compra_id`) REFERENCES `compra` (`compra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_ListaProd` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD CONSTRAINT `fk_CategProd` FOREIGN KEY (`produto_categ`) REFERENCES `categ` (`categ_id`),
-  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`);
+  ADD CONSTRAINT `fk_CategProd` FOREIGN KEY (`produto_categ`) REFERENCES `categ` (`categ_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_MarcaProd` FOREIGN KEY (`produto_marca`) REFERENCES `marca_prod` (`marca_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `produtos_favorito`
+-- Limitadores para a tabela `produtos_favorito`
 --
 ALTER TABLE `produtos_favorito`
   ADD CONSTRAINT `fk_ProdUsu` FOREIGN KEY (`produto_id`) REFERENCES `produto` (`produto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_UsuProd` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `subcateg`
+-- Limitadores para a tabela `subcateg`
 --
 ALTER TABLE `subcateg`
-  ADD CONSTRAINT `FK_Departamento` FOREIGN KEY (`depart_id`) REFERENCES `departamento` (`depart_id`);
+  ADD CONSTRAINT `FK_Departamento` FOREIGN KEY (`depart_id`) REFERENCES `departamento` (`depart_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `subcidade`
+-- Limitadores para a tabela `subcidade`
 --
 ALTER TABLE `subcidade`
-  ADD CONSTRAINT `fk_SubCid` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cid_id`),
-  ADD CONSTRAINT `fk_SubEst` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
+  ADD CONSTRAINT `fk_SubCid` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cid_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_SubEst` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `telefone`
+-- Limitadores para a tabela `telefone`
 --
 ALTER TABLE `telefone`
   ADD CONSTRAINT `fk_tpu` FOREIGN KEY (`tpu_tel`) REFERENCES `tipo_tel` (`tpu_tel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usuarioTel` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `usuario`
+-- Limitadores para a tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_Tipo` FOREIGN KEY (`usu_tipo`) REFERENCES `tipousu` (`tpu_id`);
+  ADD CONSTRAINT `fk_Tipo` FOREIGN KEY (`usu_tipo`) REFERENCES `tipousu` (`tpu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

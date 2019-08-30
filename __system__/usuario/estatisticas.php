@@ -39,17 +39,14 @@
         ?>
         </div>
 
-
-		<div class="l-mainCad">
-		 <h2 align="center" class="tituloOfertas"><i class="fas fa-chart-line"></i> MINHAS ESTATÍSTICAS</h2>
-		<center>
-		 <div  id="chart-container">
-      		<canvas id="mycanvas"></canvas>
-    	</div>
-	   </center>
-	   </div>
-
-	 
+        <div class="l-mainCad">
+            <h2 align="center" class="tituloOfertas"><i class="fas fa-chart-line"></i> MINHAS ESTATÍSTICAS</h2>
+            <center>
+            <div  id="chart-container">
+                <canvas id="mycanvas"></canvas>
+            </div>
+            </center>
+        </div>
 		
 		<?php
             include('__system__/functions/includes/modal.php');
@@ -69,8 +66,6 @@
 
 	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
 	<script src="<?= base_url(); ?>style/libraries/ChartJS/Chart.min.js"></script>
-	<script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-	<script src="<?= base_url(); ?>js/mask.js"></script>
 	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
@@ -78,8 +73,6 @@
     <script src="<?= base_url(); ?>js/login.js"></script>
 	<script src="<?= base_url(); ?>js/mostrarEstatisticas.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
-    <script src="<?= base_url(); ?>js/configurarPerfil.js"></script>
-	<script src="<?= base_url(); ?>js/mostrarEstatisticas.js"></script>
     <script src="<?= base_url(); ?>js/main.js"></script>
 
 </body>

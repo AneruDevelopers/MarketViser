@@ -25,6 +25,8 @@
             <div id="conteudo">
 
             </div>
+            
+            <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Registrar armazém</button>
             <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar produto à armazém</button>
         </section>
 

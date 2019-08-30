@@ -1,4 +1,8 @@
 <header class="l-header">
+    <h2 class="user_perf">
+        <a href="<?= base_url_adm_php(); ?>user"><i class="far fa-user-circle"></i></a>
+    </h2>
+
     <h2 class="logout">
         <a href="<?= base_url_adm_php(); ?>functions/logout"><i class="fas fa-sign-out-alt"></i></a>
     </h2>
@@ -55,6 +59,7 @@
             <label for="check3"><i class="fas fa-ad"></i>&nbsp; BANNERS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>banner/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>banner/central?fnc=IB">INSERIR BANNER</a></li>
             </ul>
         </div>
         <!-- <div class="item">
@@ -92,6 +97,8 @@
             <label for="check8"><i class="fas fa-truck"></i>&nbsp; ENTREGAS <span class="notifEnt"></span></label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>entrega/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central">HORÁRIOS</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>horarios/central?fnc=IH">INSERIR HORÁRIO</a></li>
             </ul>
         </div>
         <div class="item">
@@ -107,14 +114,16 @@
             <label for="check10"><i class="fas fa-walking"></i>&nbsp; FUNCIONÁRIOS</label>
             <ul>
                 <li><a href="<?= base_url_adm_php(); ?>funcionario/central">GERENCIADOR</a></li>
-                <li><a href="<?= base_url_adm_php(); ?>duvida-frequente/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>funcionario/central?fnc=IF">INSERIR FUNCIONÁRIO</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>setor/central">SETORES</a></li>
             </ul>
         </div>
         <div class="item">
             <input type="checkbox" id="check11">
-            <label for="check11"><i class="far fa-clock"></i>&nbsp; HORÁRIOS DE ENTREGA</label>
+            <label for="check11"><i class="fas fa-mail-bulk"></i>&nbsp; POSTAGENS</label>
             <ul>
-                <li><a href="<?= base_url_adm_php(); ?>horarios/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>postagem/central">GERENCIADOR</a></li>
+                <li><a href="<?= base_url_adm_php(); ?>postagem/central?fnc=IP">INSERIR POSTAGEM</a></li>
             </ul>
         </div>
         <div class="item">

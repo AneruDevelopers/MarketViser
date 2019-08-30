@@ -156,23 +156,28 @@
             include('functions/includes/bottom.php');
         ?>
         </div>
+
         <!-- -------------------- -->
         <!-- Carousel -->
         <div class="l-carousel">
-          <div id="owl-demo" class="owl-carousel">  
-                <?php  $selb = $conn->prepare("SELECT * FROM banner WHERE banner_status = 1"); 
-                    $selb->execute();
-                    if($selb->rowCount() > 0):
-                        while($rowb = $selb->fetch( PDO::FETCH_ASSOC )):
+            <div id="owl-demo" class="owl-carousel">
+                <?php
+                    $sel = $conn->prepare("SELECT * FROM banner WHERE banner_status = 1");
+                    $sel->execute();
+                    if($sel->rowCount() > 0):
+                        while($row = $sel->fetch( PDO::FETCH_ASSOC )):?>
+                            <div class="item">
+                                <img src="<?= base_url(); ?>img\Banner_TCC\<?= $row['banner_path']; ?>" alt="<?= $row['banner_nome']; ?>" title="<?= $row['banner_nome']; ?>"/>
+                            </div>
+                            <?php
+                        endwhile;
+                    else:
+                        echo  "<span>Sem Banners</span>";
+                    endif;
                 ?>
-                <div class="item"><img src="<?= base_url(); ?>img\Banner_TCC\<?= $rowb['banner_path']; ?>" alt="<?= $rowb['banner_nome']; ?>" title="<?= $rowb['banner_nome']; ?>"></div>
-           
+            </div>
+        </div>
         
-           <?php 
-           endwhile;
-           else:
-             echo  "<span>Sem Banners</span>";
-           endif; ?> </div></div>
         <!-- Title/Display Products -->
         <div class="l-main">
             <center>
@@ -276,8 +281,6 @@
         </div>
     </div>
     <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-mask.js"></script>
-    <script src="<?= base_url(); ?>js/mask.js"></script>
     <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
     <script src="<?= base_url(); ?>js/util.js"></script>
@@ -289,11 +292,11 @@
     <script src="<?= base_url(); ?>js/main.js"></script>
     <script src="<?= base_url(); ?>js/login.js"></script>
     <?php
-        if(isset($_SESSION['msg_cad'])):?>
+        if(isset($_SESSION['msg'])):?>
             <script>
                 Swal.fire({
                     title: "e.conomize informa:",
-                    text: "<?= $_SESSION['msg_cad']['text']; ?>",
+                    text: "<?= $_SESSION['msg']; ?>",
                     type: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#A94442",
@@ -301,7 +304,7 @@
                 });
             </script>
             <?php
-            unset($_SESSION['msg_cad']);
+            unset($_SESSION['msg']);
         endif;
     ?>
 </body>

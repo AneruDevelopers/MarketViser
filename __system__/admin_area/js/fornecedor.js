@@ -34,6 +34,7 @@ function dataFornecedor(page, qtd_result) {
                                 <td>` + json['fornecedores'][i].fornecedor_nome + `</td>
                                 <td class="tdCenter">` + json['fornecedores'][i].fornecedor_responsavel_nome + `</td>
                                 <td class="tdCenter">` + json['fornecedores'][i].fornecedor_cnpj + `</td>
+                                <td class="tdCenter">` + json['fornecedores'][i].fornecedor_data_registro + `</td>
                                 <td class="tdCenter">
                                     <button class="myBtnUpd btnEditFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-edit"></i></button>
                                     <button class="btnDelFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-times"></i></button>
@@ -41,51 +42,7 @@ function dataFornecedor(page, qtd_result) {
                             </tr>
                         `);
                     }
-                    $('body').append(`
-                        <div class="myModalUpd" id="myModalUpd">
-                            <div class="modalUpdContent">
-                                <span class="closeModalUpd">&times;</span>
-                                <div class="showUpdModal">
-                                    <div class="divCadFornecedor">
-                                        <form class="formUpdateFornecedor">
-                                            <div class="divUpdCadFornecedor">
-                                                <div style="margin:25px 0;">
-                                                <table class="tableSectionConfigArm" width="80%" align="center">
-                                                    <tr align="center">
-                                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR FORNECEDOR</h2></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME</b></td>
-                                                        <td>
-                                                            <input type="hidden" name="fornecedor_idUpd" id="fornecedor_idUpd"/>
-                                                            <input type="text" class="selectConfigArm" name="fornecedor_nomeUpd" id="fornecedor_nomeUpd"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>NOME RESPONSÁVEL</b></td>
-                                                        <td>
-                                                            <input type="text" class="selectConfigArm" name="fornecedor_responsavel_nomeUpd" id="fornecedor_responsavel_nomeUpd"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CNPJ</b></td>
-                                                        <td>
-                                                            <input type="text" class="selectConfigArm cnpj" name="fornecedor_cnpjUpd" id="fornecedor_cnpjUpd"/>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                            </div>
-                                            <div class="divSubmit" align="center">
-                                                <button type="submit" id="btnUpdateFornecedor"><i class="fas fa-save"></i> Editar</button>
-                                                <div class="help-block"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+                    
                     deleteFornecedor();
                     modalUpd();
                     updFornecedor();
@@ -104,7 +61,7 @@ function dataFornecedor(page, qtd_result) {
                 `);
             }
             $('.registShow').html(`
-                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` banners
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` fornecedores
             `);
 
             var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
@@ -300,4 +257,424 @@ function deleteFornecedor() {
     });
 }
 
+function ordenarFornecedorSec(page, qtd_result, sortType) {
+    var tipoSort = sortType;
+
+    var dados = new FormData();
+    dados.append("data_sort",  sortType);
+    dados.append("page", page);
+    dados.append("qtd_result", qtd_result);
+    dados.append("sec",  "1");
+
+    if($('#searchFornecedor').val().length > 0) {
+        $('.divResetSearch').html(``);
+        $('#searchFornecedor').val(``);
+    }
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        data: dados,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: BASE_URL4 + 'functions/fornecedor',
+        beforeSend: function() {
+            $('.tbodyProd').html(`
+                <tr>
+                    <th colspan="5" class="thNoData">
+                        - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                    </th>
+                </tr>
+            `);
+        },
+        success: function(json) {
+            if(json['status']) {
+                $('.tbodyProd').html("");
+
+                for(var i = 0; json['fornecedores'].length > i; i++) {
+                    $('.tbodyProd').append(`
+                        <tr>
+                            <td>` + json['fornecedores'][i].fornecedor_nome + `</td>
+                            <td class="tdCenter">` + json['fornecedores'][i].fornecedor_responsavel_nome + `</td>
+                            <td class="tdCenter">` + json['fornecedores'][i].fornecedor_cnpj + `</td>
+                            <td class="tdCenter">` + json['fornecedores'][i].fornecedor_data_registro + `</td>
+                            <td class="tdCenter">
+                                <button class="myBtnUpd btnEditFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-edit"></i></button>
+                                <button class="btnDelFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                    `);
+                }
+                
+                deleteFornecedor();
+                modalUpd();
+                updFornecedor();
+            } else {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                    </tr>
+                `);
+            }
+            $('.registShow').html(`
+                Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` fornecedores
+            `);
+
+            var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+
+            $('.paginacao').html(`
+                <a href="#" class="linkPaginacao" onclick="ordenarFornecedorSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+            `);
+
+            for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                if(pag_ant >= 1) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarFornecedorSec(` + pag_ant + `, qtd_result, '` + tipoSort + `')">` + pag_ant + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(` ` + page + ` `);
+
+            for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                if(pag_dep <= totPage) {
+                    $('.paginacao').append(`
+                        <button class="btnPaginacao" onclick="ordenarFornecedorSec(` + pag_dep + `, qtd_result, '` + tipoSort + `')">` + pag_dep + `</button> 
+                    `);
+                }
+            }
+
+            $('.paginacao').append(`
+                <a href="#" class="linkPaginacao" onclick="ordenarFornecedorSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+            `);
+        }
+    });
+}
+
+function ordenarFornecedor(page, qtd_result) {
+    $('.sort').click(function(e) {
+        e.preventDefault();
+
+        var elementoPai = $(this).parent();
+        var elementosFilho = elementoPai.find(".span_sort");
+        elementosFilho.html("");
+
+        var sort = $(this).find(".span_sort");
+        
+        var tipoSort = $(this).attr("data-sort");
+
+        var dados = new FormData();
+        dados.append("data_sort",  $(this).attr("data-sort"));
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        if($('#searchFornecedor').val().length > 0) {
+            $('.divResetSearch').html(``);
+            $('#searchFornecedor').val(``);
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/fornecedor',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    $('.tbodyProd').html("");
+                    if(json['sort'] == "up") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-up"></i>`);
+                    } else if(json['sort'] == "down") {
+                        sort.html(` &nbsp;&nbsp;<i class="fas fa-sort-down"></i>`);
+                    }
+
+                    for(var i = 0; json['fornecedores'].length > i; i++) {
+                        $('.tbodyProd').append(`
+                            <tr>
+                                <td>` + json['fornecedores'][i].fornecedor_nome + `</td>
+                                <td class="tdCenter">` + json['fornecedores'][i].fornecedor_responsavel_nome + `</td>
+                                <td class="tdCenter">` + json['fornecedores'][i].fornecedor_cnpj + `</td>
+                                <td class="tdCenter">` + json['fornecedores'][i].fornecedor_data_registro + `</td>
+                                <td class="tdCenter">
+                                    <button class="myBtnUpd btnEditFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-edit"></i></button>
+                                    <button class="btnDelFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    }
+                    
+                    deleteFornecedor();
+                    modalUpd();
+                    updFornecedor();
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` fornecedores
+                `);
+
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarFornecedorSec(1, qtd_result, '` + tipoSort + `')">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarFornecedorSec(` + pag_ant + `,qtd_result,  '` + tipoSort + `')">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="ordenarFornecedorSec(` + pag_dep + `,qtd_result,  '` + tipoSort + `')">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="ordenarFornecedorSec(` + totPage + `, qtd_result, '` + tipoSort + `')">Última</a>
+                `);
+            }
+        });
+    });
+}
+
+function searchFornecedorSec(page, qtd_result) {
+    if($('#searchFornecedor').val().length > 0) {
+        $('.divResetSearch').html(`
+            <button type="reset" class="inputResetSearch">
+                <i class="far fa-times-circle"></i>
+            </button>
+        `);
+        
+        var dados = new FormData();
+        dados.append("searchFornecedor",  $('#searchFornecedor').val());
+        dados.append("page", page);
+        dados.append("qtd_result", qtd_result);
+
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            data: dados,
+            cache: false,
+            contentType: false,
+            processData: false,
+            url: BASE_URL4 + 'functions/fornecedor',
+            beforeSend: function() {
+                $('.tbodyProd').html(`
+                    <tr>
+                        <th colspan="5" class="thNoData">
+                            - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                        </th>
+                    </tr>
+                `);
+            },
+            success: function(json) {
+                if(json['status']) {
+                    if(!json['empty']) {
+                        $('.tbodyProd').html("");
+                        for(var i = 0; json['fornecedores'].length > i; i++) {
+                            $('.tbodyProd').append(`
+                                <tr>
+                                    <td>` + json['fornecedores'][i].fornecedor_nome + `</td>
+                                    <td class="tdCenter">` + json['fornecedores'][i].fornecedor_responsavel_nome + `</td>
+                                    <td class="tdCenter">` + json['fornecedores'][i].fornecedor_cnpj + `</td>
+                                    <td class="tdCenter">` + json['fornecedores'][i].fornecedor_data_registro + `</td>
+                                    <td class="tdCenter">
+                                        <button class="myBtnUpd btnEditFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-edit"></i></button>
+                                        <button class="btnDelFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                            `);
+                        }
+                        
+                        deleteFornecedor();
+                        modalUpd();
+                        updFornecedor();
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                            </tr>
+                        `);
+                    }
+                } else {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                        </tr>
+                    `);
+                }
+                $('.registShow').html(`
+                    Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` fornecedores
+                `);
+    
+                var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+    
+                $('.paginacao').html(`
+                    <a href="#" class="linkPaginacao" onclick="searchFornecedorSec(1, qtd_result)">Primeira</a> 
+                `);
+    
+                for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                    if(pag_ant >= 1) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchFornecedorSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(` ` + page + ` `);
+    
+                for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                    if(pag_dep <= totPage) {
+                        $('.paginacao').append(`
+                            <button class="btnPaginacao" onclick="searchFornecedorSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                        `);
+                    }
+                }
+    
+                $('.paginacao').append(`
+                    <a href="#" class="linkPaginacao" onclick="searchFornecedorSec(` + totPage + `, qtd_result)">Última</a>
+                `);
+            }
+        });
+    } else {
+        $('.divResetSearch').html(``);
+        dataFornecedor(1, qtd_result);
+    }
+}
+
+function searchFornecedor(page, qtd_result) {
+    $('#searchFornecedor').keyup(function(e) {
+        e.preventDefault();
+
+        if($(this).val().length > 0) {
+            $('.divResetSearch').html(`
+                <button type="reset" class="inputResetSearch">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            `);
+            
+            var dados = new FormData();
+            dados.append("searchFornecedor",  $(this).val());
+            dados.append("page", page);
+            dados.append("qtd_result", qtd_result);
+
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                data: dados,
+                cache: false,
+                contentType: false,
+                processData: false,
+                url: BASE_URL4 + 'functions/fornecedor',
+                beforeSend: function() {
+                    $('.tbodyProd').html(`
+                        <tr>
+                            <th colspan="5" class="thNoData">
+                                - <i class='fa fa-circle-notch fa-spin'></i> PROCESSANDO -
+                            </th>
+                        </tr>
+                    `);
+                },
+                success: function(json) {
+                    if(json['status']) {
+                        if(!json['empty']) {
+                            $('.tbodyProd').html("");
+                            for(var i = 0; json['fornecedores'].length > i; i++) {
+                                $('.tbodyProd').append(`
+                                    <tr>
+                                        <td>` + json['fornecedores'][i].fornecedor_nome + `</td>
+                                        <td class="tdCenter">` + json['fornecedores'][i].fornecedor_responsavel_nome + `</td>
+                                        <td class="tdCenter">` + json['fornecedores'][i].fornecedor_cnpj + `</td>
+                                        <td class="tdCenter">` + json['fornecedores'][i].fornecedor_data_registro + `</td>
+                                        <td class="tdCenter">
+                                            <button class="myBtnUpd btnEditFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-edit"></i></button>
+                                            <button class="btnDelFornecedor btnProductConfigAdm" id-fornecedor="` + json['fornecedores'][i].fornecedor_id + `"><i class="fa fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                `);
+                            }
+                            
+                            deleteFornecedor();
+                            modalUpd();
+                            updFornecedor();
+                        } else {
+                            $('.tbodyProd').html(`
+                                <tr>
+                                    <th colspan="5" class="thNoData">- NÃO HOUVE RESPOSTA -</th>
+                                </tr>
+                            `);
+                        }
+                    } else {
+                        $('.tbodyProd').html(`
+                            <tr>
+                                <th colspan="5" class="thNoData">- OCORREU UM ERRO -</th>
+                            </tr>
+                        `);
+                    }
+                    $('.registShow').html(`
+                        Mostrando ` + json['registrosMostra'] + ` de ` + json['registrosTotal'] + ` fornecedores
+                    `);
+        
+                    var totPage = Math.ceil(json['registrosTotal'] / qtd_result);
+        
+                    $('.paginacao').html(`
+                        <a href="#" class="linkPaginacao" onclick="searchFornecedorSec(1, qtd_result)">Primeira</a> 
+                    `);
+        
+                    for(var pag_ant = (page - max_links); pag_ant <= (page - 1); pag_ant++) {
+                        if(pag_ant >= 1) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchFornecedorSec(` + pag_ant + `, qtd_result)">` + pag_ant + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(` ` + page + ` `);
+        
+                    for(var pag_dep = (page + 1); pag_dep <= (page + max_links); pag_dep++) {
+                        if(pag_dep <= totPage) {
+                            $('.paginacao').append(`
+                                <button class="btnPaginacao" onclick="searchFornecedorSec(` + pag_dep + `, qtd_result)">` + pag_dep + `</button> 
+                            `);
+                        }
+                    }
+        
+                    $('.paginacao').append(`
+                        <a href="#" class="linkPaginacao" onclick="searchFornecedorSec(` + totPage + `, qtd_result)">Última</a>
+                    `);
+                }
+            });
+        } else {
+            $('.divResetSearch').html(``);
+            dataFornecedor(1, qtd_result);
+        }
+    });
+}
+
 dataFornecedor(page, qtd_result);
+searchFornecedor(1, qtd_result);
+ordenarFornecedor(1, qtd_result);

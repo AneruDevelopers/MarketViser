@@ -33,6 +33,14 @@
                                 if($sel->rowCount() > 0) {
                                     $res = $sel->fetchAll();
                                     $json['error'] = '<p style="padding-bottom:10px;color:red;text-align:center;"><b>O produto ' . $res[0]['produto_nome'] . ' - ' . $res[0]['produto_tamanho'] . ' que inseriu na ' . $c . 'ª parte já foi previamente cadastrado</b></p>';
+                                } else {
+                                    $sel = $conn->prepare("SELECT s.setor_permicao FROM funcionario AS f JOIN setor AS s ON f.funcionario_setor=s.setor_id WHERE f.funcionario_id={$_SESSION['inf_func']['funcionario_id']}");
+                                    $sel->execute();
+                                    $res = $sel->fetchAll();
+                                    $permicoes = explode("-", $res[0]['setor_permicao']);
+                                    if(!in_array("a", $permicoes)) {
+                                        $json['error'] = '<p style="color:red;text-align:center;"><b>Você não tem permição para adicionar</b></p>';
+                                    }
                                 }
                             }
                         }

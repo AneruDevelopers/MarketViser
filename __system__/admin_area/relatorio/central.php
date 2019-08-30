@@ -36,7 +36,7 @@
                                         <input type="radio" id="typeDateRelatMonth" value="month" name="typeDateRelat" class="selTypeDate" size="60"/> <label for="typeDateRelatMonth">Mês</label>
                                         <input type="radio" id="typeDateRelatYear" value="year" name="typeDateRelat" class="selTypeDate" size="60"/> <label for="typeDateRelatYear">Ano</label><br/>
                                         <div class="divTypeDate">
-                                            <input type="text" class="selectConfigArm date" name="dayRelat" id="dayRelat" size="60"/>
+                                            <input type="text" class="selectConfigArm date" placeholder="dd/mm/aaaa" name="dayRelat" id="dayRelat" size="60"/>
                                         </div>
                                     </td>
                                 </tr>

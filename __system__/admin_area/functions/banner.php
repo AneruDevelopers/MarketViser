@@ -138,6 +138,89 @@
                     $json['error_del'] = "Código erro: " . $del->errorCode();
                 }
             }
+        } elseif(isset($_POST['data_sort'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+            
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(banner_id) AS qtd FROM banner");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sort = $_POST['data_sort'];
+
+            if(!isset($_POST['sec'])) {
+                $json['sort'] = "up";
+                if(!isset($_SESSION['data_sort'][$sort])) {
+                    $_SESSION['data_sort'][$sort] = "ASC";
+                } else {
+                    if($_SESSION['data_sort'][$sort] == "ASC") {
+                        $_SESSION['data_sort'][$sort] = "DESC";
+                        $json['sort'] = "down";
+                    } else {
+                        unset($_SESSION['data_sort'][$sort]);
+                        $json['sort'] = "none";
+                    }
+                }
+            }
+
+            $json['banners'] = array();
+            
+            if(isset($_SESSION['data_sort'][$sort])) {
+                $sel = $conn->prepare("SELECT * FROM banner ORDER BY $sort {$_SESSION['data_sort'][$sort]} LIMIT $begin, $qtd_result");
+            } else {
+                $sel = $conn->prepare("SELECT * FROM banner ORDER BY banner_status DESC LIMIT $begin, $qtd_result");
+            }
+            $sel->execute();
+            if($sel->rowCount() > 0) {
+                $prods = $sel->fetchAll();
+                foreach($prods as $v) {
+                    if($v['banner_status'] == 0)
+                        $v['banner_status'] = '<span class="noVisuAtend">DESATIVADO</span>';
+                    else
+                        $v['banner_status'] = '<span class="jaVisuAtend">ATIVADO</span>';
+
+                    $json['banners'][] = $v;
+                    $json['registrosMostra']++;
+                }
+            }
+        } elseif(isset($_POST['searchBanner'])) {
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
+            $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
+
+            $begin = ($page * $qtd_result) - $qtd_result; // Calcula o início da visualização
+
+            $json['empty'] = TRUE;
+            $json['banners'] = array();
+            $json['registrosMostra'] = 0;
+
+            $sel = $conn->prepare("SELECT COUNT(banner_id) AS qtd FROM banner WHERE banner_nome LIKE '%{$_POST['searchBanner']}%' OR banner_status LIKE '%{$_POST['searchBanner']}%'");
+            $sel->execute();
+            $row = $sel->fetch( PDO::FETCH_ASSOC );
+            $json['registrosTotal'] = $row['qtd'];
+
+            $sel = $conn->prepare("SELECT * FROM banner WHERE banner_nome LIKE '%{$_POST['searchBanner']}%' OR banner_status LIKE '%{$_POST['searchBanner']}%' ORDER BY banner_status DESC LIMIT $begin, $qtd_result");
+            $sel->execute();
+            if($sel) {
+                if($sel->rowCount() > 0) {
+                    $json['empty'] = FALSE;
+                    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+                        if($v['banner_status'] == 0)
+                            $v['banner_status'] = '<span class="noVisuAtend">DESATIVADO</span>';
+                        else
+                            $v['banner_status'] = '<span class="jaVisuAtend">ATIVADO</span>';
+
+                        $json['banners'][] = $v;
+                        $json['registrosMostra']++;
+                    }
+                }
+            } else {
+                $json['status'] = 0;
+            }
         } else {
             $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_NUMBER_INT);
             $qtd_result = filter_input(INPUT_POST, 'qtd_result', FILTER_SANITIZE_NUMBER_INT);
@@ -154,7 +237,7 @@
             $row = $sel->fetch( PDO::FETCH_ASSOC );
             $json['registrosTotal'] = $row['qtd'];
 
-            $sel = $conn->prepare("SELECT * FROM banner LIMIT $begin, $qtd_result");
+            $sel = $conn->prepare("SELECT * FROM banner ORDER BY banner_status DESC LIMIT $begin, $qtd_result");
             $sel->execute();
             if($sel) {
                 if($sel->rowCount() > 0) {

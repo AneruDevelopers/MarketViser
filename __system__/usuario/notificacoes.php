@@ -1,22 +1,19 @@
 <?php
     if(!isset($_SESSION['inf_usu']['usu_id'])) {
         $_SESSION['msg'] = "Você precisa estar logado";
-        header("Location: " . base_url_php());
+        header("Location: ../");
     }
-    
-    $sel = $conn->prepare("SELECT f.funcionario_nome FROM funcionario AS f JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id WHERE c.usu_id=:id ORDER BY c.compra_registro DESC");
-    $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
+
+    $sel = $conn->prepare("SELECT * FROM postagem ORDER BY post_registro DESC");
     $sel->execute();
-    while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-        $exp = explode(" ", $row['compra_registro']);
+    while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
+        $v['post_title'] = (strlen($v['post_title']) > 65) ? substr($v['post_title'],0,65) . "..." : $v['post_title'];
+
+        $exp = explode(" ", $v['post_registro']);
         $day = explode("-", $exp[0]);
-        $hour = explode(":", $exp[1]);
-        $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-        " às " . $hour['0'] . "h" . $hour[1];
+        $v['post_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $exp[1];
 
-        $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
-
-        $compra[] = $row;
+        $postagem[] = $v;
     }
 ?>
 <!DOCTYPE html>
@@ -47,45 +44,38 @@
         </div>
         
         <div class="l-mainCad">
-            <h2 class="tituloOfertas"><i class="fas fa-shopping-bag"></i> HISTÓRICO DE COMPRAS</h2>
-
+            <h2 class="defaultTitle"><i class="fas fa-bell"></i> NOTIFICAÇÕES</h2>
             <div class="divCompraRight">
                 <div class="answer-purch">
-                    <h1>Clique em uma compra e ela aparecerá aqui!</h1>
+                    <h1>Clique em uma notificação e ela aparecerá aqui!</h1>
                 </div>
             </div>
-
             <div class="divCompraLeft">
                 <div class="titleLeft">
-                    <h2 class="menuTit">MENU</h2>
-                    
-                    <p class="menuSubtit">
-                        <b>Total de compras:</b> <?= $inf_compra['qtd_compra']; ?><br/>
-                        <b>Total de gastos:</b> R$<?= number_format($inf_compra['soma_compra'], 2, ',', '.'); ?>
-                    </p>
-                        <?php
-                            if(isset($compra)):?>
-                                <div class="searchPurch">
-                                    <input type="text" class="inputSearchDuvida" name="inputSearchPurch" id="inputSearchPurch"/>
-                                    <span class="help-block-purch"></span>
-                                </div>
-                                <div class="showCompras">
-                                    <?php
-                                    foreach($compra as $k => $v):?>
-                                        <a href="#" class="viewPurchase" data-purch="<?= $v['compra_id'] ?>">
-                                            <p class="p_showPurch">
-                                                Data: <?= $v['compra_registro']; ?><br/>
-                                                Total: R$<?= $v['compra_total'] ?><br/>
-                                                Meio Pag.: <?= $v['forma_nome']; ?>
-                                            </p>
-                                        </a>
-                                        <?php
-                                    endforeach;
-                                    ?>
-                                </div>
+                    <br/><br/>
+                    <?php
+                        if(isset($postagem)):?>
+                            <div class="searchPurch">
+                                <p style="margin-bottom:.6rem;"><label for="inputSearch">Procure: </label></p>
+                                <input type="text" class="inputSearchDuvida" name="inputSearch" id="inputSearch">
+                                <span class="help-block-post"></span>
+                            </div>
+                            <div class="showCompras">
                                 <?php
-                            endif;
-                        ?>
+                                foreach($postagem as $k => $v):?>
+                                    <a href="#" class="viewPurchase viewPost" data-post="<?= $v['post_id'] ?>">
+                                        <p class="p_showPurch">
+                                            <b><?= $v['post_title'] ?></b><br/>
+                                            <small><?= $v['post_registro']; ?></small>
+                                        </p>
+                                    </a>
+                                    <?php
+                                endforeach;
+                                ?>
+                            </div>
+                            <?php
+                        endif;
+                    ?>
                 </div>
             </div>
         </div>
@@ -114,6 +104,6 @@
     <script src="<?= base_url(); ?>js/login.js"></script>
     <script src="<?= base_url(); ?>js/listArmazem.js"></script>
     <script src="<?= base_url(); ?>js/main.js"></script>
-    <script src="<?= base_url(); ?>js/historicoCompra.js"></script>
+    <script src="<?= base_url(); ?>js/notifica.js"></script>
 </body>
 </html>

@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +38,7 @@
             <div class="divEcoTable">
                 <table width="80%" class="tableView tableProdConfigAdm" align="center">
                     <thead>
-                        <th class="thTitle sort" data-sort="a.nome_usu" width="25%">USUÁRIO</th>
+                        <th class="thTitle sort" data-sort="a.nome_usu" width="25%">USUÁRIO <span class="span_sort"></span></th>
                         <th class="thTitle sort" data-sort="a.tp_problema" width="20%">TIPO MSG <span class="span_sort"></span></th>
                         <th class="thTitle sort" data-sort="ar.resp_id" width="20%">STATUS <span class="span_sort"></span></th>
                         <th class="thTitle sort" data-sort="a.dataenv_pro" width="20%">DATA <span class="span_sort"></span></th>

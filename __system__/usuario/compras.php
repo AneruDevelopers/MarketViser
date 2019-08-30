@@ -70,7 +70,7 @@
                         <?php
                             if(isset($compra)):?>
                                 <div class="searchPurch">
-                                    <input type="text" class="inputHistoric" name="inputSearchPurch" id="inputSearchPurch" placeholder="Pesquise">
+                                    <input type="text" class="inputSearchDuvida" name="inputSearchPurch" id="inputSearchPurch" placeholder="Pesquise">
                                     <span class="help-block-purch"></span>
                                 </div>
                                 <div class="showCompras">

@@ -3,6 +3,9 @@
     if(!isset($_SESSION['inf_func']['funcionario_id'])) {
         header("Location: " . base_url_adm_php() . "login");
     }
+    if(isset($_SESSION['data_sort'])) {
+        unset($_SESSION['data_sort']);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,16 +32,16 @@
                 <button class="linkAlterAdm"><i class="fa fa-plus"></i> &nbsp;Adicionar cupom</button>
                 <div class="divSearch">
                     <form class="formSearch">
-                        <label for="searchBanner">Procure: </label>
-                        <input type="text" class="inputSearch" id="searchBanner"/>
+                        <label for="searchCupom">Procure: </label>
+                        <input type="text" class="inputSearch" id="searchCupom"/>
                         <div class="divResetSearch"></div>
                     </form>
                 </div>
                 <div class="divEcoTable">
                     <table width="80%" class="tableView tableProdConfigAdm" align="center">
                         <thead>
-                            <th class="thTitle" data-sort="cupom_desconto" width="45%">CÓDIGO <span class="span_sort"></span></th>
-                            <th class="thTitle sort" data-sort="cupom_desconto" width="40%">DESCONTO <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="cupom_codigo" width="45%">CÓDIGO <span class="span_sort"></span></th>
+                            <th class="thTitle sort" data-sort="cupom_desconto_porcent" width="40%">DESCONTO <span class="span_sort"></span></th>
                             <th class="thTitle" width="15%">AÇÕES</th>
                         </thead>
                         <tbody class="tbodyProd">
@@ -83,6 +86,40 @@
                             </div>
                             <div class="divSubmit" align="center">
                                 <button type="submit" id="btnInsertCupom"><i class="fas fa-save"></i> Cadastrar</button>
+                                <div class="help-block"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="myModalUpd" id="myModalUpd">
+            <div class="modalUpdContent">
+                <span class="closeModalUpd">&times;</span>
+                <div class="showUpdModal">
+                    <div class="divCadCupom">
+                        <form class="formUpdateCupom">
+                            <div class="divUpdCadCupom">
+                                <div style="margin:25px 0;">
+                                <table class="tableSectionConfigArm" width="80%" align="center">
+                                    <tr align="center">
+                                        <td colspan="8"><h2 style="text-align:center;color:#9C45EB;font-size:14px;">EDITAR CUPOM</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <input type="hidden" id="cupom_idUpd" name="cupom_idUpd">
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>CÓDIGO</b></td>
+                                        <td><input type="text" class="selectConfigArm" id="cupom_codigoUpd" name="cupom_codigoUpd" size="60"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="text-align:center;color:#9C45EB;"><b>DESCONTO %</b></td>
+                                        <td><input type="text" class="selectConfigArm porcent" id="cupom_desconto_porcentUpd" name="cupom_desconto_porcentUpd" size="60"></td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="divSubmit" align="center">
+                                <button type="submit" id="btnUpdateCupom"><i class="fas fa-save"></i> Editar</button>
                                 <div class="help-block"></div>
                             </div>
                         </form>
