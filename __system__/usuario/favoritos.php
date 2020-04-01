@@ -1,8 +1,6 @@
 <?php
-    if(!isset($_SESSION['inf_usu']['usu_id'])) {
-        $_SESSION['msg_cad']['text'] = "Você precisa estar logado para ver seus produtos favoritos";
-        header("Location: " . base_url_php());
-    }
+    use Model\User;
+    User::checkLoginAndRedirect();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,12 +9,12 @@
     <title>e.conomize | Meus favoritos</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css">
-    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
+    <link rel="icon" href="<?= Project::baseUrl(); ?>style/img/e-dark-icon.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= Project::baseUrl(); ?>/style/css/minified-main.css">
+    <link href="<?= Project::baseUrl(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?= Project::baseUrl(); ?>style/fonts/Icons/icons_pack/font/flaticon.css">
 </head>
 <body>
     <div class="l-wrapper_FiltroPesq">
@@ -39,7 +37,7 @@
         </div>
 
         <div class="l-mainFiltroPesq">
-            <h2 class="defaultTitle"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
+            <h2 align="center" class="tituloOfertas"><i class="fas fa-heart"></i> MEUS PRODUTOS FAVORITOS</h2>
             <br/><br/>
             <div class="l-favoritos divShowProdFav">
 
@@ -62,17 +60,16 @@
         </div>
     </div>
 
-    <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
-    <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/favoritar.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
-    <script src="<?= base_url(); ?>js/listArmazem.js"></script>
-    <script src="<?= base_url(); ?>js/main.js"></script>
-    <script src="<?= base_url(); ?>js/login.js"></script>
-    <script src="<?= base_url(); ?>js/meusFavoritos.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?= Project::baseUrl(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/util.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/favoritos.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/verificaLogin.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/attCarrinho.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/listArmazem.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/main.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/login.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/meusFavoritos.js"></script>
 </body>
 </html>

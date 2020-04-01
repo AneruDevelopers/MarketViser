@@ -157,7 +157,20 @@ border-radius: 0;
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+    }
+
+    .imgEmptyCart {
+        width: 70%;
+        position: relative;
+    }
+
+    /* CEP ANSWER */
+    .answer-cep {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 8pt;
     }
 
     /* HEADER PRINCIPAL */
@@ -317,6 +330,28 @@ border-radius: 0;
         position: relative;
         top: -.1rem;
     }
+
+    /* ERROR 404 */
+    .Errordiv {
+        position: relative;
+        width: 90%;
+        padding: 3rem 0;
+        margin: 0 auto;
+        font-family: "Raleway-Medium";
+        font-size: 9pt;
+    }
+    .ErrorTitle {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+    .Errop {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
     
     /* MENU CAROUSEL */
     
@@ -424,7 +459,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: 20%;
-        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        background-image: url("../img/banner/Large-Triangles.svg");
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
@@ -464,7 +499,7 @@ border-radius: 0;
     }
 
     .btnModalArm {
-        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        background-image: url("../img/banner/Large-DarkTriangles.svg");
         border: none;
         padding: 8px;
         color: #ffffff;
@@ -542,7 +577,7 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: right;
-        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        background-image: url("../img/banner/Large-Triangles.svg");
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -680,11 +715,19 @@ border-radius: 0;
         color: #9C45EB;
     }
 
-    .help-block, .help-block-tel, .help-block-login {
+    .help-block, .help-block-login {
         position: relative;
         width: 80%;
         left: 10%;
         top: -1rem;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+    }
+    .help-block-tel {
+        position: absolute;
+        width: 80%;
+        left: 10%;
+        top: 4.3rem;
         text-align: center;
         font-family: 'Raleway-Medium';
     }
@@ -746,7 +789,7 @@ border-radius: 0;
         float: right;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+        background-image: url("../img/banner/Large-GreyTriangles.svg");
         -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
         -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
         box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
@@ -985,6 +1028,7 @@ border-radius: 0;
         top: 0;
         top: .2rem;
         left: 25%;
+        outline: none;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
@@ -1001,11 +1045,12 @@ border-radius: 0;
         position: relative;
         text-align: center;
         top: .5rem;
-        font-size: 10px;
     }
 
     .linkForgotPassword a {
-        font-size: 10px;
+        text-decoration: underline;
+        color: #333;
+        font-size: 8pt;
     }
 
     .fa-grip-lines {
@@ -1071,9 +1116,22 @@ border-radius: 0;
         font-size: 10px;
     }
 
-    .divProdCarousel i:hover {
+    .divProdCarousel i:hover, .infProduto i:hover {
         transform: scale(1.1);
         transition: ease-in-out 100ms transform;
+    }
+
+    .infProduto .favoriteBtn {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin: .2rem;
+        cursor: pointer;
+    }
+
+    .favoriteBtn i {
+        color: #9C45EB;
+        font-size: 12.5pt;
     }
 
     .linksProdCarousel {
@@ -1166,6 +1224,20 @@ border-radius: 0;
         border-left: 7px solid #f5c6cb;
         padding: 10px 2.5%;
         background: #f8d7da;
+    }
+
+    .msgSuccess {
+        width: 80%;
+        margin: 20px auto;
+        color: #333;
+        font-size: 9.5pt;
+        border-left: 7px solid #d6e9c6;
+        padding: 10px 2.5%;
+        background: #dff0d8;
+    }
+    .msgSuccess p {
+        font-size: 10pt;
+        line-height: 23px;
     }
 
     .btnBuy {
@@ -1595,7 +1667,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -1781,6 +1853,16 @@ border-radius: 0;
         box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
     }
 
+    .mantCon {
+        position: absolute;
+        top: 8.3rem;
+    }
+
+    .radioCad {
+        width: 10px;
+        height: 10px;
+    }
+
     .field {
         position: relative;
         color: #aaa;
@@ -1917,10 +1999,10 @@ border-radius: 0;
     }
 
     .remover_campo {
-        color: red;
+        color: #9C45EB;
         position: relative;
-        top: 23.6rem;
-        right: 5.5rem;
+        top: 24rem;
+        left: 1rem;
         font-size: 15px;
     }
 
@@ -1937,6 +2019,7 @@ border-radius: 0;
         height: 2rem;
         width: 100%;
         font-family: "Raleway-Medium";
+        outline: none;
     }
 
     .btnSubCad {
@@ -2264,7 +2347,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* PÁGINA DO PRODUTO */
@@ -2392,10 +2475,57 @@ border-radius: 0;
         margin: 1rem 0;
     }
 
+    .registShow, .paginacao {
+        position: relative;
+        width: 100%;
+        font-family: 'Karla';
+    }
+
+    .registShow {
+        position: relative;
+        width: 100%;
+        font-size: 9pt;
+        color: #373535;
+        font-weight: bolder;
+        padding-bottom: .9rem;
+        text-align: center;
+    }
+
+    .paginacao {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        font-size: 10pt;
+        padding: 1.5rem 0;
+    }
+
+    .btnPaginacao {
+        border: none;
+        padding: .4rem .5rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    .btnPaginacaoPage {
+        border: none;
+        padding: .4rem .5rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: default;
+        color: #ccc;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
     .divShowProdFilter {
         position: relative;
         width: 100%;
-        height: 100%;
     }
 
     .divShowProdFav {
@@ -2408,7 +2538,7 @@ border-radius: 0;
     .divShowProdFilter .prodFilter, .divShowProdFav .prodFilter {
         position: relative;
         width: 42%;
-        float: left;
+        display: inline-table;
         margin: auto;
         border: #e2e3e6 solid 1px;
         border-radius: 3px;
@@ -2496,7 +2626,7 @@ border-radius: 0;
         position: relative;
         width: 85%;
         margin: auto;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         padding: 10px;
     }
@@ -2607,7 +2737,7 @@ border-radius: 0;
         height: 30rem;
         right: 5%;
         float: right;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 2rem 0;
         top: 0rem;
@@ -2879,7 +3009,7 @@ border-radius: 0;
         height: 10rem;
         left: 2%;
         top: 3rem;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 1rem 0;
         float: left;
@@ -3054,6 +3184,7 @@ border-radius: 0;
         width: 50%;
         font-family: "Raleway-Medium";
         margin: 10px 25%;
+        outline: none;
     }
 
     .btnPag:hover {
@@ -4160,7 +4291,19 @@ border-radius: 0;
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+    }
+
+    .imgEmptyCart {
+        width: 60%;
+        position: relative;
+    }
+
+    /* CEP ANSWER */
+    .answer-cep {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 
     /* HEADER PRINCIPAL */
@@ -4405,6 +4548,28 @@ border-radius: 0;
         position: relative;
     }
 
+    /* ERROR 404 */
+    .Errordiv {
+        position: relative;
+        width: 90%;
+        padding: 3rem 0;
+        margin: 0 auto;
+        font-family: "Raleway-Medium";
+        font-size: 10.5pt;
+    }
+    .ErrorTitle {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+    .Errop {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
+
     /* MENU CAROUSEL */
 
     .menuCarousel {
@@ -4521,7 +4686,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: 20%;
-        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        background-image: url("../img/banner/Large-Triangles.svg");
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
@@ -4560,7 +4725,7 @@ border-radius: 0;
     }
 
     .btnModalArm {
-        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        background-image: url("../img/banner/Large-DarkTriangles.svg");
         border: none;
         padding: 8px;
         color: #ffffff;
@@ -4791,6 +4956,7 @@ border-radius: 0;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        outline: none;
     }
 
     .btnSend:hover {
@@ -4804,11 +4970,12 @@ border-radius: 0;
         position: relative;
         text-align: center;
         top: .5rem;
-        font-size: 10px;
     }
 
     .linkForgotPassword a {
-        font-size: 10px;
+        text-decoration: underline;
+        color: #333;
+        font-size: 10pt;
     }
 
     .fa-grip-lines {
@@ -4816,11 +4983,19 @@ border-radius: 0;
         color: #9C45EB;
     }
 
-    .help-block, .help-block-tel, .help-block-login {
+    .help-block, .help-block-login {
         position: relative;
         width: 80%;
         left: 10%;
         top: -1rem;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+    }
+    .help-block-tel {
+        position: absolute;
+        width: 80%;
+        left: 10%;
+        top: 4.3rem;
         text-align: center;
         font-family: 'Raleway-Medium';
     }
@@ -4887,7 +5062,7 @@ border-radius: 0;
         /* padding-left: 7.5px; */
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+        background-image: url("../img/banner/Large-GreyTriangles.svg");
     }
 
     .sectionAccountInfo h5 {
@@ -5057,14 +5232,14 @@ border-radius: 0;
         box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
     }
 
-    .divProdCarousel i {
+    .divProdCarousel i, .infProduto i {
         float: right;
         color: #9C45EB;
         margin: .2rem;
         cursor: pointer;
     }
 
-    .divProdCarousel i:hover {
+    .divProdCarousel i:hover, .infProduto i:hover {
         transform: scale(1.2);
         transition: ease-in-out 100ms transform;
     }
@@ -5593,7 +5768,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -5770,6 +5945,11 @@ border-radius: 0;
         box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
     }
 
+    .mantCon {
+        position: absolute;
+        top: 9.5rem;
+    }
+
     .field {
         position: relative;
         color: #aaa;
@@ -5907,11 +6087,19 @@ border-radius: 0;
         width: auto;
     }
 
-    .remover_campo, .remover_filtro {
+    .remover_filtro {
         color: red;
         position: relative;
         top: -2rem;
         left: -1.2rem;
+        font-size: 15px;
+    }
+
+    .remover_campo {
+        color: #9C45EB;
+        position: relative;
+        top: -5rem;
+        left: 11rem;
         font-size: 15px;
     }
 
@@ -5928,6 +6116,7 @@ border-radius: 0;
         height: 2rem;
         width: 100%;
         font-family: "Raleway-Medium";
+        outline: none;
     }
 
     .btnSubCad {
@@ -6072,7 +6261,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* .filterMobile {
@@ -6219,10 +6408,55 @@ border-radius: 0;
         margin: 1rem 0;
     }
 
+    .registShow, .paginacao {
+        position: relative;
+        width: 78%;
+        float: right;
+        font-family: 'Karla';
+    }
+
+    .registShow {
+        font-size: 11pt;
+        color: #373535;
+        text-align: right;
+        right: 5rem;
+        font-weight: bolder;
+        padding-bottom: .9rem;
+    }
+
+    .paginacao {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 1.5rem 0;
+    }
+
+    .btnPaginacao {
+        border: none;
+        padding: .6rem .7rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    .btnPaginacaoPage {
+        border: none;
+        padding: .6rem .7rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: default;
+        color: #ccc;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
     .divShowProdFilter {
         position: relative;
         width: 78%;
-        height: 100%;
         /* left: 20%; */
         float: right;
     }
@@ -6341,6 +6575,20 @@ border-radius: 0;
         background: #f8d7da;
     }
 
+    .msgSuccess {
+        width: 50%;
+        margin: 20px auto;
+        color: #333;
+        font-size: 15pt;
+        border-left: 7px solid #d6e9c6;
+        padding: 10px 2.5%;
+        background: #dff0d8;
+    }
+    .msgSuccess p {
+        font-size: 11pt;
+        line-height: 21px;
+    }
+
     /* PAGINA DE PESQUISA */
 
     .msgHelpSearch {
@@ -6355,7 +6603,7 @@ border-radius: 0;
         position: relative;
         width: 35%;
         margin: auto;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         padding: 10px;
     }
@@ -6465,7 +6713,7 @@ border-radius: 0;
         height: 30rem;
         right: 5%;
         float: right;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 2rem 0;
         top: 0rem;
@@ -6648,7 +6896,58 @@ border-radius: 0;
 
     .l-footerBottom {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+    }
+    
+    
+    .registShow {
+        position: relative;
+        width: 100%;
+        font-size: 11pt;
+        color: #373535;
+        text-align: right;
+        right: 5rem;
+        font-weight: bolder;
+        padding-bottom: .9rem;
+    }
+
+    .paginacao {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 1.5rem 0;
+    }
+
+    .btnPaginacao {
+        border: none;
+        padding: .6rem .7rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    .btnPaginacaoPage {
+        border: none;
+        padding: .6rem .7rem;
+        display: inline-block;
+        color: #fff;
+        background-color: #333;
+        cursor: default;
+        color: #ccc;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    /* CEP ANSWER */
+    .answer-cep {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 
     /* HEADER PRINCIPAL */
@@ -6856,6 +7155,27 @@ border-radius: 0;
         position: relative;
     }
 
+    /* ERROR 404 */
+    .Errordiv {
+        position: relative;
+        width: 50%;
+        padding: 3rem 0;
+        margin: 0 auto;
+        font-family: "Raleway-Medium";
+    }
+    .ErrorTitle {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+    .Errop {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
+
     /* MENU CAROUSEL */
 
     .menuCarousel {
@@ -6971,7 +7291,7 @@ border-radius: 0;
         position: relative;
         width: 100%;
         height: 20%;
-        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        background-image: url("../img/banner/Large-Triangles.svg");
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
@@ -7012,7 +7332,7 @@ border-radius: 0;
     }
 
     .btnModalArm {
-        background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg");
+        background-image: url("../img/banner/Large-DarkTriangles.svg");
         border: none;
         padding: 8px;
         color: #ffffff;
@@ -7093,7 +7413,7 @@ border-radius: 0;
         width: 50%;
         height: 100%;
         float: right;
-        background-image: url("../../img/Banner_TCC/Large-Triangles.svg");
+        background-image: url("../img/banner/Large-Triangles.svg");
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -7245,6 +7565,7 @@ border-radius: 0;
         -webkit-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         -moz-box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
         box-shadow: -1px 6px 13px -2px rgba(156,156,156,1);
+        outline: none;
     }
 
     .btnSend:hover {
@@ -7258,11 +7579,12 @@ border-radius: 0;
         position: relative;
         text-align: center;
         top: 1rem;
-        font-size: 14px;
     }
 
     .linkForgotPassword a {
-        font-size: 10px;
+        text-decoration: underline;
+        color: #333;
+        font-size: 10pt;
     }
 
     .fa-grip-lines {
@@ -7270,11 +7592,19 @@ border-radius: 0;
         color: #9C45EB;
     }
 
-    .help-block, .help-block-tel, .help-block-login {
+    .help-block, .help-block-login {
         position: relative;
         width: 80%;
         left: 10%;
         top: -1rem;
+        text-align: center;
+        font-family: 'Raleway-Medium';
+    }
+    .help-block-tel {
+        position: absolute;
+        width: 80%;
+        left: 10%;
+        top: 4.3rem;
         text-align: center;
         font-family: 'Raleway-Medium';
     }
@@ -7336,7 +7666,7 @@ border-radius: 0;
         /* padding-left: 7.5px; */
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
-        background-image: url("../../img/Banner_TCC/Large-GreyTriangles.svg");
+        background-image: url("../img/banner/Large-GreyTriangles.svg");
         -webkit-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
         -moz-box-shadow: -1px 6px 6px -2px rgba(156,156,156,1);
         box-shadow: -1px 6px 9px -2px rgba(156,156,156,1);
@@ -7492,14 +7822,14 @@ border-radius: 0;
         box-shadow: 0px 5px 5px 5px rgba(155, 154, 154, 0.5);
     }
 
-    .divProdCarousel i {
+    .divProdCarousel i, .infProduto i {
         float: right;
         color: #9C45EB;
         margin: .2rem;
         cursor: pointer;
     }
 
-    .divProdCarousel i:hover {
+    .divProdCarousel i:hover, .infProduto i:hover {
         transform: scale(1.2);
         transition: ease-in-out 100ms transform;
     }
@@ -7612,6 +7942,12 @@ border-radius: 0;
         margin: 1rem 0;
     }
 
+    .imgEmptyCart {
+        width: 60%;
+        position: relative;
+        left: 20%;
+    }
+
     /* MODAL PRODUTOS */
 
     .myModalProduto {
@@ -7662,11 +7998,11 @@ border-radius: 0;
     }
 
     .modalProdutoRight {
-        width: 50%;
+        width: 49%;
         height: 100%;
         position: absolute;
         top: 0;
-        right: 2rem;
+        right: 2.7rem;
     }
 
     .infProduto {
@@ -8010,6 +8346,11 @@ border-radius: 0;
         margin: 30px auto;
     }
 
+    .cleanSearch {
+        cursor: pointer;
+        color: #9C45EB;
+    }
+
     .inputSearchDuvida {
         width: 200px;
         position: relative;
@@ -8117,7 +8458,7 @@ border-radius: 0;
 
     .l-footerBottomCad {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
     
     .zigzag {
@@ -8294,6 +8635,11 @@ border-radius: 0;
         box-shadow: -11px 10px 44px -7px rgba(173,168,173,0.65);
     }
 
+    .mantCon {
+        position: absolute;
+        top: 9.6rem;
+    }
+
     .field {
         position: relative;
         color: #aaa;
@@ -8433,10 +8779,10 @@ border-radius: 0;
     }
 
     .remover_campo {
-        color: red;
+        color: #9C45EB;
         position: relative;
-        top: -2rem;
-        left: -1.2rem;
+        top: 22.8rem;
+        left: 1rem;
         font-size: 15px;
     }
 
@@ -8449,6 +8795,7 @@ border-radius: 0;
         height: 2rem;
         width: 100%;
         font-family: "Raleway-Medium";
+        outline: none;
     }
 
     .btnSubCad {
@@ -8756,8 +9103,12 @@ border-radius: 0;
     }
 
     .productCart {
-        width: 45%;
-        margin: 1rem;
+        width: 100%;
+    }
+
+    .p_prodCart {
+        width: 20rem;
+        margin: 2rem;
         display: inline-table;
     }
 
@@ -8830,7 +9181,7 @@ border-radius: 0;
 
     .l-footerBottomFiltroPesq {
         grid-area: footerBottom;
-        background-image: url('../../img/Banner_TCC/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-Triangles.svg'); /* background by SVGBackgrounds.com */
     }
 
     /* PÁGINA DO PRODUTO */
@@ -8974,10 +9325,17 @@ border-radius: 0;
         margin: 1rem 0;
     }
 
+    .registShow, .paginacao {
+        position: relative;
+        width: 78%;
+        /* left: 20%; */
+        float: right;
+        font-family: "Karla";
+    }
+
     .divShowProdFilter {
         position: relative;
         width: 78%;
-        height: 100%;
         /* left: 20%; */
         float: right;
     }
@@ -9102,6 +9460,20 @@ border-radius: 0;
         margin: 50px auto;
     }
 
+    .msgSuccess {
+        width: 45%;
+        font-size: 15pt;
+        color: #333;
+        border-left: 7px solid #d6e9c6;
+        background: #dff0d8;
+        padding: 10px 2.5%;
+        margin: 50px auto;
+    }
+    .msgSuccess p {
+        font-size: 10.5pt;
+        line-height: 24px;
+    }
+
     /* PAGINA DE PESQUISA */
 
     .msgHelpSearch {
@@ -9220,7 +9592,7 @@ border-radius: 0;
         height: 10rem;
         right: 5%;
         float: right;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 1rem 0;
     }
@@ -9427,7 +9799,7 @@ border-radius: 0;
     }
 
     .agendTime {
-        /* background-image: url("../../img/Banner_TCC/Large-DarkTriangles.svg"); */
+        /* background-image: url("../img/banner/Large-DarkTriangles.svg"); */
         color: #9C45EB;
         font-style: italic;
         border-radius: 5px;
@@ -9471,7 +9843,7 @@ border-radius: 0;
         height: 10rem;
         left: 2%;
         top: 3rem;
-        background-image: url('../../img/Banner_TCC/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
+        background-image: url('../img/banner/Large-DarkTriangles.svg'); /* background by SVGBackgrounds.com */
         border-radius: 5px;
         margin: 1rem 0;
         float: left;
@@ -9645,6 +10017,7 @@ border-radius: 0;
         width: 50%;
         font-family: "Raleway-Medium";
         margin: 10px 25%;
+        outline: none;
     }
 
     .btnPag:hover {

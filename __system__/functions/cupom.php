@@ -1,60 +1,56 @@
 <?php
-    require_once 'connection/conn.php';
+    if (Project::isXmlHttpRequest()) {
+        $sql = new Sql();
 
-    if(isXmlHttpRequest()) {
-        $json = array();
-        $json['new_total_price'] = NULL;
-        $json['cupom'] = NULL;
-        if(isset($_POST['addCupom'])) {
+        $json = [];
+        $json['new_total_price'] = null;
+        $json['cupom'] = null;
+
+        if (isset($_POST['addCupom'])) {
             $json['status'] = 1;
-            $json['answer'] = NULL;
+            $json['answer'] = null;
 
-            $sel = $conn->prepare("SELECT * FROM cupom WHERE cupom_codigo=:cod");
-            $sel->bindValue(":cod", "{$_POST['addCupom']}");
-            $sel->execute();
+            if (!isset($_SESSION['cupom_compra'])) {
+                $results = $sql->select("SELECT * FROM cupom WHERE cupom_codigo = :cod", [
+                    ":cod" => $_POST['addCupom']
+                ]);
 
-            if($sel->rowCount() > 0) {
-                $res = $sel->fetchAll();
-                foreach($res as $v) {
-                    $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-                    $totCupomPorc = number_format($totCupomPorc, 2, '.', '');
+                if (count($results) > 0) {
+                    $v = $results[0];
+
+                    $totCupomPorc = $_SESSION['totCompra'] * ($v['cupom_desconto_porcent'] / 100);
+                    $totCupomPorc = Project::formatPriceToDolar($totCupomPorc);
                     $_SESSION['totCompraCupom'] = $_SESSION['totCompra'];
                     $_SESSION['totCompra'] -= $totCupomPorc;
-                    $json['new_total_price'] = number_format($_SESSION['totCompra'], 2, ',', '.');
+                    $json['new_total_price'] = Project::formatPriceToReal($_SESSION['totCompra']);
                     $_SESSION['cupom_compra'] = $v;
-                    $json['cupom'] = $v;
+                    $json['cupom'] = $_SESSION['cupom_compra'];
+                } else {
+                    $json['status'] = 0;
+                    $json['answer'] = "Cupom expirado ou inexistente";
                 }
-            } else {
-                $json['status'] = 0;
-                $json['answer'] = "Cupom expirado ou inexistente";
             }
-        } elseif(isset($_POST['remCupom'])) {
-            if(isset($_SESSION['cupom_compra'])) {
-                $totCupomPorc = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-                $totCupomPorc = number_format($totCupomPorc, 2, '.', '');
+        } elseif (isset($_POST['remCupom'])) {
+            if (isset($_SESSION['cupom_compra'])) {
+                $totCupomPorc = $_SESSION['totCompraCupom'] * ($_SESSION['cupom_compra']['cupom_desconto_porcent'] / 100);
+                $totCupomPorc = Project::formatPriceToDolar($totCupomPorc);
                 $_SESSION['totCompra'] += $totCupomPorc;
                 unset($_SESSION['cupom_compra']);
                 unset($_SESSION['totCompraCupom']);
             }
-            $json['new_total_price'] = number_format($_SESSION['totCompra'], 2, ',', '.');
+
+            $json['new_total_price'] = Project::formatPriceToReal($_SESSION['totCompra']);
         } else {
-            $json['empty'] = TRUE;
+            $json['empty'] = true;
 
-            if(isset($_SESSION['cupom_compra'])) {
-                $json['empty'] = FALSE;
-
-                $sel = $conn->prepare("SELECT * FROM cupom WHERE cupom_codigo=:cod");
-                $sel->bindValue(":cod", "{$_SESSION['cupom_compra']['cupom_codigo']}");
-                $sel->execute();
-                $res = $sel->fetchAll();
-                foreach($res as $v) {
-                    $json['new_total_price'] = number_format($_SESSION['totCompra'], 2, ',', '.');
-                    $_SESSION['cupom_compra'] = $v;
-                    $json['cupom'] = $v;
-                }
+            if (isset($_SESSION['cupom_compra'])) {
+                $json['empty'] = false;
+                $json['new_total_price'] = \Project::formatPriceToReal($_SESSION['totCompra']);
+                $json['cupom'] = $_SESSION['cupom_compra'];
             }
         }
 
         echo json_encode($json);
+    } else {
+        require_once '__system__/404.php';
     }
-?>

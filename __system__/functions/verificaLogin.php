@@ -1,18 +1,17 @@
 <?php
-    require_once 'connection/conn.php';
-    
-    if(isXmlHttpRequest()) {
-        $json = array();
-        $json['logado'] = TRUE;
+    use Model\User;
 
-        if(!isset($_SESSION['inf_usu']['usu_id'])) {
-            $json['logado'] = FALSE;
+    if (Project::isXmlHttpRequest()) {
+        $json = [];
+        $json['logado'] = true;
+
+        if (User::checkLogin() === false) {
+            $json['logado'] = false;
         } else {
-            $json['usuario'] = $_SESSION['inf_usu'];
+            $json['usuario'] = $_SESSION[User::SESSION];
         }
 
         echo json_encode($json);
     } else {
-        header('Location: ../');
+        require_once '__system__/404.php';
     }
-?>

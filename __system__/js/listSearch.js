@@ -1,17 +1,38 @@
 $(document).ready(function() {
+    $('.formPesquisaHeader').submit(function() {
+        if($('.pesquisaTxtHeader').val().length > 0) {
+            Toast.fire({
+                type: 'success',
+                title: 'Pesquisa realizada com sucesso'
+            });
+        } else {
+            Swal.fire({
+                title: "Digite o que está buscando no campo ao topo da sua tela que, em instantes, te daremos a resposta!",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonColor: "#9C45EB",
+                confirmButtonText: "Ok",
+            });
+        }
+    
+        return false;
+    });
+
     attCarrinho();
     
     $('.pesquisaTxtHeader').keyup(function(e) {
+        $('.pesquisaTxtHeader').val($(this).val());
         e.preventDefault();
+
         if($(this).val().length > 0) {
-            var dado = "buscaBarra=" + $(this).val();
+            var dado = "q=" + $(this).val();
             $.ajax({
                 dataType: 'json',
                 url: BASE_URL + 'functions/listSearch',
                 type: 'post',
                 data: dado,
                 beforeSend: function() {
-                    $('.tituloOfertas').html(`Sua pesquisa sobre: ` + $('.pesquisaTxtHeader').val());
+                    $('.defaultTitle').html(`Sua pesquisa sobre: ` + $('.pesquisaTxtHeader').val());
                 },
                 success: function(json) {
                     if(!json['empty']) {
@@ -22,10 +43,10 @@ $(document).ready(function() {
                                 produtos[i] = `
                                     <div class="prodFilter">
                                         <div class='btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `'>
-                                            
+                                            <i class="far fa-heart addFavorito" id="` + json['prods'][i].produto_id + `"></i>
                                         </div>
                                         <a class="linksProdCarousel" id-produto="` + json['prods'][i].produto_id + `">
-                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
+                                            <img src='` + BASE_URL2 + `admin-area/img-produtos/` + json['prods'][i].produto_img + `'/>
                                             <p class="divProdPromo">-` + ((json['prods'][i].promo_desconto != null) ? json['prods'][i].promo_desconto : json['prods'][i].produto_desconto_porcent) + `%</p>
                                             <div class='divisorFilter'></div>
                                             <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
@@ -57,10 +78,10 @@ $(document).ready(function() {
                                 produtos[i] = `
                                     <div class="prodFilter">
                                         <div class='btnFavoriteFilter btnFavorito` + json['prods'][i].produto_id + `'>
-                                            
+                                            <i class="far fa-heart addFavorito" id="` + json['prods'][i].produto_id + `"></i>
                                         </div>
                                         <a class="linksProdCarousel" id-produto="` + json['prods'][i].produto_id + `">
-                                            <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `'/>
+                                            <img src='` + BASE_URL2 + `admin-area/img-produtos/` + json['prods'][i].produto_img + `'/>
                                             <div class='divisorFilter'></div>
                                             <h5 class='titleProdFilter'>` + json['prods'][i].produto_nome + ` - `  + json['prods'][i].produto_tamanho + `</h5>
                                             <p class='priceProdFilter'>R$ ` + json['prods'][i].produto_preco + `</p>
@@ -109,8 +130,11 @@ $(document).ready(function() {
                     }
                 }
             });
+
+            window.history.pushState("object", "e.conomize | Busca de Produtos", BASE_URL + "pesquisa?q=" + $('.pesquisaTxtHeader').val());
         } else {
-            $('.tituloOfertas').html(`Pesquise seu produto no campo acima`);
+            window.history.pushState("object", "e.conomize | Busca de Produtos", BASE_URL + "pesquisa?q=" + $('.pesquisaTxtHeader').val());
+            $('.defaultTitle').html(`Pesquise seu produto no campo acima`);
             $('.divShowProdFav').html(``);
         }
     });

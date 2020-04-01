@@ -7,7 +7,7 @@
             </div>
             <h5><?= $result[0]["depart_desc"]; ?></h5>
             <?php
-            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
+            $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
             $sel->execute();
             if($sel->rowCount() == 0):?>
                 <div class="msgNoProds">
@@ -21,7 +21,7 @@
 
         <?php
         if(!$empty):
-            $sel = $conn->prepare("SELECT * FROM subcateg WHERE depart_id={$_SESSION['depart_id']} ORDER BY subcateg_nome");
+            $sel = $conn->prepare("SELECT * FROM subcateg WHERE depart_id={$_SESSION[Department::SESSION]['depart_id']} ORDER BY subcateg_nome");
             $sel->execute();
             $result = $sel->fetchAll();?>
             <div class="filtro_pesquisaMobile">
@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <?php
-                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="divFilter">
                 <?php
-                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                     <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
@@ -101,7 +101,7 @@
                     </ul>
                 </div>
                 <?php
-                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
@@ -115,7 +115,7 @@
                     </ul>
                 </div>
                 <?php
-                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                 $sel2->execute();
                 $result2 = $sel2->fetchAll();?>
                 <div class="divFilter">
@@ -151,8 +151,8 @@
             
             <div class="divShowProdFilter">
                 <?php
-                $sel2 = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
-                $_SESSION['query_proc'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE s.depart_id={$_SESSION['depart_id']} AND d.armazem_id={$_SESSION['arm_id']} ";
+                $sel2 = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
+                $_SESSION[Department::SESSION]['rawQuery'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN categ AS c ON p.produto_categ=c.categ_id JOIN subcateg AS s ON s.subcateg_id=c.subcateg_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE s.depart_id={$_SESSION[Department::SESSION]['depart_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ";
                 $sel2->execute();
                 while($v = $sel2->fetch( PDO::FETCH_ASSOC )):?>
                     <div class="prodFilter">
@@ -160,7 +160,7 @@
                             
                         </div>
                         <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
-                            <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                            <img src="<?= base_url(); ?>admin-area/img-produtos/<?= $v["produto_img"]; ?>"/>
                             <?php 
                                 if($v['produto_desconto_porcent'] <> "") {
                                     $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
@@ -187,7 +187,7 @@
                                 if($v["produto_qtd"] > 0):?>
                                     <form class="formBuy">
                                         <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                                        <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                        <input type="number" min="0" max="20" value="<?= isset($_SESSION[Cart::SESSION][$v['produto_id']]) ? $_SESSION[Cart::SESSION][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                         <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                     </form>
                                     <?php
@@ -212,7 +212,7 @@
                     <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result2[0]["subcateg_nome"]; ?></h4>
                 </div>
                 <?php
-                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
+                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
                 $sel->execute();
                 if($sel->rowCount() == 0):?>
                     <div class="msgNoProds">
@@ -226,7 +226,7 @@
 
             <?php
             if(!$empty):
-                $sel = $conn->prepare("SELECT * FROM categ WHERE subcateg_id={$_SESSION['subcateg_id']}");
+                $sel = $conn->prepare("SELECT * FROM categ WHERE subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']}");
                 $sel->execute();
                 if($sel->rowCount() > 0):?>
                     <div class="filtro_pesquisaMobile">
@@ -245,7 +245,7 @@
                         </div>
 
                         <?php
-                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                         $sel2->execute();
                         $result2 = $sel2->fetchAll();?>
                         <div class="divFilter">
@@ -261,7 +261,7 @@
                         </div>
                         <div class="divFilter">
                         <?php
-                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                         $sel2->execute();
                         $result2 = $sel2->fetchAll();?>
                         <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
@@ -304,7 +304,7 @@
                             </ul>
                         </div>
                         <?php
-                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                         $sel2->execute();
                         $result2 = $sel2->fetchAll();?>
                         <div class="divFilter">
@@ -318,7 +318,7 @@
                             </ul>
                         </div>
                         <?php
-                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                        $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                         $sel2->execute();
                         $result2 = $sel2->fetchAll();?>
                         <div class="divFilter">
@@ -354,8 +354,8 @@
                     
                     <div class="divShowProdFilter">
                         <?php
-                        $sel2 = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
-                        $_SESSION['query_proc'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE c.subcateg_id={$_SESSION['subcateg_id']} AND d.armazem_id={$_SESSION['arm_id']} ";
+                        $sel2 = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
+                        $_SESSION[Department::SESSION]['rawQuery'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN categ AS c ON p.produto_categ=c.categ_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE c.subcateg_id={$_SESSION[Department::SESSION]['subcateg_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ";
                         $sel2->execute();
                         while($v = $sel2->fetch( PDO::FETCH_ASSOC )):?>
                             <div class="prodFilter">
@@ -363,7 +363,7 @@
                                     
                                 </div>
                                 <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
-                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                    <img src="<?= base_url(); ?>admin-area/img-produtos/<?= $v["produto_img"]; ?>"/>
                                     <?php 
                                         if($v['produto_desconto_porcent'] <> "") {
                                             $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
@@ -390,7 +390,7 @@
                                         if($v["produto_qtd"] > 0):?>
                                             <form class="formBuy">
                                                 <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                                                <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <input type="number" min="0" max="20" value="<?= isset($_SESSION[Cart::SESSION][$v['produto_id']]) ? $_SESSION[Cart::SESSION][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                                 <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                             </form>
                                             <?php
@@ -415,7 +415,7 @@
                     <h4><i class="<?= $result[0]["depart_icon"]; ?>"></i> <?= $result2[0]["subcateg_nome"]; ?> - <?= $result3[0]["categ_nome"]; ?></h4>
                 </div>
                 <?php
-                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
+                $sel = $conn->prepare("SELECT * FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
                 $sel->execute();
                 if($sel->rowCount() == 0):?>
                     <div class="msgNoProds">
@@ -431,7 +431,7 @@
             if(!$empty):?>
                 <div class="filtro_pesquisaMobile">
                     <?php
-                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
@@ -447,7 +447,7 @@
                     </div>
                     <div class="divFilter">
                     <?php
-                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <label class="titleConfigFilter FilterMarca"><i class="fas fa-copyright"></i> MARCA</label> 
@@ -480,7 +480,7 @@
                         <h5 class="titleFilter">FILTROS DE PESQUISA</h5>
                     </div>
                     <?php
-                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_tamanho) AS tam FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
@@ -494,7 +494,7 @@
                         </ul>
                     </div>
                     <?php
-                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']}");
+                    $sel2 = $conn->prepare("SELECT DISTINCT(p.produto_marca), m.marca_nome FROM produto AS p JOIN marca_prod AS m ON p.produto_marca=m.marca_id JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']}");
                     $sel2->execute();
                     $result2 = $sel2->fetchAll();?>
                     <div class="divFilter">
@@ -530,8 +530,8 @@
 
                 <div class="divShowProdFilter">
                     <?php
-                    $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']} ");
-                    $_SESSION['query_proc'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE p.produto_categ={$_SESSION['categ_id']} AND d.armazem_id={$_SESSION['arm_id']} ";
+                    $sel = $conn->prepare("SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ");
+                    $_SESSION[Department::SESSION]['rawQuery'] = "SELECT p.produto_id, p.produto_img, p.produto_descricao, p.produto_nome, p.produto_tamanho, d.produto_qtd, d.produto_preco, d.produto_desconto_porcent, pr.promo_desconto FROM produto AS p JOIN marca_prod AS m ON m.marca_id=p.produto_marca JOIN dados_armazem AS d ON p.produto_id=d.produto_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE p.produto_categ={$_SESSION[Department::SESSION]['categ_id']} AND d.armazem_id={$_SESSION[Storage::SESSION]['arm_id']} ";
                     $sel->execute();
                     if($sel->rowCount() > 0):
                         while($v = $sel->fetch( PDO::FETCH_ASSOC )):?>
@@ -540,7 +540,7 @@
                                     
                                 </div>
                                 <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
-                                    <img src="<?= base_url(); ?>admin_area/imagens_produtos/<?= $v["produto_img"]; ?>"/>
+                                    <img src="<?= base_url(); ?>admin-area/img-produtos/<?= $v["produto_img"]; ?>"/>
                                     <?php 
                                         if($v['produto_desconto_porcent'] <> "") {
                                             $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
@@ -567,7 +567,7 @@
                                         if($v["produto_qtd"] > 0):?>
                                             <form class="formBuy">
                                                 <input type="hidden" value="<?= $v["produto_id"]; ?>" name="id_prod"/>
-                                                <input type="number" min="0" max="20" value="<?= isset($_SESSION['carrinho'][$v['produto_id']]) ? $_SESSION['carrinho'][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
+                                                <input type="number" min="0" max="20" value="<?= isset($_SESSION[Cart::SESSION][$v['produto_id']]) ? $_SESSION[Cart::SESSION][$v['produto_id']] : 0 ; ?>" class="inputBuy inputQtdFiltro" name="qtd_prod"/>
                                                 <button class="btnBuyFilter btnBuy" type="submit">ADICIONAR</button>
                                             </form>
                                             <?php

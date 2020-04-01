@@ -1,100 +1,45 @@
 <?php
-    require_once 'connection/conn.php';
+    use Model\{Department, Product, User};
 
-    if(isXmlHttpRequest()) {
-        $json = array();
-        $json["empty"] = FALSE;
-        $json['logado'] = TRUE;
+    if (Project::isXmlHttpRequest()) {
+        $json = [];
+        $json["empty"] = false;
+        $json['logado'] = true;
 
-        if(isset($_SESSION["inf_usu"]['usu_id'])) {
-            if(!isset($_POST['prod_fav'])) {
-                $_SESSION['query_fav'][] = "produto AS p JOIN produtos_favorito AS pf ON p.produto_id=pf.produto_id";
-                $_SESSION['query_fav'][] = "WHERE pf.usu_id={$_SESSION["inf_usu"]['usu_id']} AND";
+        if (User::checkLogin()) {
+            $json['first'] = false;
 
-                $_SESSION['query_proc'] = str_replace("produto AS p", $_SESSION['query_fav'][0], $_SESSION['query_proc']);
-                $_SESSION['query_proc'] = str_replace("WHERE", $_SESSION['query_fav'][1], $_SESSION['query_proc']);
+            if (!isset($_POST['prod_fav'])) {
+                $json['first'] = "favorito";
+                $_SESSION[Department::SESSION]['favQuery'][] = "produto p JOIN produtos_favorito pf ON p.produto_id = pf.produto_id";
+                $_SESSION[Department::SESSION]['favQuery'][] = "WHERE pf.usu_id = {$_SESSION[User::SESSION]['usu_id']} AND";
+
+                $_SESSION[Department::SESSION]['rawQuery'] = str_replace("produto p", $_SESSION[Department::SESSION]['favQuery'][0], $_SESSION[Department::SESSION]['rawQuery']);
+                $_SESSION[Department::SESSION]['rawQuery'] = str_replace("WHERE", $_SESSION[Department::SESSION]['favQuery'][1], $_SESSION[Department::SESSION]['rawQuery']);
                 
-                $sel = $conn->prepare($_SESSION['query_proc']);
-                $sel->execute();
-                if($sel->rowCount() > 0) {
-                    $result = $sel->fetchAll();
-                    foreach($result as $v) {
-                        if($v['produto_qtd'] > 0) {
-                            $v['empty'] = false;
-                        } else {
-                            $v['empty'] = true;
-                        }
-                        if($v['produto_desconto_porcent'] <> "") {
-                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                        } elseif($v['promo_desconto']) {
-                            $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                        }
-                        
-                        $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                        if(isset($_SESSION['carrinho'][$v['produto_id']])) {
-                            $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
-                        } else {
-                            $v["carrinho"] = 0;
-                        }
-                        $json['produtos'][] = $v;
-                    }
-                } else {
+                $json['produtos'] = Product::searchDepartment($_SESSION[Department::SESSION]['rawQuery']);
+                if (count($json['produtos']['data']) === 0) {
                     $json['empty'] = true;
                 }
 
-                $json['query'] = $_SESSION['query_proc'];
+                $json['query'] = $_SESSION[Department::SESSION]['rawQuery'];
             } else {
-                $_SESSION['query_proc'] = str_replace( $_SESSION['query_fav'][0], "produto AS p", $_SESSION['query_proc']);
-                $_SESSION['query_proc'] = str_replace($_SESSION['query_fav'][1], "WHERE", $_SESSION['query_proc']);
-                unset($_SESSION['query_fav']);
+                $_SESSION[Department::SESSION]['rawQuery'] = str_replace($_SESSION[Department::SESSION]['favQuery'][0], "produto p", $_SESSION[Department::SESSION]['rawQuery']);
+                $_SESSION[Department::SESSION]['rawQuery'] = str_replace($_SESSION[Department::SESSION]['favQuery'][1], "WHERE", $_SESSION[Department::SESSION]['rawQuery']);
+                unset($_SESSION[Department::SESSION]['favQuery']);
 
-                $sel = $conn->prepare($_SESSION['query_proc']);
-                $sel->execute();
-                if($sel->rowCount() > 0) {
-                    $result = $sel->fetchAll();
-                    foreach($result as $v) {
-                        if($v['produto_qtd'] > 0) {
-                            $v['empty'] = false;
-                        } else {
-                            $v['empty'] = true;
-                        }
-                        if($v['produto_desconto_porcent'] <> "") {
-                            $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                        } elseif($v['promo_desconto']) {
-                            $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                            $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                            $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                        }
-                        
-                        $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                        if(isset($_SESSION['carrinho'][$v['produto_id']])) {
-                            $v["carrinho"] = $_SESSION['carrinho'][$v['produto_id']];
-                        } else {
-                            $v["carrinho"] = 0;
-                        }
-                        $json['produtos'][] = $v;
-                    }
-                } else {
+                $json['produtos'] = Product::searchDepartment($_SESSION[Department::SESSION]['rawQuery']);
+                if (count($json['produtos']['data']) === 0) {
                     $json['empty'] = true;
                 }
 
-                $json['query'] = $_SESSION['query_proc'];
+                $json['query'] = $_SESSION[Department::SESSION]['rawQuery'];
             }
         } else {
-            $json['logado'] = FALSE;
+            $json['logado'] = false;
         }
+
         echo json_encode($json);
     } else {
-        header('Location: ../');
+        require_once '__system__/404.php';
     }
-?>

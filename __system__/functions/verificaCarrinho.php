@@ -11,8 +11,8 @@
         
         $result = $sel->fetchAll();
         foreach($result as $row) {
-            if(isset($_SESSION['carrinho'][$row['produto_id']])) {
-                $json['prod_id'][$row['produto_id']] = $_SESSION['carrinho'][$row['produto_id']];
+            if(isset($_SESSION[Cart::SESSION][$row['produto_id']])) {
+                $json['prod_id'][$row['produto_id']] = $_SESSION[Cart::SESSION][$row['produto_id']];
             } else {
                 $json['prod_id'][$row['produto_id']] = 0;
             }

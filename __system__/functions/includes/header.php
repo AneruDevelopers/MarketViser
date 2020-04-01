@@ -1,41 +1,34 @@
+<?php
+    use Model\Department;
+?>
+
 <div class="searchSpaceMobile">
   <div class="searchBoxHeader" id="searchBoxHeader">
-      <form class="formPesquisaHeader" method="post" action="<?= base_url_php(); ?>search">
-          <input class="pesquisaTxtHeader" value="<?= isset($_POST['buscaBarra']) ? $_POST['buscaBarra'] : '' ; ?>" type="text" name="buscaBarra" placeholder=" Clique e pesquise">
-              <button class="pesquisaBtnHeader" type="submit" name="search">
-                  <i class="fas fa-search"></i>
-              </button>
+      <form class="formPesquisaHeader" method="get" action="<?= Project::baseUrlPhp(); ?>pesquisa">
+            <input class="pesquisaTxtHeader" value="<?= isset($_GET['q']) ? $_GET['q'] : '' ; ?>" type="text" name="q" placeholder=" Clique e pesquise" title="Pesquise por produtos">
+            <button class="pesquisaBtnHeader" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
       </form>
   </div>
 </div>
 
 <?php
-    $sel = $conn->prepare("SELECT depart_icon, depart_nome FROM departamento");
-    $sel->execute();
+    $listDepartment = Department::listAll();
 
-    if($sel->rowCount() > 0):
-        function removeAcento($string) {
-            if(strpos($string," "))
-                str_replace(" ", "-", $string);
-            $string = strtolower($string);
-
-            return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(ç)/","/(Ç)/"),explode(" ","a a e e i i o o u u n n c c"),$string);
-        }?>
+    if (count($listDepartment) > 0):?>
         <div class="menuCarousel owl-one owl-carousel departamentos">
             <?php
-            while($row = $sel->fetch( PDO::FETCH_ASSOC )):?>
+            foreach ($listDepartment as $row):?>
                 <div class="celulaMenuCarousel">
-                    <a class="linkBtnMenu" href="<?= base_url_php() . removeAcento($row['depart_nome']); ?>">
+                    <a class="linkBtnMenu" title="<?= ($row['depart_desc'] != "") ? $row['depart_desc'] : Project::formatFirstName($row['depart_nome']); ?>" href="<?= Project::baseUrlPhp() . $row['depart_url']; ?>">
                         <i class="<?= $row['depart_icon']; ?>"></i>
                         <h5 class="linkMenuCarousel"><?= $row['depart_nome']; ?></h5>
                     </a>
                 </div>
                 <?php
-            endwhile;?>
+            endforeach;?>
         </div>
-        <?php
-    else:?>
-        <h3>Sem departamento(s) para pesquisa</h3>
         <?php
     endif;
 ?>

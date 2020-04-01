@@ -4,7 +4,7 @@ function meusFavoritos() {
         url: BASE_URL + 'functions/meusFavoritos',
         success: function(json) {
             if(json['logado']) {
-                if(json['tem_favorito']) {
+                if(json['produtos'].length > 0) {
                     var produtos = [];
                     for (var i = 0; json['produtos'].length > i; i++) {
                         if(json['produtos'][i].produto_desconto_porcent || json['produtos'][i].promo_desconto) {
@@ -14,7 +14,7 @@ function meusFavoritos() {
                                         
                                     </div>
                                     <a class="linksProdCarousel" id-produto="` + json['produtos'][i].produto_id + `">
-                                        <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                        <img src='` + BASE_URL2 + `admin-area/img-produtos/` + json['produtos'][i].produto_img + `'/>
                                         <p class="divProdPromo">-` + ((json['produtos'][i].promo_desconto != null) ? json['produtos'][i].promo_desconto : json['produtos'][i].produto_desconto_porcent) + `%</p>
                                         <div class='divisorFilter'></div>
                                         <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
@@ -35,7 +35,7 @@ function meusFavoritos() {
                                     <div class='btnFavoriteFilter btnFavorito` + json['produtos'][i].produto_id + `'>
                                         
                                     </div>
-                                    <img src='` + BASE_URL2 + `admin_area/imagens_produtos/` + json['produtos'][i].produto_img + `'/>
+                                    <img src='` + BASE_URL2 + `admin-area/img-produtos/` + json['produtos'][i].produto_img + `'/>
                                     <div class='divisorFilter'></div>
                                     <h5 class='titleProdFilter'>` + json['produtos'][i].produto_nome + ` - `  + json['produtos'][i].produto_tamanho + `</h5>
                                     <p class='priceProdFilter'>R$ ` + json['produtos'][i].produto_preco + `</p>
@@ -55,9 +55,14 @@ function meusFavoritos() {
                         $('.l-favoritos').append(produtos[c]);
                     }
                 } else {
-                    $('.l-favoritos').html(`<h3 class="sem_fav">Você não tem produtos favoritados... Por enquanto</h3>`);
+                    $('.l-favoritos').html(`
+                        <div class="msgNoProds">
+                            Você não tem produtos favoritados, por enquanto...
+                        </div>
+                    `);
                 }
             }
+
             btnFavorito();
             attCarrinho();
             abrirModal();

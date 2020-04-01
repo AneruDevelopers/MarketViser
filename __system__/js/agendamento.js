@@ -15,7 +15,7 @@
 //                         $('.divShowProdFav').append(`
 //                             <tr class="trCart">          
 //                                 <td class="tdCart" width="40%">
-//                                     <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
+//                                     <img class="imgCart" src="` + BASE_URL2 + `admin-area/img-produtos/` + json['prods'][i].produto_img + `"/>
 //                                     <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
 //                                     <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
 //                                 </td>
@@ -35,7 +35,7 @@
 //                         $('.divShowProdFav').append(`
 //                         <tr class="trCart">
 //                             <td class="tdCart" width="40%">
-//                                 <img class="imgCart" src="` + BASE_URL2 + `admin_area/imagens_produtos/` + json['prods'][i].produto_img + `"/>
+//                                 <img class="imgCart" src="` + BASE_URL2 + `admin-area/img-produtos/` + json['prods'][i].produto_img + `"/>
 //                                 <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
 //                                 <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
 //                             </td>

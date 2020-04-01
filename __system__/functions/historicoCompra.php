@@ -1,29 +1,25 @@
 <?php
-    require_once 'connection/conn.php';
+    use Model\User;
+    $sql = new Sql();
 
-    if(isXmlHttpRequest()) {
+    if (Project::isXmlHttpRequest()) {
         $json['status'] = 1;
 
-        if(isset($_POST['searchPurch'])) {
+        if (isset($_POST['searchPurch'])) {
             $search = $_POST['searchPurch'];
-            $json['error'] = NULL;
+            $json['error'] = null;
 
-            $sel = $conn->prepare("SELECT c.compra_id, c.compra_registro, c.compra_total, s.status_nome, f.forma_nome FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.usu_id=:id AND (c.compra_registro LIKE '%{$search}%' OR c.compra_total LIKE '%{$search}%' OR c.compra_hash LIKE '%{$search}%' OR f.forma_nome LIKE '%{$search}%' OR s.status_nome LIKE '%{$search}%' OR p.produto_nome LIKE '%{$search}%' OR p.produto_tamanho LIKE '%{$search}%') ORDER BY c.compra_registro DESC");
-            $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
-            $sel->execute();
+            $results = $sql->select("SELECT c.compra_id, c.compra_registro, c.compra_total, s.status_nome, f.forma_nome FROM lista_compra l JOIN compra c ON c.compra_id = l.compra_id JOIN status_compra s ON c.status_id = s.status_id JOIN forma_pag f ON c.forma_id = f.forma_id JOIN produto p ON l.produto_id = p.produto_id WHERE c.usu_id = :id AND (c.compra_registro LIKE :search OR c.compra_total LIKE :search OR c.compra_hash LIKE :search OR f.forma_nome LIKE :search OR s.status_nome LIKE :search OR p.produto_nome LIKE :search OR p.produto_tamanho LIKE :search) ORDER BY c.compra_registro DESC", [
+                ":search" => "%{$search}%",
+                ":id" => $_SESSION[User::SESSION]['usu_id']
+            ]);
             
-            if($sel->rowCount() > 0) {
+            if (count($results) > 0) {
                 $c = 0;
-                while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-                    if($c != $row['compra_id']) {
-                        $exp = explode(" ", $row['compra_registro']);
-                        $day = explode("-", $exp[0]);
-                        $hour = explode(":", $exp[1]);
-                        $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                        " às " . $hour['0'] . "h" . $hour[1];
-    
-                        $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
-    
+                foreach ($results as $row) {
+                    if ($c != $row['compra_id']) {
+                        $row['compra_registro'] = Project::formatRegister($row['compra_registro']);
+                        $row['compra_total'] = Project::formatPriceToReal($row['compra_total']);
                         $json['compra'][] = $row;
                         $c = $row['compra_id'];
                     }
@@ -32,29 +28,21 @@
                 $json['status'] = 0;
                 $json['error'] = "Não houve resposta para o que foi pesquisado!";
             }
-        } elseif(isset($_POST['showPurch'])) {
+        } elseif (isset($_POST['showPurch'])) {
             $compra_id = $_POST['showPurch'];
-            $json['error'] = NULL;
+            $json['error'] = null;
 
-            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.usu_id=:id AND c.compra_id=:c_id");
-            $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
-            $sel->bindValue(":c_id", "{$compra_id}");
-            $sel->execute();
+            $results = $sql->select("SELECT * FROM lista_compra l JOIN compra c ON c.compra_id = l.compra_id JOIN armazem a ON c.armazem_id = a.armazem_id JOIN cidade ci ON a.cidade_id = ci.cid_id JOIN estado es ON ci.est_id = es.est_id JOIN status_compra s ON c.status_id = s.status_id JOIN forma_pag f ON c.forma_id = f.forma_id JOIN entrega e ON e.compra_id = c.compra_id JOIN produto p ON l.produto_id = p.produto_id WHERE c.usu_id = :id AND c.compra_id = :c_id", [
+                ":id" => $_SESSION[User::SESSION]['usu_id'],
+                ":c_id" => $compra_id
+            ]);
             
-            if($sel->rowCount() > 0) {
+            if (count($results) > 0) {
                 $c = 0;
-                while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-                    $exp = explode(" ", $row['compra_registro']);
-                    $day = explode("-", $exp[0]);
-                    $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                    " às " . $exp[1];
-                    
-                    $exp = explode(" ", $row['entrega_horario']);
-                    $day = explode("-", $exp[0]);
-                    $row['entrega_horario'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                    " às " . $exp[1];
-
-                    $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
+                foreach ($results as $row) {
+                    $row['compra_registro'] = Project::formatRegister($row['compra_registro']);
+                    $row['entrega_horario'] = Project::formatRegister($row['entrega_horario']);
+                    $row['compra_total'] = Project::formatPriceToReal($row['compra_total']);
 
                     $json['compra']['id'] = $row['compra_id'];
                     $json['compra']['armazem'] = $row['armazem_nome'] . " &nbsp;| &nbsp;" . $row['cid_nome'] . " - " . $row['est_uf'];
@@ -64,7 +52,7 @@
                     $json['compra']['status'] = $row['status_nome'];
                     $json['compra']['forma_pag'] = $row['forma_nome'];
 
-                    if($row['compra_link'] != '') {
+                    if ($row['compra_link'] != '') {
                         $json['compra']['link'] = $row['compra_link'];
                     }
                 
@@ -88,26 +76,20 @@
                 $json['error'] = "
                     Ocorreu um erro!<br/>
                     Compra não encontrada.<br/>
-                    <a href='" . base_url_php() . "suporte/atendimento'>Contate-nos, por favor.</a>
+                    <a href='" . Project::baseUrlPhp() . "suporte/atendimento'>Contate-nos, por favor.</a>
                 ";
             }
         } else {
-            $json['error'] = NULL;
+            $json['error'] = null;
 
-            $sel = $conn->prepare("SELECT c.compra_id, c.compra_registro, c.compra_total, s.status_nome, f.forma_nome FROM compra AS c JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id WHERE c.usu_id=:id ORDER BY c.compra_registro DESC");
-            $sel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
-            $sel->execute();
+            $results = $sql->select("SELECT c.compra_id, c.compra_registro, c.compra_total, f.forma_nome FROM compra c JOIN status_compra s ON c.status_id = s.status_id JOIN forma_pag f ON c.forma_id = f.forma_id WHERE c.usu_id = :id ORDER BY c.compra_registro DESC", [
+                ":id" => $_SESSION[User::SESSION]['usu_id']
+            ]);
             
-            if($sel->rowCount() > 0) {
-                while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-                    $exp = explode(" ", $row['compra_registro']);
-                    $day = explode("-", $exp[0]);
-                    $hour = explode(":", $exp[1]);
-                    $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                    " às " . $hour['0'] . "h" . $hour[1];
-
-                    $row['compra_total'] = number_format($row['compra_total'], 2, ',', '.');
-
+            if (count($results) > 0) {
+                foreach ($results as $row) {
+                    $row['compra_registro'] = Project::formatRegister($row['compra_registro']);
+                    $row['compra_total'] = Project::formatPriceToReal($row['compra_total']);
                     $json['compra'][] = $row;
                 }
             } else {
@@ -117,5 +99,6 @@
         }
 
         echo json_encode($json);
+    } else {
+        require_once '__system__/404.php';
     }
-?>

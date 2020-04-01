@@ -1,37 +1,34 @@
 <?php
+    use Model\{User};
+
+    $sql = new \Sql();
+
     // GERA PDF DA COMPRA NA PÁGINA DE HISTÓRICO DE COMPRAS DO CLIENTE
-    if(isset($_SESSION['inf_func']) || isset($_SESSION['inf_usu']['usu_id'])) {
+    if (isset($_SESSION['inf_func']) || isset($_SESSION[User::SESSION]['usu_id'])) {
         $perm = 1;
     }
 
-    if(isset($_GET['compra']) && isset($perm)) {
-        require_once '__system__/functions/connection/conn.php';
+    if (isset($_GET['compra']) && isset($perm)) {
         require_once '__system__/functions/fpdf/fpdf.php';
 
         $compra = $_GET['compra'];
         
-        if(isset($_SESSION['inf_func'])) {
-            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN usuario AS u ON c.usu_id=u.usu_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.compra_id=:c_id");
+        if (isset($_SESSION['inf_func'])) {
+            $results = $sql->select("SELECT * FROM lista_compra l JOIN compra c ON c.compra_id = l.compra_id JOIN entrega e ON e.compra_id = c.compra_id JOIN usuario u ON c.usu_id = u.usu_id JOIN armazem a ON c.armazem_id = a.armazem_id JOIN cidade ci ON a.cidade_id = ci.cid_id JOIN estado es ON ci.est_id = es.est_id JOIN status_compra s ON c.status_id = s.status_id JOIN forma_pag f ON c.forma_id = f.forma_id JOIN produto p ON l.produto_id = p.produto_id WHERE c.compra_id = :c_id", [
+                ":c_id" => $compra
+            ]);
         } else {
-            $sel = $conn->prepare("SELECT * FROM lista_compra AS l JOIN compra AS c ON c.compra_id=l.compra_id JOIN entrega AS e ON e.compra_id=c.compra_id JOIN usuario AS u ON c.usu_id=u.usu_id JOIN armazem AS a ON c.armazem_id=a.armazem_id JOIN cidade AS ci ON a.cidade_id=ci.cid_id JOIN estado AS es ON ci.est_id=es.est_id JOIN status_compra AS s ON c.status_id=s.status_id JOIN forma_pag AS f ON c.forma_id=f.forma_id JOIN produto AS p ON l.produto_id=p.produto_id WHERE c.compra_id=:c_id AND c.usu_id=:usu_id");
-            $sel->bindValue("usu_id", "{$_SESSION['inf_usu']['usu_id']}");
+            $results = $sql->select("SELECT * FROM lista_compra l JOIN compra c ON c.compra_id = l.compra_id JOIN entrega e ON e.compra_id = c.compra_id JOIN usuario u ON c.usu_id = u.usu_id JOIN armazem a ON c.armazem_id = a.armazem_id JOIN cidade ci ON a.cidade_id = ci.cid_id JOIN estado es ON ci.est_id = es.est_id JOIN status_compra s ON c.status_id = s.status_id JOIN forma_pag f ON c.forma_id = f.forma_id JOIN produto p ON l.produto_id = p.produto_id WHERE c.compra_id = :c_id AND c.usu_id = :usu_id", [
+                ":c_id" => $compra,
+                ":usu_id" => $_SESSION[User::SESSION]['usu_id']
+            ]);
         }
-
-        $sel->bindValue(":c_id", "{$compra}");
-        $sel->execute();
         
-        if($sel->rowCount() > 0) {
+        if (count($results) > 0) {
             $c = 0;
-            while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-                $exp = explode(" ", $row['compra_registro']);
-                $day = explode("-", $exp[0]);
-                $row['compra_registro'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                " " . $exp[1];
-
-                $exp = explode(" ", $row['entrega_horario']);
-                $day = explode("-", $exp[0]);
-                $row['entrega_horario'] = $day[2] . "/" . $day[1] . "/" . $day[0] . 
-                " " . $exp[1];
+            foreach ($results as $row) {
+                $row['compra_registro'] = \Project::formatRegister($row['compra_registro']);
+                $row['entrega_horario'] = \Project::formatRegister($row['entrega_horario']);
 
                 $inf['compra']['armazem'] = $row['armazem_nome'] . "  |  " . $row['cid_nome'] . " - " . $row['est_uf'];
                 $inf['compra']['registro'] = $row['compra_registro'];
@@ -49,19 +46,20 @@
                 $inf['end']['cidade'] = $row['entrega_cidade'];
                 $inf['end']['uf'] = $row['entrega_uf'];
 
-                if($inf['end']['complemento'] == "") {
+                if ($inf['end']['complemento'] == "") {
                     $inf['end']['complemento'] = "-";
                 }
 
                 $inf['usuario']['nome'] = $row['usu_first_name'] . " " . $row['usu_last_name'];
                 $inf['usuario']['cpf'] = $row['usu_cpf'];
 
-                $sel2 = $conn->prepare("SELECT f.funcionario_nome, f.funcionario_cpf FROM dados_entrega AS d JOIN funcionario AS f ON d.funcionario_id=f.funcionario_id WHERE d.entrega_id={$row['entrega_id']}");
-                $sel2->execute();
-                if($sel2->rowCount() > 0) {
+                $results2 = $sql->select("SELECT f.funcionario_nome, f.funcionario_cpf FROM dados_entrega d JOIN funcionario f ON d.funcionario_id = f.funcionario_id WHERE d.entrega_id = :e_id", [
+                    ":e_id" => $row['entrega_id']
+                ]);
+                if (count($results2) > 0) {
                     $t = 0;
 
-                    while($row2 = $sel2->fetch( PDO::FETCH_ASSOC )) {
+                    foreach ($results2 as $row2) {
                         $inf['funcionario_nome'][$t] = $row2['funcionario_nome'];
                         $inf['funcionario_cpf'][$t] = $row2['funcionario_cpf'];
                         
@@ -83,7 +81,7 @@
             $arquivo = "nota-fiscal.pdf";
             $tipo_pdf = "I";
         
-            $pdf->Image('__system__/img/Banner_TCC/logo_cor padrao.png', 91, 10, 30);
+            $pdf->Image('__system__/style/img/banner/logo_corPadrao.png', 91, 10, 30);
             
             $pdf->SetY(10);
             $pdf->SetFont("Arial", "", 8);
@@ -148,15 +146,15 @@
             $pdf->Cell(90, 10, "R$ " . $inf['compra']['total'], 0, 1, "C");
 
             $y = 90;
-            foreach($inf['produto_nome'] as $k => $v) {
+            foreach ($inf['produto_nome'] as $k => $v) {
                 $c = 0;
-                if($y >= 266) {
+                if ($y >= 266) {
                     $pdf->AddPage();
                     $y = 0;
                 }
 
-                while($c < $inf['produto_qtd'][$k]) {
-                    if($y >= 266) {
+                while ($c < $inf['produto_qtd'][$k]) {
+                    if ($y >= 266) {
                         $pdf->AddPage();
                         $y = 0;
                     }
@@ -171,7 +169,7 @@
                 }
             }
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -180,7 +178,7 @@
             $pdf->SetFont("Arial", "", 12);
             $pdf->Cell(190, 10, str_repeat("----", 15), 0, 1, "C");
             
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -190,7 +188,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, "Agendamento:  {$inf['end']['horario']}", 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -201,7 +199,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -212,7 +210,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -223,7 +221,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -234,7 +232,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -245,7 +243,7 @@
             $pdf->SetFont("Arial", "", 9);
             $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -254,8 +252,8 @@
             $pdf->SetFont("Arial", "", 12);
             $pdf->Cell(190, 10, str_repeat("----", 15), 0, 1, "C");
 
-            if(isset($inf['funcionario_nome'])) {
-                if($y >= 266) {
+            if (isset($inf['funcionario_nome'])) {
+                if ($y >= 266) {
                     $pdf->AddPage();
                     $y = 0;
                 }
@@ -265,8 +263,8 @@
                 $pdf->SetFont("Arial", "B", 9);
                 $pdf->Cell(90, 10, "REMETENTE", 0, 1, "L");
 
-                foreach($inf['funcionario_nome'] as $k => $v) {
-                    if($y >= 266) {
+                foreach ($inf['funcionario_nome'] as $k => $v) {
+                    if ($y >= 266) {
                         $pdf->AddPage();
                         $y = 0;
                     }
@@ -277,7 +275,7 @@
                     $pdf->SetFont("Arial", "", 9);
                     $pdf->Cell(90, 10, $str, 0, 1, "L");
 
-                    if($y >= 266) {
+                    if ($y >= 266) {
                         $pdf->AddPage();
                         $y = 0;
                     }
@@ -289,7 +287,7 @@
                     $pdf->Cell(90, 10, $str, 0, 1, "L");
                 }
 
-                if($y >= 266) {
+                if ($y >= 266) {
                     $pdf->AddPage();
                     $y = 0;
                 }
@@ -299,7 +297,7 @@
                 $pdf->Cell(190, 10, str_repeat("----", 15), 0, 1, "C");
             }
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -309,7 +307,7 @@
             $pdf->SetFont("Courier", "", 9);
             $pdf->Cell(78, 10, "Para maior garantia guarde este recibo.", 0, 1, "C");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
@@ -319,12 +317,12 @@
             $pdf->SetFont("Courier", "", 9);
             $pdf->Cell(78, 10, "Muito obrigado e volte sempre!", 0, 1, "C");
 
-            if($y >= 266) {
+            if ($y >= 266) {
                 $pdf->AddPage();
                 $y = 0;
             }
             $y -= 4;
-            $pdf->Image('__system__/img/Banner_TCC/Logo_fundo degrade.png', 78, $y, 50);
+            $pdf->Image('__system__/style/img/banner/Logo_fundoDegrade.png', 78, $y, 50);
             
             $pdf->Output($arquivo, $tipo_pdf);
         } else {
@@ -333,4 +331,3 @@
     } else {
         require '__system__/404.php';
     }
-?>

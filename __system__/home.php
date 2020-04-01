@@ -1,88 +1,46 @@
 <?php
-    if(isset($_SESSION['query_tam'])) {
-        unset($_SESSION['query_tam']);
+    use Model\{Product, Department};
+
+    $sql = new Sql();
+
+    if (isset($_SESSION[Department::SESSION]['tamQuery'])) {
+        unset($_SESSION[Department::SESSION]['tamQuery']);
     }
-    if(isset($_SESSION['query_marca'])) {
-        unset($_SESSION['query_marca']);
+    if (isset($_SESSION[Department::SESSION]['marcaQuery'])) {
+        unset($_SESSION[Department::SESSION]['marcaQuery']);
     }
-    if(isset($_SESSION['query_preco'])) {
-        unset($_SESSION['query_preco']);
+    if (isset($_SESSION[Department::SESSION]['precoQuery'])) {
+        unset($_SESSION[Department::SESSION]['precoQuery']);
     }
-    if(isset($_SESSION['query_fav'])) {
-        unset($_SESSION['query_preco']);
+    if (isset($_SESSION[Department::SESSION]['favQuery'])) {
+        unset($_SESSION[Department::SESSION]['precoQuery']);
     }
-    //BUSCANDO PRODUTOS COM PROMOÇÕES CUMUNS
-    $empty = TRUE;
-    $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id WHERE d.produto_desconto_porcent <> '' AND d.armazem_id={$_SESSION['arm_id']}");
-    $sel->execute();
-    if($sel->rowCount() > 0) {
-        $empty = FALSE;
-        while($row = $sel->fetch( PDO::FETCH_ASSOC )) {
-            if($row['produto_qtd'] > 0) {
-                $row['empty'] = FALSE;
-            } else {
-                $row['empty'] = TRUE;
-            }
-            $row["produto_desconto"] = $row["produto_preco"]*($row["produto_desconto_porcent"]/100);
-            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
-            $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
-            
-            $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
-            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
-            if(isset($_SESSION['carrinho'][$row['produto_id']])) {
-                $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
-            } else {
-                $row["carrinho"] = 0;
-            }
-            $produtos[] = $row;
-        }
-    }
-    //BUSCANDO PROMOCÕES PERSONALIZADAS
-    $empty_promo = TRUE;
-    $sel_promo = $conn->prepare("SELECT p.produto_id, p.produto_nome, p.produto_img, p.produto_tamanho, pr.promo_id, pr.promo_desconto, pr.promo_nome, pr.promo_subtit, pr.promo_expira, d.produto_qtd, d.produto_preco FROM produto AS p JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id JOIN promocao_temp AS pr ON pr.promo_id=dp.promo_id JOIN dados_armazem AS d ON dp.produto_id=d.produto_id WHERE pr.promo_status=1 AND d.armazem_id={$_SESSION['arm_id']} ORDER BY pr.promo_id");
-    $sel_promo->execute();
-    if($sel_promo->rowCount() > 0) {
-        $empty_promo = FALSE;
+
+    // PRODUTOS COM PROMOÇÕES COMUNS
+    $listSimplePromotionalProducts = Product::listSimplePromotionalProducts();
+    
+    // PRODUTOS COM PROMOCÕES PERSONALIZADAS
+    $listCustomPromotionalProducts = Product::listCustomPromotionalProducts();
+    if (count($listCustomPromotionalProducts) > 0) {
         $promo_id = "";
         $c = 0;
-        while($row = $sel_promo->fetch( PDO::FETCH_ASSOC )) {
-            if($row['produto_qtd'] > 0) {
-                $row['empty'] = FALSE;
-            } else {
-                $row['empty'] = TRUE;
-            }
-            $row["produto_desconto"] = $row["produto_preco"]*($row["promo_desconto"]/100);
-            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, '.', '');
-            $row["produto_desconto"] = $row["produto_preco"]-$row["produto_desconto"];
-            
-            $row["produto_preco"] = number_format($row["produto_preco"], 2, ',', '.');
-            $row["produto_desconto"] = number_format($row["produto_desconto"], 2, ',', '.');
-            if(isset($_SESSION['carrinho'][$row['produto_id']])) {
-                $row["carrinho"] = $_SESSION['carrinho'][$row['produto_id']];
-            } else {
-                $row["carrinho"] = 0;
-            }
-            if($row['promo_expira'] != '') {
-                $exp = explode(" ", $row['promo_expira']);
-                $dia = explode("-", $exp[0]);
-                $hora = explode(":", $exp[1]);
-
-                $row['promo_expira'] = $dia[2] . "/" . $dia[1] . "/" . $dia[0] . " às " . $hora[0] . "h" . $hora[1];
-            }
-            if($promo_id != $row['promo_id']) {
-                $produtos_topo[$c] = '
+        foreach ($listCustomPromotionalProducts as $row) {
+            if ($promo_id != $row['promo_id']) {
+                $products_top[$c] = '
                     <div class="l-prods">
                         <div class="loop owl-carousel">
                 ';
                 $promo_id = $row['promo_id'];
             } else {
-                $produtos_topo[$c] = '';
+                $products_top[$c] = '';
             }
             $produtos_promo[$c] = '
                 <div class="divProdCarousel">
-                    <div class="btnFavorito' . $row['produto_id'] . '"></div>
+                    <div class="btnFavorito' . $row['produto_id'] . '">
+                        <i class="far fa-heart addFavorito" id="' .  $row['produto_id'] . '"></i>
+                    </div>
                     <a class="linksProdCarousel" id-produto="' .  $row['produto_id'] . '">
-                        <img class="divProdImg" src="' .  base_url_adm() . "imagens_produtos/" . $row['produto_img'] . '">
+                        <img class="divProdImg" src="' .  Project::baseUrlAdm() . "img-produtos/" . $row['produto_img'] . '">
                         <div class="divisorFilterCar"></div>
                         <p class="divProdPromo">-' .  $row['promo_desconto'] . '%</p>
                         <h4 class="divProdTitle">
@@ -93,7 +51,7 @@
                         </p>
                     </a>
             ';
-            if($row['empty']) {
+            if ($row['empty']) {
                 $produtos_promo[$c] .= '
                     <div>
                         <div class="quantity">
@@ -123,6 +81,8 @@
             $c++;
         }
     }
+
+    $banners = $sql->select("SELECT * FROM banner WHERE banner_status = 1");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -131,12 +91,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>e.conomize | Início</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>/style/css/main.css"/>
-    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css"/>
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"/>
+    <link rel="icon" href="<?= Project::baseUrl(); ?>style/img/e-dark-icon.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= Project::baseUrl(); ?>/style/css/minified-main.css"/>
+    <link href="<?= Project::baseUrl(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css"/>
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="<?= Project::baseUrl(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"/>
 </head>
 <body>
     <div class="l-wrapper">
@@ -157,42 +117,43 @@
         ?>
         </div>
 
-        <!-- -------------------- -->
-        <!-- Carousel -->
-        <div class="l-carousel">
-            <div id="owl-demo" class="owl-carousel">
-                <?php
-                    $sel = $conn->prepare("SELECT * FROM banner WHERE banner_status = 1");
-                    $sel->execute();
-                    if($sel->rowCount() > 0):
-                        while($row = $sel->fetch( PDO::FETCH_ASSOC )):?>
+        <?php
+            if (count($banners) > 0):?>
+                <!-- -------------------- -->
+                <!-- Carousel -->
+                <div class="l-carousel">
+                    <div id="owl-demo" class="owl-carousel">
+                        <?php
+                        foreach ($banners as $row):?>
                             <div class="item">
-                                <img src="<?= base_url(); ?>img\Banner_TCC\<?= $row['banner_path']; ?>" alt="<?= $row['banner_nome']; ?>" title="<?= $row['banner_nome']; ?>"/>
+                                <img src="<?= Project::baseUrl(); ?>style/img/banner/<?= $row['banner_path']; ?>" alt="<?= $row['banner_nome']; ?>" title="<?= $row['banner_nome']; ?>"/>
                             </div>
                             <?php
-                        endwhile;
-                    else:
-                        echo  "<span>Sem Banners</span>";
-                    endif;
-                ?>
-            </div>
-        </div>
+                        endforeach;
+                        ?>
+                    </div>
+                </div>
+                <?php
+            endif;
+        ?>
         
         <!-- Title/Display Products -->
         <div class="l-main">
             <center>
-                <img class="bannerOfertasImperdivies" width="100%" src="<?= base_url(); ?>img\Banner_TCC/bannerofreta.png" alt="Banner Ofertas Imperdíveis">
+                <img class="bannerOfertasImperdivies" width="100%" src="<?= Project::baseUrl(); ?>style/img/banner/bannerofreta.png" alt="Banner Ofertas Imperdíveis">
             </center>
             <div class="l-prods">
                 <?php
-                    if(!$empty):?>
+                    if (count($listSimplePromotionalProducts) > 0):?>
                         <div class="loop owl-carousel">
                             <?php
-                            foreach($produtos as $v):?>
+                            foreach ($listSimplePromotionalProducts as $v):?>
                                 <div class="divProdCarousel">
-                                    <div class="btnFavorito<?= $v['produto_id']; ?>"></div>
+                                    <div class="btnFavorito<?= $v['produto_id']; ?>">
+                                        <i class="far fa-heart addFavorito" id="<?= $v['produto_id']; ?>"></i>
+                                    </div>
                                     <a class="linksProdCarousel" id-produto="<?= $v['produto_id']; ?>">
-                                        <img class="divProdImg" src="<?= base_url_adm() . "imagens_produtos/" . $v['produto_img']; ?>">
+                                        <img class="divProdImg" src="<?= Project::baseUrlAdm() . "img-produtos/" . $v['produto_img']; ?>">
                                         <div class='divisorFilterCar'></div>
                                         <p class="divProdPromo">-<?= $v['produto_desconto_porcent']; ?>%</p>
                                         <h4 class="divProdTitle">
@@ -203,7 +164,7 @@
                                         </p>
                                     </a>
                                     <?php 
-                                        if($v['empty']):?>
+                                        if ($v['empty']):?>
                                             <div>
                                                 <div class="quantity">
                                                     <span class="esgotQtd">ESGOTADO</span>
@@ -238,17 +199,17 @@
                 ?>
             </div> 
                 <center>
-                    <img class="bannerDiaDosPais" width="100%"  src="<?= base_url(); ?>img\Banner_TCC\bannerDiaDosPaisRoxo.png" alt="Banner Dia dos Pais">
+                    <img class="bannerDiaDosPais" width="100%"  src="<?= Project::baseUrl(); ?>style/img/banner/bannerDiaDosPaisRoxo.png" alt="Banner Dia dos Pais">
                 </center>
                 <?php
-                if(!$empty_promo):
-                    foreach($produtos_promo as $k => $v):
-                        echo $produtos_topo[$k];
+                if (count($listCustomPromotionalProducts) > 0):
+                    foreach ($produtos_promo as $k => $v):
+                        echo $products_top[$k];
                         echo $v;
 
                         $c = $k + 1;
-                        if(isset($produtos_topo[$c])) {
-                            if($produtos_topo[$c] != '') {
+                        if (isset($products_top[$c])) {
+                            if ($products_top[$c] != '') {
                                 echo '
                                         </div>
                                     </div>
@@ -280,19 +241,18 @@
         ?>
         </div>
     </div>
-    <script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
-    <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/favoritar.js"></script>
-    <script src="<?= base_url(); ?>js/btnFavorito.js"></script>
-    <script src="<?= base_url(); ?>js/attCarrinho.js"></script>
-    <script src="<?= base_url(); ?>js/listArmazem.js"></script>
-    <script src="<?= base_url(); ?>js/main.js"></script>
-    <script src="<?= base_url(); ?>js/login.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="<?= Project::baseUrl(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/util.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/verificaLogin.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/favoritos.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/attCarrinho.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/listArmazem.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/main.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/login.js"></script>
     <?php
-        if(isset($_SESSION['msg'])):?>
+        if (isset($_SESSION['msg'])):?>
             <script>
                 Swal.fire({
                     title: "e.conomize informa:",

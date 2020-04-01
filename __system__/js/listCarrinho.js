@@ -18,27 +18,27 @@ function listCarrinho() {
                         <th></th>
                     </tr>
                 `);
-                for(var i = 0; json['prods'].length > i; i++) {
-                    if(json['prods'][i].produto_desconto_porcent || json['prods'][i].promo_desconto) {
+                for(var i = 0; json['produtosCart'].length > i; i++) {
+                    if(json['produtosCart'][i].produto_desconto_porcent || json['produtosCart'][i].promo_desconto) {
                         $('.divShowProdFav').append(`
                         <tr class="trCart">
                             <td class="tdCart" width="40%">
-                                <img class="imgCart" src="` + BASE_URL3 + json['prods'][i].produto_img + `"/>
-                                <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
-                                <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
+                                <img class="imgCart" src="` + BASE_URL3 + json['produtosCart'][i].produto_img + `"/>
+                                <h5 class="titleProdCart">` + json['produtosCart'][i].produto_nome + ` - ` + json['produtosCart'][i].produto_tamanho + `</h5>
+                                <h5 class="brandProdCart">` + json['produtosCart'][i].marca_nome + `</h5>
                             </td>
                             <td class="tdCart" width="15%">
-                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
+                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['produtosCart'][i].produto_id + `" value='` + json['produtosCart'][i].carrinho + `'>
                             </td>
                             <td class="tdCart" width="15%">
-                                <h3 class="descProdCart">R$` + json['prods'][i].produto_preco + `</h3>
-                                <h3 class="priceProdCart">R$` + json['prods'][i].produto_desconto + `</h3>
+                                <h3 class="descProdCart">R$` + json['produtosCart'][i].produto_preco + `</h3>
+                                <h3 class="priceProdCart">R$` + json['produtosCart'][i].produto_desconto + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                                <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
+                                <h3 class="priceProdCart subtot` + json['produtosCart'][i].produto_id + `">R$` + json['produtosCart'][i].subtotal + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                                <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                                <button class="tirarProd btnProdCart" id-prod="` + json['produtosCart'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
                             </td>
                         </tr>
                         `);
@@ -46,22 +46,22 @@ function listCarrinho() {
                         $('.divShowProdFav').append(`
                         <tr class="trCart">
                             <td class="tdCart" width="40%">
-                                <img class="imgCart" src="` + BASE_URL3 + json['prods'][i].produto_img + `"/>
-                                <h5 class="titleProdCart">` + json['prods'][i].produto_nome + ` - ` + json['prods'][i].produto_tamanho + `</h5>
-                                <h5 class="brandProdCart">` + json['prods'][i].marca_nome + `</h5>
+                                <img class="imgCart" src="` + BASE_URL3 + json['produtosCart'][i].produto_img + `"/>
+                                <h5 class="titleProdCart">` + json['produtosCart'][i].produto_nome + ` - ` + json['produtosCart'][i].produto_tamanho + `</h5>
+                                <h5 class="brandProdCart">` + json['produtosCart'][i].marca_nome + `</h5>
                             </td>
                             <td class="tdCart" width="20%">
-                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['prods'][i].produto_id + `" value='` + json['prods'][i].carrinho + `'>
+                                <input type='number' min='0' max='20' class="qtdProdCart" id-prod="` + json['produtosCart'][i].produto_id + `" value='` + json['produtosCart'][i].carrinho + `'>
                             </td>
                             <td class="tdCart" width="20%">
                                 <h3 class="descProdCart">-</h3>
-                                <h3 class="priceProdCart">R$` + json['prods'][i].produto_preco + `</h3>
+                                <h3 class="priceProdCart">R$` + json['produtosCart'][i].produto_preco + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                                <h3 class="priceProdCart subtot` + json['prods'][i].produto_id + `">R$` + json['prods'][i].subtotal + `</h3>
+                                <h3 class="priceProdCart subtot` + json['produtosCart'][i].produto_id + `">R$` + json['produtosCart'][i].subtotal + `</h3>
                             </td>
                             <td class="tdCart" width="20%">
-                                <button class="tirarProd btnProdCart" id-prod="` + json['prods'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
+                                <button class="tirarProd btnProdCart" id-prod="` + json['produtosCart'][i].produto_id + `"><i class="far fa-times-circle"></i></button>
                             </td>
                         </tr>
                         `);
@@ -127,7 +127,12 @@ function listCarrinho() {
                 botaoAddCupom();
                 attCarrinho();
             } else {
-                $('.divShowProdFav').html("Sem produtos no carrinho!");
+                $('.divShowProdFav').html(
+                    `<center><img src="${BASE_URL2}style/img/banner/cart.png" class="imgEmptyCart" alt="Carrinho está vazio!" title="Seu carrinho está vazio!"></center>`
+                );
+                $('.divTable').html(
+                    `<center><img src="${BASE_URL2}style/img/banner/cart.png" class="imgEmptyCart" alt="Carrinho está vazio!" title="Seu carrinho está vazio!"></center>`
+                );
                 $('.divShowTot').removeClass("divShowTot");
                 $('.divShowOpt').removeClass("divShowOpt");
                 $('.divShowOptBtn').removeClass("divShowOptBtn");
@@ -142,8 +147,8 @@ function listParcialCarrinho() {
         url: BASE_URL + 'functions/listCarrinho',
         dataType: 'json',
         success: function(json) {
-            for(var i = 0; json['prods'].length > i; i++) {
-                $('.subtot' + json['prods'][i].produto_id).html(`R$` + json['prods'][i].subtotal);
+            for(var i = 0; json['produtosCart'].length > i; i++) {
+                $('.subtot' + json['produtosCart'][i].produto_id).html(`R$` + json['produtosCart'][i].subtotal);
             }
             $('.valueDesc').html(`- R$` + json['totDesconto']);
             $('.valueBuy').html(`R$` + json['totCompra']);

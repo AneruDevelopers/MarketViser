@@ -1,4 +1,3 @@
-<?php require_once '__system__/functions/connection/conn.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>e.conomize - Página não encontrada</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="<?= base_url(); ?>img/e_icon.png"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url(); ?>style/css/main.css"/>
-    <link href="<?= base_url(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css"/>
-    <link rel="stylesheet" href="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"/>
+    <link rel="icon" href="<?= Project::baseUrl(); ?>style/img/e-dark-icon.png"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?= Project::baseUrl(); ?>style/css/minified-main.css"/>
+    <link href="<?= Project::baseUrl(); ?>style/libraries/fontawesome-free-5.8.0-web/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css"/>
+    <link rel="stylesheet" href="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="<?= Project::baseUrl(); ?>style/fonts/Icons/icons_pack/font/flaticon.css"/>
 </head>
 <body>
     <div class="l-wrapper">
@@ -32,8 +31,21 @@
             include('functions/includes/bottom.php');
         ?>
         </div>
-        
-        <h2>Página não encontrada</h2>
+
+        <div class="l-main">
+            <div class="Errordiv">
+                <h3 class="ErrorTitle">
+                    Erro 404<br/>
+                    Página não encontrada!
+                </h3>
+                <p class="Errop">
+                    A página solicitada em sua URL é inexistente ou foi deletada.<br/>
+                    Caso tenha encontrado alguma instabilidade no sistema, por favor, contate o <a href="<?= Project::baseUrlPhp(); ?>suporte/atendimento">atendimento online</a> o mais rápido possível.
+                    <br/><br/>
+                    <a href="<?= Project::baseUrlPhp(); ?>">Clique aqui</a> para voltar à página principal.
+                </p>
+            </div>
+        </div>
 
         <?php
             include('functions/includes/modal.php');
@@ -51,13 +63,14 @@
         </div>
     </div>
 
-	<script src="<?= base_url(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
-	<script src="<?= base_url(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
-    <script src="<?= base_url(); ?>style/libraries/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url(); ?>js/util.js"></script>
-    <script src="<?= base_url(); ?>js/verificaLogin.js"></script>
-    <script src="<?= base_url(); ?>js/listArmazem.js"></script>
-    <script src="<?= base_url(); ?>js/main.js"></script>
-    <script src="<?= base_url(); ?>js/login.js"></script>
+	<script src="<?= Project::baseUrl(); ?>js/JQuery/jquery-3.3.1.min.js"></script>
+	<script src="<?= Project::baseUrl(); ?>style/libraries/OwlCarousel2-2.3.4/dist/owl.carousel.js"></script>
+    <script src="<?= Project::baseUrl(); ?>style/libraries/sweetalert2.all.min.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/util.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/verificaLogin.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/listArmazem.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/favoritos.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/main.js"></script>
+    <script src="<?= Project::baseUrl(); ?>js/login.js"></script>
 </body>
 </html>

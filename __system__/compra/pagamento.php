@@ -1,98 +1,65 @@
 <?php 
-    require_once "__system__/functions/pagseguro-transparente/configuration.php";
+    use Model\{Cart, User};
+    $cart = Cart::getCart();
 
-    $_SESSION['totCompra'] = 0;
-    $totDesconto = 0;
+    $sql = new Sql();
 
-    function getProductsByIds($ids) {
-        global $conn;
-        $sel = $conn->prepare("SELECT p.produto_id, p.produto_nome, d.produto_qtd, p.produto_img, p.produto_tamanho, d.produto_preco, d.produto_desconto_porcent, m.marca_nome, pr.promo_desconto FROM produto AS p JOIN dados_armazem AS d ON p.produto_id=d.produto_id JOIN marca_prod AS m ON p.produto_marca=m.marca_id LEFT JOIN dados_promocao AS dp ON p.produto_id=dp.produto_id LEFT JOIN promocao_temp AS pr ON dp.promo_id=pr.promo_id WHERE d.armazem_id={$_SESSION['arm_id']} AND p.produto_id IN (".$ids.")");
-        $sel->execute();
-        if($sel->rowCount() > 0) {
-            while($v = $sel->fetch( PDO::FETCH_ASSOC )) {
-                $dados[] = $v;
-            }
+    require_once "__system__/functions/pagseguro/configuration.php";
+
+    $_SESSION['pagamento'] = true;
+
+    $inf_compra['status'] = 1;
+    $inf_compra['error'] = null;
+
+    if (User::checkLogin()) {
+        //BUSCANDO OS TELEFONES DO CLIENTE
+        $tel = $sql->select("SELECT tel_num FROM telefone WHERE usu_id = :id LIMIT 1", [
+            ":id" => $_SESSION[User::SESSION]['usu_id']
+        ]);
+        $v = $tel[0];
+        $v['ddd'] = substr($v['tel_num'], 1, 2);
+        $v['num'] = substr($v['tel_num'], -10);
+        $pos = strpos($v['num']," ");
+        if ($pos) {
+            $v['num'] = str_replace(" ", "", $v['num']);
         }
-        return $dados;
-    }
+        $v['num'] = str_replace("-", "", $v['num']);
 
-    function getContentCart() {
-        global $conn;
-        $results = array();
-        
-        if(isset($_SESSION['carrinho'])) {
-            $cart = $_SESSION['carrinho'];
-            $products =  getProductsByIds(implode(',', array_keys($cart)));
+        $inf_compra['client'] = $_SESSION[User::SESSION];
+        $inf_compra['client']['tel_ddd'] = $v['ddd'];
+        $inf_compra['client']['tel_num'] = $v['num'];
 
-            foreach($products as $k => $product) {
-                if($product['produto_desconto_porcent'] != "") {
-                    $product["produto_desconto"] = $product["produto_preco"]*($product["produto_desconto_porcent"]/100);
-                    $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
-                    $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
-                    $results[$k] = $product;
-                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
-                } elseif($product['promo_desconto']) {
-                    $product["produto_desconto"] = $product["produto_preco"]*($product["promo_desconto"]/100);
-                    $product["produto_desconto"] = number_format($product["produto_desconto"], 2, '.', '');
-                    $product["produto_desconto"] = $product["produto_preco"]-$product["produto_desconto"];
-                    $results[$k] = $product;
-                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_desconto'];
+        if (!isset($_SESSION[Cart::SESSION])) {
+            $inf_compra['status'] = 0;
+            $inf_compra['error'] = "<small>Voçê precisa ter produto(s) no carrinho para efetuar o pagamento!</small>";
+        } else {
+            if (!isset($_SESSION['end_agend'])) {
+                $inf_compra['status'] = 0;
+                $inf_compra['error'] = "<small>Voçê precisa informar o endereço de entrega para efetuar o pagamento!</small>";
+            } else {
+                $inf_compra['end_entrega'] = $_SESSION['end_agend'];
+                if (!isset($_SESSION['agend_horario'])) {
+                    $inf_compra['status'] = 0;
+                    $inf_compra['error'] = "<small>Voçê precisa agendar a entrega para efetuar o pagamento!</small>";
                 } else {
-                    $results[$k] = $product;
-                    $results[$k]['subtotal'] = $cart[$product['produto_id']] * $product['produto_preco'];
-                }
-            }
-        }
+                    $exp = explode(" ", $_SESSION['agend_horario']);
+                    $day = explode("-", $exp[0]);
+                    $hour = explode(":", $exp[1]);
         
-        return $results;
-    }
+                    $inf_compra['agend_horario'] = "Para " . $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $hour[0] . "h" . $hour[1];
 
-    if(isset($_SESSION['carrinho'])) {
-        if(!empty($_SESSION['carrinho'])) {
-            $empty = FALSE;
-            if(!isset($_SESSION['inf_usu']['usu_id'])) {
-                $logado = FALSE;
-            }
-            $resultsCarts = getContentCart();
-            
-            foreach($resultsCarts as $k => $v) {
-                if($v['produto_desconto_porcent'] <> "") {
-                    $v["produto_desconto"] = $v["produto_preco"]*($v["produto_desconto_porcent"]/100);
-                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                    $totDesconto += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
-                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
-                } elseif($v['promo_desconto']) {
-                    $v["produto_desconto"] = $v["produto_preco"]*($v["promo_desconto"]/100);
-                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, '.', '');
-                    $totDesconto += ($v["produto_desconto"] * $_SESSION['carrinho'][$v['produto_id']]);
-                    $v["produto_desconto"] = $v["produto_preco"]-$v["produto_desconto"];
-                    $v["produto_desconto"] = number_format($v["produto_desconto"], 2, ',', '.');
+                    if (isset($_SESSION['cupom_compra'])) {
+                        $totCupom = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
+                        $totCupom = Project::formatPriceToDolar($totCupom);
+                    }
+
+                    $totCompra = Project::formatPriceToDolar($_SESSION['totCompra']);
                 }
-                
-                $_SESSION['totCompra'] += $v['subtotal'];
-                $_SESSION['subtotal'][$k] = $v['subtotal'];
-                $v['subtotal'] = number_format($v['subtotal'], 2, ',', '.');
-                $v["produto_preco"] = number_format($v["produto_preco"], 2, ',', '.');
-                $v['carrinho'] = $_SESSION['carrinho'][$v['produto_id']];
-
-                $produtosCart[] = $v;
-            }
-            
-            if(isset($_SESSION['cupom_compra'])) {
-                $_SESSION['totCompraCupom'] = $_SESSION['totCompra'];
-                $totCupomPorc = $_SESSION['totCompra']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-                $totCupomPorc = number_format($totCupomPorc,2,'.','');
-                $_SESSION['totCompra'] -= $totCupomPorc;
-            }
-
-            if(isset($_SESSION['subcid_frete'])) {
-                if($_SESSION['subcid_frete'] > 0) {
-                    $_SESSION['totCompra'] += $_SESSION['subcid_frete'];
-                }
-                $frete = number_format($_SESSION['subcid_frete'], 2, ',', '.');
             }
         }
+    } else {
+        $inf_compra['status'] = 0;
+        $inf_compra['error'] = "<small>Voçê precisa estar logado para efetuar o pagamento!</small>";
     }
 ?>
 
@@ -135,10 +102,10 @@
 </ul>
 
 <?php
-    if(isset($_SESSION['subcid_frete'])) {
-        $frete = number_format($_SESSION['subcid_frete'], 2, ',', '.');
+    if (isset($_SESSION['subcid_frete'])) {
+        $frete = Project::formatPriceToDolar($_SESSION['subcid_frete']);
     }
-    $totCompra = number_format($_SESSION['totCompra'], 2, ',', '.');
+    $totCompra = Project::formatPriceToDolar($_SESSION['totCompra']);
 ?>
 
 <!-- <div class="divShowTotPag">
@@ -153,72 +120,16 @@
 </div> -->
 
 <div>
-    <h2 class="defaultTitle"><i class="far fa-credit-card"></i> PAGAMENTO</h2>
+    <h2 align="center" class="tituloOfertas"><i class="far fa-credit-card"></i> PAGAMENTO</h2>
 </div>
 <div class="divAgend">
 <?php 
-    $_SESSION['pagamento'] = TRUE;
-
-    $inf_compra['status'] = 1;
-    $inf_compra['error'] = NULL;
-
-    if(isset($_SESSION['inf_usu']['usu_id'])) {
-        //BUSCANDO OS TELEFONES DO CLIENTE
-        $tel = $conn->prepare("SELECT tel_num FROM telefone WHERE usu_id=:id LIMIT 1");
-        $tel->bindValue(":id", "{$_SESSION['inf_usu']['usu_id']}");
-        $tel->execute();
-        $v = $tel->fetch( PDO::FETCH_ASSOC );
-        $v['ddd'] = substr($v['tel_num'],1,2);
-        $v['num'] = substr($v['tel_num'],-10);
-        $pos = strpos($v['num']," ");
-        if($pos) {
-            $v['num'] = str_replace(" ", "", $v['num']);
-        }
-        $v['num'] = str_replace("-", "", $v['num']);
-
-        $inf_compra['client'] = $_SESSION['inf_usu'];
-        $inf_compra['client']['tel_ddd'] = $v['ddd'];
-        $inf_compra['client']['tel_num'] = $v['num'];
-
-        if(!isset($_SESSION['carrinho'])) {
-            $inf_compra['status'] = 0;
-            $inf_compra['error'] = "<small>Voçê precisa ter produto(s) no carrinho para efetuar o pagamento!</small>";
-        } else {
-            if(!isset($_SESSION['end_agend'])) {
-                $inf_compra['status'] = 0;
-                $inf_compra['error'] = "<small>Voçê precisa informar o endereço de entrega para efetuar o pagamento!</small>";
-            } else {
-                $inf_compra['end_entrega'] = $_SESSION['end_agend'];
-                if(!isset($_SESSION['agend_horario'])) {
-                    $inf_compra['status'] = 0;
-                    $inf_compra['error'] = "<small>Voçê precisa agendar a entrega para efetuar o pagamento!</small>";
-                } else {
-                    $exp = explode(" ", $_SESSION['agend_horario']);
-                    $day = explode("-", $exp[0]);
-                    $hour = explode(":", $exp[1]);
-        
-                    $inf_compra['agend_horario'] = "Para " . $day[2] . "/" . $day[1] . "/" . $day[0] . " às " . $hour[0] . "h" . $hour[1];
-
-                    if(isset($_SESSION['cupom_compra'])) {
-                        $totCupom = $_SESSION['totCompraCupom']*($_SESSION['cupom_compra']['cupom_desconto_porcent']/100);
-                        $totCupom = number_format($totCupom,2,'.','');
-                    }
-
-                    $totCompra = number_format($_SESSION['totCompra'], 2, ".", "");
-                }
-            }
-        }
-    } else {
-        $inf_compra['status'] = 0;
-        $inf_compra['error'] = "<small>Voçê precisa estar logado para efetuar o pagamento!</small>";
-    }
-    
-    if($inf_compra['status']):?>
+    if ($inf_compra['status']):?>
         <form id="formBuyPagSeguro">
             <div class="pagseguroLogo">
                 <?php
-                    if($sandbox):?>
-                        <img class="imgPagseguroLogo" src="<?= base_url() ?>img/pagseguro/218x35-t.png"/>
+                    if ($sandbox):?>
+                        <img class="imgPagseguroLogo" src="<?= Project::baseUrl(); ?>style/img/pagseguro/218x35-t.png"/>
                         <?php
                     endif;
                 ?>
@@ -259,7 +170,7 @@
 
             <!-- Dados do comprador -->
             <div class="infComp">
-                <input type="hidden" name="inputSenderName" id="inputSenderName" value="<?= $inf_compra['client']['usu_nome'] . " " . $inf_compra['client']['usu_sobrenome']; ?>"/>
+                <input type="hidden" name="inputSenderName" id="inputSenderName" value="<?= $inf_compra['client']['usu_first_name'] . " " . $inf_compra['client']['usu_last_name']; ?>"/>
                 <input type="hidden" name="inputSenderCPF" id="inputSenderCPF" value="<?= $inf_compra['client']['usu_cpf']; ?>"/>
                 <input type="hidden" name="inputSenderDDD" id="inputSenderDDD" value="<?= $inf_compra['client']['tel_ddd']; ?>"/>
                 <input type="hidden" name="inputSenderNum" id="inputSenderNum" value="<?= $inf_compra['client']['tel_num']; ?>"/>
@@ -402,6 +313,7 @@
                                 <input type="text" placeholder=" " class="placeholder-shown cep" name="billingAddressOtherPostalCode" id="billingAddressOtherPostalCode"/>
                                 <label class="labelFieldCad" for="billingAddressOtherPostalCode">CEP</label>
                             </div>
+                            <span class="answer-cep"></span>
                         </div>
                         
                         <div class="outsideSecInputCad">
@@ -466,7 +378,7 @@
 </div>
 
         <script src="<?= SCRIPT_PAGSEGURO; ?>"></script>
-        <script src="<?= base_url(); ?>functions/pagseguro-transparente/js/pagseguro.js"></script>
+        <script src="<?= Project::baseUrl(); ?>functions/pagseguro/js/pagseguro.js"></script>
         <script>
             $('.is-complete').css({'cursor': 'pointer'});
             $('.compCart').click(function(e) {
@@ -484,21 +396,41 @@
                 
                 buscaAgendamento();
             });
-            
-            $("#billingAddressOtherPostalCode").focusout(function() {
+
+            $("#billingAddressOtherPostalCode").keyup(function(){
                 if($(this).val().length == 9) {
                     $.ajax({
-                        url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+                        url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
                         dataType: 'json',
+                        beforeSend: function() {
+                            $(".answer-cep").html(` &nbsp;&nbsp;&nbsp;` + loadingResSmall(`Buscando...`));
+                            $("#billingAddressOtherStreet").val(``);
+                            $("#billingAddressOtherComplement").val(``);
+                            $("#billingAddressOtherDistrict").val(``);
+                            $("#billingAddressOtherState").val(``);
+                            $("#billingAddressOtherCity").val(``);
+                        },
                         success: function(resposta) {
-                            $("#billingAddressOtherStreet").val(resposta.logradouro);
-                            $("#billingAddressOtherComplement").val(resposta.complemento);
-                            $("#billingAddressOtherDistrict").val(resposta.bairro);
-                            $("#billingAddressOtherState").val(resposta.uf);
-                            $("#billingAddressOtherCity").val(resposta.localidade);
-                            $("#billingAddressOtherNumber").focus();
+                            if(resposta.erro) {
+                                $(".answer-cep").html(` &nbsp;&nbsp;&nbsp;<small style="color:#A94442;" class="smallAnswer">Endereço inexistente</small>`);
+                            } else {
+                                $(".answer-cep").html(``);
+                                $("#billingAddressOtherStreet").val(resposta.logradouro);
+                                $("#billingAddressOtherComplement").val(resposta.complemento);
+                                $("#billingAddressOtherDistrict").val(resposta.bairro);
+                                $("#billingAddressOtherState").val(resposta.uf);
+                                $("#billingAddressOtherCity").val(resposta.localidade);
+                                $("#billingAddressOtherNumber").focus();
+                            }
                         }
                     });
+                } else {
+                    $(".answer-cep").html(``);
+                    $("#billingAddressOtherStreet").val(``);
+                    $("#billingAddressOtherComplement").val(``);
+                    $("#billingAddressOtherDistrict").val(``);
+                    $("#billingAddressOtherState").val(``);
+                    $("#billingAddressOtherCity").val(``);
                 }
             });
 

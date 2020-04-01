@@ -1,19 +1,22 @@
 <?php
-    $sel = $conn->prepare("SELECT depart_icon, depart_nome FROM departamento");
-    $sel->execute();
+    use Model\Department;
 
-    if($sel->rowCount() > 0):?>
+    if (!isset($listDepartment)) {
+        $listDepartment = Department::listAll();
+    }
+
+    if (count($listDepartment) > 0):?>
         <div class="menuCarouselMobile owl-mobile owl-carousel prodsMobile">
             <?php
-            while($row = $sel->fetch( PDO::FETCH_ASSOC )):?>
+            foreach ($listDepartment as $row):?>
                 <div class="celulaMenuCarouselMobile">
-                    <a class="linkBtnMenu" href="<?= base_url_php() . removeAcento($row['depart_nome']); ?>">
+                    <a class="linkBtnMenu" title="<?= ($row['depart_desc'] != "") ? $row['depart_desc'] : Project::formatFirstName($row['depart_nome']); ?>" href="<?= Project::baseUrlPhp() . $row['depart_url']; ?>">
                         <i class="<?= $row['depart_icon']; ?>"></i>
                         <h5 class="linkMenuCarouselMobile"><?= $row['depart_nome']; ?></h5>
                     </a>
                 </div>
                 <?php
-            endwhile;?>
+            endforeach;?>
         </div>
         <?php
     else:?>

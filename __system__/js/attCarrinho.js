@@ -8,6 +8,7 @@ function attCampos(prod_id) {
         url: BASE_URL + 'functions/attCarrinho',
         success: function(json) {
             $(".inputBuy" + prod_id).val(json["carrinho_qtd"]);
+            // $(`input[name='id_prod'][value='${prod_id}']`).siblings(".inputBuy").val(json["carrinho_qtd"]);
         }
     });
     return false;
@@ -44,7 +45,7 @@ function attCarrinho() {
             showCancelButton: true,
             cancelButtonColor: "#494949",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#A94442",
+            confirmButtonColor: "#9C45EB",
             confirmButtonText: "Sim, excluir"
         }).then((result) => {
             if(result.value) {
@@ -75,7 +76,7 @@ function attCarrinho() {
             showCancelButton: true,
             cancelButtonColor: "#494949",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#A94442",
+            confirmButtonColor: "#9C45EB",
             confirmButtonText: "Sim, limpe"
         }).then((result) => {
             if(result.value) {
@@ -106,7 +107,7 @@ function attCarrinho() {
                 showCancelButton: true,
                 cancelButtonColor: "#494949",
                 cancelButtonText: "Cancelar",
-                confirmButtonColor: "#A94442",
+                confirmButtonColor: "#9C45EB",
                 confirmButtonText: "Sim, excluir"
             }).then((result) => {
                 if(result.value) {

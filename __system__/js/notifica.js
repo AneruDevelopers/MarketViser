@@ -17,9 +17,9 @@ function showPost() {
                     $('.divCompraRight').html(`
                         <span class="btnClosePurch"><i class="far fa-times-circle"></i></span>
 
-                        <img style="width: 50%;margin:0 25%;" src="` + BASE_URL2 + `img/postagem/` + json['postagem']['post_img'] + `"/>
+                        <img style="width: 50%;margin:0 25%;" src="` + BASE_URL2 + `style/img/postagem/` + json['postagem']['post_img'] + `"/>
 
-                        <p style="width:85%;margin:1rem 15%;">` + json['postagem']['post_registro'] + `</p>
+                        <p style="width:85%;margin:1rem 15%;">Postado em ` + json['postagem']['post_registro'] + `</p>
 
                         <h2 style="width:80%;margin:0 auto;text-align:center;">` + json['postagem']['post_title'] + `</h2>
 

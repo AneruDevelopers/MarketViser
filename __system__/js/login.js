@@ -47,16 +47,16 @@ $(document).ready(function() {
 					$(".help-block-login").html(loadingRes("Logando..."));
 					Swal.fire({
 			            title: "Bem vindo(a)!",
-			            text: "Olá novamente, "+response["nome_usuario"]+"!!",
+			            text: "Olá novamente, " + response["nome_usuario"] + "!",
 			            type: "success",
 			            showCancelButton: false,
-			            confirmButtonColor: "#5FBA7D",
+			            confirmButtonColor: "#9C45EB",
 			            confirmButtonText: "Ok"
 					});
 					verificaLogin();
 
 					var url = location.href;
-					if(url.indexOf("etapas_compra") != -1) {
+					if(url.indexOf("procedimento") != -1) {
 						listCarrinho();
 					} else {
 						btnFavorito();

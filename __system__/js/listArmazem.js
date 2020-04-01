@@ -10,7 +10,7 @@ $(document).ready(function() {
                 $('.Armazens').html(`
                     <h5 class="titleModalArm">
                         <i class="fas fa-info-circle"></i> SOBRE ESTE ARMAZÉM: 
-                        <a class='linkAboutArm' href="` + BASE_URL + `ajuda/horario_armazem">HORÁRIOS DE ENTREGA</a> | 
+                        <a class='linkAboutArm' href="` + BASE_URL + `ajuda/horario-armazem">HORÁRIOS DE ENTREGA</a> | 
                         <a class='linkAboutArm' href="` + BASE_URL + `ajuda/subcidades">SUBCIDADES</a>
                     </h5>
                     <h5 class="titleModalArm"><i class="fas fa-warehouse"></i> ESCOLHA OUTRO ARMAZÉM:</h5>

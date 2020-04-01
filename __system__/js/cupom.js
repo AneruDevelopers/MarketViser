@@ -19,7 +19,7 @@ function inputCupom() {
                         <span class="codeCupom">
                             <b>Código cupom:</b> ` + json['cupom']['cupom_codigo'] + `
                         </span>
-                        <button class="remCupom"><i class="far fa-times-circle"></i></button>
+                        <button class="remCupom" title="Remova o cupom"><i class="far fa-times-circle"></i></button>
                     `);
                     $(".divAnswer").html(`<p>Cupom de ` + json['cupom']['cupom_desconto_porcent'] + `% de desconto adicionado</p>`);
                     $('.valueBuy').html(`R$` + json['new_total_price']);
@@ -72,7 +72,7 @@ function verificaCupom() {
                     <span class="codeCupom">
                         <b>Código cupom:</b> ` + json['cupom']['cupom_codigo'] + `
                     </span>
-                    <button class="remCupom"><i class="far fa-times-circle"></i></button>
+                    <button class="remCupom" title="Remova o cupom"><i class="far fa-times-circle"></i></button>
                 `);
                 $(".divAnswer").html(`<p>Cupom de ` + json['cupom']['cupom_desconto_porcent'] + `% de desconto adicionado</p>`)
                 $('.valueBuy').html(`R$` + json['new_total_price']);
@@ -95,8 +95,8 @@ function verificaCupom() {
 function addCupom() {
     $('.divButtonCupom').html("");
     $('.divAddCupom').html(`
-        <input type="text" class="inputAddCupom" name="cupom_cod" placeholder="Código do cupom"/>
-        <button class="remCupom"><i class="far fa-times-circle"></i></button>
+        <input type="text" class="inputAddCupom" name="cupom_cod" title="Digite o código do cupom" placeholder=" "/>
+        <button class="remCupom" title="Remova o cupom"><i class="far fa-times-circle"></i></button>
     `);
     inputCupom();
     $('.remCupom').click(function(e) {
@@ -111,6 +111,3 @@ function botaoAddCupom() {
         addCupom();
     });
 }
-
-verificaCupom();
-botaoAddCupom();

@@ -1,126 +1,34 @@
 <?php
-    require_once 'connection/conn.php';
+    use Model\Cart;
 
-    if(isXmlHttpRequest()) {
-        $json['type'] = "success";
-        $json['answer'] = NULL;
+    if (Project::isXmlHttpRequest()) {
+        if (isset($_POST['id_prod'])) {
 
-        function limpaCompra() {
-            unset($_SESSION['carrinho']);
-            unset($_SESSION['totCompra']);
-            if(isset($_SESSION['totCompraCupom'])) {
-                unset($_SESSION['totCompraCupom']);
-            }
-            if(isset($_SESSION['end_agend'])) {
-                unset($_SESSION['end_agend']);
-            }
-            if(isset($_SESSION['agend_horario'])) {
-                unset($_SESSION['agend_horario']);
-            }
-            if(isset($_SESSION['subcid_id'])) {
-                unset($_SESSION['subcid_id']);
-            }
-        }
+            $json = Cart::addProduct($_POST['id_prod'], $_POST['qtd_prod']);
 
-        if(isset($_POST['id_prod'])) {
-            $id = $_POST['id_prod'];
-            $qtd_post = $_POST['qtd_prod'];
-            if($qtd_post > 0) {
-                $sel = $conn->prepare("SELECT produto_qtd FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
-                $sel->execute();
-                $row = $sel->fetch( PDO::FETCH_ASSOC );
-                $qtd_prod = $row['produto_qtd'];
-                
-                if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
-                    $_SESSION['carrinho'][$id] = $qtd_post;
-                    $json['answer'] = "Produto adicionado ao carrinho";
-                } elseif(($qtd_prod < 20) && ($qtd_post <= $qtd_prod)) {
-                    $_SESSION['carrinho'][$id] = $qtd_post;
-                    $json['answer'] = "Produto adicionado ao carrinho";
-                } elseif(($qtd_prod >= 20) && ($qtd_post >= 20)) {
-                    $json['type'] = "error";
-                    $json['answer'] = "No máximo 20 produtos";
-                } else {
-                    $json['type'] = "error";
-                    $json['answer'] = "No máximo $qtd_prod produtos";
-                }
-            } else {
-                if(isset($_SESSION['carrinho'][$id])) {
-                    unset($_SESSION['carrinho'][$id]);
-                    if(empty($_SESSION['carrinho'])) {
-                        limpaCompra();
-                    }
-                    $json['answer'] = "Produto removido do carrinho";
-                } else {
-                    $json['type'] = "error";
-                    $json['answer'] = "Produto não está no carrinho";
-                }
-            }
-        } elseif(isset($_POST['produto_id'])) {
-            if(isset($_SESSION['carrinho'][$_POST['produto_id']])) {
-                unset($_SESSION['carrinho'][$_POST['produto_id']]);
-                $json['answer'] = "Produto retirado do carrinho";
-            } else {
-                $json['type'] = "error";
-                $json['answer'] = "Produto não está mais no carrinho";
-            }
-            if(empty($_SESSION['carrinho'])) {
-                limpaCompra();
-            }
-        } elseif(isset($_POST['limpaCart'])) {
-            if(isset($_SESSION['carrinho'])) {
-                limpaCompra();
-                $json['answer'] = "Carrinho foi limpo";
-            } else {
-                $json['type'] = "error";
-                $json['answer'] = "Carrinho está vazio";
-            }
-        } elseif(isset($_POST['prod_id'])) {
-            $id = $_POST['prod_id'];
-            $qtd_post = $_POST['qtd_prod'];
-            if($qtd_post > 0) {
-                $sel = $conn->prepare("SELECT produto_qtd FROM dados_armazem WHERE produto_id=$id AND armazem_id={$_SESSION['arm_id']}");
-                $sel->execute();
-                $row = $sel->fetch( PDO::FETCH_ASSOC );
-                $qtd_prod = $row['produto_qtd'];
-                
-                if(($qtd_prod >= 20) && ($qtd_post <= 20)) {
-                    $_SESSION['carrinho'][$id] = $qtd_post;
-                    $json['answer'] = "Carrinho atualizado";
-                } elseif(($qtd_prod < 20) && ($qtd_post <= $qtd_prod)) {
-                    $_SESSION['carrinho'][$id] = $qtd_post;
-                    $json['answer'] = "Carrinho atualizado";
-                } elseif(($qtd_prod >= 20) && ($qtd_post >= 20)) {
-                    $json['type'] = "error";
-                    $json['answer'] = "No máximo 20 produtos";
-                } else {
-                    $json['type'] = "error";
-                    $json['answer'] = "No máximo $qtd_prod produtos";
-                }
-            } else {
-                if(isset($_SESSION['carrinho'][$id])) {
-                    unset($_SESSION['carrinho'][$id]);
-                    if(empty($_SESSION['carrinho'])) {
-                        limpaCompra();
-                    }
-                    $json['answer'] = "Produto removido do carrinho";
-                } else {
-                    $json['type'] = "error";
-                    $json['answer'] = "Produto não está mais no carrinho";
-                }
-            }
-        } elseif(isset($_POST['attCampo_id'])) {
-            if(!isset($_SESSION['carrinho'][$_POST['attCampo_id']])) {
-                $qtd = 0;
-            } else {
-                $qtd = $_SESSION['carrinho'][$_POST['attCampo_id']];
-            }
-            $json['carrinho_qtd'] = $qtd;
+        } elseif (isset($_POST['produto_id'])) {
+
+            $json = Cart::removeProduct($_POST['produto_id']);
+
+        } elseif (isset($_POST['limpaCart'])) {
+            Cart::clearCartToChangeArm();
+
+            $json['type'] = "success";
+            $json['answer'] = "Carrinho foi limpo";
+        } elseif (isset($_POST['prod_id'])) {
+
+            $json = Cart::addProduct($_POST['prod_id'], $_POST['qtd_prod']);
+
+        } elseif (isset($_POST['attCampo_id'])) {
+
+            $json['carrinho_qtd'] = Cart::getQuantity($_POST['attCampo_id']);
+            
         } else {
             $json['type'] = "error";
             $json['answer'] = "Produto esgotado";
         }
 
         echo json_encode($json);
+    } else {
+        require_once '__system__/404.php';
     }
-?>

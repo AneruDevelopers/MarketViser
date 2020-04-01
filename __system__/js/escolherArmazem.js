@@ -8,7 +8,7 @@ $(document).ready(function() {
             showCancelButton: true,
             cancelButtonColor: "#494949",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#A94442",
+            confirmButtonColor: "#9C45EB",
             confirmButtonText: "Sim, trocar"
         }).then((result) => {
             if(result.value) {
@@ -27,7 +27,7 @@ $(document).ready(function() {
                                 text: "Um erro inesperado aconteceu! Estamos trabalhando para consertá-lo.",
                                 type: "error",
                                 showCancelButton: false,
-                                confirmButtonColor: "#A94442",
+                                confirmButtonColor: "#9C45EB",
                                 confirmButtonText: "Ok"
                             });
                         }

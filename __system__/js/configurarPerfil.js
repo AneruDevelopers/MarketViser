@@ -71,7 +71,7 @@ function deletarTelefone() {
             showCancelButton: true,
             cancelButtonColor: "#494949",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#A94442",
+            confirmButtonColor: "#9C45EB",
             confirmButtonText: "Sim, excluir"
         }).then((result) => {
             if(result.value) {
@@ -426,6 +426,7 @@ function adicionaInputsMudarEndereco() {
                             <div>
                                 <label for="end_cep">CEP</label>
                                 <input type="text" class="cep" id="end_cep" name="end_cep" value="` + json['end'][0] + `"/>
+                                <span class="answer-cep"></span>
                                 <div class="help-block"></div>
                             </div>
                         </div>
@@ -460,14 +461,14 @@ function adicionaInputsMudarEndereco() {
                         <div class="sectionLabelInputChangePass">
                             <div>
                                 <label for="end_cid">Cidade</label>
-                                <input type="text" readonly id="end_cid" name="end_cid" value="` + json['end'][5] + `"/>
+                                <input type="text" id="end_cid" name="end_cid" value="` + json['end'][5] + `"/>
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="sectionLabelInputChangePass">
                             <div>
                                 <label for="end_uf">Estado</label>
-                                <input type="text" readonly id="end_uf" name="end_uf" value="` + json['end'][6] + `"/>
+                                <input type="text" id="end_uf" name="end_uf" value="` + json['end'][6] + `"/>
                                 <div class="help-block"></div>
                             </div>
                         </div>
@@ -480,26 +481,78 @@ function adicionaInputsMudarEndereco() {
                 mudarEndereco();
                 mask();
                 $('.l-mainCad').css({'height':'640px'});
-                $("#end_cep").focusout(function(){
+
+                $("#end_cep").keyup(function(){
                     if($(this).val().length == 9) {
-                      $.ajax({
-                        url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-                        dataType: 'json',
-                        success: function(resposta){
-                          $("#end_log").val(resposta.logradouro);
-                          $("#end_comp").val(resposta.complemento);
-                          $("#end_bairro").val(resposta.bairro);
-                          $("#end_uf").val(resposta.uf);
-                          $("#end_cidade").val(resposta.localidade);
-                          $("#end_num").focus();
-                        }
-                      });
+                        $.ajax({
+                            url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                            dataType: 'json',
+                            beforeSend: function() {
+                                $(".answer-cep").html(` &nbsp;&nbsp;&nbsp;` + loadingResSmall(`Buscando...`));
+                                $("#end_log").val(``);
+                                $("#end_comp").val(``);
+                                $("#end_bairro").val(``);
+                                $("#end_uf").val(``);
+                                $("#end_cidade").val(``);
+                            },
+                            success: function(resposta) {
+                                if(resposta.erro) {
+                                    $(".answer-cep").html(` &nbsp;&nbsp;&nbsp;<small style="color:#A94442;" class="smallAnswer">Endereço inexistente</small>`);
+                                } else {
+                                    $(".answer-cep").html(``);
+                                    $("#end_log").val(resposta.logradouro);
+                                    $("#end_comp").val(resposta.complemento);
+                                    $("#end_bairro").val(resposta.bairro);
+                                    $("#end_uf").val(resposta.uf);
+                                    $("#end_cidade").val(resposta.localidade);
+                                    $("#end_num").focus();
+                                }
+                            }
+                        });
+                    } else {
+                        $(".answer-cep").html(``);
+                        $("#end_log").val(``);
+                        $("#end_comp").val(``);
+                        $("#end_bairro").val(``);
+                        $("#end_uf").val(``);
+                        $("#end_cidade").val(``);
                     }
                 });
             }
         });
     });
 }
+
+$('.usuMailMkt').change(function(e) {
+    e.preventDefault();
+    Toast.fire({
+        title: loadingRes("Alterando os dados...")
+    });
+
+    if ($(this).is(':checked')) {
+        var dado = "mailmkt=1";
+    } else {
+        var dado = "mailmkt=0";
+    }
+
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        data: dado,
+        url: BASE_URL + 'functions/configurarPerfil',
+        beforeSend: function() {
+            Toast.fire({
+                title: loadingRes("Alterando os dados...")
+            });
+        },
+        success: function(json) {
+            Toast.fire({
+                type: 'success',
+                title: "Dado alterado com sucesso"
+            });
+        }
+    })
+})
 
 showTelefones();
 adicionaInputsMudarSenha();
